@@ -30,6 +30,7 @@ public class SecondConfig extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 response.setHeader("Content-Type","text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		HttpSession session=request.getSession(true);
 		String appid=(String) session.getAttribute("id");
@@ -133,7 +134,7 @@ public class SecondConfig extends HttpServlet {
             	     String line=null;
             	     String str=null;
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-         	         PrintWriter pw1=new PrintWriter("https://mind-inputs.rhcloud.com/det.xml");
+         	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/det.xml");
             	     while((line=br.readLine())!=null){
             	    	 pw1.write(line);
      	       		     pw1.flush();
@@ -142,7 +143,7 @@ public class SecondConfig extends HttpServlet {
     	        	    pw1.close();
     	        	   	     		
                    	 //   Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/det.xml");
-                   	 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+                   	 out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
         		     response.setHeader("Refresh", "1; URL=sec_xml_config.jsp"); 
                    	 }}
              
@@ -196,7 +197,7 @@ public class SecondConfig extends HttpServlet {
 	        	     String line=null;
 	        	     String str=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	     	         PrintWriter pw1=new PrintWriter("https://mind-inputs.rhcloud.com/det.xml");
+	     	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/det.xml");
 	        	     while((line=br.readLine())!=null){
 	        	    	 pw1.write(line);
 	 	       		     pw1.flush();
@@ -206,7 +207,7 @@ public class SecondConfig extends HttpServlet {
 		        	   // pw1.close();
 		        	  	       		
 	               //	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/det.xml");
-	               	out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	               	out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
 	   		        response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");
 	               	}}
 

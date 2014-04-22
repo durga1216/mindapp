@@ -31,6 +31,7 @@ public class ThirdConfig extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 response.setHeader("Content-Type","text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		HttpSession session=request.getSession(true);
 		String appid=(String) session.getAttribute("id");
@@ -131,7 +132,7 @@ public class ThirdConfig extends HttpServlet {
             	     String line=null;
             	     String str=null;
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-         	         PrintWriter pw1=new PrintWriter("https://mind-inputs.rhcloud.com/book.xml");
+         	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/book.xml");
             	     while((line=br.readLine())!=null){
             	    	 pw1.write(line);
      	       		     pw1.flush();
@@ -145,7 +146,7 @@ public class ThirdConfig extends HttpServlet {
 	    	        	 }	
     	        	   	     		
                    	  //  Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
-                   	 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+                   	 out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
         		     response.setHeader("Refresh", "1; URL=third_xml_config.jsp"); 
                    	 }}
              
@@ -195,7 +196,7 @@ public class ThirdConfig extends HttpServlet {
           		     String line=null;
           		     FileWriter fw=null;
           		     
-          		     fw=new FileWriter("https://mind-inputs.rhcloud.com/book.xml");
+          		     fw=new FileWriter("https://mindapp-pulpy.rhcloud.com/book.xml");
                   	 while ((line = in.readLine()) != null) {
 
      	       		     fw.write(line);
@@ -208,7 +209,7 @@ public class ThirdConfig extends HttpServlet {
 	    	        	 out.println(e);
 	    	        	 }	
 	              // 	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
-	               	out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	               	out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
 	   		        response.setHeader("Refresh", "1; URL=third_xml_config.jsp");
 	               	}}
 

@@ -66,7 +66,7 @@ out.println(con.isReadOnly());
 	             if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
 	            	 
 	                out.println("id:"+id);
-	             out.println("<html><h2><center><font color='green'>Processing...</font></center></h2><html>");
+	             out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
     		     response.setHeader("Refresh", "1; URL=auth.jsp");
 	             }
 	             else if("Oauth2".equals(authen1)){
