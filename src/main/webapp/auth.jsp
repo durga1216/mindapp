@@ -222,7 +222,7 @@ function removeParent(){
  </script>
 </head>
 <body>
-<br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
+<br><br><div class="head"><h2><center>Mind Pulpy</center></h2></div><br><br>
 <form action="AuthPulpy" method="post">
 <br>
 <div class="rmethod"><center>Request Method</center></div>

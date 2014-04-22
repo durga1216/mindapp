@@ -58,9 +58,11 @@ public class AuthPulpy1 extends HttpServlet {
          Connection con=null;
         	 try {
                  Class.forName("com.mysql.jdbc.Driver").newInstance();
+
                  String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-            final String USER = "adminPQ1iFfN";
-                final String PASS = "J5JhBL-XC9NG";
+                 final String USER = "adminPQ1iFfN";
+                 final String PASS = "J5JhBL-XC9NG";
+
                  con = DriverManager.getConnection(url,USER,PASS);
                  PreparedStatement st=con.prepareStatement("insert into xmlconfig(id,xr,xrv,x1,xv1,x2,xv2,x3,xv3,x4,xv4,x5,xv5,x6,xv6,x7,xv7,x8,xv8,x9,xv9,x10,xv10,x11,xv11,x12,xv12,x13,xv13,x14,xv14,x15,xv15,x16,xv16,x17,xv17,x18,xv18,x19,xv19,x20,xv20,x21,xv21,x22,xv22,x23,xv23,x24,xv24,x25,xv25,x26,xv26,x27,xv27,x28,xv28,x29,xv29,x30,xv30) values ('"+appid+"','"+xr+"','"+xrv+"','"+x1+"','"+xv1+"','"+x2+"','"+xv2+"','"+x3+"','"+xv3+"','"+x4+"','"+xv4+"','"+x5+"','"+xv5+"','"+x6+"','"+xv6+"','"+x7+"','"+xv7+"','"+x8+"','"+xv8+"','"+x9+"','"+xv9+"','"+x10+"','"+xv10+"','"+x11+"','"+xv11+"','"+x12+"','"+xv12+"','"+x13+"','"+xv13+"','"+x14+"','"+xv14+"','"+x15+"','"+xv15+"','"+x16+"','"+xv16+"','"+x17+"','"+xv17+"','"+x18+"','"+xv18+"','"+x19+"','"+xv19+"','"+x20+"','"+xv20+"','"+x21+"','"+xv21+"','"+x22+"','"+xv22+"','"+x23+"','"+xv23+"','"+x24+"','"+xv24+"','"+x25+"','"+xv25+"','"+x26+"','"+xv26+"','"+x27+"','"+xv27+"','"+x28+"','"+xv28+"','"+x29+"','"+xv29+"','"+x30+"','"+xv30+"')");                
                  st.executeUpdate();

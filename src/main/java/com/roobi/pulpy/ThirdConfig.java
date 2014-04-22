@@ -44,9 +44,11 @@ public class ThirdConfig extends HttpServlet {
 		Connection con=null;
    	 try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
+
             String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-       final String USER = "adminPQ1iFfN";
+            final String USER = "adminPQ1iFfN";
             final String PASS = "J5JhBL-XC9NG";
+
             con = DriverManager.getConnection(url,USER,PASS);
             PreparedStatement st=con.prepareStatement("insert into thirdconfig(id,thrdurl,thrdcycle,alabel,akey,thrd1,thrd2,t1,tv1,t2,tv2,t3,tv3,t4,tv4,t5,tv5,t6,tv6,t7,tv7,t8,tv8,t9,tv9,t10,tv10) values ('"+appid+"','"+thirdurl+"','"+thirdcycle+"','"+al+"','"+ak+"','"+thrd1+"','"+thrd2+"','"+t1+"','"+tv1+"','"+t2+"','"+tv2+"','"+t3+"','"+tv3+"','"+t4+"','"+tv4+"','"+t5+"','"+tv5+"','"+t6+"','"+tv6+"','"+t7+"','"+tv7+"','"+t8+"','"+tv8+"','"+t9+"','"+tv9+"','"+t10+"','"+tv10+"')");                
             st.executeUpdate();
@@ -119,6 +121,7 @@ public class ThirdConfig extends HttpServlet {
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2))
     	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
     	        	 out.println(thirdurl11);
+    	        	 try{
     	        	 URL thirdurl2=new URL(thirdurl11);
             		 URLConnection uconn = thirdurl2.openConnection();
             	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -128,7 +131,7 @@ public class ThirdConfig extends HttpServlet {
             	     String line=null;
             	     String str=null;
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-         	         PrintWriter pw1=new PrintWriter("F:/workspace/MindPulpy1/WebContent/book.xml");
+         	         PrintWriter pw1=new PrintWriter("https://mind-inputs.rhcloud.com/book.xml");
             	     while((line=br.readLine())!=null){
             	    	 pw1.write(line);
      	       		     pw1.flush();
@@ -136,8 +139,12 @@ public class ThirdConfig extends HttpServlet {
 
             	      }
     	        	    pw1.close();
+    	         }
+	        	    catch(Exception e){
+	    	        	 out.println(e);
+	    	        	 }	
     	        	   	     		
-                   	    Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
+                   	  //  Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
                    	 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         		     response.setHeader("Refresh", "1; URL=third_xml_config.jsp"); 
                    	 }}
@@ -179,6 +186,7 @@ public class ThirdConfig extends HttpServlet {
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
 	        		 out.println(thirdurl11);
+	        		 try{
 	        		 URL url1=new URL(thirdurl11);
      				 URLConnection uconn = url1.openConnection();
 
@@ -187,7 +195,7 @@ public class ThirdConfig extends HttpServlet {
           		     String line=null;
           		     FileWriter fw=null;
           		     
-          		     fw=new FileWriter("F:/workspace/MindPulpy1/WebContent/book.xml");
+          		     fw=new FileWriter("https://mind-inputs.rhcloud.com/book.xml");
                   	 while ((line = in.readLine()) != null) {
 
      	       		     fw.write(line);
@@ -195,7 +203,11 @@ public class ThirdConfig extends HttpServlet {
                   	 }            
                   	fw.close();
         		      in.close();
-	               	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
+	        	 }
+	        	    catch(Exception e){
+	    	        	 out.println(e);
+	    	        	 }	
+	              // 	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
 	               	out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	   		        response.setHeader("Refresh", "1; URL=third_xml_config.jsp");
 	               	}}

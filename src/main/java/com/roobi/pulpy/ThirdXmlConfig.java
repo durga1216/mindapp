@@ -63,9 +63,11 @@ public class ThirdXmlConfig extends HttpServlet {
          Connection con=null;
         	 try {
                  Class.forName("com.mysql.jdbc.Driver").newInstance();
+
                  String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-            final String USER = "adminPQ1iFfN";
-                final String PASS = "J5JhBL-XC9NG";
+                 final String USER = "adminPQ1iFfN";
+                 final String PASS = "J5JhBL-XC9NG";
+
                  con = DriverManager.getConnection(url,USER,PASS);
                  PreparedStatement st=con.prepareStatement("insert into thrdxmlconfig(id,thrdroot,thrdparent,tx1,txv1,tx2,txv2,tx3,txv3,tx4,txv4,tx5,txv5,tx6,txv6,tx7,txv7,tx8,txv8,tx9,txv9,tx10,txv10,tx11,txv11,tx12,txv12,tx13,txv13,tx14,txv14,tx15,txv15,tx16,txv16,tx17,txv17,tx18,txv18,tx19,txv19,tx20,txv20,tx21,txv21,tx22,txv22,tx23,txv23,tx24,txv24,tx25,txv25,tx26,txv26,tx27,txv27,tx28,txv28,tx29,txv29,tx30,txv30) values ('"+appid+"','"+thrdroot+"','"+thrdparent+"','"+tx1+"','"+txv1+"','"+tx2+"','"+txv2+"','"+tx3+"','"+txv3+"','"+tx4+"','"+txv4+"','"+tx5+"','"+txv5+"','"+tx6+"','"+txv6+"','"+tx7+"','"+txv7+"','"+tx8+"','"+txv8+"','"+tx9+"','"+txv9+"','"+tx10+"','"+txv10+"','"+tx11+"','"+txv11+"','"+tx12+"','"+txv12+"','"+tx13+"','"+txv13+"','"+tx14+"','"+txv14+"','"+tx15+"','"+txv15+"','"+tx16+"','"+txv16+"','"+tx17+"','"+txv17+"','"+tx18+"','"+txv18+"','"+tx19+"','"+txv19+"','"+tx20+"','"+txv20+"','"+tx21+"','"+txv21+"','"+tx22+"','"+txv22+"','"+tx23+"','"+txv23+"','"+tx24+"','"+txv24+"','"+tx25+"','"+txv25+"','"+tx26+"','"+txv26+"','"+tx27+"','"+txv27+"','"+tx28+"','"+txv28+"','"+tx29+"','"+txv29+"','"+tx30+"','"+txv30+"')");                
                  st.executeUpdate();

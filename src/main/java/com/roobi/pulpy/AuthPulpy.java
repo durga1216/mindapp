@@ -60,9 +60,11 @@ public class AuthPulpy extends HttpServlet {
 	  String appid=(String) session.getAttribute("id");
       try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-       final String USER = "adminPQ1iFfN";
-            final String PASS = "J5JhBL-XC9NG";
+
+			 String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
+	            final String USER = "adminPQ1iFfN";
+	            final String PASS = "J5JhBL-XC9NG";
+
             con = (Connection) DriverManager.getConnection(url,USER,PASS);
             String sam=null;
              PreparedStatement st=null;
@@ -123,8 +125,9 @@ public class AuthPulpy extends HttpServlet {
 		        		 eurl=endurl1+"?"+"&"+pa1+"="+pva1;}
 	        		 else if("null".equals(pa1))
 	        			eurl=endurl1;
-	        	 
+	        	 out.println("eurl");
 	        	 URL eurl1=new URL(eurl);
+	        	 try{
         		 URLConnection uconn = eurl1.openConnection();
         	     HttpURLConnection conn = (HttpURLConnection) uconn;
         	     conn.connect();
@@ -132,8 +135,10 @@ public class AuthPulpy extends HttpServlet {
         	     InputStream stream = (InputStream) content;
         	     String line=null;
         	     String str=null;
+	        	 out.println("test2");
+
         	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-     	         PrintWriter pw1=new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
+     	         PrintWriter pw1=new PrintWriter("https://mind-inputs.rhcloud.com/sam.xml");
         	     while((line=br.readLine())!=null){
         	    	 pw1.write(line);
  	       		     pw1.flush();
@@ -141,8 +146,11 @@ public class AuthPulpy extends HttpServlet {
 
         	      }
 	        	    pw1.close();
-	        	   	     		
-               	    Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
+	         }
+	        	    catch(Exception e){
+	    	        	 out.println(e);
+	    	        	 }	
+               	    //Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
                	 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
     		     response.setHeader("Refresh", "1; URL=auth1.jsp"); }}
 	         
@@ -174,6 +182,7 @@ public class AuthPulpy extends HttpServlet {
 	        		 else if("null".equals(pa1))
 	        			eurl=endurl1+"?"+ak1+"="+ak2;
 	        		 out.println(eurl);
+	        		 try{
 	        		 URL eurl1=new URL(eurl);
 	        		 URLConnection uconn = eurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -183,7 +192,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     String line=null;
 	        	     String str=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	     	         PrintWriter pw1=new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
+	     	         PrintWriter pw1=new PrintWriter("https://mind-inputs.rhcloud.com/sam.xml");
 	        	     while((line=br.readLine())!=null){
 	        	    	 pw1.write(line);
 	 	       		     pw1.flush();
@@ -191,9 +200,14 @@ public class AuthPulpy extends HttpServlet {
 
 	        	      }
 		        	    pw1.close();
+	        		 }
+	        		 catch(Exception e){
+	    	        	 out.println(e);
+	    	        	 }
+	        	    
 		        	  	       		
-	               	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
-	               	out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	               	//Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
+	               	out.println("<h2><center><font color='green'>Processing...</font></center></h2>");
 	   		        response.setHeader("Refresh", "1; URL=auth1.jsp"); }}
 	         
 	         
@@ -250,7 +264,7 @@ public class AuthPulpy extends HttpServlet {
 	         }
 	         }  
       }
-      catch(Exception e){}
+      catch(Exception e1){}
       
      
       

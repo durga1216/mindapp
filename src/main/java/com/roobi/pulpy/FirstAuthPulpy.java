@@ -43,9 +43,11 @@ public class FirstAuthPulpy extends HttpServlet {
 		  String treplace=request.getParameter("treplace");String el=request.getParameter("el"); String ev=request.getParameter("ev");
 		  try{
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
+
 			  String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
 	            final String USER = "adminPQ1iFfN";
 	            final String PASS = "J5JhBL-XC9NG";
+
 	            con = (Connection) DriverManager.getConnection(url,USER,PASS);
 	             PreparedStatement st=null;
 				 st=con.prepareStatement("insert into authen(appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev) values ('"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"')");

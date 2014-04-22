@@ -61,8 +61,9 @@ public class SecondXmlConfig extends HttpServlet {
    	 try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-       final String USER = "adminPQ1iFfN";
-           final String PASS = "J5JhBL-XC9NG";
+            final String USER = "adminPQ1iFfN";
+            final String PASS = "J5JhBL-XC9NG";
+
             con = DriverManager.getConnection(url,USER,PASS);
             PreparedStatement st=con.prepareStatement("insert into secxmlconfig(id,secroot,secparent,sx1,sxv1,sx2,sxv2,sx3,sxv3,sx4,sxv4,sx5,sxv5,sx6,sxv6,sx7,sxv7,sx8,sxv8,sx9,sxv9,sx10,sxv10,sx11,sxv11,sx12,sxv12,sx13,sxv13,sx14,sxv14,sx15,sxv15,sx16,sxv16,sx17,sxv17,sx18,sxv18,sx19,sxv19,sx20,sxv20,sx21,sxv21,sx22,sxv22,sx23,sxv23,sx24,sxv24,sx25,sxv25,sx26,sxv26,sx27,sxv27,sx28,sxv28,sx29,sxv29,sx30,sxv30) values ('"+appid+"','"+secroot+"','"+secparent+"','"+sx1+"','"+sxv1+"','"+sx2+"','"+sxv2+"','"+sx3+"','"+sxv3+"','"+sx4+"','"+sxv4+"','"+sx5+"','"+sxv5+"','"+sx6+"','"+sxv6+"','"+sx7+"','"+sxv7+"','"+sx8+"','"+sxv8+"','"+sx9+"','"+sxv9+"','"+sx10+"','"+sxv10+"','"+sx11+"','"+sxv11+"','"+sx12+"','"+sxv12+"','"+sx13+"','"+sxv13+"','"+sx14+"','"+sxv14+"','"+sx15+"','"+sxv15+"','"+sx16+"','"+sxv16+"','"+sx17+"','"+sxv17+"','"+sx18+"','"+sxv18+"','"+sx19+"','"+sxv19+"','"+sx20+"','"+sxv20+"','"+sx21+"','"+sxv21+"','"+sx22+"','"+sxv22+"','"+sx23+"','"+sxv23+"','"+sx24+"','"+sxv24+"','"+sx25+"','"+sxv25+"','"+sx26+"','"+sxv26+"','"+sx27+"','"+sxv27+"','"+sx28+"','"+sxv28+"','"+sx29+"','"+sxv29+"','"+sx30+"','"+sxv30+"')");                
             st.executeUpdate();

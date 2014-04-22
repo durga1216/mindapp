@@ -56,9 +56,11 @@ public class CommonXmlPulpy extends HttpServlet {
         Connection con=null;
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-        String url1 = "jdbc:mysql://localhost/MPULPY";
-        final String USER = "root";
+
+	    String url1 = "jdbc:mysql://127.6.250.130:3306/mpulpy";
+        final String USER = "adminPQ1iFfN";
         final String PASS = "J5JhBL-XC9NG";
+
         con = DriverManager.getConnection(url1,USER,PASS);
 	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen c1  JOIN secondconfig c2 ON c1.id=c2.id JOIN secxmlconfig cx2 ON c1.id=cx2.id JOIN thirdconfig c3 ON c1.id=c3.id JOIN thrdxmlconfig cx3 on c1.id=cx3.id JOIN config c4 ON c1.id=c4.id  WHERE c1.id=?");
 	    st.setString(1, appid);
