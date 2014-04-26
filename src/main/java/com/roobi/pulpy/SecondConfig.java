@@ -134,7 +134,7 @@ public class SecondConfig extends HttpServlet {
             	     String line=null;
             	     String str=null;
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-         	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/det.xml");
+         	         PrintWriter pw1=new PrintWriter("xml/det.xml");
             	     while((line=br.readLine())!=null){
             	    	 pw1.write(line);
      	       		     pw1.flush();
@@ -197,7 +197,7 @@ public class SecondConfig extends HttpServlet {
 	        	     String line=null;
 	        	     String str=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	     	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/det.xml");
+	     	         PrintWriter pw1=new PrintWriter("xml/det.xml");
 	        	     while((line=br.readLine())!=null){
 	        	    	 pw1.write(line);
 	 	       		     pw1.flush();

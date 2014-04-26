@@ -132,7 +132,7 @@ public class ThirdConfig extends HttpServlet {
             	     String line=null;
             	     String str=null;
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-         	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/book.xml");
+         	         PrintWriter pw1=new PrintWriter("xml/book.xml");
             	     while((line=br.readLine())!=null){
             	    	 pw1.write(line);
      	       		     pw1.flush();
@@ -196,7 +196,7 @@ public class ThirdConfig extends HttpServlet {
           		     String line=null;
           		     FileWriter fw=null;
           		     
-          		     fw=new FileWriter("https://mindapp-pulpy.rhcloud.com/book.xml");
+          		     fw=new FileWriter("xml/book.xml");
                   	 while ((line = in.readLine()) != null) {
 
      	       		     fw.write(line);

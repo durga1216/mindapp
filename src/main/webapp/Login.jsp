@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mind Pulpy</title>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/jquery-latest.js"></script>
 	
 <style>
 input[type="text"]{

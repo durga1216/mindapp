@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/jquery-latest.js"></script>
 
 <style>
 body{

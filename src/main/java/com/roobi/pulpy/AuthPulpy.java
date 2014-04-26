@@ -138,7 +138,7 @@ public class AuthPulpy extends HttpServlet {
 	        	 out.println("test2");
 
         	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-     	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/sam.xml");
+     	         PrintWriter pw1=new PrintWriter("xml/sam.xml");
         	     while((line=br.readLine())!=null){
         	    	 pw1.write(line);
  	       		     pw1.flush();
@@ -192,7 +192,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     String line=null;
 	        	     String str=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	     	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/sam.xml");
+	     	         PrintWriter pw1=new PrintWriter("xml/sam.xml");
 	        	     while((line=br.readLine())!=null){
 	        	    	 pw1.write(line);
 	 	       		     pw1.flush();
