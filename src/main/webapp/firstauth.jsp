@@ -225,7 +225,7 @@ color:#FFFFFF;
 
 </div>
 <br><br><div id="oauth2" style="display:none"><br>
-<center><div class='redirect'>Redirect URI=http://localhost:8082/mindapp/OauthCallBackServlet</div></center><br><br>
+<center><div class='redirect'>Redirect URI=http://localhost:8080/MindPulpy1/OauthCallBackServlet</div></center><br><br>
 <input type="text" name="cname" value="" placeholder="Client_ID_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="ckey" value="" placeholder="Client_ID_KEY"><br><br>
 <input type="text" name="csecname" value="" placeholder="Client_Secret_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
