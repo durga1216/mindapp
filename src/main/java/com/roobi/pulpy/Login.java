@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,10 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		 PrintWriter out=response.getWriter();
+		ServletContext servletContext = getServletContext();
+		String contextPath = servletContext.getRealPath("/");
+		out.println("<br/>File system context path (in TestServlet): " + contextPath);
 	}
 
 	/**
@@ -42,13 +47,16 @@ public class Login extends HttpServlet {
 		String pass=request.getParameter("app2");
 		if(user.equals("mind")&& pass.equals("mind"))
 		{
-			response.sendRedirect("firstauth.jsp");
+			//response.sendRedirect("firstauth.jsp");
 		}
 		else
 		{
 			out.println("<html><h1><center><font color='green'>Oops..!! Enter correct username, password..!!</font></center></h2><html>");
-		     response.setHeader("Refresh", "1; URL=Login.jsp");
+		   //  response.setHeader("Refresh", "1; URL=Login.jsp");
 		}
+		ServletContext servletContext = getServletContext();
+		String contextPath = servletContext.getRealPath("/");
+		out.println("<br/>File system context path (in TestServlet): " + contextPath);
 	}
 
 }
