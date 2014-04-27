@@ -31,9 +31,8 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		 PrintWriter out=response.getWriter();
-		ServletContext servletContext = request.getSession().getServletContext();
-		String contextPath = servletContext.getRealPath("/");
-		out.println("<br/>File system context path (in TestServlet): " + contextPath);
+		 String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+		 out.println("<br/>File system context path (in TestServlet): " + contextPath);
 	}
 
 	/**
