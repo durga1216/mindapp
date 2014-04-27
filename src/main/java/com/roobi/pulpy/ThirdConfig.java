@@ -1,6 +1,7 @@
 package com.roobi.pulpy;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -133,8 +134,10 @@ public class ThirdConfig extends HttpServlet {
             	     String line=null;
             	     String str=null;
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-         	         PrintWriter pw1=new PrintWriter("xml/book.xml");
-            	     while((line=br.readLine())!=null){
+            	     String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+            		 String pr=contextPath+File.separator+"book.xml";
+            		 out.println(pr);
+         	         PrintWriter pw1=new PrintWriter(pr);            	     while((line=br.readLine())!=null){
             	    	 pw1.write(line);
      	       		     pw1.flush();
      	        	   //out.println(line);
@@ -196,8 +199,10 @@ public class ThirdConfig extends HttpServlet {
 
           		     String line=null;
           		     FileWriter fw=null;
-          		     
-          		     fw=new FileWriter("xml/book.xml");
+          		   String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+          		 String pr=contextPath+File.separator+"book.xml";
+          		 out.println(pr);
+       	         PrintWriter pw1=new PrintWriter(pr);
                   	 while ((line = in.readLine()) != null) {
 
      	       		     fw.write(line);
