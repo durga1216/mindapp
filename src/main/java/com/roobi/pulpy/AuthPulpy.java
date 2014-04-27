@@ -1,6 +1,7 @@
 package com.roobi.pulpy;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -138,6 +140,10 @@ public class AuthPulpy extends HttpServlet {
 	        	 out.println("test2");
 
         	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+        			ServletContext servletContext = getServletContext();
+        			String contextPath = servletContext.getRealPath(File.separator);
+        			out.println("<br/>File system context path (in TestServlet): " + contextPath);
+
      	         PrintWriter pw1=new PrintWriter("webapp/xml/sam.xml");
         	     while((line=br.readLine())!=null){
         	    	 pw1.write(line);
