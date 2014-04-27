@@ -14,6 +14,7 @@ import java.net.URLConnection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -32,6 +33,7 @@ import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
 import net.sf.json.xml.XMLSerializer;
 
+import com.mindots.util.Utils;
 import com.mysql.jdbc.Connection;
 
 public class AuthPulpy extends HttpServlet {
@@ -48,7 +50,7 @@ public class AuthPulpy extends HttpServlet {
    	 response.setHeader("Content-Type","text/html; charset=UTF-8");
 
 		PrintWriter out=response.getWriter();
-      
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
       String rf=request.getParameter("rf");String select2=request.getParameter("rm");
       String select=request.getParameter("select2");
       String select3=request.getParameter("select3");String endurl=request.getParameter("endurl");
@@ -62,12 +64,7 @@ public class AuthPulpy extends HttpServlet {
 	  String appid=(String) session.getAttribute("id");
       try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-			 String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-	            final String USER = "adminPQ1iFfN";
-	            final String PASS = "J5JhBL-XC9NG";
-
-            con = (Connection) DriverManager.getConnection(url,USER,PASS);
+            con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             String sam=null;
              PreparedStatement st=null;
              String str1="insert into config(id,resf,rm,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6) values ('"+appid+"','"+select3+"','"+select+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"')";
@@ -140,11 +137,12 @@ public class AuthPulpy extends HttpServlet {
 	        	 out.println("test2");
 
         	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-        			ServletContext servletContext = getServletContext();
-        			String contextPath = servletContext.getRealPath("/");
-        			out.println("<br/>File system context path (in TestServlet): " + contextPath);
-
-     	         PrintWriter pw1=new PrintWriter("webapp/xml/sam.xml");
+        	    
+        		 String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+        		 String pr=contextPath+File.separator+"sam.xml";
+        		 out.println(pr);
+     	         PrintWriter pw1=new PrintWriter(pr);
+     	         
         	     while((line=br.readLine())!=null){
         	    	 pw1.write(line);
  	       		     pw1.flush();
@@ -198,7 +196,11 @@ public class AuthPulpy extends HttpServlet {
 	        	     String line=null;
 	        	     String str=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	     	         PrintWriter pw1=new PrintWriter("webapp/xml/sam.xml");
+
+	        		 String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+	        		 String pr=contextPath+File.separator+"sam.xml";
+	        		 out.println(pr);
+	     	         PrintWriter pw1=new PrintWriter(pr);
 	        	     while((line=br.readLine())!=null){
 	        	    	 pw1.write(line);
 	 	       		     pw1.flush();

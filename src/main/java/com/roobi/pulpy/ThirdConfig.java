@@ -13,12 +13,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.mindots.util.Utils;
 
 public class ThirdConfig extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,7 +34,9 @@ public class ThirdConfig extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 response.setHeader("Content-Type","text/html; charset=UTF-8");
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+
+		response.setHeader("Content-Type","text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		HttpSession session=request.getSession(true);
 		String appid=(String) session.getAttribute("id");
@@ -46,11 +51,7 @@ public class ThirdConfig extends HttpServlet {
    	 try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-            final String USER = "adminPQ1iFfN";
-            final String PASS = "J5JhBL-XC9NG";
-
-            con = DriverManager.getConnection(url,USER,PASS);
+            con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             PreparedStatement st=con.prepareStatement("insert into thirdconfig(id,thrdurl,thrdcycle,alabel,akey,thrd1,thrd2,t1,tv1,t2,tv2,t3,tv3,t4,tv4,t5,tv5,t6,tv6,t7,tv7,t8,tv8,t9,tv9,t10,tv10) values ('"+appid+"','"+thirdurl+"','"+thirdcycle+"','"+al+"','"+ak+"','"+thrd1+"','"+thrd2+"','"+t1+"','"+tv1+"','"+t2+"','"+tv2+"','"+t3+"','"+tv3+"','"+t4+"','"+tv4+"','"+t5+"','"+tv5+"','"+t6+"','"+tv6+"','"+t7+"','"+tv7+"','"+t8+"','"+tv8+"','"+t9+"','"+tv9+"','"+t10+"','"+tv10+"')");                
             st.executeUpdate();
             st.close();

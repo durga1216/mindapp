@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.mindots.util.Utils;
+
 public class CommonXmlPulpy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -44,6 +48,8 @@ public class CommonXmlPulpy extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
@@ -57,11 +63,7 @@ public class CommonXmlPulpy extends HttpServlet {
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-	    String url1 = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-        final String USER = "adminPQ1iFfN";
-        final String PASS = "J5JhBL-XC9NG";
-
-        con = DriverManager.getConnection(url1,USER,PASS);
+	    con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen c1  JOIN secondconfig c2 ON c1.id=c2.id JOIN secxmlconfig cx2 ON c1.id=cx2.id JOIN thirdconfig c3 ON c1.id=c3.id JOIN thrdxmlconfig cx3 on c1.id=cx3.id JOIN config c4 ON c1.id=c4.id  WHERE c1.id=?");
 	    st.setString(1, appid);
         ResultSet rs = st.executeQuery();

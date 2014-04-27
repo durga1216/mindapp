@@ -6,12 +6,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.mindots.util.Utils;
 
 
 public class FirstAuthPulpy extends HttpServlet {
@@ -28,6 +31,7 @@ public class FirstAuthPulpy extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	   	 response.setHeader("Content-Type","text/html; charset=UTF-8");
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 
 	   	 Connection con=null;  
 	      PrintWriter out=response.getWriter();
@@ -44,11 +48,7 @@ public class FirstAuthPulpy extends HttpServlet {
 		  try{
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-			  String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-	            final String USER = "adminPQ1iFfN";
-	            final String PASS = "J5JhBL-XC9NG";
-
-	            con = (Connection) DriverManager.getConnection(url,USER,PASS);
+			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	             PreparedStatement st=null;
 				 st=con.prepareStatement("insert into authen(appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev) values ('"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"')");
 				 st.executeUpdate();

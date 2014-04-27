@@ -26,7 +26,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.mindots.util.Utils;
+import com.mysql.jdbc.Connection;
+
 import java.sql.*;
+import java.util.Map;
 public class AuthXmlPulpy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     Connection con=null;
@@ -34,6 +38,8 @@ public class AuthXmlPulpy extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
@@ -44,12 +50,7 @@ public class AuthXmlPulpy extends HttpServlet {
 
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-	    String url1 = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-        final String USER = "adminPQ1iFfN";
-        final String PASS = "J5JhBL-XC9NG";
-
-        con = DriverManager.getConnection(url1,USER,PASS);
+	    con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	    PreparedStatement st=con.prepareStatement("SELECT * FROM config t1 JOIN xmlconfig t2 ON t1.id = t2.id JOIN authen t3 ON t1.id=t3.id WHERE t1.id=?");
 	    st.setString(1, appid);
         ResultSet rs = st.executeQuery();
