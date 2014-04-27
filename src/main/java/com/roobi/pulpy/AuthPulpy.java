@@ -141,7 +141,7 @@ public class AuthPulpy extends HttpServlet {
 
         	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
         			ServletContext servletContext = getServletContext();
-        			String contextPath = servletContext.getRealPath(File.separator);
+        			String contextPath = servletContext.getRealPath("/");
         			out.println("<br/>File system context path (in TestServlet): " + contextPath);
 
      	         PrintWriter pw1=new PrintWriter("webapp/xml/sam.xml");
@@ -158,11 +158,11 @@ public class AuthPulpy extends HttpServlet {
 	    	        	 }	
                	    //Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
                	 out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-    		     response.setHeader("Refresh", "1; URL=auth1.jsp"); }}
+    		     //response.setHeader("Refresh", "1; URL=auth1.jsp"); 
 	         
-	        	 	         
+	         }
 	         
-	         
+	        } 
 	         
 	         else if(authen1.equals("API keys")){  //API Keys
 	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //API XML get
