@@ -8,6 +8,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<script>
+function validateform()
+{
+	var x1=document.forms["sec1"]["securl"].value;
+	if(x1==null||x1=="")
+		{
+		alert("***Please fill the secand end point url***");
+		return false;
+		}
+	}
+</script>
 <style>
 body{
 background-color:#FF9900;}
@@ -112,9 +123,10 @@ function removeParent(){
     intTextBox = intTextBox-1;
 }
 </script>
+
 <body>
 <div id="head"><center>Mind Pulpy<center></center></div><br><br>
-<form action="SecondConfig" method="post">
+<form name="sec1"action="SecondConfig" method="post" onsubmit="return validateform()">
 <center><div class='heading'>Second Step Configuration</div></center>
 <br><br><input type="text" name="securl" value="" placeholder="Second_End_Point_Url*"><br><br>
 <CENTER><div id="inline_content">

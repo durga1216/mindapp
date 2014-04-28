@@ -75,11 +75,29 @@ border-radius:25px;
 padding:15px;
 }
 </style>
+<script>
+function validateform()
+{
+	var x1=document.forms["auth1"]["xr"].value;
+	if(x1==null||x1=="")
+		{
+		alert("***please fill that parant tag***");
+		return false;
+		}
+	var x2=document.forms["auth1"]["xrv"].value;
+	if(x2=null||x2=="")
+		{
+		alert("***please fill the root tag**");
+		return false;
+		}
+	}
 
+
+</script>
 </head>
 <body>
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
-<form action="AuthPulpy1" method="post">
+<form name="auth1"action="AuthPulpy1" method="post" onsubmit="return validateform()">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
 <center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
 <input type="text" name="xrv" value="" placeholder="Root_Tag"></div></center>

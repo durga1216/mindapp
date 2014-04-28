@@ -21,6 +21,24 @@ if (y==null || y=="")
   alert("****please fill the API_Key****");
   return false;
   }
+var y1=document.forms["firstauth"]["authen"].value;
+if (y1==null || y1=="")
+  {
+  alert("****please choose any one Radio Button****");
+  return false;
+  }
+var y2=document.forms["firstauth"]["descr"].value;
+if (y2==null || y2=="")
+  {
+  alert("****please fill the Description****");
+  return false;
+  }
+var y3=document.forms["firstauth"]["app1"].value;
+if (y3==null || y3=="")
+  {
+  alert("****please fill the App Name****");
+  return false;
+  }
 }
 </script>
 <script type="text/javascript">

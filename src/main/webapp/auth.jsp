@@ -220,10 +220,21 @@ function removeParent(){
  function oauth2(){}
 
  </script>
+<script>
+function validateform()
+{
+	var x1=document.forms["auth"]["endurl"].value;
+	if(x1==null||x1=="")
+		{
+		alert("***Please fill the end point url***");
+		return false;
+		}
+	}
+</script>
 </head>
 <body>
 <br><br><div class="head"><h2><center>Mind Pulpy</center></h2></div><br><br>
-<form action="AuthPulpy" method="post">
+<form name="auth" action="AuthPulpy" method="post" onsubmit="return validateform()">
 <br>
 <div class="rmethod"><center>Request Method</center></div>
 <select name="select2"  id="select2" onchange="change()">

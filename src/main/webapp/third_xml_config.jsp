@@ -6,7 +6,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 	<script src="js/jquery-latest.js"></script>
-
+<script>
+function validateform()
+{
+	var x1=document.forms["third2"]["thrdparent"].value;
+	if(x1==null||x1=="")
+		{
+		alert("***please fill that parant tag***");
+		return false;
+		}
+	var x2=document.forms["third2"]["thrdroot"].value;
+	if(x2=null||x2=="")
+		{
+		alert("***please fill the root tag**");
+		return false;
+		}
+	}
+</script>
 <style>
 body{
 background-color:#FF9900;}
@@ -80,7 +96,7 @@ function removeParam()
 </script>
 </head>
 <body>
-<form action="ThirdXmlConfig" method="post">
+<form name=third2 action="ThirdXmlConfig" method="post" onsubmit="return validateform()">
 <center><div class="head">Mind Pulpy</div></center><br><br>
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
 <center><div="text"></div><input type="text" name="thrdparent" value="" placeholder="Parent_Tag">

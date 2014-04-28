@@ -7,6 +7,17 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script>
+function validateform()
+{
+	var x1=document.forms["third1"]["thrdurl"].value;
+	if(x1==null||x1=="")
+		{
+		alert("***Please fill the third end point url***");
+		return false;
+		}
+	}
+</script>
 <style>
 body{
 background-color:#FF9900;}
@@ -114,7 +125,7 @@ function removeParent(){
 </head>
 <body>
 <div id="head"><center>Mind Pulpy<center></center></div><br><br>
-<form action="ThirdConfig" method="post">
+<form action="ThirdConfig" method="post"name="third1" onsubmit="return validateform()">
 <center><div class='heading'>Third Step Configuration</div></center>
 <br><br><input type="text" name="thrdurl" value="" placeholder="Third_End_Point_Url*"><br><br>
 <CENTER>
