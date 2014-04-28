@@ -6,6 +6,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 	<script src="js/jquery-latest.js"></script>
+<script>
+function validateForm()
+{
+var x=document.forms["firstauth"]["a1"].value;
+if (x==null || x=="")
+  {
+  alert("****please fill the APIkey_Label****");
+  return false;
+  }
+var y=document.forms["firstauth"]["a2"].value;
+if (y==null || y=="")
+  {
+  alert("****please fill the API_Key****");
+  return false;
+  }
+}
+</script>
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -192,7 +209,7 @@ color:#FFFFFF;
 </head>
 <body>
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
-<form action="FirstAuthPulpy" method="post">
+<form name="firstauth" action="FirstAuthPulpy" method="post" onsubmit="return validateForm()">
 <input type="text" name="app1" value="" placeholder="Application Name*"><br/><br/> 
 <textarea id="txt" name="descr" placeholder="Description*"></textarea><br><br>
 <div class="au"><center>Authentication Scheme</center></div><div class="space"></div>
@@ -266,5 +283,6 @@ color:#FFFFFF;
 </select><br/><br/>
 
 <input type="submit" name="submit" value="Continue">
+</form>
 </body>
 </html>

@@ -154,9 +154,11 @@ public class AuthPulpy extends HttpServlet {
 	        	    catch(Exception e){
 	    	        	 out.println(e);
 	    	        	 }	
-               	    //Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
+	        	 //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+        		 //String pr=contextPath+File.separator+"sam.xml";
+               	   // Runtime.getRuntime().exec("notepad"+pr);
                	 out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-    		     //response.setHeader("Refresh", "1; URL=auth1.jsp"); 
+    		     response.setHeader("Refresh", "1; URL=auth1.jsp"); 
 	         
 	         }
 	         
@@ -213,7 +215,7 @@ public class AuthPulpy extends HttpServlet {
 	    	        	 out.println(e);
 	    	        	 }
 	        	    
-	        		 out.println("susee");   		
+	        	  		
 	               	//Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
 	               	out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
 	   		        response.setHeader("Refresh", "1; URL=auth1.jsp"); }}
