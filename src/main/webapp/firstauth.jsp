@@ -9,7 +9,7 @@
 <script>
 function validateForm()
 {
-var x=document.forms["firstauth"]["a1"].value;
+/* var x=document.forms["firstauth"]["a1"].value;
 if (x==null || x=="")
   {
   alert("****please fill the APIkey_Label****");
@@ -21,7 +21,7 @@ if (y==null || y=="")
   alert("****please fill the API_Key****");
   return false;
   }
-var y2=document.forms["firstauth"]["descr"].value;
+ */var y2=document.forms["firstauth"]["descr"].value;
 if (y2==null || y2=="")
   {
   alert("****please fill the Description****");

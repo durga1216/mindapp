@@ -126,6 +126,8 @@ public class AuthPulpy extends HttpServlet {
 	        			eurl=endurl1;
 	        	 out.println("eurl");
 	        	 URL eurl1=new URL(eurl);
+        	     String str="";
+
 	        	 try{
         		 URLConnection uconn = eurl1.openConnection();
         	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -133,7 +135,6 @@ public class AuthPulpy extends HttpServlet {
         	     Object content = conn.getContent();
         	     InputStream stream = (InputStream) content;
         	     String line=null;
-        	     String str=null;
 	        	 out.println("test2");
 
         	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
@@ -146,6 +147,7 @@ public class AuthPulpy extends HttpServlet {
         	     while((line=br.readLine())!=null){
         	    	 pw1.write(line);
  	       		     pw1.flush();
+ 	       		     str+=line;
  	        	   //out.println(line);
 
         	      }
@@ -157,8 +159,8 @@ public class AuthPulpy extends HttpServlet {
 	        	 //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
         		 //String pr=contextPath+File.separator+"sam.xml";
                	   // Runtime.getRuntime().exec("notepad"+pr);
-               	 out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-    		     response.setHeader("Refresh", "1; URL=auth1.jsp"); 
+               	 out.println("<html><body><center><div id=xml_data>"+str+"</div><a href=auth1.jsp>Next</a></body><html>");
+    		     //response.setHeader("Refresh", "1; URL=auth1.jsp"); 
 	         
 	         }
 	         
@@ -205,6 +207,7 @@ public class AuthPulpy extends HttpServlet {
 	     	         PrintWriter pw1=new PrintWriter(pr);
 	        	     while((line=br.readLine())!=null){
 	        	    	 pw1.write(line);
+	        	    	 
 	 	       		     pw1.flush();
 	 	        	   // out.println(line);
 
