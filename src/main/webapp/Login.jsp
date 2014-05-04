@@ -64,7 +64,9 @@ padding:10px;
 <form action="Login" method="post">
 <div class="au">Username</div><input type="text" name="app1" value="" placeholder="username*"><br/><br/> 
 <div class="au">Password</div><input type="text" name="app2" value="" placeholder="password*"><br/><br/><br/><br/>  
-<input type="submit" name="submit" value="LOGIN">
+<input type="submit" name="submit" value="LOGIN"><br><br>
+<input type="submit" name="submit" value="SIGNUP">
+
 </form>
 </body>
 </html>

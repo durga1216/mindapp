@@ -21,12 +21,6 @@ if (y==null || y=="")
   alert("****please fill the API_Key****");
   return false;
   }
-var y1=document.forms["firstauth"]["authen"].value;
-if (y1==null || y1=="")
-  {
-  alert("****please choose any one Radio Button****");
-  return false;
-  }
 var y2=document.forms["firstauth"]["descr"].value;
 if (y2==null || y2=="")
   {
