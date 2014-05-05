@@ -159,7 +159,7 @@ public class AuthPulpy extends HttpServlet {
 	        	 //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
         		 //String pr=contextPath+File.separator+"sam.xml";
                	   // Runtime.getRuntime().exec("notepad"+pr);
-               	 out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=30>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
+               	 out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
     		     //response.setHeader("Refresh", "1; URL=auth1.jsp"); 
 	         
 	         }
@@ -225,7 +225,7 @@ public class AuthPulpy extends HttpServlet {
 	               	//Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
 	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
 	   		        //response.setHeader("Refresh", "1; URL=auth1.jsp");
-	               	 out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=30>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
+	               	 out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
 	        	 }}
 	         
 	         else if(authen1.equals("Oauth2")){
