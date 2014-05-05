@@ -190,6 +190,8 @@ public class AuthPulpy extends HttpServlet {
 	        		 else if("null".equals(pa1))
 	        			eurl=endurl1+"?"+ak1+"="+ak2;
 	        		 out.println(eurl);
+	        	     String str="";
+
 	        		 try{
 	        		 URL eurl1=new URL(eurl);
 	        		 URLConnection uconn = eurl1.openConnection();
@@ -198,7 +200,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
 	        	     String line=null;
-	        	     String str=null;
+	       
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 
 	        		 String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
@@ -209,6 +211,7 @@ public class AuthPulpy extends HttpServlet {
 	        	    	 pw1.write(line);
 	        	    	 
 	 	       		     pw1.flush();
+	 	       		     str+=line;
 	 	        	   // out.println(line);
 
 	        	      }
@@ -220,9 +223,10 @@ public class AuthPulpy extends HttpServlet {
 	        	    
 	        	  		
 	               	//Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
-	               	out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-	   		        response.setHeader("Refresh", "1; URL=auth1.jsp"); }}
-	         
+	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
+	   		        //response.setHeader("Refresh", "1; URL=auth1.jsp");
+	               	 out.println("<html><body><center><div id=xml_data>"+str+"</div><a href=auth1.jsp>Next</a></body><html>");
+	        	 }}
 	         
 	         else if(authen1.equals("Oauth2")){
 	     		HttpClient httpclient = new HttpClient();
