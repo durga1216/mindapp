@@ -225,7 +225,7 @@ public class AuthPulpy extends HttpServlet {
 	               	//Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
 	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
 	   		        //response.setHeader("Refresh", "1; URL=auth1.jsp");
-	               	 out.println("<html><body><a href=sam.xml>xml</a><a href=auth1.jsp>Next</a></body><html>");
+	               	 out.println("<html><body><a href=/temp//sam.xml>xml</a><a href=auth1.jsp>Next</a></body><html>");
 	        	 }}
 	         
 	         else if(authen1.equals("Oauth2")){
