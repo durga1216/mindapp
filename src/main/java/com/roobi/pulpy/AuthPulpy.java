@@ -204,7 +204,7 @@ public class AuthPulpy extends HttpServlet {
 	       
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 
-	        		 String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+	        		 String contextPath = System.getenv("OPENSHIFT_DATA_DIR");
 	        		 String pr=contextPath+"sam.xml";
 	        		 out.println(pr);
 	     	         PrintWriter pw1=new PrintWriter(pr);
