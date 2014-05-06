@@ -203,10 +203,10 @@ public class AuthPulpy extends HttpServlet {
 	       
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 
-	        		 String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-	        		 String pr=contextPath+File.separator+"sam.xml";
-	        		 out.println(pr);
-	     	         PrintWriter pw1=new PrintWriter(pr);
+	        		 //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+	        		 //String pr=contextPath+File.separator+"sam.xml";
+	        		 //out.println(pr);
+	     	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/xml/sam.xml");
 	        	     while((line=br.readLine())!=null){
 	        	    	 pw1.write(line);
 	        	    	 
