@@ -140,27 +140,31 @@ public class AuthPulpy extends HttpServlet {
 
         	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
         	    
-        		 String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-        		 String pr=contextPath+File.separator+"sam.xml";
-        		 out.println(pr);
-     	         PrintWriter pw1=new PrintWriter(pr);
+        		// String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+        		 //String pr=contextPath+File.separator+"sam.xml";
+        		 //out.println(pr);
+     	         //PrintWriter pw1=new PrintWriter(pr);
      	         
         	     while((line=br.readLine())!=null){
-        	    	 pw1.write(line);
- 	       		     pw1.flush();
+        	    	// pw1.write(line);
+ 	       		     //pw1.flush();
  	       		     str+=line;
  	        	   //out.println(line);
 
         	      }
-	        	    pw1.close();
+        	     
+	        	//    pw1.close();
 	         }
 	        	    catch(Exception e){
 	    	        	 out.println(e);
 	    	        	 }	
+	        	 request.setAttribute("PassingObj", str);
+	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
+	     		    disp.forward(request, response);
 	        	 //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
         		 //String pr=contextPath+File.separator+"sam.xml";
                	   // Runtime.getRuntime().exec("notepad"+pr);
-               	 out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
+               	// out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
     		     //response.setHeader("Refresh", "1; URL=auth1.jsp"); 
 	         
 	         }
@@ -204,34 +208,36 @@ public class AuthPulpy extends HttpServlet {
 	       
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 
-	        		 String contextPath = System.getenv("OPENSHIFT_DATA_DIR");
-	        		 String pr=contextPath+"sam.xml";
-	        		 out.println(pr);
-	     	         PrintWriter pw1=new PrintWriter(pr);
+	        		 //String contextPath = System.getenv("OPENSHIFT_DATA_DIR");
+	        		 //String pr=contextPath+"sam.xml";
+	        		 //out.println(pr);
+	     	         //PrintWriter pw1=new PrintWriter(pr);
 	        	     while((line=br.readLine())!=null){
-	        	    	 pw1.write(line);
+	        	    	 //pw1.write(line);
 	        	    	 
-	 	       		     pw1.flush();
+	 	       		   //  pw1.flush();
 	 	       		     str+=line;
 	 	        	   // out.println(line);
 
 	        	      }
 	        	   
-	        	     pw1.close();
+	        	    // pw1.close();
 	        		 }
 	        		 catch(Exception e){
 	    	        	 out.println(e);
 	    	        	 }
-	        		   request.setAttribute("str", str);
+	        		 request.setAttribute("PassingObj", str);
+	        		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
+	        		    disp.forward(request, response);
 
 	        		 //HttpSession sess=request.getSession(true);
-	        		 //sess.putValue("str",str);
+	        		 //sess.setAttribute("str1", str);
 
 	               	//Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
 	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-	               	 out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
+	               	 //out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
 
-	        		 response.setHeader("Refresh", "1; URL=auth1.jsp");
+	        		// response.setHeader("Refresh", "1; URL=auth1.jsp");
 	   		        
 	               	 //out.println("<html><body><a href=/tmp/sam.xml>xml</a><a href=auth1.jsp>Next</a></body><html>");
 	        	 }}
