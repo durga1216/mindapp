@@ -104,12 +104,13 @@ function validateform()
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form name="auth1"action="AuthPulpy1" method="post" onsubmit="return validateform()">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
+<TEXTAREA NAME=SpecialRequest ROWS=30 COLS=70><%=request.getAttribute("xml1") %></TEXTAREA><br><br>
 <center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
 <input type="text" name="xrv" value="" placeholder="Root_Tag"></div></center>
 <br><br><center><div class="href"></div><a href="javascript:addParam()">Add_XML_Tags</a>
 <a href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>
 <br><center><div id="content"></div></center><br><br>
-<center><div id="but"><input type="submit" value="Continue" name="submit"><input type="button" value="Load Xml" onclick="loadXml('xml/sam.xml')"></div></center>
+<center><div id="but"><input type="submit" value="Continue" name="submit"><input type="button" value="Load Xml" onclick="loadXml('xml/test.xml')"></div></center>
 </form>
 </body>
 </html>

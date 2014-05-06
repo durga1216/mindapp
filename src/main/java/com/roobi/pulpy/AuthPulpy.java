@@ -223,7 +223,9 @@ public class AuthPulpy extends HttpServlet {
 	    	        	 out.println(e);
 	    	        	 }
 	        	    
-	        	  		
+	        		 HttpSession sess=request.getSession(true);
+		             sess.setAttribute("xml1", str);
+
 	               	//Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
 	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
 	               	 out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
