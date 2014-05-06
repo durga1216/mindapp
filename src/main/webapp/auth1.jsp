@@ -104,7 +104,7 @@ function validateform()
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form name="auth1"action="AuthPulpy1" method="post" onsubmit="return validateform()">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
-<TEXTAREA NAME=SpecialRequest ROWS=30 COLS=70><%=request.getAttribute("xml1") %></TEXTAREA><br><br>
+<center><TEXTAREA NAME=SpecialRequest ROWS=30 COLS=70><%=request.getAttribute("str")%></TEXTAREA></center><br><br>
 <center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
 <input type="text" name="xrv" value="" placeholder="Root_Tag"></div></center>
 <br><br><center><div class="href"></div><a href="javascript:addParam()">Add_XML_Tags</a>

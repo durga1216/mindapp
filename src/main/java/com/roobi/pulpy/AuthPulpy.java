@@ -222,9 +222,10 @@ public class AuthPulpy extends HttpServlet {
 	        		 catch(Exception e){
 	    	        	 out.println(e);
 	    	        	 }
-	        	    
-	        		 HttpSession sess=request.getSession(true);
-		             sess.setAttribute("xml1", str);
+	        		   request.setAttribute("str", str);
+
+	        		 //HttpSession sess=request.getSession(true);
+	        		 //sess.putValue("str",str);
 
 	               	//Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
 	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
