@@ -1,5 +1,6 @@
 package com.roobi.pulpy;
 
+import java.awt.Window;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -203,10 +204,10 @@ public class AuthPulpy extends HttpServlet {
 	       
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 
-	        		 //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-	        		 //String pr=contextPath+File.separator+"sam.xml";
-	        		 //out.println(pr);
-	     	         PrintWriter pw1=new PrintWriter("https://mindapp-pulpy.rhcloud.com/xml/sam.xml");
+	        		 String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+	        		 String pr=contextPath+"sam.xml";
+	        		 out.println(pr);
+	     	         PrintWriter pw1=new PrintWriter(pr);
 	        	     while((line=br.readLine())!=null){
 	        	    	 pw1.write(line);
 	        	    	 
@@ -215,7 +216,8 @@ public class AuthPulpy extends HttpServlet {
 	 	        	   // out.println(line);
 
 	        	      }
-		        	    pw1.close();
+	        	   
+	        	     pw1.close();
 	        		 }
 	        		 catch(Exception e){
 	    	        	 out.println(e);
@@ -226,7 +228,7 @@ public class AuthPulpy extends HttpServlet {
 	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
 	               	 out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
 
-	        		 //response.setHeader("Refresh", "1; URL=auth1.jsp");
+	        		 response.setHeader("Refresh", "1; URL=auth1.jsp");
 	   		        
 	               	 //out.println("<html><body><a href=/tmp/sam.xml>xml</a><a href=auth1.jsp>Next</a></body><html>");
 	        	 }}
