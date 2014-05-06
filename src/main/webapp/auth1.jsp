@@ -75,6 +75,11 @@ border-radius:25px;
 padding:15px;
 }
 </style>
+<script type="text/javascript">
+function loadXml(src) {
+    var win = window.open (src,"","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=1,height=1,top=5000,left=5000");
+};
+</script>
 <script>
 function validateform()
 {
@@ -104,7 +109,7 @@ function validateform()
 <br><br><center><div class="href"></div><a href="javascript:addParam()">Add_XML_Tags</a>
 <a href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>
 <br><center><div id="content"></div></center><br><br>
-<center><div id="but"><input type="submit" value="Continue" name="submit"></div></center>
+<center><div id="but"><input type="submit" value="Continue" name="submit"><input type="button" value="Load Xml" onclick="loadXml('xml/sam.xml')"></div></center>
 </form>
 </body>
 </html>
