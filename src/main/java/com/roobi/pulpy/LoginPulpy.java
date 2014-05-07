@@ -33,7 +33,7 @@ public class LoginPulpy extends HttpServlet {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			 String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
+			 String url1 = "jdbc:mysql://127.6.250.130:3306/mpulpy";
 		        final String USER = "adminPQ1iFfN";
 		        final String PASS = "J5JhBL-XC9NG";
 	        con = DriverManager.getConnection(url1,USER,PASS);
