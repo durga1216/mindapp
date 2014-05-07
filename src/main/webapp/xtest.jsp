@@ -13,15 +13,7 @@ String str = "<test>vvghvhg</test>";
 //always give the path from root. This way it almost always works.
 String fileName=getServletContext().getRealPath("xtest.xml"); 
 out.println(fileName);
-try {   
-    PrintWriter pw = new PrintWriter(new FileOutputStream(fileName));
-    pw.println(str);
-    //clean up
-    pw.close();
-    System.out.println("update");
-} catch(IOException e) {
-   out.println(e.getMessage());
-}
+
 %>
 </body>
 </html>
