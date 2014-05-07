@@ -55,6 +55,7 @@ public class Login extends HttpServlet {
 		String pass=request.getParameter("app2");
 		if(user.equals("mind")&& pass.equals("mind"))
 		{
+			 request.getSession().setAttribute("user", "mind");
 			response.sendRedirect("firstauth.jsp");
 		}
 		else

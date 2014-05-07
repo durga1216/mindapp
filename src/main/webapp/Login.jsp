@@ -60,7 +60,6 @@ padding:10px;
 </style>	
 </head>
 <body>
- <%request.getSession().setAttribute("user", "mind");%>
 <br><br><div class="head"><h2><center>Login form</center></h2></div><br><br>
 <form action="Login" method="post">
 <div class="au">Username</div><input type="text" name="app1" value="" placeholder="username*"><br/><br/> 
