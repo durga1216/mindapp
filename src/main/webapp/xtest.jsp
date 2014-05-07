@@ -9,7 +9,7 @@
 <body>
 <%@ page import="java.io.*"  %>
 <%
-String str = "<test>vvghvhg</test>";
+//String str = "<test>vvghvhg</test>";
 //always give the path from root. This way it almost always works.
 String fileName=getServletContext().getRealPath("xtest.xml"); 
 out.println(fileName);
