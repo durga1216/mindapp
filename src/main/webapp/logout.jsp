@@ -5,15 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+body{
+background-color:#FF9900;}
+</style>
 </head>
 <body>
-<%@ page import="java.io.*"  %>
-<%
-//String str = "<test>vvghvhg</test>";
-//always give the path from root. This way it almost always works.
-String fileName=getServletContext().getRealPath("xtest.xml"); 
-out.println(fileName);
+    <%request.getSession().setAttribute("user", null);%>
 
-%>
+<h1>you have been logout</h1>
+<h3><a href="Login.jsp">click here to login</a></h3>
 </body>
 </html>

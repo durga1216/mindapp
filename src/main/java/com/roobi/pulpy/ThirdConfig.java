@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -124,6 +125,7 @@ public class ThirdConfig extends HttpServlet {
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2))
     	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
     	        	 out.println(thirdurl11);
+    	             String str=null;
     	        	 try{
     	        	 URL thirdurl2=new URL(thirdurl11);
             		 URLConnection uconn = thirdurl2.openConnection();
@@ -132,26 +134,31 @@ public class ThirdConfig extends HttpServlet {
             	     Object content = conn.getContent();
             	     InputStream stream = (InputStream) content;
             	     String line=null;
-            	     String str=null;
+            	    
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-            	     String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-            		 String pr=contextPath+File.separator+"book.xml";
-            		 out.println(pr);
-         	         PrintWriter pw1=new PrintWriter(pr);            	     while((line=br.readLine())!=null){
-            	    	 pw1.write(line);
-     	       		     pw1.flush();
+            	    // String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+            		 //String pr=contextPath+File.separator+"book.xml";
+            		 //out.println(pr);
+         	         //PrintWriter pw1=new PrintWriter(pr);            	     
+         	         while((line=br.readLine())!=null){
+            	    	 //pw1.write(line);
+     	       		     //pw1.flush();
+     	       		     str+=line;
      	        	   //out.println(line);
 
             	      }
-    	        	    pw1.close();
+    	        	    //pw1.close();
+    	        	    request.setAttribute("PassingObj", str);
+     	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
+     	     		    disp.forward(request, response);
     	         }
 	        	    catch(Exception e){
 	    	        	 out.println(e);
 	    	        	 }	
-    	        	   	     		
+    	        			
                    	  //  Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
-                   	 out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-        		     response.setHeader("Refresh", "1; URL=third_xml_config.jsp"); 
+                   	// out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
+        		    // response.setHeader("Refresh", "1; URL=third_xml_config.jsp"); 
                    	 }}
              
              else if(authen1.equals("API keys")){  //API Keys
@@ -191,32 +198,38 @@ public class ThirdConfig extends HttpServlet {
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
 	        		 out.println(thirdurl11);
+	        		 String str=null;
+
 	        		 try{
 	        		 URL url1=new URL(thirdurl11);
      				 URLConnection uconn = url1.openConnection();
 
                       BufferedReader in = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
-
           		     String line=null;
           		     FileWriter fw=null;
-          		   String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-          		 String pr=contextPath+File.separator+"book.xml";
-          		 out.println(pr);
-       	         PrintWriter pw1=new PrintWriter(pr);
+          		  // contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+          		 //String pr=contextPath+File.separator+"book.xml";
+          		 //out.println(pr);
+       	         //PrintWriter pw1=new PrintWriter(pr);
                   	 while ((line = in.readLine()) != null) {
 
-     	       		     fw.write(line);
-     	       		     fw.flush();
+     	       		//     fw.write(line);
+     	       		  //   fw.flush();
+     	       		     str+=line;
                   	 }            
-                  	fw.close();
-        		      in.close();
+                  	//fw.close();
+        		     // in.close();
+        		      request.setAttribute("PassingObj", str);
+		     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
+		     		    disp.forward(request, response);
 	        	 }
 	        	    catch(Exception e){
 	    	        	 out.println(e);
 	    	        	 }	
+	        		
 	              // 	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
-	               	out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-	   		        response.setHeader("Refresh", "1; URL=third_xml_config.jsp");
+	               //	out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
+	   		        //response.setHeader("Refresh", "1; URL=third_xml_config.jsp");
 	               	}}
 
              

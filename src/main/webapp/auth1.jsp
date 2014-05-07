@@ -5,6 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="js/jquery-latest.js"></script>
+	 <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);%>
 <script type="text/javascript">
 var intTextBox=0;
 function addParam(){
@@ -60,6 +65,18 @@ border-color:#FFFFFF;
 border-radius:50px;
 padding:10px;
 }
+input[type="button"]{
+color:#FFFFFF;
+font-size:20px;
+background-color:#FF9900;
+font-family:verdana;
+width:140px;
+height:50px;
+border:solid 2px;
+border-color:#FFFFFF;
+border-radius:50px;
+padding:10px;
+}
 
 .heading{
 font-family:verdana;
@@ -75,11 +92,7 @@ border-radius:25px;
 padding:15px;
 }
 </style>
-<script type="text/javascript">
-function loadXml(src) {
-    var win = window.open (src,"","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=1,height=1,top=5000,left=5000");
-};
-</script>
+
 <script>
 function validateform()
 {
@@ -101,16 +114,26 @@ function validateform()
 </script>
 </head>
 <body>
+ <%String u = (String) request.getSession().getAttribute("user");
+    if (u != null ) {
+   // System.out.println("user != null");
+    out.print("Welcome "+u);
+    }else{
+   // System.out.println("user == null");
+    response.sendRedirect("logout.jsp");
+    }%>
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form name="auth1"action="AuthPulpy1" method="post" onsubmit="return validateform()">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
-<center><TEXTAREA NAME=SpecialRequest ROWS=30 COLS=70>"${PassingObj}"</TEXTAREA></center><br><br>
+<center><TEXTAREA  NAME=SpecialRequest ROWS=30 COLS=70 readonly>"${PassingObj}"</TEXTAREA></center><br><br>
 <center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
 <input type="text" name="xrv" value="" placeholder="Root_Tag"></div></center>
 <br><br><center><div class="href"></div><a href="javascript:addParam()">Add_XML_Tags</a>
 <a href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>
 <br><center><div id="content"></div></center><br><br>
-<center><div id="but"><input type="submit" value="Continue" name="submit"><input type="button" value="Load Xml" onclick="loadXml('xml/test.xml')"></div></center>
+<center><div id="but"><input type="submit" value="Continue" name="submit"></div></center>
+<center><input type='button' value='log out' onClick="javascript:location.href = 'logout.jsp'"/></center>
+
 </form>
 </body>
 </html>

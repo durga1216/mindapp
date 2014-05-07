@@ -5,8 +5,14 @@
 
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="js/jquery-latest.js"></script>
+	 <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);%>
 <style>
 body{
 background-color:#FF9900;}
@@ -233,6 +239,14 @@ function validateform()
 </script>
 </head>
 <body>
+ <%String u = (String) request.getSession().getAttribute("user");
+    if (u != null ) {
+   // System.out.println("user != null");
+    out.print("Welcome "+u);
+    }else{
+   // System.out.println("user == null");
+    response.sendRedirect("logout.jsp");
+    }%>
 <br><br><div class="head"><h2><center>Mind Pulpy</center></h2></div><br><br>
 <form name="auth" action="AuthPulpy" method="post" onsubmit="return validateform()">
 <br>

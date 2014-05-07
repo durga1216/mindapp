@@ -7,6 +7,10 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+ <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);%>
 </head>
 <script>
 function validateform()
@@ -125,6 +129,14 @@ function removeParent(){
 </script>
 
 <body>
+<%String u = (String) request.getSession().getAttribute("user");
+    if (u != null ) {
+   // System.out.println("user != null");
+    out.print("Welcome "+u);
+    }else{
+   // System.out.println("user == null");
+    response.sendRedirect("logout.jsp");
+    }%>
 <div id="head"><center>Mind Pulpy<center></center></div><br><br>
 <form name="sec1"action="SecondConfig" method="post" onsubmit="return validateform()">
 <center><div class='heading'>Second Step Configuration</div></center>

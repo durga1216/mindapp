@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -136,20 +137,23 @@ public class SecondConfig extends HttpServlet {
             	     String line=null;
             	     String str=null;
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-            	     String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-            		 String pr=contextPath+File.separator+"sam.xml";
-            		 out.println(pr);
-         	         PrintWriter pw1=new PrintWriter(pr);
+            	     //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+            		 //String pr=contextPath+File.separator+"sam.xml";
+            		 //out.println(pr);
+         	         //PrintWriter pw1=new PrintWriter(pr);
             	     while((line=br.readLine())!=null){
-            	    	 pw1.write(line);
-     	       		     pw1.flush();
+            	    	// pw1.write(line);
+     	       		    // pw1.flush();
+     	       		     str+=line;
      	        	   //out.println(line);
             	      }
-    	        	    pw1.close();
-    	        	   	     		
+    	        	    //pw1.close();
+    	        	    request.setAttribute("PassingObj", str);
+    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
+    	     		    disp.forward(request, response);	
                    	 //   Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/det.xml");
-                   	 out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-        		     response.setHeader("Refresh", "1; URL=sec_xml_config.jsp"); 
+                  //	 out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
+        		    // response.setHeader("Refresh", "1; URL=sec_xml_config.jsp"); 
                    	 }}
              
              else if(authen1.equals("API keys")){  //API Keys
@@ -202,20 +206,24 @@ public class SecondConfig extends HttpServlet {
 	        	     String line=null;
 	        	     String str=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	        	     String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-	        		 String pr=contextPath+File.separator+"sam.xml";
-	        		 out.println(pr);
-	     	         PrintWriter pw1=new PrintWriter(pr);	        	     while((line=br.readLine())!=null){
-	        	    	 pw1.write(line);
-	 	       		     pw1.flush();
+	        	     //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
+	        		 //String pr=contextPath+File.separator+"sam.xml";
+	        		 //out.println(pr);
+	     	         //PrintWriter pw1=new PrintWriter(pr);	        	     
+	     	         while((line=br.readLine())!=null){
+	        	    	// pw1.write(line);
+	 	       		    // pw1.flush();
+	 	       		     str+=line;
 	 	        	   // out.println(line);
 
 	        	      }
 		        	   // pw1.close();
-		        	  	       		
+	     	        request.setAttribute("PassingObj", str);
+	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
+	     		    disp.forward(request, response);
 	               //	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/det.xml");
-	               	out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-	   		        response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");
+	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
+	   		       // response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");
 	               	}}
 
              

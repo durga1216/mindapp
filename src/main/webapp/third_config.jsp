@@ -6,6 +6,10 @@
 	<script src="js/jquery-latest.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);%>
 <title>Insert title here</title>
 <script>
 function validateform()
@@ -124,6 +128,14 @@ function removeParent(){
 </script>
 </head>
 <body>
+<%String u = (String) request.getSession().getAttribute("user");
+    if (u != null ) {
+   // System.out.println("user != null");
+    out.print("Welcome "+u);
+    }else{
+   // System.out.println("user == null");
+    response.sendRedirect("logout.jsp");
+    }%>
 <div id="head"><center>Mind Pulpy<center></center></div><br><br>
 <form action="ThirdConfig" method="post"name="third1" onsubmit="return validateform()">
 <center><div class='heading'>Third Step Configuration</div></center>
