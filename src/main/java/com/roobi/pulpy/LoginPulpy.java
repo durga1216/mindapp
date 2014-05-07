@@ -33,9 +33,9 @@ public class LoginPulpy extends HttpServlet {
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-	        String url1 = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-	        final String USER = "adminPQ1iFfN";
-	        final String PASS = "J5JhBL-XC9NG";
+			 String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
+		        final String USER = "adminPQ1iFfN";
+		        final String PASS = "J5JhBL-XC9NG";
 	        con = DriverManager.getConnection(url1,USER,PASS);
 	        PreparedStatement st=null;
 			 st=con.prepareStatement("insert into login(email,fn,ln,pwd) values ('"+s1+"','"+s2+"','"+s3+"','"+s4+"')");
