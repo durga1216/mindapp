@@ -12,13 +12,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>Login</display-name>
-    <servlet-name>Login</servlet-name>
-    <servlet-class>com.roobi.pulpy.Login</servlet-class>
+    <display-name>LoginCheckPulpy</display-name>
+    <servlet-name>LoginCheckPulpy</servlet-name>
+    <servlet-class>com.roobi.pulpy.LoginCheckPulpy</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Login</servlet-name>
-    <url-pattern>/Login</url-pattern>
+    <servlet-name>LoginCheckPulpy</servlet-name>
+    <url-pattern>/LoginCheckPulpy</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
