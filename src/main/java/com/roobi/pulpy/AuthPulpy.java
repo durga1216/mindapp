@@ -235,6 +235,9 @@ public class AuthPulpy extends HttpServlet {
 	    			 // fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/sam.xml");
 	    			  //fw.write(xmlout);
 	    			 // fw.flush();
+	     		     request.setAttribute("PassingObj", xmlout);
+		     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
+		     		    disp.forward(request, response);
 	    		     }
 	    			//  fw.close();
                  }       		
@@ -336,7 +339,7 @@ public class AuthPulpy extends HttpServlet {
    	           //   PrintWriter out1 = new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
                  // out1.println(xmlout);
                  // out1.close();
-   	           request.setAttribute("PassingObj", xmlout);
+   	           request.setAttribute("PassingObj",xmlout);
    		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
    		    disp.forward(request, response);
                  }
