@@ -29,6 +29,7 @@ color:#FFFFFF;
 </head>
 
 <body>
+<%request.getSession().setAttribute("user", null);%>
 <center><div class="head">Mind Pulpy</div></center>
 <center><div class="main">Configuration completed! Check With Mobile App</div></center>
 <center><div class="result">Your App ID  : &nbsp;<%=request.getAttribute("id")%></div></center>
