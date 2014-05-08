@@ -6,23 +6,12 @@
 	<script src="js/jquery-latest.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
- <%response.setHeader("Cache-Control", "no-cache");
+<title>MindPulpy</title>
+<%response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);%>
-</head>
-<script>
-function validateform()
-{
-	var x1=document.forms["sec1"]["securl"].value;
-	if(x1==null||x1=="")
-		{
-		alert("***Please fill the secand end point url***");
-		return false;
-		}
-	}
-</script>
+<link rel="shortcut icon" href="favicon.ico" /></head>
 <style>
 body{
 background-color:#FF9900;}
@@ -76,7 +65,7 @@ border-color:#FFFFFF;
 border-radius:50px;
 padding:10px;
 }
-a{font-family:verdana;
+#pa{font-family:verdana;
   font-size:20px;
   color:#FFFFFF;
   margin-left:400px;}
@@ -94,6 +83,15 @@ font-family:verdana;
 font-size: 20px;
 color:#FFFFFF;
 }
+#indiv{color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+text-align:right;}
+#na{
+color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+text-align:right;}
 </style>
 
 <script type="text/javascript">
@@ -127,7 +125,6 @@ function removeParent(){
     intTextBox = intTextBox-1;
 }
 </script>
-
 <body>
 <%String u = (String) request.getSession().getAttribute("user");
     if (u != null ) {
@@ -137,8 +134,9 @@ function removeParent(){
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
+<div id=na><%=session.getAttribute("mail")%>|<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>|<a id='indiv' href='logout.jsp'> Sign Out </a></div>
 <div id="head"><center>Mind Pulpy<center></center></div><br><br>
-<form name="sec1"action="SecondConfig" method="post" onsubmit="return validateform()">
+<form action="SecondConfig" method="post">
 <center><div class='heading'>Second Step Configuration</div></center>
 <br><br><input type="text" name="securl" value="" placeholder="Second_End_Point_Url*"><br><br>
 <CENTER><div id="inline_content">
@@ -159,7 +157,7 @@ function removeParent(){
 <input type="text" name="sec2" value="" placeholder="Flow_Id_value"><br>
 <center><div id='not'>Note:To complete whole cycle,connect with unique ID</div></div></center>
 
-<a href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a href="javascript:removeParent();">Remove Params</a><br><br>
+<a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
 <div id="content"></div><br><br>
 <input type="submit" name="submit" value="Continue"></form>
 </body>

@@ -6,23 +6,12 @@
 	<script src="js/jquery-latest.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- <%response.setHeader("Cache-Control", "no-cache");
+<title>MindPulpy</title>
+<%response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);%>
-<title>Insert title here</title>
-<script>
-function validateform()
-{
-	var x1=document.forms["third1"]["thrdurl"].value;
-	if(x1==null||x1=="")
-		{
-		alert("***Please fill the third end point url***");
-		return false;
-		}
-	}
-</script>
-<style>
+<link rel="shortcut icon" href="favicon.ico" /><style>
 body{
 background-color:#FF9900;}
 #head{
@@ -75,7 +64,7 @@ border-color:#FFFFFF;
 border-radius:50px;
 padding:10px;
 }
-a{font-family:verdana;
+#pa{font-family:verdana;
   font-size:20px;
   color:#FFFFFF;
   margin-left:400px;}
@@ -93,7 +82,14 @@ font-family:verdana;
 font-size: 20px;
 color:#FFFFFF;
 }
-
+#indiv{color:#FFFFFF;
+}
+#na{
+margin-top:0;
+color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+text-align:right;}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -136,8 +132,10 @@ function removeParent(){
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
+<div id=na><%=session.getAttribute("mail")%>|<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>|<a id='indiv' href='logout.jsp'> Sign Out </a></div>
 <div id="head"><center>Mind Pulpy<center></center></div><br><br>
-<form action="ThirdConfig" method="post"name="third1" onsubmit="return validateform()">
+<form action="ThirdConfig" method="post">
+
 <center><div class='heading'>Third Step Configuration</div></center>
 <br><br><input type="text" name="thrdurl" value="" placeholder="Third_End_Point_Url*"><br><br>
 <CENTER>
@@ -158,7 +156,7 @@ function removeParent(){
 <input type="text" name="thrd2" value="" placeholder="Flow_Id_value"><br>
 <center><div id='not'>Note:To complete whole cycle,connect with unique ID</div></div></center>
 
-<a href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a href="javascript:removeParent();">Remove Params</a><br><br>
+<a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
 <div id="content"></div><br><br>
 <input type="submit" name="submit" value="Continue"></form>
 </body>

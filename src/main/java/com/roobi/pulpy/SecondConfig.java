@@ -1,7 +1,7 @@
 package com.roobi.pulpy;
 
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,6 +24,10 @@ import javax.servlet.http.HttpSession;
 
 import com.mindots.util.Utils;
 
+import net.sf.json.JSON;
+import net.sf.json.JSONSerializer;
+import net.sf.json.xml.XMLSerializer;
+
 public class SecondConfig extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -35,10 +39,8 @@ public class SecondConfig extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
- 
-		response.setHeader("Content-Type","text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		HttpSession session=request.getSession(true);
 		String appid=(String) session.getAttribute("id");
 		String securl=request.getParameter("securl"); String cycle=request.getParameter("cycle"); String sec1=request.getParameter("sec1");String sec2=request.getParameter("sec2");
@@ -51,12 +53,11 @@ public class SecondConfig extends HttpServlet {
 		Connection con=null;
    	 try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             PreparedStatement st=con.prepareStatement("insert into secondconfig(id,securl,cycle,sec1,sec2,alabel1,akey1,s1,sv1,s2,sv2,s3,sv3,s4,sv4,s5,sv5,s6,sv6,s7,sv7,s8,sv8,s9,sv9,s10,sv10) values ('"+appid+"','"+securl+"','"+cycle+"','"+sec1+"','"+sec2+"','"+al+"','"+ak+"','"+s1+"','"+sv1+"','"+s2+"','"+sv2+"','"+s3+"','"+sv3+"','"+s4+"','"+sv4+"','"+s5+"','"+sv5+"','"+s6+"','"+sv6+"','"+s7+"','"+sv7+"','"+s8+"','"+sv8+"','"+s9+"','"+sv9+"','"+s10+"','"+sv10+"')");                
             st.executeUpdate();
             st.close();
-            st=con.prepareStatement("SELECT * FROM authen t1 JOIN config t2 ON t1.id = t2.id JOIN secondconfig t3 on t1.id=t3.id WHERE t1.id=?");
+            st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.id = t2.id JOIN secondconfig t3 on t1.id=t3.id WHERE t1.id=?");
             st.setString(1, appid);
 
             ResultSet rs = st.executeQuery();
@@ -137,23 +138,16 @@ public class SecondConfig extends HttpServlet {
             	     String line=null;
             	     String str=null;
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-            	     //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-            		 //String pr=contextPath+File.separator+"sam.xml";
-            		 //out.println(pr);
-         	         //PrintWriter pw1=new PrintWriter(pr);
             	     while((line=br.readLine())!=null){
-            	    	// pw1.write(line);
-     	       		    // pw1.flush();
-     	       		     str+=line;
-     	        	   //out.println(line);
-            	      }
-    	        	    //pw1.close();
-    	        	    request.setAttribute("PassingObj", str);
-    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
-    	     		    disp.forward(request, response);	
-                   	 //   Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/det.xml");
-                  //	 out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-        		    // response.setHeader("Refresh", "1; URL=sec_xml_config.jsp"); 
+             	    	// pw1.write(line);
+      	       		    // pw1.flush();
+      	       		     str+=line;
+      	        	   //out.println(line);
+             	      }
+     	        	    //pw1.close();
+     	        	    request.setAttribute("PassingObj", str);
+     	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
+     	     		    disp.forward(request, response);	
                    	 }}
              
              else if(authen1.equals("API keys")){  //API Keys
@@ -206,32 +200,99 @@ public class SecondConfig extends HttpServlet {
 	        	     String line=null;
 	        	     String str=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	        	     //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-	        		 //String pr=contextPath+File.separator+"sam.xml";
-	        		 //out.println(pr);
-	     	         //PrintWriter pw1=new PrintWriter(pr);	        	     
-	     	         while((line=br.readLine())!=null){
-	        	    	// pw1.write(line);
-	 	       		    // pw1.flush();
-	 	       		     str+=line;
-	 	        	   // out.println(line);
+	        	     while((line=br.readLine())!=null){
+	            	    	// pw1.write(line);
+	     	       		    // pw1.flush();
+	     	       		     str+=line;
+	     	        	   //out.println(line);
+	            	      }
+	    	        	    //pw1.close();
+	    	        	    request.setAttribute("PassingObj", str);
+	    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
+	    	     		    disp.forward(request, response);	
+	               	}
+	        	 
+             
+             if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("JSON")){  //API JSON get
+	        		 
 
-	        	      }
-		        	   // pw1.close();
-	     	        request.setAttribute("PassingObj", str);
-	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
-	     		    disp.forward(request, response);
-	               //	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/det.xml");
-	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-	   		       // response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");
-	               	}}
+	        		 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
+	        		     secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1+"&"+se2+"="+sev2+"&"+se3+"="+sev3+"&"+se4+"="+sev4+"&"+se5+"="+sev5+"&"+se6+"="+sev6;}
+	        		 
+	        		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5)&& "entity".equals(cycle1)){
+		        		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1+"&"+se2+"="+sev2+"&"+se3+"="+sev3+"&"+se4+"="+sev4+"&"+se5+"="+sev5;}
+	        		 
+	        		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4)&& "entity".equals(cycle1)){
+		        		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1+"&"+se2+"="+sev2+"&"+se3+"="+sev3+"&"+se4+"="+sev4;}
+	        		 
+	        		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "entity".equals(cycle1)){
+		        		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1+"&"+se2+"="+sev2+"&"+se3+"="+sev3;}
+	        		 
+	        		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
+		        		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1+"&"+se2+"="+sev2;}
+	        		 
+	        		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+		        		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1;}
+	        		 
+	        		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && "flow".equals(cycle1)){
+		        		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+se1+"="+sev1+"&"+se2+"="+sev2+"&"+se3+"="+sev3;}
+	        		 
+	        		 else if(!"null".equals(se1) && !"null".equals(se2)&& "flow".equals(cycle1)){
+		        		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+se1+"="+sev1+"&"+se2+"="+sev2;}
+	        		 
+	        		 else if(!"null".equals(se1)&& "flow".equals(cycle1)){
+		        		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+se1+"="+sev1;}
+	        		 
+	        		 else if(!"null".equals(secid)&& !"null".equals(secval) && "flow".equals(cycle1))
+	        			 secdurl=securl1+"?"+secid+"="+secval;
+	        		 else if("null".equals(secid) && "null".equals(secval) && "flow".equals(cycle1))
+	        		     secdurl=securl1+"/"+secval;
+	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
+       			      secdurl=securl1+"?"+ak1+"="+ak2;
+	        		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
+	        			      secdurl=securl1;
+	        		 
+	        		 out.println(secdurl);
+	        		 URL secdurl1=new URL(secdurl);
+	        		 URLConnection uconn = secdurl1.openConnection();
+	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+	        	     conn.connect();
+	        	     Object content = conn.getContent();
+	        	     InputStream stream = (InputStream) content;
+	        	     String line=null;
+	        	     String str=null;
+	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	     	         FileWriter fw=new FileWriter("F:/workspace/MindPulpy1/WebContent/det.xml");
+	     	        while ((line = br.readLine()) != null)    { 		  
+		         		  JSON json = JSONSerializer.toJSON( line );  
+		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+		     	          xmlSerializer.setTypeHintsEnabled(false);
+		     	          xmlSerializer.setSkipWhitespace(true);
+		     	          xmlSerializer.setTrimSpaces(true);
+		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+		     	          xmlSerializer.removeNamespace(line);
+		     	          xmlSerializer.setForceTopLevelObject(false);
+		     		      String  xmlout = xmlSerializer.write( json );
+		    			  //fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/det.xml");
+		    			  //fw.write(xmlout);
+		    			 // fw.flush();
+		     		     request.setAttribute("PassingObj", xmlout);
+	    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
+	    	     		    disp.forward(request, response);
+		    		     }
+		    			 // fw.close();
+			        	  	       		
+		               	 }
+             
+             
+             }  // if Main
 
              
              
 	         
-	         }
+	         } // database while
            
-           }
+           } //try
    	 catch(Exception e){}
 
 	}

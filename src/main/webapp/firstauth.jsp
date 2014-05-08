@@ -4,41 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>MindPulpy</title>
+<link rel="shortcut icon" href="favicon.ico" />
 	<script src="js/jquery-latest.js"></script>
 	 <%response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);%>
-<script>
-function validateForm()
-{
-/* var x=document.forms["firstauth"]["a1"].value;
-if (x==null || x=="")
-  {
-  alert("****please fill the APIkey_Label****");
-  return false;
-  }
-var y=document.forms["firstauth"]["a2"].value;
-if (y==null || y=="")
-  {
-  alert("****please fill the API_Key****");
-  return false;
-  }
- */var y2=document.forms["firstauth"]["descr"].value;
-if (y2==null || y2=="")
-  {
-  alert("****please fill the Description****");
-  return false;
-  }
-var y3=document.forms["firstauth"]["app1"].value;
-if (y3==null || y3=="")
-  {
-  alert("****please fill the App Name****");
-  return false;
-  }
-}
-</script>
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -220,7 +192,15 @@ font-family:verdana;
 .redirect{
 font-size:20px;
 font-family:verdana;
+color:#FFFFFF;}
+#indiv{color:#FFFFFF;
+}
+#na{
+margin-top:0;
 color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+text-align:right;}
 </style>
 </head>
 <body>
@@ -232,8 +212,10 @@ color:#FFFFFF;
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
+<div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
+
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
-<form name="firstauth" action="FirstAuthPulpy" method="post" onsubmit="return validateForm()">
+<form action="FirstAuthPulpy" method="post">
 <input type="text" name="app1" value="" placeholder="Application Name*"><br/><br/> 
 <textarea id="txt" name="descr" placeholder="Description*"></textarea><br><br>
 <div class="au"><center>Authentication Scheme</center></div><div class="space"></div>
@@ -307,7 +289,5 @@ color:#FFFFFF;
 </select><br/><br/>
 
 <input type="submit" name="submit" value="Continue">
-
-</form>
 </body>
 </html>

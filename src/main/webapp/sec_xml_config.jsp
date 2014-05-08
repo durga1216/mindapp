@@ -4,29 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-	<script src="js/jquery-latest.js"></script>
-	 <%response.setHeader("Cache-Control", "no-cache");
+<title>MindPulpy</title>
+<%response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);%>
-<script>
-function validateform()
-{
-	var x1=document.forms["sec2"]["secroot"].value;
-	if(x1==null||x1=="")
-		{
-		alert("***please fill that parant tag***");
-		return false;
-		}
-	var x2=document.forms["sec2"]["secparent"].value;
-	if(x2=null||x2=="")
-		{
-		alert("***please fill the root tag**");
-		return false;
-		}
-	}
-</script>
+<link rel="shortcut icon" href="favicon.ico" />	<script src="js/jquery-latest.js"></script>
+
 <style>
 body{
 background-color:#FF9900;}
@@ -35,7 +19,7 @@ background-color:#FF9900;}
     font-family:verdana;
     font-size:40px;
     margin-top:50px;}
-  a{
+  #pa{
   font-family:verdana;
   font-size:20px;
   color:#FFFFFF;
@@ -65,18 +49,6 @@ border-color:#FFFFFF;
 border-radius:50px;
 padding:10px;
 }
-input[type="button"]{
-color:#FFFFFF;
-font-size:20px;
-background-color:#FF9900;
-font-family:verdana;
-width:140px;
-height:50px;
-border:solid 2px;
-border-color:#FFFFFF;
-border-radius:50px;
-padding:10px;
-}
 
 .heading{
 font-family:verdana;
@@ -91,7 +63,14 @@ border-color:#FF9900;
 border-radius:25px;
 padding:15px;
 }
-
+#indiv{color:#FFFFFF;
+}
+#na{
+margin-top:0;
+color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+text-align:right;}
 </style>
 <script type="text/javascript">
 var intTextBox=0;
@@ -120,17 +99,17 @@ function removeParam()
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
-<form name=sec2 action="SecondXmlConfig" method="post" onsubmit="return validateform()">
+<form action="SecondXmlConfig" method="post">
+<div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='logout.jsp'> Sign Out </a></div>
 <center><div class="head">Mind Pulpy</div></center><br><br>
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
 <center><TEXTAREA  NAME=SpecialRequest ROWS=30 COLS=70 readonly>"${PassingObj}"</TEXTAREA></center><br><br>
 <center><div="text"></div><input type="text" name="secroot" value="" placeholder="Parent_Tag">
 <input type="text" name="secparent" value="" placeholder="Root_Tag"></div></center>
-<br><br><center><div class="href"></div><a href="javascript:addParam()">Add_XML_Tags</a>
-<a href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>
+<br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
+<a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>
 <br><center><div id="content"></div></center><br><br>
 <center><div id="but"><input type="submit" value="Continue" name="submit"></div></center>
-<center><input type='button' value='log out' onClick="javascript:location.href = 'logout.jsp'"/></center>
 </form>
 </body>
 </html>

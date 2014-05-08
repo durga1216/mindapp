@@ -26,10 +26,8 @@ public class SecondXmlConfig extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
- 
-		response.setHeader("Content-Type","text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		HttpSession session=request.getSession(true);
 		String appid=(String) session.getAttribute("id");
 		String secroot=request.getParameter("secroot"); String secparent=request.getParameter("secparent");
@@ -70,7 +68,7 @@ public class SecondXmlConfig extends HttpServlet {
             PreparedStatement st=con.prepareStatement("insert into secxmlconfig(id,secroot,secparent,sx1,sxv1,sx2,sxv2,sx3,sxv3,sx4,sxv4,sx5,sxv5,sx6,sxv6,sx7,sxv7,sx8,sxv8,sx9,sxv9,sx10,sxv10,sx11,sxv11,sx12,sxv12,sx13,sxv13,sx14,sxv14,sx15,sxv15,sx16,sxv16,sx17,sxv17,sx18,sxv18,sx19,sxv19,sx20,sxv20,sx21,sxv21,sx22,sxv22,sx23,sxv23,sx24,sxv24,sx25,sxv25,sx26,sxv26,sx27,sxv27,sx28,sxv28,sx29,sxv29,sx30,sxv30) values ('"+appid+"','"+secroot+"','"+secparent+"','"+sx1+"','"+sxv1+"','"+sx2+"','"+sxv2+"','"+sx3+"','"+sxv3+"','"+sx4+"','"+sxv4+"','"+sx5+"','"+sxv5+"','"+sx6+"','"+sxv6+"','"+sx7+"','"+sxv7+"','"+sx8+"','"+sxv8+"','"+sx9+"','"+sxv9+"','"+sx10+"','"+sxv10+"','"+sx11+"','"+sxv11+"','"+sx12+"','"+sxv12+"','"+sx13+"','"+sxv13+"','"+sx14+"','"+sxv14+"','"+sx15+"','"+sxv15+"','"+sx16+"','"+sxv16+"','"+sx17+"','"+sxv17+"','"+sx18+"','"+sxv18+"','"+sx19+"','"+sxv19+"','"+sx20+"','"+sxv20+"','"+sx21+"','"+sxv21+"','"+sx22+"','"+sxv22+"','"+sx23+"','"+sxv23+"','"+sx24+"','"+sxv24+"','"+sx25+"','"+sxv25+"','"+sx26+"','"+sxv26+"','"+sx27+"','"+sxv27+"','"+sx28+"','"+sxv28+"','"+sx29+"','"+sxv29+"','"+sx30+"','"+sxv30+"')");                
             st.executeUpdate();
             st.close();
-             out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
+             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
            response.setHeader("Refresh", "1; URL=third_config.jsp");
            }
     catch(Exception e){}

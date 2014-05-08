@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.mindots.util.Utils;
 
 public class ThirdXmlConfig extends HttpServlet {
@@ -67,17 +66,16 @@ public class ThirdXmlConfig extends HttpServlet {
          Connection con=null;
         	 try {
                  Class.forName("com.mysql.jdbc.Driver").newInstance();
-
                  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
                  PreparedStatement st=con.prepareStatement("insert into thrdxmlconfig(id,thrdroot,thrdparent,tx1,txv1,tx2,txv2,tx3,txv3,tx4,txv4,tx5,txv5,tx6,txv6,tx7,txv7,tx8,txv8,tx9,txv9,tx10,txv10,tx11,txv11,tx12,txv12,tx13,txv13,tx14,txv14,tx15,txv15,tx16,txv16,tx17,txv17,tx18,txv18,tx19,txv19,tx20,txv20,tx21,txv21,tx22,txv22,tx23,txv23,tx24,txv24,tx25,txv25,tx26,txv26,tx27,txv27,tx28,txv28,tx29,txv29,tx30,txv30) values ('"+appid+"','"+thrdroot+"','"+thrdparent+"','"+tx1+"','"+txv1+"','"+tx2+"','"+txv2+"','"+tx3+"','"+txv3+"','"+tx4+"','"+txv4+"','"+tx5+"','"+txv5+"','"+tx6+"','"+txv6+"','"+tx7+"','"+txv7+"','"+tx8+"','"+txv8+"','"+tx9+"','"+txv9+"','"+tx10+"','"+txv10+"','"+tx11+"','"+txv11+"','"+tx12+"','"+txv12+"','"+tx13+"','"+txv13+"','"+tx14+"','"+txv14+"','"+tx15+"','"+txv15+"','"+tx16+"','"+txv16+"','"+tx17+"','"+txv17+"','"+tx18+"','"+txv18+"','"+tx19+"','"+txv19+"','"+tx20+"','"+txv20+"','"+tx21+"','"+txv21+"','"+tx22+"','"+txv22+"','"+tx23+"','"+txv23+"','"+tx24+"','"+txv24+"','"+tx25+"','"+txv25+"','"+tx26+"','"+txv26+"','"+tx27+"','"+txv27+"','"+tx28+"','"+txv28+"','"+tx29+"','"+txv29+"','"+tx30+"','"+txv30+"')");                
                  st.executeUpdate();
                  st.close();
-                 st=con.prepareStatement("SELECT * FROM authen t1 JOIN config t2 ON t1.id = t2.id JOIN thirdconfig t3 on t1.id=t3.id WHERE t1.id=?");
+                 st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.id = t2.id JOIN thirdconfig t3 on t1.id=t3.id WHERE t1.id=?");
                  st.setString(1, appid);
            
                  ResultSet rs = st.executeQuery();
      	         while(rs.next()){
-        	        String id=rs.getString("id");
+        	     String id=rs.getString("id");
                  RequestDispatcher dispatcher = request.getRequestDispatcher("final.jsp");
                  request.setAttribute("id", id); // set your String value in the attribute
                  dispatcher.forward( request, response );

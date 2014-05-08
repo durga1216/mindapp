@@ -30,14 +30,13 @@ public class FirstAuthPulpy extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	   	 response.setHeader("Content-Type","text/html; charset=UTF-8");
-		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-
-	   	 Connection con=null;  
+		  Connection con=null;  
+			 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 	      PrintWriter out=response.getWriter();
 	      String appname=request.getParameter("app1"); String descr=request.getParameter("descr"); String authen=request.getParameter("authen");
 	      String select1=request.getParameter("select1"); String select2=request.getParameter("select2");
-
+	      HttpSession session=request.getSession(true);
+		  String appid=(String) session.getAttribute("id");
 	      String b1=request.getParameter("b1");String b2=request.getParameter("b2");
 	      String b3=request.getParameter("b3");String b4=request.getParameter("b4");
 		  String a1=request.getParameter("a1");String a2=request.getParameter("a2");
@@ -47,26 +46,24 @@ public class FirstAuthPulpy extends HttpServlet {
 		  String treplace=request.getParameter("treplace");String el=request.getParameter("el"); String ev=request.getParameter("ev");
 		  try{
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
-
 			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	             PreparedStatement st=null;
-				 st=con.prepareStatement("insert into authen(appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev) values ('"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"')");
+				 st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev) values ('"+appid+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"')");
 				 st.executeUpdate();
-out.println(con.isReadOnly());				 
 			     st.close();
 			     out.println("insert sucess");
-			    st=con.prepareStatement("SELECT * From authen ORDER BY ID DESC LIMIT 1");
+			     
+			    st=con.prepareStatement("SELECT * From authen1 ORDER BY ID DESC LIMIT 1");
 		         ResultSet rs = st.executeQuery();
 		         while(rs.next()){
 	   	         String id=rs.getString("id");
 	   	         String authen1=rs.getString("auth");
 
-	   	         HttpSession session=request.getSession(true);
-	             session.setAttribute("id", id);
+	   	         
 	             if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
 	            	 
 	                out.println("id:"+id);
-	             out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
+	             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
     		     response.setHeader("Refresh", "1; URL=auth.jsp");
 	             }
 	             else if("Oauth2".equals(authen1)){
@@ -98,10 +95,15 @@ out.println(con.isReadOnly());
 	            	    session.setAttribute("ev", ev1);
 	            	    session.setAttribute("rf1", rf1);
 	            	    session.setAttribute("rm1", rmethod1);
-	            	 if(sname1.equals(null))
-	            		    response.sendRedirect(aurl+"?redirect_uri=https://mind-inputs.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1);
-	            		    else
-	            		    response.sendRedirect(aurl+"?redirect_uri=https://mind-inputs.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1);
+	            	 if(sname1.equals("") && el1.equals(""))
+	            		  response.sendRedirect(aurl+"?redirect_uri=config.get(AUTH)/OauthCallBackServlet&response_type=code&client_id="+ckey1);
+	                 else if(!sname1.equals("")&& el1.equals(""))
+	            		  response.sendRedirect(aurl+"?redirect_uri=config.get(AUTH)/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1);
+	                 else if(!sname1.equals("")&& !el1.equals(""))
+	            		  response.sendRedirect(aurl+"?redirect_uri=config.get(AUTH)/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1);
+	                 else if(sname1.equals("")&& !el1.equals(""))
+	            		  response.sendRedirect(aurl+"?redirect_uri=config.get(AUTH)/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
+	            	 
 
 	            	 
 	            	 
@@ -109,7 +111,7 @@ out.println(con.isReadOnly());
 		         }
 		  }
 		  catch(Exception e){
-			  out.println(e);
+			  out.println("<html><body bgcolor='#FF9900'><h2><center>You can configure only one time with the same id</h2><h3><a href='logout.jsp'>signout</a></h3></center></body></html>");
 		  }
 	}
 

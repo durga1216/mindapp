@@ -1,8 +1,6 @@
 package com.roobi.pulpy;
 
-import java.awt.Window;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +16,6 @@ import java.sql.ResultSet;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,32 +45,36 @@ public class AuthPulpy extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-   	 response.setHeader("Content-Type","text/html; charset=UTF-8");
+   	// response.setHeader("Content-Type","text/xml; charset=UTF-8");
 
 		PrintWriter out=response.getWriter();
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+
       String rf=request.getParameter("rf");String select2=request.getParameter("rm");
       String select=request.getParameter("select2");
-      String select3=request.getParameter("select3");String endurl=request.getParameter("endurl");
+      String select3=request.getParameter("select3");String burl=request.getParameter("baseurl");String endurl=request.getParameter("endurl");
       String p1=request.getParameter("p1");String pv1=request.getParameter("pv1");
       String p2=request.getParameter("p2");String pv2=request.getParameter("pv2");
       String p3=request.getParameter("p3");String pv3=request.getParameter("pv3");
       String p4=request.getParameter("p4");String pv4=request.getParameter("pv4");
       String p5=request.getParameter("p5");String pv5=request.getParameter("pv5");
       String p6=request.getParameter("p6");String pv6=request.getParameter("pv6");
+      String p7=request.getParameter("p7");String pv7=request.getParameter("pv7");
+      String p8=request.getParameter("p8"); String pv8=request.getParameter("pv8");
+      String p9=request.getParameter("p9");String pv9=request.getParameter("pv9");
+      String p10=request.getParameter("p10");String pv10=request.getParameter("pv10");
       HttpSession session=request.getSession(true);
 	  String appid=(String) session.getAttribute("id");
       try{
+    	    response.setContentType("text/html");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             String sam=null;
              PreparedStatement st=null;
-             String str1="insert into config(id,resf,rm,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6) values ('"+appid+"','"+select3+"','"+select+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"')";
-			 st=con.prepareStatement(str1);
+			 st=con.prepareStatement("insert into config(id,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10) values ('"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"')");
 			 st.executeUpdate();
-			 out.println("up success");
 		     st.close();
-		     st=con.prepareStatement("SELECT * FROM authen t1 JOIN config t2 ON t1.id = t2.id WHERE t1.id=?");
+		     st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.id = t2.id WHERE t1.id=?");
 		                 st.setString(1, appid);
 
 	         ResultSet rs = st.executeQuery();
@@ -94,85 +95,93 @@ public class AuthPulpy extends HttpServlet {
         	 String el=rs.getString("el");
         	 String ev=rs.getString("ev");
              String rf1=rs.getString("rf");String rm1=rs.getString("rm");
-             String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
+             String resf1=rs.getString("resf");String baseurl=rs.getString("baseurl");String endurl1=rs.getString("endurl");
              String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
              String pa2=rs.getString("p2");String pva2=rs.getString("pv2");
              String pa3=rs.getString("p3");String pva3=rs.getString("pv3");
              String pa4=rs.getString("p4");String pva4=rs.getString("pv4");
              String pa5=rs.getString("p5");String pva5=rs.getString("pv5");
              String pa6=rs.getString("p6");;String pva6=rs.getString("pv6");
+             String pa7=rs.getString("p7");;String pva7=rs.getString("pv7");
+             String pa8=rs.getString("p8");;String pva8=rs.getString("pv8");
+             String pa9=rs.getString("p9");;String pva9=rs.getString("pv9");
+             String pa10=rs.getString("p10");;String pva10=rs.getString("pv10");
 
 	         String eurl=null;
-	        if(authen1.equals("No Auth")){ //No Authentication
-	         if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //No Auth GET XML
-	        	
-	        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
-	        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
+	              
+	               
+	               
+	         
+	         if(authen1.equals("API keys") || authen1.equals("No Auth")){  //API Keys
+	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //API XML get
+	        		 
+	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
+		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
+		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
+		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+	        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
+		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
+		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
+		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
-		        		 eurl=endurl1+"?"+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2;}
+		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2;}
 	        		 
 	        		 else if(!"null".equals(pa1)){
-		        		 eurl=endurl1+"?"+"&"+pa1+"="+pva1;}
+		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1;}
 	        		 else if("null".equals(pa1))
-	        			eurl=endurl1;
-	        	 out.println("eurl");
-	        	 URL eurl1=new URL(eurl);
-        	     String str="";
+	        			eurl=endurl1+"?"+ak1+"="+ak2;
+	        		 
+	        		 else if("null".equals(ak1) && "null".equals(ak2))
+	        			 eurl=endurl1;	        		
+	        		 out.println(eurl);
+	        	     String str=null;
+	        		 try
+	        		 {
+	        		 URL eurl1=new URL(eurl);
+	        		 URLConnection uconn = eurl1.openConnection();
+	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+	        	     conn.connect();
+	        	     Object content = conn.getContent();
+	        	     InputStream stream = (InputStream) content;
+	        	     String line=null;
+	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	        	     while((line=br.readLine())!=null){
+	         	    	// pw1.write(line);
+	  	       		     //pw1.flush();
+	  	       		     str+=line;
+	  	        	   //out.println(line);
 
-	        	 try{
-        		 URLConnection uconn = eurl1.openConnection();
-        	     HttpURLConnection conn = (HttpURLConnection) uconn;
-        	     conn.connect();
-        	     Object content = conn.getContent();
-        	     InputStream stream = (InputStream) content;
-        	     String line=null;
-	        	 out.println("test2");
-
-        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-        	    
-        		// String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-        		 //String pr=contextPath+File.separator+"sam.xml";
-        		 //out.println(pr);
-     	         //PrintWriter pw1=new PrintWriter(pr);
-     	         
-        	     while((line=br.readLine())!=null){
-        	    	// pw1.write(line);
- 	       		     //pw1.flush();
- 	       		     str+=line;
- 	        	   //out.println(line);
-
-        	      }
-        	     
-	        	//    pw1.close();
-	         }
-	        	    catch(Exception e){
-	    	        	 out.println(e);
-	    	        	 }	
-	        	 request.setAttribute("PassingObj", str);
-	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
-	     		    disp.forward(request, response);
-	        	 //String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-        		 //String pr=contextPath+File.separator+"sam.xml";
-               	   // Runtime.getRuntime().exec("notepad"+pr);
-               	// out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
-    		     //response.setHeader("Refresh", "1; URL=auth1.jsp"); 
+	         	      }
+	         	     
+	 	        	//    pw1.close();
+	 	         }
+	 	        	    catch(Exception e){
+	 	    	        	 out.println(e);
+	 	    	        	 }	
+	 	        	 request.setAttribute("PassingObj", str);
+	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
+	 	     		    disp.forward(request, response);
+	               	}
+	        	 
 	         
-	         }
 	         
-	        } 
-	         
-	         else if(authen1.equals("API keys")){  //API Keys
-	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //API XML get
+                 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("JSON")){  //API JSON get
 	        		 
 
 	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
@@ -194,60 +203,58 @@ public class AuthPulpy extends HttpServlet {
 		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1;}
 	        		 else if("null".equals(pa1))
 	        			eurl=endurl1+"?"+ak1+"="+ak2;
+	        		 else if("null".equals(ak1) && "null".equals(ak2))
+	        			 eurl=endurl1;
 	        		 out.println(eurl);
-	        	     String str="";
+	        		 
+	        	     String str=null;
 
-	        		 try{
 	        		 URL eurl1=new URL(eurl);
+	        		 try
+	        		 {
 	        		 URLConnection uconn = eurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	        	     conn.connect();
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
 	        	     String line=null;
-	       
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	        		  FileWriter fw=null;
 
-	        		 //String contextPath = System.getenv("OPENSHIFT_DATA_DIR");
-	        		 //String pr=contextPath+"sam.xml";
-	        		 //out.println(pr);
-	     	         //PrintWriter pw1=new PrintWriter(pr);
-	        	     while((line=br.readLine())!=null){
-	        	    	 //pw1.write(line);
-	        	    	 
-	 	       		   //  pw1.flush();
-	 	       		     str+=line;
-	 	        	   // out.println(line);
-
-	        	      }
-	        	   
-	        	    // pw1.close();
-	        		 }
-	        		 catch(Exception e){
-	    	        	 out.println(e);
-	    	        	 }
-	        		 request.setAttribute("PassingObj", str);
-	        		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
-	        		    disp.forward(request, response);
-
-	        		 //HttpSession sess=request.getSession(true);
-	        		 //sess.setAttribute("str1", str);
-
-	               	//Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
-	               	//out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-	               	 //out.println("<html><body><TEXTAREA NAME=SpecialRequest ROWS=50 COLS=120>"+str+"</TEXTAREA><a href=auth1.jsp>Next</a></body><html>");
-
-	        		// response.setHeader("Refresh", "1; URL=auth1.jsp");
-	   		        
-	               	 //out.println("<html><body><a href=/tmp/sam.xml>xml</a><a href=auth1.jsp>Next</a></body><html>");
-	        	 }}
+	        	     while ((line = br.readLine()) != null)    { 
+	        	    	
+	         		  JSON json = JSONSerializer.toJSON( line .replaceAll("\\s+","")  );  
+	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+	     	          xmlSerializer.setTypeHintsEnabled(false);
+	     	          xmlSerializer.setSkipWhitespace(true);
+	     	          xmlSerializer.setTrimSpaces(true);
+	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+	     	          xmlSerializer.removeNamespace(line);
+	     	          xmlSerializer.setForceTopLevelObject(false);
+	     		      String  xmlout = xmlSerializer.write( json );
+	    			 // fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/sam.xml");
+	    			  //fw.write(xmlout);
+	    			 // fw.flush();
+	    		     }
+	    			//  fw.close();
+                 }       		
+	    	       	    catch(Exception e){
+		    	        	 out.println(e);
+		    	        	 }	
+		        	 request.setAttribute("PassingObj", str);
+		     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
+		     		    disp.forward(request, response); }
+	           
+	         	         
+	         }
+	         
 	         
 	         else if(authen1.equals("Oauth2")){
 	     		HttpClient httpclient = new HttpClient();
                 String Response=null;
 	        	HttpSession session1=request.getSession(true);
 		     	String access_token=(String)session1.getAttribute("access_token");
-		     	out.println("Inside Oauth:"+access_token+"TokenUrl:"+tokenurl);
+		     //	out.println("Inside Oauth:"+access_token+"TokenUrl:"+tokenurl);
 		     	String GetResponse=null;
 
 		     	if(rm1.equals("GET")){ 
@@ -260,10 +267,35 @@ public class AuthPulpy extends HttpServlet {
 
 		     	}
 		     	else if("QueryString".equals(treplace)){
-		     		get.setQueryString(new NameValuePair[] { 
-		     			    new NameValuePair(tlabel, access_token)
-		     			    
-		     			}); 
+		     		
+		     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
+		     			{get.setQueryString(new NameValuePair[] { 
+			     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3),new NameValuePair(pa4,pva4),new NameValuePair(pa5,pva5),new NameValuePair(pa6,pva6)});
+		     		  }
+		        		 
+		                 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5))
+		                	 get.setQueryString(new NameValuePair[] { 
+		 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3),new NameValuePair(pa4,pva4),new NameValuePair(pa5,pva5)});
+		     	
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4))
+		        			 get.setQueryString(new NameValuePair[] { 
+		        			 		    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3),new NameValuePair(pa4,pva4)});
+		     	
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3))
+		        			 get.setQueryString(new NameValuePair[] { 
+		 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3)});
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2))
+		        			 get.setQueryString(new NameValuePair[] { 
+		 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2)});
+		        		 
+		        		 else if(!"null".equals(pa1))
+		        			 get.setQueryString(new NameValuePair[] { 
+		 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1)});
+		        		 
+		        		 else if("null".equals(pa1))
+		     		          get.setQueryString(new NameValuePair[] { 
+		     			            new NameValuePair(tlabel, access_token)}); 
 			         httpclient.executeMethod(get);
 			         GetResponse=get.getResponseBodyAsString();}
 
@@ -280,22 +312,56 @@ public class AuthPulpy extends HttpServlet {
 		     		else if("QueryString".equals(treplace)){
 			     		post.addParameter(tlabel,access_token);
 						httpclient.executeMethod(post);
-					   GetResponse=post.getResponseBodyAsString();}
+					    GetResponse=post.getResponseBodyAsString();}
+					   
+		     		  /*   post.addParameter((tlabel,access_token);
+		     		     post.addParameter(p1,pva1);
+		     		     post.addParameter(p2,pva2);
+		     		     post.addParameter(p3,pva3);
+		     		     post.addParameter(p3,pva3);
+		     		     post.addParameter(p4,pva4);
+		     		     post.addParameter(p4,pva6);}*/
  
 		     	}
-			       out.println(GetResponse);
-
+                 if(authen1.equals("Oauth2") && resf1.equals("JSON")){
+                  JSON json = JSONSerializer.toJSON( GetResponse );  
+   	              XMLSerializer xmlSerializer = new XMLSerializer();  
+   	              xmlSerializer.setTypeHintsEnabled(false);
+   	              xmlSerializer.setSkipWhitespace(true);
+   	              xmlSerializer.setTrimSpaces(true);
+   	              xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+   	              xmlSerializer.removeNamespace(GetResponse);
+   	              xmlSerializer.setForceTopLevelObject(false);
+   	              String xmlout=xmlSerializer.write(json);
+   	           //   PrintWriter out1 = new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
+                 // out1.println(xmlout);
+                 // out1.close();
+   	           request.setAttribute("PassingObj", xmlout);
+   		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
+   		    disp.forward(request, response);
+                 }
+                 
+                 if(authen1.equals("Oauth2") && resf1.equals("XML")){
 			    //PrintWriter out1 = new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
-               // out1.println(Response);
+                //out1.println(GetResponse);
                 //out1.close();
-  		          	 
-	           /*	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
-               	out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-   		        response.setHeader("Refresh", "1; URL=auth1.jsp");*/
+                	 request.setAttribute("PassingObj", GetResponse);
+	        		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
+	        		    disp.forward(request, response);
+                 }
+            
+	         //  	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
+               //	out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+   		        //response.setHeader("Refresh", "1; URL=auth1.jsp");
 	         }
+	         
+	         
+	         // next condition starts here
 	         }  
       }
-      catch(Exception e1){}
+      catch(Exception e){
+    	  out.println(e);
+      }
       
      
       

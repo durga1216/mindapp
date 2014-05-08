@@ -12,6 +12,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ApiPulpy</display-name>
+    <servlet-name>ApiPulpy</servlet-name>
+    <servlet-class>com.roobi.pulpy.ApiPulpy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApiPulpy</servlet-name>
+    <url-pattern>/ApiPulpy</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>LoginCheckPulpy</display-name>
     <servlet-name>LoginCheckPulpy</servlet-name>
     <servlet-class>com.roobi.pulpy.LoginCheckPulpy</servlet-class>

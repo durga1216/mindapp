@@ -5,22 +5,20 @@
 
 <html>
 <head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<script src="js/jquery-latest.js"></script>
-	 <%response.setHeader("Cache-Control", "no-cache");
+ <%response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);%>
-<style>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>MindPulpy</title>
+<link rel="shortcut icon" href="favicon.ico" /><style>
 body{
 background-color:#FF9900;}
 .head{
     color:#FFFFFF;
     font-family:verdana;
     font-size:40px;}
-  a{
+  #pa{
   font-family:verdana;
   font-size:20px;
   color:#FFFFFF;
@@ -182,6 +180,15 @@ font-size:10px;
 font-family:verdana;
 margin-left:650px;
 }
+
+#indiv{color:#FFFFFF;
+}
+#na{
+margin-top:0;
+color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+text-align:right;}
 </style>
 <script type="text/javascript">
 function basauth(){
@@ -226,17 +233,6 @@ function removeParent(){
  function oauth2(){}
 
  </script>
-<script>
-function validateform()
-{
-	var x1=document.forms["auth"]["endurl"].value;
-	if(x1==null||x1=="")
-		{
-		alert("***Please fill the end point url***");
-		return false;
-		}
-	}
-</script>
 </head>
 <body>
  <%String u = (String) request.getSession().getAttribute("user");
@@ -247,8 +243,12 @@ function validateform()
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
-<br><br><div class="head"><h2><center>Mind Pulpy</center></h2></div><br><br>
-<form name="auth" action="AuthPulpy" method="post" onsubmit="return validateform()">
+<form action="AuthPulpy" method="post">
+
+<div id=na><%=session.getAttribute("mail")%>|<a id="indiv" href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>|<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+
+<br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
+
 <br>
 <div class="rmethod"><center>Request Method</center></div>
 <select name="select2"  id="select2" onchange="change()">
@@ -265,9 +265,10 @@ function validateform()
      <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
 </select><br><br>
-<input type="text" name="endurl" placeholder="End_Point_URL"><br><br>
+<input type="text" name="baseurl" placeholder="Base_URL*"><br><br>
+<input type="text" name="endurl" placeholder="End_Point_URL*"><br><br>
 <div class="link"><center>Add Parameters</center></div><br><br>
-<a href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a href="javascript:removeParent();">Remove Params</a><br><br>
+<a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
 <div id="content"></div><br><br>
 <input type="submit" name="first" value="Continue">
 </form>

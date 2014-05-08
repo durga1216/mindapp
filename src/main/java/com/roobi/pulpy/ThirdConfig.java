@@ -1,7 +1,6 @@
 package com.roobi.pulpy;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +24,10 @@ import javax.servlet.http.HttpSession;
 
 import com.mindots.util.Utils;
 
+import net.sf.json.JSON;
+import net.sf.json.JSONSerializer;
+import net.sf.json.xml.XMLSerializer;
+
 public class ThirdConfig extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
@@ -36,10 +39,8 @@ public class ThirdConfig extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-
-		response.setHeader("Content-Type","text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		HttpSession session=request.getSession(true);
 		String appid=(String) session.getAttribute("id");
 		String thirdurl=request.getParameter("thrdurl"); String thirdcycle=request.getParameter("thirdcycle"); String thrd1=request.getParameter("thrd1");String thrd2=request.getParameter("thrd2");
@@ -50,15 +51,14 @@ public class ThirdConfig extends HttpServlet {
 		String t9=request.getParameter("t9");  String tv9=request.getParameter("tv9"); String t10=request.getParameter("t10"); String tv10=request.getParameter("tv10");
 	   String al=request.getParameter("alabel"); String ak=request.getParameter("akey");
 		Connection con=null;
-   	 try {
+   	        try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             PreparedStatement st=con.prepareStatement("insert into thirdconfig(id,thrdurl,thrdcycle,alabel,akey,thrd1,thrd2,t1,tv1,t2,tv2,t3,tv3,t4,tv4,t5,tv5,t6,tv6,t7,tv7,t8,tv8,t9,tv9,t10,tv10) values ('"+appid+"','"+thirdurl+"','"+thirdcycle+"','"+al+"','"+ak+"','"+thrd1+"','"+thrd2+"','"+t1+"','"+tv1+"','"+t2+"','"+tv2+"','"+t3+"','"+tv3+"','"+t4+"','"+tv4+"','"+t5+"','"+tv5+"','"+t6+"','"+tv6+"','"+t7+"','"+tv7+"','"+t8+"','"+tv8+"','"+t9+"','"+tv9+"','"+t10+"','"+tv10+"')");                
             st.executeUpdate();
             st.close();
             out.println("INsert sucess");
-            st=con.prepareStatement("SELECT * FROM authen t1 JOIN config t2 ON t1.id = t2.id JOIN thirdconfig t3 on t1.id=t3.id WHERE t1.id=?");
+            st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.id = t2.id JOIN thirdconfig t3 on t1.id=t3.id WHERE t1.id=?");
             st.setString(1, appid);
       
             ResultSet rs = st.executeQuery();
@@ -125,8 +125,6 @@ public class ThirdConfig extends HttpServlet {
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2))
     	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
     	        	 out.println(thirdurl11);
-    	             String str=null;
-    	        	 try{
     	        	 URL thirdurl2=new URL(thirdurl11);
             		 URLConnection uconn = thirdurl2.openConnection();
             	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -134,31 +132,21 @@ public class ThirdConfig extends HttpServlet {
             	     Object content = conn.getContent();
             	     InputStream stream = (InputStream) content;
             	     String line=null;
-            	    
+            	     String str=null;
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-            	    // String contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-            		 //String pr=contextPath+File.separator+"book.xml";
-            		 //out.println(pr);
-         	         //PrintWriter pw1=new PrintWriter(pr);            	     
-         	         while((line=br.readLine())!=null){
-            	    	 //pw1.write(line);
-     	       		     //pw1.flush();
-     	       		     str+=line;
-     	        	   //out.println(line);
-
+         	       //  FileWriter fw=new FileWriter("F:/workspace/MindPulpy1/WebContent/book.xml");
+            	     while((line=br.readLine())!=null){
+            	    	// fw.write(line);
+            	    	 str+=line;
+            	    	 //fw.flush();
             	      }
-    	        	    //pw1.close();
-    	        	    request.setAttribute("PassingObj", str);
-     	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
-     	     		    disp.forward(request, response);
-    	         }
-	        	    catch(Exception e){
-	    	        	 out.println(e);
-	    	        	 }	
-    	        			
-                   	  //  Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
-                   	// out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-        		    // response.setHeader("Refresh", "1; URL=third_xml_config.jsp"); 
+    	        	    //fw.close();
+            	     request.setAttribute("PassingObj", str);
+ 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
+ 	     		    disp.forward(request, response);	
+                   	// Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
+                   	 //out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+        		     //response.setHeader("Refresh", "1; URL=third_xml_config.jsp"); 
                    	 }}
              
              else if(authen1.equals("API keys")){  //API Keys
@@ -198,46 +186,103 @@ public class ThirdConfig extends HttpServlet {
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
 	        		 out.println(thirdurl11);
-	        		 String str=null;
+	        		 URL url1=new URL(thirdurl11);
+     				 URLConnection uconn = url1.openConnection();
+     				 String str=null;
+                      BufferedReader br = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
 
-	        		 try{
+          		     String line=null;
+          		     FileWriter fw=null;
+          		     
+          		   while((line=br.readLine())!=null){
+            	    	// pw1.write(line);
+     	       		    // pw1.flush();
+     	       		     str+=line;
+     	        	   //out.println(line);
+            	      }
+    	        	    //pw1.close();
+    	        	    request.setAttribute("PassingObj", str);
+    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
+    	     		    disp.forward(request, response);	
+	               	}
+	        	 
+             
+	        	 else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("JSON")){  //API XML get
+	        		 out.println("Inside API keys and GET");
+
+	        		 if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6)&& "entity".equals(thirdcycle1))
+	        		     thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3+"&"+tp4+"="+tpv4+"&"+tp5+"="+tpv5+"&"+tp6+"="+tpv6;
+	        		 
+	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5)&& "entity".equals(thirdcycle1))
+		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3+"&"+tp4+"="+tpv4+"&"+tp5+"="+tpv5;
+	        		 
+	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4)&& "entity".equals(thirdcycle1))
+		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3+"&"+tp4+"="+tpv4;
+	        		 
+	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3)&& "entity".equals(thirdcycle1))
+		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3;
+	        		 
+	        		 else if(!"null".equals(tp1) && !"null".equals(tp2)&& "entity".equals(thirdcycle1))
+		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2;
+	        		 
+	        		 else if(!"null".equals(tp1)&& "entity".equals(thirdcycle1))
+		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1;
+	        		 
+	        		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3))
+		        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+thrdval+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3;
+	        		 
+	        		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1) && !"null".equals(tp2))
+		        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+thrdval+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2;
+	        		 
+	        		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1))
+		        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+thrdval+"&"+tp1+"="+tpv1;
+	        		 
+	        		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1))
+	        			 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+thrdval;
+	        		
+	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
+	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
+	        		 out.println(thirdurl11);
 	        		 URL url1=new URL(thirdurl11);
      				 URLConnection uconn = url1.openConnection();
 
                       BufferedReader in = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
+
           		     String line=null;
           		     FileWriter fw=null;
-          		  // contextPath = System.getenv("OPENSHIFT_TMP_DIR");
-          		 //String pr=contextPath+File.separator+"book.xml";
-          		 //out.println(pr);
-       	         //PrintWriter pw1=new PrintWriter(pr);
+          		     
+          		    // fw=new FileWriter("F:/workspace/MindPulpy1/WebContent/book.xml");
                   	 while ((line = in.readLine()) != null) {
+                  	 
+                  		JSON json = JSONSerializer.toJSON( line );  
+		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+		     	          xmlSerializer.setTypeHintsEnabled(false);
+		     	          xmlSerializer.setSkipWhitespace(true);
+		     	          xmlSerializer.setTrimSpaces(true);
+		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+		     	          xmlSerializer.removeNamespace(line);
+		     	          xmlSerializer.setForceTopLevelObject(false);
+		     		      String  xmlout = xmlSerializer.write( json );
+		    			  //fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/book.xml");
+		    			  //fw.write(xmlout);
+		     		     request.setAttribute("PassingObj", xmlout);
+		  	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
+		  	     		    disp.forward(request, response);
 
-     	       		//     fw.write(line);
-     	       		  //   fw.flush();
-     	       		     str+=line;
-                  	 }            
-                  	//fw.close();
-        		     // in.close();
-        		      request.setAttribute("PassingObj", str);
-		     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
-		     		    disp.forward(request, response);
-	        	 }
-	        	    catch(Exception e){
-	    	        	 out.println(e);
-	    	        	 }	
-	        		
-	              // 	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
-	               //	out.println("<html><h1><center><font color='green'>Processing...</font></center></h2><html>");
-	   		        //response.setHeader("Refresh", "1; URL=third_xml_config.jsp");
-	               	}}
+                  	 } // while
+                  	// fw.close();
+                  //	in.close();
+                  	 
+             }  //else  if
 
-             
+             }  //Main if API keys
 
              
              
              
-	         } 	 }
+	         } 	//while 
+             
+	         } // try
 
    	 catch(Exception e){}
 	}
