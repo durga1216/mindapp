@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mindots.util.Utils;
+
 public class LoginCheckPulpy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Connection con=null; 
 
     public LoginCheckPulpy() {
         super();
@@ -25,7 +29,7 @@ public class LoginCheckPulpy extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Connection con=null;  
+		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 	    PrintWriter out=response.getWriter();
 	    String t1=request.getParameter("t1");
 	    String t2=request.getParameter("t2");
@@ -34,10 +38,7 @@ public class LoginCheckPulpy extends HttpServlet {
 	    String pwd=null;
 	    try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-        String url = "jdbc:mysql://127.6.250.130:3306/mpulpy";
-        final String USER = "adminPQ1iFfN";
-        final String PASS = "J5JhBL-XC9NG";
-        con = (Connection) DriverManager.getConnection(url,USER,PASS);
+        con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
          PreparedStatement st=null;
          st=con.prepareStatement("SELECT * From login where email='"+t1+"' and pwd='"+t2+"'");
          ResultSet rs = st.executeQuery();

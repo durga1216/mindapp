@@ -67,7 +67,8 @@ color:#FFFFFF;
 <center><input type=text name="t1" id='t1' placeholder="Email"><br><br>
 <input type=password name="t2" id='t2'  placeholder="Password"><br><br><br></center>
 <center>&nbsp;&nbsp;<input type="submit" name="submit" id='Login' value="Login"><center><br>
-
+<center><div class="label">OR</div></center><br>
+<center><a href="index.jsp">Click here to signup</a></center>
 </form>
 </body>
 </html>

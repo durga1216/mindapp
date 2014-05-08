@@ -14,6 +14,6 @@ background-color:#FF9900;}
     <%request.getSession().setAttribute("user", null);%>
 
 <h1>you have been logout</h1>
-<h3><a href="Login.jsp">click here to login</a></h3>
+<h3><a href="login.jsp">click here to login</a></h3>
 </body>
 </html>
