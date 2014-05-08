@@ -71,6 +71,40 @@ a{
     
     }
  </style>
+ <script>
+ function validateForm()
+ {
+ var x=document.forms["myForm"]["s1"].value;
+ var atpos=x.indexOf("@");
+ var dotpos=x.lastIndexOf(".");
+ if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+   {
+   alert("Not a valid e-mail address");
+   return false;
+   }
+ var x1=document.forms["myForm"]["s2"].value;
+ if (x1==null || x1=="")
+   {
+   alert("First name must be filled out");
+   return false;
+   }
+ var x2=document.forms["myForm"]["s3"].value;
+ if (x2==null || x2=="")
+   {
+   alert("Last name must be filled out");
+   return false;
+   }
+ var x3=document.forms["myForm"]["s4"].value;
+ var passid_len = x3.length;  
+ var mx=6;
+var my=10;
+if (passid_len == 0 ||passid_len >= my || passid_len < mx)  
+ {  
+ alert("Password should not be empty / length be between "+mx+" to "+my);  
+ return false;  
+ } 
+ }
+ </script>
  
  <script>
  
@@ -90,7 +124,7 @@ a{
  
 </head>
 <body>
-<form action="LoginPulpy" method="post">
+<form action="LoginPulpy" name="myForm" method="post" onsubmit="return validateForm()">
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <div class="sec">
 <center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
