@@ -57,6 +57,12 @@
 	<artifactId>commons-codec</artifactId>
 	<version>1.5</version>
 </dependency>
+<dependency>
+	<groupId>xom</groupId>
+	<artifactId>xom</artifactId>
+	<version>1.1</version>
+</dependency>
+           
             <dependency>
 	<groupId>org.scribe</groupId>
 	<artifactId>scribe</artifactId>
