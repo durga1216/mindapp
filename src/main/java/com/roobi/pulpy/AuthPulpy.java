@@ -174,7 +174,7 @@ public class AuthPulpy extends HttpServlet {
 	 	        	    catch(Exception e){
 	 	    	        	 out.println(e);
 	 	    	        	 }	
-	 	        	 request.setAttribute("PassingObj", str);
+	 	        	 request.setAttribute("PassingObj", eurl);
 	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 	 	     		    disp.forward(request, response);
 	               	}
@@ -244,7 +244,7 @@ public class AuthPulpy extends HttpServlet {
 	    	       	    catch(Exception e){
 		    	        	 out.println(e);
 		    	        	 }	
-		        	 request.setAttribute("PassingObj", str);
+		        	 request.setAttribute("Passing", str);
 		     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 		     		    disp.forward(request, response); }
 	           
@@ -339,7 +339,7 @@ public class AuthPulpy extends HttpServlet {
    	           //   PrintWriter out1 = new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
                  // out1.println(xmlout);
                  // out1.close();
-   	           request.setAttribute("PassingObj",xmlout);
+   	           request.setAttribute("Passing",xmlout);
    		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
    		    disp.forward(request, response);
                  }
@@ -348,7 +348,7 @@ public class AuthPulpy extends HttpServlet {
 			    //PrintWriter out1 = new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
                 //out1.println(GetResponse);
                 //out1.close();
-                	 request.setAttribute("PassingObj", GetResponse);
+                	 request.setAttribute("Passing", GetResponse);
 	        		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 	        		    disp.forward(request, response);
                  }
