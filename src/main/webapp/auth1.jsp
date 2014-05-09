@@ -88,12 +88,7 @@ font-size:15px;
 font-family:verdana;
 text-align:right;}
 </style>
-<script type="text/javascript">
-window.onload=function(){
-	window.open("${PassingObj}", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
-	
-	
-}</script>
+
 </head>
 <body>
  <%String u = (String) request.getSession().getAttribute("user");
@@ -108,6 +103,7 @@ window.onload=function(){
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form action="AuthPulpy1" method="post">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
+<center><TEXTAREA  NAME=SpecialRequest ROWS=30 COLS=70 readonly>"${PassingObj}"</TEXTAREA></center><br><br>
 <center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
 <input type="text" name="xrv" value="" placeholder="Root_Tag"></div></center>
 <br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
@@ -115,5 +111,12 @@ window.onload=function(){
 <br><center><div id="content"></div></center><br><br>
 <center><input type="submit" value="Continue" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Finish" name="submit"></center>
 </form>
+<script type="text/javascript">
+window.onload=function(){
+	window.open("${PassingObj}", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+	
+	
+}
+</script>
 </body>
 </html>
