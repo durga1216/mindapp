@@ -84,7 +84,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				post.addParameter("grant_type", "authorization_code");
 				post.addParameter("client_id",apikey);
 				post.addParameter("client_secret",apisecvalue);
-				post.addParameter("redirect_uri","config.get(AUTH)/OauthCallBackServlet");
+				post.addParameter("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
 				httpclient.executeMethod(post);
 			    responseBody = post.getResponseBodyAsString();//}
 			    System.out.println(responseBody);

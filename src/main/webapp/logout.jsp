@@ -7,13 +7,27 @@
 <title>Insert title here</title>
 <style>
 body{
-background-color:#FF9900;}
+background-color:#FF9900;
+}
+h1{
+font-family:verdana;
+color:#FFFFFF;
+}
+h2{
+font-family:verdana;
+color:#FFFFFF;
+}
+h3{
+font-family:verdana;
+color:#FFFFFF;
+}
 </style>
 </head>
 <body>
     <%request.getSession().setAttribute("user", null);%>
+<center><h1>Mind Pulpy</h1><center><br><br>
 
-<center><h1>Your session get logout</h1><center>
+<center><h2>Successfully Signout!!</h2><center><br><br>
 <h3><a href="index.jsp">click here to login</a></h3>
 </body>
 </html>

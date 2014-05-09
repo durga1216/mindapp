@@ -83,13 +83,13 @@ public class ClientOauth extends HttpServlet {
     	    session.setAttribute("rm1", rmethod1);
            	 String clienturl=null;
         	 if(sname1.equals("") && el1.equals(""))
-        		  clienturl=aurl1+"?redirect_uri=/OauthCallBackServlet&response_type=code&client_id="+ckey1;
+        		  clienturl=aurl1+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1;
              else if(!sname1.equals("")&& el1.equals(""))
-        		  clienturl=aurl1+"?redirect_uri=/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1;
+        		  clienturl=aurl1+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1;
              else if(!sname1.equals("")&& !el1.equals(""))
-        		  clienturl=aurl1+"?redirect_uri=/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1;
+        		  clienturl=aurl1+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1;
              else if(sname1.equals("")&& !el1.equals(""))
-        		  clienturl=aurl1+"?redirect_uri=/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1;
+        		  clienturl=aurl1+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1;
         	 response.setContentType("text/plain");
         	 response.setCharacterEncoding("UTF-8");
              response.getWriter().print(clienturl);
