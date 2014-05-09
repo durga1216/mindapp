@@ -124,7 +124,7 @@ public class ThirdConfig extends HttpServlet {
     	        			 thirdurl11=thirdurl1+"?"+thrdid+"="+thrdval;
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2))
     	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
-    	        	 out.println(thirdurl11);
+    	        	// out.println(thirdurl11);
     	        	 URL thirdurl2=new URL(thirdurl11);
             		 URLConnection uconn = thirdurl2.openConnection();
             	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -132,7 +132,7 @@ public class ThirdConfig extends HttpServlet {
             	     Object content = conn.getContent();
             	     InputStream stream = (InputStream) content;
             	     String line=null;
-            	     String str=null;
+            	     String str="";
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
          	       //  FileWriter fw=new FileWriter("F:/workspace/MindPulpy1/WebContent/book.xml");
             	     while((line=br.readLine())!=null){
@@ -141,7 +141,9 @@ public class ThirdConfig extends HttpServlet {
             	    	 //fw.flush();
             	      }
     	        	    //fw.close();
-            	     request.setAttribute("PassingObj", str);
+            	     request.setAttribute("PassingObj", thirdurl11);
+            	     request.setAttribute("Passing", str);
+
  	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
  	     		    disp.forward(request, response);	
                    	// Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
@@ -185,10 +187,10 @@ public class ThirdConfig extends HttpServlet {
 	        		
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
-	        		 out.println(thirdurl11);
+	        		// out.println(thirdurl11);
 	        		 URL url1=new URL(thirdurl11);
      				 URLConnection uconn = url1.openConnection();
-     				 String str=null;
+     				 String str="";
                       BufferedReader br = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
 
           		     String line=null;
@@ -201,7 +203,8 @@ public class ThirdConfig extends HttpServlet {
      	        	   //out.println(line);
             	      }
     	        	    //pw1.close();
-    	        	    request.setAttribute("PassingObj", str);
+    	        	    request.setAttribute("PassingObj", thirdurl11);
+    	        	    request.setAttribute("Passing", str);
     	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
     	     		    disp.forward(request, response);	
 	               	}
@@ -242,7 +245,7 @@ public class ThirdConfig extends HttpServlet {
 	        		
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
-	        		 out.println(thirdurl11);
+	        		// out.println(thirdurl11);
 	        		 URL url1=new URL(thirdurl11);
      				 URLConnection uconn = url1.openConnection();
 
@@ -265,7 +268,7 @@ public class ThirdConfig extends HttpServlet {
 		     		      String  xmlout = xmlSerializer.write( json );
 		    			  //fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/book.xml");
 		    			  //fw.write(xmlout);
-		     		     request.setAttribute("PassingObj", xmlout);
+		     		     request.setAttribute("Passing", xmlout);
 		  	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
 		  	     		    disp.forward(request, response);
 

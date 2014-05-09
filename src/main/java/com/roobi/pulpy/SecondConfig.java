@@ -128,7 +128,7 @@ public class SecondConfig extends HttpServlet {
     	        			 secdurl=securl1+"?"+secid+"="+secval;
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
     	        			 secdurl=securl1+"?"+ak1+"="+ak2;
-    	        	 out.println(secdurl);
+    	        	 //out.println(secdurl);
     	        	 URL secdurl1=new URL(secdurl);
             		 URLConnection uconn = secdurl1.openConnection();
             	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -136,7 +136,7 @@ public class SecondConfig extends HttpServlet {
             	     Object content = conn.getContent();
             	     InputStream stream = (InputStream) content;
             	     String line=null;
-            	     String str=null;
+            	     String str="";
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
             	     while((line=br.readLine())!=null){
              	    	// pw1.write(line);
@@ -145,7 +145,8 @@ public class SecondConfig extends HttpServlet {
       	        	   //out.println(line);
              	      }
      	        	    //pw1.close();
-     	        	    request.setAttribute("PassingObj", str);
+     	        	    request.setAttribute("PassingObj", secdurl);
+     	        	    request.setAttribute("Passing", str);
      	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
      	     		    disp.forward(request, response);	
                    	 }}
@@ -190,7 +191,7 @@ public class SecondConfig extends HttpServlet {
 	        		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
 	        			      secdurl=securl1;
 	        		 
-	        		 out.println(secdurl);
+	        		// out.println(secdurl);
 	        		 URL secdurl1=new URL(secdurl);
 	        		 URLConnection uconn = secdurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -198,7 +199,7 @@ public class SecondConfig extends HttpServlet {
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
 	        	     String line=null;
-	        	     String str=null;
+	        	     String str="";
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 	        	     while((line=br.readLine())!=null){
 	            	    	// pw1.write(line);
@@ -207,7 +208,9 @@ public class SecondConfig extends HttpServlet {
 	     	        	   //out.println(line);
 	            	      }
 	    	        	    //pw1.close();
-	    	        	    request.setAttribute("PassingObj", str);
+	    	        	    request.setAttribute("PassingObj", secdurl);
+	    	        	    request.setAttribute("Passing", str);
+
 	    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
 	    	     		    disp.forward(request, response);	
 	               	}
@@ -276,7 +279,7 @@ public class SecondConfig extends HttpServlet {
 		    			  //fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/det.xml");
 		    			  //fw.write(xmlout);
 		    			 // fw.flush();
-		     		     request.setAttribute("PassingObj", xmlout);
+		     		     request.setAttribute("Passing", xmlout);
 	    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
 	    	     		    disp.forward(request, response);
 		    		     }

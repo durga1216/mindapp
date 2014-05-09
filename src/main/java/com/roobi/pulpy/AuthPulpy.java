@@ -149,8 +149,8 @@ public class AuthPulpy extends HttpServlet {
 	        		 
 	        		 else if("null".equals(ak1) && "null".equals(ak2))
 	        			 eurl=endurl1;	        		
-	        		 out.println(eurl);
-	        	     String str=null;
+	        		// out.println(eurl);
+	        	     String str="";
 	        		 try
 	        		 {
 	        		 URL eurl1=new URL(eurl);
@@ -175,6 +175,7 @@ public class AuthPulpy extends HttpServlet {
 	 	    	        	 out.println(e);
 	 	    	        	 }	
 	 	        	 request.setAttribute("PassingObj", eurl);
+	 	        	 request.setAttribute("Passing", str);
 	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 	 	     		    disp.forward(request, response);
 	               	}
@@ -207,7 +208,7 @@ public class AuthPulpy extends HttpServlet {
 	        			 eurl=endurl1;
 	        		 out.println(eurl);
 	        		 
-	        	     String str=null;
+	        	     String str="";
 
 	        		 URL eurl1=new URL(eurl);
 	        		 try
@@ -217,7 +218,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     conn.connect();
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
-	        	     String line=null;
+	        	     String line="";
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 	        		  FileWriter fw=null;
 
