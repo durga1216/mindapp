@@ -68,15 +68,16 @@ public class OauthCallBackServlet extends HttpServlet {
 	 		String rf1=(String)session1.getAttribute("rf1");
 	 		String rm1=(String)session1.getAttribute("rm1");
 			String code = request.getParameter(OAuthConstants.CODE);
-			pw.println(apikey+"<br>"+apisecvalue+"<br>"+tokenurl);
+			//pw.println(apikey+"<br>"+apisecvalue+"<br>"+tokenurl);
 			pw.println("verifier:"+code);
 			pw.println(rm1);
 			String responseBody=null;
 			String access_token=null;
 			HttpClient httpclient = new HttpClient();
 			if(rm1.equals("POST")){
+				pw.println("Inside Post");
 				PostMethod post = new PostMethod(tokenurl);
-				post.setRequestHeader("Accept", "application/json");
+				//post.setRequestHeader("Accept", "application/json");
 				post.addParameter("code", code);
 				post.addParameter("grant_type", "authorization_code");
 				post.addParameter("client_id",apikey);
@@ -85,7 +86,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				httpclient.executeMethod(post);
 			    responseBody = post.getResponseBodyAsString();//}
 			    pw.println(responseBody);
-				
+			
 			    
 			}
 			  
@@ -108,7 +109,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			     		
 				          httpclient.executeMethod(get);
 				          responseBody=get.getResponseBodyAsString();
-						  pw.println(responseBody);
+						  System.out.println(responseBody);
 	}
 			
 			             String line=null;
@@ -153,16 +154,6 @@ public class OauthCallBackServlet extends HttpServlet {
 			            pw.println("<br><br><center><b><h2><font color='green'>Sucessfully Authenticated with "+appname+"</font></center></h2></b>");
 			            pw.println("<br><br><h3><center><a href='auth.jsp'>Continue with Config</a></center></h3>");
 			            pw.println("<br><br><h3><center><a href='token.jsp'>Continue with App</a></center></h3>");}
-			            /*ServletContext context = this.getServletContext();
-			            RequestDispatcher dispatcher = context.getRequestDispatcher("/token.jsp");
-
-			            // change your request and response accordingly
-
-			            dispatcher.forward(request, response);*/
-
-			     //   response.sendRedirect("token.jsp");
-			
-
 			}
 			catch(Exception e){}
 
