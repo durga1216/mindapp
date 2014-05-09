@@ -68,8 +68,9 @@ public class OauthCallBackServlet extends HttpServlet {
 	 		String rf1=(String)session1.getAttribute("rf1");
 	 		String rm1=(String)session1.getAttribute("rm1");
 			String code = request.getParameter(OAuthConstants.CODE);
-			//pw.println(apikey+"<br>"+apisecvalue+"<br>"+tokenurl);
-			System.out.println("verifier:"+code);
+			pw.println(apikey+"<br>"+apisecvalue+"<br>"+tokenurl);
+			pw.println("verifier:"+code);
+			pw.println(rm1);
 			String responseBody=null;
 			String access_token=null;
 			HttpClient httpclient = new HttpClient();
@@ -80,17 +81,17 @@ public class OauthCallBackServlet extends HttpServlet {
 				post.addParameter("grant_type", "authorization_code");
 				post.addParameter("client_id",apikey);
 				post.addParameter("client_secret",apisecvalue);
-				post.addParameter("redirect_uri","http://localhost:8080/MindPulpy1/OauthCallBackServlet");
+				post.addParameter("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
 				httpclient.executeMethod(post);
 			    responseBody = post.getResponseBodyAsString();//}
-			    System.out.println(responseBody);
+			    pw.println(responseBody);
 				
 			    
 			}
 			  
 			    
 				 else if(rm1.equals("GET")){
-				     	GetMethod get=new GetMethod(URIUtil.encodeQuery(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=http://localhost:8080/MindPulpy1/OauthCallBackServlet"));
+				     	GetMethod get=new GetMethod(URIUtil.encodeQuery(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet"));
 
 
 				     	
@@ -107,7 +108,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			     		
 				          httpclient.executeMethod(get);
 				          responseBody=get.getResponseBodyAsString();
-						  System.out.println(responseBody);
+						  pw.println(responseBody);
 	}
 			
 			             String line=null;
