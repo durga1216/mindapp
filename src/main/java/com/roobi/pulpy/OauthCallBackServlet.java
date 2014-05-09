@@ -75,7 +75,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			String access_token=null;
 			HttpClient httpclient = new HttpClient();
 			if(rm1.equals("POST")){
-				pw.println("Inside Post");
+				pw.println(tokenurl+""+code+""+apikey+""+apisecvalue);
 				PostMethod post = new PostMethod(tokenurl);
 				//post.setRequestHeader("Accept", "application/json");
 				post.addParameter("code", code);
