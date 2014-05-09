@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -39,8 +38,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.mindots.util.Utils;
-
 public class OauthCallBackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
@@ -51,7 +48,6 @@ public class OauthCallBackServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			//	response.setContentType("application/json");
-			 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 			PrintWriter pw=response.getWriter();
 			HttpSession session1=request.getSession(true);
 			String url=(String) session1.getAttribute("url");
@@ -84,7 +80,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				post.addParameter("grant_type", "authorization_code");
 				post.addParameter("client_id",apikey);
 				post.addParameter("client_secret",apisecvalue);
-				post.addParameter("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
+				post.addParameter("redirect_uri","http://localhost:8080/MindPulpy1/OauthCallBackServlet");
 				httpclient.executeMethod(post);
 			    responseBody = post.getResponseBodyAsString();//}
 			    System.out.println(responseBody);

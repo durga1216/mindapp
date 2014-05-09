@@ -17,7 +17,7 @@ h2{
 font-family:verdana;
 color:#FFFFFF;
 }
-h3{
+a{
 font-family:verdana;
 color:#FFFFFF;
 }
