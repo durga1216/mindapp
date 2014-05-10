@@ -31,6 +31,7 @@ public class FirstAuthPulpy extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		  Connection con=null;  
+		   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 			 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 	      PrintWriter out=response.getWriter();
 	      String appname=request.getParameter("app1"); String descr=request.getParameter("descr"); String authen=request.getParameter("authen");
