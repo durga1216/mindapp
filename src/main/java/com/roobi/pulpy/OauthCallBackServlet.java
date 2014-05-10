@@ -23,6 +23,7 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.util.URIUtil;
+
 import org.apache.http.client.methods.HttpPost;
 import org.json.JSONObject;
 import org.scribe.builder.ServiceBuilder;
@@ -46,9 +47,10 @@ public class OauthCallBackServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter pw=response.getWriter();
+
 		try{
 			//	response.setContentType("application/json");
-			PrintWriter pw=response.getWriter();
 			HttpSession session1=request.getSession(true);
 			String url=(String) session1.getAttribute("url");
 			String id=(String) session1.getAttribute("id");
@@ -77,12 +79,12 @@ public class OauthCallBackServlet extends HttpServlet {
 			if(rm1.equals("POST")){
 				pw.println(tokenurl+""+code+""+apikey+""+apisecvalue);
 				PostMethod post = new PostMethod(tokenurl);
-				//post.setRequestHeader("Accept", "application/json");
+				post.setRequestHeader("Accept", "application/json");
 				post.addParameter("code", code);
 				post.addParameter("grant_type", "authorization_code");
 				post.addParameter("client_id",apikey);
 				post.addParameter("client_secret",apisecvalue);
-				//post.addParameter("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
+				post.addParameter("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
 				httpclient.executeMethod(post);
 			    responseBody = post.getResponseBodyAsString();//}
 			    pw.println(responseBody);
@@ -155,7 +157,9 @@ public class OauthCallBackServlet extends HttpServlet {
 			            pw.println("<br><br><h3><center><a href='auth.jsp'>Continue with Config</a></center></h3>");
 			            pw.println("<br><br><h3><center><a href='token.jsp'>Continue with App</a></center></h3>");}
 			}
-			catch(Exception e){}
+			catch(Exception e){
+				pw.println(e);
+			}
 
 		
 	}

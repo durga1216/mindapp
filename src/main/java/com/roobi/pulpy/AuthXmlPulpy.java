@@ -363,7 +363,10 @@ public class AuthXmlPulpy extends HttpServlet {
 
 	         else if(resf1.equals("XML") && authen1.equals("API keys")) 
                   doc=builder.parse(new URL(eurl).openStream());
-	          
+	       
+	         else if(resf1.equals("XML") && authen1.equals("No Auth"))
+	        	  doc=builder.parse(new URL(eurl).openStream());
+	       
 	         else if(resf1.equals("JSON") && authen1.equals("API keys")) 
 	               doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
 	          
