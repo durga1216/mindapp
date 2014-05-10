@@ -52,7 +52,7 @@ public class FirstAuthPulpy extends HttpServlet {
 				 st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev) values ('"+appid+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"')");
 				 st.executeUpdate();
 			     st.close();
-			     out.println("insert sucess");
+			     //out.println("insert sucess");
 			     
 			    st=con.prepareStatement("SELECT * From authen1 ORDER BY ID DESC LIMIT 1");
 		         ResultSet rs = st.executeQuery();
@@ -63,8 +63,8 @@ public class FirstAuthPulpy extends HttpServlet {
 	   	         
 	             if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
 	            	 
-	                out.println("id:"+id);
-	             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	                out.println("Your id:"+id);
+	             out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
     		     response.setHeader("Refresh", "1; URL=auth.jsp");
 	             }
 	             else if("Oauth2".equals(authen1)){

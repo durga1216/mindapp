@@ -236,7 +236,7 @@ public class AuthPulpy extends HttpServlet {
 	    			 // fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/sam.xml");
 	    			  //fw.write(xmlout);
 	    			 // fw.flush();
-	     		     request.setAttribute("PassingObj", xmlout);
+	     		     request.setAttribute("Passing", xmlout);
 		     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 		     		    disp.forward(request, response);
 	    		     }
@@ -245,9 +245,7 @@ public class AuthPulpy extends HttpServlet {
 	    	       	    catch(Exception e){
 		    	        	 out.println(e);
 		    	        	 }	
-		        	 request.setAttribute("Passing", str);
-		     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
-		     		    disp.forward(request, response); }
+		         }
 	           
 	         	         
 	         }

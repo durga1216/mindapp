@@ -42,8 +42,8 @@ public class LoginPulpy extends HttpServlet {
 			 st=con.prepareStatement("insert into login(email,fn,ln,pwd) values ('"+s1+"','"+s2+"','"+s3+"','"+s4+"')");
 			 st.executeUpdate();
 		     st.close();
-		     out.println("insert sucess");
-		     response.setHeader("Refresh", "1; URL=login.jsp");
+		     //out.println("insert sucess");
+		     response.sendRedirect("login.jsp");
 
 		}
 		catch(Exception e){
