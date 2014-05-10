@@ -27,7 +27,7 @@ public class ApiPulpy extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		PrintWriter out=response.getWriter();
 		Connection con=null;
-		String ak1=null;String ak2=null;String baseurl=null;
+		String ak1=null;String ak2=null,endurl="";
 		
 		try{
 		    Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -38,8 +38,9 @@ public class ApiPulpy extends HttpServlet {
 	        while(rs.next()){
 	        	ak1=rs.getString("a1");
 	            ak2=rs.getString("a2");
-	            baseurl=rs.getString("baseurl");
-	            out.println("<tr><td>"+baseurl+"</td><td>"+ak1+"</td><td>"+ak2+"</td></tr>");
+	            endurl=rs.getString("endurl");
+	            String[] baseurl=endurl.split("/");
+	            out.println("<tr><td>"+baseurl[1]+"//"+baseurl[2]+"</td><td>"+ak1+"</td><td>"+ak2+"</td></tr>");
 
 	        }
 	        out.println("</table></body>");
