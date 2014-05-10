@@ -8,41 +8,31 @@
 <title>MindPulpy</title>
 <link rel="shortcut icon" href="favicon.ico" />
 
-	<script src="js/jquery-latest.js"></script><head>
-<script>
-function validateForm()
-{
- var x=document.forms["myForm"]["t1"].value;
- var atpos=x.indexOf("@");
- var dotpos=x.lastIndexOf(".");
- if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
-   {
-   alert("Not a valid e-mail address");
-   return false;
-   }
- var x1=document.forms["myForm"]["t2"].value;
- if (x1==null || x1=="")
-   {
-   alert("invalid password");
-   return false;
-   }
- }
- </script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script><head>
 <style>
 body{background-color:#FF9900;}
 .head{
     color:#FFFFFF;
     font-family:verdana;
     font-size:40px;}
-    
+    .au{
+font-family:verdana;
+font-weight:bold;
+font-size: 20px;
+color:#FF9900;
+width:25%;
+height:30%;
+background-color:#FFFFFF;
+border-radius:50px;
+padding:15px;
+}
     
 input[type="text"]{
 color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
-margin-left:80px;
 font-family:verdana;
-width:400px;
+width:300px;
 height:25px;
 padding:10px;
 } 
@@ -51,9 +41,8 @@ input[type="password"]{
 color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
-margin-left:80px;
 font-family:verdana;
-width:400px;
+width:300px;
 height:25px;
 padding:10px;
 } 
@@ -69,7 +58,6 @@ height:50px;
 border:solid 2px;
 border-color:#FFFFFF;
 border-radius:50px;
-padding:10px;
 }
 
 .result{
@@ -80,8 +68,8 @@ color:#FFFFFF;
 </style>
 </head>
 <body>
-<form name="myForm"action="LoginCheckPulpy" method="post" Onsubmit="return validateForm()">
-<br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
+<form action="LoginCheckPulpy" method="post">
+<br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br><center><div class='au'><center>Login Here</center></div></center>
 <center>&nbsp;&nbsp;&nbsp;&nbsp;<div class="result">${alert}</div></center><br><br>
 <center><input type=text name="t1" id='t1' placeholder="Email"><br><br>
 <input type=password name="t2" id='t2'  placeholder="Password"><br><br><br></center>
