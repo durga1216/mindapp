@@ -103,7 +103,7 @@ text-align:right;}
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form action="AuthPulpy1" method="post">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
-<center><TEXTAREA  NAME=SpecialRequest ROWS=30 COLS=70 readonly>"${Passing}"</TEXTAREA></center><br><br>
+<center><TEXTAREA  NAME=SpecialRequest ROWS=30 COLS=70 readonly>${Passing}</TEXTAREA></center><br><br>
 <center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
 <input type="text" name="xrv" value="" placeholder="Root_Tag"></div></center>
 <br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>

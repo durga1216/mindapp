@@ -105,7 +105,7 @@ function removeParam()
 
 <center><div class="head">Mind Pulpy</div></center><br><br>
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
-<center><TEXTAREA  NAME=SpecialRequest ROWS=30 COLS=70 readonly>"${Passing}"</TEXTAREA></center><br><br>
+<center><TEXTAREA  NAME=SpecialRequest ROWS=30 COLS=70 readonly>${Passing}</TEXTAREA></center><br><br>
 <center><div="text"></div><input type="text" name="thrdparent" value="" placeholder="Parent_Tag">
 <input type="text" name="thrdroot" value="" placeholder="Root_Tag"></div></center>
 <br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>

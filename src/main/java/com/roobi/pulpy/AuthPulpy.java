@@ -64,7 +64,24 @@ public class AuthPulpy extends HttpServlet {
       String p9=request.getParameter("p9");String pv9=request.getParameter("pv9");
       String p10=request.getParameter("p10");String pv10=request.getParameter("pv10");
       HttpSession session=request.getSession(true);
+      HttpSession session3=request.getSession(true);
 	  String appid=(String) session.getAttribute("id");
+      session3.setAttribute("reqmeth",select);
+      session3.setAttribute("resfor",select3);
+      session3.setAttribute("endurl",endurl);
+      session3.setAttribute("p1",p1);session3.setAttribute("pv1",pv1);
+      session3.setAttribute("p2",p2);session3.setAttribute("pv2",pv2);
+      session3.setAttribute("p3",p3);session3.setAttribute("pv3",pv3);
+      session3.setAttribute("p4",p4);session3.setAttribute("pv4",pv4);
+      session3.setAttribute("p5",p5);session3.setAttribute("pv5",pv5);
+      session3.setAttribute("p6",p6);session3.setAttribute("pv6",pv6);
+      session3.setAttribute("p7",p7);session3.setAttribute("pv7",pv7);
+      session3.setAttribute("p8",p8);session3.setAttribute("pv8",pv8);
+      session3.setAttribute("p9",p9);session3.setAttribute("pv9",pv9);
+      session3.setAttribute("p10",p10);session3.setAttribute("pv10",pv10);
+
+
+
       try{
     	    response.setContentType("text/html");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();

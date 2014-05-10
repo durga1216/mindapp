@@ -45,6 +45,11 @@ public class FirstAuthPulpy extends HttpServlet {
 		  String cseckey=request.getParameter("cseckey");String sname=request.getParameter("sname"); String svalue=request.getParameter("svalue");
 		  String aurl=request.getParameter("aurl"); String tokenurl=request.getParameter("tokenurl"); String tlabel=request.getParameter("tlabel");
 		  String treplace=request.getParameter("treplace");String el=request.getParameter("el"); String ev=request.getParameter("ev");
+          HttpSession session2 = request.getSession(true);
+          session2.setAttribute("appname",appname);
+          session2.setAttribute("apikey",a2);
+          session2.setAttribute("apiname",a1);
+          session2.setAttribute("authtype",authen);
 		  try{
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -52,6 +57,7 @@ public class FirstAuthPulpy extends HttpServlet {
 				 st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev) values ('"+appid+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"')");
 				 st.executeUpdate();
 			     st.close();
+			   
 			     //out.println("insert sucess");
 			     
 			    st=con.prepareStatement("SELECT * From authen1 ORDER BY ID DESC LIMIT 1");
