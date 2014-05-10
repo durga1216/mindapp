@@ -40,7 +40,7 @@ public class ApiPulpy extends HttpServlet {
 	            ak2=rs.getString("a2");
 	            endurl=rs.getString("endurl");
 	            String[] baseurl=endurl.split("/");
-	            out.println("<tr><td>"+baseurl[1]+"//"+baseurl[2]+"</td><td>"+ak1+"</td><td>"+ak2+"</td></tr>");
+	            out.println("<tr><td>"+baseurl[0]+"//"+baseurl[2]+"</td><td>"+ak1+"</td><td>"+ak2+"</td></tr>");
 
 	        }
 	        out.println("</table></body>");

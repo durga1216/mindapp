@@ -265,7 +265,7 @@ function removeParent(){
      <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
 </select><br><br>
-<input type="text" name="baseurl" placeholder="Base_URL*"><br><br>
+<input type="text" style="display:none" name="baseurl" placeholder="Base_URL*"><br><br>
 <input type="text" name="endurl" placeholder="End_Point_URL*"><br><br>
 <div class="link"><center>Add Parameters</center></div><br><br>
 <a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
