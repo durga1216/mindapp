@@ -52,7 +52,7 @@ public class LoginCheckPulpy extends HttpServlet {
                  session.setAttribute("id", id);
                  session.setAttribute("mail", mail);
                  request.getSession().setAttribute("user", "mind");
-    		     response.setHeader("Refresh", "1; URL=firstauth.jsp");
+    		     response.setHeader("Refresh", "1; URL=logsucess.jsp");
                  }
              else{
          String alert="Incorrect UserName and Password!! Try Again";
