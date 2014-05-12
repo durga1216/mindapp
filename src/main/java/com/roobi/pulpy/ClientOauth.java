@@ -41,13 +41,13 @@ public class ClientOauth extends HttpServlet {
 		try{
 		    Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-		    PreparedStatement st=con.prepareStatement("SELECT * From authen t1 where t1.id=?");
+		    PreparedStatement st=con.prepareStatement("SELECT * From authen t1 where t1.appid=?");
 		    st.setString(1, appid);
 	        ResultSet rs = st.executeQuery();
 	        while(rs.next()){ 
-	         String id=rs.getString("id");
+	         String appid1=rs.getString("appid");
 	         HttpSession session=request.getSession(true);
-             session.setAttribute("id", id);
+             session.setAttribute("id", appid1);
              
 	   	     String authen1=rs.getString("auth");
 	   	     String appname=rs.getString("appname");

@@ -32,7 +32,8 @@ public class AuthPulpy1 extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		HttpSession session=request.getSession(true);
 		HttpSession session4=request.getSession(true);
-		String appid=(String) session.getAttribute("id");
+		String id=(String) session.getAttribute("id");
+		String appid=(String) session.getAttribute("appid");
 		String submit=request.getParameter("submit");
 		String xr=request.getParameter("xr"); String xrv=request.getParameter("xrv");
 		String x1=request.getParameter("x1");String xv1=request.getParameter("xv1");
@@ -101,21 +102,21 @@ public class AuthPulpy1 extends HttpServlet {
         	 try {
                  Class.forName("com.mysql.jdbc.Driver").newInstance();
                  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-                 PreparedStatement st=con.prepareStatement("insert into xmlconfig(id,xr,xrv,x1,xv1,x2,xv2,x3,xv3,x4,xv4,x5,xv5,x6,xv6,x7,xv7,x8,xv8,x9,xv9,x10,xv10,x11,xv11,x12,xv12,x13,xv13,x14,xv14,x15,xv15,x16,xv16,x17,xv17,x18,xv18,x19,xv19,x20,xv20,x21,xv21,x22,xv22,x23,xv23,x24,xv24,x25,xv25,x26,xv26,x27,xv27,x28,xv28,x29,xv29,x30,xv30) values ('"+appid+"','"+xr+"','"+xrv+"','"+x1+"','"+xv1+"','"+x2+"','"+xv2+"','"+x3+"','"+xv3+"','"+x4+"','"+xv4+"','"+x5+"','"+xv5+"','"+x6+"','"+xv6+"','"+x7+"','"+xv7+"','"+x8+"','"+xv8+"','"+x9+"','"+xv9+"','"+x10+"','"+xv10+"','"+x11+"','"+xv11+"','"+x12+"','"+xv12+"','"+x13+"','"+xv13+"','"+x14+"','"+xv14+"','"+x15+"','"+xv15+"','"+x16+"','"+xv16+"','"+x17+"','"+xv17+"','"+x18+"','"+xv18+"','"+x19+"','"+xv19+"','"+x20+"','"+xv20+"','"+x21+"','"+xv21+"','"+x22+"','"+xv22+"','"+x23+"','"+xv23+"','"+x24+"','"+xv24+"','"+x25+"','"+xv25+"','"+x26+"','"+xv26+"','"+x27+"','"+xv27+"','"+x28+"','"+xv28+"','"+x29+"','"+xv29+"','"+x30+"','"+xv30+"')");                
+                 PreparedStatement st=con.prepareStatement("insert into xmlconfig(id,appid,xr,xrv,x1,xv1,x2,xv2,x3,xv3,x4,xv4,x5,xv5,x6,xv6,x7,xv7,x8,xv8,x9,xv9,x10,xv10,x11,xv11,x12,xv12,x13,xv13,x14,xv14,x15,xv15,x16,xv16,x17,xv17,x18,xv18,x19,xv19,x20,xv20,x21,xv21,x22,xv22,x23,xv23,x24,xv24,x25,xv25,x26,xv26,x27,xv27,x28,xv28,x29,xv29,x30,xv30) values ('"+id+"','"+appid+"','"+xr+"','"+xrv+"','"+x1+"','"+xv1+"','"+x2+"','"+xv2+"','"+x3+"','"+xv3+"','"+x4+"','"+xv4+"','"+x5+"','"+xv5+"','"+x6+"','"+xv6+"','"+x7+"','"+xv7+"','"+x8+"','"+xv8+"','"+x9+"','"+xv9+"','"+x10+"','"+xv10+"','"+x11+"','"+xv11+"','"+x12+"','"+xv12+"','"+x13+"','"+xv13+"','"+x14+"','"+xv14+"','"+x15+"','"+xv15+"','"+x16+"','"+xv16+"','"+x17+"','"+xv17+"','"+x18+"','"+xv18+"','"+x19+"','"+xv19+"','"+x20+"','"+xv20+"','"+x21+"','"+xv21+"','"+x22+"','"+xv22+"','"+x23+"','"+xv23+"','"+x24+"','"+xv24+"','"+x25+"','"+xv25+"','"+x26+"','"+xv26+"','"+x27+"','"+xv27+"','"+x28+"','"+xv28+"','"+x29+"','"+xv29+"','"+x30+"','"+xv30+"')");                
                  st.executeUpdate();
                  st.close();
-                 st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.id = t2.id JOIN xmlconfig t3 ON t1.id=t3.id where t1.id=?");
+                 st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN xmlconfig t3 ON t1.appid=t3.appid where t1.appid=?");
                  st.setString(1, appid);
            
                  ResultSet rs = st.executeQuery();
      	         while(rs.next()){
-        	     String id=rs.getString("id");
+        	     String id1=rs.getString("id");
 	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	              if(submit.equals("Continue"))
                  response.setHeader("Refresh", "1; URL=sec_config.jsp");
 	              else if(submit.equals("Finish")){
 	               //  RequestDispatcher dispatcher = request.getRequestDispatcher("final.jsp");
-	            	  request.setAttribute("id", id); 
+	            	  request.setAttribute("appid", id); 
 	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/final.jsp");
 	                // set your String value in the attribute
 	                 disp.forward( request, response );    }            }}

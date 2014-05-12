@@ -43,7 +43,8 @@ public class SecondConfig extends HttpServlet {
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		HttpSession session=request.getSession(true);
-		String appid=(String) session.getAttribute("id");
+		String id=(String) session.getAttribute("id");
+		String appid=(String) session.getAttribute("appid");
 		String securl=request.getParameter("securl"); String cycle=request.getParameter("cycle"); String sec1=request.getParameter("sec1");String sec2=request.getParameter("sec2");
 		String s1=request.getParameter("s1");  String sv1=request.getParameter("sv1"); String s2=request.getParameter("s2"); String sv2=request.getParameter("sv2");
 		String s3=request.getParameter("s3");  String sv3=request.getParameter("sv3"); String s4=request.getParameter("s4"); String sv4=request.getParameter("sv4");
@@ -55,15 +56,15 @@ public class SecondConfig extends HttpServlet {
    	 try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-            PreparedStatement st=con.prepareStatement("insert into secondconfig(id,securl,cycle,sec1,sec2,alabel1,akey1,s1,sv1,s2,sv2,s3,sv3,s4,sv4,s5,sv5,s6,sv6,s7,sv7,s8,sv8,s9,sv9,s10,sv10) values ('"+appid+"','"+securl+"','"+cycle+"','"+sec1+"','"+sec2+"','"+al+"','"+ak+"','"+s1+"','"+sv1+"','"+s2+"','"+sv2+"','"+s3+"','"+sv3+"','"+s4+"','"+sv4+"','"+s5+"','"+sv5+"','"+s6+"','"+sv6+"','"+s7+"','"+sv7+"','"+s8+"','"+sv8+"','"+s9+"','"+sv9+"','"+s10+"','"+sv10+"')");                
+            PreparedStatement st=con.prepareStatement("insert into secondconfig(id,appid,securl,cycle,sec1,sec2,alabel1,akey1,s1,sv1,s2,sv2,s3,sv3,s4,sv4,s5,sv5,s6,sv6,s7,sv7,s8,sv8,s9,sv9,s10,sv10) values ('"+id+"','"+appid+"','"+securl+"','"+cycle+"','"+sec1+"','"+sec2+"','"+al+"','"+ak+"','"+s1+"','"+sv1+"','"+s2+"','"+sv2+"','"+s3+"','"+sv3+"','"+s4+"','"+sv4+"','"+s5+"','"+sv5+"','"+s6+"','"+sv6+"','"+s7+"','"+sv7+"','"+s8+"','"+sv8+"','"+s9+"','"+sv9+"','"+s10+"','"+sv10+"')");                
             st.executeUpdate();
             st.close();
-            st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.id = t2.id JOIN secondconfig t3 on t1.id=t3.id WHERE t1.id=?");
+            st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN secondconfig t3 on t1.appid=t3.appid WHERE t1.appid=?");
             st.setString(1, appid);
 
             ResultSet rs = st.executeQuery();
 	         while(rs.next()){
-   	         String id=rs.getString("id");	 String appname1=rs.getString("appname");
+   	         String id1=rs.getString("id");	 String appname1=rs.getString("appname");
              String authen1=rs.getString("auth");String ba1=rs.getString("b1");String ba2=rs.getString("b2");
              String ba3=rs.getString("b3");String ba4=rs.getString("b4");
              String oriapilabel=rs.getString("a1");String oriapikey=rs.getString("a2"); 

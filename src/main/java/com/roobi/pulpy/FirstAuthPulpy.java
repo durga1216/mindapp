@@ -37,7 +37,7 @@ public class FirstAuthPulpy extends HttpServlet {
 	      String appname=request.getParameter("app1"); String descr=request.getParameter("descr"); String authen=request.getParameter("authen");
 	      String select1=request.getParameter("select1"); String select2=request.getParameter("select2");
 	      HttpSession session=request.getSession(true);
-		  String appid=(String) session.getAttribute("id");
+		  String id=(String) session.getAttribute("id");
 	      String b1=request.getParameter("b1");String b2=request.getParameter("b2");
 	      String b3=request.getParameter("b3");String b4=request.getParameter("b4");
 		  String a1=request.getParameter("a1");String a2=request.getParameter("a2");
@@ -54,22 +54,23 @@ public class FirstAuthPulpy extends HttpServlet {
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	             PreparedStatement st=null;
-				 st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev) values ('"+appid+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"')");
+				 st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"')");
 				 st.executeUpdate();
 			     st.close();
 			   
 			     //out.println("insert sucess");
 			     
-			    st=con.prepareStatement("SELECT * From authen1 ORDER BY ID DESC LIMIT 1");
+			    st=con.prepareStatement("SELECT * From authen1 ORDER BY appid DESC LIMIT 1");
 		         ResultSet rs = st.executeQuery();
 		         while(rs.next()){
-	   	         String id=rs.getString("id");
+	   	         String id1=rs.getString("id");
+	   	         String appid=rs.getString("appid");
 	   	         String authen1=rs.getString("auth");
 
 	   	         
 	             if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
 	            	 
-	                out.println("Your id:"+id);
+	                out.println("Your id:"+appid);
 	             out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
     		     response.setHeader("Refresh", "1; URL=auth.jsp");
 	             }

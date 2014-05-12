@@ -70,7 +70,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 
-	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.id = t2.id JOIN xmlconfig t3 ON t1.id=t3.id  WHERE t1.id=?");
+	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN xmlconfig t3 ON t1.appid=t3.appid  WHERE t1.appid=?");
 	    st.setString(1, appid);
 
         ResultSet rs = st.executeQuery();

@@ -31,7 +31,8 @@ public class ThirdXmlConfig extends HttpServlet {
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		HttpSession session=request.getSession(true);
-		String appid=(String) session.getAttribute("id");
+		String id=(String) session.getAttribute("id");
+		String appid=(String) session.getAttribute("appid");
 		String thrdroot=request.getParameter("thrdroot"); String thrdparent=request.getParameter("thrdparent");
 		String tx1=request.getParameter("tx1");String txv1=request.getParameter("txv1");
 		String tx2=request.getParameter("tx2");String txv2=request.getParameter("txv2");
@@ -67,17 +68,17 @@ public class ThirdXmlConfig extends HttpServlet {
         	 try {
                  Class.forName("com.mysql.jdbc.Driver").newInstance();
                  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-                 PreparedStatement st=con.prepareStatement("insert into thrdxmlconfig(id,thrdroot,thrdparent,tx1,txv1,tx2,txv2,tx3,txv3,tx4,txv4,tx5,txv5,tx6,txv6,tx7,txv7,tx8,txv8,tx9,txv9,tx10,txv10,tx11,txv11,tx12,txv12,tx13,txv13,tx14,txv14,tx15,txv15,tx16,txv16,tx17,txv17,tx18,txv18,tx19,txv19,tx20,txv20,tx21,txv21,tx22,txv22,tx23,txv23,tx24,txv24,tx25,txv25,tx26,txv26,tx27,txv27,tx28,txv28,tx29,txv29,tx30,txv30) values ('"+appid+"','"+thrdroot+"','"+thrdparent+"','"+tx1+"','"+txv1+"','"+tx2+"','"+txv2+"','"+tx3+"','"+txv3+"','"+tx4+"','"+txv4+"','"+tx5+"','"+txv5+"','"+tx6+"','"+txv6+"','"+tx7+"','"+txv7+"','"+tx8+"','"+txv8+"','"+tx9+"','"+txv9+"','"+tx10+"','"+txv10+"','"+tx11+"','"+txv11+"','"+tx12+"','"+txv12+"','"+tx13+"','"+txv13+"','"+tx14+"','"+txv14+"','"+tx15+"','"+txv15+"','"+tx16+"','"+txv16+"','"+tx17+"','"+txv17+"','"+tx18+"','"+txv18+"','"+tx19+"','"+txv19+"','"+tx20+"','"+txv20+"','"+tx21+"','"+txv21+"','"+tx22+"','"+txv22+"','"+tx23+"','"+txv23+"','"+tx24+"','"+txv24+"','"+tx25+"','"+txv25+"','"+tx26+"','"+txv26+"','"+tx27+"','"+txv27+"','"+tx28+"','"+txv28+"','"+tx29+"','"+txv29+"','"+tx30+"','"+txv30+"')");                
+                 PreparedStatement st=con.prepareStatement("insert into thrdxmlconfig(id,appid,thrdroot,thrdparent,tx1,txv1,tx2,txv2,tx3,txv3,tx4,txv4,tx5,txv5,tx6,txv6,tx7,txv7,tx8,txv8,tx9,txv9,tx10,txv10,tx11,txv11,tx12,txv12,tx13,txv13,tx14,txv14,tx15,txv15,tx16,txv16,tx17,txv17,tx18,txv18,tx19,txv19,tx20,txv20,tx21,txv21,tx22,txv22,tx23,txv23,tx24,txv24,tx25,txv25,tx26,txv26,tx27,txv27,tx28,txv28,tx29,txv29,tx30,txv30) values ('"+id+"','"+appid+"','"+thrdroot+"','"+thrdparent+"','"+tx1+"','"+txv1+"','"+tx2+"','"+txv2+"','"+tx3+"','"+txv3+"','"+tx4+"','"+txv4+"','"+tx5+"','"+txv5+"','"+tx6+"','"+txv6+"','"+tx7+"','"+txv7+"','"+tx8+"','"+txv8+"','"+tx9+"','"+txv9+"','"+tx10+"','"+txv10+"','"+tx11+"','"+txv11+"','"+tx12+"','"+txv12+"','"+tx13+"','"+txv13+"','"+tx14+"','"+txv14+"','"+tx15+"','"+txv15+"','"+tx16+"','"+txv16+"','"+tx17+"','"+txv17+"','"+tx18+"','"+txv18+"','"+tx19+"','"+txv19+"','"+tx20+"','"+txv20+"','"+tx21+"','"+txv21+"','"+tx22+"','"+txv22+"','"+tx23+"','"+txv23+"','"+tx24+"','"+txv24+"','"+tx25+"','"+txv25+"','"+tx26+"','"+txv26+"','"+tx27+"','"+txv27+"','"+tx28+"','"+txv28+"','"+tx29+"','"+txv29+"','"+tx30+"','"+txv30+"')");                
                  st.executeUpdate();
                  st.close();
-                 st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.id = t2.id JOIN thirdconfig t3 on t1.id=t3.id WHERE t1.id=?");
+                 st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN thirdconfig t3 on t1.appid=t3.appid WHERE t1.appid=?");
                  st.setString(1, appid);
            
                  ResultSet rs = st.executeQuery();
      	         while(rs.next()){
-        	     String id=rs.getString("id");
+        	     String id1=rs.getString("id");
                  RequestDispatcher dispatcher = request.getRequestDispatcher("final.jsp");
-                 request.setAttribute("id", id); // set your String value in the attribute
+                 request.setAttribute("id", appid); // set your String value in the attribute
                  dispatcher.forward( request, response );
      	         }
 	            //  out.println("<h2><center><font color='green'>Processing...</font></center></h3>");

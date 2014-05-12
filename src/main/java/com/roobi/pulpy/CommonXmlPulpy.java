@@ -64,7 +64,7 @@ public class CommonXmlPulpy extends HttpServlet {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 
 	    con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen c1  JOIN secondconfig c2 ON c1.id=c2.id JOIN secxmlconfig cx2 ON c1.id=cx2.id JOIN thirdconfig c3 ON c1.id=c3.id JOIN thrdxmlconfig cx3 on c1.id=cx3.id JOIN config c4 ON c1.id=c4.id  WHERE c1.id=?");
+	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen c1  JOIN secondconfig c2 ON c1.appid=c2.appid JOIN secxmlconfig cx2 ON c1.appid=cx2.appid JOIN thirdconfig c3 ON c1.appid=c3.appid JOIN thrdxmlconfig cx3 on c1.appid=cx3.appid JOIN config c4 ON c1.appid=c4.appid  WHERE c1.appid=?");
 	    st.setString(1, appid);
         ResultSet rs = st.executeQuery();
         while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
