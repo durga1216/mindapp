@@ -84,6 +84,8 @@ public class AuthPulpy extends HttpServlet {
 
 
       try{
+  		//out.println("start");
+
     	    response.setContentType("text/html");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -92,6 +94,7 @@ public class AuthPulpy extends HttpServlet {
 			 st=con.prepareStatement("insert into config(id,appid,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10) values ('"+id+"','"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"')");
 			 st.executeUpdate();
 		     st.close();
+		  		out.println("start2");
 		     st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid WHERE t1.appid=?");
 		                 st.setString(1, appid);
 
@@ -167,7 +170,7 @@ public class AuthPulpy extends HttpServlet {
 	        		 
 	        		 else if("null".equals(ak1) && "null".equals(ak2))
 	        			 eurl=endurl1;	        		
-	        		// out.println(eurl);
+	        	//	out.println(eurl);
 	        	     String str="";
 	        		 try
 	        		 {
