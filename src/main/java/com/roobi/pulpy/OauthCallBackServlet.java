@@ -10,6 +10,7 @@ import java.io.StringReader;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,6 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.util.URIUtil;
-
 import org.apache.http.client.methods.HttpPost;
 import org.json.JSONObject;
 import org.scribe.builder.ServiceBuilder;
@@ -38,6 +38,7 @@ import org.scribe.model.OAuthConstants;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import org.apache.commons.httpclient.protocol.Protocol;
 
 public class OauthCallBackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -76,6 +77,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			String responseBody=null;
 			String access_token=null;
 			try{
+
 			HttpClient httpclient = new HttpClient();
 			if(rm1.equals("POST")){
 				pw.println(tokenurl+""+code+""+apikey+""+apisecvalue);
@@ -164,6 +166,10 @@ public class OauthCallBackServlet extends HttpServlet {
 			}
 
 		
+	}
+	public void contextInitialized(ServletContextEvent arg0) {
+	    //System.out.println("ServletContextListener started"); 
+       Protocol.registerProtocol("http", new Protocol("http",new com.roobi.pulpy.OSProtocolSocketFactory(), 80));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
