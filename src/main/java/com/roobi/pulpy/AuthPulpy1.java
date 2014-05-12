@@ -114,9 +114,11 @@ public class AuthPulpy1 extends HttpServlet {
 	              if(submit.equals("Continue"))
                  response.setHeader("Refresh", "1; URL=sec_config.jsp");
 	              else if(submit.equals("Finish")){
-	                 RequestDispatcher dispatcher = request.getRequestDispatcher("final.jsp");
-	                 request.setAttribute("id", id); // set your String value in the attribute
-	                 dispatcher.forward( request, response );    }            }}
+	               //  RequestDispatcher dispatcher = request.getRequestDispatcher("final.jsp");
+	            	  request.setAttribute("id", id); 
+	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/final.jsp");
+	                // set your String value in the attribute
+	                 disp.forward( request, response );    }            }}
          catch(Exception e){}
 
 
