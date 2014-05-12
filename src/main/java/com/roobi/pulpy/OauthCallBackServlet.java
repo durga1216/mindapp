@@ -32,6 +32,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 
 
+
 import org.apache.http.Consts;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -39,6 +40,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.*;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
@@ -95,6 +97,7 @@ public class OauthCallBackServlet extends HttpServlet {
 
 			if(rm1.equals("POST")){
 				DefaultHttpClient httpclient=new DefaultHttpClient();
+
 				HttpPost post = new HttpPost(tokenurl);
 				post.setHeader("Accept", "application/json");
 				List <NameValuePair> cod = new ArrayList <NameValuePair>();
@@ -103,9 +106,14 @@ public class OauthCallBackServlet extends HttpServlet {
 		        cod.add(new BasicNameValuePair("client_id",apikey));
 		        cod.add(new BasicNameValuePair("client_secret",apisecvalue)); 
 		        cod.add(new BasicNameValuePair("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet")); 
-		     //   HttpHost targetHost = new HttpHost(tokenurl.getHost(), url.getPort(), url.getProtocol());
-		        HttpResponse httpResponse = httpclient.execute( post);
-		        StringBuffer buffer = new StringBuffer();
+		       // post.setEntity(new UrlEncodedFormEntity(cod));
+		        HttpResponse response1 = httpclient.execute(post);
+		        ResponseHandler<String> handler = new BasicResponseHandler();
+
+		        String body = handler.handleResponse(response1);
+		        int code1 = response1.getStatusLine().getStatusCode();
+
+		      /*  StringBuffer buffer = new StringBuffer();
 		        BufferedReader reader = new BufferedReader(new InputStreamReader(post.getEntity().getContent()));
 		  String dataLine = null;
 		  while((dataLine = reader.readLine()) != null){
