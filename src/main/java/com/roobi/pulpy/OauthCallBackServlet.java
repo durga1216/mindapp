@@ -99,7 +99,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				DefaultHttpClient httpclient=new DefaultHttpClient();
 
 				HttpPost post = new HttpPost(tokenurl);
-				post.setHeader("Accept", "application/json");
+				post.addHeader("Accept", "application/json");
 				List <NameValuePair> cod = new ArrayList <NameValuePair>();
 		        cod.add(new BasicNameValuePair("code", code)); 
 		        cod.add(new BasicNameValuePair("grant_type", "authorization_code")); 
