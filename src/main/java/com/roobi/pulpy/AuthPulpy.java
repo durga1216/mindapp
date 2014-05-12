@@ -67,6 +67,7 @@ public class AuthPulpy extends HttpServlet {
       HttpSession session3=request.getSession(true);
 	  String id=(String) session.getAttribute("id");
 	  String appid=(String) session.getAttribute("appid");
+		//out.println(appid);
       session3.setAttribute("reqmeth",select);
       session3.setAttribute("resfor",select3);
       session3.setAttribute("endurl",endurl);
@@ -84,14 +85,17 @@ public class AuthPulpy extends HttpServlet {
 
 
       try{
+  		//out.println("start");
+
     	    response.setContentType("text/html");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             String sam=null;
              PreparedStatement st=null;
-			 st=con.prepareStatement("insert into config(id,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10) values ('"+id+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"')");
+			 st=con.prepareStatement("insert into config(id,appid,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10) values ('"+id+"','"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"')");
 			 st.executeUpdate();
 		     st.close();
+		  		out.println("start2");
 		     st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid WHERE t1.appid=?");
 		                 st.setString(1, appid);
 
@@ -167,7 +171,7 @@ public class AuthPulpy extends HttpServlet {
 	        		 
 	        		 else if("null".equals(ak1) && "null".equals(ak2))
 	        			 eurl=endurl1;	        		
-	        		// out.println(eurl);
+	        	//	out.println(eurl);
 	        	     String str="";
 	        		 try
 	        		 {
