@@ -75,6 +75,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			pw.println(rm1);
 			String responseBody=null;
 			String access_token=null;
+			try{
 			HttpClient httpclient = new HttpClient();
 			if(rm1.equals("POST")){
 				pw.println(tokenurl+""+code+""+apikey+""+apisecvalue);
@@ -112,7 +113,8 @@ public class OauthCallBackServlet extends HttpServlet {
 				          httpclient.executeMethod(get);
 				          responseBody=get.getResponseBodyAsString();
 						  pw.println(responseBody);
-	}
+	}}
+			catch(Exception e){pw.println(e);}
 			
 			             String line=null;
 			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
