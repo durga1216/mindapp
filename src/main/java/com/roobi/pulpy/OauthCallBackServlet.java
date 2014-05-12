@@ -30,7 +30,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 
 
+
+
 import org.apache.http.Consts;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.*;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -83,8 +87,6 @@ public class OauthCallBackServlet extends HttpServlet {
 	 		String rm1=(String)session1.getAttribute("rm1");
 			String code = request.getParameter(OAuthConstants.CODE);
 			//pw.println(apikey+"<br>"+apisecvalue+"<br>"+tokenurl);
-			pw.println("verifier:"+code);
-			pw.println(rm1);
 			String responseBody=null;
 			String responseMsg=null;
 			String access_token=null;
@@ -93,7 +95,6 @@ public class OauthCallBackServlet extends HttpServlet {
 
 			if(rm1.equals("POST")){
 				DefaultHttpClient httpclient=new DefaultHttpClient();
-				pw.println(tokenurl+""+code+""+apikey+""+apisecvalue);
 				HttpPost post = new HttpPost(tokenurl);
 				post.setHeader("Accept", "application/json");
 				List <NameValuePair> cod = new ArrayList <NameValuePair>();
@@ -102,7 +103,8 @@ public class OauthCallBackServlet extends HttpServlet {
 		        cod.add(new BasicNameValuePair("client_id",apikey));
 		        cod.add(new BasicNameValuePair("client_secret",apisecvalue)); 
 		        cod.add(new BasicNameValuePair("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet")); 
-		        post.setEntity(new UrlEncodedFormEntity(cod, Consts.UTF_8));
+		     //   HttpHost targetHost = new HttpHost(tokenurl.getHost(), url.getPort(), url.getProtocol());
+		        HttpResponse httpResponse = httpclient.execute( post);
 		        StringBuffer buffer = new StringBuffer();
 		        BufferedReader reader = new BufferedReader(new InputStreamReader(post.getEntity().getContent()));
 		  String dataLine = null;
