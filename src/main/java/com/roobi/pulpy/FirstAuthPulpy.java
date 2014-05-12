@@ -64,13 +64,15 @@ public class FirstAuthPulpy extends HttpServlet {
 		         ResultSet rs = st.executeQuery();
 		         while(rs.next()){
 	   	         String id1=rs.getString("id");
-	   	         String appid=rs.getString("appid");
+	   	         String appid1=rs.getString("appid");
 	   	         String authen1=rs.getString("auth");
-	   	      session.setAttribute("appid", appid);
-	   	         
+
+	   	      session.setAttribute("appid", appid1);
+
 	             if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
 	            	 
-	                out.println("Your id:"+appid);
+
+	                out.println("Your id:"+appid1);
 	               
 	             out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
     		     response.setHeader("Refresh", "1; URL=auth.jsp");

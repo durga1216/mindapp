@@ -66,9 +66,8 @@ public class AuthPulpy extends HttpServlet {
       HttpSession session=request.getSession(true);
       HttpSession session3=request.getSession(true);
 	  String id=(String) session.getAttribute("id");
-	  String appid=(String) session.getAttribute("appid");
-		//out.println(appid);
-      session3.setAttribute("reqmeth",select);
+	  String appid=(String) session.getAttribute("appid"); 
+	  session3.setAttribute("reqmeth",select);
       session3.setAttribute("resfor",select3);
       session3.setAttribute("endurl",endurl);
       session3.setAttribute("p1",p1);session3.setAttribute("pv1",pv1);
