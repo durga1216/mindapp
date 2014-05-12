@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -18,13 +20,23 @@ import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.util.URIUtil;
 
+
+
+
+
+
+
+
+
+
+import org.apache.http.Consts;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.*;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthConstants;
@@ -74,31 +86,50 @@ public class OauthCallBackServlet extends HttpServlet {
 			pw.println("verifier:"+code);
 			pw.println(rm1);
 			String responseBody=null;
+			String responseMsg=null;
 			String access_token=null;
-			HttpClient httpclient = new HttpClient();
+			try{
+				
+
 			if(rm1.equals("POST")){
+				DefaultHttpClient httpclient=new DefaultHttpClient();
 				pw.println(tokenurl+""+code+""+apikey+""+apisecvalue);
-				PostMethod post = new PostMethod(tokenurl);
-				post.setRequestHeader("Accept", "application/json");
-				post.addParameter("code", code);
+				HttpPost post = new HttpPost(tokenurl);
+				post.setHeader("Accept", "application/json");
+				List <NameValuePair> cod = new ArrayList <NameValuePair>();
+		        cod.add(new BasicNameValuePair("code", code)); 
+		        cod.add(new BasicNameValuePair("grant_type", "authorization_code")); 
+		        cod.add(new BasicNameValuePair("client_id",apikey));
+		        cod.add(new BasicNameValuePair("client_secret",apisecvalue)); 
+		        cod.add(new BasicNameValuePair("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet")); 
+		        post.setEntity(new UrlEncodedFormEntity(cod, Consts.UTF_8));
+		        StringBuffer buffer = new StringBuffer();
+		        BufferedReader reader = new BufferedReader(new InputStreamReader(post.getEntity().getContent()));
+		  String dataLine = null;
+		  while((dataLine = reader.readLine()) != null){
+		              buffer.append(dataLine);
+		  }
+		 responseMsg =    buffer.toString();
+         pw.println(responseMsg);
+				/*post.addParameter("code", code);
 				post.addParameter("grant_type", "authorization_code");
 				post.addParameter("client_id",apikey);
 				post.addParameter("client_secret",apisecvalue);
 				post.addParameter("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
 				httpclient.executeMethod(post);
 			    responseBody = post.getResponseBodyAsString();//}
-			    pw.println(responseBody);
+			    pw.println(responseBody);*/
 			
 			    
 			}
 			  
 			    
-				 else if(rm1.equals("GET")){
+				 /*else if(rm1.equals("GET")){
 				     	GetMethod get=new GetMethod(URIUtil.encodeQuery(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet"));
 
 
 				     	
-					/* get.setQueryString(new NameValuePair[] { 
+					 get.setQueryString(new NameValuePair[] { 
 			     			    new NameValuePair("code",code)});
 					 get.setQueryString(new NameValuePair[] { 
 			     			    new NameValuePair("grant_type","authorization_code")});
@@ -107,15 +138,16 @@ public class OauthCallBackServlet extends HttpServlet {
 					 get.setQueryString(new NameValuePair[] { 
 			     			    new NameValuePair("client_secret",apisecvalue)});
 					 get.setQueryString(new NameValuePair[] { 
-			     			    new NameValuePair("redirect_uri","http://localhost:8080/MindPulpy1/OauthCallBackServlet")});*/
+			     			    new NameValuePair("redirect_uri","http://localhost:8080/MindPulpy1/OauthCallBackServlet")});
 			     		
 				          httpclient.executeMethod(get);
 				          responseBody=get.getResponseBodyAsString();
-						  pw.println(responseBody);
+						  pw.println(responseBody);*/
 	}
+			catch(Exception e){pw.println(e);}
 			
 			             String line=null;
-			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
+			             BufferedReader br=new BufferedReader(new StringReader(responseMsg));
 			             while ((line = br.readLine()) != null) {
 			            	 if(line.startsWith("{") || line.startsWith("[{")){
 			            		 JSONObject json = null;
@@ -163,6 +195,7 @@ public class OauthCallBackServlet extends HttpServlet {
 
 		
 	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
