@@ -34,6 +34,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 
 
+
 import org.apache.http.Consts;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -42,6 +43,7 @@ import org.apache.http.client.*;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -121,7 +123,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			  
 			    
 				 else if(rm1.equals("GET")){
-					 HttpGet get=new HttpGet(tokenurl);
+					 HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
 				     try{
 				    	 List <NameValuePair> cod = new ArrayList <NameValuePair>();
 				    	 cod.add(new BasicNameValuePair("code",code));
