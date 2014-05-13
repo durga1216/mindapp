@@ -115,7 +115,7 @@ public class OauthCallBackServlet extends HttpServlet {
 		        HttpResponse response1 = client.execute(post);
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        while ((responseMsg = rd.readLine()) != null) {
-                 responseBody+=responseMsg;		        }
+                 responseBody=responseMsg;		        }
 				}
 				catch(Exception e){pw.println(e);}
 			}
@@ -134,7 +134,7 @@ public class OauthCallBackServlet extends HttpServlet {
 					    		  (new InputStreamReader(response1.getEntity().getContent()));
 					    		    
 					    		while ((responseMsg = rd.readLine()) != null) {
-                                responseBody+=responseMsg;				    		} 
+                                responseBody=responseMsg;				    		} 
 
 
 	     
