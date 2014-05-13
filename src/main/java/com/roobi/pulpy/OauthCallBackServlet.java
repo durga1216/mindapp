@@ -115,8 +115,7 @@ public class OauthCallBackServlet extends HttpServlet {
 		        HttpResponse response1 = client.execute(post);
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        while ((responseMsg = rd.readLine()) != null) {
-		          pw.println(responseMsg);
-		        }
+                 responseBody+=responseMsg;		        }
 				}
 				catch(Exception e){pw.println(e);}
 			}
@@ -124,7 +123,6 @@ public class OauthCallBackServlet extends HttpServlet {
 			    
 				 else if(rm1.equals("GET")){
 					 HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
-				     try{
 				    	 List <NameValuePair> cod = new ArrayList <NameValuePair>();
 				    	 cod.add(new BasicNameValuePair("code",code));
 				    	 cod.add(new BasicNameValuePair("grant_type","authorization_code"));
@@ -136,15 +134,14 @@ public class OauthCallBackServlet extends HttpServlet {
 					    		  (new InputStreamReader(response1.getEntity().getContent()));
 					    		    
 					    		while ((responseMsg = rd.readLine()) != null) {
-                                pw.println(responseMsg);					    		} 
+                                responseBody+=responseMsg;				    		} 
 
 
-				     }
+	     
 				     
-				     catch(Exception e){pw.println(e);}
 				 }
 			
-			             BufferedReader br=new BufferedReader(new StringReader(responseMsg));
+			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
 			             while ((line = br.readLine()) != null) {
 			            	 if(line.startsWith("{") || line.startsWith("[{")){
 			            		 JSONObject json = null;
