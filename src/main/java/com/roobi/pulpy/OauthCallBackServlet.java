@@ -99,6 +99,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				HttpClient client=new DefaultHttpClient();
 
 				HttpPost post = new HttpPost(tokenurl);
+				try{
 				List <NameValuePair> cod = new ArrayList <NameValuePair>(5);
 		        cod.add(new BasicNameValuePair("code", code)); 
 		        cod.add(new BasicNameValuePair("grant_type", "authorization_code")); 
@@ -112,7 +113,8 @@ public class OauthCallBackServlet extends HttpServlet {
 		        while ((line = rd.readLine()) != null) {
 		          pw.println(line);
 		        }
-			    
+				}
+				catch(Exception e){pw.println(e);}
 			}
 			  
 			    
