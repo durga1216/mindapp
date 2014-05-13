@@ -341,7 +341,7 @@ public class AuthPulpy extends HttpServlet {
 	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1;
 
 		        	  else if("null".equals(pa1))
-	                         param="?"+tlabel+"="+access_token;
+	                         param=tlabel+"="+access_token;
 		     		 String pointurl=endurl1+"?"+param;
 		     	    //String paramString = URLEncodedUtils.format(param, "utf-8");
 				     	HttpGet get=new HttpGet(pointurl);
