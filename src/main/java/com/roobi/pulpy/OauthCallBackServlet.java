@@ -96,7 +96,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				
 
 			if(rm1.equals("POST")){
-				HttpClient httpclient=new DefaultHttpClient();
+				HttpClient client=new DefaultHttpClient();
 
 				HttpPost post = new HttpPost(tokenurl);
 				try{
@@ -107,7 +107,7 @@ public class OauthCallBackServlet extends HttpServlet {
 		        cod.add(new BasicNameValuePair("client_secret",apisecvalue)); 
 		        cod.add(new BasicNameValuePair("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet")); 
 		        post.setEntity(new UrlEncodedFormEntity(cod));
-		        HttpResponse response1 = httpclient.execute(post);
+		        HttpResponse response1 = client.execute(post);
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        String line = "";
 		        while ((line = rd.readLine()) != null) {
