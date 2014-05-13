@@ -92,7 +92,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			String responseBody=null;
 			String responseMsg=null;
 			String access_token=null;
-			try{
+			
 				
 
 			if(rm1.equals("POST")){
@@ -100,7 +100,7 @@ public class OauthCallBackServlet extends HttpServlet {
 
 				HttpPost post = new HttpPost(tokenurl);
 				try{
-				List <NameValuePair> cod = new ArrayList <NameValuePair>();
+				List <NameValuePair> cod = new ArrayList <NameValuePair>(5);
 		        cod.add(new BasicNameValuePair("code", code)); 
 		        cod.add(new BasicNameValuePair("grant_type", "authorization_code")); 
 		        cod.add(new BasicNameValuePair("client_id",apikey));
@@ -137,8 +137,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				          httpclient.executeMethod(get);
 				          responseBody=get.getResponseBodyAsString();
 						  pw.println(responseBody);*/
-	}
-			catch(Exception e){pw.println(e);}
+	
 			
 			             String line=null;
 			             BufferedReader br=new BufferedReader(new StringReader(responseMsg));
