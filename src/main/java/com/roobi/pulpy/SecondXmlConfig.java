@@ -5,8 +5,10 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +34,8 @@ public class SecondXmlConfig extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		String id=(String) session.getAttribute("id");
 		String appid=(String) session.getAttribute("appid");
+		String submit=request.getParameter("submit");
+
 		String secroot=request.getParameter("secroot"); String secparent=request.getParameter("secparent");
 		String sx1=request.getParameter("sx1");String sxv1=request.getParameter("sxv1");
 		String sx2=request.getParameter("sx2");String sxv2=request.getParameter("sxv2");
@@ -70,9 +74,20 @@ public class SecondXmlConfig extends HttpServlet {
             PreparedStatement st=con.prepareStatement("insert into secxmlconfig(id,appid,secroot,secparent,sx1,sxv1,sx2,sxv2,sx3,sxv3,sx4,sxv4,sx5,sxv5,sx6,sxv6,sx7,sxv7,sx8,sxv8,sx9,sxv9,sx10,sxv10,sx11,sxv11,sx12,sxv12,sx13,sxv13,sx14,sxv14,sx15,sxv15,sx16,sxv16,sx17,sxv17,sx18,sxv18,sx19,sxv19,sx20,sxv20,sx21,sxv21,sx22,sxv22,sx23,sxv23,sx24,sxv24,sx25,sxv25,sx26,sxv26,sx27,sxv27,sx28,sxv28,sx29,sxv29,sx30,sxv30) values ('"+id+"','"+appid+"','"+secroot+"','"+secparent+"','"+sx1+"','"+sxv1+"','"+sx2+"','"+sxv2+"','"+sx3+"','"+sxv3+"','"+sx4+"','"+sxv4+"','"+sx5+"','"+sxv5+"','"+sx6+"','"+sxv6+"','"+sx7+"','"+sxv7+"','"+sx8+"','"+sxv8+"','"+sx9+"','"+sxv9+"','"+sx10+"','"+sxv10+"','"+sx11+"','"+sxv11+"','"+sx12+"','"+sxv12+"','"+sx13+"','"+sxv13+"','"+sx14+"','"+sxv14+"','"+sx15+"','"+sxv15+"','"+sx16+"','"+sxv16+"','"+sx17+"','"+sxv17+"','"+sx18+"','"+sxv18+"','"+sx19+"','"+sxv19+"','"+sx20+"','"+sxv20+"','"+sx21+"','"+sxv21+"','"+sx22+"','"+sxv22+"','"+sx23+"','"+sxv23+"','"+sx24+"','"+sxv24+"','"+sx25+"','"+sxv25+"','"+sx26+"','"+sxv26+"','"+sx27+"','"+sxv27+"','"+sx28+"','"+sxv28+"','"+sx29+"','"+sxv29+"','"+sx30+"','"+sxv30+"')");                
             st.executeUpdate();
             st.close();
+            st=con.prepareStatement("SELECT * FROM secxmlconfig where appid=?");
+            st.setString(1, appid);
+      
+            ResultSet rs = st.executeQuery();
+	         while(rs.next()){
+   	     String appid1=rs.getString("appid");
              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-           response.setHeader("Refresh", "1; URL=third_config.jsp");
-           }
+             if(submit.equals("Continue"))
+            response.setHeader("Refresh", "1; URL=sec_config.jsp");
+             else if(submit.equals("Finish")){
+           	  request.setAttribute("appid", appid1); 
+	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/final.jsp");
+                disp.forward( request, response );    }  
+           }}
     catch(Exception e){}
 
 
