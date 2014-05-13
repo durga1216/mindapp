@@ -33,13 +33,17 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 
 
+
+
 import org.apache.http.Consts;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.*;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -93,10 +97,11 @@ public class OauthCallBackServlet extends HttpServlet {
 			String responseMsg=null;
 			String access_token=null;
 			
-				
+	        String line = "";
+			HttpClient client=new DefaultHttpClient();
+
 
 			if(rm1.equals("POST")){
-				HttpClient client=new DefaultHttpClient();
 
 				HttpPost post = new HttpPost(tokenurl);
 				try{
@@ -109,38 +114,34 @@ public class OauthCallBackServlet extends HttpServlet {
 		        post.setEntity(new UrlEncodedFormEntity(cod));
 		        HttpResponse response1 = client.execute(post);
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
-		        String line = "";
-		        while ((line = rd.readLine()) != null) {
-		          pw.println(line);
-		        }
+		        while ((responseMsg = rd.readLine()) != null) {
+                 responseBody=responseMsg;		        }
 				}
 				catch(Exception e){pw.println(e);}
 			}
 			  
 			    
-				 /*else if(rm1.equals("GET")){
-				     	GetMethod get=new GetMethod(URIUtil.encodeQuery(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet"));
+				 else if(rm1.equals("GET")){
+					 HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
+				    	 List <NameValuePair> cod = new ArrayList <NameValuePair>();
+				    	 cod.add(new BasicNameValuePair("code",code));
+				    	 cod.add(new BasicNameValuePair("grant_type","authorization_code"));
+				    	 cod.add(new BasicNameValuePair("client_id",apikey));
+				    	 cod.add(new BasicNameValuePair("client_secret",apisecvalue)); 
+					     cod.add(new BasicNameValuePair("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet")); 
+					     HttpResponse response1 = client.execute(get);
+					     BufferedReader rd = new BufferedReader
+					    		  (new InputStreamReader(response1.getEntity().getContent()));
+					    		    
+					    		while ((responseMsg = rd.readLine()) != null) {
+                                responseBody=responseMsg;				    		} 
 
 
-				     	
-					 get.setQueryString(new NameValuePair[] { 
-			     			    new NameValuePair("code",code)});
-					 get.setQueryString(new NameValuePair[] { 
-			     			    new NameValuePair("grant_type","authorization_code")});
-					 get.setQueryString(new NameValuePair[] { 
-			     			    new NameValuePair("client_id",apikey)});
-					 get.setQueryString(new NameValuePair[] { 
-			     			    new NameValuePair("client_secret",apisecvalue)});
-					 get.setQueryString(new NameValuePair[] { 
-			     			    new NameValuePair("redirect_uri","http://localhost:8080/MindPulpy1/OauthCallBackServlet")});
-			     		
-				          httpclient.executeMethod(get);
-				          responseBody=get.getResponseBodyAsString();
-						  pw.println(responseBody);
-	
+	     
+				     
+				 }
 			
-			             String line=null;
-			             BufferedReader br=new BufferedReader(new StringReader(responseMsg));
+			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
 			             while ((line = br.readLine()) != null) {
 			            	 if(line.startsWith("{") || line.startsWith("[{")){
 			            		 JSONObject json = null;
@@ -180,7 +181,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			        	response.setCharacterEncoding("UTF-8");
 			            pw.println("<br><br><center><b><h2><font color='green'>Sucessfully Authenticated with "+appname+"</font></center></h2></b>");
 			            pw.println("<br><br><h3><center><a href='auth.jsp'>Continue with Config</a></center></h3>");
-			            pw.println("<br><br><h3><center><a href='token.jsp'>Continue with App</a></center></h3>");}*/
+			            pw.println("<br><br><h3><center><a href='token.jsp'>Continue with App</a></center></h3>");}
 			}
 			catch(Exception e){
 				pw.println(e);
