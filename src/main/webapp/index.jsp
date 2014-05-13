@@ -9,6 +9,9 @@
 <link rel="shortcut icon" href="favicon.ico" />
 
 	<script src="/jquery-latest.js"></script>
+<%@ page import="java.io.*,java.util.*,javax.mail.*"%>
+<%@ page import="javax.mail.internet.*,javax.activation.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 
 <style>
  body{background-color:#FF9900;}
