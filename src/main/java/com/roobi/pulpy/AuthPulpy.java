@@ -319,7 +319,7 @@ public class AuthPulpy extends HttpServlet {
 		     	}   // auth bearer treplace
 		     	else if("QueryString".equals(treplace)){
 		     		String param = null;
-		     	   // List<NameValuePair> params = new LinkedList<NameValuePair>();
+		     	   List<NameValuePair> params = new LinkedList<NameValuePair>();
 
 		     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
 		     			 param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+p6+"="+pva6;
@@ -342,7 +342,7 @@ public class AuthPulpy extends HttpServlet {
 
 		        	  else if("null".equals(pa1))
 	                         param="?"+tlabel+"="+access_token;
-		     		 String pointurl=endurl+"?"+param;
+		     		 String pointurl=endurl1+"?"+param;
 		     	    //String paramString = URLEncodedUtils.format(param, "utf-8");
 				     	HttpGet get=new HttpGet(pointurl);
 			            HttpResponse response1=client.execute(get);
@@ -357,7 +357,7 @@ public class AuthPulpy extends HttpServlet {
 		     	}
 
 		    	else if(rm1.equals("POST")){
-		     		HttpPost post=new HttpPost(tokenurl);
+		     		HttpPost post=new HttpPost(endurl);
 		     		
 		     		if("Authorization:Bearer".equals(treplace)){
 						post.addHeader("Authorization", "Bearer "+access_token);
