@@ -25,11 +25,14 @@ import javax.xml.xpath.XPathFactory;
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
 import net.sf.json.xml.XMLSerializer;
-
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,6 +42,8 @@ import org.xml.sax.InputSource;
 import com.mindots.util.Utils;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 public class AuthXmlPulpy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -133,7 +138,9 @@ public class AuthXmlPulpy extends HttpServlet {
        DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
        builder=domFactory.newDocumentBuilder();
        String eurl=null;
-       HttpClient httpclient = new HttpClient();
+       StringBuilder str=new StringBuilder();
+       String responseMsg=null;
+       HttpClient client = new DefaultHttpClient();
    	String GetResponse=null;
    	String jsonxmlout=null;
        if(authen1.equals("No Auth")){ //No Authentication
@@ -276,68 +283,134 @@ public class AuthXmlPulpy extends HttpServlet {
 		     		
 
 	     		if(rm1.equals("GET")){ 
-			     	GetMethod get=new GetMethod(endurl1);
-			     	if("Authorization:Bearer".equals(treplace)){
-				       get.setRequestHeader("Authorization", "Bearer "+access_token);
-				       httpclient.executeMethod(get);
-				       GetResponse=get.getResponseBodyAsString();
+		     		if("Authorization:Bearer".equals(treplace)){
+
+	     			HttpGet get=new HttpGet(endurl1);
+				       get.addHeader("Authorization", "Bearer "+access_token);
+			     		HttpResponse response1 = client.execute(get);
+			     		BufferedReader rd = new BufferedReader(
+			     				new InputStreamReader(response1.getEntity().getContent()));
+			     			while ((line = rd.readLine()) != null) {
+	                         GetResponse=line;		     			}
 			     	}
 			     	else if("QueryString".equals(treplace)){
 			     		
-			     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
-			     			{get.setQueryString(new NameValuePair[] { 
-				     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3),new NameValuePair(pa4,pva4),new NameValuePair(pa5,pva5),new NameValuePair(pa6,pva6)});
-			     		  }
-			        		 
-			                 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5))
-			                	 get.setQueryString(new NameValuePair[] { 
-			 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3),new NameValuePair(pa4,pva4),new NameValuePair(pa5,pva5)});
-			     	
-			        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4))
-			        			 get.setQueryString(new NameValuePair[] { 
-			        			 		    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3),new NameValuePair(pa4,pva4)});
-			     	
-			        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3))
-			        			 get.setQueryString(new NameValuePair[] { 
-			 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3)});
-			        		 
-			        		 else if(!"null".equals(pa1) && !"null".equals(pa2))
-			        			 get.setQueryString(new NameValuePair[] { 
-			 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2)});
-			        		 
-			        		 else if(!"null".equals(pa1))
-			        			 get.setQueryString(new NameValuePair[] { 
-			 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1)});
-			        		 
-			        		 else if("null".equals(pa1))
-			     		          get.setQueryString(new NameValuePair[] { 
-			     			            new NameValuePair(tlabel, access_token)}); 
-				         httpclient.executeMethod(get);
-				         GetResponse=get.getResponseBodyAsString();}
-			     	
+			     		String param = null;
+				     	   // List<NameValuePair> params = new LinkedList<NameValuePair>();
 
-			     	}
+				     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
+				     			 param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+p6+"="+pva6;
+				        		 
+				             else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5))
+		                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;
+
+				     	
+				              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4))
+			                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;
+
+				              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3))
+			                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;
+
+				        	  else if(!"null".equals(pa1) && !"null".equals(pa2))
+			                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2;
+
+				              else if(!"null".equals(pa1))
+			                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1;
+
+				        	  else if("null".equals(pa1))
+			                         param="?"+tlabel+"="+access_token;
+				     		 String pointurl=endurl1+"?"+param;
+				     	    //String paramString = URLEncodedUtils.format(param, "utf-8");
+						     	HttpGet get=new HttpGet(pointurl);
+					            HttpResponse response1=client.execute(get);
+					            BufferedReader rd = new BufferedReader
+							    		  (new InputStreamReader(response1.getEntity().getContent()));
+							    		    
+							    		while ((line = rd.readLine()) != null) {
+							    			GetResponse=line;
+							    		}
+							    			
+					} // query string
+	     		}//get
+
+			     	
 
 			    	else if(rm1.equals("POST")){
-			     		PostMethod post=new PostMethod(endurl1);
+			     		HttpPost post=new HttpPost(endurl1);
+
 			     		
 			     		if("Authorization:Bearer".equals(treplace)){
-							post.setRequestHeader("Authorization", "Bearer "+access_token);
-							httpclient.executeMethod(post);
-						    GetResponse=post.getResponseBodyAsString();}
+			     			
+			     			post.addHeader("Authorization", "Bearer "+access_token);
+							HttpResponse response1=client.execute(post);
+							BufferedReader rd = new BufferedReader(
+				     				new InputStreamReader(response1.getEntity().getContent()));
+				     			while ((line = rd.readLine()) != null) {
+		                         GetResponse=line;		     			}
+							}
 			     		
 			     		else if("QueryString".equals(treplace)){
-				     		post.addParameter(tlabel,access_token);
-							httpclient.executeMethod(post);
-						   GetResponse=post.getResponseBodyAsString();}
+				     		
+			     			 List <NameValuePair> cod = new ArrayList <NameValuePair>();
+				     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+						    	 cod.add(new BasicNameValuePair(tlabel,access_token));
+					    	     cod.add(new BasicNameValuePair(pa1,pva1));
+					    	     cod.add(new BasicNameValuePair(pa2,pva2));
+					    	     cod.add(new BasicNameValuePair(pa3,pva3));
+					    	     cod.add(new BasicNameValuePair(pa4,pva4));
+					    	     cod.add(new BasicNameValuePair(pa5,pva5));
+					    	     cod.add(new BasicNameValuePair(pa6,pva6));}
+
+
+				     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+				     				  cod.add(new BasicNameValuePair(tlabel,access_token));
+						    	     cod.add(new BasicNameValuePair(pa1,pva1));
+						    	     cod.add(new BasicNameValuePair(pa2,pva2));
+						    	     cod.add(new BasicNameValuePair(pa3,pva3));
+						    	     cod.add(new BasicNameValuePair(pa4,pva4));
+						    	     cod.add(new BasicNameValuePair(pa5,pva5));	}    
+					     		
+				     			 
+				     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){cod.add(new BasicNameValuePair(tlabel,access_token));
+					    	     cod.add(new BasicNameValuePair(pa1,pva1));
+					    	     cod.add(new BasicNameValuePair(pa2,pva2));
+					    	     cod.add(new BasicNameValuePair(pa3,pva3));
+					    	     cod.add(new BasicNameValuePair(pa4,pva4));
+					    	     }
+						     		
+					     		 
+					     		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){cod.add(new BasicNameValuePair(tlabel,access_token));
+						    	     cod.add(new BasicNameValuePair(pa1,pva1));
+						    	     cod.add(new BasicNameValuePair(pa2,pva2));
+						    	     cod.add(new BasicNameValuePair(pa3,pva3));
+						    	     }
+							     		
+						     		 
+						     		 else if(!"null".equals(pa1) && !"null".equals(pa2)){cod.add(new BasicNameValuePair(tlabel,access_token));
+							    	     cod.add(new BasicNameValuePair(pa1,pva1));
+							    	     cod.add(new BasicNameValuePair(pa2,pva2));
+							    	     }
+								     		
+							     		 
+							     		 else if(!"null".equals(pa1)){
+								     			cod.add(new BasicNameValuePair(tlabel,access_token));
+									    	    cod.add(new BasicNameValuePair(pa1,pva1));
+									    	     
+								     		 }
+							     		 else if("null".equals(pa1)){
+								     			cod.add(new BasicNameValuePair(tlabel,access_token));
+
+							     		 }
+						        post.setEntity(new UrlEncodedFormEntity(cod));
+						        HttpResponse response1 = client.execute(post);
+						        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
+						        while ((line = rd.readLine()) != null) {
+				                 GetResponse=line;	        }
+
+
+			     		}
 						   
-			     		  /*   post.addParameter((tlabel,access_token);
-			     		     post.addParameter(p1,pva1);
-			     		     post.addParameter(p2,pva2);
-			     		     post.addParameter(p3,pva3);
-			     		     post.addParameter(p3,pva3);
-			     		     post.addParameter(p4,pva4);
-			     		     post.addParameter(p4,pva6);}*/
+			     		
 	 
 			     	}
 	     		  

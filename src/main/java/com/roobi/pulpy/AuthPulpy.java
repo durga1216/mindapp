@@ -13,6 +13,9 @@ import java.net.URLConnection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -22,10 +25,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
@@ -273,81 +295,142 @@ public class AuthPulpy extends HttpServlet {
 	         
 	         
 	         else if(authen1.equals("Oauth2")){
-	     		HttpClient httpclient = new HttpClient();
+	 			HttpClient client=new DefaultHttpClient();
                 String Response=null;
 	        	HttpSession session1=request.getSession(true);
 		     	String access_token=(String)session1.getAttribute("access_token");
 		     //	out.println("Inside Oauth:"+access_token+"TokenUrl:"+tokenurl);
 		     	String GetResponse=null;
+	     		 StringBuilder result=new StringBuilder();
+	     			String line = "";
+
 
 		     	if(rm1.equals("GET")){ 
 		     	//GetMethod get=new GetMethod(tokenurl);
-		     	GetMethod get=new GetMethod(endurl);
 		     	if("Authorization:Bearer".equals(treplace)){
-			       get.setRequestHeader("Authorization", "Bearer "+access_token);
-			       httpclient.executeMethod(get);
-			       GetResponse=get.getResponseBodyAsString();
-
-		     	}
+		     		HttpGet get=new HttpGet(endurl);
+			       get.addHeader("Authorization", "Bearer "+access_token);
+		     		HttpResponse response1 = client.execute(get);
+		     		BufferedReader rd = new BufferedReader(
+		     				new InputStreamReader(response1.getEntity().getContent()));
+		     			while ((line = rd.readLine()) != null) {
+                         result.append(line);		     			}
+	     	
+		     	}   // auth bearer treplace
 		     	else if("QueryString".equals(treplace)){
-		     		
-		     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
-		     			{get.setQueryString(new NameValuePair[] { 
-			     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3),new NameValuePair(pa4,pva4),new NameValuePair(pa5,pva5),new NameValuePair(pa6,pva6)});
-		     		  }
-		        		 
-		                 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5))
-		                	 get.setQueryString(new NameValuePair[] { 
-		 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3),new NameValuePair(pa4,pva4),new NameValuePair(pa5,pva5)});
-		     	
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4))
-		        			 get.setQueryString(new NameValuePair[] { 
-		        			 		    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3),new NameValuePair(pa4,pva4)});
-		     	
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3))
-		        			 get.setQueryString(new NameValuePair[] { 
-		 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2),new NameValuePair(pa3,pva3)});
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2))
-		        			 get.setQueryString(new NameValuePair[] { 
-		 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1),new NameValuePair(pa2,pva2)});
-		        		 
-		        		 else if(!"null".equals(pa1))
-		        			 get.setQueryString(new NameValuePair[] { 
-		 		     			    new NameValuePair(tlabel, access_token),new NameValuePair(pa1,pva1)});
-		        		 
-		        		 else if("null".equals(pa1))
-		     		          get.setQueryString(new NameValuePair[] { 
-		     			            new NameValuePair(tlabel, access_token)}); 
-			         httpclient.executeMethod(get);
-			         GetResponse=get.getResponseBodyAsString();}
+		     		String param = null;
+		     	   // List<NameValuePair> params = new LinkedList<NameValuePair>();
 
+		     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
+		     			 param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+p6+"="+pva6;
+		        		 
+		             else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5))
+                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;
+
+		     	
+		              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4))
+	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;
+
+		              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3))
+	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;
+
+		        	  else if(!"null".equals(pa1) && !"null".equals(pa2))
+	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2;
+
+		              else if(!"null".equals(pa1))
+	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1;
+
+		        	  else if("null".equals(pa1))
+	                         param="?"+tlabel+"="+access_token;
+		     		 String pointurl=endurl+"?"+param;
+		     	    //String paramString = URLEncodedUtils.format(param, "utf-8");
+				     	HttpGet get=new HttpGet(pointurl);
+			            HttpResponse response1=client.execute(get);
+			            BufferedReader rd = new BufferedReader
+					    		  (new InputStreamReader(response1.getEntity().getContent()));
+					    		    
+					    		while ((line = rd.readLine()) != null) {
+					    			result.append(line);
+					    		}
+					    			
+					    		}
 		     	}
 
 		    	else if(rm1.equals("POST")){
-		     		PostMethod post=new PostMethod(tokenurl);
+		     		HttpPost post=new HttpPost(tokenurl);
 		     		
 		     		if("Authorization:Bearer".equals(treplace)){
-						post.setRequestHeader("Authorization", "Bearer "+access_token);
-						httpclient.executeMethod(post);
-					    GetResponse=post.getResponseBodyAsString();}
+						post.addHeader("Authorization", "Bearer "+access_token);
+						HttpResponse response1=client.execute(post);
+						BufferedReader rd = new BufferedReader(
+			     				new InputStreamReader(response1.getEntity().getContent()));
+			     			while ((line = rd.readLine()) != null) {
+	                         result.append(line);		     			}
+		     	
+					    }   // Auth Bearer POST
 		     		
 		     		else if("QueryString".equals(treplace)){
-			     		post.addParameter(tlabel,access_token);
-						httpclient.executeMethod(post);
-					    GetResponse=post.getResponseBodyAsString();}
-					   
-		     		  /*   post.addParameter((tlabel,access_token);
-		     		     post.addParameter(p1,pva1);
-		     		     post.addParameter(p2,pva2);
-		     		     post.addParameter(p3,pva3);
-		     		     post.addParameter(p3,pva3);
-		     		     post.addParameter(p4,pva4);
-		     		     post.addParameter(p4,pva6);}*/
- 
+				    	 List <NameValuePair> cod = new ArrayList <NameValuePair>();
+			     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+					    	 cod.add(new BasicNameValuePair(tlabel,access_token));
+				    	     cod.add(new BasicNameValuePair(pa1,pva1));
+				    	     cod.add(new BasicNameValuePair(pa2,pva2));
+				    	     cod.add(new BasicNameValuePair(pa3,pva3));
+				    	     cod.add(new BasicNameValuePair(pa4,pva4));
+				    	     cod.add(new BasicNameValuePair(pa5,pva5));
+				    	     cod.add(new BasicNameValuePair(pa6,pva6));}
+
+
+			     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+			     				  cod.add(new BasicNameValuePair(tlabel,access_token));
+					    	     cod.add(new BasicNameValuePair(pa1,pva1));
+					    	     cod.add(new BasicNameValuePair(pa2,pva2));
+					    	     cod.add(new BasicNameValuePair(pa3,pva3));
+					    	     cod.add(new BasicNameValuePair(pa4,pva4));
+					    	     cod.add(new BasicNameValuePair(pa5,pva5));	}    
+				     		
+			     			 
+			     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){cod.add(new BasicNameValuePair(tlabel,access_token));
+				    	     cod.add(new BasicNameValuePair(pa1,pva1));
+				    	     cod.add(new BasicNameValuePair(pa2,pva2));
+				    	     cod.add(new BasicNameValuePair(pa3,pva3));
+				    	     cod.add(new BasicNameValuePair(pa4,pva4));
+				    	     }
+					     		
+				     		 
+				     		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){cod.add(new BasicNameValuePair(tlabel,access_token));
+					    	     cod.add(new BasicNameValuePair(pa1,pva1));
+					    	     cod.add(new BasicNameValuePair(pa2,pva2));
+					    	     cod.add(new BasicNameValuePair(pa3,pva3));
+					    	     }
+						     		
+					     		 
+					     		 else if(!"null".equals(pa1) && !"null".equals(pa2)){cod.add(new BasicNameValuePair(tlabel,access_token));
+						    	     cod.add(new BasicNameValuePair(pa1,pva1));
+						    	     cod.add(new BasicNameValuePair(pa2,pva2));
+						    	     }
+							     		
+						     		 
+						     		 else if(!"null".equals(pa1)){
+							     			cod.add(new BasicNameValuePair(tlabel,access_token));
+								    	    cod.add(new BasicNameValuePair(pa1,pva1));
+								    	     
+							     		 }
+						     		 else if("null".equals(pa1)){
+							     			cod.add(new BasicNameValuePair(tlabel,access_token));
+
+						     		 }
+					        post.setEntity(new UrlEncodedFormEntity(cod));
+					        HttpResponse response1 = client.execute(post);
+					        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
+					        while ((line = rd.readLine()) != null) {
+			                 result.append(line);	        }
+
+		     		}
+		     		  
 		     	}
                  if(authen1.equals("Oauth2") && resf1.equals("JSON")){
-                  JSON json = JSONSerializer.toJSON( GetResponse );  
+                  JSON json = JSONSerializer.toJSON( result );  
    	              XMLSerializer xmlSerializer = new XMLSerializer();  
    	              xmlSerializer.setTypeHintsEnabled(false);
    	              xmlSerializer.setSkipWhitespace(true);
@@ -368,7 +451,7 @@ public class AuthPulpy extends HttpServlet {
 			    //PrintWriter out1 = new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
                 //out1.println(GetResponse);
                 //out1.close();
-                	 request.setAttribute("Passing", GetResponse);
+                	 request.setAttribute("Passing", result);
 	        		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 	        		    disp.forward(request, response);
                  }
