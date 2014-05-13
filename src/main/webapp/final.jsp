@@ -43,20 +43,21 @@ text-align:left;
 <th>Your_App_ID</th>
 <th>:<%=request.getAttribute("appid")%></th>
 </tr><tr><td>App_Name</td>
-<td>:<%=session.getAttribute("appname")%></td>
-</tr><tr><td>Auth_Type</td>
-<td>:<%=session.getAttribute("authtype")%></td>
-</tr><tr><td>Api_Name</td>
-<td>:<%=session.getAttribute("apiname")%></td>
-</tr><tr><td>Api_Key</td>
-<td>:<%=session.getAttribute("apikey")%></td>
-</tr><tr><td>Request_Method</td>
+<td>:<%=session.getAttribute("appname")%></td></tr>
+<tr><td>Auth_Type</td>
+<td>:<%=session.getAttribute("authtype")%></td></tr>
+<c:if test="${sessionScope.authtype=='apikey'}">
+<tr><td>Api_Name</td>
+<td>:<%=session.getAttribute("apiname")%></td></tr>
+<tr><td>Api_Key</td>
+<td>:<%=session.getAttribute("apikey")%></td></tr>
+</c:if>
+<tr><td>Request_Method</td>
 <td>:<%=session.getAttribute("reqmeth")%></td>
 </tr><tr><td>Response_Type</td>
 <td>:<%=session.getAttribute("resfor")%></td>
 </tr><tr><td>End_point_url</td>
 <td>:<%=session.getAttribute("endurl")%></td></tr>
-
 <c:if test="${sessionScope.p1!=null}">
 <tr><td>Param_1_label</td>
 <td><%=session.getAttribute("p1")%></td>
