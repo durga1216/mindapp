@@ -96,41 +96,24 @@ public class OauthCallBackServlet extends HttpServlet {
 				
 
 			if(rm1.equals("POST")){
-				DefaultHttpClient httpclient=new DefaultHttpClient();
+				HttpClient httpclient=new DefaultHttpClient();
 
 				HttpPost post = new HttpPost(tokenurl);
-				post.addHeader("Accept", "application/json");
+				try{
 				List <NameValuePair> cod = new ArrayList <NameValuePair>();
 		        cod.add(new BasicNameValuePair("code", code)); 
 		        cod.add(new BasicNameValuePair("grant_type", "authorization_code")); 
 		        cod.add(new BasicNameValuePair("client_id",apikey));
 		        cod.add(new BasicNameValuePair("client_secret",apisecvalue)); 
 		        cod.add(new BasicNameValuePair("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet")); 
-		       // post.setEntity(new UrlEncodedFormEntity(cod));
+		        post.setEntity(new UrlEncodedFormEntity(cod));
 		        HttpResponse response1 = httpclient.execute(post);
-		        ResponseHandler<String> handler = new BasicResponseHandler();
-
-		        String body = handler.handleResponse(response1);
-		        int code1 = response1.getStatusLine().getStatusCode();
-pw.println(body);
-pw.println(code);
-		      /*  StringBuffer buffer = new StringBuffer();
-		        BufferedReader reader = new BufferedReader(new InputStreamReader(post.getEntity().getContent()));
-		  String dataLine = null;
-		  while((dataLine = reader.readLine()) != null){
-		              buffer.append(dataLine);
-		  }
-		 responseMsg =    buffer.toString();
-         pw.println(responseMsg);
-				/*post.addParameter("code", code);
-				post.addParameter("grant_type", "authorization_code");
-				post.addParameter("client_id",apikey);
-				post.addParameter("client_secret",apisecvalue);
-				post.addParameter("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
-				httpclient.executeMethod(post);
-			    responseBody = post.getResponseBodyAsString();//}
-			    pw.println(responseBody);*/
-			
+		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
+		        String line = "";
+		        while ((line = rd.readLine()) != null) {
+		          pw.println(line);
+		        }}
+				catch(Exception e){pw.println(e);}
 			    
 			}
 			  
