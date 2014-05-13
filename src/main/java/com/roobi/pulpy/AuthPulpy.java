@@ -314,7 +314,8 @@ public class AuthPulpy extends HttpServlet {
 		     		BufferedReader rd = new BufferedReader(
 		     				new InputStreamReader(response1.getEntity().getContent()));
 		     			while ((line = rd.readLine()) != null) {
-                         result.append(line);		     			}
+		     				GetResponse=line;
+		     			}
 	     	
 		     	}   // auth bearer treplace
 		     	else if("QueryString".equals(treplace)){
@@ -350,7 +351,7 @@ public class AuthPulpy extends HttpServlet {
 					    		  (new InputStreamReader(response1.getEntity().getContent()));
 					    		    
 					    		while ((line = rd.readLine()) != null) {
-					    			result.append(line);
+GetResponse=line;
 					    		}
 					    			
 					    		}
@@ -365,7 +366,8 @@ public class AuthPulpy extends HttpServlet {
 						BufferedReader rd = new BufferedReader(
 			     				new InputStreamReader(response1.getEntity().getContent()));
 			     			while ((line = rd.readLine()) != null) {
-	                         result.append(line);		     			}
+			     				GetResponse=line;
+		     			}
 		     	
 					    }   // Auth Bearer POST
 		     		
@@ -424,13 +426,14 @@ public class AuthPulpy extends HttpServlet {
 					        HttpResponse response1 = client.execute(post);
 					        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 					        while ((line = rd.readLine()) != null) {
-			                 result.append(line);	        }
+					        	GetResponse=line;
+	        }
 
 		     		}
 		     		  
 		     	}
                  if(authen1.equals("Oauth2") && resf1.equals("JSON")){
-                  JSON json = JSONSerializer.toJSON( result );  
+                  JSON json = JSONSerializer.toJSON( GetResponse );  
    	              XMLSerializer xmlSerializer = new XMLSerializer();  
    	              xmlSerializer.setTypeHintsEnabled(false);
    	              xmlSerializer.setSkipWhitespace(true);
@@ -451,7 +454,7 @@ public class AuthPulpy extends HttpServlet {
 			    //PrintWriter out1 = new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
                 //out1.println(GetResponse);
                 //out1.close();
-                	 request.setAttribute("Passing", result);
+                	 request.setAttribute("Passing", GetResponse);
 	        		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 	        		    disp.forward(request, response);
                  }

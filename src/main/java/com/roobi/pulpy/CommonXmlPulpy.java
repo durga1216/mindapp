@@ -471,7 +471,7 @@ public class CommonXmlPulpy extends HttpServlet {
           	
              	
           	// third API
-          	
+        if(!"null".equals(thirdurl1)){  	
           	
           	
         	Document doc1=null;  //TO Convert XMLSTRING TO DOCUMENT
@@ -939,7 +939,7 @@ public class CommonXmlPulpy extends HttpServlet {
         }
 		     
              
-               
+        }     
            /*  Element fromRoot = outdoc.getDocumentElement();
               Element toRoot = outdoc1.getDocumentElement();
 
