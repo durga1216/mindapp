@@ -99,7 +99,6 @@ public class OauthCallBackServlet extends HttpServlet {
 				HttpClient client=new DefaultHttpClient();
 
 				HttpPost post = new HttpPost(tokenurl);
-				try{
 				List <NameValuePair> cod = new ArrayList <NameValuePair>(5);
 		        cod.add(new BasicNameValuePair("code", code)); 
 		        cod.add(new BasicNameValuePair("grant_type", "authorization_code")); 
@@ -112,8 +111,7 @@ public class OauthCallBackServlet extends HttpServlet {
 		        String line = "";
 		        while ((line = rd.readLine()) != null) {
 		          pw.println(line);
-		        }}
-				catch(Exception e){pw.println(e);}
+		        }
 			    
 			}
 			  
@@ -136,7 +134,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			     		
 				          httpclient.executeMethod(get);
 				          responseBody=get.getResponseBodyAsString();
-						  pw.println(responseBody);*/
+						  pw.println(responseBody);
 	
 			
 			             String line=null;
@@ -180,7 +178,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			        	response.setCharacterEncoding("UTF-8");
 			            pw.println("<br><br><center><b><h2><font color='green'>Sucessfully Authenticated with "+appname+"</font></center></h2></b>");
 			            pw.println("<br><br><h3><center><a href='auth.jsp'>Continue with Config</a></center></h3>");
-			            pw.println("<br><br><h3><center><a href='token.jsp'>Continue with App</a></center></h3>");}
+			            pw.println("<br><br><h3><center><a href='token.jsp'>Continue with App</a></center></h3>");}*/
 			}
 			catch(Exception e){
 				pw.println(e);
