@@ -320,6 +320,16 @@
     <servlet-name>CommonPulpy1</servlet-name>
     <url-pattern>/CommonPulpy1</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>XmlConvert</display-name>
+    <servlet-name>XmlConvert</servlet-name>
+    <servlet-class>com.roobi.pulpy.XmlConvert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>XmlConvert</servlet-name>
+    <url-pattern>/XmlConvert</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>FirstAuthPulpy</display-name>
