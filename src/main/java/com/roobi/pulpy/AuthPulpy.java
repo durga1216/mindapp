@@ -366,10 +366,10 @@ public class AuthPulpy extends HttpServlet {
 					    		    
 					    		while ((line = rd.readLine()) != null) {
                                 GetResponse=line;
-					    		}
+					    		} // while
 					    			
-					    		}
-		     	}
+					    		} // querystring
+		     	}   // Get
 
 		    	else if(rm1.equals("POST")){
 		     		HttpPost post=new HttpPost(endurl);
@@ -381,7 +381,7 @@ public class AuthPulpy extends HttpServlet {
 			     				new InputStreamReader(response1.getEntity().getContent()));
 			     			while ((line = rd.readLine()) != null) {
 			     				GetResponse=line;
-		     			}
+		     			} // while
 		     	
 					    }   // Auth Bearer POST
 		     		
@@ -440,11 +440,10 @@ public class AuthPulpy extends HttpServlet {
 					        HttpResponse response1 = client.execute(post);
 					        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 					        while ((line = rd.readLine()) != null) {
-					        	GetResponse=line;
-	                        }
- 		     		}
-		     		  
-		     	}
+					        	GetResponse=line;} // while
+ 		     		}  // query string
+		     		   
+		     	}  // POST
                  if(authen1.equals("Oauth2") && resf1.equals("JSON")){
                   JSON json = JSONSerializer.toJSON( GetResponse );  
    	              XMLSerializer xmlSerializer = new XMLSerializer();  
@@ -458,28 +457,24 @@ public class AuthPulpy extends HttpServlet {
    	        request.setAttribute("Passing",xmlout);
    		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
    		    disp.forward(request, response);
-                 }
+                 } // if
                  
                  if(authen1.equals("Oauth2") && resf1.equals("XML")){
 			    
                 	 request.setAttribute("Passing", GetResponse);
 	        		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 	        		    disp.forward(request, response);
-                 }
+                 } // if
             
-	        
-	         }
+	         }//oauth	
 	         
+	         }//try
+	         } // while database
 	         
-	         // next condition starts here
-	         }  
-      }
-      catch(Exception e){
-    	  out.println(e);
-      }
+	         catch(Exception e){out.println(e);}
       
-     
-      
+	} //post
+	
+} //class
+	
 
-}
-}
