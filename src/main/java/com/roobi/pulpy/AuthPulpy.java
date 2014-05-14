@@ -152,11 +152,85 @@ public class AuthPulpy extends HttpServlet {
 
 	         String eurl=null;
 	              
-	               
+	         if(authen1.equals("No Auth")){
+               if(rf1.equals("REST") && rm1.equals ("GET")){  // No Auth XML get
+	        		 
+	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+	        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+		        		 eurl=endurl1+"?"+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2;}
+	        		 
+	        		 else if(!"null".equals(pa1)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1;}
+	        		 else if("null".equals(pa1))
+	        			eurl=endurl1;
+	        		 	        		         		
+	        		out.println(eurl);
+	        	     String str="";
+	        		 try
+	        		 {
+	        		 URL eurl1=new URL(eurl);
+	        		 URLConnection uconn = eurl1.openConnection();
+	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+	        	     conn.connect();
+	        	     Object content = conn.getContent();
+	        	     InputStream stream = (InputStream) content;
+	        	     String line=null;
+	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	        	     if(resf1.equals("XML")){
+	        	     while((line=br.readLine())!=null){
+	         	 	  	       		     str+=line;}
+	        		 }
+	        		 else if(resf1.equals("JSON")){
+	        			 while ((line = br.readLine()) != null)    { 
+	 	        	    	
+	   	         		  JSON json = JSONSerializer.toJSON( line .replaceAll("\\s+","")  );  
+	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+	   	     	          xmlSerializer.setTypeHintsEnabled(false);
+	   	     	          xmlSerializer.setSkipWhitespace(true);
+	   	     	          xmlSerializer.setTrimSpaces(true);
+	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+	   	     	          xmlSerializer.removeNamespace(line);
+	   	     	          xmlSerializer.setForceTopLevelObject(false);
+	   	     		      str = xmlSerializer.write( json );
+	        		 } //while
+	        		 } //if
+	        		 }//try
+	         	     catch(Exception e){
+	 	    	      out.println(e);}	
+	 	        	 request.setAttribute("PassingObj", eurl);
+	 	        	 request.setAttribute("Passing", str);
+	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
+	 	     		    disp.forward(request, response);
+	               	} // NO Auth GET
+	        	        	 
+	         }    // No Auth  
 	               
 	         
-	         if(authen1.equals("API keys") || authen1.equals("No Auth")){  //API Keys
-	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //API XML get
+	         if(authen1.equals("API keys")){  //API Keys
+	        	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get
 	        		 
 	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
@@ -192,7 +266,7 @@ public class AuthPulpy extends HttpServlet {
 	        		 
 	        		 else if("null".equals(ak1) && "null".equals(ak2))
 	        			 eurl=endurl1;	        		
-	        	//	out.println(eurl);
+	        		out.println(eurl);
 	        	     String str="";
 	        		 try
 	        		 {
@@ -204,16 +278,24 @@ public class AuthPulpy extends HttpServlet {
 	        	     InputStream stream = (InputStream) content;
 	        	     String line=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	        	     if(resf1.equals("XML")){
 	        	     while((line=br.readLine())!=null){
-	         	    	// pw1.write(line);
-	  	       		     //pw1.flush();
-	  	       		     str+=line;
-	  	        	   //out.println(line);
-
-	         	      }
-	         	     
-	 	        	//    pw1.close();
-	 	         }
+    	  	       	 str+=line;}}
+	        	     else if(resf1.equals("JSON")){
+	        	    	 while ((line = br.readLine()) != null)    { 
+	        	    	  JSON json = JSONSerializer.toJSON( line .replaceAll("\\s+","") );  
+	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+	   	     	          xmlSerializer.setTypeHintsEnabled(false);
+	   	     	          xmlSerializer.setSkipWhitespace(true);
+	   	     	          xmlSerializer.setTrimSpaces(true);
+	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+	   	     	          xmlSerializer.removeNamespace(line);
+	   	     	          xmlSerializer.setForceTopLevelObject(false);
+	   	     		      str = xmlSerializer.write( json );
+	   	    			
+	   	    		     }//while
+	        	     } // else if
+        	 	  } // try
 	 	        	    catch(Exception e){
 	 	    	        	 out.println(e);
 	 	    	        	 }	
@@ -221,85 +303,17 @@ public class AuthPulpy extends HttpServlet {
 	 	        	 request.setAttribute("Passing", str);
 	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 	 	     		    disp.forward(request, response);
-	               	}
+	               	} // Get Api keys
 	        	 
+	         }  // API keys  
 	         
-	         
-                 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("JSON")){  //API JSON get
-	        		 
-
-	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
-	        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
-	        		 
-	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
-	        		 
-	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
-	        		 
-	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
-	        		 
-	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2;}
-	        		 
-	        		 else if(!"null".equals(pa1)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1;}
-	        		 else if("null".equals(pa1))
-	        			eurl=endurl1+"?"+ak1+"="+ak2;
-	        		 else if("null".equals(ak1) && "null".equals(ak2))
-	        			 eurl=endurl1;
-	        		 out.println(eurl);
-	        		 
-	        	     String str="";
-
-	        		 URL eurl1=new URL(eurl);
-	        		 try
-	        		 {
-	        		 URLConnection uconn = eurl1.openConnection();
-	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
-	        	     conn.connect();
-	        	     Object content = conn.getContent();
-	        	     InputStream stream = (InputStream) content;
-	        	     String line="";
-	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	        		  FileWriter fw=null;
-
-	        	     while ((line = br.readLine()) != null)    { 
-	        	    	
-	         		  JSON json = JSONSerializer.toJSON( line .replaceAll("\\s+","")  );  
-	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-	     	          xmlSerializer.setTypeHintsEnabled(false);
-	     	          xmlSerializer.setSkipWhitespace(true);
-	     	          xmlSerializer.setTrimSpaces(true);
-	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-	     	          xmlSerializer.removeNamespace(line);
-	     	          xmlSerializer.setForceTopLevelObject(false);
-	     		      String  xmlout = xmlSerializer.write( json );
-	    			 // fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/sam.xml");
-	    			  //fw.write(xmlout);
-	    			 // fw.flush();
-	     		     request.setAttribute("Passing", xmlout);
-		     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
-		     		    disp.forward(request, response);
-	    		     }
-	    			//  fw.close();
-                 }       		
-	    	       	    catch(Exception e){
-		    	        	 out.println(e);
-		    	        	 }	
-		         }
-	           
-	         	         
-	         }
-	         
+                	         
 	         
 	         else if(authen1.equals("Oauth2")){
 	 			HttpClient client=new DefaultHttpClient();
                 String Response=null;
 	        	HttpSession session1=request.getSession(true);
 		     	String access_token=(String)session1.getAttribute("access_token");
-		     //	out.println("Inside Oauth:"+access_token+"TokenUrl:"+tokenurl);
 		     	String GetResponse=null;
 	     		 StringBuilder result=new StringBuilder();
 	     			String line = "";
@@ -351,7 +365,7 @@ public class AuthPulpy extends HttpServlet {
 					    		  (new InputStreamReader(response1.getEntity().getContent()));
 					    		    
 					    		while ((line = rd.readLine()) != null) {
-GetResponse=line;
+                                GetResponse=line;
 					    		}
 					    			
 					    		}
@@ -427,9 +441,8 @@ GetResponse=line;
 					        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 					        while ((line = rd.readLine()) != null) {
 					        	GetResponse=line;
-	        }
-
-		     		}
+	                        }
+ 		     		}
 		     		  
 		     	}
                  if(authen1.equals("Oauth2") && resf1.equals("JSON")){
@@ -442,26 +455,19 @@ GetResponse=line;
    	              xmlSerializer.removeNamespace(GetResponse);
    	              xmlSerializer.setForceTopLevelObject(false);
    	              String xmlout=xmlSerializer.write(json);
-   	           //   PrintWriter out1 = new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
-                 // out1.println(xmlout);
-                 // out1.close();
-   	           request.setAttribute("Passing",xmlout);
+   	        request.setAttribute("Passing",xmlout);
    		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
    		    disp.forward(request, response);
                  }
                  
                  if(authen1.equals("Oauth2") && resf1.equals("XML")){
-			    //PrintWriter out1 = new PrintWriter("F:/workspace/MindPulpy1/WebContent/sam.xml");
-                //out1.println(GetResponse);
-                //out1.close();
+			    
                 	 request.setAttribute("Passing", GetResponse);
 	        		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
 	        		    disp.forward(request, response);
                  }
             
-	         //  	Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/sam.xml");
-               //	out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-   		        //response.setHeader("Refresh", "1; URL=auth1.jsp");
+	        
 	         }
 	         
 	         

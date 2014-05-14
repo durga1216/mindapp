@@ -1,18 +1,22 @@
 package com.roobi.pulpy;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,12 +34,15 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import net.sf.json.JSON;
+import net.sf.json.JSONSerializer;
+import net.sf.json.xml.XMLSerializer;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import com.mindots.util.Utils;
+import org.xml.sax.InputSource;
 
 public class CommonXmlPulpy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -48,8 +55,6 @@ public class CommonXmlPulpy extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
@@ -62,9 +67,11 @@ public class CommonXmlPulpy extends HttpServlet {
         Connection con=null;
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-	    con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 c1  JOIN secondconfig c2 ON c1.appid=c2.appid JOIN secxmlconfig cx2 ON c1.appid=cx2.appid JOIN thirdconfig c3 ON c1.appid=c3.appid JOIN thrdxmlconfig cx3 on c1.appid=cx3.appid JOIN config c4 ON c1.appid=c4.appid  WHERE c1.appid=?");
+        String url1 = "jdbc:mysql://localhost/MPULPY";
+        final String USER = "root";
+        final String PASS = "root";
+        con = DriverManager.getConnection(url1,USER,PASS);
+	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 c1  JOIN secondconfig c2 ON c1.id=c2.id JOIN secxmlconfig cx2 ON c1.id=cx2.id JOIN thirdconfig c3 ON c1.id=c3.id JOIN thrdxmlconfig cx3 on c1.id=cx3.id JOIN config c4 ON c1.id=c4.id  WHERE c1.id=?");
 	    st.setString(1, appid);
         ResultSet rs = st.executeQuery();
         while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
@@ -121,9 +128,14 @@ public class CommonXmlPulpy extends HttpServlet {
  String tx27=rs.getString("tx27"); String txv27=rs.getString("txv27");String tx28=rs.getString("tx28"); String txv28=rs.getString("txv28");
  String tx29=rs.getString("tx29"); String txv29=rs.getString("txv29");String tx30=rs.getString("tx30"); String txv30=rs.getString("txv30");
 // out.println(thirdurl1);
- 
+// String jsonxmlout=null;
+ String secjsonxml=null;
      String secdurl=null;
-     if(authen1.equals("No Auth")){ //No Authentication
+     Document doc=null;  //TO Convert XMLSTRING TO DOCUMENT
+     DocumentBuilder builder=null;
+     DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
+     builder=domFactory.newDocumentBuilder();
+   if(authen1.equals("No Auth")){ //No Authentication
      if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //No Auth GET XML
     	 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
     		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
@@ -206,14 +218,81 @@ public class CommonXmlPulpy extends HttpServlet {
 		      secdurl=securl1+"?"+ak1+"="+ak2;
 		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
 			      secdurl=securl1;		 
+	        doc=builder.parse(new URL(secdurl).openStream());
 
-		 }}
-  //out.println(secdurl);
- Document doc=null;  //TO Convert XMLSTRING TO DOCUMENT
- DocumentBuilder builder=null;
- DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
- builder=domFactory.newDocumentBuilder();
+		 }
+	 
+	 else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("JSON")){  //API JSON get
+		 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
+		     secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2;}
+		 
+		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && "flow".equals(cycle1)){
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2)&& "flow".equals(cycle1)){
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+s1+"&"+se2+"="+s2;}
+		 
+		 else if(!"null".equals(se1)&& "flow".equals(cycle1)){
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+s1;}
+		 
+		 else if(!"null".equals(secid)&& !"null".equals(pid) && "flow".equals(cycle1))
+			 secdurl=securl1+"?"+secid+"="+pid;
+		 else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
+		     secdurl=securl1+"/"+pid;
+		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
+		      secdurl=securl1+"?"+ak1+"="+ak2;
+		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
+			      secdurl=securl1;		 
+		 URL second_url=new URL(secdurl);
+   		 URLConnection uconn = second_url.openConnection();
+   	     HttpURLConnection conn = (HttpURLConnection) uconn;
+   	     conn.connect();
+   	     Object content = conn.getContent();
+   	     InputStream stream = (InputStream) content;
+   	     String line=null;
+   	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+   	     while ((line = br.readLine()) != null)    { 		  
+    	      JSON json = JSONSerializer.toJSON( line );  
+	          XMLSerializer xmlSerializer = new XMLSerializer();  
+	          xmlSerializer.setTypeHintsEnabled(false);
+	          xmlSerializer.setSkipWhitespace(true);
+	          xmlSerializer.setTrimSpaces(true);
+	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+	          xmlSerializer.removeNamespace(line);
+	          xmlSerializer.setForceTopLevelObject(false);
+		      secjsonxml = xmlSerializer.write( json );
+   	     }	      // end-while 
+   	     
+   	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+		 
+	 }  //end if JSON
+ 
+ }
+   
+     
+    
+        /*if(resf1.equals("XML") && authen1.equals("API keys")) 
         doc=builder.parse(new URL(secdurl).openStream());
+        
+        else if(resf1.equals("JSON") && authen1.equals("API keys"))
+        doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8"))));   */
+
+        
         Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
         Element outevent=outdoc.createElement("MPulpy");
         NodeList inevent=null;
@@ -234,7 +313,7 @@ public class CommonXmlPulpy extends HttpServlet {
           		outputEvent.appendChild(param1);}
           		
           		if(!"null".equals(sx2)){
-            		Element param2=outdoc.createElement(sx2);
+                Element param2=outdoc.createElement(sx2);
                 if(sxv2.equals(""))
           		param2.setTextContent("null");
           		else
@@ -471,14 +550,15 @@ public class CommonXmlPulpy extends HttpServlet {
           	
              	
           	// third API
-        if(!"null".equals(thirdurl1)){  	
           	
+        Document doc1=null;  //TO Convert XMLSTRING TO DOCUMENT
+        DocumentBuilder builder1=null;
+        DocumentBuilderFactory domFactory1=DocumentBuilderFactory.newInstance();
+        builder1=domFactory1.newDocumentBuilder();
           	
-        	Document doc1=null;  //TO Convert XMLSTRING TO DOCUMENT
-            DocumentBuilder builder1=null;
-            DocumentBuilderFactory domFactory1=DocumentBuilderFactory.newInstance();
-            builder1=domFactory1.newDocumentBuilder();
+        	
             String thirdurl11=null;
+            String jsonxmlout=null;
             if(authen1.equals("No Auth")){ //No Authentication
      	         if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //No Auth GET XML
 
@@ -551,10 +631,80 @@ public class CommonXmlPulpy extends HttpServlet {
            			 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+paid;
            		
            		 else if(!"null".equals(akt1) && !"null".equals(akt2)&& "entity".equals(thirdcycle1))
-           			      thirdurl11=thirdurl1+"?"+akt1+"="+akt2;}}
+           			      thirdurl11=thirdurl1+"?"+akt1+"="+akt2;
+           		 
+           		doc1=builder1.parse(new URL(thirdurl11).openStream());
+           	 }
+           	 
             
-       //     out.println(thirdurl11);
-            doc1=builder1.parse(new URL(thirdurl11).openStream());
+       else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("JSON")){  //API JSON get
+
+        	if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6)&& "entity".equals(thirdcycle1)){
+      		     thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4+"&"+tp5+"="+th5+"&"+tp6+"="+th6;}
+      		 
+      		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5)&& "entity".equals(thirdcycle1)){
+	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4+"&"+tp5+"="+th5;}
+      		 
+      		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4)&& "entity".equals(thirdcycle1)){
+	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4;}
+      		 
+      		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3)&& "entity".equals(thirdcycle1)){
+	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3;}
+      		 
+      		 else if(!"null".equals(tp1) && !"null".equals(tp2)&& "entity".equals(thirdcycle1)){
+	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2;}
+      		 
+      		 else if(!"null".equals(tp1)&& "entity".equals(thirdcycle1)){
+	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1;}
+      		 
+      		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3)){
+	        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+paid+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3;}
+      		 
+      		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1) && !"null".equals(tp2)){
+	        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+paid+"&"+tp1+"="+th1+"&"+tp2+"="+th2;}
+      		 
+      		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1)){
+	        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+paid+"&"+tp1+"="+th1;}
+      		 
+      		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1))
+      			 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+paid;
+      		
+      		 else if(!"null".equals(akt1) && !"null".equals(akt2)&& "entity".equals(thirdcycle1))
+      			      thirdurl11=thirdurl1+"?"+akt1+"="+akt2;
+        
+        // out.println(thirdurl11);
+         URL third=new URL(thirdurl11);
+   		 URLConnection uconn = third.openConnection();
+   	     HttpURLConnection conn = (HttpURLConnection) uconn;
+   	     conn.connect();
+   	     Object content = conn.getContent();
+   	     InputStream stream = (InputStream) content;
+   	     String line=null;
+   	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+   	     while ((line = br.readLine()) != null)    { 		  
+    	      JSON json = JSONSerializer.toJSON( line );  
+	          XMLSerializer xmlSerializer = new XMLSerializer();  
+	          xmlSerializer.setTypeHintsEnabled(false);
+	          xmlSerializer.setSkipWhitespace(true);
+	          xmlSerializer.setTrimSpaces(true);
+	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+	          xmlSerializer.removeNamespace(line);
+	          xmlSerializer.setForceTopLevelObject(false);
+		      jsonxmlout = xmlSerializer.write( json );
+   	     }
+   	     // end-while  	*/	
+	      doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
+
+            }
+            
+            }   
+            
+	     /*    if(resf1.equals("XML") && authen1.equals("API keys")) 
+               doc1=builder1.parse(new URL(thirdurl11).openStream());
+            
+	         else if(resf1.equals("JSON") && authen1.equals("API keys"))
+	           doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));*/
+
      		 Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
      		 Element outevent1=outdoc1.createElement("MPulpy");
      		 NodeList inevent1=null;
@@ -813,8 +963,7 @@ public class CommonXmlPulpy extends HttpServlet {
               }
               outdoc1.appendChild(outevent1); //the full formed mpulpy xml now in document
         
-              
-              
+                           
             NodeList ndListFirstFile = outdoc.getElementsByTagName("root");
             for(int i=0;i<ndListFirstFile.getLength();i++){
             if(!"null".equals(tx1))	{
@@ -939,7 +1088,7 @@ public class CommonXmlPulpy extends HttpServlet {
         }
 		     
              
-        }     
+               
            /*  Element fromRoot = outdoc.getDocumentElement();
               Element toRoot = outdoc1.getDocumentElement();
 
@@ -975,11 +1124,7 @@ public class CommonXmlPulpy extends HttpServlet {
       output.close();
       out.println(xmloutput);
    	
-       	
-    	
-    	
-    	
-    	
+     	
   }
 	}
     
