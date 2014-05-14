@@ -187,7 +187,7 @@ public class AuthPulpy extends HttpServlet {
 	        		 else if("null".equals(pa1))
 	        			eurl=endurl1;
 	        		 	        		         		
-	        		out.println(eurl);
+	        		//out.println(eurl);
 	        	     String str="";
 	        		 try
 	        		 {
@@ -220,10 +220,8 @@ public class AuthPulpy extends HttpServlet {
 	        		 }//try
 	         	     catch(Exception e){
 	 	    	      out.println(e);}	
-	 	        	 request.setAttribute("PassingObj", eurl);
-	 	        	 request.setAttribute("Passing", str);
-	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
-	 	     		    disp.forward(request, response);
+	        		 session.setAttribute("xml1", str);
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} // NO Auth GET
 	        	        	 
 	         }    // No Auth  
@@ -266,7 +264,7 @@ public class AuthPulpy extends HttpServlet {
 	        		 
 	        		 else if("null".equals(ak1) && "null".equals(ak2))
 	        			 eurl=endurl1;	        		
-	        		out.println(eurl);
+	        	//	out.println(eurl);
 	        	     String str="";
 	        		 try
 	        		 {
@@ -299,10 +297,8 @@ public class AuthPulpy extends HttpServlet {
 	 	        	    catch(Exception e){
 	 	    	        	 out.println(e);
 	 	    	        	 }	
-	 	        	 request.setAttribute("PassingObj", eurl);
-	 	        	 request.setAttribute("Passing", str);
-	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
-	 	     		    disp.forward(request, response);
+	        		 session.setAttribute("xml1", str);
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} // Get Api keys
 	        	 
 	         }  // API keys  
@@ -454,16 +450,14 @@ public class AuthPulpy extends HttpServlet {
    	              xmlSerializer.removeNamespace(GetResponse);
    	              xmlSerializer.setForceTopLevelObject(false);
    	              String xmlout=xmlSerializer.write(json);
-   	        request.setAttribute("Passing",xmlout);
-   		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
-   		    disp.forward(request, response);
+   	           session.setAttribute("xml1", xmlout);
+		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
                  } // if
                  
-                 if(authen1.equals("Oauth2") && resf1.equals("XML")){
+                 else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
 			    
-                	 request.setAttribute("Passing", GetResponse);
-	        		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/auth1.jsp");
-	        		    disp.forward(request, response);
+                	 session.setAttribute("xml1", GetResponse);
+	     		        response.setHeader("Refresh", "1; URL=auht1.jsp");	
                  } // if
             
 	         }//oauth	
@@ -477,4 +471,3 @@ public class AuthPulpy extends HttpServlet {
 	
 } //class
 	
-

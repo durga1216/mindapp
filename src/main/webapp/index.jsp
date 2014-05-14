@@ -14,7 +14,7 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 
 <style>
- body{background-color:#FF9900;}
+ body{background-color:#FF9900;}					
 .head{
     color:#FFFFFF;
     font-family:verdana;

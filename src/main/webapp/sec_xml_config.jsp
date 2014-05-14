@@ -94,7 +94,7 @@ function removeParam()
 <%String u = (String) request.getSession().getAttribute("user");
     if (u != null ) {
    // System.out.println("user != null");
-    out.print("Welcome "+u);
+   // out.print("Welcome "+u);
     }else{
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
@@ -103,7 +103,7 @@ function removeParam()
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='logout.jsp'> Sign Out </a></div>
 <center><div class="head">Mind Pulpy</div></center><br><br>
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
-<center><TEXTAREA  NAME=SpecialRequest ROWS=30 COLS=70 readonly>${Passing}</TEXTAREA></center><br><br>
+<center><h2><a id='pa' href="javascript:load()">Load_Xml</a></h2></center><br><br>
 <center><div="text"></div><input type="text" name="secroot" value="" placeholder="Parent_Tag">
 <input type="text" name="secparent" value="" placeholder="Root_Tag"></div></center>
 <br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
@@ -111,5 +111,12 @@ function removeParam()
 <br><center><div id="content"></div></center><br><br>
 <center><input type="submit" value="Continue" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Finish" name="submit"></center>
 </form>
+<script type="text/javascript">
+function load(){
+	window.open("<%=request.getContextPath()%>/XmlConvert", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+	
+	
+}
+</script>
 </body>
 </html>

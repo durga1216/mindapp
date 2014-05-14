@@ -143,11 +143,8 @@ public class ThirdConfig extends HttpServlet {
             	    	 //fw.flush();
             	      }
     	        	    //fw.close();
-            	     request.setAttribute("PassingObj", thirdurl11);
-            	     request.setAttribute("Passing", str);
-
- 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
- 	     		    disp.forward(request, response);	
+            	     session.setAttribute("xml1", str);
+	     		        response.setHeader("Refresh", "1; URL=third_xml_config.jsp");	
                    	// Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
                    	 //out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         		     //response.setHeader("Refresh", "1; URL=third_xml_config.jsp"); 
@@ -205,10 +202,8 @@ public class ThirdConfig extends HttpServlet {
      	        	   //out.println(line);
             	      }
     	        	    //pw1.close();
-    	        	    request.setAttribute("PassingObj", thirdurl11);
-    	        	    request.setAttribute("Passing", str);
-    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
-    	     		    disp.forward(request, response);	
+          		 session.setAttribute("xml1", str);
+  		        response.setHeader("Refresh", "1; URL=third_xml_config.jsp");		
 	               	}
 	        	 
              
@@ -270,9 +265,8 @@ public class ThirdConfig extends HttpServlet {
 		     		      String  xmlout = xmlSerializer.write( json );
 		    			  //fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/book.xml");
 		    			  //fw.write(xmlout);
-		     		     request.setAttribute("Passing", xmlout);
-		  	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/third_xml_config.jsp");
-		  	     		    disp.forward(request, response);
+		     		     session.setAttribute("xml1", xmlout);
+		     		        response.setHeader("Refresh", "1; URL=third_xml_config.jsp");	
 
                   	 } // while
                   	// fw.close();

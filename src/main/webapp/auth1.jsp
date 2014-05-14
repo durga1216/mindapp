@@ -99,11 +99,12 @@ text-align:right;}
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
+    
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form action="AuthPulpy1" method="post">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
-<center><TEXTAREA  NAME=SpecialRequest ROWS=30 COLS=70 readonly>${Passing}</TEXTAREA></center><br><br>
+<center><h2><a id='pa' href="javascript:load()">Load_Xml</a></h2></center><br><br>
 <center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
 <input type="text" name="xrv" value="" placeholder="Root_Tag"></div></center>
 <br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
@@ -111,9 +112,10 @@ text-align:right;}
 <br><center><div id="content"></div></center><br><br>
 <center><input type="submit" value="Continue" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Finish" name="submit"></center>
 </form>
+
 <script type="text/javascript">
-window.onload=function(){
-	window.open("${PassingObj}", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+function load(){
+	window.open("<%=request.getContextPath()%>/XmlConvert", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 	
 	
 }

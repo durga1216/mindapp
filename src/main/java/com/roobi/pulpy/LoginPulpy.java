@@ -53,8 +53,6 @@ public class LoginPulpy extends HttpServlet {
 		  String host = "smtp.mandrillapp.com";
 		String port="587";
 		String text="Hi "+s2+",\nGreetings from Mind Dots!!"
-				+"\n       USERNAME:\t"+s1+""
-				+"\n       PASSWORD:\t"+s4+""
 		+"\nThanks for being early adopter to our platform, currently MindPulpy is in beta stage. If you find any difficulties in using our platform / encounter any bugs then please drop an email to developer@minddotss.com \n"
 		+"What you can you do with MindPulpy?"
 		+"\n -      Integrate with your API’s or third party api’s."
@@ -92,9 +90,8 @@ public class LoginPulpy extends HttpServlet {
 		   }catch (MessagingException mex) {
 		out.println(mex);      
 		   }
-		     //out.println("insert sucess");
-		     response.sendRedirect("login.jsp");
-
+		     out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2>SIGNUP SUCCESSFULLY</h2></center></body></html>");
+		     response.setHeader("Refresh", "1; URL=login.jsp");
 		}
 		catch(Exception e){
 			out.println(e);

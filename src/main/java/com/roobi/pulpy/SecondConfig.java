@@ -42,7 +42,8 @@ public class SecondConfig extends HttpServlet {
 		PrintWriter out=response.getWriter();
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-		HttpSession session=request.getSession(true);
+			HttpSession session=request.getSession(true);
+			HttpSession session4=request.getSession(true);
 		String id=(String) session.getAttribute("id");
 		String appid=(String) session.getAttribute("appid");
 		String securl=request.getParameter("securl"); String cycle=request.getParameter("cycle"); String sec1=request.getParameter("sec1");String sec2=request.getParameter("sec2");
@@ -52,6 +53,18 @@ public class SecondConfig extends HttpServlet {
 		String s7=request.getParameter("s7");  String sv7=request.getParameter("sv7"); String s8=request.getParameter("s8"); String sv8=request.getParameter("sv8");
 		String s9=request.getParameter("s9");  String sv9=request.getParameter("sv9"); String s10=request.getParameter("s10"); String sv10=request.getParameter("sv10");
 	   String al=request.getParameter("alabel"); String ak=request.getParameter("akey");
+	   session4.setAttribute("securl",securl);session4.setAttribute("cycle",cycle);
+	   session4.setAttribute("alabel",al);session4.setAttribute("akey",ak);
+		session4.setAttribute("s1",s1);session4.setAttribute("sv1",sv1);
+	      session4.setAttribute("s2",s2);session4.setAttribute("sv2",sv2);
+	      session4.setAttribute("x3",s3);session4.setAttribute("sv3",sv3);
+	      session4.setAttribute("s4",s4);session4.setAttribute("sv4",sv4);
+	      session4.setAttribute("s5",s5);session4.setAttribute("sv5",sv5);
+	      session4.setAttribute("s6",s6);session4.setAttribute("sv6",sv6);
+	      session4.setAttribute("s7",s7);session4.setAttribute("sv7",sv7);
+	      session4.setAttribute("s8",s8);session4.setAttribute("sv8",sv8);
+	      session4.setAttribute("s9",s9);session4.setAttribute("sv9",sv9);
+	      session4.setAttribute("s10",s10);session4.setAttribute("sv10",sv10);
 		Connection con=null;
    	 try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -147,10 +160,8 @@ public class SecondConfig extends HttpServlet {
       	        	   //out.println(line);
              	      }
      	        	    //pw1.close();
-     	        	    request.setAttribute("PassingObj", secdurl);
-     	        	    request.setAttribute("Passing", str);
-     	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
-     	     		    disp.forward(request, response);	
+        	    	 session.setAttribute("xml1", str);
+	     		        response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");	
                    	 }}
              
              else if(authen1.equals("API keys")){  //API Keys
@@ -210,11 +221,8 @@ public class SecondConfig extends HttpServlet {
 	     	        	   //out.println(line);
 	            	      }
 	    	        	    //pw1.close();
-	    	        	    request.setAttribute("PassingObj", secdurl);
-	    	        	    request.setAttribute("Passing", str);
-
-	    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
-	    	     		    disp.forward(request, response);	
+	    	    	 session.setAttribute("xml1", str);
+	     		        response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");	
 	               	}
 	        	 
              
@@ -257,7 +265,7 @@ public class SecondConfig extends HttpServlet {
 	        		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
 	        			      secdurl=securl1;
 	        		 
-	        		 out.println(secdurl);
+	        		// out.println(secdurl);
 	        		 URL secdurl1=new URL(secdurl);
 	        		 URLConnection uconn = secdurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -267,7 +275,7 @@ public class SecondConfig extends HttpServlet {
 	        	     String line=null;
 	        	     String str=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	     	         FileWriter fw=new FileWriter("F:/workspace/MindPulpy1/WebContent/det.xml");
+//	     	         FileWriter fw=new FileWriter("F:/workspace/MindPulpy1/WebContent/det.xml");
 	     	        while ((line = br.readLine()) != null)    { 		  
 		         		  JSON json = JSONSerializer.toJSON( line );  
 		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
@@ -281,9 +289,11 @@ public class SecondConfig extends HttpServlet {
 		    			  //fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/det.xml");
 		    			  //fw.write(xmlout);
 		    			 // fw.flush();
-		     		     request.setAttribute("Passing", xmlout);
-	    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
-	    	     		    disp.forward(request, response);
+		     	    	 session.setAttribute("xml1", xmlout);
+		     		        response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");
+//		     		     request.setAttribute("Passing", xmlout);
+//	    	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/sec_xml_config.jsp");
+//	    	     		    disp.forward(request, response);
 		    		     }
 		    			 // fw.close();
 			        	  	       		
