@@ -457,7 +457,7 @@ public class AuthPulpy extends HttpServlet {
                  else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
 			    
                 	 session.setAttribute("xml1", GetResponse);
-	     		        response.setHeader("Refresh", "1; URL=auht1.jsp");	
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
                  } // if
             
 	         }//oauth	
