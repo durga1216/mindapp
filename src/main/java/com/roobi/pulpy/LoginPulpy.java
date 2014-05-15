@@ -36,6 +36,7 @@ public class LoginPulpy extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 	    PrintWriter out=response.getWriter(); 
 		String s1=request.getParameter("s1");
 		String s2=request.getParameter("s2");

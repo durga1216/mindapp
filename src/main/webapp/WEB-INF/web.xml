@@ -320,7 +320,7 @@
     <servlet-name>CommonPulpy1</servlet-name>
     <url-pattern>/CommonPulpy1</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>XmlConvert</display-name>
     <servlet-name>XmlConvert</servlet-name>
@@ -329,6 +329,16 @@
   <servlet-mapping>
     <servlet-name>XmlConvert</servlet-name>
     <url-pattern>/XmlConvert</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>Addapi</display-name>
+    <servlet-name>Addapi</servlet-name>
+    <servlet-class>com.roobi.pulpy.Addapi</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Addapi</servlet-name>
+    <url-pattern>/Addapi</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

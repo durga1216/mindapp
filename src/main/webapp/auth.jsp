@@ -11,7 +11,8 @@
     response.setDateHeader("Expires", 0);%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>MindPulpy</title>
-<link rel="shortcut icon" href="favicon.ico" /><style>
+<link rel="shortcut icon" href="favicon.ico" />
+<style>
 body{
 background-color:#FF9900;}
 .head{

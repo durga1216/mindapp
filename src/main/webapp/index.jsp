@@ -23,48 +23,63 @@
     
 input[type="text"]{
 color:#FF9900;
-font-size:20px;
+font-size:15px;
 background-color:#FFFFFF;
 margin-left:80px;
 font-family:verdana;
 width:400px;
-height:25px;
-padding:10px;
+height:20px;
+padding:8px;
 } 
 
 input[type="password"]{
 color:#FF9900;
-font-size:20px;
+font-size:15px;
 background-color:#FFFFFF;
 margin-left:80px;
 font-family:verdana;
 width:400px;
-height:25px;
-padding:10px;
+height:20px;
+padding:8px;
 } 
 
  input[type="submit"]{
 
 color:#FFFFFF;
-font-size:20px;
+font-size:15px;
 background-color:#FF9900;
+margin-left:550px;
 font-family:verdana;
-width:140px;
-height:50px;
+width:120px;
+height:40px;
 border:solid 2px;
 border-color:#FFFFFF;
-border-radius:50px;
+border-radius:20px;
 padding:10px;
 }
+input[type="button"]{
 
+color:#FFFFFF;
+font-size:15px;
+background-color:#FF9900;
+font-family:verdana;
+width:120px;
+height:40px;
+border:solid 2px;
+border-color:#FFFFFF;
+border-radius:20px;
+padding:10px;
+}
+img{
+margin-left:400px;
+}
 .space{
 height:20px;
 }
 .space1
 {height:30px;}
-.label{
+label{
 font-family:verdana;
-font-size:20px;
 color:#FFFFFF;
 }
 a{
@@ -100,7 +115,7 @@ a{
  var x3=document.forms["myForm"]["s4"].value;
  var passid_len = x3.length;  
  var mx=6;
-var my=10;
+var my=30;
 if (passid_len == 0 ||passid_len >= my || passid_len < mx)  
  {  
  alert("Password should not be empty / length be between "+mx+" to "+my);  
@@ -124,19 +139,24 @@ if (passid_len == 0 ||passid_len >= my || passid_len < mx)
          
    });
  </script>
- 
+ <script type="text/javascript">
+function add()
+{
+	window.location="login.jsp";
+	}
+</script>
 </head>
 <body>
 <form action="LoginPulpy" name="myForm" method="post" onsubmit="return validateForm()">
-<br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
+<br><div class="head"><center>Mind Pulpy</center></h2></div><br>
 <div class="sec">
 <center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
 <input  type=text name="s2" id='s2' placeholder="First Name"><br><br>
 <input  type=text name="s3" id='s3' placeholder="Last Name"><br><br>
-<input type=password name="s4" id='s4'  placeholder="Password"><br><br><br></center>
-<center><input type="submit" name="submit" id='sign' value="Sign Up"><center><br>
-<center><div class="label">OR</div></center><br>
-<center><a href="login.jsp">Click here to Login</a></center>
+<input type=password name="s4" id='s4'  placeholder="Password"><br><br></center>
+<input type="submit" name="submit" id='sign' value="Sign Up"> &nbsp;&nbsp;OR&nbsp;&nbsp;
+<input type="button" name="b2" value="Login" Onclick="add()"><br><br>
+<img src="images/mind1.jpg" width="700" height="250">
 </form>
 </body>
 </html>

@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Mind Pulpy</title>
+<script src="js/jquery-latest.js"></script>
+<link rel="shortcut icon" href="favicon.ico" />
 <style>
 body{
 background-color:#FF9900;
@@ -36,15 +38,48 @@ color:#FFFFFF;
 font-size:15px;
 font-family:verdana;
 text-align:right;}
-</style>
+input[type="button"]{
 
+color:#FFFFFF;
+font-size:15px;
+background-color:#FF9900;
+margin-left:20px;
+font-family:verdana;
+width:120px;
+height:40px;
+border:solid 2px;
+border-color:#FFFFFF;
+border-radius:20px;
+padding:10px;
+}
+#dis{
+margin-left:15px;
+color:#FFFFFF;
+font-size:20px;
+font-family:verdana;
+text-align:left;}
+</style>
+<script type="text/javascript">
+function add()
+{
+	window.location="addapi.jsp";
+	}
+function disp()
+{
+	window.location="apidisp.jsp";
+	}	
+</script>
 </head>
 <body>
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='login.jsp'> Sign Out </a></div>
 
-<br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
+<br><br><div class="head"><center>Mind Pulpy</center></h2></div><br>
+<div id='dis'>APIs</div>
+<input type="button" name="b1" value="Other APIs" Onclick="disp()">
+<input type="button" name="b2" value="Add Apis" Onclick="add()">
 <div class='suc'><center><h3>Login Sucess!!</h3></center></div>
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>
 <center><div id='pa'><a href='firstauth.jsp'>Create Application here</a></div></center>
 </body>
+
 </html>
