@@ -45,6 +45,7 @@ public class Addapi extends HttpServlet {
 		String pname=request.getParameter("t2");
 		String link=request.getParameter("t3");
 		String des=request.getParameter("t4");
+		String img=request.getParameter("t5");
 		Connection con=null;
 		PrintWriter out=response.getWriter();
 		try
@@ -52,7 +53,7 @@ public class Addapi extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	        PreparedStatement st=null;
-			 st=con.prepareStatement("insert into addapi(name,pname,link,des) values ('"+name+"','"+pname+"','"+link+"','"+des+"')");
+			 st=con.prepareStatement("insert into addapi(name,pname,link,des,img) values ('"+name+"','"+pname+"','"+link+"','"+des+"','"+img+"')");
 			 st.executeUpdate();
 		     st.close();
 			
@@ -62,7 +63,7 @@ public class Addapi extends HttpServlet {
 			
 		}
 		out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2>API ADDED SUCCESSFULLY</h2></center></body></html>");
-	     response.setHeader("Refresh", "1; URL=logsucess.jsp");
+	     response.setHeader("Refresh", "1; URL=indexpulpy.jsp");
 	}
 
 }

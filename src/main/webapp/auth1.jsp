@@ -102,7 +102,7 @@ text-align:right;}
     
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
-<form action="AuthPulpy1" method="post">
+<form action="AuthPulpy1" method="post" Onsubmit="check()">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
 <center><h2><a id='pa' href="javascript:load()">Load_Xml</a></h2></center><br><br>
 <center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
@@ -118,6 +118,14 @@ function load(){
 	window.open("<%=request.getContextPath()%>/XmlConvert", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 	
 	
+}
+function check(){
+
+	var answer = confirm("Confirm submit?")
+    if (!answer){
+        window.location = self.location.reload(true);  
+
+    }	    	       
 }
 </script>
 </body>

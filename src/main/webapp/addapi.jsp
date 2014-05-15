@@ -12,7 +12,7 @@ body{background-color:#FF9900;}
 .head{
     color:#FFFFFF;
     font-family:verdana;
-    font-size:40px;}
+    font-size:35px;}
     .au{
 font-family:verdana;
 font-weight:bold;
@@ -36,6 +36,7 @@ padding:10px;
 } 
 textarea{
 font-size:20px;
+margin-left:100px;
 font-family:verdana;
 width:400px;
 height:70px;
@@ -52,6 +53,10 @@ width:300px;
 height:25px;
 padding:10px;
 } 
+#txt{
+color:#FFFFFF;
+font-size:25px;
+}
 input[type="button"]{
 
 color:#FFFFFF;
@@ -90,16 +95,17 @@ color:#FFFFFF;
 <script type="text/javascript">
 function back()
 {
-	window.location="logsucess.jsp";
+	window.location="indexpulpy.jsp";
 	}
 </script>
 <body>
 <form name="add" action="Addapi" method="post">
-<br><br><div class="head"><h2><center>Mind Pulpy</center></h2></div><br>
+<br><br><div class="head"><center>Mind Pulpy</center></div><br>
 <center><input type="text" name="t1" placeholder="Api Name"><br><br>
 <input type="text" name="t2"  placeholder="Provider Name" ><br><br>
 <input type="text" name="t3"  placeholder="Eg: http://api.example.com"><br><br>
 <textarea name="t4" rows="10" cols="30" placeholder="Description"></textarea><br><br>
+<div id="txt">Select Image</div><input type="file" name="t5" placeholder="image location"><br><br>
 <input type="submit" value="Add Api">&nbsp;&nbsp;
 <input type="button" name="b2" value="Back" Onclick="back()">
 </center>

@@ -74,9 +74,6 @@ function disp()
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='login.jsp'> Sign Out </a></div>
 
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br>
-<div id='dis'>APIs</div>
-<input type="button" name="b1" value="Other APIs" Onclick="disp()">
-<input type="button" name="b2" value="Add Apis" Onclick="add()">
 <div class='suc'><center><h3>Login Sucess!!</h3></center></div>
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>
 <center><div id='pa'><a href='firstauth.jsp'>Create Application here</a></div></center>
