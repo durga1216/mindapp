@@ -691,7 +691,7 @@ out.println(thirdurl1);
         } // THIRD API KEY  
 	     
 
-     		 Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+     	/*	 Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
      		 Element outevent1=outdoc1.createElement("MPulpy");
      		 NodeList inevent1=null;
      		 XPath xPath1=XPathFactory.newInstance().newXPath();
