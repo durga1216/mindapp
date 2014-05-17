@@ -41,13 +41,12 @@ public class SecondConfig extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
-	   	 response.setHeader("Content-Type","text/;charset=UTF-8");
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 			HttpSession session=request.getSession(true);
 			HttpSession session4=request.getSession(true);
 		String id=(String) session.getAttribute("id");
 		String appid=(String) session.getAttribute("appid");
-		String reqtype=request.getParameter("select3");
+		String respf2=request.getParameter("select3");
 		String securl=request.getParameter("securl"); String cycle=request.getParameter("cycle"); String sec1=request.getParameter("sec1");String sec2=request.getParameter("sec2");
 		String s1=request.getParameter("s1");  String sv1=request.getParameter("sv1"); String s2=request.getParameter("s2"); String sv2=request.getParameter("sv2");
 		String s3=request.getParameter("s3");  String sv3=request.getParameter("sv3"); String s4=request.getParameter("s4"); String sv4=request.getParameter("sv4");
@@ -71,7 +70,7 @@ public class SecondConfig extends HttpServlet {
    	 try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-            PreparedStatement st=con.prepareStatement("insert into secondconfig(id,reqtype,appid,securl,cycle,sec1,sec2,alabel1,akey1,s1,sv1,s2,sv2,s3,sv3,s4,sv4,s5,sv5,s6,sv6,s7,sv7,s8,sv8,s9,sv9,s10,sv10) values ('"+id+"','"+reqtype+"','"+appid+"','"+securl+"','"+cycle+"','"+sec1+"','"+sec2+"','"+al+"','"+ak+"','"+s1+"','"+sv1+"','"+s2+"','"+sv2+"','"+s3+"','"+sv3+"','"+s4+"','"+sv4+"','"+s5+"','"+sv5+"','"+s6+"','"+sv6+"','"+s7+"','"+sv7+"','"+s8+"','"+sv8+"','"+s9+"','"+sv9+"','"+s10+"','"+sv10+"')");                
+            PreparedStatement st=con.prepareStatement("insert into secondconfig(id,appid,securl,cycle,sec1,sec2,alabel1,akey1,s1,sv1,s2,sv2,s3,sv3,s4,sv4,s5,sv5,s6,sv6,s7,sv7,s8,sv8,s9,sv9,s10,sv10,resf2) values ('"+id+"','"+appid+"','"+securl+"','"+cycle+"','"+sec1+"','"+sec2+"','"+al+"','"+ak+"','"+s1+"','"+sv1+"','"+s2+"','"+sv2+"','"+s3+"','"+sv3+"','"+s4+"','"+sv4+"','"+s5+"','"+sv5+"','"+s6+"','"+sv6+"','"+s7+"','"+sv7+"','"+s8+"','"+sv8+"','"+s9+"','"+sv9+"','"+s10+"','"+sv10+"','"+respf2+"')");                
             st.executeUpdate();
             st.close();
             st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN secondconfig t3 on t1.appid=t3.appid WHERE t1.appid=?");
@@ -101,7 +100,7 @@ public class SecondConfig extends HttpServlet {
              String se5=rs.getString("s5"); String sev5=rs.getString("sv5");String se6=rs.getString("s6"); String sev6=rs.getString("sv6");
              String se7=rs.getString("s7"); String sev7=rs.getString("sv7");String se8=rs.getString("s8"); String sev8=rs.getString("sv8");
              String se9=rs.getString("s9"); String sev9=rs.getString("sv9");String se10=rs.getString("s10"); String sev10=rs.getString("sv10");
-
+             String resf2=rs.getString("resf2");
             String secdurl=null;
           //  out.println(id+"<br>"+securl1+"<br>"+ak1);
             if(authen1.equals("No Auth")){ //No Authentication
@@ -145,7 +144,6 @@ public class SecondConfig extends HttpServlet {
     	        			 secdurl=securl1+"?"+secid+"="+secval;
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
     	        			 secdurl=securl1+"?"+ak1+"="+ak2;
-    	        	 //out.println(secdurl);
     	        	
     	        	 URL secdurl1=new URL(securl);
             		 URLConnection uconn = secdurl1.openConnection();
