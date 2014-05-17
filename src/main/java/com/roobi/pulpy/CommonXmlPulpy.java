@@ -241,7 +241,7 @@ public class CommonXmlPulpy extends HttpServlet {
 			 secdurl=securl1+"?"+secid+"="+pid;
 		 else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
 		     secdurl=securl1+"/"+pid;
-		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
+		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "null".equals(se1) &&"entity".equals(cycle1))
 		      secdurl=securl1+"?"+ak1+"="+ak2;
 		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
 			      secdurl=securl1;	
@@ -278,11 +278,7 @@ public class CommonXmlPulpy extends HttpServlet {
    
      
     
-        /*if(resf1.equals("XML") && authen1.equals("API keys")) 
-        doc=builder.parse(new URL(secdurl).openStream());
         
-        else if(resf1.equals("JSON") && authen1.equals("API keys"))
-        doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8"))));   */
 
         
         Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
