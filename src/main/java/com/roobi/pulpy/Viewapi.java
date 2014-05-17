@@ -34,23 +34,18 @@ public class Viewapi extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		 Connection con=null;
 			PrintWriter out=response.getWriter();
-			try
+            try
 			{
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 	            con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 		        PreparedStatement st=null;
 				 st=con.prepareStatement("select * from addapi");
 				    ResultSet rs = st.executeQuery();
-				 out.println("<br><br><br><body bgcolor='#FF9900'><div id='re' style='color:#FFFFFF; font-family:verdana; font-size:40px;'><center>Mind Pulpy</center></div><br><br><div id='re1' style='color:#FFFFFF; font-family:verdana; font-size:25px;'><center>ADDED API's<center><div><br><br><table align='center' border='1' bordercolor='#FFFFFF' style='color:#FFFFFF; font-size:20px; font-family:verdana; width:100%;'><tr><th>Api Name</th><th>Provider Name</th><th>catagory</th><th>URL</th><th>Description</th></tr>");
+				 out.println("<br><br><body bgcolor='#FF9900'><div id='re' style='color:#FFFFFF; font-family:verdana; font-size:40px;'><center>Mind Pulpy</center></div><br><div id='re1' style='color:#FFFFFF; font-family:verdana; font-size:25px;'><center>ADDED API's<center><div><br><br><table align='center' border='1' bordercolor='#FFFFFF' style='color:#FFFFFF; font-size:20px; font-family:verdana; width:100%;'><tr><th>Api Name</th><th>Provider Name</th><th>catagory</th><th>URL</th><th>Description</th></tr>");
 			        while(rs.next()){
 			        	String name=rs.getString("name");
 			            String pname=rs.getString("pname");
@@ -61,11 +56,20 @@ public class Viewapi extends HttpServlet {
 
 				
 			}
+			        out.println("</table></body>");
+
 			}
 			catch(Exception e)
 			{
 				out.println(e);
 			}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

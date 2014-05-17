@@ -340,6 +340,16 @@
     <servlet-name>Addapi</servlet-name>
     <url-pattern>/Addapi</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>Viewapi</display-name>
+    <servlet-name>Viewapi</servlet-name>
+    <servlet-class>com.roobi.pulpy.Viewapi</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Viewapi</servlet-name>
+    <url-pattern>/Viewapi</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>FirstAuthPulpy</display-name>
