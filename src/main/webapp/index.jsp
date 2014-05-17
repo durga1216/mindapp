@@ -73,6 +73,14 @@ padding:10px;
 img{
 margin-left:400px;
 }
+#indiv{color:#FFFFFF;
+}
+#na{
+margin-top:0;
+color:#FFFFFF;
+font-size:25px;
+font-family:verdana;
+text-align:right;}
 .space{
 height:20px;
 }
