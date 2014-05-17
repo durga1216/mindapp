@@ -284,7 +284,7 @@ public class AuthPulpy extends HttpServlet {
     	  	       	 str+=line;}}
 	        	     else if(resf1.equals("JSON")){
 	        	    	 while ((line = br.readLine()) != null)    { 
-	        	    	  JSON json = JSONSerializer.toJSON( line) 
+	        	    	  JSON json = JSONSerializer.toJSON( line) ;
 	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
 	   	     	          xmlSerializer.setTypeHintsEnabled(false);
 	   	     	          xmlSerializer.setSkipWhitespace(true);
