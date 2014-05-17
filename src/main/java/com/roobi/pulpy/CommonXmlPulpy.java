@@ -60,7 +60,7 @@ public class CommonXmlPulpy extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-	//	response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
 		String pid=request.getParameter("pid");String s1=request.getParameter("s1");String s2=request.getParameter("s2");
@@ -72,8 +72,7 @@ public class CommonXmlPulpy extends HttpServlet {
         Connection con=null;
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-        
-        con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+	    con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 c1  JOIN secondconfig c2 ON c1.appid=c2.appid JOIN secxmlconfig cx2 ON c1.appid=cx2.appid JOIN thirdconfig c3 ON c1.appid=c3.appid JOIN thrdxmlconfig cx3 on c1.appid=cx3.appid JOIN config c4 ON c1.appid=c4.appid  WHERE c1.appid=?");
 	    st.setString(1, appid);
         ResultSet rs = st.executeQuery();
@@ -81,7 +80,7 @@ public class CommonXmlPulpy extends HttpServlet {
         	String id=rs.getString("id");	 String appname1=rs.getString("appname");
             String authen1=rs.getString("auth");String ba1=rs.getString("b1");String ba2=rs.getString("b2");
             String ba3=rs.getString("b3");String ba4=rs.getString("b4");;String rf1=rs.getString("rf");String rm1=rs.getString("rm");
-                 String oriapilabel=rs.getString("a1"); String oriapikey=rs.getString("a2"); String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");//get from secondconfig
+            String oriapilabel=rs.getString("a1"); String oriapikey=rs.getString("a2"); String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");//get from secondconfig
             String securl1=rs.getString("securl");String cycle1=rs.getString("cycle");String secid=rs.getString("sec1"); String secval=rs.getString("sec2");
             String ak1=rs.getString("alabel1");String ak2=rs.getString("akey1");String se1=rs.getString("s1"); String sev1=rs.getString("sv1");String se2=rs.getString("s2"); String sev2=rs.getString("sv2");
             String se3=rs.getString("s3"); String sev3=rs.getString("sv3");String se4=rs.getString("s4"); String sev4=rs.getString("sv4");
@@ -104,7 +103,6 @@ public class CommonXmlPulpy extends HttpServlet {
  String sx25=rs.getString("sx25"); String sxv25=rs.getString("sxv25");String sx26=rs.getString("sx26"); String sxv26=rs.getString("sxv26");
  String sx27=rs.getString("sx27"); String sxv27=rs.getString("sxv27");String sx28=rs.getString("sx28"); String sxv28=rs.getString("sxv28");
  String sx29=rs.getString("sx29"); String sxv29=rs.getString("sxv29");String sx30=rs.getString("sx30"); String sxv30=rs.getString("sxv30");
- out.println(securl1);
  //get from thirdconfig
  String thirdurl1=rs.getString("thrdurl");String thirdcycle1=rs.getString("thrdcycle"); String akt1=rs.getString("alabel");String akt2=rs.getString("akey");
  String thrdid=rs.getString("thrd1"); String thrdval=rs.getString("thrd2");
@@ -130,7 +128,6 @@ public class CommonXmlPulpy extends HttpServlet {
  String tx25=rs.getString("tx25"); String txv25=rs.getString("txv25");String tx26=rs.getString("tx26"); String txv26=rs.getString("txv26");
  String tx27=rs.getString("tx27"); String txv27=rs.getString("txv27");String tx28=rs.getString("tx28"); String txv28=rs.getString("txv28");
  String tx29=rs.getString("tx29"); String txv29=rs.getString("txv29");String tx30=rs.getString("tx30"); String txv30=rs.getString("txv30");
-out.println(thirdurl1);
 // String jsonxmlout=null;
  String secjsonxml=null;
      String secdurl=null;
@@ -138,7 +135,7 @@ out.println(thirdurl1);
      DocumentBuilder builder=null;
      DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
      builder=domFactory.newDocumentBuilder();
-  /*if(authen1.equals("No Auth")){ //No Authentication
+  if(authen1.equals("No Auth")){ //No Authentication
      if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
     	 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
     		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
@@ -691,7 +688,7 @@ out.println(thirdurl1);
         } // THIRD API KEY  
 	     
 
-     	/*	 Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+     	     Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
      		 Element outevent1=outdoc1.createElement("MPulpy");
      		 NodeList inevent1=null;
      		 XPath xPath1=XPathFactory.newInstance().newXPath();
@@ -1082,7 +1079,7 @@ out.println(thirdurl1);
               while ((child = fromRoot.getFirstChild()) != null) {
                   outdoc1.adoptNode(child);
                   toRoot.appendChild(child);
-              }
+              }*/
               
               
               
@@ -1106,7 +1103,7 @@ out.println(thirdurl1);
      
       String xmloutput=result.getWriter().toString();
      
-      out.println(xmloutput);*/
+      out.println(xmloutput);
    	
      	
   }
