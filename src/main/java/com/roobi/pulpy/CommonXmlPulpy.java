@@ -17,6 +17,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +46,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.mindots.util.Utils;
+
 public class CommonXmlPulpy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -55,6 +59,7 @@ public class CommonXmlPulpy extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
@@ -67,10 +72,8 @@ public class CommonXmlPulpy extends HttpServlet {
         Connection con=null;
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-        String url1 = "jdbc:mysql://localhost/MPULPY";
-        final String USER = "root";
-        final String PASS = "root";
-        con = DriverManager.getConnection(url1,USER,PASS);
+        
+        con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 c1  JOIN secondconfig c2 ON c1.id=c2.id JOIN secxmlconfig cx2 ON c1.id=cx2.id JOIN thirdconfig c3 ON c1.id=c3.id JOIN thrdxmlconfig cx3 on c1.id=cx3.id JOIN config c4 ON c1.id=c4.id  WHERE c1.id=?");
 	    st.setString(1, appid);
         ResultSet rs = st.executeQuery();
@@ -136,7 +139,7 @@ public class CommonXmlPulpy extends HttpServlet {
      DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
      builder=domFactory.newDocumentBuilder();
    if(authen1.equals("No Auth")){ //No Authentication
-     if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //No Auth GET XML
+     if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
     	 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
     		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
     		 
@@ -1107,7 +1110,6 @@ public class CommonXmlPulpy extends HttpServlet {
  	} catch (TransformerException e) {
  		e.printStackTrace();
  	}
-      Writer output=null;
      
       String xmloutput=result.getWriter().toString();
      
