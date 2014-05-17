@@ -540,7 +540,7 @@ public class CommonXmlPulpy extends HttpServlet {
              	
           	// third API
           	
-        Document doc1=null;  //TO Convert XMLSTRING TO DOCUMENT
+     /*   Document doc1=null;  //TO Convert XMLSTRING TO DOCUMENT
         DocumentBuilder builder1=null;
         DocumentBuilderFactory domFactory1=DocumentBuilderFactory.newInstance();
         builder1=domFactory1.newDocumentBuilder();
@@ -610,7 +610,7 @@ public class CommonXmlPulpy extends HttpServlet {
      		           xmlSerializer.setForceTopLevelObject(false);
      			       jsonxmlout = xmlSerializer.write( json );
      	   	     }
-     	   	     // end-while  	*/	
+     	   	     // end-while  	
      		      doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
      	           		 
      	            } //JSON
@@ -682,7 +682,7 @@ public class CommonXmlPulpy extends HttpServlet {
 	           xmlSerializer.setForceTopLevelObject(false);
 		       jsonxmlout = xmlSerializer.write( json );
    	     }
-   	     // end-while  	*/	
+   	     // end-while  	
 	      doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
            		 
             } //JSON
@@ -693,7 +693,7 @@ public class CommonXmlPulpy extends HttpServlet {
                doc1=builder1.parse(new URL(thirdurl11).openStream());
             
 	         else if(resf1.equals("JSON") && authen1.equals("API keys"))
-	           doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));*/
+	           doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
 
      		 Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
      		 Element outevent1=outdoc1.createElement("MPulpy");
@@ -954,7 +954,7 @@ public class CommonXmlPulpy extends HttpServlet {
               outdoc1.appendChild(outevent1); //the full formed mpulpy xml now in document
         
                            
-            NodeList ndListFirstFile = outdoc.getElementsByTagName("root");
+           NodeList ndListFirstFile = outdoc.getElementsByTagName("root");
             for(int i=0;i<ndListFirstFile.getLength();i++){
             if(!"null".equals(tx1))	{
               Node nodeid = outdoc.importNode(outdoc1.getElementsByTagName(tx1).item(i), true);
@@ -1108,10 +1108,9 @@ public class CommonXmlPulpy extends HttpServlet {
  		e.printStackTrace();
  	}
       Writer output=null;
-      output=new BufferedWriter(new FileWriter("F:/workspace/mind.xml"));
+     
       String xmloutput=result.getWriter().toString();
-      output.write(xmloutput);
-      output.close();
+     
       out.println(xmloutput);
    	
      	
@@ -1120,7 +1119,7 @@ public class CommonXmlPulpy extends HttpServlet {
     
               
 		catch(Exception e){
-			
+			out.println(e);
 		}
 	}
 
