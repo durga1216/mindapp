@@ -176,13 +176,37 @@ public class CommonXmlPulpy extends HttpServlet {
     			 secdurl=securl1+"?"+secid+"="+pid;
     		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
     			 secdurl=securl1+"?"+ak1+"="+ak2;
+    	 if(resf1.equals("XML")){
+ 	        doc=builder.parse(new URL(secdurl).openStream());}
 
-
-     
-     }}
+ 		    else if(resf1.equals("JSON")){
+ 	 		 URL second_url=new URL(secdurl);
+    		     URLConnection uconn = second_url.openConnection();
+    	         HttpURLConnection conn = (HttpURLConnection) uconn;
+    	         conn.connect();
+    	         Object content = conn.getContent();
+    	         InputStream stream = (InputStream) content;
+    	         String line=null;
+    	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+    	         while ((line = br.readLine()) != null)    { 		  
+     	      JSON json = JSONSerializer.toJSON( line );  
+ 	          XMLSerializer xmlSerializer = new XMLSerializer();  
+ 	          xmlSerializer.setTypeHintsEnabled(false);
+ 	          xmlSerializer.setSkipWhitespace(true);
+ 	          xmlSerializer.setTrimSpaces(true);
+ 	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+ 	          xmlSerializer.removeNamespace(line);
+ 	          xmlSerializer.setForceTopLevelObject(false);
+ 		      secjsonxml = xmlSerializer.write( json );
+    	     }	      // end-while 
+    	     
+    	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+ 		    }//json
+      
+     }} // get  and No Auth
  
  else if(authen1.equals("API keys")){  //API Keys
-	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //API XML get
+	 if(rf1.equals("REST") && rm1.equals ("GET") ){  //API XML get
 		 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
 		     secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
 		 
@@ -217,56 +241,21 @@ public class CommonXmlPulpy extends HttpServlet {
 		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
 		      secdurl=securl1+"?"+ak1+"="+ak2;
 		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
-			      secdurl=securl1;		 
-	        doc=builder.parse(new URL(secdurl).openStream());
+			      secdurl=securl1;	
+		 
+		    if(resf1.equals("XML")){
+	        doc=builder.parse(new URL(secdurl).openStream());}
 
-		 }
-	 
-	 else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("JSON")){  //API JSON get
-		 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
-		     secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
-		 
-		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5)&& "entity".equals(cycle1)){
-    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5;}
-		 
-		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4)&& "entity".equals(cycle1)){
-    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4;}
-		 
-		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "entity".equals(cycle1)){
-    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3;}
-		 
-		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
-    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2;}
-		 
-		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
-    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1;}
-		 
-		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && "flow".equals(cycle1)){
-    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3;}
-		 
-		 else if(!"null".equals(se1) && !"null".equals(se2)&& "flow".equals(cycle1)){
-    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+s1+"&"+se2+"="+s2;}
-		 
-		 else if(!"null".equals(se1)&& "flow".equals(cycle1)){
-    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+s1;}
-		 
-		 else if(!"null".equals(secid)&& !"null".equals(pid) && "flow".equals(cycle1))
-			 secdurl=securl1+"?"+secid+"="+pid;
-		 else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
-		     secdurl=securl1+"/"+pid;
-		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
-		      secdurl=securl1+"?"+ak1+"="+ak2;
-		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
-			      secdurl=securl1;		 
-		 URL second_url=new URL(secdurl);
-   		 URLConnection uconn = second_url.openConnection();
-   	     HttpURLConnection conn = (HttpURLConnection) uconn;
-   	     conn.connect();
-   	     Object content = conn.getContent();
-   	     InputStream stream = (InputStream) content;
-   	     String line=null;
-   	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-   	     while ((line = br.readLine()) != null)    { 		  
+		    else if(resf1.equals("JSON")){
+	 		 URL second_url=new URL(secdurl);
+   		     URLConnection uconn = second_url.openConnection();
+   	         HttpURLConnection conn = (HttpURLConnection) uconn;
+   	         conn.connect();
+   	         Object content = conn.getContent();
+   	         InputStream stream = (InputStream) content;
+   	         String line=null;
+   	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+   	         while ((line = br.readLine()) != null)    { 		  
     	      JSON json = JSONSerializer.toJSON( line );  
 	          XMLSerializer xmlSerializer = new XMLSerializer();  
 	          xmlSerializer.setTypeHintsEnabled(false);
@@ -279,7 +268,7 @@ public class CommonXmlPulpy extends HttpServlet {
    	     }	      // end-while 
    	     
    	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
-		 
+	 } //api get
 	 }  //end if JSON
  
  }
@@ -560,7 +549,7 @@ public class CommonXmlPulpy extends HttpServlet {
             String thirdurl11=null;
             String jsonxmlout=null;
             if(authen1.equals("No Auth")){ //No Authentication
-     	         if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //No Auth GET XML
+     	         if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
 
      	        	 if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6) && "entity".equals(thirdcycle1)){
      	        		 thirdurl11=thirdurl1+"?"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4+"&"+tp5+"="+th5+"&"+tp6+"="+th6;}
@@ -595,9 +584,41 @@ public class CommonXmlPulpy extends HttpServlet {
      	        			 thirdurl11=thirdurl1+"?"+thrdid+"="+paid;
      	        		 else if(!"null".equals(ak1) && !"null".equals(ak2))
      	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
-     	         }}
+     	        		 
+     	        	 
+     	        	 if(resf1.equals("XML"))
+     	           		 doc1=builder1.parse(new URL(thirdurl11).openStream());
+     	           	 
+     	           	 
+     	           	    else if(resf1.equals("JSON")){
+     	                URL third=new URL(thirdurl11);
+     	   		        URLConnection uconn = third.openConnection();
+     	   	            HttpURLConnection conn = (HttpURLConnection) uconn;
+     	   	            conn.connect();
+     	   	            Object content = conn.getContent();
+     	   	            InputStream stream = (InputStream) content;
+     	   	            String line=null;
+     	   	            BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+     	   	           while ((line = br.readLine()) != null)    { 		  
+     	    	       JSON json = JSONSerializer.toJSON( line );  
+     		           XMLSerializer xmlSerializer = new XMLSerializer();  
+     		           xmlSerializer.setTypeHintsEnabled(false);
+     		           xmlSerializer.setSkipWhitespace(true);
+     		           xmlSerializer.setTrimSpaces(true);
+     		           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+     		           xmlSerializer.removeNamespace(line);
+     		           xmlSerializer.setForceTopLevelObject(false);
+     			       jsonxmlout = xmlSerializer.write( json );
+     	   	     }
+     	   	     // end-while  	*/	
+     		      doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
+     	           		 
+     	            } //JSON
+	 
+     	        	 
+     	         }}// No auth and get
             else if(authen1.equals("API keys")){  //API Keys
-           	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //API XML get
+           	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get
            		 
 
            		 if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6)&& "entity".equals(thirdcycle1)){
@@ -633,72 +654,41 @@ public class CommonXmlPulpy extends HttpServlet {
            		 else if(!"null".equals(akt1) && !"null".equals(akt2)&& "entity".equals(thirdcycle1))
            			      thirdurl11=thirdurl1+"?"+akt1+"="+akt2;
            		 
-           		doc1=builder1.parse(new URL(thirdurl11).openStream());
-           	 }
+           		 else if("null".equals(akt1) && "null".equals(akt2))
+           			      thirdurl11=thirdurl1;
+           		 
+           		
+           		 if(resf1.equals("XML"))
+           		 doc1=builder1.parse(new URL(thirdurl11).openStream());
            	 
-            
-       else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("JSON")){  //API JSON get
-
-        	if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6)&& "entity".equals(thirdcycle1)){
-      		     thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4+"&"+tp5+"="+th5+"&"+tp6+"="+th6;}
-      		 
-      		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5)&& "entity".equals(thirdcycle1)){
-	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4+"&"+tp5+"="+th5;}
-      		 
-      		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4)&& "entity".equals(thirdcycle1)){
-	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4;}
-      		 
-      		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3)&& "entity".equals(thirdcycle1)){
-	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3;}
-      		 
-      		 else if(!"null".equals(tp1) && !"null".equals(tp2)&& "entity".equals(thirdcycle1)){
-	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1+"&"+tp2+"="+th2;}
-      		 
-      		 else if(!"null".equals(tp1)&& "entity".equals(thirdcycle1)){
-	        		 thirdurl11=thirdurl1+"?"+akt1+"="+akt2+"&"+tp1+"="+th1;}
-      		 
-      		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3)){
-	        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+paid+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3;}
-      		 
-      		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1) && !"null".equals(tp2)){
-	        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+paid+"&"+tp1+"="+th1+"&"+tp2+"="+th2;}
-      		 
-      		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1)){
-	        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+paid+"&"+tp1+"="+th1;}
-      		 
-      		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1))
-      			 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+paid;
-      		
-      		 else if(!"null".equals(akt1) && !"null".equals(akt2)&& "entity".equals(thirdcycle1))
-      			      thirdurl11=thirdurl1+"?"+akt1+"="+akt2;
-        
-        // out.println(thirdurl11);
-         URL third=new URL(thirdurl11);
-   		 URLConnection uconn = third.openConnection();
-   	     HttpURLConnection conn = (HttpURLConnection) uconn;
-   	     conn.connect();
-   	     Object content = conn.getContent();
-   	     InputStream stream = (InputStream) content;
-   	     String line=null;
-   	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-   	     while ((line = br.readLine()) != null)    { 		  
-    	      JSON json = JSONSerializer.toJSON( line );  
-	          XMLSerializer xmlSerializer = new XMLSerializer();  
-	          xmlSerializer.setTypeHintsEnabled(false);
-	          xmlSerializer.setSkipWhitespace(true);
-	          xmlSerializer.setTrimSpaces(true);
-	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-	          xmlSerializer.removeNamespace(line);
-	          xmlSerializer.setForceTopLevelObject(false);
-		      jsonxmlout = xmlSerializer.write( json );
+           	 
+           	    else if(resf1.equals("JSON")){
+                URL third=new URL(thirdurl11);
+   		        URLConnection uconn = third.openConnection();
+   	            HttpURLConnection conn = (HttpURLConnection) uconn;
+   	            conn.connect();
+   	            Object content = conn.getContent();
+   	            InputStream stream = (InputStream) content;
+   	            String line=null;
+   	            BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+   	           while ((line = br.readLine()) != null)    { 		  
+    	       JSON json = JSONSerializer.toJSON( line );  
+	           XMLSerializer xmlSerializer = new XMLSerializer();  
+	           xmlSerializer.setTypeHintsEnabled(false);
+	           xmlSerializer.setSkipWhitespace(true);
+	           xmlSerializer.setTrimSpaces(true);
+	           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+	           xmlSerializer.removeNamespace(line);
+	           xmlSerializer.setForceTopLevelObject(false);
+		       jsonxmlout = xmlSerializer.write( json );
    	     }
    	     // end-while  	*/	
 	      doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
-
-            }
+           		 
+            } //JSON
             
-            }   
-            
+            }  //GET 
+        } // THIRD API KEY  
 	     /*    if(resf1.equals("XML") && authen1.equals("API keys")) 
                doc1=builder1.parse(new URL(thirdurl11).openStream());
             
