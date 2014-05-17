@@ -539,7 +539,7 @@ public class CommonXmlPulpy extends HttpServlet {
              	
           	// third API
           	
-     /*   Document doc1=null;  //TO Convert XMLSTRING TO DOCUMENT
+        Document doc1=null;  //TO Convert XMLSTRING TO DOCUMENT
         DocumentBuilder builder1=null;
         DocumentBuilderFactory domFactory1=DocumentBuilderFactory.newInstance();
         builder1=domFactory1.newDocumentBuilder();
@@ -688,11 +688,7 @@ public class CommonXmlPulpy extends HttpServlet {
             
             }  //GET 
         } // THIRD API KEY  
-	     /*    if(resf1.equals("XML") && authen1.equals("API keys")) 
-               doc1=builder1.parse(new URL(thirdurl11).openStream());
-            
-	         else if(resf1.equals("JSON") && authen1.equals("API keys"))
-	           doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
+	     
 
      		 Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
      		 Element outevent1=outdoc1.createElement("MPulpy");
