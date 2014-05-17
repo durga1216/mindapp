@@ -60,7 +60,7 @@ public class CommonXmlPulpy extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-		response.setHeader("Content-Type","text/xml; charset=UTF-8");
+	//	response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
 		String pid=request.getParameter("pid");String s1=request.getParameter("s1");String s2=request.getParameter("s2");
