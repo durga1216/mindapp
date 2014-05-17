@@ -60,7 +60,7 @@ public class CommonXmlPulpy extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-	//	response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
 		String pid=request.getParameter("pid");String s1=request.getParameter("s1");String s2=request.getParameter("s2");
@@ -74,7 +74,7 @@ public class CommonXmlPulpy extends HttpServlet {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 c1  JOIN secondconfig c2 ON c1.id=c2.id JOIN secxmlconfig cx2 ON c1.id=cx2.id JOIN thirdconfig c3 ON c1.id=c3.id JOIN thrdxmlconfig cx3 on c1.id=cx3.id JOIN config c4 ON c1.id=c4.id  WHERE c1.id=?");
+	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 c1  JOIN secondconfig c2 ON c1.appid=c2.appid JOIN secxmlconfig cx2 ON c1.appid=cx2.appid JOIN thirdconfig c3 ON c1.appid=c3.appid JOIN thrdxmlconfig cx3 on c1.appid=cx3.appid JOIN config c4 ON c1.appid=c4.appid  WHERE c1.appid=?");
 	    st.setString(1, appid);
         ResultSet rs = st.executeQuery();
         while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
@@ -104,7 +104,7 @@ public class CommonXmlPulpy extends HttpServlet {
  String sx25=rs.getString("sx25"); String sxv25=rs.getString("sxv25");String sx26=rs.getString("sx26"); String sxv26=rs.getString("sxv26");
  String sx27=rs.getString("sx27"); String sxv27=rs.getString("sxv27");String sx28=rs.getString("sx28"); String sxv28=rs.getString("sxv28");
  String sx29=rs.getString("sx29"); String sxv29=rs.getString("sxv29");String sx30=rs.getString("sx30"); String sxv30=rs.getString("sxv30");
- //out.println(securl1);
+ out.println(securl1);
  //get from thirdconfig
  String thirdurl1=rs.getString("thrdurl");String thirdcycle1=rs.getString("thrdcycle"); String akt1=rs.getString("alabel");String akt2=rs.getString("akey");
  String thrdid=rs.getString("thrd1"); String thrdval=rs.getString("thrd2");
@@ -130,7 +130,7 @@ public class CommonXmlPulpy extends HttpServlet {
  String tx25=rs.getString("tx25"); String txv25=rs.getString("txv25");String tx26=rs.getString("tx26"); String txv26=rs.getString("txv26");
  String tx27=rs.getString("tx27"); String txv27=rs.getString("txv27");String tx28=rs.getString("tx28"); String txv28=rs.getString("txv28");
  String tx29=rs.getString("tx29"); String txv29=rs.getString("txv29");String tx30=rs.getString("tx30"); String txv30=rs.getString("txv30");
-// out.println(thirdurl1);
+out.println(thirdurl1);
 // String jsonxmlout=null;
  String secjsonxml=null;
      String secdurl=null;
@@ -138,7 +138,7 @@ public class CommonXmlPulpy extends HttpServlet {
      DocumentBuilder builder=null;
      DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
      builder=domFactory.newDocumentBuilder();
-   if(authen1.equals("No Auth")){ //No Authentication
+  if(authen1.equals("No Auth")){ //No Authentication
      if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
     	 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
     		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
@@ -282,7 +282,7 @@ public class CommonXmlPulpy extends HttpServlet {
         
 
         
-       /* Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+        Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
         Element outevent=outdoc.createElement("MPulpy");
         NodeList inevent=null;
         XPath xPath=XPathFactory.newInstance().newXPath();
@@ -1082,7 +1082,7 @@ public class CommonXmlPulpy extends HttpServlet {
               while ((child = fromRoot.getFirstChild()) != null) {
                   outdoc1.adoptNode(child);
                   toRoot.appendChild(child);
-              }
+              }*/
               
               
               
@@ -1106,7 +1106,7 @@ public class CommonXmlPulpy extends HttpServlet {
      
       String xmloutput=result.getWriter().toString();
      
-      out.println(xmloutput);*/
+      out.println(xmloutput);
    	
      	
   }
