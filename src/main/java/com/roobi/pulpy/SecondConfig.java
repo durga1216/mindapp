@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -144,7 +145,9 @@ public class SecondConfig extends HttpServlet {
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
     	        			 secdurl=securl1+"?"+ak1+"="+ak2;
     	        	 //out.println(secdurl);
-    	        	 URL secdurl1=new URL(secdurl);
+    	        	 String encodedUrl = URLEncoder.encode(secdurl, "UTF-8");	 
+	 	        		out.println("Encoded URL " + encodedUrl);
+    	        	 URL secdurl1=new URL(encodedUrl);
             		 URLConnection uconn = secdurl1.openConnection();
             	     HttpURLConnection conn = (HttpURLConnection) uconn;
             	     conn.connect();
@@ -205,7 +208,9 @@ public class SecondConfig extends HttpServlet {
 	        			      secdurl=securl1;
 	        		 
 	        		// out.println(secdurl);
-	        		 URL secdurl1=new URL(secdurl);
+	        		 String encodedUrl = URLEncoder.encode(secdurl, "UTF-8");	 
+	 	        		out.println("Encoded URL " + encodedUrl);
+	        		 URL secdurl1=new URL(encodedUrl);
 	        		 URLConnection uconn = secdurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	        	     conn.connect();
@@ -266,7 +271,9 @@ public class SecondConfig extends HttpServlet {
 	        			      secdurl=securl1;
 	        		 
 	        		// out.println(secdurl);
-	        		 URL secdurl1=new URL(secdurl);
+	        		 String encodedUrl = URLEncoder.encode(secdurl, "UTF-8");	 
+	 	        		out.println("Encoded URL " + encodedUrl);
+	        		 URL secdurl1=new URL(encodedUrl);
 	        		 URLConnection uconn = secdurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	        	     conn.connect();

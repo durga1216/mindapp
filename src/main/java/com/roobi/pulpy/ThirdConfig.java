@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -127,7 +128,9 @@ public class ThirdConfig extends HttpServlet {
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2))
     	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
     	        	// out.println(thirdurl11);
-    	        	 URL thirdurl2=new URL(thirdurl11);
+    	        	 String encodedUrl = URLEncoder.encode(thirdurl11, "UTF-8");	 
+	 	        		out.println("Encoded URL " + encodedUrl);
+    	        	 URL thirdurl2=new URL(encodedUrl);
             		 URLConnection uconn = thirdurl2.openConnection();
             	     HttpURLConnection conn = (HttpURLConnection) uconn;
             	     conn.connect();
@@ -187,7 +190,9 @@ public class ThirdConfig extends HttpServlet {
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
 	        		// out.println(thirdurl11);
-	        		 URL url1=new URL(thirdurl11);
+	        		 String encodedUrl = URLEncoder.encode(thirdurl11, "UTF-8");	 
+	 	        		out.println("Encoded URL " + encodedUrl);
+	        		 URL url1=new URL(encodedUrl);
      				 URLConnection uconn = url1.openConnection();
      				 String str="";
                       BufferedReader br = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
@@ -243,7 +248,9 @@ public class ThirdConfig extends HttpServlet {
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
 	        		// out.println(thirdurl11);
-	        		 URL url1=new URL(thirdurl11);
+	        		 String encodedUrl = URLEncoder.encode(thirdurl11, "UTF-8");	 
+	 	        		out.println("Encoded URL " + encodedUrl);
+	        		 URL url1=new URL(encodedUrl);
      				 URLConnection uconn = url1.openConnection();
 
                       BufferedReader in = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
