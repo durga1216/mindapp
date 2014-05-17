@@ -103,6 +103,7 @@ function back()
 <br><br><div class="head"><center>Mind Pulpy</center></div><br>
 <center><input type="text" name="t1" placeholder="Api Name"><br><br>
 <input type="text" name="t2"  placeholder="Provider Name" ><br><br>
+<input type="text" name="t6"  placeholder="category" ><br><br>
 <input type="text" name="t3"  placeholder="Eg: http://api.example.com"><br><br>
 <textarea name="t4" rows="10" cols="30" placeholder="Description"></textarea><br><br>
 <div id="txt">Select Image</div><input type="file" name="t5" placeholder="image location"><br><br>

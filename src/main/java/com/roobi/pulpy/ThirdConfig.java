@@ -47,6 +47,7 @@ public class ThirdConfig extends HttpServlet {
 		HttpSession session4=request.getSession(true);
 		String id=(String) session.getAttribute("id");
 		String appid=(String) session.getAttribute("appid");
+		String reqtype3=request.getParameter("select3");
 		String thirdurl=request.getParameter("thrdurl"); String thirdcycle=request.getParameter("thirdcycle"); String thrd1=request.getParameter("thrd1");String thrd2=request.getParameter("thrd2");
 		String t1=request.getParameter("t1");  String tv1=request.getParameter("tv1"); String t2=request.getParameter("t2"); String tv2=request.getParameter("tv2");
 		String t3=request.getParameter("t3");  String tv3=request.getParameter("tv3"); String t4=request.getParameter("t4"); String tv4=request.getParameter("tv4");
@@ -70,7 +71,7 @@ public class ThirdConfig extends HttpServlet {
    	        try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-            PreparedStatement st=con.prepareStatement("insert into thirdconfig(id,appid,thrdurl,thrdcycle,alabel,akey,thrd1,thrd2,t1,tv1,t2,tv2,t3,tv3,t4,tv4,t5,tv5,t6,tv6,t7,tv7,t8,tv8,t9,tv9,t10,tv10) values ('"+id+"','"+appid+"','"+thirdurl+"','"+thirdcycle+"','"+al+"','"+ak+"','"+thrd1+"','"+thrd2+"','"+t1+"','"+tv1+"','"+t2+"','"+tv2+"','"+t3+"','"+tv3+"','"+t4+"','"+tv4+"','"+t5+"','"+tv5+"','"+t6+"','"+tv6+"','"+t7+"','"+tv7+"','"+t8+"','"+tv8+"','"+t9+"','"+tv9+"','"+t10+"','"+tv10+"')");                
+            PreparedStatement st=con.prepareStatement("insert into thirdconfig(id,reqtype3,appid,thrdurl,thrdcycle,alabel,akey,thrd1,thrd2,t1,tv1,t2,tv2,t3,tv3,t4,tv4,t5,tv5,t6,tv6,t7,tv7,t8,tv8,t9,tv9,t10,tv10) values ('"+id+"','"+reqtype3+"','"+appid+"','"+thirdurl+"','"+thirdcycle+"','"+al+"','"+ak+"','"+thrd1+"','"+thrd2+"','"+t1+"','"+tv1+"','"+t2+"','"+tv2+"','"+t3+"','"+tv3+"','"+t4+"','"+tv4+"','"+t5+"','"+tv5+"','"+t6+"','"+tv6+"','"+t7+"','"+tv7+"','"+t8+"','"+tv8+"','"+t9+"','"+tv9+"','"+t10+"','"+tv10+"')");                
             st.executeUpdate();
             st.close();
             out.println("INsert sucess");

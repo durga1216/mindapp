@@ -96,12 +96,10 @@ public class SecondXmlConfig extends HttpServlet {
       
             ResultSet rs = st.executeQuery();
 	         while(rs.next()){
-   	     String appid1=rs.getString("appid");
              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
              if(submit.equals("Continue"))
             response.setHeader("Refresh", "1; URL=third_config.jsp");
              else if(submit.equals("Finish")){
-           	  request.setAttribute("appid", appid1); 
 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/final.jsp");
                 disp.forward( request, response );    }  
            }}

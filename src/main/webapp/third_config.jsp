@@ -77,6 +77,24 @@ height:30%;
 background-color:#FFFFFF;
 border-radius:50px;
 padding:15px;}
+.resformat{font-family:verdana;
+font-size: 20px;
+font-weight:bold;
+color:#FF9900;
+margin-left:480px;
+width:25%;
+height:30%;
+background-color:#FFFFFF;
+border-radius:50px;
+padding:15px;}
+select{color:#FF9900;
+font-size:20px;
+background-color:#FFFFFF;
+margin-left:540px;
+font-family:verdana;
+width:250px;
+height:50px;
+padding:10px;}
 label{
 font-family:verdana;
 font-size: 20px;
@@ -144,7 +162,13 @@ function removeParent(){
 <input type="radio" name="thirdcycle"   value="entity">
 <label for="rd2">Entity Based</label>
 </CENTER><br><br>
-
+<div class="resformat"><center>Response Format</center></div>
+<select name="select3" id="select3">
+     <option value="XML">XML</option>
+     <option value="JSON">JSON</option>
+     <option value="XML-RPC">XML-RPC</option>
+    <option value="SOAP">SOAP</option>
+</select><br><br>
 <div id="ent" style="display:none">
 <input type="text" name="alabel" value="" placeholder="Key_Label"><br>
 <input type="text" name="akey" value="" placeholder="Key_value"><br>

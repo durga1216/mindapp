@@ -46,6 +46,7 @@ public class Addapi extends HttpServlet {
 		String link=request.getParameter("t3");
 		String des=request.getParameter("t4");
 		String img=request.getParameter("t5");
+		String cat=request.getParameter("t6");
 		Connection con=null;
 		PrintWriter out=response.getWriter();
 		try
@@ -53,7 +54,7 @@ public class Addapi extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	        PreparedStatement st=null;
-			 st=con.prepareStatement("insert into addapi(name,pname,link,des,img) values ('"+name+"','"+pname+"','"+link+"','"+des+"','"+img+"')");
+			 st=con.prepareStatement("insert into addapi(name,pname,link,des,img,cat) values ('"+name+"','"+pname+"','"+link+"','"+des+"','"+img+"','"+cat+"')");
 			 st.executeUpdate();
 		     st.close();
 			

@@ -51,7 +51,7 @@ text-align:left;
 <table align='center' bgcolor='white' border='none' bordercolor='#000000' width=100>
 <tr>
 <th>Your_App_ID</th>
-<th>: <%=request.getAttribute("appid")%></th>
+<th>: <%=session.getAttribute("appid")%></th>
 </tr><tr><td>App_Name</td>
 <td>: <%=session.getAttribute("appname")%></td></tr>
 <tr><td>Auth_Type</td>
