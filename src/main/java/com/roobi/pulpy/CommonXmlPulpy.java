@@ -176,33 +176,7 @@ public class CommonXmlPulpy extends HttpServlet {
     			 secdurl=securl1+"?"+secid+"="+pid;
     		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
     			 secdurl=securl1+"?"+ak1+"="+ak2;
-    	 if(resf1.equals("XML")){
- 	        doc=builder.parse(new URL(secdurl).openStream());}
-
- 		    else if(resf1.equals("JSON")){
- 	 		 URL second_url=new URL(secdurl);
-    		     URLConnection uconn = second_url.openConnection();
-    	         HttpURLConnection conn = (HttpURLConnection) uconn;
-    	         conn.connect();
-    	         Object content = conn.getContent();
-    	         InputStream stream = (InputStream) content;
-    	         String line=null;
-    	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-    	         while ((line = br.readLine()) != null)    { 		  
-     	      JSON json = JSONSerializer.toJSON( line );  
- 	          XMLSerializer xmlSerializer = new XMLSerializer();  
- 	          xmlSerializer.setTypeHintsEnabled(false);
- 	          xmlSerializer.setSkipWhitespace(true);
- 	          xmlSerializer.setTrimSpaces(true);
- 	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
- 	          xmlSerializer.removeNamespace(line);
- 	          xmlSerializer.setForceTopLevelObject(false);
- 		      secjsonxml = xmlSerializer.write( json );
-    	     }	      // end-while 
-    	     
-    	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
- 		    }//json
-      
+    	      
      }} // get  and No Auth
  
  else if(authen1.equals("API keys")){  //API Keys
@@ -243,38 +217,38 @@ public class CommonXmlPulpy extends HttpServlet {
 		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
 			      secdurl=securl1;	
 		
-		 out.println(secdurl);
-		    if(resf1.equals("XML")){
-	        doc=builder.parse(new URL(secdurl).openStream());}
-
-		    else if(resf1.equals("JSON")){
-	 		 URL second_url=new URL(secdurl);
-   		     URLConnection uconn = second_url.openConnection();
-   	         HttpURLConnection conn = (HttpURLConnection) uconn;
-   	         conn.connect();
-   	         Object content = conn.getContent();
-   	         InputStream stream = (InputStream) content;
-   	         String line=null;
-   	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-   	         while ((line = br.readLine()) != null)    { 		  
-    	      JSON json = JSONSerializer.toJSON( line );  
-	          XMLSerializer xmlSerializer = new XMLSerializer();  
-	          xmlSerializer.setTypeHintsEnabled(false);
-	          xmlSerializer.setSkipWhitespace(true);
-	          xmlSerializer.setTrimSpaces(true);
-	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-	          xmlSerializer.removeNamespace(line);
-	          xmlSerializer.setForceTopLevelObject(false);
-		      secjsonxml = xmlSerializer.write( json );
-   	     }	      // end-while 
-   	     
-   	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
-	 } //api get
+		    	     
 	 }  //end if JSON
  
  }
    
-     
+  if(resf1.equals("XML")){
+       doc=builder.parse(new URL(secdurl).openStream());}
+
+	    else if(resf1.equals("JSON")){
+		 URL second_url=new URL(secdurl);
+		     URLConnection uconn = second_url.openConnection();
+	         HttpURLConnection conn = (HttpURLConnection) uconn;
+	         conn.connect();
+	         Object content = conn.getContent();
+	         InputStream stream = (InputStream) content;
+	         String line=null;
+	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	         while ((line = br.readLine()) != null)    { 		  
+	      JSON json = JSONSerializer.toJSON( line );  
+         XMLSerializer xmlSerializer = new XMLSerializer();  
+         xmlSerializer.setTypeHintsEnabled(false);
+         xmlSerializer.setSkipWhitespace(true);
+         xmlSerializer.setTrimSpaces(true);
+         xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+         xmlSerializer.removeNamespace(line);
+         xmlSerializer.setForceTopLevelObject(false);
+	      secjsonxml = xmlSerializer.write( json );
+	     }	      // end-while 
+	     
+	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+	    }//json
+
     
         
 
