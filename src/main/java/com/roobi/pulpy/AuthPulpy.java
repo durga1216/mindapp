@@ -215,6 +215,7 @@ public class AuthPulpy extends HttpServlet {
 	   	     	          xmlSerializer.setTrimSpaces(true);
 	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
 	   	     	          xmlSerializer.removeNamespace(line);
+	   	     	          xmlSerializer.setRootName("root");
 	   	     	          xmlSerializer.setForceTopLevelObject(false);
 	   	     		      str = xmlSerializer.write( json );
 	        		 } //while
@@ -291,6 +292,7 @@ public class AuthPulpy extends HttpServlet {
 	   	     	          xmlSerializer.setTrimSpaces(true);
 	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
 	   	     	          xmlSerializer.removeNamespace(line);
+	   	     	          xmlSerializer.setRootName("root");
 	   	     	          xmlSerializer.setForceTopLevelObject(false);
 	   	     		      str = xmlSerializer.write( json );
 	   	    			
