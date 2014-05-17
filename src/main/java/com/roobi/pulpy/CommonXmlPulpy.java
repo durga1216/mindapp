@@ -245,7 +245,8 @@ public class CommonXmlPulpy extends HttpServlet {
 		      secdurl=securl1+"?"+ak1+"="+ak2;
 		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
 			      secdurl=securl1;	
-		 
+		
+		 out.println(secdurl);
 		    if(resf1.equals("XML")){
 	        doc=builder.parse(new URL(secdurl).openStream());}
 
@@ -281,7 +282,7 @@ public class CommonXmlPulpy extends HttpServlet {
         
 
         
-        Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+       /* Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
         Element outevent=outdoc.createElement("MPulpy");
         NodeList inevent=null;
         XPath xPath=XPathFactory.newInstance().newXPath();
@@ -1081,7 +1082,7 @@ public class CommonXmlPulpy extends HttpServlet {
               while ((child = fromRoot.getFirstChild()) != null) {
                   outdoc1.adoptNode(child);
                   toRoot.appendChild(child);
-              }*/
+              }
               
               
               
@@ -1105,7 +1106,7 @@ public class CommonXmlPulpy extends HttpServlet {
      
       String xmloutput=result.getWriter().toString();
      
-      out.println(xmloutput);
+      out.println(xmloutput);*/
    	
      	
   }
