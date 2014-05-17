@@ -58,7 +58,7 @@ public class SecondConfig extends HttpServlet {
 	   session4.setAttribute("alabel",al);session4.setAttribute("akey",ak);
 		session4.setAttribute("s1",s1);session4.setAttribute("sv1",sv1);
 	      session4.setAttribute("s2",s2);session4.setAttribute("sv2",sv2);
-	      session4.setAttribute("x3",s3);session4.setAttribute("sv3",sv3);
+	      session4.setAttribute("s3",s3);session4.setAttribute("sv3",sv3);
 	      session4.setAttribute("s4",s4);session4.setAttribute("sv4",sv4);
 	      session4.setAttribute("s5",s5);session4.setAttribute("sv5",sv5);
 	      session4.setAttribute("s6",s6);session4.setAttribute("sv6",sv6);
@@ -145,9 +145,8 @@ public class SecondConfig extends HttpServlet {
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
     	        			 secdurl=securl1+"?"+ak1+"="+ak2;
     	        	 //out.println(secdurl);
-    	        	 String encodedUrl = URLEncoder.encode(secdurl, "UTF-8");	 
-	 	        		out.println("Encoded URL " + encodedUrl);
-    	        	 URL secdurl1=new URL(encodedUrl);
+    	        	
+    	        	 URL secdurl1=new URL(securl);
             		 URLConnection uconn = secdurl1.openConnection();
             	     HttpURLConnection conn = (HttpURLConnection) uconn;
             	     conn.connect();
@@ -208,9 +207,8 @@ public class SecondConfig extends HttpServlet {
 	        			      secdurl=securl1;
 	        		 
 	        		// out.println(secdurl);
-	        		 String encodedUrl = URLEncoder.encode(secdurl, "UTF-8");	 
-	 	        		out.println("Encoded URL " + encodedUrl);
-	        		 URL secdurl1=new URL(encodedUrl);
+	        		
+	        		 URL secdurl1=new URL(secdurl);
 	        		 URLConnection uconn = secdurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	        	     conn.connect();
@@ -271,9 +269,8 @@ public class SecondConfig extends HttpServlet {
 	        			      secdurl=securl1;
 	        		 
 	        		// out.println(secdurl);
-	        		 String encodedUrl = URLEncoder.encode(secdurl, "UTF-8");	 
-	 	        		out.println("Encoded URL " + encodedUrl);
-	        		 URL secdurl1=new URL(encodedUrl);
+	        		 
+	        		 URL secdurl1=new URL(secdurl);
 	        		 URLConnection uconn = secdurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	        	     conn.connect();

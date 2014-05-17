@@ -127,7 +127,7 @@ function removeParent(){
 <%String u = (String) request.getSession().getAttribute("user");
     if (u != null ) {
    // System.out.println("user != null");
-    out.print("Welcome "+u);
+   // out.print("Welcome "+u);
     }else{
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");

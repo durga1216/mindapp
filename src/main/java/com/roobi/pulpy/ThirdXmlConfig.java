@@ -31,6 +31,7 @@ public class ThirdXmlConfig extends HttpServlet {
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		HttpSession session=request.getSession(true);
+		HttpSession session4=request.getSession(true);
 		String id=(String) session.getAttribute("id");
 		String appid=(String) session.getAttribute("appid");
 		String thrdroot=request.getParameter("thrdroot"); String thrdparent=request.getParameter("thrdparent");
@@ -64,6 +65,22 @@ public class ThirdXmlConfig extends HttpServlet {
 		String tx28=request.getParameter("tx28");String txv28=request.getParameter("txv28");
 		String tx29=request.getParameter("tx29");String txv29=request.getParameter("txv29");
 		String tx30=request.getParameter("tx30");String txv30=request.getParameter("txv30");
+		session4.setAttribute("thrdroot",thrdroot);session4.setAttribute("thrdparent",thrdparent);
+		session4.setAttribute("tx1",tx1);session4.setAttribute("txv1",txv1);
+	      session4.setAttribute("tx2",tx2);session4.setAttribute("txv2",txv2);
+	      session4.setAttribute("tx3",tx3);session4.setAttribute("txv3",txv3);
+	      session4.setAttribute("tx4",tx4);session4.setAttribute("txv4",txv4);
+	      session4.setAttribute("tx5",tx5);session4.setAttribute("txv5",txv5);
+	      session4.setAttribute("tx6",tx6);session4.setAttribute("txv6",txv6);
+	      session4.setAttribute("tx7",tx7);session4.setAttribute("txv7",txv7);
+	      session4.setAttribute("tx8",tx8);session4.setAttribute("txv8",txv8);
+	      session4.setAttribute("tx9",tx9);session4.setAttribute("txv9",txv9);
+	      session4.setAttribute("tx10",tx10);session4.setAttribute("txv10",txv10);
+	      session4.setAttribute("tx11",tx11);session4.setAttribute("txv11",txv11);
+	      session4.setAttribute("tx12",tx12);session4.setAttribute("txv12",txv12);
+	      session4.setAttribute("tx13",tx13);session4.setAttribute("txv13",txv13);
+	      session4.setAttribute("tx14",tx14);session4.setAttribute("txv14",txv14);
+	      session4.setAttribute("tx15",tx15);session4.setAttribute("txv15",txv15);
          Connection con=null;
         	 try {
                  Class.forName("com.mysql.jdbc.Driver").newInstance();

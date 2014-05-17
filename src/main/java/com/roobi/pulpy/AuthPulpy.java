@@ -193,9 +193,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     String str="";
 	        		 try
 	        		 {
-	        			 String encodedUrl = URLEncoder.encode(eurl, "UTF-8");	 
-	        		out.println("Encoded URL " + encodedUrl);
-	        		 URL eurl1=new URL(encodedUrl);
+	        		 URL eurl1=new URL(eurl);
 	        		 URLConnection uconn = eurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	        	     conn.connect();
@@ -272,9 +270,8 @@ public class AuthPulpy extends HttpServlet {
 	        	     String str="";
 	        		 try
 	        		 {
-	        			 String encodedUrl = URLEncoder.encode(eurl, "UTF-8");	 
-	 	        		out.println("Encoded URL " + encodedUrl);
-	        		 URL eurl1=new URL(encodedUrl);
+	        			 
+	        		 URL eurl1=new URL(eurl);
 	        		 URLConnection uconn = eurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	        	     conn.connect();

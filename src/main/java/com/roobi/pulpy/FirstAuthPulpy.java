@@ -50,6 +50,11 @@ public class FirstAuthPulpy extends HttpServlet {
           session2.setAttribute("apikey",a2);
           session2.setAttribute("apiname",a1);
           session2.setAttribute("authtype",authen);
+          session2.setAttribute("ckey",ckey);
+          session2.setAttribute("cseckey",cseckey);
+          session2.setAttribute("aurl",aurl);
+          session2.setAttribute("tokenurl",tokenurl);
+          session2.setAttribute("tlabel",tlabel);
 		  try{
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));

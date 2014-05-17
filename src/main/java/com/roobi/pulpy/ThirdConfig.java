@@ -44,6 +44,7 @@ public class ThirdConfig extends HttpServlet {
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		HttpSession session=request.getSession(true);
+		HttpSession session4=request.getSession(true);
 		String id=(String) session.getAttribute("id");
 		String appid=(String) session.getAttribute("appid");
 		String thirdurl=request.getParameter("thrdurl"); String thirdcycle=request.getParameter("thirdcycle"); String thrd1=request.getParameter("thrd1");String thrd2=request.getParameter("thrd2");
@@ -53,6 +54,18 @@ public class ThirdConfig extends HttpServlet {
 		String t7=request.getParameter("t7");  String tv7=request.getParameter("tv7"); String t8=request.getParameter("t8"); String tv8=request.getParameter("tv8");
 		String t9=request.getParameter("t9");  String tv9=request.getParameter("tv9"); String t10=request.getParameter("t10"); String tv10=request.getParameter("tv10");
 	   String al=request.getParameter("alabel"); String ak=request.getParameter("akey");
+	   session4.setAttribute("thirdurl",thirdurl);session4.setAttribute("thirdcycle",thirdcycle);
+	   session4.setAttribute("a2label",al);session4.setAttribute("a2key",ak);
+		session4.setAttribute("t1",t1);session4.setAttribute("tv1",tv1);
+	      session4.setAttribute("t2",t2);session4.setAttribute("tv2",tv2);
+	      session4.setAttribute("t3",t3);session4.setAttribute("tv3",tv3);
+	      session4.setAttribute("t4",t4);session4.setAttribute("tv4",tv4);
+	      session4.setAttribute("t5",t5);session4.setAttribute("tv5",tv5);
+	      session4.setAttribute("t6",t6);session4.setAttribute("tv6",tv6);
+	      session4.setAttribute("t7",t7);session4.setAttribute("tv7",tv7);
+	      session4.setAttribute("t8",t8);session4.setAttribute("tv8",tv8);
+	      session4.setAttribute("t9",t9);session4.setAttribute("tv9",tv9);
+	      session4.setAttribute("t10",t10);session4.setAttribute("tv10",tv10);
 		Connection con=null;
    	        try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -128,9 +141,8 @@ public class ThirdConfig extends HttpServlet {
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2))
     	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
     	        	// out.println(thirdurl11);
-    	        	 String encodedUrl = URLEncoder.encode(thirdurl11, "UTF-8");	 
-	 	        		out.println("Encoded URL " + encodedUrl);
-    	        	 URL thirdurl2=new URL(encodedUrl);
+    	        	 
+    	        	 URL thirdurl2=new URL(thirdurl11);
             		 URLConnection uconn = thirdurl2.openConnection();
             	     HttpURLConnection conn = (HttpURLConnection) uconn;
             	     conn.connect();
@@ -190,9 +202,8 @@ public class ThirdConfig extends HttpServlet {
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
 	        		// out.println(thirdurl11);
-	        		 String encodedUrl = URLEncoder.encode(thirdurl11, "UTF-8");	 
-	 	        		out.println("Encoded URL " + encodedUrl);
-	        		 URL url1=new URL(encodedUrl);
+	        		
+	        		 URL url1=new URL(thirdurl11);
      				 URLConnection uconn = url1.openConnection();
      				 String str="";
                       BufferedReader br = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
@@ -248,9 +259,8 @@ public class ThirdConfig extends HttpServlet {
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
 	        		// out.println(thirdurl11);
-	        		 String encodedUrl = URLEncoder.encode(thirdurl11, "UTF-8");	 
-	 	        		out.println("Encoded URL " + encodedUrl);
-	        		 URL url1=new URL(encodedUrl);
+	        		
+	        		 URL url1=new URL(thirdurl11);
      				 URLConnection uconn = url1.openConnection();
 
                       BufferedReader in = new BufferedReader(new InputStreamReader(uconn.getInputStream()));

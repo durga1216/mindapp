@@ -62,6 +62,20 @@ text-align:left;
 <tr><td>Api_Key</td>
 <td>: <%=session.getAttribute("apikey")%></td></tr>
 </c:if>
+
+<c:if test="${sessionScope.authtype=='Oauth2'}">
+<tr><td>Client_ID_KEY</td>
+<td>: <%=session.getAttribute("ckey")%></td></tr>
+<tr><td>Client_Secret_Key</td>
+<td>: <%=session.getAttribute("cseckey")%></td></tr>
+<tr><td>Authorization_URL</td>
+<td>: <%=session.getAttribute("aurl")%></td></tr>
+<tr><td>Access_Token_Label</td>
+<td>: <%=session.getAttribute("tlabel")%></td></tr>
+<tr><td>Access_Token_URL</td>
+<td>: <%=session.getAttribute("tokenurl")%></td></tr>
+</c:if>
+
 <tr><td>Request_Method</td>
 <td>: <%=session.getAttribute("reqmeth")%></td>
 </tr><tr><td>Response_Type</td>
@@ -178,11 +192,10 @@ text-align:left;
 </tr><tr><td>xml_10_value</td>
 <td>: <%=session.getAttribute("xv10")%></td>
 </tr></c:if>
-
-
 </table>
+
 <c:if test="${sessionScope.securl!=null}">
-<center><h2>Secand Configuration Details</h2></center>
+<center><h2>Second Configuration Details</h2></center>
 <table align='center' bgcolor='white' border='none' bordercolor='#000000' width=100>
 <tr><td>Sec_End_Url</td>
 <td>: <%=session.getAttribute("securl")%></td></tr>
@@ -301,6 +314,131 @@ text-align:left;
 <td>: <%=session.getAttribute("sx10")%></td>
 </tr><tr><td>xml_10_value</td>
 <td>: <%=session.getAttribute("sxv10")%></td>
+</tr></c:if>
+</table>
+</c:if>
+
+
+<c:if test="${sessionScope.thirdurl!=null}">
+<center><h2>Third Configuration Details</h2></center>
+<table align='center' bgcolor='white' border='none' bordercolor='#000000' width=100>
+<tr><td>third_End_Url</td>
+<td>: <%=session.getAttribute("thirdurl")%></td></tr>
+<tr><td>Cycle_Type</td>
+<td>: <%=session.getAttribute("thirdcycle")%></td></tr>
+<tr><td>Third_Api_Label</td>
+<td>: <%=session.getAttribute("a2label")%></td></tr>
+<tr><td>Third_Api_Key</td>
+<td>: <%=session.getAttribute("a2key")%></td></tr>
+<c:if test="${sessionScope.t1!=null}">
+<tr><td>Param_1_label</td>
+<td>: <%=session.getAttribute("t1")%></td>
+</tr><tr><td>Param_1_value</td>
+<td>: <%=session.getAttribute("tv1")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.t2!=null}">
+<tr><td>Param_2_label</td>
+<td>: <%=session.getAttribute("t2")%></td>
+</tr><tr><td>Param_2_value</td>
+<td>: <%=session.getAttribute("tv2")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.t3!=null}">
+<tr><td>Param_3_label</td>
+<td>: <%=session.getAttribute("t3")%></td>
+</tr><tr><td>Param_3_value</td>
+<td>: <%=session.getAttribute("tv3")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.t4!=null}">
+<tr><td>Param_4_label</td>
+<td>: <%=session.getAttribute("t4")%></td>
+</tr><tr><td>Param_4_value</td>
+<td>: <%=session.getAttribute("tv4")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.t5!=null}">
+<tr><td>Param_5_label</td>
+<td>: <%=session.getAttribute("t5")%></td>
+</tr><tr><td>Param_5_value</td>
+<td>: <%=session.getAttribute("tv5")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.t6!=null}">
+<tr><td>Param_6_label</td>
+<td>: <%=session.getAttribute("t6")%></td>
+</tr><tr><td>Param_6_value</td>
+<td>: <%=session.getAttribute("tv6")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.t7!=null}">
+<tr><td>Param_7_label</td>
+<td>: <%=session.getAttribute("t7")%></td>
+</tr><tr><td>Param_7_value</td>
+<td>: <%=session.getAttribute("tv7")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.t8!=null}">
+<tr><td>Param_8_label</td>
+<td>: <%=session.getAttribute("t8")%></td>
+</tr><tr><td>Param_8_value</td>
+<td>: <%=session.getAttribute("tv8")%></td>
+</tr></c:if>
+<tr><td>Parent_tag</td>
+<td>: <%=session.getAttribute("thrdparent")%></td></tr>
+<c:if test="${sessionScope.tx1!=null}">
+<tr><td>xml_1_label</td>
+<td>: <%=session.getAttribute("tx1")%></td>
+</tr><tr><td>Param_1_value</td>
+<td>: <%=session.getAttribute("txv1")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.tx2!=null}">
+<tr><td>xml_2_label</td>
+<td>: <%=session.getAttribute("tx2")%></td>
+</tr><tr><td>Param_2_value</td>
+<td>: <%=session.getAttribute("txv2")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.tx3!=null}">
+<tr><td>xml_3_label</td>
+<td>: <%=session.getAttribute("tx3")%></td>
+</tr><tr><td>xml_3_value</td>
+<td>: <%=session.getAttribute("txv3")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.tx4!=null}">
+<tr><td>xml_4_label</td>
+<td>: <%=session.getAttribute("tx4")%></td>
+</tr><tr><td>xml_4_value</td>
+<td>: <%=session.getAttribute("txv4")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.tx5!=null}">
+<tr><td>xml_5_label</td>
+<td>: <%=session.getAttribute("tx5")%></td>
+</tr><tr><td>xml_5_value</td>
+<td>: <%=session.getAttribute("txv5")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.tx6!=null}">
+<tr><td>xml_6_label</td>
+<td>: <%=session.getAttribute("tx6")%></td>
+</tr><tr><td>xml_6_value</td>
+<td>: <%=session.getAttribute("txv6")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.tx7!=null}">
+<tr><td>xml_7_label</td>
+<td>: <%=session.getAttribute("tx7")%></td>
+</tr><tr><td>xml_7_value</td>
+<td>: <%=session.getAttribute("txv7")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.tx8!=null}">
+<tr><td>xml_8_label</td>
+<td>: <%=session.getAttribute("tx8")%></td>
+</tr><tr><td>xml_8_value</td>
+<td>: <%=session.getAttribute("txv8")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.tx9!=null}">
+<tr><td>xml_9_label</td>
+<td>: <%=session.getAttribute("tx9")%></td>
+</tr><tr><td>xml_9_value</td>
+<td>: <%=session.getAttribute("txv9")%></td>
+</tr></c:if>
+<c:if test="${sessionScope.tx10!=null}">
+<tr><td>xml_10_label</td>
+<td>: <%=session.getAttribute("tx10")%></td>
+</tr><tr><td>xml_10_value</td>
+<td>: <%=session.getAttribute("txv10")%></td>
 </tr></c:if>
 </table>
 </c:if>
