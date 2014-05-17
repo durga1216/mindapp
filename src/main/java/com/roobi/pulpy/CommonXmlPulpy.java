@@ -138,7 +138,7 @@ out.println(thirdurl1);
      DocumentBuilder builder=null;
      DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
      builder=domFactory.newDocumentBuilder();
-  if(authen1.equals("No Auth")){ //No Authentication
+  /*if(authen1.equals("No Auth")){ //No Authentication
      if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
     	 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
     		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
@@ -1082,7 +1082,7 @@ out.println(thirdurl1);
               while ((child = fromRoot.getFirstChild()) != null) {
                   outdoc1.adoptNode(child);
                   toRoot.appendChild(child);
-              }*/
+              }
               
               
               
@@ -1106,7 +1106,7 @@ out.println(thirdurl1);
      
       String xmloutput=result.getWriter().toString();
      
-      out.println(xmloutput);
+      out.println(xmloutput);*/
    	
      	
   }
