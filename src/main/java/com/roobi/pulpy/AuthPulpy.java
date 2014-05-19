@@ -359,7 +359,7 @@ public class AuthPulpy extends HttpServlet {
 		              if(!"".equals(eurl))
 	    	               url1 = new URL (endurl1+"?"+eurl);
 		              else
-		                   url1 =new URL(endurl);
+		                   url1 =new URL(endurl1);
 	              HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
                   connection.setDoOutput(true);
                   connection.setDoInput(true);
@@ -450,6 +450,21 @@ public class AuthPulpy extends HttpServlet {
 	                    		  );
 	   	            	 } // else if encoding
 	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+	              if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
+		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
+		              }
+		              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
+		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);  
+		              }
+		              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
+			              }
+		              else if(!"".equals(h1) && !"".equals(h2)){
+			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
+			              }
+		              else if(!"".equals(h1)){
+			            	connection.setRequestProperty(h1, hv1);  
+			              }
 	              InputStream content = (InputStream)connection.getInputStream();
 	              BufferedReader in   = new BufferedReader (new InputStreamReader (content));
                   
