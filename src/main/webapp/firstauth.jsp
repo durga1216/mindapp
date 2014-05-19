@@ -12,6 +12,23 @@
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);%>
 <script type="text/javascript">
+
+var intTextBox=0;
+function addParent(){
+	  intTextBox = intTextBox + 1;
+	  var contentID = document.getElementById('content');
+	  var newTBDiv = document.createElement('div');
+	  newTBDiv.setAttribute('id','strText'+intTextBox);
+	  newTBDiv.innerHTML = "<input type='text' id='h" + intTextBox + "'    name='h" + intTextBox + "' placeholder='Header_Label'/>" + "<input type='text' id='hv"+ intTextBox + " ' name='hv"+intTextBox+"' placeholder='Header_Value'/>";
+	  contentID.appendChild(newTBDiv);
+}
+function removeParent()
+{
+	var contentID = document.getElementById('content');
+    contentID.removeChild(document.getElementById('strText'+intTextBox));
+    intTextBox = intTextBox-1;
+	}
+	
 $(document).ready(function(){
 
 	 $('input[name=authen]').click(function(){
@@ -237,14 +254,17 @@ text-align:right;}
 <div id="req" style="display:none">Fine! Go ahead</div>
 
 <div id="divid" style="display:none"><br>
-<br><br><input type="text" name="b1" value="" placeholder="UserName_Label" >
-<input type="text" name="b2" value="" placeholder="UserName_Key" ><br/><br/>
-<input type="text" name="b3" value="" placeholder="Password_Label">
-<input type="text" name="b4" value="" placeholder="Password_Key">
+<br>
+<input type="text" name="b2" value="" placeholder="UserName" >
+<input type="text" name="b4" value="" placeholder="Password">
+<a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
+<br><div id="content"></div><br>
 </div>
+
+
 <div id="apiid" style="display:none"><br>
 <br><br><input type="text" name="a1" value="" placeholder="APIkey_Label" >
-<input type="text" name="a2" value="" placeholder="API_Key" ><br/><br/>
+<input type="text" name="a2" value="" placeholder="API_Key" >
 
 </div>
 <br><br><div id="oauth2" style="display:none"><br>
@@ -270,7 +290,7 @@ text-align:right;}
 
 <center><div id="def">* Tokens placed in headers will look like Authorization: Bearer <token> and tokens in querystrings will look like ?access_token=token</div></center><br>
 <input type="text" name="el" value="" placeholder="Extra_Field_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="ev" value="" placeholder="Extra_Field_Value"></div><br><br>
+<input type="text" name="ev" value="" placeholder="Extra_Field_Value"></div>
 
 <div class="sselect" style="display:none">
 <div class="rformat"><center>Request Format</center></div>
