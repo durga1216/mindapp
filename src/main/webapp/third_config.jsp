@@ -162,7 +162,7 @@ function removeParent(){
 <input type="radio" name="thirdcycle"   value="entity">
 <label for="rd2">Entity Based</label>
 </CENTER><br><br>
-<div class="resformat"><center>Response Format</center></div>
+<div class="resformat"><center>Response Format</center></div><br>
 <select name="select3" id="select3">
      <option value="XML">XML</option>
      <option value="JSON">JSON</option>

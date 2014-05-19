@@ -208,13 +208,14 @@ public class AuthPulpy extends HttpServlet {
 	        		 else if(resf1.equals("JSON")){
 	        			 while ((line = br.readLine()) != null)    { 
 	 	        	    	
-	   	         		  JSON json = JSONSerializer.toJSON( line .replaceAll("\\s+","")  );  
+	   	         		  JSON json = JSONSerializer.toJSON( line)  ;
 	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
 	   	     	          xmlSerializer.setTypeHintsEnabled(false);
 	   	     	          xmlSerializer.setSkipWhitespace(true);
 	   	     	          xmlSerializer.setTrimSpaces(true);
 	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
 	   	     	          xmlSerializer.removeNamespace(line);
+	   	     	          xmlSerializer.setRootName("root");
 	   	     	          xmlSerializer.setForceTopLevelObject(false);
 	   	     		      str = xmlSerializer.write( json );
 	        		 } //while
@@ -283,13 +284,14 @@ public class AuthPulpy extends HttpServlet {
     	  	       	 str+=line;}}
 	        	     else if(resf1.equals("JSON")){
 	        	    	 while ((line = br.readLine()) != null)    { 
-	        	    	  JSON json = JSONSerializer.toJSON( line .replaceAll("\\s+","") );  
+	        	    	  JSON json = JSONSerializer.toJSON( line) ;
 	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
 	   	     	          xmlSerializer.setTypeHintsEnabled(false);
 	   	     	          xmlSerializer.setSkipWhitespace(true);
 	   	     	          xmlSerializer.setTrimSpaces(true);
 	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
 	   	     	          xmlSerializer.removeNamespace(line);
+	   	     	          xmlSerializer.setRootName("root");
 	   	     	          xmlSerializer.setForceTopLevelObject(false);
 	   	     		      str = xmlSerializer.write( json );
 	   	    			
