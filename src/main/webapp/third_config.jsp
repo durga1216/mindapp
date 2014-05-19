@@ -19,11 +19,12 @@ background-color:#FF9900;}
     font-family:verdana;
     font-size:40px;
     margin-top:50px;}
+    
 input[type="text"]{
 color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
-margin-left:480px;
+margin-left:80px;
 font-family:verdana;
 width:400px;
 height:25px;
@@ -163,12 +164,12 @@ function removeParent(){
 
 <center><div class='heading'>Third Step Configuration</div></center>
 <br><br><input type="text" name="thrdurl" value="" placeholder="Third_End_Point_Url*"><br><br>
-<CENTER>
+
 <input type="radio" name="thirdcycle"  value="flow">
 <label for="rd2">Flow Based</label>
 <input type="radio" name="thirdcycle"   value="entity">
 <label for="rd2">Entity Based</label>
-</CENTER><br><br>
+<br><br>
 <div class="resformat"><center>Response Format</center></div><br>
 <select name="select3" id="select3">
      <option value="XML">XML</option>
