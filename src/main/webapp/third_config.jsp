@@ -68,6 +68,7 @@ padding:10px;
   font-size:20px;
   color:#FFFFFF;
   margin-left:400px;}
+  
   .heading{font-family:verdana;
 font-weight:bold;
 font-size: 20px;
@@ -77,6 +78,7 @@ height:30%;
 background-color:#FFFFFF;
 border-radius:50px;
 padding:15px;}
+
 .resformat{font-family:verdana;
 font-size: 20px;
 font-weight:bold;
@@ -87,6 +89,7 @@ height:30%;
 background-color:#FFFFFF;
 border-radius:50px;
 padding:15px;}
+
 select{color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
@@ -95,19 +98,23 @@ font-family:verdana;
 width:250px;
 height:50px;
 padding:10px;}
+
 label{
 font-family:verdana;
 font-size: 20px;
 color:#FFFFFF;
 }
+
 #indiv{color:#FFFFFF;
 }
+
 #na{
 margin-top:0;
 color:#FFFFFF;
 font-size:15px;
 font-family:verdana;
 text-align:right;}
+
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -172,7 +179,7 @@ function removeParent(){
 <div id="ent" style="display:none">
 <input type="text" name="alabel" value="" placeholder="Key_Label"><br>
 <input type="text" name="akey" value="" placeholder="Key_value"><br>
-<center><div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div></center>
+<div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div><br><br>
 </div>
 </div>
 <div id="flo" style="display:none">

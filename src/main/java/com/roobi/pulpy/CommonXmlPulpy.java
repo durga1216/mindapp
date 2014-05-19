@@ -560,37 +560,11 @@ String resf2=rs.getString("resf2");
      	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
      	        		 
      	        	 
-     	        	 if(resf1.equals("XML"))
-     	           		 doc1=builder1.parse(new URL(thirdurl11).openStream());
-     	           	 
-     	           	 
-     	           	    else if(resf1.equals("JSON")){
-     	                URL third=new URL(thirdurl11);
-     	   		        URLConnection uconn = third.openConnection();
-     	   	            HttpURLConnection conn = (HttpURLConnection) uconn;
-     	   	            conn.connect();
-     	   	            Object content = conn.getContent();
-     	   	            InputStream stream = (InputStream) content;
-     	   	            String line=null;
-     	   	            BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-     	   	           while ((line = br.readLine()) != null)    { 		  
-     	    	       JSON json = JSONSerializer.toJSON( line );  
-     		           XMLSerializer xmlSerializer = new XMLSerializer();  
-     		           xmlSerializer.setTypeHintsEnabled(false);
-     		           xmlSerializer.setSkipWhitespace(true);
-     		           xmlSerializer.setTrimSpaces(true);
-     		           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-     		           xmlSerializer.removeNamespace(line);
-     		           xmlSerializer.setForceTopLevelObject(false);
-     			       jsonxmlout = xmlSerializer.write( json );
-     	   	     }
-     	   	     // end-while  	
-     		      doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
-     	           		 
-     	            } //JSON
-	 
+     	        	 
      	        	 
      	         }}// No auth and get
+            
+            
             else if(authen1.equals("API keys")){  //API Keys
            	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get
            		 
@@ -630,7 +604,7 @@ String resf2=rs.getString("resf2");
            		 
            		 else if("null".equals(akt1) && "null".equals(akt2))
            			      thirdurl11=thirdurl1;
-           		 
+           	 }}//api keys and get	 
            		
            		 if(resf3.equals("XML"))
            		 doc1=builder1.parse(new URL(thirdurl11).openStream());
@@ -657,12 +631,9 @@ String resf2=rs.getString("resf2");
 		       jsonxmlout = xmlSerializer.write( json );
    	     }
    	     // end-while  	
-	      doc1=builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
-           		 
-            } //JSON
-            
-            }  //GET 
-        } // THIRD API KEY  
+   	  	  doc1= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+
+           	    }//json  
 	     
 
      	     Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();

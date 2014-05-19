@@ -30,7 +30,8 @@ width:400px;
 height:25px;
 padding:10px;
 } 
-input[type="radio"]
+
+ input[type="radio"]
  {
    width:20px; 
    height: 20px;
@@ -71,6 +72,7 @@ padding:10px;
   color:#FFFFFF;
   margin-left:100px;
   }
+  
   .heading{font-family:verdana;
 font-weight:bold;
 font-size: 20px;
@@ -85,6 +87,7 @@ font-family:verdana;
 font-size: 20px;
 color:#FFFFFF;
 }
+
 select{color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
@@ -93,6 +96,7 @@ font-family:verdana;
 width:250px;
 height:50px;
 padding:10px;}
+
 .resformat{font-family:verdana;
 font-size: 20px;
 font-weight:bold;
@@ -103,10 +107,12 @@ height:30%;
 background-color:#FFFFFF;
 border-radius:50px;
 padding:15px;}
+
 #indiv{color:#FFFFFF;
 font-size:15px;
 font-family:verdana;
 text-align:right;}
+
 #na{
 color:#FFFFFF;
 font-size:15px;
@@ -159,24 +165,24 @@ function removeParent(){
 <form action="SecondConfig" method="post">
 <center><div class='heading'>Second Step Configuration</div></center>
 <br><br><input type="text" name="securl" value="" placeholder="Second_End_Point_Url*"><br><br>
-<CENTER><div id="inline_content">
+<div id="inline_content">
 <input type="radio" name="cycle"  value="flow">
 <label for="rd1">Flow Based</label>
 <input type="radio" name="cycle"   value="entity">
 <label for="rd1">Entity Based</label>
-</div></CENTER><br><br>
+</div><br><br>
 
 <div id="ent" style="display:none">
 <input type="text" name="alabel" value="" placeholder="Key_Label">
 <input type="text" name="akey" value="" placeholder="Key_value">
-<center><div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div></center>
-</div>
-</div>
+<div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div></center>
+
+</div><br><br>
 
 <div id="flo" style="display:none">
 <input type="text" name="sec1" value="" placeholder="Flow_Id_Label">
 <input type="text" name="sec2" value="" placeholder="Flow_Id_value">
-<center><div id='not'>Note:To complete whole cycle,connect with unique ID</div></div></center>
+<div id='not'>Note:To complete whole cycle,connect with unique ID</div></div><br><br>
 
 <div class="resformat"><center>Response Format</center></div><br><br>
 <select name="select3" id="select3">
