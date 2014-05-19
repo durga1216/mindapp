@@ -87,7 +87,9 @@ public class CommonXmlPulpy extends HttpServlet {
             String se5=rs.getString("s5"); String sev5=rs.getString("sv5");String se6=rs.getString("s6"); String sev6=rs.getString("sv6");
             String se7=rs.getString("s7"); String sev7=rs.getString("sv7");String se8=rs.getString("s8"); String sev8=rs.getString("sv8");
             String se9=rs.getString("s9"); String sev9=rs.getString("sv9");String se10=rs.getString("s10"); String sev10=rs.getString("sv10");
-  String secroot=rs.getString("secroot");String secparent=rs.getString("secparent"); //get from secxmlconfig
+String resf2=rs.getString("resf2");
+            String secroot=rs.getString("secroot");String secparent=rs.getString("secparent"); //get from secxmlconfig
+  
  String sx1=rs.getString("sx1"); String sxv1=rs.getString("sxv1");String sx2=rs.getString("sx2"); String sxv2=rs.getString("sxv2");
  String sx3=rs.getString("sx3"); String sxv3=rs.getString("sxv3");String sx4=rs.getString("sx4"); String sxv4=rs.getString("sxv4");
  String sx5=rs.getString("sx5"); String sxv5=rs.getString("sxv5");String sx6=rs.getString("sx6"); String sxv6=rs.getString("sxv6");
@@ -111,6 +113,7 @@ public class CommonXmlPulpy extends HttpServlet {
  String tp5=rs.getString("t5"); String tpv5=rs.getString("tv5");String tp6=rs.getString("t6"); String tpv6=rs.getString("tv6");
  String tp7=rs.getString("t7"); String tpv7=rs.getString("tv7");String tp8=rs.getString("t8"); String tpv8=rs.getString("tv8");
  String tp9=rs.getString("t9"); String tpv9=rs.getString("tv9");String tp10=rs.getString("t10"); String tpv10=rs.getString("tv10");
+ String resf3=rs.getString("resf3");
  //get from thirdxmlconfig
  String thrdparent=rs.getString("thrdparent");String thrdroot=rs.getString("thrdroot");
  String tx1=rs.getString("tx1"); String txv1=rs.getString("txv1");String tx2=rs.getString("tx2"); String txv2=rs.getString("txv2");
@@ -222,10 +225,10 @@ public class CommonXmlPulpy extends HttpServlet {
  
  }
    
-  if(resf1.equals("XML")){
+  if(resf2.equals("XML")){
        doc=builder.parse(new URL(secdurl).openStream());}
 
-	    else if(resf1.equals("JSON")){
+	    else if(resf2.equals("JSON")){
 		 URL second_url=new URL(secdurl);
 		     URLConnection uconn = second_url.openConnection();
 	         HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -629,11 +632,11 @@ public class CommonXmlPulpy extends HttpServlet {
            			      thirdurl11=thirdurl1;
            		 
            		
-           		 if(resf1.equals("XML"))
+           		 if(resf3.equals("XML"))
            		 doc1=builder1.parse(new URL(thirdurl11).openStream());
            	 
            	 
-           	    else if(resf1.equals("JSON")){
+           	    else if(resf3.equals("JSON")){
                 URL third=new URL(thirdurl11);
    		        URLConnection uconn = third.openConnection();
    	            HttpURLConnection conn = (HttpURLConnection) uconn;
