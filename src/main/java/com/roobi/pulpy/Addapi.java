@@ -63,7 +63,7 @@ public class Addapi extends HttpServlet {
 		{
 			
 		}
-		out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2>API ADDED SUCCESSFULLY</h2></center></body></html>");
+		out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2 style='color:#ffffff'>API ADDED SUCCESSFULLY</h2></center></body></html>");
 	     response.setHeader("Refresh", "1; URL=indexpulpy.jsp");
 	}
 
