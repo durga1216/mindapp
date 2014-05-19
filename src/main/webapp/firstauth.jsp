@@ -148,6 +148,12 @@ height:25px;
 padding:10px;
 } 
 
+ #pa{
+  font-family:verdana;
+  font-size:20px;
+  color:#FFFFFF;
+  margin-left:100px;
+  }
 .resformat{font-family:verdana;
 font-size: 20px;
 font-weight:bold;

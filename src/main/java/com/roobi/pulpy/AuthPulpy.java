@@ -309,6 +309,7 @@ public class AuthPulpy extends HttpServlet {
 	 	    	        	 out.println(e);
 	 	    	        	 }	
 	        		 session.setAttribute("xml1", str);
+		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} // Get Api keys
 	        	 
@@ -349,6 +350,8 @@ public class AuthPulpy extends HttpServlet {
         		 else if("null".equals(pa1))
         			eurl="";
 	        	 
+	        	 
+	        	 String str="";
 	        	 try{
 		          if(rm1.equals("GET")){ 
 		        		URL url1;
@@ -399,7 +402,7 @@ public class AuthPulpy extends HttpServlet {
 	                 BufferedReader in   = new BufferedReader (new InputStreamReader (content));
 	              if(resf1.equals("XML")){
 	                    while((line=in.readLine())!=null){
-	                    	out.println(line);
+	                    	str+=line;
 	                    }} // while and xml
 	              else if(resf1.equals("JSON")){
 	            	  while((line=in.readLine())!=null){
@@ -411,11 +414,13 @@ public class AuthPulpy extends HttpServlet {
 		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
 		     	          xmlSerializer.removeNamespace(line);
 		     	          xmlSerializer.setForceTopLevelObject(false);
-		     		      String  xmlout = xmlSerializer.write( json );
-		     		      out.println(xmlout);
+		     		      str = xmlSerializer.write( json );
 	            	  }//while}
-	              }
-		          }
+	              }//json
+	              session.setAttribute("xml1", str);
+	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
+		          }//get
 	              else if(rm1.equals("POST")){ 
 	            	  URL url1 = new URL (endurl1);
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
@@ -451,7 +456,7 @@ public class AuthPulpy extends HttpServlet {
                  String line=null;
 	              if(resf1.equals("XML")){
 	                    while((line=in.readLine())!=null){
-	                    	out.println(line);
+	                    	str+=line;
 	                    }} // while and xml
 	              else if(resf1.equals("JSON")){
 	            	  while((line=in.readLine())!=null){
@@ -463,9 +468,12 @@ public class AuthPulpy extends HttpServlet {
 		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
 		     	          xmlSerializer.removeNamespace(line);
 		     	          xmlSerializer.setForceTopLevelObject(false);
-		     		      String  xmlout = xmlSerializer.write( json );
-		     		      out.println(xmlout);
+		     		      str = xmlSerializer.write( json );
+		     		      //out.println(xmlout);
 	            	  }//while
+	            	  session.setAttribute("xml1", str);
+		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	              }//post
 	           
 	                            
