@@ -38,7 +38,7 @@ padding:10px;
    color:#FFFFFF;
    font-size:20px;
    font-family:verdana;
-   margin-left:60px;
+   margin-left:80px;
  }
  #note{
  color:#FFFFFF;
@@ -91,7 +91,7 @@ color:#FFFFFF;
 select{color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
-margin-left:540px;
+margin-left:80px;
 font-family:verdana;
 width:250px;
 height:50px;
@@ -174,15 +174,15 @@ function removeParent(){
 
 <div id="ent" style="display:none">
 <input type="text" name="alabel" value="" placeholder="Key_Label">
-<input type="text" name="akey" value="" placeholder="Key_value">
+<input type="text" name="akey" value="" placeholder="Key_value"><br>
 <div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div></center>
 
-</div><br><br>
+</div><br>
 
 <div id="flo" style="display:none">
 <input type="text" name="sec1" value="" placeholder="Flow_Id_Label">
-<input type="text" name="sec2" value="" placeholder="Flow_Id_value">
-<div id='not'>Note:To complete whole cycle,connect with unique ID</div></div><br><br>
+<input type="text" name="sec2" value="" placeholder="Flow_Id_value"><br>
+<div id='not'>Note:To complete whole cycle,connect with unique ID</div></div><br>
 
 <div class="resformat"><center>Response Format</center></div><br><br>
 <select name="select3" id="select3">

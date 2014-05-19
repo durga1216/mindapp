@@ -75,7 +75,7 @@ public class SecondConfig extends HttpServlet {
             st.close();
             st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN secondconfig t3 on t1.appid=t3.appid WHERE t1.appid=?");
             st.setString(1, appid);
-
+String str=null;
             ResultSet rs = st.executeQuery();
 	         while(rs.next()){
    	         String id1=rs.getString("id");	 String appname1=rs.getString("appname");
@@ -142,7 +142,6 @@ public class SecondConfig extends HttpServlet {
             	     Object content = conn.getContent();
             	     InputStream stream = (InputStream) content;
             	     String line=null;
-            	     String str="";
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
     	        	 if(resf2.equals("XML")){
             	     while((line=br.readLine())!=null){
@@ -216,7 +215,6 @@ public class SecondConfig extends HttpServlet {
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
 	        	     String line=null;
-	        	     String str="";
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 	        	     if(resf2.equals("XML")){
 	        	        while((line=br.readLine())!=null){
