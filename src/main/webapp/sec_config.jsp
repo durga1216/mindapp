@@ -24,7 +24,7 @@ input[type="text"]{
 color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
-margin-left:480px;
+margin-left:80px;
 font-family:verdana;
 width:400px;
 height:25px;
@@ -65,10 +65,12 @@ border-color:#FFFFFF;
 border-radius:50px;
 padding:10px;
 }
-#pa{font-family:verdana;
+  #pa{
+  font-family:verdana;
   font-size:20px;
   color:#FFFFFF;
-  margin-left:400px;}
+  margin-left:100px;
+  }
   .heading{font-family:verdana;
 font-weight:bold;
 font-size: 20px;
@@ -163,24 +165,26 @@ function removeParent(){
 <input type="radio" name="cycle"   value="entity">
 <label for="rd1">Entity Based</label>
 </div></CENTER><br><br>
+
+<div id="ent" style="display:none">
+<input type="text" name="alabel" value="" placeholder="Key_Label">
+<input type="text" name="akey" value="" placeholder="Key_value">
+<center><div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div></center>
+</div>
+</div>
+
+<div id="flo" style="display:none">
+<input type="text" name="sec1" value="" placeholder="Flow_Id_Label">
+<input type="text" name="sec2" value="" placeholder="Flow_Id_value">
+<center><div id='not'>Note:To complete whole cycle,connect with unique ID</div></div></center>
+
 <div class="resformat"><center>Response Format</center></div><br><br>
 <select name="select3" id="select3">
      <option value="XML">XML</option>
      <option value="JSON">JSON</option>
      <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
-</select><br><br>
-<div id="ent" style="display:none">
-<input type="text" name="alabel" value="" placeholder="Key_Label"><br>
-<input type="text" name="akey" value="" placeholder="Key_value"><br>
-<center><div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div></center>
-</div>
-</div>
-<div id="flo" style="display:none">
-<input type="text" name="sec1" value="" placeholder="Flow_Id_Label"><br>
-<input type="text" name="sec2" value="" placeholder="Flow_Id_value"><br>
-<center><div id='not'>Note:To complete whole cycle,connect with unique ID</div></div></center>
-
+</select><br><br> 
 <a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
 <div id="content"></div><br><br>
 <input type="submit" name="submit" value="Continue"></form>
