@@ -93,7 +93,7 @@ public class ThirdConfig extends HttpServlet {
              String tp5=rs.getString("p5");String tpv5=rs.getString("pv5");
              String tp6=rs.getString("p6");;String tpv6=rs.getString("pv6"); */
               
-             //out.println("inside while");
+            out.println("inside while");
              //here will go to fetch second-config values
              String thirdurl1=rs.getString("thrdurl");String thirdcycle1=rs.getString("thrdcycle"); String ak1=rs.getString("alabel");String ak2=rs.getString("akey");
              String thrdid=rs.getString("thrd1"); String thrdval=rs.getString("thrd2");
@@ -101,7 +101,8 @@ public class ThirdConfig extends HttpServlet {
              String tp3=rs.getString("t3"); String tpv3=rs.getString("tv3");String tp4=rs.getString("t4"); String tpv4=rs.getString("tv4");
              String tp5=rs.getString("t5"); String tpv5=rs.getString("tv5");String tp6=rs.getString("t6"); String tpv6=rs.getString("tv6");
              String tp7=rs.getString("t7"); String tpv7=rs.getString("tv7");String tp8=rs.getString("t8"); String tpv8=rs.getString("tv8");
-             String tp9=rs.getString("t9"); String tpv9=rs.getString("tv9");String tp10=rs.getString("t10"); String tpv10=rs.getString("tv10");            
+             String tp9=rs.getString("t9"); String tpv9=rs.getString("tv9");String tp10=rs.getString("t10"); String tpv10=rs.getString("tv10");     
+             String resf3=rs.getString("resf3");
 	         out.println(thirdurl1+"<br>"+ak1+"<br>"+ak2+"<br>"+authen1);
              String thirdurl11=null;
              if(authen1.equals("No Auth")){ //No Authentication
