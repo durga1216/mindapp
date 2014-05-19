@@ -33,7 +33,16 @@ font-family:verdana;
 width:300px;
 height:25px;
 padding:10px;
+;
 } 
+select{
+color:#FF9900;
+font-size:20px;
+width:320px;
+height:50px;
+padding:10px
+
+}
 textarea{
 font-size:20px;
 margin-left:100px;
@@ -103,7 +112,24 @@ function back()
 <br><br><div class="head"><center>Mind Pulpy</center></div><br>
 <center><input type="text" name="t1" placeholder="Api Name"><br><br>
 <input type="text" name="t2"  placeholder="Provider Name" ><br><br>
-<input type="text" name="t6"  placeholder="category" ><br><br>
+<select name="t6">
+<option value="General" selected>General</option>
+<option value="Backend">Backend</option>
+<option value="Social">Social</option>
+<option value="Tools" >Tools</option>
+<option value="Enterprise">Enterprise</option>
+<option value="Entertainment">Entertainment</option>
+<option value="Security">Security</option>
+<option value="Database">Database</option>
+<option value="Maps">Maps</option>
+<option value="Education">Education</option>
+<option value="Health">Health</option>
+<option value="Music">Music</option>
+<option value="Shopping">Shopping</option>
+<option value="Blogging">Blogging</option>
+<option value="Photos">Photos</option>
+<option value="Messaging">Messaging</option>
+</select><br><br>
 <input type="text" name="t3"  placeholder="Eg: http://api.example.com"><br><br>
 <textarea name="t4" rows="10" cols="30" placeholder="Description"></textarea><br><br>
 <div id="txt">Select Image</div><input type="file" name="t5" placeholder="image location"><br><br>
