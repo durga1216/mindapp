@@ -327,8 +327,10 @@ public class AuthXmlPulpy extends HttpServlet {
         		 else if("null".equals(pa1))
         			eurl="";
 	        	 String str="";	        	 
-	        	 try{
+	        	 
 		          if(rm1.equals("GET")){ 
+		        	  
+		        	  try{
 		        		URL url1;
 
 		              if(!"".equals(eurl))
@@ -392,11 +394,13 @@ public class AuthXmlPulpy extends HttpServlet {
 	            	  }//while}
 	              }//json
 	               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
-
+		          }//try
+		          catch(Exception e){out.println(e);}
 		          }//get
 		          
 		          
 	              else if(rm1.equals("POST")){ 
+	            	  try{
 	            	  URL url1 = new URL (endurl1);
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
 	                  connection.setDoOutput(true);
@@ -460,19 +464,17 @@ public class AuthXmlPulpy extends HttpServlet {
 		     	          xmlSerializer.setForceTopLevelObject(false);
 		     		      str = xmlSerializer.write( json );
 		     		      //out.println(xmlout);
-	            	  }//while
+	            	  }  }//while
 		               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 
-	              }//post
 	           
 	                            
 	                	
-	              } //  else-if json
-	             }//try
+	              } //  try
 	              
 	   	             catch(Exception e){out.println(e);}
 	   	          
-	        	 
+	         } //post
 	        	 
 	         }// Basic Auth
 
