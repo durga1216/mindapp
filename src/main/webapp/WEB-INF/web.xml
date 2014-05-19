@@ -340,7 +340,7 @@
     <servlet-name>Addapi</servlet-name>
     <url-pattern>/Addapi</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>Viewapi</display-name>
     <servlet-name>Viewapi</servlet-name>
@@ -349,6 +349,16 @@
   <servlet-mapping>
     <servlet-name>Viewapi</servlet-name>
     <url-pattern>/Viewapi</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>apis</display-name>
+    <servlet-name>apis</servlet-name>
+    <servlet-class>com.roobi.pulpy.apis</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>apis</servlet-name>
+    <url-pattern>/apis</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

@@ -38,28 +38,49 @@ public class Viewapi extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		 Connection con=null;
 			PrintWriter out=response.getWriter();
-            try
+			String cat1=request.getParameter("category");
+          try
 			{
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 	            con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 		        PreparedStatement st=null;
-				 st=con.prepareStatement("select * from addapi");
+				 st=con.prepareStatement("select * from addapi where cat=?");
+               st.setString(1, cat1);
 				    ResultSet rs = st.executeQuery();
-				 out.println("<br><br><body bgcolor='#FF9900'><div id='re' style='color:#FFFFFF; font-family:verdana; font-size:40px;'><center>Mind Pulpy</center></div><br><div id='re1' style='color:#FFFFFF; font-family:verdana; font-size:25px;'><center>ADDED API's<center><div><br><br><table align='center' border='1' bordercolor='#FFFFFF' style='color:#FFFFFF; font-size:20px; font-family:verdana; width:100%;'><tr><th>Api Name</th><th>Provider Name</th><th>catagory</th><th>URL</th><th>Description</th></tr>");
-			        while(rs.next()){
+				
+				   out.println("<br><br><head><link rel='stylesheet' type='text/css' href='apidisp.css'></head><body bgcolor='#FF9900'><div id='re' style='color:#FFFFFF; font-family:verdana; font-size:40px;'><center>Mind Pulpy</center></div><br><div id='re1' style='color:#FFFFFF; font-family:verdana; font-size:25px;'><center>ADDED API's<center><div><br><br>");
+				out.println("<div style='padding: 9px 0;position: fixed;font-size: 20px;text-align:left;margin-left: 80px;top: 100px;width: 200px;bottom: 10px;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #FF9900;border: 1px solid gainsboro; border-color:#FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
+				   //out.println("<div style='padding:9px 0;font-size: 20px;margin-left: 50px;top: 100px;width:200px;bottom: 10px;padding: 19px;background-color: #FF9900;border: 1px solid gainsboro;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
+out.println("<p>Category</p><a href='/mindapp/Viewapi?category=Search'>Search</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Backend'>Backend</a><br>"
+ 		+"<a style='font-color:#FFFFFF;'href='/mindapp/Viewapi?category=Social'>Social</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Tools'>Tools</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Enterprise'>Enterprise</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Entertainment'>Entertainment</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Security'>Security</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Database'>Database</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Maps'>Maps</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Education'>Education</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Health'>Health</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Music'>Music</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Shopping'>Shopping</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Blogging'>Blogging</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Storage'>Storage</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Photos'>Photos</a><br>"
+ 		+"<a href='/mindapp/Viewapi?category=Messaging'>Messaging</a></div>");
+out.println("<div style='font-size:15px;'><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'>");
+			while(rs.next()){
 			        	String name=rs.getString("name");
 			            String pname=rs.getString("pname");
 			            String cat=rs.getString("cat");
 			            String link=rs.getString("link");
 			            String des=rs.getString("des");
-			            out.println("<tr><td>"+name+"</td><td>"+pname+"</td><td>"+cat+"</td><td>"+link+"</td><td>"+des+"</td></tr>");
+			            out.println("<br>Provider name:<br>"+pname+"<br><br>Links:<br><a href="+link+">"+link+"</a><hr style='margin-left:450px; margin-right:300px;'></div>");
+			           // out.println("<tr><td>"+name+"</td><td>"+pname+"</td><td>"+cat+"</td><td>"+link+"</td><td>"+des+"</td></tr>");
 
-				
+				 }
 			}
-			        out.println("</table></body>");
-
-			}
-			catch(Exception e)
+          catch(Exception e)
 			{
 				out.println(e);
 			}

@@ -1,6 +1,7 @@
 package com.roobi.pulpy;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import com.mindots.util.Utils;
 
@@ -40,6 +42,7 @@ public class Addapi extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=request.getParameter("t1");
+        InputStream is = null;  
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		String pname=request.getParameter("t2");
@@ -47,6 +50,8 @@ public class Addapi extends HttpServlet {
 		String des=request.getParameter("t4");
 		String img=request.getParameter("t5");
 		String cat=request.getParameter("t6");
+
+
 		Connection con=null;
 		PrintWriter out=response.getWriter();
 		try
@@ -54,7 +59,7 @@ public class Addapi extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	        PreparedStatement st=null;
-			 st=con.prepareStatement("insert into addapi(name,pname,link,des,img,cat) values ('"+name+"','"+pname+"','"+link+"','"+des+"','"+img+"','"+cat+"')");
+			 st=con.prepareStatement("insert into addapi(name,pname,link,des,img,cat,photo) values ('"+name+"','"+pname+"','"+link+"','"+des+"','"+img+"','"+cat+"','"+is+"')");
 			 st.executeUpdate();
 		     st.close();
 			
