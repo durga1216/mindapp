@@ -91,7 +91,7 @@ public class LoginPulpy extends HttpServlet {
 		   }catch (MessagingException mex) {
 		out.println(mex);      
 		   }
-		     out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2>SIGNUP SUCCESSFULLY</h2></center></body></html>");
+		     out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2 style='color:#ffffff'>SIGNUP SUCCESSFULLY</h2></center></body></html>");
 		     response.setHeader("Refresh", "1; URL=login.jsp");
 		}
 		catch(Exception e){

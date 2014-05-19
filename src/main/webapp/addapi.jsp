@@ -113,6 +113,7 @@ function back()
 <center><input type="text" name="t1" placeholder="Api Name"><br><br>
 <input type="text" name="t2"  placeholder="Provider Name" ><br><br>
 <select name="t6">
+<option value="Search">Search</option>
 <option value="General" selected>General</option>
 <option value="Backend">Backend</option>
 <option value="Social">Social</option>
