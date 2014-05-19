@@ -184,7 +184,7 @@ function removeParent(){
 <input type="text" name="sec2" value="" placeholder="Flow_Id_value"><br>
 <div id='not'>Note:To complete whole cycle,connect with unique ID</div></div><br>
 
-<div class="resformat"><center>Response Format</center></div><br><br>
+<div class="resformat"><center>Response Format</center></div><br>
 <select name="select3" id="select3">
      <option value="XML">XML</option>
      <option value="JSON">JSON</option>

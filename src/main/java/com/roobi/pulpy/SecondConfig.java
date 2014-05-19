@@ -75,15 +75,20 @@ public class SecondConfig extends HttpServlet {
             st.close();
             st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN secondconfig t3 on t1.appid=t3.appid WHERE t1.appid=?");
             st.setString(1, appid);
-String str=null;
+
             ResultSet rs = st.executeQuery();
 	         while(rs.next()){
    	         String id1=rs.getString("id");	 String appname1=rs.getString("appname");
              String authen1=rs.getString("auth");String ba1=rs.getString("b1");String ba2=rs.getString("b2");
              String ba3=rs.getString("b3");String ba4=rs.getString("b4");
              String oriapilabel=rs.getString("a1");String oriapikey=rs.getString("a2"); 
+             
              String rf1=rs.getString("rf");String rm1=rs.getString("rm");
              String resf1=rs.getString("resf");//String eurl=rs.getString("endurl");
+            
+              
+             
+             //here will go to fetch second-config values
              String securl1=rs.getString("securl");String cycle1=rs.getString("cycle");String secid=rs.getString("sec1"); String secval=rs.getString("sec2");
              String ak1=rs.getString("alabel1");String ak2=rs.getString("akey1");String se1=rs.getString("s1"); String sev1=rs.getString("sv1");String se2=rs.getString("s2"); String sev2=rs.getString("sv2");
              String se3=rs.getString("s3"); String sev3=rs.getString("sv3");String se4=rs.getString("s4"); String sev4=rs.getString("sv4");
@@ -142,6 +147,7 @@ String str=null;
             	     Object content = conn.getContent();
             	     InputStream stream = (InputStream) content;
             	     String line=null;
+            	     String str="";
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
     	        	 if(resf2.equals("XML")){
             	     while((line=br.readLine())!=null){
@@ -170,7 +176,8 @@ String str=null;
              
              else if(authen1.equals("API keys")){  //API Keys
 	        	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get
-        		 
+	        		 
+
 	        		 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
 	        		     secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1+"&"+se2+"="+sev2+"&"+se3+"="+sev3+"&"+se4+"="+sev4+"&"+se5+"="+sev5+"&"+se6+"="+sev6;}
 	        		 
@@ -215,6 +222,7 @@ String str=null;
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
 	        	     String line=null;
+	        	     String str="";
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 	        	     if(resf2.equals("XML")){
 	        	        while((line=br.readLine())!=null){
