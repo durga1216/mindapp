@@ -106,7 +106,7 @@ public class ThirdConfig extends HttpServlet {
 	         out.println(thirdurl1+"<br>"+ak1+"<br>"+ak2+"<br>"+authen1);
              String thirdurl11=null;
              if(authen1.equals("No Auth")){ //No Authentication
-    	         if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //No Auth GET XML
+    	         if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
 
     	        	 if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6) && "entity".equals(thirdcycle1)){
     	        		 thirdurl11=thirdurl1+"?"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3+"&"+tp4+"="+tpv4+"&"+tp5+"="+tpv5+"&"+tp6+"="+tpv6;}
@@ -141,8 +141,7 @@ public class ThirdConfig extends HttpServlet {
     	        			 thirdurl11=thirdurl1+"?"+thrdid+"="+thrdval;
     	        		 else if(!"null".equals(ak1) && !"null".equals(ak2))
     	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
-    	        	// out.println(thirdurl11);
-    	        	 
+   	        	 
     	        	 URL thirdurl2=new URL(thirdurl11);
             		 URLConnection uconn = thirdurl2.openConnection();
             	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -152,23 +151,29 @@ public class ThirdConfig extends HttpServlet {
             	     String line=null;
             	     String str="";
             	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-         	       //  FileWriter fw=new FileWriter("F:/workspace/MindPulpy1/WebContent/book.xml");
+                     if(resf3.equals("XML")){
             	     while((line=br.readLine())!=null){
-            	    	// fw.write(line);
             	    	 str+=line;
-            	    	 //fw.flush();
-            	      }
-    	        	    //fw.close();
+            	      }} //if and while
+                     else if(resf3.equals("JSON")){
+                    	 while ((line = br.readLine()) != null) {
+                     	  JSON json = JSONSerializer.toJSON( line );  
+   		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+   		     	          xmlSerializer.setTypeHintsEnabled(false);
+   		     	          xmlSerializer.setSkipWhitespace(true);
+   		     	          xmlSerializer.setTrimSpaces(true);
+   		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+   		     	          xmlSerializer.removeNamespace(line);
+   		     	          xmlSerializer.setForceTopLevelObject(false);
+   		     		      str = xmlSerializer.write( json ); 
+                     } } //else if and while                 
             	     session.setAttribute("xml1", str);
-	     		        response.setHeader("Refresh", "1; URL=third_xml_config.jsp");	
-                   	// Runtime.getRuntime().exec("notepad F:/workspace/MindPulpy1/WebContent/book.xml");
-                   	 //out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-        		     //response.setHeader("Refresh", "1; URL=third_xml_config.jsp"); 
-                   	 }}
+   	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	              response.setHeader("Refresh", "1; URL=third_xml_config.jsp");	
+                                   	 }}
              
              else if(authen1.equals("API keys")){  //API Keys
-	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML")){  //API XML get
-	        		 out.println("Inside API keys and GET");
+	        	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get
 
 	        		 if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6)&& "entity".equals(thirdcycle1))
 	        		     thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3+"&"+tp4+"="+tpv4+"&"+tp5+"="+tpv5+"&"+tp6+"="+tpv6;
@@ -202,77 +207,19 @@ public class ThirdConfig extends HttpServlet {
 	        		
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
-	        		// out.println(thirdurl11);
-	        		
 	        		 URL url1=new URL(thirdurl11);
      				 URLConnection uconn = url1.openConnection();
      				 String str="";
                       BufferedReader br = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
-
           		     String line=null;
           		     FileWriter fw=null;
-          		     
-          		   while((line=br.readLine())!=null){
-            	    	// pw1.write(line);
-     	       		    // pw1.flush();
-     	       		     str+=line;
-     	        	   //out.println(line);
-            	      }
-    	        	    //pw1.close();
-          		 session.setAttribute("xml1", str);
-  		        response.setHeader("Refresh", "1; URL=third_xml_config.jsp");		
-	               	}
-	        	 
-             
-	        	 else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("JSON")){  //API XML get
-	        		 out.println("Inside API keys and GET");
-
-	        		 if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6)&& "entity".equals(thirdcycle1))
-	        		     thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3+"&"+tp4+"="+tpv4+"&"+tp5+"="+tpv5+"&"+tp6+"="+tpv6;
-	        		 
-	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5)&& "entity".equals(thirdcycle1))
-		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3+"&"+tp4+"="+tpv4+"&"+tp5+"="+tpv5;
-	        		 
-	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4)&& "entity".equals(thirdcycle1))
-		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3+"&"+tp4+"="+tpv4;
-	        		 
-	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3)&& "entity".equals(thirdcycle1))
-		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3;
-	        		 
-	        		 else if(!"null".equals(tp1) && !"null".equals(tp2)&& "entity".equals(thirdcycle1))
-		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2;
-	        		 
-	        		 else if(!"null".equals(tp1)&& "entity".equals(thirdcycle1))
-		        		 thirdurl11=thirdurl1+"?"+ak1+"="+ak2+"&"+tp1+"="+tpv1;
-	        		 
-	        		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3))
-		        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+thrdval+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2+"&"+tp3+"="+tpv3;
-	        		 
-	        		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1) && !"null".equals(tp2))
-		        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+thrdval+"&"+tp1+"="+tpv1+"&"+tp2+"="+tpv2;
-	        		 
-	        		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1)&&!"null".equals(tp1))
-		        		 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+thrdval+"&"+tp1+"="+tpv1;
-	        		 
-	        		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "flow".equals(thirdcycle1))
-	        			 thirdurl11=thirdurl1+"?"+oriapilabel+"="+oriapikey+"&"+thrdid+"="+thrdval;
-	        		
-	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
-	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
-	        		// out.println(thirdurl11);
-	        		
-	        		 URL url1=new URL(thirdurl11);
-     				 URLConnection uconn = url1.openConnection();
-
-                      BufferedReader in = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
-
-          		     String line=null;
-          		     FileWriter fw=null;
-          		     
-          		    // fw=new FileWriter("F:/workspace/MindPulpy1/WebContent/book.xml");
-                  	 while ((line = in.readLine()) != null) {
-                  	 
-                  		JSON json = JSONSerializer.toJSON( line );  
+          		     if(resf3.equals("XML")){
+          		         while((line=br.readLine())!=null){
+         	       		     str+=line;
+            	         }} //if and while
+          		     else if(resf3.equals("JSON")){ 
+          		    	 while ((line = br.readLine()) != null) {
+                 	      JSON json = JSONSerializer.toJSON( line );  
 		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
 		     	          xmlSerializer.setTypeHintsEnabled(false);
 		     	          xmlSerializer.setSkipWhitespace(true);
@@ -280,26 +227,17 @@ public class ThirdConfig extends HttpServlet {
 		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
 		     	          xmlSerializer.removeNamespace(line);
 		     	          xmlSerializer.setForceTopLevelObject(false);
-		     		      String  xmlout = xmlSerializer.write( json );
-		    			  //fw=new FileWriter("F:/workspace/MindPulpy1/Webcontent/book.xml");
-		    			  //fw.write(xmlout);
-		     		     session.setAttribute("xml1", xmlout);
-		     		        response.setHeader("Refresh", "1; URL=third_xml_config.jsp");	
+		     		      str = xmlSerializer.write( json );
+          		    	 }} //elseif and while
+          		     
+          		  session.setAttribute("xml1", str);
+	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+  		          response.setHeader("Refresh", "1; URL=third_xml_config.jsp");		
+	          } //GET
+	        }  //Main if API keys
 
-                  	 } // while
-                  	// fw.close();
-                  //	in.close();
-                  	 
-             }  //else  if
-
-             }  //Main if API keys
-
-             
-             
-             
-	         } 	//while 
-             
-	         } // try
+    } 	//while 
+ } // try
 
    	 catch(Exception e){}
 	}
