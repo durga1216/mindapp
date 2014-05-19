@@ -30,8 +30,8 @@ margin-left:200px;
 </head>
 <body>
 <form action="indexpulpy.jsp">
-<center><h1>API GALLERY</h1></center>
-<br><br><table bgcolor='#FF9900' border='none' bordercolor='#000000' width=80% height=80%>
+<center><h1 style='color:#ffffff'>API GALLERY</h1></center>
+<br><br><table bgcolor='#FF9900' border='0' bordercolor='#000000' width=80% height=80%>
 <tr><td>
 <br><br>
 <a href="https://developers.apigee.com/"><img src="images/pix1.jpg" width="200" height="70"></a></td>

@@ -96,6 +96,14 @@ a{
     color:#FFFFFF;
     
     }
+#indiv{color:#FFFFFF;
+}
+#na{
+margin-top:0;
+color:#FFFFFF;
+font-size:20px;
+font-family:verdana;
+text-align:right;}
  </style>
  <script>
  function validateForm()
@@ -156,6 +164,7 @@ function add()
 </head>
 <body>
 <form action="LoginPulpy" name="myForm" method="post" onsubmit="return validateForm()">
+<div id=na><a id="indiv" href= 'MindPulpy_FAQ.pdf'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi?category=Search'>View API's</a></div>
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <div class="sec">
 <center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>

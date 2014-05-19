@@ -20,13 +20,13 @@ background-color:#FF9900;}
 #na{
 margin-top:0;
 color:#FFFFFF;
-font-size:25px;
+font-size:20px;
 font-family:verdana;
 text-align:right;}
 </style>
 <body>
 <form>
-<div id=na><a id="indiv" href= 'MindPulpy_FAQ.pdf'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'index.jsp'>Sign up/ Sign in</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi'>View API's</a></div>
+<div id=na><a id="indiv" href= 'MindPulpy_FAQ.pdf'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'index.jsp'>Sign up/ Sign in</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi?category=Search'>View API's</a></div>
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br>
 <center><img src="images/front.png" style="width:100; height:250;"></center>
 

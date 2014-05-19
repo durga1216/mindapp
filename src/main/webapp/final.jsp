@@ -47,7 +47,7 @@ text-align:left;
 <div id=na><a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
 <center><div class="head">Mind Pulpy</div></center>
 <center><div class="main">Configuration completed! Check With Mobile App</div></center><br><br>
-<center><h2>First Configuration Details</h2></center>
+<center><h2 style='color:#ffffff'>First Configuration Details</h2></center>
 <table align='center' bgcolor='white' border='none' bordercolor='#000000' width=100>
 <tr>
 <th>Your_App_ID</th>
@@ -195,7 +195,7 @@ text-align:left;
 </table>
 
 <c:if test="${sessionScope.securl!=null}">
-<center><h2>Second Configuration Details</h2></center>
+<center><h2 style='color:#ffffff'>Second Configuration Details</h2></center>
 <table align='center' bgcolor='white' border='none' bordercolor='#000000' width=100>
 <tr><td>Sec_End_Url</td>
 <td>: <%=session.getAttribute("securl")%></td></tr>
@@ -320,7 +320,7 @@ text-align:left;
 
 
 <c:if test="${sessionScope.thirdurl!=null}">
-<center><h2>Third Configuration Details</h2></center>
+<center><h2 style='color:#ffffff'>Third Configuration Details</h2></center>
 <table align='center' bgcolor='white' border='none' bordercolor='#000000' width=100>
 <tr><td>third_End_Url</td>
 <td>: <%=session.getAttribute("thirdurl")%></td></tr>
