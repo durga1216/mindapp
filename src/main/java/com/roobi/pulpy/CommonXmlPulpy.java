@@ -513,7 +513,6 @@ String resf2=rs.getString("resf2");
           	}}
         outdoc.appendChild(outevent);
           	
-       if(!"".equals(thirdurl1))  {    	
           	// third API
           	
         Document doc1=null;  //TO Convert XMLSTRING TO DOCUMENT
@@ -1021,7 +1020,6 @@ String resf2=rs.getString("resf2");
         }
 		     
              
-       }          
            /*  Element fromRoot = outdoc.getDocumentElement();
               Element toRoot = outdoc1.getDocumentElement();
 
