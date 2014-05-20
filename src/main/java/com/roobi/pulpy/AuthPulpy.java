@@ -299,6 +299,7 @@ public class AuthPulpy extends HttpServlet {
 	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
 	   	     	          xmlSerializer.removeNamespace(line);
 	   	     	          xmlSerializer.setRootName("root");
+	   	     	          
 	   	     	          xmlSerializer.setForceTopLevelObject(false);
 	   	     		      str = xmlSerializer.write( json );
 	   	    			
@@ -424,10 +425,11 @@ public class AuthPulpy extends HttpServlet {
 	              else if(rm1.equals("POST")){ 
 	            	  URL url1 = new URL (endurl1);
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
-	                  connection.setDoOutput(true);
-	                  connection.setDoInput(true);
+	            	  connection.setDoInput(true);   
+	            	  connection.setDoOutput(true);  
+	            	  connection.setUseCaches(false);  
 		              connection.setRequestMethod("POST");
-
+	            	  connection.connect();  
 	                  DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
 		              wr.writeBytes(eurl);
 		              wr.flush();
