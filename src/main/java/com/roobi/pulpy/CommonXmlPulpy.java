@@ -180,32 +180,7 @@ String resf2=rs.getString("resf2");
     		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
     			 secdurl=securl1+"?"+ak1+"="+ak2;
     	 
-         if(resf2.equals("XML")){
-             doc=builder.parse(new URL(secdurl).openStream());}
-
-      	    else if(resf2.equals("JSON") ){
-      		 URL second_url=new URL(secdurl);
-      		 URLConnection uconn = second_url.openConnection();
-      	     HttpURLConnection conn = (HttpURLConnection) uconn;
-      	         conn.connect();
-      	         Object content = conn.getContent();
-      	         InputStream stream = (InputStream) content;
-      	         String line=null;
-      	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-      	         while ((line = br.readLine()) != null)    { 		  
-      	      JSON json = JSONSerializer.toJSON( line );  
-               XMLSerializer xmlSerializer = new XMLSerializer();  
-               xmlSerializer.setTypeHintsEnabled(false);
-               xmlSerializer.setSkipWhitespace(true);
-               xmlSerializer.setTrimSpaces(true);
-               xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-               xmlSerializer.removeNamespace(line);
-               xmlSerializer.setForceTopLevelObject(false);
-      	      secjsonxml = xmlSerializer.write( json );
-      	     }	      // end-while 
-      	     
-      	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
-      	    }//json
+        
     	      
      }} // get  and No Auth
  
@@ -247,37 +222,37 @@ String resf2=rs.getString("resf2");
 		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
 			      secdurl=securl1;	
 		
-	       if(resf2.equals("XML")){
-	           doc=builder.parse(new URL(secdurl).openStream());}
-
-	    	    else if(resf2.equals("JSON") ){
-	    		 URL second_url=new URL(secdurl);
-	    		 URLConnection uconn = second_url.openConnection();
-	    	     HttpURLConnection conn = (HttpURLConnection) uconn;
-	    	         conn.connect();
-	    	         Object content = conn.getContent();
-	    	         InputStream stream = (InputStream) content;
-	    	         String line=null;
-	    	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	    	         while ((line = br.readLine()) != null)    { 		  
-	    	      JSON json = JSONSerializer.toJSON( line );  
-	             XMLSerializer xmlSerializer = new XMLSerializer();  
-	             xmlSerializer.setTypeHintsEnabled(false);
-	             xmlSerializer.setSkipWhitespace(true);
-	             xmlSerializer.setTrimSpaces(true);
-	             xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-	             xmlSerializer.removeNamespace(line);
-	             xmlSerializer.setForceTopLevelObject(false);
-	    	      secjsonxml = xmlSerializer.write( json );
-	    	     }	      // end-while 
-	    	     
-	    	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
-	    	    }//json
+	       
 	 }  //end if JSON
  
  }
   
-  
+  if(resf2.equals("XML")){
+      doc=builder.parse(new URL(secdurl).openStream());}
+
+	    else if(resf2.equals("JSON") ){
+		 URL second_url=new URL(secdurl);
+		 URLConnection uconn = second_url.openConnection();
+	     HttpURLConnection conn = (HttpURLConnection) uconn;
+	         conn.connect();
+	         Object content = conn.getContent();
+	         InputStream stream = (InputStream) content;
+	         String line=null;
+	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	         while ((line = br.readLine()) != null)    { 		  
+	      JSON json = JSONSerializer.toJSON( line );  
+        XMLSerializer xmlSerializer = new XMLSerializer();  
+        xmlSerializer.setTypeHintsEnabled(false);
+        xmlSerializer.setSkipWhitespace(true);
+        xmlSerializer.setTrimSpaces(true);
+        xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+        xmlSerializer.removeNamespace(line);
+        xmlSerializer.setForceTopLevelObject(false);
+	      secjsonxml = xmlSerializer.write( json );
+	     }	      // end-while 
+	     
+	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+	    }//json
    
 
 
@@ -549,7 +524,7 @@ String resf2=rs.getString("resf2");
           	
         	
             String thirdurl11=null;
-            String jsonxmlout=null;
+            String thrdjsonxmlout=null;
             if(authen1.equals("No Auth")){ //No Authentication
      	         if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
 
@@ -588,34 +563,7 @@ String resf2=rs.getString("resf2");
      	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
      	        		 
      	        	 
-     	        	 if(resf3.equals("XML"))
-     	           		 doc1=builder1.parse(new URL(thirdurl11).openStream());
-     	           	 
-     	           	 
-     	           	    else if(resf3.equals("JSON")){
-     	                URL third=new URL(thirdurl11);
-     	   		        URLConnection uconn = third.openConnection();
-     	   	            HttpURLConnection conn = (HttpURLConnection) uconn;
-     	   	            conn.connect();
-     	   	            Object content = conn.getContent();
-     	   	            InputStream stream = (InputStream) content;
-     	   	            String line=null;
-     	   	            BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-     	   	           while ((line = br.readLine()) != null)    { 		  
-     	    	       JSON json = JSONSerializer.toJSON( line );  
-     		           XMLSerializer xmlSerializer = new XMLSerializer();  
-     		           xmlSerializer.setTypeHintsEnabled(false);
-     		           xmlSerializer.setSkipWhitespace(true);
-     		           xmlSerializer.setTrimSpaces(true);
-     		           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-     		           xmlSerializer.removeNamespace(line);
-     		           xmlSerializer.setForceTopLevelObject(false);
-     			       jsonxmlout = xmlSerializer.write( json );
-     	   	     }
-     	   	     // end-while  	
-     	   	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8")))); 
-
-     	           	    }//json  
+     	        	
      		     
      	        	 
      	         }}// No auth and get
@@ -663,37 +611,37 @@ String resf2=rs.getString("resf2");
            		 
                	 String thirdjsonxml=null;
 
-           		 if(resf3.equals("XML"))
-               		 doc1=builder1.parse(new URL(thirdurl11).openStream());
-               	 
-               	    else if(resf3.equals("JSON")){
-                    URL third=new URL(thirdurl11);
-       		        URLConnection uconn = third.openConnection();
-       	            HttpURLConnection conn = (HttpURLConnection) uconn;
-       	            conn.connect();
-       	            Object content = conn.getContent();
-       	            InputStream stream = (InputStream) content;
-       	            String line=null;
-       	            BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-       	           while ((line = br.readLine()) != null)    { 		  
-        	       JSON json = JSONSerializer.toJSON( line );  
-    	           XMLSerializer xmlSerializer = new XMLSerializer();  
-    	           xmlSerializer.setTypeHintsEnabled(false);
-    	           xmlSerializer.setSkipWhitespace(true);
-    	           xmlSerializer.setTrimSpaces(true);
-    	           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-    	           xmlSerializer.removeNamespace(line);
-    	           xmlSerializer.setForceTopLevelObject(false);
-    		       jsonxmlout = xmlSerializer.write( json );
-       	              }
-       	     // end-while  	
-       	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8")))); 
-
-               	    }//json  
+           		
     	     
            	 }}//api keys and get	 
            		
-           		
+            if(resf3.equals("XML"))
+          		 doc1=builder1.parse(new URL(thirdurl11).openStream());
+          	 
+          	    else if(resf3.equals("JSON")){
+               URL third=new URL(thirdurl11);
+  		        URLConnection uconn = third.openConnection();
+  	            HttpURLConnection conn = (HttpURLConnection) uconn;
+  	            conn.connect();
+  	            Object content = conn.getContent();
+  	            InputStream stream = (InputStream) content;
+  	            String line=null;
+  	            BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+  	           while ((line = br.readLine()) != null)    { 		  
+   	       JSON json = JSONSerializer.toJSON( line );  
+	           XMLSerializer xmlSerializer = new XMLSerializer();  
+	           xmlSerializer.setTypeHintsEnabled(false);
+	           xmlSerializer.setSkipWhitespace(true);
+	           xmlSerializer.setTrimSpaces(true);
+	           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+	           xmlSerializer.removeNamespace(line);
+	           xmlSerializer.setForceTopLevelObject(false);
+		       thrdjsonxmlout = xmlSerializer.write( json );
+  	              }
+  	     // end-while  	
+  	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(thrdjsonxmlout.getBytes("UTF-8")))); 
+
+          	    }//json  
 
      	     Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
      		 Element outevent1=outdoc1.createElement("MPulpy");
