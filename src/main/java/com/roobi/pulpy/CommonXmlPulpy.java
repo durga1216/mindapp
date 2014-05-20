@@ -249,6 +249,8 @@ String resf2=rs.getString("resf2");
         xmlSerializer.removeNamespace(line);
         xmlSerializer.setForceTopLevelObject(false);
 	      secjsonxml = xmlSerializer.write( json );
+	        doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+
 	     }	      // end-while 
 	     
 	    }//json
@@ -256,7 +258,6 @@ String resf2=rs.getString("resf2");
 
 
     
-        doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
         
 
         
@@ -637,11 +638,12 @@ String resf2=rs.getString("resf2");
 	           xmlSerializer.removeNamespace(line);
 	           xmlSerializer.setForceTopLevelObject(false);
 		       thrdjsonxmlout = xmlSerializer.write( json );
+	    	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(thrdjsonxmlout.getBytes("UTF-8")))); 
+
   	              }
   	     // end-while  	
 
           	    }//json  
-    	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(thrdjsonxmlout.getBytes("UTF-8")))); 
 
 
      	     Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
