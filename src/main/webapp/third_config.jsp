@@ -68,7 +68,7 @@ padding:10px;
 #pa{font-family:verdana;
   font-size:20px;
   color:#FFFFFF;
-  margin-left:400px;}
+  margin-left:80px;}
   
   .heading{font-family:verdana;
 font-weight:bold;
@@ -168,8 +168,15 @@ function removeParent(){
 <input type="radio" name="thirdcycle"  value="flow">
 <label for="rd2">Flow Based</label>
 <input type="radio" name="thirdcycle"   value="entity">
-<label for="rd2">Entity Based</label>
-<br><br>
+<label for="rd2">Entity Based</label><br>
+
+<div id="ent" style="display:none">
+<input type="text" name="alabel" value="" placeholder="Key_Label"><br>
+<input type="text" name="akey" value="" placeholder="Key_value"><br>
+<div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div><br><br>
+</div>
+</div>
+
 <div class="resformat"><center>Response Format</center></div><br>
 <select name="select3" id="select3">
      <option value="XML">XML</option>
@@ -177,12 +184,7 @@ function removeParent(){
      <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
 </select><br><br>
-<div id="ent" style="display:none">
-<input type="text" name="alabel" value="" placeholder="Key_Label"><br>
-<input type="text" name="akey" value="" placeholder="Key_value"><br>
-<div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div><br><br>
-</div>
-</div>
+
 <div id="flo" style="display:none">
 <input type="text" name="thrd1" value="" placeholder="Flow_Id_Label"><br>
 <input type="text" name="thrd2" value="" placeholder="Flow_Id_value"><br>

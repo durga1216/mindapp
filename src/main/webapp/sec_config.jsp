@@ -190,7 +190,7 @@ function removeParent(){
      <option value="JSON">JSON</option>
      <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
-</select> <br>
+</select> <br><br><br>
 <a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
 <div id="content"></div><br><br>
 <input type="submit" name="submit" value="Continue"></form>
