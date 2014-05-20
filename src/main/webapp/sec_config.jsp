@@ -70,7 +70,7 @@ padding:10px;
   font-family:verdana;
   font-size:20px;
   color:#FFFFFF;
-  margin-left:100px;
+  margin-left:80px;
   }
   
   .heading{font-family:verdana;

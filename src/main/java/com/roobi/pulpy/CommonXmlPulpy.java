@@ -139,7 +139,7 @@ String resf2=rs.getString("resf2");
      DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
      builder=domFactory.newDocumentBuilder();
   if(authen1.equals("No Auth")){ //No Authentication
-     if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
+     if(rf1.equals("REST") && rm1.equals ("GET") && resf2.equals("XML")){  //No Auth GET XML
     	 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
     		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
     		 
@@ -180,9 +180,78 @@ String resf2=rs.getString("resf2");
     		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
     			 secdurl=securl1+"?"+ak1+"="+ak2;
     	 
-        
+		 doc=builder.parse(new URL(secdurl).openStream());
+
     	      
-     }} // get  and No Auth
+     }
+     
+     if(rf1.equals("REST") && rm1.equals ("GET") && resf2.equals("XML")){  //No Auth GET XML
+    	 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5+"&"+se6+"="+s6;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4+"&"+se5+"="+s5;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3+"&"+se4+"="+s4;}
+    		 
+    	      
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2;}
+    		 
+    		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+s1;}
+    		 else if("null".equals(se1)&& "entity".equals(cycle1))
+    			secdurl=securl1;
+    		 else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
+    		     secdurl=securl1+"/"+pid;
+    	 
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "flow".equals(cycle1)){
+        		 secdurl=securl1+"?"+secid+"="+pid+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2)&& "flow".equals(cycle1)){
+        		 secdurl=securl1+"?"+secid+"="+pid+"&"+se1+"="+s1+"&"+se2+"="+s2;}
+    		 
+    		 else if(!"null".equals(se1)&& "flow".equals(cycle1)){
+        		 secdurl=securl1+"?"+secid+"="+pid+"&"+se1+"="+s1;}
+    	 
+       		 else if("null".equals(se1)&& "entity".equals(cycle1))
+    			secdurl=securl1;
+    		 
+    		 else if(!"null".equals(secid)&& !"null".equals(pid) && "null".equals(ak1) && "null".equals(ak2)&& "flow".equals(cycle1))
+    			 secdurl=securl1+"?"+secid+"="+pid;
+    		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
+    			 secdurl=securl1+"?"+ak1+"="+ak2;
+    	 
+    	 URL second_url=new URL(secdurl);
+		 URLConnection uconn = second_url.openConnection();
+	     HttpURLConnection conn = (HttpURLConnection) uconn;
+	         conn.connect();
+	         Object content = conn.getContent();
+	         InputStream stream = (InputStream) content;
+	         String line=null;
+	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	         while ((line = br.readLine()) != null)    { 		  
+	      JSON json = JSONSerializer.toJSON( line );  
+        XMLSerializer xmlSerializer = new XMLSerializer();  
+        xmlSerializer.setTypeHintsEnabled(false);
+        xmlSerializer.setSkipWhitespace(true);
+        xmlSerializer.setTrimSpaces(true);
+        xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+        xmlSerializer.removeNamespace(line);
+        xmlSerializer.setForceTopLevelObject(false);
+	      secjsonxml = xmlSerializer.write( json );
+
+	     }	      // end-while 
+		        doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+
+    	      
+     }
+  
+  } // get  and No Auth
  
  else if(authen1.equals("API keys")){  //API Keys
 	 if(rf1.equals("REST") && rm1.equals ("GET") && resf2.equals("XML") ){  //API XML get
@@ -567,7 +636,7 @@ String resf2=rs.getString("resf2");
             String thirdurl11=null;
             String thrdjsonxmlout=null;
             if(authen1.equals("No Auth")){ //No Authentication
-     	         if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
+     	         if(rf1.equals("REST") && rm1.equals ("GET") && resf3.equals("XML")){  //No Auth GET XML
 
      	        	 if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6) && "entity".equals(thirdcycle1)){
      	        		 thirdurl11=thirdurl1+"?"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4+"&"+tp5+"="+th5+"&"+tp6+"="+th6;}
@@ -604,10 +673,79 @@ String resf2=rs.getString("resf2");
      	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
      	        		 
      	        	 
-     	        	
+              		 doc1=builder1.parse(new URL(thirdurl11).openStream());
+
      		     
      	        	 
-     	         }}// No auth and get
+     	         }
+     	        if(rf1.equals("REST") && rm1.equals ("GET") && resf3.equals("JSON")){  //No Auth GET XML
+
+    	        	 if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5) && !"null".equals(tp6) && "entity".equals(thirdcycle1)){
+    	        		 thirdurl11=thirdurl1+"?"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4+"&"+tp5+"="+th5+"&"+tp6+"="+th6;}
+    	        		 
+    	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4) && !"null".equals(tp5)&& "entity".equals(thirdcycle1)){
+    		        		 thirdurl11=thirdurl1+"?"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4+"&"+tp5+"="+th5;}
+    	        		 
+    	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3) && !"null".equals(tp4)&& "entity".equals(thirdcycle1)){
+    		        		 thirdurl11=thirdurl1+"?"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3+"&"+tp4+"="+th4;}
+    	        		 
+    	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3)&& "entity".equals(thirdcycle1)){
+    		        		 thirdurl11=thirdurl1+"?"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3;}
+    	        		 
+    	        		 else if(!"null".equals(tp1) && !"null".equals(tp2)&& "entity".equals(thirdcycle1)){
+    		        		 thirdurl11=thirdurl1+"?"+tp1+"="+th1+"&"+tp2+"="+th2;}
+    	        		 
+    	        		 else if(!"null".equals(tp1)&& "entity".equals(thirdcycle1)){
+    		        		 thirdurl11=thirdurl1+"?"+tp1+"="+th1;}
+    	        		 else if("null".equals(tp1)&& "entity".equals(thirdcycle1))
+    	        			thirdurl11=thirdurl1;
+    	        	 
+    	        		 else if(!"null".equals(tp1) && !"null".equals(tp2) && !"null".equals(tp3)&& "flow".equals(thirdcycle1)){
+    		        		 thirdurl11=thirdurl1+"?"+thrdid+"="+paid+"&"+tp1+"="+th1+"&"+tp2+"="+th2+"&"+tp3+"="+th3;}
+    	        		 
+    	        		 else if(!"null".equals(tp1) && !"null".equals(tp2)&& "flow".equals(thirdcycle1)){
+    		        		 thirdurl11=thirdurl1+"?"+thrdid+"="+paid+"&"+tp1+"="+th1+"&"+tp2+"="+th2;}
+    	        		 
+    	        		 else if(!"null".equals(tp1)&& "flow".equals(thirdcycle1)){
+    		        		 thirdurl11=thirdurl1+"?"+thrdid+"="+paid+"&"+tp1+"="+th1;}
+    	        		 
+    	        		 else if(!"null".equals(thrdid)&& !"null".equals(thrdval) && "null".equals(ak1) && "null".equals(ak2))
+    	        			 thirdurl11=thirdurl1+"?"+thrdid+"="+paid;
+    	        		 else if(!"null".equals(ak1) && !"null".equals(ak2))
+    	        			 thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
+    	        	
+    	        	 URL third=new URL(thirdurl11);
+    	  		        URLConnection uconn = third.openConnection();
+    	  	            HttpURLConnection conn = (HttpURLConnection) uconn;
+    	  	            conn.connect();
+    	  	            Object content = conn.getContent();
+    	  	            InputStream stream = (InputStream) content;
+    	  	            String line=null;
+    	  	            BufferedReader in=new BufferedReader(new InputStreamReader(stream));
+    	  	           while ((line = in.readLine()) != null)    { 		  
+    	   	       JSON json = JSONSerializer.toJSON( line );  
+    		           XMLSerializer xmlSerializer = new XMLSerializer();  
+    		           xmlSerializer.setTypeHintsEnabled(false);
+    		           xmlSerializer.setSkipWhitespace(true);
+    		           xmlSerializer.setTrimSpaces(true);
+    		           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+    		           xmlSerializer.removeNamespace(line);
+    		           xmlSerializer.setForceTopLevelObject(false);
+    			       thrdjsonxmlout = xmlSerializer.write( json );
+
+    	  	              }
+    	  	     // end-while 
+    		    	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(thrdjsonxmlout.getBytes("UTF-8")))); 
+
+	 
+    	        	 
+    	          		     
+    	        	 
+    	         }
+            
+            
+            
+            }// No auth and get
             
             
             else if(authen1.equals("API keys")){  //API Keys

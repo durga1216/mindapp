@@ -37,7 +37,7 @@ input[type="radio"]
    color:#FFFFFF;
    font-size:20px;
    font-family:verdana;
-   margin-left:60px;
+   margin-left:80px;
  }
  #note{
  color:#FFFFFF;
@@ -94,7 +94,7 @@ padding:15px;}
 select{color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
-margin-left:540px;
+margin-left:80px;
 font-family:verdana;
 width:250px;
 height:50px;
@@ -187,7 +187,6 @@ function removeParent(){
 <input type="text" name="thrd1" value="" placeholder="Flow_Id_Label"><br>
 <input type="text" name="thrd2" value="" placeholder="Flow_Id_value"><br>
 <center><div id='not'>Note:To complete whole cycle,connect with unique ID</div></div></center>
-
 <a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
 <div id="content"></div><br><br>
 <input type="submit" name="submit" value="Continue"></form>

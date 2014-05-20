@@ -262,8 +262,8 @@ text-align:right;}
 <div id="divid" style="display:none"><br>
 <br>
 <input type="text" name="b2" value="" placeholder="UserName" >
-<input type="text" name="b4" value="" placeholder="Password"><br><br>
-<a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
+<input type="text" name="b4" value="" placeholder="Password"><br><br><br>
+<a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
 <br><div id="content"></div><br>
 </div>
 
