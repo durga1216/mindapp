@@ -40,6 +40,7 @@ th,td
 padding:7px;
 text-align:left;
 color:#FF9900;
+font-weight:bold;
 }
 </style>
 </head>
@@ -49,7 +50,7 @@ color:#FF9900;
 <center><div class="head">Mind Pulpy</div></center>
 <center><div class="main">Configuration completed! Check With Mobile App</div></center><br><br>
 <center><h2 style='color:#ffffff'>First Configuration Details</h2></center>
-<table align='center' bgcolor='white' border='0' bordercolor='#000000' width=100>
+<table align='center' bgcolor='white' border='0' bordercolor='#000000' style='width:700px;'>
 <tr>
 <th>Your_App_ID</th>
 <th>: <%=session.getAttribute("appid")%></th>
