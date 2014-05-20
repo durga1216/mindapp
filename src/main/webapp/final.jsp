@@ -32,23 +32,24 @@ color:#FFFFFF;
 #na{
 margin-top:0;
 color:#FFFFFF;
-font-size:15px;
+font-size:18px;
 font-family:verdana;
 text-align:right;}
 th,td
 {
 padding:7px;
 text-align:left;
+color:#FF9900;
 }
 </style>
 </head>
 <body>
 <%request.getSession().setAttribute("user", null);%>
-<div id=na><a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+<div id=na><a id="indiv" href='https://mindtools-inputs.rhcloud.com/index.jsp'>Mind Tools </a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
 <center><div class="head">Mind Pulpy</div></center>
 <center><div class="main">Configuration completed! Check With Mobile App</div></center><br><br>
 <center><h2 style='color:#ffffff'>First Configuration Details</h2></center>
-<table align='center' bgcolor='white' border='none' bordercolor='#000000' width=100>
+<table align='center' bgcolor='white' border='0' bordercolor='#000000' width=100>
 <tr>
 <th>Your_App_ID</th>
 <th>: <%=session.getAttribute("appid")%></th>
@@ -442,5 +443,6 @@ text-align:left;
 </tr></c:if>
 </table>
 </c:if>
+
 </body>
 </html>

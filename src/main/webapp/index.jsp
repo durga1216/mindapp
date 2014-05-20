@@ -171,7 +171,7 @@ function add()
 <input  type=text name="s2" id='s2' placeholder="First Name"><br><br>
 <input  type=text name="s3" id='s3' placeholder="Last Name"><br><br>
 <input type=password name="s4" id='s4'  placeholder="Password"><br><br><br></center>
-<input type="submit" name="submit" id='sign' value="Sign Up"> &nbsp;&nbsp;OR&nbsp;&nbsp;
+<input type="submit" name="submit" id='sign' value="Sign Up"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="b2" value="Login" Onclick="add()"><br><br>
 </form>
 </body>
