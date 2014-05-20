@@ -39,9 +39,9 @@ public class Addapi extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name=request.getParameter("t1");
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+			String name=request.getParameter("t1");
 		String pname=request.getParameter("t2");
 		String link=request.getParameter("t3");
 		String des=request.getParameter("t4");
@@ -54,17 +54,23 @@ public class Addapi extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	        PreparedStatement st=null;
-			 st=con.prepareStatement("insert into addapi(name,pname,link,des,img,cat) values ('"+name+"','"+pname+"','"+link+"','"+des+"','"+img+"','"+cat+"')");
+			 st=con.prepareStatement("insert into addapi(name,pname,link,des,img,cat) values (?,?,?,?,?,?)");
+			 st.setString(1, name);
+			 st.setString(2, pname);
+			 st.setString(3, link);
+			 st.setString(4, des);
+			 st.setString(5, img);
+			 st.setString(6, cat);
 			 st.executeUpdate();
 		     st.close();
 			
 		}
 		catch(Exception e)
 		{
-			
+			out.println(e);
 		}
 		out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2 style='color:#ffffff'>API ADDED SUCCESSFULLY</h2></center></body></html>");
-	     response.setHeader("Refresh", "1; URL=indexpulpy.jsp");
+	    // response.setHeader("Refresh", "1; URL=indexpulpy.jsp");
 	}
 
 }
