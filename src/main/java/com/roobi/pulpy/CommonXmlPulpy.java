@@ -224,14 +224,16 @@ String resf2=rs.getString("resf2");
 	 }  //end if JSON
  
  }
+  
+  
    
-  if(resf2.equals("XML")){
+       if(resf2.equals("XML") && authen1.equals("API keys")){
        doc=builder.parse(new URL(secdurl).openStream());}
 
-	    else if(resf2.equals("JSON")){
+	    else if(resf2.equals("JSON") && authen1.equals("API keys")){
 		 URL second_url=new URL(secdurl);
-		     URLConnection uconn = second_url.openConnection();
-	         HttpURLConnection conn = (HttpURLConnection) uconn;
+		 URLConnection uconn = second_url.openConnection();
+	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	         conn.connect();
 	         Object content = conn.getContent();
 	         InputStream stream = (InputStream) content;
@@ -606,11 +608,11 @@ String resf2=rs.getString("resf2");
            			      thirdurl11=thirdurl1;
            	 }}//api keys and get	 
            		
-           		 if(resf3.equals("XML"))
+           		 if(resf3.equals("XML") && authen1.equals("API keys"))
            		 doc1=builder1.parse(new URL(thirdurl11).openStream());
            	 
            	 
-           	    else if(resf3.equals("JSON")){
+           	    else if(resf3.equals("JSON") && authen1.equals("API keys")){
                 URL third=new URL(thirdurl11);
    		        URLConnection uconn = third.openConnection();
    	            HttpURLConnection conn = (HttpURLConnection) uconn;

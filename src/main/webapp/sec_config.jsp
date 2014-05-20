@@ -174,15 +174,15 @@ function removeParent(){
 
 <div id="ent" style="display:none">
 <input type="text" name="alabel" value="" placeholder="Key_Label">
-<input type="text" name="akey" value="" placeholder="Key_value"><br>
+<input type="text" name="akey" value="" placeholder="Key_value">
 <div id='note'>Note:Re-enter API key or token again, or can also enter different key or token including No-Authentication,If avail</div></center>
 
 </div><br>
 
 <div id="flo" style="display:none">
 <input type="text" name="sec1" value="" placeholder="Flow_Id_Label">
-<input type="text" name="sec2" value="" placeholder="Flow_Id_value"><br>
-<div id='not'>Note:To complete whole cycle,connect with unique ID</div></div><br>
+<input type="text" name="sec2" value="" placeholder="Flow_Id_value">
+<div id='not'>Note:To complete whole cycle,connect with unique ID</div></div>
 
 <div class="resformat"><center>Response Format</center></div><br>
 <select name="select3" id="select3">
@@ -190,7 +190,7 @@ function removeParent(){
      <option value="JSON">JSON</option>
      <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
-</select><br><br> 
+</select> <br>
 <a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
 <div id="content"></div><br><br>
 <input type="submit" name="submit" value="Continue"></form>
