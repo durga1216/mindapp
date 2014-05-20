@@ -613,7 +613,7 @@ String resf2=rs.getString("resf2");
      			       jsonxmlout = xmlSerializer.write( json );
      	   	     }
      	   	     // end-while  	
-     	   	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+     	   	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8")))); 
 
      	           	    }//json  
      		     
@@ -661,9 +661,10 @@ String resf2=rs.getString("resf2");
            		 else if("null".equals(akt1) && "null".equals(akt2))
            			      thirdurl11=thirdurl1;
            		 
+               	 String thirdjsonxml=null;
+
            		 if(resf3.equals("XML"))
                		 doc1=builder1.parse(new URL(thirdurl11).openStream());
-               	 
                	 
                	    else if(resf3.equals("JSON")){
                     URL third=new URL(thirdurl11);
@@ -674,7 +675,6 @@ String resf2=rs.getString("resf2");
        	            InputStream stream = (InputStream) content;
        	            String line=null;
        	            BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-       	            String str=null;
        	           while ((line = br.readLine()) != null)    { 		  
         	       JSON json = JSONSerializer.toJSON( line );  
     	           XMLSerializer xmlSerializer = new XMLSerializer();  
@@ -684,10 +684,10 @@ String resf2=rs.getString("resf2");
     	           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
     	           xmlSerializer.removeNamespace(line);
     	           xmlSerializer.setForceTopLevelObject(false);
-    		       str = xmlSerializer.write( json );
+    		       jsonxmlout = xmlSerializer.write( json );
        	              }
        	     // end-while  	
-       	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8")))); 
+       	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8")))); 
 
                	    }//json  
     	     
