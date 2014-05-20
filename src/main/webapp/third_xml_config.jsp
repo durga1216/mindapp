@@ -108,8 +108,7 @@ function removeParam()
 <center><h2><a id='pa' href="javascript:load()">Load_Xml</a></h2></center><br><br>
 <center><div="text"></div><input type="text" name="thrdparent" value="" placeholder="Parent_Tag">
 <input type="text" name="thrdroot" value="" placeholder="Root_Tag"></div></center>
-<br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
-<a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>
+<br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a><a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>
 <br><center><div id="content"></div></center><br><br>
 <center><div id="but"><input type="submit" value="Continue" name="submit"></div></center>
 </form>
