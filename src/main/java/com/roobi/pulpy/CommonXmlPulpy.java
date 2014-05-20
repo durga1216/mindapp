@@ -251,12 +251,12 @@ String resf2=rs.getString("resf2");
 	      secjsonxml = xmlSerializer.write( json );
 	     }	      // end-while 
 	     
-	  doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
 	    }//json
    
 
 
     
+        doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
         
 
         
@@ -639,9 +639,10 @@ String resf2=rs.getString("resf2");
 		       thrdjsonxmlout = xmlSerializer.write( json );
   	              }
   	     // end-while  	
-  	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(thrdjsonxmlout.getBytes("UTF-8")))); 
 
           	    }//json  
+    	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(thrdjsonxmlout.getBytes("UTF-8")))); 
+
 
      	     Document outdoc1=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
      		 Element outevent1=outdoc1.createElement("MPulpy");
