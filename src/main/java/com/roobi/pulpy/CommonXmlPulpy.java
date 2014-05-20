@@ -627,8 +627,8 @@ String resf2=rs.getString("resf2");
   	            Object content = conn.getContent();
   	            InputStream stream = (InputStream) content;
   	            String line=null;
-  	            BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-  	           while ((line = br.readLine()) != null)    { 		  
+  	            BufferedReader in=new BufferedReader(new InputStreamReader(stream));
+  	           while ((line = in.readLine()) != null)    { 		  
    	       JSON json = JSONSerializer.toJSON( line );  
 	           XMLSerializer xmlSerializer = new XMLSerializer();  
 	           xmlSerializer.setTypeHintsEnabled(false);
