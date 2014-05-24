@@ -69,7 +69,7 @@ out.println("<p style='font-weight:bold'>Category</p><a style='color:#ffffff' hr
  		+"<a style='color:#ffffff' href='/Viewapi?category=Photos'>Photos</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Messaging'>Messaging</a></div>");
 out.println("<div style='padding: 9px 0;position: fixed;font-size: 18px;text-align:left;margin-left:1150px;top: 530px;width: 40px;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #FF9900;border: 1px solid gainsboro; border-color:#FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
-out.println("<a style='color:#ffffff' href='indexpulpy.jsp'>Back</a></div>");
+out.println("<a style='color:#ffffff' href='index.jsp'>Back</a></div>");
 			while(rs.next()){
 				out.println("<div style='font-size:17px;'>");
 			        	String name=rs.getString("name");

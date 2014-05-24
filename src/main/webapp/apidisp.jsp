@@ -29,7 +29,7 @@ margin-left:200px;
 <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body>
-<form action="indexpulpy.jsp">
+<form action="index.jsp">
 <center><h1 style='color:#ffffff'>API GALLERY</h1></center>
 <br><br><table bgcolor='#FF9900' border='0' bordercolor='#000000' width=80% height=80%>
 <tr><td>
