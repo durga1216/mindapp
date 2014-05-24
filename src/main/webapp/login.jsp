@@ -81,7 +81,7 @@ color:#FFFFFF;
  <script type="text/javascript">
 function add()
 {
-	window.location="login.jsp";
+	window.location="index.jsp";
 	}
 function load(){
 	window.open("terms.jsp", '_blank');

@@ -104,7 +104,7 @@ color:#FFFFFF;
 <script type="text/javascript">
 function back()
 {
-	window.location="indexpulpy.jsp";
+	window.location="index.jsp";
 	}
 </script>
 <body>

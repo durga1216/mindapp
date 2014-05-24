@@ -169,11 +169,14 @@ function load(){
 	window.open("terms.jsp", '_blank');
 	
 }
+function load1(){
+	window.open("MindPulpy_FAQ.pdf", '_blank');
+}
 </script>
 </head>
 <body>
 <form action="LoginPulpy" name="myForm" method="post" onsubmit="return validateForm()">
-<div id=na><a id="indiv" href= 'MindPulpy_FAQ.pdf'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi?category=Search'>View API's</a></div>
+<div id=na><a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi?category=Search'>View API's</a></div>
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <div class="sec">
 <center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>

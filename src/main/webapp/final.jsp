@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>MindPulpy</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <style>
 body{background-color:#FF9900;}
 .head{
@@ -70,8 +71,11 @@ font-weight:bold;
 <div id=na><a id="indiv" href='https://mindtools-inputs.rhcloud.com/index.jsp'>https://mindtools-inputs.rhcloud.com/index.jsp </a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
 <form action="Edit" method="post">
 <center><div class="head">Mind Pulpy</div></center>
-<center><div class="main">Configuration completed! Check With Mobile App</div></center><br><br>
-<center><h2 style='color:#ffffff'>First Configuration Details</h2></center>
+<center><div class="main">Configuration completed! Check With Mobile App</div></center><br>
+<center><h2 style='color:#ffffff;font-family:verdana;'>Your App_Id :   <%=session.getAttribute("appid")%></h2></center>
+<c:if test="${sessionScope.appid!=null}">
+<center><h2 style='color:#ffffff;font-family:verdana;'>You Can Also Edit Here</h2></center>
+<center><h2 style='color:#ffffff;font-family:verdana;'>First Configuration Details</h2></center>
 <table align='center' bgcolor='white' border='0' bordercolor='#000000' style='width:700px;'>
 <tr>
 <th>Your_App_ID</th>
@@ -467,6 +471,7 @@ font-weight:bold;
 </table>
 </c:if>
 <br><br><br><center><input type="submit" value="Done Editing"></center>
+</c:if>
 </form>
 </body>
 </html>
