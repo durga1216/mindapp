@@ -46,7 +46,19 @@ width:300px;
 height:25px;
 padding:10px;
 } 
+input[type="button"],input[type="submit"]{
 
+color:#FFFFFF;
+font-size:15px;
+background-color:#FF9900;
+font-family:verdana;
+width:150px;
+height:50px;
+border:solid 2px;
+border-color:#FFFFFF;
+border-radius:20px;
+padding:10px;
+}
 input[type="password"]{
 color:#FF9900;
 font-size:20px;
@@ -57,18 +69,7 @@ height:25px;
 padding:10px;
 } 
 
- input[type="submit"]{
-
-color:#FFFFFF;
-font-size:20px;
-background-color:#FF9900;
-font-family:verdana;
-width:140px;
-height:50px;
-border:solid 2px;
-border-color:#FFFFFF;
-border-radius:50px;
-}
+ 
 
 .result{
 color:#FFFFFF;
@@ -77,13 +78,24 @@ color:#FFFFFF;
     
 </style>
 </head>
+ <script type="text/javascript">
+function add()
+{
+	window.location="login.jsp";
+	}
+function load(){
+	window.open("terms.jsp", '_blank');
+	
+}
+</script>
 <body>
 <form action="LoginCheckPulpy" method="post">
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br><center><div class='au'><center>Login Here</center></div></center>
 <center>&nbsp;&nbsp;&nbsp;&nbsp;<div class="result">${alert}</div></center><br><br>
 <center><input type=text name="t1" id='t1' placeholder="Email"><br><br>
 <input type=password name="t2" id='t2'  placeholder="Password"><br><br><br></center>
-<center>&nbsp;&nbsp;<input type="submit" name="submit" id='Login' value="Login"><center><br>
+<center><input type="submit" name="submit" id='Login' value="Login">&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" name="b2" value="Signup" Onclick="add()"><center><br>
 
 </form>
 </body>

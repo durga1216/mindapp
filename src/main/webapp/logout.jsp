@@ -28,6 +28,6 @@ color:#FFFFFF;
 <center><h1>Mind Pulpy</h1><center><br><br>
 
 <center><h2>Successfully Signout!!</h2><center><br><br>
-<h3><a href="index.jsp">click here to login</a></h3>
+<h3><a href="login.jsp">click here to login</a></h3>
 </body>
 </html>

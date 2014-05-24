@@ -21,12 +21,12 @@ margin-right:150px;
 }
 
 img{
-height:50px;
-width:150px;
+height:70px;
+width:200px;
 }
 #hed{
 color:#ffffff;
-margin-left:150px;
+margin-left:100px;
 font-size:50px;
 }
 </style>
