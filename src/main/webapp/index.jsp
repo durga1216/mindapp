@@ -71,7 +71,7 @@ border-radius:20px;
 padding:10px;
 }
 img{
-margin-left:400px;
+margin-left:402px;
 }
 #indiv{color:#FFFFFF;
 }
