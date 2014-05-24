@@ -26,7 +26,7 @@ width:200px;
 }
 #hed{
 color:#ffffff;
-margin-left:100px;
+margin-left:102px;
 font-size:50px;
 }
 </style>
