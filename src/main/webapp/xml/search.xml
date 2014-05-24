@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<search>
+  <total_items>136</total_items>
+  <page_size>10</page_size>
+  <page_count>14</page_count>
+  <page_number>1</page_number>
+  <page_items></page_items>
+  <first_item></first_item>
+  <last_item></last_item>
+  <search_time>0.156</search_time>
+  <events>
+    <event id="E0-001-064920922-1@2014052110">
+      <title>Prince2 Foundation Certification</title>
+      <url>http://eventful.com/chennai/events/prince2-foundation-certifica-/E0-001-064920922-1@2014052110?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description>This course is aimed at anyone wishing to gain the qualification and needing to understand the terminology and principles behind the Prince2 Foundation. 
+This course would benefit:  
+Project Managers  
+General Managers  
+Program Managers  
+Project Team Managers and support staff  
+Staff who will have a defined role  
+Project Management Consultants 
+Syllabus: 
+Module 1: 
+Introduction to Project Management  
+Overview of PRINCE2®  
+Starting up a project  
+The Project Management Team 
+Module 2:  
+Initiating a project  
+The Business Case  
+Risk and Quality Management  
+All aspects of Planning  
+Controls 
+Module 3:  
+Managing Stage Boundaries  
+Quality in a PE Controlling a Stage  
+Managing Product Delivery 
+Investment: Rs 4500 
+Includes Lunch(Veg) &amp; Tea / coffee
+Certificate: Certificate will be given to all attendees at the end of the workshop.
+For more details: www.learnpact.com/training-calendar.php</description>
+      <start_time>2014-05-21 10:30:00</start_time>
+      <stop_time>2014-05-21 17:30:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-007192704-3</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/learnpact-/V0-001-007192704-3?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>Learnpact</venue_name>
+      <venue_display>1</venue_display>
+      <venue_address>Vishwalaya Building, 2nd Floor. Walder street, Anna Salai, Near Hotel Mount Residency.</venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code>600002</postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>13.0833</latitude>
+      <longitude>80.2833</longitude>
+      <geocode_type>City Based GeoCodes</geocode_type>
+      <all_day>0</all_day>
+      <recur_string>daily for 300 times</recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2013-12-16 23:22:48</created>
+      <owner>kumarm123</owner>
+      <modified>2013-12-16 23:22:48</modified>
+      <performers></performers>
+      <image>
+        <url>http://s3.evcdn.com/images/small/I0-001/015/185/906-0.png_/prince2-foundation-certification-06.png</url>
+        <width>48</width>
+        <height>48</height>
+        <caption></caption>
+        <thumb>
+          <url>http://s3.evcdn.com/images/thumb/I0-001/015/185/906-0.png_/prince2-foundation-certification-06.png</url>
+          <width>48</width>
+          <height>48</height>
+        </thumb>
+        <small>
+          <url>http://s3.evcdn.com/images/small/I0-001/015/185/906-0.png_/prince2-foundation-certification-06.png</url>
+          <width>48</width>
+          <height>48</height>
+        </small>
+        <medium>
+          <url>http://s3.evcdn.com/images/medium/I0-001/015/185/906-0.png_/prince2-foundation-certification-06.png</url>
+          <width>128</width>
+          <height>128</height>
+        </medium>
+      </image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+    <event id="E0-001-057501573-0">
+      <title>Water Expo</title>
+      <url>http://eventful.com/chennai/events/water-expo-/E0-001-057501573-0?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description></description>
+      <start_time>2015-02-26 00:00:00</start_time>
+      <stop_time>2015-02-28 00:00:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-000103733-8</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/chennai-in-/V0-001-000103733-8?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>Chennai, IN</venue_name>
+      <venue_display>0</venue_display>
+      <venue_address>5/318 Old Mahabalipuram Road</venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code></postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>12.9629694</latitude>
+      <longitude>80.2463097</longitude>
+      <geocode_type>EVDB Geocoder</geocode_type>
+      <all_day>2</all_day>
+      <recur_string></recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2013-05-18 15:14:37</created>
+      <owner>evdb</owner>
+      <modified>2014-04-27 21:10:19</modified>
+      <performers></performers>
+      <image></image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+    <event id="E0-001-056017756-8">
+      <title>TTF OTM - Travel &amp; Tourism Fair - Outbound Travel Mart</title>
+      <url>http://eventful.com/chennai/events/ttf-otm-travel-tourism-fair-outbound-travel-mart-/E0-001-056017756-8?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description></description>
+      <start_time>2015-01-09 00:00:00</start_time>
+      <stop_time>2015-01-11 00:00:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-000103733-8</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/chennai-in-/V0-001-000103733-8?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>Chennai, IN</venue_name>
+      <venue_display>0</venue_display>
+      <venue_address>5/318 Old Mahabalipuram Road</venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code></postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>12.9629694</latitude>
+      <longitude>80.2463097</longitude>
+      <geocode_type>EVDB Geocoder</geocode_type>
+      <all_day>2</all_day>
+      <recur_string></recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2013-04-08 13:32:06</created>
+      <owner>evdb</owner>
+      <modified>2014-04-27 21:09:51</modified>
+      <performers></performers>
+      <image></image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+    <event id="E0-001-064094857-6@2014052109">
+      <title>PMP Certification Training in Chennai – Commencing Dec 21st, 2013</title>
+      <url>http://eventful.com/chennai/events/pmp-certification-training-c-/E0-001-064094857-6@2014052109?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description>&lt;p&gt;&lt;strong&gt;KnowledgeWoods Consulting, an ISO 9001 : 2008 Certified Training &amp;amp; Consulting Organization, invites you to attend its Four (4) Days PMP Certification Training in Chennai.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Conducted over two consecutive weekends, our PMP Training Program in Chennai helps develop a clear understanding of PMBOK Fifth edition, and enables you to &lt;u&gt;Pass PMP Certification Exam at the Very First Attempt!&lt;/u&gt;&lt;/p&gt;&lt;p&gt;With &lt;u&gt;100% Pass-Money Back Guarantee&lt;/u&gt;, our PMP training is a safe &amp;amp; secure investment towards PMP certification.&lt;/p&gt;&lt;p&gt;Moreover, the hard to match price, attractive discounts and world-class program deliverables make KnowledgeWoods SURESHOT PMP Training a &lt;u&gt;&amp;ldquo;Value-for-Money&amp;rdquo;&lt;/u&gt; Program.&lt;/p&gt;&lt;p&gt;&lt;a href="http://www.knowledgewoods.in/register/onlineregistrationgeneric.aspx?SID=5" rel="nofollow"&gt;Enroll Today&lt;/a&gt; and Give a Confident Start to your PMP Exam Preparation!&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Event Details&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;PMP Training Duration: &lt;/strong&gt;Four (4) Days&lt;/p&gt;&lt;p&gt;&lt;strong&gt;PMP Training Fee&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;INR 13,750/- All inclusive per participant (Covers charges for the four days training sessions, stationary, program deliverables, lunch, tea and snacks provided during the training)&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Early Bird Discounts Available &amp;ndash; &lt;/strong&gt;&lt;a href="http://www.knowledgewoods.in/register/onlineregistrationgeneric.aspx?SID=5" rel="nofollow"&gt;&lt;strong&gt;Register Now !!!&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Program Highlights&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;PMI approved &lt;u&gt;35 Contact Hours/PDUs Certificate&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;u&gt;Reference Handbook&lt;/u&gt; for PMP&amp;reg; Exam Preparation&lt;/p&gt;&lt;p&gt;Ten (10) Sets of &lt;u&gt;PMP Certification Mock Exam&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;u&gt;ITTO Review Sheets&lt;/u&gt; for Quick PMP&amp;reg; Exam Revision&lt;/p&gt;&lt;p&gt;PMP&amp;reg; Certification &lt;u&gt;Exam Blue Print&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;u&gt;Hands-On Exercise&lt;/u&gt;s for each Knowledge Area&lt;/p&gt;&lt;p&gt;&lt;u&gt;Practice Tests&lt;/u&gt; with Performance Analysis Sheet&lt;/p&gt;&lt;p&gt;&lt;u&gt;Mind Maps&amp;trade;&lt;/u&gt; to capture Key Processes across 10 Knowledge Areas&lt;/p&gt;&lt;p&gt;&lt;u&gt;Formulae Sheet&lt;/u&gt; comprising of Key Numerical Formulae with Examples&lt;/p&gt;&lt;p&gt;&lt;u&gt;Slide Handouts&lt;/u&gt; for better understanding&lt;/p&gt;&lt;p&gt;&lt;u&gt;Tips &amp;amp; Strategies&lt;/u&gt; to Clear PMP&amp;reg; Certification Exam at First Attempt&lt;/p&gt;&lt;p&gt;Dedicated, Toll-Free&lt;u&gt;Post Training Support&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;MONEY BACK GUARANTEE&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;We are confident that our copyrighted training methodology and program deliverables will certainly help you Pass your PMP exam at the very first attempt.&lt;/p&gt;&lt;p&gt;To carve the same confidence in you, we have backed our PMP Certification Training Program with an Absolutely Transparent&lt;u&gt;&lt;strong&gt; &lt;/strong&gt;&amp;nbsp;&amp;nbsp;&lt;/u&gt;100% PASS-MONEY BACK GUARANTEE&lt;u&gt;&amp;nbsp;&amp;nbsp;,&lt;/u&gt; where&lt;/p&gt;&lt;p&gt;If you happen to fail your PMP Exam at the First Attempt, We&amp;rsquo;ll REFUND your PMP Training Fee!!!&lt;/p&gt;&lt;p&gt;For complete offer details, please visit &lt;a href="http://www.knowledgewoods.in/pmp/payment_terms_conditions.html" rel="nofollow"&gt;PMP Training Chennai T&amp;amp;C&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;For Further Details&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;To know more about the salient features and highlights of our PMP certification training in Chennai, you can contact us via:&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Phone :&lt;/strong&gt; +91 9999038891&lt;/p&gt;&lt;p&gt;&lt;strong&gt;E-mail :&lt;/strong&gt; &lt;a href="mailto:info@knowledgewoods.in?subject=PMP%20Certification%20Training%20in%20Chennai" rel="nofollow"&gt;info@knowledgewoods.in&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Call Back : &lt;/strong&gt;Please click on the following link to fill a small form :&lt;br&gt;&lt;a href="http://www.knowledgewoods.in/register/onlineregistrationgeneric.aspx?SID=5" rel="nofollow"&gt;PMP Training Chennai &amp;ndash;Call Back&lt;/a&gt;&lt;/p&gt;</description>
+      <start_time>2014-05-21 09:00:00</start_time>
+      <stop_time>2014-05-21 18:00:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-007502112-5</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/the-hotel-cafe-90-gnchetty-road-t-nagar-chennai-/V0-001-007502112-5?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>The Hotel Cafe #90, G.N.Chetty Road, T Nagar, Chennai - 600017</venue_name>
+      <venue_display>1</venue_display>
+      <venue_address>#90, G.N.Chetty Road, T Nagar,</venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code>600017</postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>13.0833</latitude>
+      <longitude>80.2833</longitude>
+      <geocode_type>City Based GeoCodes</geocode_type>
+      <all_day>0</all_day>
+      <recur_string>daily until December 21, 2014</recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2013-11-25 23:09:47</created>
+      <owner>Sandeshc73d2</owner>
+      <modified>2013-11-25 23:50:22</modified>
+      <performers></performers>
+      <image>
+        <url>http://s4.evcdn.com/images/small/I0-001/015/087/651-0.jpeg_/pmp-certification-training-chennai-co-51.jpeg</url>
+        <width>48</width>
+        <height>48</height>
+        <caption></caption>
+        <thumb>
+          <url>http://s4.evcdn.com/images/thumb/I0-001/015/087/651-0.jpeg_/pmp-certification-training-chennai-co-51.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </thumb>
+        <small>
+          <url>http://s4.evcdn.com/images/small/I0-001/015/087/651-0.jpeg_/pmp-certification-training-chennai-co-51.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </small>
+        <medium>
+          <url>http://s4.evcdn.com/images/medium/I0-001/015/087/651-0.jpeg_/pmp-certification-training-chennai-co-51.jpeg</url>
+          <width>128</width>
+          <height>128</height>
+        </medium>
+      </image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+    <event id="E0-001-070732546-5">
+      <title>The Lifestyle Show Chennai</title>
+      <url>http://eventful.com/chennai/events/lifestyle-show-chennai-/E0-001-070732546-5?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description> &amp;quot;The Lifestyle Show Chennai is a 5 day event being held from 5th June to the 9th June 2014 at the Chennai Trade Centre in Chennai, India. This event showcases products like automobiles, electronic items, lighting products, furniture, home accessories and much more etc. in the Apparel &amp; Clothing, Industrial Products, Fashion Accessories industries.&amp;quot;</description>
+      <start_time>2014-06-05 00:00:00</start_time>
+      <stop_time>2014-06-09 00:00:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-000240803-8</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/chennai-trade-centre-/V0-001-000240803-8?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>Chennai Trade Centre</venue_name>
+      <venue_display>1</venue_display>
+      <venue_address>Mount Poonamalee Road</venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code>,</postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>13.0208649</latitude>
+      <longitude>80.2050555</longitude>
+      <geocode_type>EVDB Geocoder</geocode_type>
+      <all_day>2</all_day>
+      <recur_string></recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2014-05-17 11:52:34</created>
+      <owner>evdb</owner>
+      <modified>2014-05-20 22:31:59</modified>
+      <performers></performers>
+      <image>
+        <url>http://s4.evcdn.com/images/small/I0-001/016/083/039-5.jpeg_/lifestyle-show-chennai-39.jpeg</url>
+        <width>48</width>
+        <height>48</height>
+        <caption></caption>
+        <thumb>
+          <url>http://s4.evcdn.com/images/thumb/I0-001/016/083/039-5.jpeg_/lifestyle-show-chennai-39.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </thumb>
+        <small>
+          <url>http://s4.evcdn.com/images/small/I0-001/016/083/039-5.jpeg_/lifestyle-show-chennai-39.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </small>
+        <medium>
+          <url>http://s4.evcdn.com/images/medium/I0-001/016/083/039-5.jpeg_/lifestyle-show-chennai-39.jpeg</url>
+          <width>128</width>
+          <height>128</height>
+        </medium>
+      </image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+    <event id="E0-001-070732539-5">
+      <title>Construction Architure &amp; Interior Chennai</title>
+      <url>http://eventful.com/chennai/events/construction-architure-interior-chennai-/E0-001-070732539-5?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description> &amp;quot;Construction Architure &amp; Interior Chennai is a 4 day event being held from 15th August to the 18th August 2014 at the Chennai Trade Centre in Chennai, India. This event showcases products like various products and services as well as equipments related to construction, architectural firms and Interior design houses, latest designs and technologies and more etc. in the Building Construction, Architecture &amp; Designing industries.&amp;quot;</description>
+      <start_time>2014-08-15 00:00:00</start_time>
+      <stop_time>2014-08-18 00:00:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-000240803-8</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/chennai-trade-centre-/V0-001-000240803-8?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>Chennai Trade Centre</venue_name>
+      <venue_display>1</venue_display>
+      <venue_address>Mount Poonamalee Road</venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code>,</postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>13.0208649</latitude>
+      <longitude>80.2050555</longitude>
+      <geocode_type>EVDB Geocoder</geocode_type>
+      <all_day>2</all_day>
+      <recur_string></recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2014-05-17 11:52:19</created>
+      <owner>evdb</owner>
+      <modified>2014-05-20 22:31:53</modified>
+      <performers></performers>
+      <image>
+        <url>http://s1.evcdn.com/images/small/I0-001/016/083/036-8.jpeg_/construction-architure-interior-chennai-36.jpeg</url>
+        <width>48</width>
+        <height>48</height>
+        <caption></caption>
+        <thumb>
+          <url>http://s1.evcdn.com/images/thumb/I0-001/016/083/036-8.jpeg_/construction-architure-interior-chennai-36.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </thumb>
+        <small>
+          <url>http://s1.evcdn.com/images/small/I0-001/016/083/036-8.jpeg_/construction-architure-interior-chennai-36.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </small>
+        <medium>
+          <url>http://s1.evcdn.com/images/medium/I0-001/016/083/036-8.jpeg_/construction-architure-interior-chennai-36.jpeg</url>
+          <width>128</width>
+          <height>128</height>
+        </medium>
+      </image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+    <event id="E0-001-070545122-5">
+      <title>International Conference on Mathematical Sciences</title>
+      <url>http://eventful.com/chennai/events/international-conference-mathematical-sciences-/E0-001-070545122-5?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description> &amp;quot;The International Conference on Mathematical Sciences, organized by the SATHYABAMA UNIVERSITY will take place from 17th July to the 19th July 2014 at the SATHYABAMA UNIVERSITY in Chennai, India. The conference will cover areas like numerical Analysis, Differential Equations, Fluid Dynamics, Operations Research, Signal Processing, Mathematical Modeling and Simulation.&amp;quot;</description>
+      <start_time>2014-07-17 00:00:00</start_time>
+      <stop_time>2014-07-19 00:00:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-006846663-0</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/sathyabama-university-/V0-001-006846663-0?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>SATHYABAMA UNIVERSITY</venue_name>
+      <venue_display>1</venue_display>
+      <venue_address></venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code></postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>13.0833</latitude>
+      <longitude>80.2833</longitude>
+      <geocode_type>City Based GeoCodes</geocode_type>
+      <all_day>2</all_day>
+      <recur_string></recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2014-05-09 08:57:02</created>
+      <owner>evdb</owner>
+      <modified>2014-05-20 20:44:14</modified>
+      <performers></performers>
+      <image></image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+    <event id="E0-001-070545922-7">
+      <title>International Conference on Electrical Electronics and Robotics</title>
+      <url>http://eventful.com/chennai/events/international-conference-electrical-electronics-and-/E0-001-070545922-7?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description> &amp;quot;The International Conference on Electrical Electronics and Robotics, organized by the IRAJ Research Forum will take place on 15th June 2014 at the Hotel Pratap Plaza in Chennai, India.&amp;quot;</description>
+      <start_time>2014-06-15 00:00:00</start_time>
+      <stop_time>2014-06-15 00:00:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-007984613-3</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/hotel-pratap-plaza-/V0-001-007984613-3?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>Hotel Pratap Plaza</venue_name>
+      <venue_display>1</venue_display>
+      <venue_address></venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code></postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>13.0833</latitude>
+      <longitude>80.2833</longitude>
+      <geocode_type>City Based GeoCodes</geocode_type>
+      <all_day>2</all_day>
+      <recur_string></recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2014-05-09 09:17:31</created>
+      <owner>evdb</owner>
+      <modified>2014-05-20 20:49:45</modified>
+      <performers></performers>
+      <image></image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+    <event id="E0-001-055473398-3">
+      <title>N PRINTECH TODAY</title>
+      <url>http://eventful.com/chennai/events/n-printech-today-/E0-001-055473398-3?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description> &amp;quot;N PRINTECH TODAY is one of the leading event for Printing and Advertising. It is the only graphic communications exposition held in Chennai Trade &amp; Convention Centre that is truly international.The event offers international companies the opportunity to meet with the key buyers in the world. This event is being organized by Buysell Interactions Pvt. Ltd.&amp;quot;</description>
+      <start_time>2014-07-25 00:00:00</start_time>
+      <stop_time>2014-07-27 00:00:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-000240803-8</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/chennai-trade-centre-/V0-001-000240803-8?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>Chennai Trade Centre</venue_name>
+      <venue_display>1</venue_display>
+      <venue_address>Mount Poonamalee Road</venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code>,</postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>13.0208649</latitude>
+      <longitude>80.2050555</longitude>
+      <geocode_type>EVDB Geocoder</geocode_type>
+      <all_day>2</all_day>
+      <recur_string></recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2013-03-25 18:13:37</created>
+      <owner>evdb</owner>
+      <modified>2014-05-20 04:22:56</modified>
+      <performers></performers>
+      <image>
+        <url>http://s2.evcdn.com/images/small/I0-001/013/832/157-7.jpeg_/n-printech-today-57.jpeg</url>
+        <width>48</width>
+        <height>48</height>
+        <caption></caption>
+        <thumb>
+          <url>http://s2.evcdn.com/images/thumb/I0-001/013/832/157-7.jpeg_/n-printech-today-57.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </thumb>
+        <small>
+          <url>http://s2.evcdn.com/images/small/I0-001/013/832/157-7.jpeg_/n-printech-today-57.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </small>
+        <medium>
+          <url>http://s2.evcdn.com/images/medium/I0-001/013/832/157-7.jpeg_/n-printech-today-57.jpeg</url>
+          <width>128</width>
+          <height>128</height>
+        </medium>
+      </image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+    <event id="E0-001-057722645-5">
+      <title>India International Handwoven Fair Chennai</title>
+      <url>http://eventful.com/chennai/events/india-international-handwoven-fair-chennai-/E0-001-057722645-5?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+      <description> &amp;quot;&lt;b&gt; India International Handwoven Fair Chennai &lt;/b&gt; is a fair that will be held for the first time in India which has an international edge to it. The fair will showcase products of the handwoven industry which are exclusive by bringing together handwoven and handloom manufacturers from all over the country under one roof. &lt;br&gt;&lt;b&gt; India International Handwoven Fair Chennai &lt;/b&gt; is a fair which is peerless in many ways and is being organized by the Handloom Export Promotion Council. It is being organized with the pious objective of promoting the growth and development of handwoven and handloom industries in India by exhibiting their products to international buyers.&amp;quot;</description>
+      <start_time>2015-03-11 00:00:00</start_time>
+      <stop_time>2015-03-13 00:00:00</stop_time>
+      <tz_id></tz_id>
+      <tz_olson_path></tz_olson_path>
+      <tz_country></tz_country>
+      <tz_city></tz_city>
+      <venue_id>V0-001-000240803-8</venue_id>
+      <venue_url>http://eventful.com/chennai/venues/chennai-trade-centre-/V0-001-000240803-8?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</venue_url>
+      <venue_name>Chennai Trade Centre</venue_name>
+      <venue_display>1</venue_display>
+      <venue_address>Mount Poonamalee Road</venue_address>
+      <city_name>Chennai</city_name>
+      <region_name>Tamil Nādu</region_name>
+      <region_abbr>TN</region_abbr>
+      <postal_code>,</postal_code>
+      <country_name>India</country_name>
+      <country_abbr2>IN</country_abbr2>
+      <country_abbr>IND</country_abbr>
+      <latitude>13.0208649</latitude>
+      <longitude>80.2050555</longitude>
+      <geocode_type>EVDB Geocoder</geocode_type>
+      <all_day>2</all_day>
+      <recur_string></recur_string>
+      <calendar_count></calendar_count>
+      <comment_count></comment_count>
+      <link_count></link_count>
+      <going_count></going_count>
+      <watching_count></watching_count>
+      <created>2013-05-26 04:13:25</created>
+      <owner>evdb</owner>
+      <modified>2014-05-20 05:33:45</modified>
+      <performers></performers>
+      <image>
+        <url>http://s4.evcdn.com/images/small/I0-001/014/146/627-8.jpeg_/india-international-handwoven-fair-chennai-27.jpeg</url>
+        <width>48</width>
+        <height>48</height>
+        <caption></caption>
+        <thumb>
+          <url>http://s4.evcdn.com/images/thumb/I0-001/014/146/627-8.jpeg_/india-international-handwoven-fair-chennai-27.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </thumb>
+        <small>
+          <url>http://s4.evcdn.com/images/small/I0-001/014/146/627-8.jpeg_/india-international-handwoven-fair-chennai-27.jpeg</url>
+          <width>48</width>
+          <height>48</height>
+        </small>
+        <medium>
+          <url>http://s4.evcdn.com/images/medium/I0-001/014/146/627-8.jpeg_/india-international-handwoven-fair-chennai-27.jpeg</url>
+          <width>128</width>
+          <height>128</height>
+        </medium>
+      </image>
+      <privacy>1</privacy>
+      <calendars></calendars>
+      <groups></groups>
+      <going></going>
+    </event>
+  </events>
+</search>

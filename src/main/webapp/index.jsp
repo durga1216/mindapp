@@ -108,6 +108,11 @@ text-align:right;}
  <script>
  function validateForm()
  {
+	 if (myForm.agree.checked == false )
+	 {
+	 alert('Please read the Terms and Fill the check box.');
+	 return false;
+	 }
  var x=document.forms["myForm"]["s1"].value;
  var atpos=x.indexOf("@");
  var dotpos=x.lastIndexOf(".");
@@ -160,6 +165,10 @@ function add()
 {
 	window.location="login.jsp";
 	}
+function load(){
+	window.open("terms.jsp", '_blank');
+	
+}
 </script>
 </head>
 <body>
@@ -170,8 +179,9 @@ function add()
 <center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
 <input  type=text name="s2" id='s2' placeholder="First Name"><br><br>
 <input  type=text name="s3" id='s3' placeholder="Last Name"><br><br>
-<input type=password name="s4" id='s4'  placeholder="Password"><br><br><br></center>
-<input type="submit" name="submit" id='sign' value="Sign Up"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type=password name="s4" id='s4'  placeholder="Password"><br><br>
+<div style='color:#ffffff;margin-left:70px;font-size:15px;font-family:verdana;'><input type="checkbox" value="0" name="agree">I agree to the Minddots <a style='font-size:15px;'href="javascript:load()">Terms of service</a> and <a style='font-size:15px;'href="javascript:load()">Privacy Policy</a></div><br><br></center>
+<input type="submit" name="submit" id='sign' value="Sign Up">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="b2" value="Login" Onclick="add()"><br><br>
 </form>
 </body>

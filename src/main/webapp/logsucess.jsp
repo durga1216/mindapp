@@ -60,14 +60,10 @@ font-family:verdana;
 text-align:left;}
 </style>
 <script type="text/javascript">
-function add()
-{
-	window.location="addapi.jsp";
-	}
-function disp()
-{
-	window.location="apidisp.jsp";
-	}	
+function load(){
+	window.open("https://www.youtube.com/watch?v=lqkEmqNi_10&feature=youtu.be", '_blank');
+	
+}
 </script>
 </head>
 <body>
@@ -76,7 +72,10 @@ function disp()
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br>
 <div class='suc'><center><h3>Login Sucess!!</h3></center></div>
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>
-<center><div id='pa'><a href='firstauth.jsp'>Create Application here</a></div></center>
+<center><div id='pa'><a href='firstauth.jsp'>Create Application here</a></div></center><br><br>
+<center><div id='pa'><a href='<%=request.getContextPath()%>/EditPulpy'>Edit Your Application here</a></div></center><br><br>
+<center><div id='pa'><img src="images/you.png" width="40" height="18"><a href="javascript:load()">YouTube Link For Help</a></div></center>
+
 </body>
 
 </html>

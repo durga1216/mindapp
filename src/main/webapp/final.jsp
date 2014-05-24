@@ -15,6 +15,27 @@ color:#FFFFFF;
     font-size:40px;
     margin-top:20px;
 }
+input[type="text"]{
+color:#FF9900;
+font-size:17px;
+background-color:#FFFFFF;
+font-family:verdana;
+width:200px;
+height:15px;
+padding:5px;
+} 
+input[type="submit"]{
+
+color:#FFFFFF;
+font-size:15px;
+background-color:#FF9900;
+font-family:verdana;
+width:140px;
+height:50px;
+border:solid 2px;
+border-color:#FFFFFF;
+border-radius:50px;
+}
 .main{
 color:#FFFFFF;
     font-family:verdana;
@@ -46,14 +67,15 @@ font-weight:bold;
 </head>
 <body>
 <%request.getSession().setAttribute("user", null);%>
-<div id=na><a id="indiv" href='https://mindtools-inputs.rhcloud.com/index.jsp'>Mind Tools </a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+<div id=na><a id="indiv" href='https://mindtools-inputs.rhcloud.com/index.jsp'>https://mindtools-inputs.rhcloud.com/index.jsp </a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+<form action="Edit" method="post">
 <center><div class="head">Mind Pulpy</div></center>
 <center><div class="main">Configuration completed! Check With Mobile App</div></center><br><br>
 <center><h2 style='color:#ffffff'>First Configuration Details</h2></center>
 <table align='center' bgcolor='white' border='0' bordercolor='#000000' style='width:700px;'>
 <tr>
 <th>Your_App_ID</th>
-<th>: <%=session.getAttribute("appid")%></th>
+<th>: <input type="text"  name="p1" value= <%=session.getAttribute("appid")%>></th>
 </tr><tr><td>App_Name</td>
 <td>: <%=session.getAttribute("appname")%></td></tr>
 <tr><td>Auth_Type</td>
@@ -86,113 +108,113 @@ font-weight:bold;
 <td>: <%=session.getAttribute("endurl")%></td></tr>
 <c:if test="${sessionScope.p1!=null}">
 <tr><td>Param_1_label</td>
-<td>: <%=session.getAttribute("p1")%></td>
+<td>: <input type="text"  name="p1" value= <%=session.getAttribute("p1")%>></td>
 </tr><tr><td>Param_1_value</td>
-<td>: <%=session.getAttribute("pv1")%></td>
+<td>: <input type="text"  name="pv1" value= <%=session.getAttribute("pv1")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.p2!=null}">
 <tr><td>Param_2_label</td>
-<td>: <%=session.getAttribute("p2")%></td>
+<td>: <input type="text"  name="p2" value= <%=session.getAttribute("p2")%>></td>
 </tr><tr><td>Param_2_value</td>
-<td>: <%=session.getAttribute("pv2")%></td>
+<td>: <input type="text"  name="pv2" value= <%=session.getAttribute("pv2")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.p3!=null}">
 <tr><td>Param_3_label</td>
-<td>: <%=session.getAttribute("p3")%></td>
+<td>: <input type="text"  name="p3" value= <%=session.getAttribute("p3")%>></td>
 </tr><tr><td>Param_3_value</td>
-<td>: <%=session.getAttribute("pv3")%></td>
+<td>: <input type="text"  name="pv3" value= <%=session.getAttribute("pv3")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.p4!=null}">
 <tr><td>Param_4_label</td>
-<td>: <%=session.getAttribute("p4")%></td>
+<td>: <input type="text"  name="p4" value= <%=session.getAttribute("p4")%>></td>
 </tr><tr><td>Param_4_value</td>
-<td>: <%=session.getAttribute("pv4")%></td>
+<td>: <input type="text"  name="pv4" value= <%=session.getAttribute("pv4")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.p5!=null}">
 <tr><td>Param_5_label</td>
-<td>: <%=session.getAttribute("p5")%></td>
+<td>: <input type="text"  name="p5" value= <%=session.getAttribute("p5")%>></td>
 </tr><tr><td>Param_5_value</td>
-<td>: <%=session.getAttribute("pv5")%></td>
+<td>: <input type="text"  name="pv5" value= <%=session.getAttribute("pv5")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.p6!=null}">
 <tr><td>Param_6_label</td>
-<td>: <%=session.getAttribute("p6")%></td>
+<td>: <input type="text"  name="p6" value= <%=session.getAttribute("p6")%>></td>
 </tr><tr><td>Param_6_value</td>
-<td>: <%=session.getAttribute("pv6")%></td>
+<td>: <input type="text"  name="pv6" value= <%=session.getAttribute("pv6")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.p7!=null}">
 <tr><td>Param_7_label</td>
-<td>: <%=session.getAttribute("p7")%></td>
+<td>: <input type="text"  name="p7" value= <%=session.getAttribute("p7")%>></td>
 </tr><tr><td>Param_7_value</td>
-<td>: <%=session.getAttribute("pv7")%></td>
+<td>: <input type="text"  name="pv7" value= <%=session.getAttribute("pv7")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.p8!=null}">
 <tr><td>Param_8_label</td>
-<td>: <%=session.getAttribute("p8")%></td>
+<td>: <input type="text"  name="p8" value= <%=session.getAttribute("p8")%>></td>
 </tr><tr><td>Param_8_value</td>
-<td>: <%=session.getAttribute("pv8")%></td>
+<td>: <input type="text"  name="pv8" value= <%=session.getAttribute("pv8")%>></td>
 </tr></c:if>
 <tr><td>Parent_tag</td>
-<td>: <%=session.getAttribute("partag")%></td></tr>
+<td>: <input type="text"  name="partag" value= <%=session.getAttribute("partag")%>></td></tr>
 <c:if test="${sessionScope.x1!=null}">
 <tr><td>xml_1_label</td>
-<td>: <%=session.getAttribute("x1")%></td>
+<td>: <input type="text"  name="x1" value= <%=session.getAttribute("x1")%>></td>
 </tr><tr><td>Param_1_value</td>
-<td>: <%=session.getAttribute("xv1")%></td>
+<td>: <input type="text"  name="xv1" value= <%=session.getAttribute("xv1")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.x2!=null}">
 <tr><td>xml_2_label</td>
-<td>: <%=session.getAttribute("x2")%></td>
+<td>: <input type="text"  name="x2" value= <%=session.getAttribute("x2")%>></td>
 </tr><tr><td>Param_2_value</td>
-<td>: <%=session.getAttribute("xv2")%></td>
+<td>: <input type="text"  name="xv2" value= <%=session.getAttribute("xv2")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.x3!=null}">
 <tr><td>xml_3_label</td>
-<td>: <%=session.getAttribute("x3")%></td>
+<td>: <input type="text"  name="x3" value= <%=session.getAttribute("x3")%>></td>
 </tr><tr><td>xml_3_value</td>
-<td>: <%=session.getAttribute("xv3")%></td>
+<td>: <input type="text"  name="xv3" value= <%=session.getAttribute("xv3")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.x4!=null}">
 <tr><td>xml_4_label</td>
-<td>: <%=session.getAttribute("x4")%></td>
+<td>: <input type="text"  name="x4" value= <%=session.getAttribute("x4")%>></td>
 </tr><tr><td>xml_4_value</td>
-<td>: <%=session.getAttribute("xv4")%></td>
+<td>: <input type="text"  name="xv4" value= <%=session.getAttribute("xv4")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.x5!=null}">
 <tr><td>xml_5_label</td>
-<td>: <%=session.getAttribute("x5")%></td>
+<td>: <input type="text"  name="x5" value= <%=session.getAttribute("x5")%>></td>
 </tr><tr><td>xml_5_value</td>
-<td>: <%=session.getAttribute("xv5")%></td>
+<td>: <input type="text"  name="xv5" value= <%=session.getAttribute("xv5")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.x6!=null}">
 <tr><td>xml_6_label</td>
-<td>: <%=session.getAttribute("x6")%></td>
+<td>: <input type="text"  name="x6" value= <%=session.getAttribute("x6")%>></td>
 </tr><tr><td>xml_6_value</td>
-<td>: <%=session.getAttribute("xv6")%></td>
+<td>: <input type="text"  name="xv6" value= <%=session.getAttribute("xv6")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.x7!=null}">
 <tr><td>xml_7_label</td>
-<td>: <%=session.getAttribute("x7")%></td>
+<td>: <input type="text"  name="x7" value= <%=session.getAttribute("x7")%>></td>
 </tr><tr><td>xml_7_value</td>
-<td>: <%=session.getAttribute("xv7")%></td>
+<td>: <input type="text"  name="xv7" value= <%=session.getAttribute("xv7")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.x8!=null}">
 <tr><td>xml_8_label</td>
-<td>: <%=session.getAttribute("x8")%></td>
+<td>: <input type="text"  name="x8" value= <%=session.getAttribute("x8")%>></td>
 </tr><tr><td>xml_8_value</td>
-<td>: <%=session.getAttribute("xv8")%></td>
+<td>: <input type="text"  name="xv8" value= <%=session.getAttribute("xv8")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.x9!=null}">
 <tr><td>xml_9_label</td>
-<td>: <%=session.getAttribute("x9")%></td>
+<td>: <input type="text"  name="x9" value= <%=session.getAttribute("x9")%>></td>
 </tr><tr><td>xml_9_value</td>
-<td>: <%=session.getAttribute("xv9")%></td>
+<td>: <input type="text"  name="xv9" value= <%=session.getAttribute("xv9")%>></td>
 </tr></c:if>
 <c:if test="${sessionScope.x10!=null}">
 <tr><td>xml_10_label</td>
-<td>: <%=session.getAttribute("x10")%></td>
+<td>: <input type="text"  name="x10" value= <%=session.getAttribute("x10")%>></td>
 </tr><tr><td>xml_10_value</td>
-<td>: <%=session.getAttribute("xv10")%></td>
+<td>: <input type="text"  name="xv10" value= <%=session.getAttribute("xv10")%>></td>
 </tr></c:if>
 </table>
 
@@ -444,6 +466,7 @@ font-weight:bold;
 </tr></c:if>
 </table>
 </c:if>
-
+<br><br><br><center><input type="submit" value="Done Editing"></center>
+</form>
 </body>
 </html>
