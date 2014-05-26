@@ -245,10 +245,10 @@ text-align:right;}
 <div id="inline_content">
 <input type="radio" name="authen"  value="No Auth">
 <label for="rd1">No Auth</label>
-<input type="radio" name="authen"   value="Basic Auth">
+<input type="radio" name="authen"   value="Basic_Auth">
 
 <label for="rd1">Basic Auth</label>
-<input type="radio" name="authen"   value="API keys" >
+<input type="radio" name="authen"   value="API_keys" >
 
 <label for="rd1">API keys</label>
 <input type="radio" name="authen"  value="Oauth1">
