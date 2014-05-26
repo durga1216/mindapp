@@ -84,7 +84,7 @@ font-weight:bold;
 <td>: <%=session.getAttribute("appname")%></td></tr>
 <tr><td>Auth_Type</td>
 <td>: <%=session.getAttribute("authtype")%></td></tr>
-<c:if test="${sessionScope.authtype=='API_keys'}">
+<c:if test="${sessionScope.authtype=='API keys'}">
 <tr><td>Api_Name</td>
 <td>: <%=session.getAttribute("apiname")%></td></tr>
 <tr><td>Api_Key</td>

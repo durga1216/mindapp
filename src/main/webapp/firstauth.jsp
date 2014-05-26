@@ -39,7 +39,7 @@ $(document).ready(function(){
 				  $('#oauth2').hide();
 				  
 			    }
-		    else if($('input:radio[name=authen]:checked').val() == "Basic_Auth"){
+		    else if($('input:radio[name=authen]:checked').val() == "Basic Auth"){
 		 $('#divid').show();
 		  $('#apiid').hide();
 			$('#req').hide();
@@ -47,7 +47,7 @@ $(document).ready(function(){
 			
 
 		    }
-	    else if($('input:radio[name=authen]:checked').val() == "API_keys"){
+	    else if($('input:radio[name=authen]:checked').val() == "API keys"){
 	    	$('#apiid').show();
 			$('#divid').hide();
 			$('#req').hide();
@@ -245,10 +245,10 @@ text-align:right;}
 <div id="inline_content">
 <input type="radio" name="authen"  value="No Auth">
 <label for="rd1">No Auth</label>
-<input type="radio" name="authen"   value="Basic_Auth">
+<input type="radio" name="authen"   value="Basic Auth">
 
 <label for="rd1">Basic Auth</label>
-<input type="radio" name="authen"   value="API_keys" >
+<input type="radio" name="authen"   value="API keys" >
 
 <label for="rd1">API keys</label>
 <input type="radio" name="authen"  value="Oauth1">
