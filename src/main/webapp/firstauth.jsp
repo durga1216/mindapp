@@ -39,7 +39,7 @@ $(document).ready(function(){
 				  $('#oauth2').hide();
 				  
 			    }
-		    else if($('input:radio[name=authen]:checked').val() == "Basic Auth"){
+		    else if($('input:radio[name=authen]:checked').val() == "Basic_Auth"){
 		 $('#divid').show();
 		  $('#apiid').hide();
 			$('#req').hide();
@@ -47,7 +47,7 @@ $(document).ready(function(){
 			
 
 		    }
-	    else if($('input:radio[name=authen]:checked').val() == "API keys"){
+	    else if($('input:radio[name=authen]:checked').val() == "API_keys"){
 	    	$('#apiid').show();
 			$('#divid').hide();
 			$('#req').hide();
