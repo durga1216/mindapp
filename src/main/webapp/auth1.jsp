@@ -91,18 +91,11 @@ text-align:right;}
 
 </head>
 <body>
- <%String u = (String) request.getSession().getAttribute("user");
-    if (u != null ) {
-   // System.out.println("user != null");
-  //  out.print("Welcome "+u);
-    }else{
-   // System.out.println("user == null");
-    response.sendRedirect("logout.jsp");
-    }%>
+
     
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
-<form action="AuthPulpy1" method="post" Onsubmit="check()">
+<form action="AuthPulpy1" method="post" onsubmit="return validateForm()">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
 <center><h2><a id='pa' href="javascript:load()">Load_Xml</a></h2></center><br><br>
 <center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
@@ -119,13 +112,16 @@ function load(){
 	
 	
 }
-function check(){
-
-	var answer = confirm("Confirm submit?")
-    if (!answer){
-        window.location = self.location.reload(true);  
-
-    }	    	       
+function validateForm(){
+var x=confirm("Confirm submit?");
+if (x==true)
+{
+return true;
+}
+else
+{
+return false;
+}
 }
 </script>
 </body>

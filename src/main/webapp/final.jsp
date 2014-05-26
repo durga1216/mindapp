@@ -79,7 +79,7 @@ font-weight:bold;
 <table align='center' bgcolor='white' border='0' bordercolor='#000000' style='width:700px;'>
 <tr>
 <th>Your_App_ID</th>
-<th>: <input type="text"  name="id" value= <%=session.getAttribute("appid")%>></th>
+<th>: <input type="text"  name="id" value= <%=session.getAttribute("appid")%> readonly></th>
 </tr><tr><td>App_Name</td>
 <td>: <%=session.getAttribute("appname")%></td></tr>
 <tr><td>Auth_Type</td>

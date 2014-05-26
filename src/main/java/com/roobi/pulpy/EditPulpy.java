@@ -74,7 +74,7 @@ public class EditPulpy extends HttpServlet {
 		            String x9=rs.getString("x9"); String xv9=rs.getString("xv9");String x10=rs.getString("x10"); String xv10=rs.getString("xv10");
 		            out.println("<form action='Edit' method='post'>");
 		            out.println("<table align='center' bgcolor='white' border='0' bordercolor='#000000' style='width:500px;'>");
-		            out.println("<tr><th>App_id</th><th><input type='text' name='id' value="+id+"></th><tr>");
+		            out.println("<tr><th>App_id</th><th><input type='text' name='id' value="+id+" readonly></th><tr>");
 		            out.println("<tr><td>App_name</td><td>"+appname1+"</td><tr>");
 		            out.println("<tr><td>Auth_type</td><td>"+authen1+"</td><tr>");
 		            out.println("<tr><td>Api_label</td><td>"+ak1+"</td><tr>");
@@ -92,6 +92,10 @@ public class EditPulpy extends HttpServlet {
 		            out.println("<tr><td>param_4_value</td><td><input type='text' name='pv4' value="+pva4+"></td></tr>");
 		            out.println("<tr><td>param_5_label</td><td><input type='text' name='p5' value="+pa5+"></td></tr>");
 		            out.println("<tr><td>param_5_value</td><td><input type='text' name='pv5' value="+pva5+"></td></tr>");
+		            out.println("<tr><td>param_5_label</td><td><input type='text' name='p6' value="+pa6+"></td></tr>");
+		            out.println("<tr><td>param_5_value</td><td><input type='text' name='pv6' value="+pva6+"></td></tr>");
+		            out.println("<tr><td>param_5_label</td><td><input type='text' name='p7' value="+pa7+"></td></tr>");
+		            out.println("<tr><td>param_5_value</td><td><input type='text' name='pv7' value="+pva7+"></td></tr>");
 		            out.println("<tr><td>xml_Parant_tag</td><td><input type='text' name='partag' value="+xr+"></td></tr>");
 		            out.println("<tr><td>xml_1_label</td><td><input type='text' name='x1' value="+x1+"></td></tr>");
 		            out.println("<tr><td>xml_1_value</td><td><input type='text' name='xv1' value="+xv1+"></td></tr>");
@@ -101,8 +105,12 @@ public class EditPulpy extends HttpServlet {
 		            out.println("<tr><td>xml_3_value</td><td><input type='text' name='xv3' value="+xv3+"></td></tr>");
 		            out.println("<tr><td>xml_4_label</td><td><input type='text' name='x4' value="+x4+"></td></tr>");
 		            out.println("<tr><td>xml_4_value</td><td><input type='text' name='xv4' value="+xv4+"></td></tr>");
-		            out.println("<tr><td>xml_5_label</td><td><input type='text' name='x5' value="+x5+"></td></tr>");
-		            out.println("<tr><td>xml_5_value</td><td><input type='text' name='xv5' value="+xv5+"></td></tr></table>");
+		            out.println("<tr><td>xml_4_label</td><td><input type='text' name='x5' value="+x5+"></td></tr>");
+		            out.println("<tr><td>xml_4_value</td><td><input type='text' name='xv5' value="+xv5+"></td></tr>");
+		            out.println("<tr><td>xml_5_label</td><td><input type='text' name='x6' value="+x6+"></td></tr>");
+		            out.println("<tr><td>xml_5_value</td><td><input type='text' name='xv6' value="+xv6+"></td></tr>");
+		            out.println("<tr><td>xml_5_label</td><td><input type='text' name='x7' value="+x7+"></td></tr>");
+		            out.println("<tr><td>xml_5_value</td><td><input type='text' name='xv7' value="+xv7+"></td></tr></table>");
 		            out.println("<br><br><input style='width:150px;height:50px;'type='submit' value='Done Editing'></form>");
 		           
 		            

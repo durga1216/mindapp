@@ -99,7 +99,7 @@ function removeParam()
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
-<form action="SecondXmlConfig" method="post">
+<form action="SecondXmlConfig" method="post" onsubmit="return validateForm()">
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='logout.jsp'> Sign Out </a></div>
 <center><div class="head">Mind Pulpy</div></center><br><br>
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
@@ -117,6 +117,17 @@ function load(){
 	
 	
 }
+function validateForm(){
+	var x=confirm("Confirm submit?");
+	if (x==true)
+	{
+	return true;
+	}
+	else
+	{
+	return false;
+	}
+	}
 </script>
 </body>
 </html>
