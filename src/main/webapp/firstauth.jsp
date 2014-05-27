@@ -220,12 +220,12 @@ padding:10px;
 
 #req{
 color:#FFFFFF;
-font-size:10px;
+font-size:15px;
 font-family:verdana;
 margin-left:100px;
 }
 #others{color:#FFFFFF;
-font-size:10px;
+font-size:15px;
 font-family:verdana;
 margin-left:100px;}
 #def{
@@ -266,7 +266,7 @@ text-align:right;}
 <div id="inline_content">
 <input type="radio" name="authen"  value="No Auth">
 <label for="rd1">No Auth</label>
-<input type="radio" name="authen"   value="Basic Auth/Others">
+<input type="radio" name="authen"   value="Basic Auth | Others">
 
 <label for="rd1">Basic Auth</label>
 <input type="radio" name="authen"   value="API keys" >
@@ -279,8 +279,8 @@ text-align:right;}
 <label for="rd1">OAuth2</label>
 </div>
 <div id="req" style="display:none">Fine! Go ahead</div>
-<div id="others" style="display:none">If others,please leave username & password fields and add your credentials in header</div>
-<div id="divid" style="display:none"><br>
+<br><br><div id="others" style="display:none">If others,please leave username & password fields and add your credentials in header</div>
+<br><br><div id="divid" style="display:none"><br>
 <br>
 <input type="text" name="b2" value="" placeholder="UserName" >
 <input type="text" name="b4" value="" placeholder="Password"><br><br><br>
