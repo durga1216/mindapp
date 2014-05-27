@@ -42,6 +42,7 @@ public class SecondConfig extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+			response.setHeader("Content-Type","text/html;charset=UTF-8");
 			HttpSession session=request.getSession(true);
 			HttpSession session4=request.getSession(true);
 		String id=(String) session.getAttribute("id");
@@ -97,7 +98,7 @@ public class SecondConfig extends HttpServlet {
              String se9=rs.getString("s9"); String sev9=rs.getString("sv9");String se10=rs.getString("s10"); String sev10=rs.getString("sv10");
              String resf2=rs.getString("resf2");
             String secdurl=null;
-            out.println(id+"<br>"+securl1+"<br>"+ak1);
+           // out.println(id+"<br>"+securl1+"<br>"+ak1);
             if(authen1.equals("No Auth")){ //No Authentication
     	         if(rf1.equals("REST") && rm1.equals ("GET")){  //No Auth GET XML
 
