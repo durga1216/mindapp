@@ -266,9 +266,9 @@ text-align:right;}
 <div id="inline_content">
 <input type="radio" name="authen"  value="No Auth">
 <label for="rd1">No Auth</label>
-<input type="radio" name="authen"   value="Basic Auth | Others">
+<input type="radio" name="authen"   value="Basic Auth">
 
-<label for="rd1">Basic Auth</label>
+<label for="rd1">Basic Auth/Others</label>
 <input type="radio" name="authen"   value="API keys" >
 
 <label for="rd1">API keys</label>
@@ -279,8 +279,8 @@ text-align:right;}
 <label for="rd1">OAuth2</label>
 </div>
 <div id="req" style="display:none">Fine! Go ahead</div>
-<br><br><div id="others" style="display:none">If others,please leave username & password fields and add your credentials in header</div>
-<br><br><div id="divid" style="display:none"><br>
+<br><div id="others" style="display:none">If others,please leave username & password fields and add your credentials in header</div>
+<br><div id="divid" style="display:none"><br>
 <br>
 <input type="text" name="b2" value="" placeholder="UserName" >
 <input type="text" name="b4" value="" placeholder="Password"><br><br><br>
