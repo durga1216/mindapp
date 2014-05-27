@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mindots.util.Utils;
 
@@ -38,13 +39,76 @@ public class EditPulpy extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out=response.getWriter();
 		response.setHeader("Content-Type","text/html;charset=UTF-8");
-        out.println("<style>h2{margin-right:150px;color:#ffffff;}th,td,input[type='text']{ padding:7px;text-align:left;text-weight:bold;width:250px;color:#FF9900;font-weight:bold;}input[type='submit']{color:#FFFFFF;background-color:#FF9900;border:solid 2px;border-radius:20px;padding:10px;width:120px;height:40px;font-family:verdana;font-size:17px;margin-left:50px;}</style>");
-		 out.println("<html><body bgcolor='#FF9900'><br><center><h2>Enter Your APP_ID</h2><br><form action='EditPulpy' method='get'><input type='text' name='id'><input type='submit'></form>");
-		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-		 Connection con=null;
-		 String id=request.getParameter("id");
-		 try{
+		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+		 Connection con1=null;
+		 out.println("<a style='color:#ffffff;margin-left:1250px;font-size:22px;' href='logsucess.jsp'>Back</a></div>");
+        out.println("<style>h2{margin-right:150px;color:#ffffff;}option{font-size:22px;}select,th,td,input[type='text']{ padding:7px;text-align:left;text-weight:bold;width:250px;color:#FF9900;font-weight:bold;}input[type='submit']{color:#FFFFFF;background-color:#FF9900;border:solid 2px;border-radius:20px;padding:10px;width:120px;height:40px;font-family:verdana;font-size:17px;margin-left:50px;}</style>");
+		 out.println("<html><body bgcolor='#FF9900'><br><center><h2>Enter Your APP_ID</h2><br><form action='EditPulpy' method='post'>"
+		 		+ "<select name='usrid'><option value='dummy'>***Choose Your APP_ID Here***</option>");
+		 HttpSession session=request.getSession(true);
+		  String id1=(String) session.getAttribute("id");
+		  try{
 			    Class.forName("com.mysql.jdbc.Driver").newInstance();
+	        con1 = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+
+		    PreparedStatement st1=con1.prepareStatement("SELECT appid FROM authen1 WHERE id=?");
+		    st1.setString(1,id1);
+		    ResultSet rs1 = st1.executeQuery();
+		    while(rs1.next()){
+	        	String ap=rs1.getString("appid");
+	        out.println("<option value='"+ap+"'>"+ap+"</option>");
+	        
+	        }
+		    out.println("</select><input type='submit' value='submit'></form>");
+
+	        }
+
+	 catch(Exception e)
+	 {
+		 
+	 }
+		
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out=response.getWriter();
+		response.setHeader("Content-Type","text/html;charset=UTF-8");
+		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+		 Connection con=null;
+		 Connection con1=null;
+		 out.println("<a style='color:#ffffff;margin-left:1250px;font-size:22px;' href='logsucess.jsp'>Back</a></div>");
+		out.println("<style>h2{margin-right:150px;color:#ffffff;}option{font-size:22px;}select,th,td,input[type='text']{ padding:7px;text-align:left;text-weight:bold;width:250px;color:#FF9900;font-weight:bold;}input[type='submit']{color:#FFFFFF;background-color:#FF9900;border:solid 2px;border-radius:20px;padding:10px;width:120px;height:40px;font-family:verdana;font-size:17px;margin-left:50px;}</style>");
+		 out.println("<html><body bgcolor='#FF9900'><br><center><h2>Enter Your APP_ID</h2><br><form action='EditPulpy' method='post'>"
+			 		+ "<select name='usrid'><option value='dummy'>***Choose Your APP_ID Here***</option>");
+			 HttpSession session=request.getSession(true);
+			  String id1=(String) session.getAttribute("id");
+			  try{
+				    Class.forName("com.mysql.jdbc.Driver").newInstance();
+		        con1 = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+
+			    PreparedStatement st1=con1.prepareStatement("SELECT appid FROM authen1 WHERE id=?");
+			    st1.setString(1,id1);
+			    ResultSet rs1 = st1.executeQuery();
+			    while(rs1.next()){
+		        	String ap=rs1.getString("appid");
+		        out.println("<option value='"+ap+"'>"+ap+"</option>");
+		        
+		        }
+			    out.println("</select><input type='submit' value='submit'></form>");
+
+		        }
+
+		 catch(Exception e)
+		 {
+			 
+		 }
+		String id=request.getParameter("usrid");
+		 try{
 		        con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 
 			    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN xmlconfig t3 ON t1.appid=t3.appid  WHERE t1.appid=?");
@@ -52,6 +116,8 @@ public class EditPulpy extends HttpServlet {
 
 		        ResultSet rs = st.executeQuery();
 		        while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
+		        	String apppid=rs.getString("appid");
+
 		        	 String ak2=rs.getString("a2");String appname1=rs.getString("appname");
 		             String authen1=rs.getString("auth");String ak1=rs.getString("a1");
 		        	String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
@@ -74,7 +140,7 @@ public class EditPulpy extends HttpServlet {
 		            String x9=rs.getString("x9"); String xv9=rs.getString("xv9");String x10=rs.getString("x10"); String xv10=rs.getString("xv10");
 		            out.println("<form action='Edit' method='post'>");
 		            out.println("<table align='center' bgcolor='white' border='0' bordercolor='#000000' style='width:500px;'>");
-		            out.println("<tr><th>App_id</th><th><input type='text' name='id' value="+id+" readonly></th><tr>");
+		            out.println("<tr><th>App_id</th><th><input type='text' name='id' value="+apppid+" readonly></th><tr>");
 		            out.println("<tr><td>App_name</td><td>"+appname1+"</td><tr>");
 		            out.println("<tr><td>Auth_type</td><td>"+authen1+"</td><tr>");
 		            out.println("<tr><td>Api_label</td><td>"+ak1+"</td><tr>");
@@ -92,10 +158,10 @@ public class EditPulpy extends HttpServlet {
 		            out.println("<tr><td>param_4_value</td><td><input type='text' name='pv4' value="+pva4+"></td></tr>");
 		            out.println("<tr><td>param_5_label</td><td><input type='text' name='p5' value="+pa5+"></td></tr>");
 		            out.println("<tr><td>param_5_value</td><td><input type='text' name='pv5' value="+pva5+"></td></tr>");
-		            out.println("<tr><td>param_5_label</td><td><input type='text' name='p6' value="+pa6+"></td></tr>");
-		            out.println("<tr><td>param_5_value</td><td><input type='text' name='pv6' value="+pva6+"></td></tr>");
-		            out.println("<tr><td>param_5_label</td><td><input type='text' name='p7' value="+pa7+"></td></tr>");
-		            out.println("<tr><td>param_5_value</td><td><input type='text' name='pv7' value="+pva7+"></td></tr>");
+		            out.println("<tr><td>param_6_label</td><td><input type='text' name='p6' value="+pa6+"></td></tr>");
+		            out.println("<tr><td>param_6_value</td><td><input type='text' name='pv6' value="+pva6+"></td></tr>");
+		            out.println("<tr><td>param_7_label</td><td><input type='text' name='p7' value="+pa7+"></td></tr>");
+		            out.println("<tr><td>param_7_value</td><td><input type='text' name='pv7' value="+pva7+"></td></tr>");
 		            out.println("<tr><td>xml_Parant_tag</td><td><input type='text' name='partag' value="+xr+"></td></tr>");
 		            out.println("<tr><td>xml_1_label</td><td><input type='text' name='x1' value="+x1+"></td></tr>");
 		            out.println("<tr><td>xml_1_value</td><td><input type='text' name='xv1' value="+xv1+"></td></tr>");
@@ -105,34 +171,22 @@ public class EditPulpy extends HttpServlet {
 		            out.println("<tr><td>xml_3_value</td><td><input type='text' name='xv3' value="+xv3+"></td></tr>");
 		            out.println("<tr><td>xml_4_label</td><td><input type='text' name='x4' value="+x4+"></td></tr>");
 		            out.println("<tr><td>xml_4_value</td><td><input type='text' name='xv4' value="+xv4+"></td></tr>");
-		            out.println("<tr><td>xml_4_label</td><td><input type='text' name='x5' value="+x5+"></td></tr>");
-		            out.println("<tr><td>xml_4_value</td><td><input type='text' name='xv5' value="+xv5+"></td></tr>");
-		            out.println("<tr><td>xml_5_label</td><td><input type='text' name='x6' value="+x6+"></td></tr>");
-		            out.println("<tr><td>xml_5_value</td><td><input type='text' name='xv6' value="+xv6+"></td></tr>");
-		            out.println("<tr><td>xml_5_label</td><td><input type='text' name='x7' value="+x7+"></td></tr>");
-		            out.println("<tr><td>xml_5_value</td><td><input type='text' name='xv7' value="+xv7+"></td></tr></table>");
-		            out.println("<br><br><input style='width:150px;height:50px;'type='submit' value='Done Editing'></form>");
+		            out.println("<tr><td>xml_5_label</td><td><input type='text' name='x5' value="+x5+"></td></tr>");
+		            out.println("<tr><td>xml_5_value</td><td><input type='text' name='xv5' value="+xv5+"></td></tr>");
+		            out.println("<tr><td>xml_6_label</td><td><input type='text' name='x6' value="+x6+"></td></tr>");
+		            out.println("<tr><td>xml_6_value</td><td><input type='text' name='xv6' value="+xv6+"></td></tr>");
+		            out.println("<tr><td>xml_7_label</td><td><input type='text' name='x7' value="+x7+"></td></tr>");
+		            out.println("<tr><td>xml_7_value</td><td><input type='text' name='xv7' value="+xv7+"></td></tr></table>");
+		            out.println("<br><br><input style='width:150px;height:50px;'type='submit' name='edt' value='Done Editing'></form>");
 		           
 		            
-		
+		rs.close();
 		        }
 	
 		 }
 	catch(Exception e)
 	{
-		out.println(e);
 		}
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out=response.getWriter();
-		response.setHeader("Content-Type","text/html;charset=UTF-8");
-		
 	
 	
 	}

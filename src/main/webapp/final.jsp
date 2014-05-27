@@ -5,6 +5,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);%>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>MindPulpy</title>
 <link rel="shortcut icon" href="favicon.ico" />
@@ -67,7 +71,15 @@ font-weight:bold;
 </style>
 </head>
 <body>
-<%request.getSession().setAttribute("user", null);%>
+ <%String u = (String) request.getSession().getAttribute("user");
+    if (u != null ) {
+   // System.out.println("user != null");
+    //out.print("Welcome "+u);
+    }else{
+   // System.out.println("user == null");
+    response.sendRedirect("logout.jsp");
+    }%>
+    
 <div id=na><a id="indiv" href='https://mindtools-inputs.rhcloud.com/index.jsp'>https://mindtools-inputs.rhcloud.com/index.jsp </a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
 <form action="Edit" method="post">
 <center><div class="head">Mind Pulpy</div></center>
@@ -470,7 +482,7 @@ font-weight:bold;
 </tr></c:if>
 </table>
 </c:if>
-<br><br><br><center><input type="submit" value="Done Editing"></center>
+<br><br><br><center><input name="edt" type="submit" value="Done"></center>
 </c:if>
 </form>
 </body>

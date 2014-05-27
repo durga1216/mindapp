@@ -7,29 +7,20 @@
 <title>mpulpy</title>
 </head>
 <script type="text/javascript">
-function demo(){
-var mysite = "http://sugarcubes.onsugar.com/";
-	new Ajax.Request(mysite + "api/posts/create", {
-	    method: 'post',
-	    crossSite: true,
-	    parameters: {
-	        type: 'picture',
-	        login: 'susee',
-	        password: 'MindPulpy',
-	        url: 'http://www.craigslist.org/about/best/sdo/566171148.3.jpg',
-	        body: 'cat in a hat',
-	        callback: 'json'
-	    },
-	    onSuccess: function(transport) {
-	        eval(transport.responseText); //this gives us the onsugar_api object
-	        console.log("The URL for your new post is " + mysite + onsugar_api["posts"][0].id);
-	    }
-	});
+function ff_activate(){
+	window.location="http://fotoflexer.com/API/API_Loader_v1_01.php?ff_image_url=http://fotoflexer.com/samples/moon.jpg&ff_callback_url=http://fotoflexer.com/API/callbackTest.php&ff_cancel_url=http://fotoflexer.com&ff_lang=en-US";
 }
 </script>
+
 <body>
 <form onsubmit="return demo()">
+<a href="javascript:void(0);" onclick="ff_activate();">Edit Image</a>
 <input type="submit">
 </form>
 </body>
 </html>
+<?php
+
+$image = $_GET['http://fotoflexer.com/samples/moon.jpg'];
+copy($image,"/path/to/images/image.jpg");
+?>

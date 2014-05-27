@@ -64,6 +64,10 @@ Connection con=null;
        st.executeUpdate();
        st.close();
        out.println("<html><body bgcolor='#FF9900'><br><br><br><br><h2 style='color:#ffffff;'><center>updated successfully</center></h2></body></html>");
+       String ed=request.getParameter("edt");
+       if(ed.equals("Done"))
+       response.setHeader("Refresh", "1; URL=final.jsp");
+       else
        response.setHeader("Refresh", "1; URL=logsucess.jsp");
 	 }
 	 catch(Exception e)
