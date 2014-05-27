@@ -449,18 +449,23 @@ public class AuthPulpy extends HttpServlet {
 	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
 	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+""))
 	                    		  );
+	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+
 	            	 }
 	            	 else if(!"null".equals(b4) && "null".equals(b2)){encoding = new String(
            		 org.apache.commons.codec.binary.Base64.encodeBase64   
         		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4))
-        		  );}
+        		    
+        		  );	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+}
 	            	 else if(!"null".equals(b2) && !"null".equals(b4)){
 	            		 encoding = new String(
 	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
 	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
 	                    		  );
-	   	            	 } // else if encoding
-	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+
+	   	            	 } 
 	              if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
 		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
 		              }
