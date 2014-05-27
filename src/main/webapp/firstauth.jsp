@@ -43,7 +43,7 @@ $(document).ready(function(){
 					
 				  
 			    }
-		    else if($('input:radio[name=authen]:checked').val() == "Basic Auth/Others"){
+		    else if($('input:radio[name=authen]:checked').val() == "Basic Auth"){
 		 $('#divid').show();
 		  $('#apiid').hide();
 			$('#req').hide();
@@ -280,8 +280,7 @@ text-align:right;}
 </div>
 <div id="req" style="display:none">Fine! Go ahead</div>
 <br><div id="others" style="display:none">If others,please leave username & password fields and add your credentials in header</div>
-<br><div id="divid" style="display:none"><br>
-<br>
+<div id="divid" style="display:none"><br>
 <input type="text" name="b2" value="" placeholder="UserName" >
 <input type="text" name="b4" value="" placeholder="Password"><br><br><br>
 <a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
