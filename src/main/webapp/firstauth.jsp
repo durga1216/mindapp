@@ -37,6 +37,8 @@ $(document).ready(function(){
 				  $('#divid').hide();
 				  $('#apiid').hide();			
 				  $('#oauth2').hide();
+				  $('.rmethod').hide();
+					$('#select2').hide();
 				  
 			    }
 		    else if($('input:radio[name=authen]:checked').val() == "Basic Auth"){
@@ -44,6 +46,8 @@ $(document).ready(function(){
 		  $('#apiid').hide();
 			$('#req').hide();
 			$('#oauth2').hide();
+			$('.rmethod').hide();
+			$('#select2').hide();
 			
 
 		    }
@@ -52,12 +56,17 @@ $(document).ready(function(){
 			$('#divid').hide();
 			$('#req').hide();
 			$('#oauth2').hide();
+			$('.rmethod').hide();
+			$('#select2').hide();
 		    }
 
  else if($('input:radio[name=authen]:checked').val() == "Oauth1"){
 	 $('#apiid').hide();
 		$('#divid').hide();
-		$('#req').hide();			$('#oauth2').hide();
+		$('#req').hide();	
+		$('#oauth2').hide();
+		$('.rmethod').hide();
+		$('#select2').hide();
 		
 	}
 
