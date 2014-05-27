@@ -318,7 +318,7 @@ public class AuthPulpy extends HttpServlet {
 	         
             //Basic Auth
 	         
-	         else if(authen1.equals("Basic Auth")){ //m15
+	         else if(authen1.equals("Basic Auth/Others")){ //m15
 	        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
         		 
@@ -377,7 +377,8 @@ public class AuthPulpy extends HttpServlet {
 	            	 else if(!"null".equals(b4) && "null".equals(b2)){encoding = new String(
         		 org.apache.commons.codec.binary.Base64.encodeBase64   
      		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4))
-     		  );	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+     		  );	              
+	            	 connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 }
 	            	 else if(!"null".equals(b2) && !"null".equals(b4)){
 	            		 encoding = new String(
@@ -387,7 +388,10 @@ public class AuthPulpy extends HttpServlet {
 	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 
 	   	            	 } // else if encoding
-	            	 else if("null".equals(b2) && "null".equals(b4)){encoding="";}
+	            	 else if("null".equals(b2) && "null".equals(b4)){
+	            		 encoding=null;
+	            	 }
+	            	 
 	              if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
 	            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
 	              }
