@@ -236,7 +236,7 @@ font-weight:bold;
 
 <c:if test="${sessionScope.securl!=null}">
 <center><h2 style='color:#ffffff'>Second Configuration Details</h2></center>
-<table align='center' bgcolor='white' border='none' bordercolor='#000000' width=100>
+<table align='center' bgcolor='white' border='0' bordercolor='#000000' style='width:700px;'>
 <tr><td>Sec_End_Url</td>
 <td>: <%=session.getAttribute("securl")%></td></tr>
 <tr><td>Cycle_Type</td>
@@ -361,7 +361,7 @@ font-weight:bold;
 
 <c:if test="${sessionScope.thirdurl!=null}">
 <center><h2 style='color:#ffffff'>Third Configuration Details</h2></center>
-<table align='center' bgcolor='white' border='none' bordercolor='#000000' width=100>
+<table align='center' bgcolor='white' border='0' bordercolor='#000000' style='width:700px;'>
 <tr><td>third_End_Url</td>
 <td>: <%=session.getAttribute("thirdurl")%></td></tr>
 <tr><td>Cycle_Type</td>

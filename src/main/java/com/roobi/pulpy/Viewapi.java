@@ -39,14 +39,19 @@ public class Viewapi extends HttpServlet {
 		 Connection con=null;
 			PrintWriter out=response.getWriter();
 			String cat1=request.getParameter("category");
+			String ser=request.getParameter("search");
           try
 			{
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 	            con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 		        PreparedStatement st=null;
+		        PreparedStatement st1=null;
 				 st=con.prepareStatement("select * from addapi where cat=?");
-               st.setString(1, cat1);
+	               st.setString(1, cat1);
+				 st1=con.prepareStatement("select * from addapi where pname like ?");
+               st1.setString(1, ser+"%");
 				    ResultSet rs = st.executeQuery();
+				    ResultSet rs1 = st1.executeQuery();
 				
 				   out.println("<br><br><head><link rel='stylesheet' type='text/css' href='apidisp.css'></head><body bgcolor='#FF9900'><div id='re' style='color:#FFFFFF; font-family:verdana; font-size:40px;'><center>Mind Pulpy</center></div><br><div id='re1' style='color:#FFFFFF; font-family:verdana; font-size:25px;'><center>ADDED API's<center><div><br><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'>");
 				out.println("<div style='padding: 9px 0;position: fixed;font-size: 18px;text-align:left;margin-left: 80px;top: 100px;width: 200px;bottom: 10px;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #FF9900;border: 1px solid gainsboro; border-color:#FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
@@ -68,6 +73,33 @@ out.println("<p style='font-weight:bold'>Category</p><a style='color:#ffffff' hr
  		+"<a style='color:#ffffff' href='/Viewapi?category=Blogging'>Blogging</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Photos'>Photos</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Messaging'>Messaging</a></div>");
+out.println("<br><div style='padding: 9px 0;position: fixed;font-size: 18px;text-align:left;margin-left: 450px;top: 100px;width: 600px;bottom:800px;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #FF9900;border: 1px solid gainsboro; border-color:#FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
+out.println("&nbsp;&nbsp;<a style='color:#ffffff' href='/Viewapi?search=A'>A</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=B'>B</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=C'>C</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=D'>D</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=E'>E</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=F'>F</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=G'>G</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=H'>H</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=I'>I</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=J'>J</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=K'>K</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=L'>L</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=M'>M</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=N'>N</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=O'>O</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=P'>P</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=Q'>Q</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=R'>R</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=S'>S</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=T'>T</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=U'>U</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=V'>V</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=W'>W</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=X'>X</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=Y'>Y</a>&nbsp;&nbsp;"
++"<a style='color:#ffffff' href='/Viewapi?search=Z'>Z</a></div>");
 out.println("<div style='padding: 9px 0;position: fixed;font-size: 18px;text-align:left;margin-left:1150px;top: 530px;width: 40px;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #FF9900;border: 1px solid gainsboro; border-color:#FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
 out.println("<a style='color:#ffffff' href='index.jsp'>Back</a></div>");
 			while(rs.next()){
@@ -78,10 +110,19 @@ out.println("<a style='color:#ffffff' href='index.jsp'>Back</a></div>");
 			            String link=rs.getString("link");
 			            String des=rs.getString("des");
 			            out.println("Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
+			            
 			           // out.println("<tr><td>"+name+"</td><td>"+pname+"</td><td>"+cat+"</td><td>"+link+"</td><td>"+des+"</td></tr>");
 
 				 }
-			}
+			while(rs1.next()){
+				out.println("<div style='font-size:17px;'>");
+			        	String name=rs1.getString("name");
+			            String pname=rs1.getString("pname");
+			            String cat=rs1.getString("cat");
+			            String link=rs1.getString("link");
+			            String des=rs1.getString("des");
+			            out.println("Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
+			}}
           catch(Exception e)
 			{
 				out.println(e);
