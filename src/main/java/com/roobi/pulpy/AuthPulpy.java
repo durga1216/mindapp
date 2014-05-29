@@ -43,6 +43,8 @@ import javax.servlet.http.HttpSession;
 
 
 
+
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -233,6 +235,61 @@ public class AuthPulpy extends HttpServlet {
 	        		 session.setAttribute("xml1", str);
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} // NO Auth GET
+               
+               if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
+	        		 
+          		 String USER_AGENT = "Mozilla/5.0";
+	        	 String url=endurl1;	 	        		         		
+	        		//out.println(eurl);
+	        	     String str="";
+	        		 try
+	        		 {
+	        			 HttpClient client = new DefaultHttpClient();
+	        				HttpPost post = new HttpPost(url);
+	        				post.setHeader("User-Agent", USER_AGENT);
+	        				List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+	        				urlParameters.add(new BasicNameValuePair(pa1, pva1));
+	        				urlParameters.add(new BasicNameValuePair(pa2, pva2));
+	        				urlParameters.add(new BasicNameValuePair(pa3, pva3));
+	        				urlParameters.add(new BasicNameValuePair(pa4, pva4));
+	        				urlParameters.add(new BasicNameValuePair(pa5, pva5));
+	        				urlParameters.add(new BasicNameValuePair(pa6, pva6));
+	        				urlParameters.add(new BasicNameValuePair(pa7, pva7));
+	        				urlParameters.add(new BasicNameValuePair(pa8, pva8));
+	        				urlParameters.add(new BasicNameValuePair(pa9, pva9));
+	        				urlParameters.add(new BasicNameValuePair(pa10, pva10));
+	        				post.setEntity(new UrlEncodedFormEntity(urlParameters));
+	        				HttpResponse response1 = client.execute(post);
+	        				BufferedReader br = new BufferedReader(
+	                                new InputStreamReader(response1.getEntity().getContent()));
+	         
+	        		StringBuffer result = new StringBuffer();
+	        		String line = "";
+	        	     if(resf1.equals("XML")){
+	        	     while((line=br.readLine())!=null){
+	         	 	  	       		     str+=line;}
+	        		 }
+	        		 else if(resf1.equals("JSON")){
+	        			 while ((line = br.readLine()) != null)    { 
+	 	        	    	
+	   	         		  JSON json = JSONSerializer.toJSON( line)  ;
+	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+	   	     	          xmlSerializer.setTypeHintsEnabled(false);
+	   	     	          xmlSerializer.setSkipWhitespace(true);
+	   	     	          xmlSerializer.setTrimSpaces(true);
+	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+	   	     	          xmlSerializer.removeNamespace(line);
+	   	     	          xmlSerializer.setRootName("root");
+	   	     	          xmlSerializer.setForceTopLevelObject(false);
+	   	     		      str = xmlSerializer.write( json );
+	        		 } //while
+	        		 } //if
+	        		 }//try
+	         	     catch(Exception e){
+	 	    	      out.println(e);}	
+	        		 session.setAttribute("xml1", str);
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
+	               	} // NO Auth post
 	        	        	 
 	         }    // No Auth  
 	               
@@ -313,6 +370,62 @@ public class AuthPulpy extends HttpServlet {
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} // Get Api keys
+	        	 
+	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
+	        		 
+	          		 String USER_AGENT = "Mozilla/5.0";
+		        	 String url=endurl1;	 	        		         		
+		        		//out.println(eurl);
+		        	     String str="";
+		        		 try
+		        		 {
+		        			 HttpClient client = new DefaultHttpClient();
+		        				HttpPost post = new HttpPost(url);
+		        				post.setHeader("User-Agent", USER_AGENT);
+		        				List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+		        				urlParameters.add(new BasicNameValuePair(ak1, ak2));
+		        				urlParameters.add(new BasicNameValuePair(pa1, pva1));
+		        				urlParameters.add(new BasicNameValuePair(pa2, pva2));
+		        				urlParameters.add(new BasicNameValuePair(pa3, pva3));
+		        				urlParameters.add(new BasicNameValuePair(pa4, pva4));
+		        				urlParameters.add(new BasicNameValuePair(pa5, pva5));
+		        				urlParameters.add(new BasicNameValuePair(pa6, pva6));
+		        				urlParameters.add(new BasicNameValuePair(pa7, pva7));
+		        				urlParameters.add(new BasicNameValuePair(pa8, pva8));
+		        				urlParameters.add(new BasicNameValuePair(pa9, pva9));
+		        				urlParameters.add(new BasicNameValuePair(pa10, pva10));
+		        				post.setEntity(new UrlEncodedFormEntity(urlParameters));
+		        				HttpResponse response1 = client.execute(post);
+		        				BufferedReader br = new BufferedReader(
+		                                new InputStreamReader(response1.getEntity().getContent()));
+		         
+		        		StringBuffer result = new StringBuffer();
+		        		String line = "";
+		        	     if(resf1.equals("XML")){
+		        	     while((line=br.readLine())!=null){
+		         	 	  	       		     str+=line;}
+		        		 }
+		        		 else if(resf1.equals("JSON")){
+		        			 while ((line = br.readLine()) != null)    { 
+		 	        	    	
+		   	         		  JSON json = JSONSerializer.toJSON( line)  ;
+		   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+		   	     	          xmlSerializer.setTypeHintsEnabled(false);
+		   	     	          xmlSerializer.setSkipWhitespace(true);
+		   	     	          xmlSerializer.setTrimSpaces(true);
+		   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+		   	     	          xmlSerializer.removeNamespace(line);
+		   	     	          xmlSerializer.setRootName("root");
+		   	     	          xmlSerializer.setForceTopLevelObject(false);
+		   	     		      str = xmlSerializer.write( json );
+		        		 } //while
+		        		 } //if
+		        		 }//try
+		         	     catch(Exception e){
+		 	    	      out.println(e);}	
+		        		 session.setAttribute("xml1", str);
+		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
+		               	}//post api key
 	        	 
 	         }  // API keys  
 	         
