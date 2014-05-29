@@ -39,6 +39,8 @@ $(document).ready(function(){
 				  $('#oauth2').hide();
 				  $('.rmethod').hide();
 					$('#select2').hide();
+									$('#others').hide();
+					
 				  
 			    }
 		    else if($('input:radio[name=authen]:checked').val() == "Basic Auth"){
@@ -48,6 +50,7 @@ $(document).ready(function(){
 			$('#oauth2').hide();
 			$('.rmethod').hide();
 			$('#select2').hide();
+							$('#others').show();
 			
 
 		    }
@@ -58,6 +61,8 @@ $(document).ready(function(){
 			$('#oauth2').hide();
 			$('.rmethod').hide();
 			$('#select2').hide();
+							$('#others').hide();
+			
 		    }
 
  else if($('input:radio[name=authen]:checked').val() == "Oauth1"){
@@ -67,6 +72,7 @@ $(document).ready(function(){
 		$('#oauth2').hide();
 		$('.rmethod').hide();
 		$('#select2').hide();
+						$('#others').hide();
 		
 	}
 
@@ -74,6 +80,8 @@ $(document).ready(function(){
 	 $('#apiid').hide();
 		$('#divid').hide();
 		$('#req').hide();
+				$('#others').hide();
+		
 		$('#oauth2').show();
 		$('.rmethod').show();
 		$('#select2').show();	}
@@ -212,10 +220,14 @@ padding:10px;
 
 #req{
 color:#FFFFFF;
-font-size:10px;
+font-size:15px;
 font-family:verdana;
 margin-left:100px;
 }
+#others{color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+margin-left:100px;}
 #def{
 color:#FFFFFF;
 font-size:10px;
@@ -256,7 +268,7 @@ text-align:right;}
 <label for="rd1">No Auth</label>
 <input type="radio" name="authen"   value="Basic Auth">
 
-<label for="rd1">Basic Auth</label>
+<label for="rd1">Basic Auth/Others</label>
 <input type="radio" name="authen"   value="API keys" >
 
 <label for="rd1">API keys</label>
@@ -267,12 +279,11 @@ text-align:right;}
 <label for="rd1">OAuth2</label>
 </div>
 <div id="req" style="display:none">Fine! Go ahead</div>
-
+<br><div id="others" style="display:none">If others,please leave username & password fields and add your credentials in header</div>
 <div id="divid" style="display:none"><br>
-<br>
 <input type="text" name="b2" value="" placeholder="UserName" >
 <input type="text" name="b4" value="" placeholder="Password"><br><br><br>
-<a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
+<a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
 <br><div id="content"></div><br>
 </div>
 
