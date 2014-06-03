@@ -371,13 +371,8 @@ public class AuthPulpy extends HttpServlet {
 	   	    			
 	   	    		     }//while
 	        	     } // else if
-        	 	  } // try
-	 	        	    catch(Exception e){
-	 	    	        	 out.println(e);
-	 	    	        	 }	
-	               	} // Get Api keys
-	        	 else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")){
-	        		 XmlRpcClient xmlrpc = new XmlRpcClient();
+	        	     
+	        	     else if(resf1.equals("XML-RPC")){XmlRpcClient xmlrpc = new XmlRpcClient();
 	        			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
 	        			try {
 	        				config1.setServerURL(new URL(endurl1));
@@ -415,19 +410,26 @@ public class AuthPulpy extends HttpServlet {
 	        		 
 		        		 else if(!"null".equals(pa1)){
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);}
-	        	 str=(String) xmlrpc.execute(mname, new Object[] {
+	        	 out.println( xmlrpc.execute(mname, new Object[] {
 	 					mergeVars
-	 			});
+	 			}));
+	        	     }
+        	 	  } // try
+	 	        	    catch(Exception e){
+	 	    	        	 out.println(e);
+	 	    	        	 }	
+	        		 
 
-
-	        		 session.setAttribute("xml1", str);
+	        		/* session.setAttribute("xml1", str);
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	}//API keys
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	*/
+	     		        
+	        	 } //get
 	        	 
 	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
 	        		 
 	          		 String USER_AGENT = "Mozilla/5.0";
-		        	 String url=endurl1;	 	        		         		
+		        	 String url=endurl1;
 		        		//out.println(eurl);
 		        		 try
 		        		 {
