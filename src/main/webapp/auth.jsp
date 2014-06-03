@@ -181,7 +181,13 @@ font-size:10px;
 font-family:verdana;
 margin-left:650px;
 }
+#mnote{
+color:#FFFFFF;
+font-size:15px;
+margin-left:100px;
+font-family:verdana;
 
+}
 #indiv{color:#FFFFFF;
 }
 #na{
@@ -233,6 +239,30 @@ function removeParent(){
  function oauth1(){}
  function oauth2(){}
 
+$(document).ready(function(){
+$('#select3').on('change', function() {
+    if (this.value == 'XML-RPC') {
+    $('#method').show();
+    $('#mnote').show();
+    
+}
+   else if(this.value == 'XML'){
+   $('#method').hide();
+   $('#mnote').hide();
+   }
+   
+   else if(this.value == 'JSON'){
+   $('#method').hide();
+   $('#mnote').hide();
+   }
+   
+   else if(this.value == 'SOAP'){
+   $('#method').hide();
+   $('#mnote').hide();
+   }
+});
+});
+
  </script>
 </head>
 <body>
@@ -266,8 +296,9 @@ function removeParent(){
      <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
 </select><br><br>
-<input type="text" style="display:none" name="baseurl" placeholder="Base_URL*"><br><br>
+<div id='mnote' style="display:none">* Enter Base-URL inside of End_Point_URL and also enter appropriate Method Name</div><br>
 <input type="text" name="endurl" placeholder="End_Point_URL*"><br><br>
+<input type="text" name="method" id="method" placeholder="Method_name" style="display:none"><br><br>
 <div class="link"><center>Add Parameters</center></div><br><br>
 <a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
 <div id="content"></div><br><br>
@@ -275,3 +306,4 @@ function removeParent(){
 </form>
 </body>
 </html>
+

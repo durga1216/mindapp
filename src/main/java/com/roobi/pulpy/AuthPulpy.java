@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -16,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +47,10 @@ import javax.servlet.http.HttpSession;
 
 
 
+
+
+
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -54,6 +60,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.xmlrpc.client.XmlRpcClient;
+import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
@@ -144,7 +152,7 @@ public class AuthPulpy extends HttpServlet {
         	 String el=rs.getString("el");
         	 String ev=rs.getString("ev");
              String rf1=rs.getString("rf");String rm1=rs.getString("rm");
-             String resf1=rs.getString("resf");String baseurl=rs.getString("baseurl");String endurl1=rs.getString("endurl");
+             String resf1=rs.getString("resf");String mname=rs.getString("baseurl");String endurl1=rs.getString("endurl");
              String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
              String pa2=rs.getString("p2");String pva2=rs.getString("pv2");
              String pa3=rs.getString("p3");String pva3=rs.getString("pv3");
@@ -295,6 +303,8 @@ public class AuthPulpy extends HttpServlet {
 	               
 	         
 	         if(authen1.equals("API keys")){  //API Keys
+        	     String str="";
+
 	        	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get
 	        		 
 	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -331,7 +341,6 @@ public class AuthPulpy extends HttpServlet {
 	        		 
 	        		 else if("null".equals(ak1) && "null".equals(ak2))
 	        			 eurl=endurl1;	        		
-	        	     String str="";
 	        		 try
 	        		 {
 	        			 
@@ -366,17 +375,60 @@ public class AuthPulpy extends HttpServlet {
 	 	        	    catch(Exception e){
 	 	    	        	 out.println(e);
 	 	    	        	 }	
+	               	} // Get Api keys
+	        	 else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")){
+	        		 XmlRpcClient xmlrpc = new XmlRpcClient();
+	        			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
+	        			try {
+	        				config1.setServerURL(new URL(endurl1));
+	        			} catch (MalformedURLException e) {
+	        				throw new RuntimeException("Bad endpoint: " + endurl1, e);
+	        			}
+	        			xmlrpc.setConfig(config1);
+	        			HashMap mergeVars = new HashMap();
+		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);mergeVars.put(pa10,pva10);
+		        		 }
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
+		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
+		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
+		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);}
+	        			
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+			        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
+		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
+		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
+		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);}
+	        		 
+		        		 else if(!"null".equals(pa1)){
+		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);}
+	        	 str=(String) xmlrpc.execute(mname, new Object[] {
+	 					mergeVars
+	 			});
+
+
 	        		 session.setAttribute("xml1", str);
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
-	               	} // Get Api keys
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	}//API keys
 	        	 
 	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
 	        		 
 	          		 String USER_AGENT = "Mozilla/5.0";
 		        	 String url=endurl1;	 	        		         		
 		        		//out.println(eurl);
-		        	     String str="";
 		        		 try
 		        		 {
 		        			 HttpClient client = new DefaultHttpClient();
