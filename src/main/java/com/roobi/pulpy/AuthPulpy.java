@@ -88,7 +88,7 @@ public class AuthPulpy extends HttpServlet {
 
       String rf=request.getParameter("rf");String select2=request.getParameter("rm");
       String select=request.getParameter("select2");
-      String select3=request.getParameter("select3");String burl=request.getParameter("baseurl");String endurl=request.getParameter("endurl");
+      String select3=request.getParameter("select3");String burl=request.getParameter("method");String endurl=request.getParameter("endurl");
       String p1=request.getParameter("p1");String pv1=request.getParameter("pv1");
       String p2=request.getParameter("p2");String pv2=request.getParameter("pv2");
       String p3=request.getParameter("p3");String pv3=request.getParameter("pv3");
