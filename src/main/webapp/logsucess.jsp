@@ -75,14 +75,15 @@ function load(){
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
-<div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='login.jsp'> Sign Out </a></div>
+<div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Test </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='login.jsp'> Sign Out </a></div>
 
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br>
 <div class='suc'><center><h3>Login Sucess!!</h3></center></div>
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>
 <center><div id='pa'><a href='firstauth.jsp'>Create Application here</a></div></center><br><br>
 <center><div id='pa'><a href='<%=request.getContextPath()%>/EditPulpy' >Edit Your Application here</a></div></center><br><br>
-<center><div id='pa'><img src="images/you.png" width="41" height="18"><a href="javascript:load()">YouTube Link For Help</a></div></center>
+<center><div id='pa'><img src="images/you.png" width="41" height="18"><a href="javascript:load()">YouTube Link For Help</a></div></center><br><br>
+<center><div id='pa'><a href='mobile_client.jsp'>Mobile Client Application here</a></div></center><br><br>
 
 </body>
 

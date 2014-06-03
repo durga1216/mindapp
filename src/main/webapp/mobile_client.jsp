@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Mind Pulpy</title>
+<script src="js/jquery-latest.js"></script>
+<link rel="shortcut icon" href="favicon.ico" />
 </head>
 <style>
 .head{
@@ -17,6 +19,20 @@ body{
 background-color:#33FF99;
 
 }
+option{
+font-size:20px;
+}
+select{
+color:#33FF99;
+font-size:20px;
+margin-left:80px;
+background-color:#000000;
+font-family:verdana;
+width:440px;
+height:60px;
+padding:10px;
+}
+
 input[type="text"]{
 color:#33FF99;
 font-size:20px;
@@ -42,11 +58,49 @@ border-radius:50px;
 padding:10px;
 }
 </style>
+
 <body><div class="head">
+<%String u = (String) request.getSession().getAttribute("user");
+    if (u != null ) {
+   // System.out.println("user != null");
+   // out.print("Welcome "+u);
+    }else{
+   // System.out.println("user == null");
+    response.sendRedirect("logout.jsp");
+    }%>
 <center>Mobile App</center></div>
 <form action="AuthXmlPulpy" method="post">
-<input type="text" name="appid" value="" placeholder="App_Id"><br><br>
-<input type="text" name="p1" value="" placeholder="Param1"><br><br>
+<%@page import="com.mindots.util.Utils"%>
+<%@page import=" java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%
+response.setHeader("Content-Type","text/html;charset=UTF-8");%>
+
+<select id='apid' name='appid' onchange="myFunction()"><option value='dummy'>***Choose Your APP_ID Here***</option>
+<%
+String id1=(String) session.getAttribute("id");
+try{
+Class.forName("com.mysql.jdbc.Driver");
+Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+PreparedStatement st1=cn.prepareStatement("SELECT appid FROM authen1 WHERE id=?");
+st1.setString(1,id1);
+ResultSet rs1 = st1.executeQuery();
+while(rs1.next()){
+	String ap=rs1.getString("appid");
+    out.println("<option value='"+ap+"'>"+ap+"</option>");
+
+}
+%>
+</select>
+<% }
+catch(Exception e)
+{out.println(e);
+}
+%><br><br>
+<p id="p"></p>
+		<input type="text" id="p1" name="p1"  placeholder="Param1"  onchange="myFunction()"><br><br>
 <input type="text" name="p2" value="" placeholder="Param2"><br><br>
 <input type="text" name="p3" value="" placeholder="Param3"><br><br>
 <input type="text" name="p4" value="" placeholder="Param4"><br><br>

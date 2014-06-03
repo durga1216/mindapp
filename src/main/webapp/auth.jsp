@@ -246,7 +246,7 @@ function removeParent(){
     }%>
 <form action="AuthPulpy" method="post">
 
-<div id=na><%=session.getAttribute("mail")%>|<a id="indiv" href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>|<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+<div id=na><%=session.getAttribute("mail")%>|<a id='indiv' href = 'mobile_client.jsp'> API Test </a>&nbsp;|&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>|<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
 
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 
