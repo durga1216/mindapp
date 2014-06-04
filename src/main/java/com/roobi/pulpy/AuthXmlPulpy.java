@@ -65,7 +65,10 @@ public class AuthXmlPulpy extends HttpServlet {
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		Connection con=null;
-		String appid=request.getParameter("appid");
+		 HttpSession session=request.getSession(true);
+		  String appid=(String) session.getAttribute("xx"); 
+			//String appid=request.getParameter("appid");
+		String eurl11=request.getParameter("eurl");
 
 		String p1=request.getParameter("p1");String p2=request.getParameter("p2");
 		String p3=request.getParameter("p3");String p4=request.getParameter("p4");
@@ -220,6 +223,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	         
 	         
 	         else if(authen1.equals("API keys")){  //API Keys
+	        	 
 	        	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get       		 
 
 	        		 if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4) && !"".equals(p5) && !"".equals(p6)&& !"".equals(p7) && !"".equals(p8) && !"".equals(p9) && !"".equals(p10)){
@@ -485,7 +489,6 @@ public class AuthXmlPulpy extends HttpServlet {
        
        
 	         else if(authen1.equals("Oauth2")){  //OAUTH authentication
-	        	 HttpSession session=request.getSession(true);
 	     		 String id1=(String) session.getAttribute("id");
 	     		 String access_token=(String) session.getAttribute("access_token");
 		     		
