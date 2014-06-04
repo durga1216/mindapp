@@ -385,6 +385,8 @@ public class AuthPulpy extends HttpServlet {
 	        	     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
 	        	     
 	        	     {
+	        	 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
+
 	        	    	 XmlRpcClient xmlrpc = new XmlRpcClient();
 	        			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
 	        			try {
@@ -427,10 +429,11 @@ public class AuthPulpy extends HttpServlet {
 		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}
 	        				        	 
 	        			try {
-	        				obj=xmlrpc.execute(mname, new Object[] {
+	        				out.println(xmlrpc.execute(mname, new Object[] {
 	        						mergeVars
-	        				});
-	        				str=obj.toString();
+	        				}));
+	        				//str=obj.toString();
+	        				//out.println(str);
 	        				}
 	        			 catch (XmlRpcException e) {
 	        				throw new RuntimeException("Error", e);}
@@ -438,9 +441,9 @@ public class AuthPulpy extends HttpServlet {
         	 	  
 	        		 
 
-	        		   request.setAttribute("xml1", str);
+	        		 /*  request.setAttribute("xml1", str);
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-		              getServletConfig().getServletContext().getRequestDispatcher("/auth1.jsp").forward(request,response);
+		              getServletConfig().getServletContext().getRequestDispatcher("/auth1.jsp").forward(request,response);*/
 	     		        
 	        	 } //XML RPC        	 
 	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
