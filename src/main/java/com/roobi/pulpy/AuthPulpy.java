@@ -438,7 +438,7 @@ public class AuthPulpy extends HttpServlet {
 
 	        		   request.setAttribute("xml1", obj);
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-		              getServletConfig().getServletContext().getRequestDispatcher("auth1.jsp").forward(request,response);
+		              getServletConfig().getServletContext().getRequestDispatcher("/auth1.jsp").forward(request,response);
 	     		        
 	        	 } //XML RPC        	 
 	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
