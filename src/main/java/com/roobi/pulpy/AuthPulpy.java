@@ -341,8 +341,7 @@ public class AuthPulpy extends HttpServlet {
 	        		 
 	        		 else if("null".equals(ak1) && "null".equals(ak2))
 	        			 eurl=endurl1;	        		
-	        		 try
-	        		 {
+	        		
 	        			 
 	        		 URL eurl1=new URL(eurl);
 	        		 URLConnection uconn = eurl1.openConnection();
@@ -370,9 +369,13 @@ public class AuthPulpy extends HttpServlet {
 	   	     		      str = xmlSerializer.write( json );
 	   	    			
 	   	    		     }//while
+	        	    	 
 	        	     } // else if
 	        	     
-	        	     else if(resf1.equals("XML-RPC")){XmlRpcClient xmlrpc = new XmlRpcClient();
+	        	     else if(resf1.equals("XML-RPC"))
+	        	     
+	        	     {
+	        	    	 XmlRpcClient xmlrpc = new XmlRpcClient();
 	        			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
 	        			try {
 	        				config1.setServerURL(new URL(endurl1));
@@ -381,7 +384,7 @@ public class AuthPulpy extends HttpServlet {
 	        			}
 	        			xmlrpc.setConfig(config1);
 	        			HashMap mergeVars = new HashMap();
-		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+		        		/* if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);mergeVars.put(pa10,pva10);
 		        		 }
 		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
@@ -410,14 +413,14 @@ public class AuthPulpy extends HttpServlet {
 	        		 
 		        		 else if(!"null".equals(pa1)){
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);}
+		        			 
+		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}*/
+	        			mergeVars.put(ak1, ak2);mergeVars.put(pa1, pva1);mergeVars.put(pa2, pva2);
 	        	 out.println( xmlrpc.execute(mname, new Object[] {
 	 					mergeVars
 	 			}));
-	        	     }
-        	 	  } // try
-	 	        	    catch(Exception e){
-	 	    	        	 out.println(e);
-	 	    	        	 }	
+	        	     }  //XML-RPC
+        	 	  
 	        		 
 
 	        		/* session.setAttribute("xml1", str);
