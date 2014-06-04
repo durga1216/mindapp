@@ -429,14 +429,16 @@ public class AuthPulpy extends HttpServlet {
 	        			try {
 	        				obj=xmlrpc.execute(mname, new Object[] {
 	        						mergeVars
-	        				});}
+	        				});
+	        				str=obj.toString();
+	        				}
 	        			 catch (XmlRpcException e) {
 	        				throw new RuntimeException("Error", e);}
 	        			
         	 	  
 	        		 
 
-	        		   request.setAttribute("xml1", obj);
+	        		   request.setAttribute("xml1", str);
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 		              getServletConfig().getServletContext().getRequestDispatcher("/auth1.jsp").forward(request,response);
 	     		        
