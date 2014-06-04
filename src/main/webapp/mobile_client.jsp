@@ -58,16 +58,18 @@ border-radius:50px;
 padding:10px;
 }
 </style>
+<script>
+function myFunction() {
+    var x = document.getElementById('apid').value;
+    var ur="mobile_client.jsp?ai="+x+"";
+   
+	window.location=""+ur+"";
 
+}
+
+</script>
 <body><div class="head">
-<%String u = (String) request.getSession().getAttribute("user");
-    if (u != null ) {
-   // System.out.println("user != null");
-   // out.print("Welcome "+u);
-    }else{
-   // System.out.println("user == null");
-    response.sendRedirect("logout.jsp");
-    }%>
+
 <center>Mobile App</center></div>
 <form action="AuthXmlPulpy" method="post">
 <%@page import="com.mindots.util.Utils"%>
@@ -83,14 +85,43 @@ response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 String id1=(String) session.getAttribute("id");
 try{
 Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+//Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 PreparedStatement st1=cn.prepareStatement("SELECT appid FROM authen1 WHERE id=?");
-st1.setString(1,id1);
+st1.setString(1,"MP_0021");
 ResultSet rs1 = st1.executeQuery();
 while(rs1.next()){
 	String ap=rs1.getString("appid");
     out.println("<option value='"+ap+"'>"+ap+"</option>");
 
+}%>
+</select><br><br>
+<select id='apid' name='appid' ><option value='dummy'>***Choose Your END_URL Here***</option>
+<% 
+String rd=request.getParameter("ai");
+PreparedStatement st2=cn.prepareStatement("SELECT config.endurl FROM config where config.appid=?");
+st2.setString(1,rd);
+ResultSet rs2 = st2.executeQuery();
+while(rs2.next()){
+	String ap1=rs2.getString("endurl");
+    out.println("<option value='"+ap1+"'>"+ap1+"</option>");
+  
+}
+PreparedStatement st3=cn.prepareStatement("SELECT secondconfig.securl FROM secondconfig where secondconfig.appid=?");
+st3.setString(1,rd);
+ResultSet rs3 = st3.executeQuery();
+while(rs3.next()){
+	String ap2=rs3.getString("securl");
+    out.println("<option value='"+ap2+"'>"+ap2+"</option>");
+   
+}
+PreparedStatement st4=cn.prepareStatement("SELECT thirdconfig.thrdurl FROM thirdconfig where thirdconfig.appid=?");
+st4.setString(1,rd);
+ResultSet rs4 = st4.executeQuery();
+while(rs4.next()){
+	String ap4=rs4.getString("thrdurl");
+    out.println("<option value='"+ap4+"'>"+ap4+"</option>");
+   
 }
 %>
 </select>
@@ -98,9 +129,9 @@ while(rs1.next()){
 catch(Exception e)
 {out.println(e);
 }
-%><br><br>
-<p id="p"></p>
-		<input type="text" id="p1" name="p1"  placeholder="Param1"  onchange="myFunction()"><br><br>
+%>
+<br><br>
+<input type="text" name="p1"  placeholder="Param1"><br><br>
 <input type="text" name="p2" value="" placeholder="Param2"><br><br>
 <input type="text" name="p3" value="" placeholder="Param3"><br><br>
 <input type="text" name="p4" value="" placeholder="Param4"><br><br>

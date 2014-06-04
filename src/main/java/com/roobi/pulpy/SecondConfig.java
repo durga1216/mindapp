@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -22,6 +24,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import com.mindots.util.Utils;
 
@@ -173,7 +183,63 @@ public class SecondConfig extends HttpServlet {
    	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
 	     		        response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");	
-                   	 }} //No auth and GET
+                   	 }
+    	         if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
+	        		 
+              		 String USER_AGENT = "Mozilla/5.0";
+    	        	 String url=securl1;	 	        		         		
+    	        		//out.println(eurl);
+    	        	     String str="";
+    	        		 try
+    	        		 {
+    	        			 HttpClient client = new DefaultHttpClient();
+    	        				HttpPost post = new HttpPost(url);
+    	        				post.setHeader("User-Agent", USER_AGENT);
+    	        				List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+    	        				urlParameters.add(new BasicNameValuePair(se1, sev1));
+    	        				urlParameters.add(new BasicNameValuePair(se2, sev2));
+    	        				urlParameters.add(new BasicNameValuePair(se3, sev3));
+    	        				urlParameters.add(new BasicNameValuePair(se4, sev4));
+    	        				urlParameters.add(new BasicNameValuePair(se5, sev5));
+    	        				urlParameters.add(new BasicNameValuePair(se6, sev6));
+    	        				urlParameters.add(new BasicNameValuePair(se7, sev7));
+    	        				urlParameters.add(new BasicNameValuePair(se8, sev8));
+    	        				urlParameters.add(new BasicNameValuePair(se9, sev9));
+    	        				urlParameters.add(new BasicNameValuePair(se10, sev10));
+    	        				post.setEntity(new UrlEncodedFormEntity(urlParameters));
+    	        				HttpResponse response1 = client.execute(post);
+    	        				BufferedReader br = new BufferedReader(
+    	                                new InputStreamReader(response1.getEntity().getContent()));
+    	         
+    	        		StringBuffer result = new StringBuffer();
+    	        		String line = "";
+    	        	     if(resf1.equals("XML")){
+    	        	     while((line=br.readLine())!=null){
+    	         	 	  	       		     str+=line;}
+    	        		 }
+    	        		 else if(resf1.equals("JSON")){
+    	        			 while ((line = br.readLine()) != null)    { 
+    	 	        	    	
+    	   	         		  JSON json = JSONSerializer.toJSON( line)  ;
+    	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+    	   	     	          xmlSerializer.setTypeHintsEnabled(false);
+    	   	     	          xmlSerializer.setSkipWhitespace(true);
+    	   	     	          xmlSerializer.setTrimSpaces(true);
+    	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+    	   	     	          xmlSerializer.removeNamespace(line);
+    	   	     	          xmlSerializer.setRootName("root");
+    	   	     	          xmlSerializer.setForceTopLevelObject(false);
+    	   	     		      str = xmlSerializer.write( json );
+    	        		 } //while
+    	        		 } //if
+    	        		 }//try
+    	         	     catch(Exception e){
+    	 	    	      out.println(e);}	
+    	        		 session.setAttribute("xml1", str);
+    	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
+    	               	} // NO Auth post
+    	        	     
+    	         } //No auth
              
              else if(authen1.equals("API keys")){  //API Keys
 	        	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get
@@ -243,7 +309,64 @@ public class SecondConfig extends HttpServlet {
 	    	    	 session.setAttribute("xml1", str);
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");	
-	               	} //get
+	               
+	        	 } //get
+          if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
+        	  		String str="";	 	        		         		
+
+	          		 String USER_AGENT = "Mozilla/5.0";
+		        	 String url=securl1;	 	        		         		
+		        		//out.println(eurl);
+		        		 try
+		        		 {
+		        			 HttpClient client = new DefaultHttpClient();
+		        				HttpPost post = new HttpPost(url);
+		        				post.setHeader("User-Agent", USER_AGENT);
+		        				List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+		        				urlParameters.add(new BasicNameValuePair(ak1, ak2));
+		        				urlParameters.add(new BasicNameValuePair(se1, sev1));
+    	        				urlParameters.add(new BasicNameValuePair(se2, sev2));
+    	        				urlParameters.add(new BasicNameValuePair(se3, sev3));
+    	        				urlParameters.add(new BasicNameValuePair(se4, sev4));
+    	        				urlParameters.add(new BasicNameValuePair(se5, sev5));
+    	        				urlParameters.add(new BasicNameValuePair(se6, sev6));
+    	        				urlParameters.add(new BasicNameValuePair(se7, sev7));
+    	        				urlParameters.add(new BasicNameValuePair(se8, sev8));
+    	        				urlParameters.add(new BasicNameValuePair(se9, sev9));
+    	        				urlParameters.add(new BasicNameValuePair(se10, sev10));
+		        				post.setEntity(new UrlEncodedFormEntity(urlParameters));
+		        				HttpResponse response1 = client.execute(post);
+		        				BufferedReader br = new BufferedReader(
+		                                new InputStreamReader(response1.getEntity().getContent()));
+		         
+		        		StringBuffer result = new StringBuffer();
+		        		String line = "";
+		        	     if(resf1.equals("XML")){
+		        	     while((line=br.readLine())!=null){
+		         	 	  	       		     str+=line;}
+		        		 }
+		        		 else if(resf1.equals("JSON")){
+		        			 while ((line = br.readLine()) != null)    { 
+		 	        	    	
+		   	         		  JSON json = JSONSerializer.toJSON( line)  ;
+		   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+		   	     	          xmlSerializer.setTypeHintsEnabled(false);
+		   	     	          xmlSerializer.setSkipWhitespace(true);
+		   	     	          xmlSerializer.setTrimSpaces(true);
+		   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+		   	     	          xmlSerializer.removeNamespace(line);
+		   	     	          xmlSerializer.setRootName("root");
+		   	     	          xmlSerializer.setForceTopLevelObject(false);
+		   	     		      str = xmlSerializer.write( json );
+		        		 } //while
+		        		 } //if
+		        		 }//try
+		         	     catch(Exception e){
+		 	    	      out.println(e);}	
+		        		 session.setAttribute("xml1", str);
+		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
+		               	}//post api key
+	        	 
              }//api keys 
              
    	     } // database while

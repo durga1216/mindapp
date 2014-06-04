@@ -80,7 +80,7 @@ font-weight:bold;
     response.sendRedirect("logout.jsp");
     }%>
     
-<div id=na><a id="indiv" href='mobile_client.jsp'>Mobile Client App here</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='https://mindtools-inputs.rhcloud.com/index.jsp'>https://mindtools-inputs.rhcloud.com/index.jsp </a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+<div id=na><a id="indiv" href='mobile_client.jsp'>API Test</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='https://mindtools-inputs.rhcloud.com/index.jsp'>https://mindtools-inputs.rhcloud.com/index.jsp </a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
 <form action="Edit" method="post">
 <center><div class="head">Mind Pulpy</div></center>
 <center><div class="main">Configuration completed! Check With Mobile App</div></center><br>
