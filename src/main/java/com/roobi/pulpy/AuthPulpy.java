@@ -385,7 +385,6 @@ public class AuthPulpy extends HttpServlet {
 	        	     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
 	        	     
 	        	     {
-	        	 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 
 	        	    	 XmlRpcClient xmlrpc = new XmlRpcClient();
 	        			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
