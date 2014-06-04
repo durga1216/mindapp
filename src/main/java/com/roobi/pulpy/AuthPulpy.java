@@ -307,7 +307,7 @@ public class AuthPulpy extends HttpServlet {
 	         
 	         if(authen1.equals("API keys")){  //API Keys
         	     String str="";
-
+                 Object obj;
 	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
 	        		 
 	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -354,9 +354,11 @@ public class AuthPulpy extends HttpServlet {
 	        	     InputStream stream = (InputStream) content;
 	        	     String line=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	        	     if(resf1.equals("XML")){
+	        	    if(resf1.equals("XML")){
 	        	     while((line=br.readLine())!=null){
-    	  	       	 str+=line;}}
+    	  	       	 str+=line;
+    	  	       	 }
+	        	     }
 	        	     else if(resf1.equals("JSON")){
 	        	    	 while ((line = br.readLine()) != null)    { 
 	        	    	  JSON json = JSONSerializer.toJSON( line) ;
@@ -374,6 +376,9 @@ public class AuthPulpy extends HttpServlet {
 	   	    		     }//while
 	        	    	 
 	        	     } // else if
+	        	    session.setAttribute("xml1", str);
+		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	        	     
 	        	 } //XML and JSON get
 	        	     
@@ -422,7 +427,7 @@ public class AuthPulpy extends HttpServlet {
 		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}
 	        				        	 
 	        			try {
-	        				str=(String) xmlrpc.execute(mname, new Object[] {
+	        				obj=xmlrpc.execute(mname, new Object[] {
 	        						mergeVars
 	        				});}
 	        			 catch (XmlRpcException e) {
@@ -431,7 +436,7 @@ public class AuthPulpy extends HttpServlet {
         	 	  
 	        		 
 
-	        		 session.setAttribute("xml1", str);
+	        		 session.setAttribute("xml1", obj);
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
