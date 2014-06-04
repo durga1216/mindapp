@@ -33,8 +33,8 @@ public class XmlConvert extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		/*String xml=(String)session.getAttribute("xml1");
 		out.println(xml);*/
-		Object string=request.getAttribute("xml1");
-		
+		Object xml=request.getAttribute("xml1");
+		out.println(xml);
 	}
 
 	/**
