@@ -31,8 +31,10 @@ public class XmlConvert extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
-		Object xml=(Object)session.getAttribute("xml1");
-		out.println(xml);
+		/*String xml=(String)session.getAttribute("xml1");
+		out.println(xml);*/
+		Object string=request.getAttribute("xml1");
+		
 	}
 
 	/**
