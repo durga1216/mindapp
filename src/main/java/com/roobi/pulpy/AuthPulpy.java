@@ -52,6 +52,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -246,7 +247,7 @@ public class AuthPulpy extends HttpServlet {
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} // NO Auth GET
                
-               if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
+               else  if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
 	        		 
           		 String USER_AGENT = "Mozilla/5.0";
 	        	 String url=endurl1;	 	        		         		
@@ -299,7 +300,7 @@ public class AuthPulpy extends HttpServlet {
 	 	    	      out.println(e);}	
 	        		 session.setAttribute("xml1", str);
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
-	               	} // NO Auth post
+	               	} //  post
 	        	        	 
 	         }    // No Auth  
 	               
@@ -388,7 +389,7 @@ public class AuthPulpy extends HttpServlet {
 	        			}
 	        			xmlrpc.setConfig(config1);
 	        			HashMap mergeVars = new HashMap();
-		        		/* if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);mergeVars.put(pa10,pva10);
 		        		 }
 		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
@@ -418,30 +419,27 @@ public class AuthPulpy extends HttpServlet {
 		        		 else if(!"null".equals(pa1)){
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);}
 		        			 
-		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}*/
-	        			mergeVars.put("api_key", "615c6cc3e071fc7d2c4370ba28e2fa66");
-	        			mergeVars.put("artist", "Cher");
-	        			mergeVars.put("album", "Believe");	        	 
+		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}
+	        				        	 
 	        			try {
-	        				out.println(xmlrpc.execute(mname, new Object[] {
+	        				str=(String) xmlrpc.execute(mname, new Object[] {
 	        						mergeVars
-	        				}));
-	        			} catch (XmlRpcException e) {
-	        				throw new RuntimeException("Error", e);
-	        			}
+	        				});}
+	        			 catch (XmlRpcException e) {
+	        				throw new RuntimeException("Error", e);}
+	        			
         	 	  
 	        		 
 
-	        		/* session.setAttribute("xml1", str);
+	        		 session.setAttribute("xml1", str);
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	*/
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
-	        	 } //API keys	        	 
+	        	 } //XML RPC        	 
 	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
 	        		 
 	          		 String USER_AGENT = "Mozilla/5.0";
 		        	 String url=endurl1;
-		        		//out.println(eurl);
 		        		 try
 		        		 {
 		        			 HttpClient client = new DefaultHttpClient();
@@ -490,7 +488,7 @@ public class AuthPulpy extends HttpServlet {
 		 	    	      out.println(e);}	
 		        		 session.setAttribute("xml1", str);
 		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
-		               	}//post api key
+		               	}//post 
 	        	 
 	         }  // API keys  
 	         
