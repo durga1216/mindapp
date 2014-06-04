@@ -51,6 +51,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -60,6 +61,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 
@@ -415,10 +417,16 @@ public class AuthPulpy extends HttpServlet {
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);}
 		        			 
 		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}*/
-	        			mergeVars.put(ak1, ak2);mergeVars.put(pa1, pva1);mergeVars.put(pa2, pva2);
-	        	 out.println( xmlrpc.execute(mname, new Object[] {
-	 					mergeVars
-	 			}));
+	        			mergeVars.put("api_key", "615c6cc3e071fc7d2c4370ba28e2fa66");
+	        			mergeVars.put("artist", "Cher");
+	        			mergeVars.put("album", "Believe");	        	 
+	        			try {
+	        				out.println(xmlrpc.execute(mname, new Object[] {
+	        						mergeVars
+	        				}));
+	        			} catch (XmlRpcException e) {
+	        				throw new RuntimeException("Error", e);
+	        			}
 	        	     }  //XML-RPC
         	 	  
 	        		 
