@@ -97,7 +97,7 @@ function myFunction() {
 </script>
 <body><div class="head">
 
-<center>Mobile App</center></div>
+<center>Mobile App</center></div><br><br>
 <form action="AuthXmlPulpy" method="post">
 <%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
@@ -129,7 +129,7 @@ PreparedStatement st2=cn.prepareStatement("SELECT * FROM config WHERE appid=?");
 st2.setString(1,xx);
 ResultSet rs2 = st2.executeQuery();
 %>
-<select><option>First configuration</option>
+<select name="eurl"><option>First configuration</option>
 <option>Second configuration</option>
 <option>Third configuration</option></select><br><br><br><br>
 <table align='center'  border='0' bordercolor='#000000' style='width:700px;'>
