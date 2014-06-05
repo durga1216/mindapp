@@ -426,23 +426,20 @@ public class AuthPulpy extends HttpServlet {
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);}
 		        			 
 		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}
-	        				        	 
-	        			try {
-	        				out.println(xmlrpc.execute(mname, new Object[] {
+		     			try {
+	        				obj=xmlrpc.execute(mname, new Object[] {
 	        						mergeVars
-	        				}));
-	        				//str=obj.toString();
+	        				});
+	        				str=obj.toString();
 	        				//out.println(str);
 	        				}
 	        			 catch (XmlRpcException e) {
 	        				throw new RuntimeException("Error", e);}
 	        			
         	 	  
-	        		 
-
-	        		 /*  request.setAttribute("xml1", str);
-		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-		              getServletConfig().getServletContext().getRequestDispatcher("/auth1.jsp").forward(request,response);*/
+	        			  session.setAttribute("xml1", str);
+			              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
 	        	 } //XML RPC        	 
 	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
