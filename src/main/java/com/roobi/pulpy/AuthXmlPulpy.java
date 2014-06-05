@@ -67,9 +67,10 @@ public class AuthXmlPulpy extends HttpServlet {
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
 		  String appid=(String) session.getAttribute("xx"); 
+		  String eurl11=(String) session.getAttribute("el"); 
 			//String appid=request.getParameter("appid");
-		String eurl11=request.getParameter("eurl");
-
+		//String eurl11=request.getParameter("eurl");
+		String pid=request.getParameter("pid");
 		String p1=request.getParameter("p1");String p2=request.getParameter("p2");
 		String p3=request.getParameter("p3");String p4=request.getParameter("p4");
 		String p5=request.getParameter("p5");String p6=request.getParameter("p6");
@@ -81,8 +82,11 @@ public class AuthXmlPulpy extends HttpServlet {
 
 	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN xmlconfig t3 ON t1.appid=t3.appid  WHERE t1.appid=?");
 	    st.setString(1, appid);
-
         ResultSet rs = st.executeQuery();
+        PreparedStatement st1=con.prepareStatement("SELECT * FROM authen1 t1 JOIN secondconfig t2 ON t1.appid = t2.appid JOIN secxmlconfig t3 ON t1.appid=t3.appid  WHERE t1.appid=?");
+	    st1.setString(1, appid);
+        ResultSet rs1 = st1.executeQuery();
+        if(eurl11.equals("1")){
         while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
 
         	String id=rs.getString("id");	 String appname1=rs.getString("appname");
@@ -992,8 +996,550 @@ public class AuthXmlPulpy extends HttpServlet {
 	                 output.close();*/
 	                 out.println(xmloutput);
 	              	
-        }
+        }//while
+        }// first config
         
+        
+        //sec config
+        else if(eurl11.equals("2")){
+        	String line="";
+            while(rs1.next()){ // retrieve data from Database and join two tables namely(secconfig&secxmlconfig)
+            	String id=rs1.getString("id");	 String appname1=rs1.getString("appname");
+                String authen1=rs1.getString("auth");String ba1=rs1.getString("b1");String ba2=rs1.getString("b2");
+                String ba3=rs1.getString("b3");String ba4=rs1.getString("b4");;String rf1=rs1.getString("rf");String rm1=rs1.getString("rm");
+                String oriapilabel=rs1.getString("a1"); String oriapikey=rs1.getString("a2"); String endurl1=rs1.getString("endurl");//get from secondconfig
+                String securl1=rs1.getString("securl");String cycle1=rs1.getString("cycle");String secid=rs1.getString("sec1"); String secval=rs1.getString("sec2");
+                String ak1=rs1.getString("alabel1");String ak2=rs1.getString("akey1");String se1=rs1.getString("s1"); String sev1=rs1.getString("sv1");String se2=rs1.getString("s2"); String sev2=rs1.getString("sv2");
+                String se3=rs1.getString("s3"); String sev3=rs1.getString("sv3");String se4=rs1.getString("s4"); String sev4=rs1.getString("sv4");
+                String se5=rs1.getString("s5"); String sev5=rs1.getString("sv5");String se6=rs1.getString("s6"); String sev6=rs1.getString("sv6");
+                String se7=rs1.getString("s7"); String sev7=rs1.getString("sv7");String se8=rs1.getString("s8"); String sev8=rs1.getString("sv8");
+                String se9=rs1.getString("s9"); String sev9=rs1.getString("sv9");String se10=rs1.getString("s10"); String sev10=rs1.getString("sv10");
+    String resf2=rs1.getString("resf2");
+
+                String secroot=rs1.getString("secroot");String secparent=rs1.getString("secparent"); //get from secxmlconfig
+      
+     String sx1=rs1.getString("sx1"); String sxv1=rs1.getString("sxv1");String sx2=rs1.getString("sx2"); String sxv2=rs1.getString("sxv2");
+     String sx3=rs1.getString("sx3"); String sxv3=rs1.getString("sxv3");String sx4=rs1.getString("sx4"); String sxv4=rs1.getString("sxv4");
+     String sx5=rs1.getString("sx5"); String sxv5=rs1.getString("sxv5");String sx6=rs1.getString("sx6"); String sxv6=rs1.getString("sxv6");
+     String sx7=rs1.getString("sx7"); String sxv7=rs1.getString("sxv7");String sx8=rs1.getString("sx8"); String sxv8=rs1.getString("sxv8");
+     String sx9=rs1.getString("sx9"); String sxv9=rs1.getString("sxv9");String sx10=rs1.getString("sx10"); String sxv10=rs1.getString("sxv10");
+     String sx11=rs1.getString("sx11"); String sxv11=rs1.getString("sxv11");String sx12=rs1.getString("sx12"); String sxv12=rs1.getString("sxv12");
+     String sx13=rs1.getString("sx13"); String sxv13=rs1.getString("sxv13");String sx14=rs1.getString("sx14"); String sxv14=rs1.getString("sxv14");
+     String sx15=rs1.getString("sx15"); String sxv15=rs1.getString("sxv15");String sx16=rs1.getString("sx16"); String sxv16=rs1.getString("sxv16");
+     String sx17=rs1.getString("sx17"); String sxv17=rs1.getString("sxv17");String sx18=rs1.getString("sx18"); String sxv18=rs1.getString("sxv18");
+     String sx19=rs1.getString("sx19"); String sxv19=rs1.getString("sxv19");String sx20=rs1.getString("sx20"); String sxv20=rs1.getString("sxv20");
+     String sx21=rs1.getString("sx21"); String sxv21=rs1.getString("sxv21");String sx22=rs1.getString("sx22"); String sxv22=rs1.getString("sxv22");
+     String sx23=rs1.getString("sx23"); String sxv23=rs1.getString("sxv23");String sx24=rs1.getString("sx24"); String sxv24=rs1.getString("sxv24");
+     String sx25=rs1.getString("sx25"); String sxv25=rs1.getString("sxv25");String sx26=rs1.getString("sx26"); String sxv26=rs1.getString("sxv26");
+     String sx27=rs1.getString("sx27"); String sxv27=rs1.getString("sxv27");String sx28=rs1.getString("sx28"); String sxv28=rs1.getString("sxv28");
+     String sx29=rs1.getString("sx29"); String sxv29=rs1.getString("sxv29");String sx30=rs1.getString("sx30"); String sxv30=rs1.getString("sxv30");
+     
+     String secjsonxml=null;
+     String secdurl=null;
+     Document doc=null;  //TO Convert XMLSTRING TO DOCUMENT
+     DocumentBuilder builder=null;
+     DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
+     builder=domFactory.newDocumentBuilder();
+  if(authen1.equals("No Auth")){ //No Authentication
+     if(rf1.equals("REST") && rm1.equals ("GET") && resf2.equals("XML")){  //No Auth GET XML
+    	 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4+"&"+se5+"="+p5+"&"+se6+"="+p6;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4+"&"+se5+"="+p5;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4;}
+    		 
+    	      
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2;}
+    		 
+    		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1;}
+    		 else if("null".equals(se1)&& "entity".equals(cycle1))
+    			secdurl=securl1;
+    		 else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
+    		     secdurl=securl1+"/"+pid;
+    	 
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "flow".equals(cycle1)){
+        		 secdurl=securl1+"?"+secid+"="+pid+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2)&& "flow".equals(cycle1)){
+        		 secdurl=securl1+"?"+secid+"="+pid+"&"+se1+"="+p1+"&"+se2+"="+p2;}
+    		 
+    		 else if(!"null".equals(se1)&& "flow".equals(cycle1)){
+        		 secdurl=securl1+"?"+secid+"="+pid+"&"+se1+"="+p1;}
+    	 
+       		 else if("null".equals(se1)&& "entity".equals(cycle1))
+    			secdurl=securl1;
+    		 
+    		 else if(!"null".equals(secid)&& !"null".equals(pid) && "null".equals(ak1) && "null".equals(ak2)&& "flow".equals(cycle1))
+    			 secdurl=securl1+"?"+secid+"="+pid;
+    		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
+    			 secdurl=securl1+"?"+ak1+"="+ak2;
+    	 
+		 doc=builder.parse(new URL(secdurl).openStream());
+
+    	      
+     }
+     
+     if(rf1.equals("REST") && rm1.equals ("GET") && resf2.equals("XML")){  //No Auth GET XML
+    	 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4+"&"+se5+"="+p5+"&"+se6+"="+p6;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4+"&"+se5+"="+p5;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4;}
+    		 
+    	      
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1+"&"+se2+"="+p2;}
+    		 
+    		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+        		 secdurl=securl1+"?"+se1+"="+p1;}
+    		 else if("null".equals(se1)&& "entity".equals(cycle1))
+    			secdurl=securl1;
+    		 else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
+    		     secdurl=securl1+"/"+pid;
+    	 
+    		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "flow".equals(cycle1)){
+        		 secdurl=securl1+"?"+secid+"="+pid+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3;}
+    		 
+    		 else if(!"null".equals(se1) && !"null".equals(se2)&& "flow".equals(cycle1)){
+        		 secdurl=securl1+"?"+secid+"="+pid+"&"+se1+"="+p1+"&"+se2+"="+p2;}
+    		 
+    		 else if(!"null".equals(se1)&& "flow".equals(cycle1)){
+        		 secdurl=securl1+"?"+secid+"="+pid+"&"+se1+"="+p1;}
+    	 
+       		 else if("null".equals(se1)&& "entity".equals(cycle1))
+    			secdurl=securl1;
+    		 
+    		 else if(!"null".equals(secid)&& !"null".equals(pid) && "null".equals(ak1) && "null".equals(ak2)&& "flow".equals(cycle1))
+    			 secdurl=securl1+"?"+secid+"="+pid;
+    		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
+    			 secdurl=securl1+"?"+ak1+"="+ak2;
+    	 
+    	 URL second_url=new URL(secdurl);
+		 URLConnection uconn = second_url.openConnection();
+	     HttpURLConnection conn = (HttpURLConnection) uconn;
+	         conn.connect();
+	         Object content = conn.getContent();
+	         InputStream stream = (InputStream) content;
+	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	         while ((line = br.readLine()) != null)    { 		  
+	      JSON json = JSONSerializer.toJSON( line );  
+        XMLSerializer xmlSerializer = new XMLSerializer();  
+        xmlSerializer.setTypeHintsEnabled(false);
+        xmlSerializer.setSkipWhitespace(true);
+        xmlSerializer.setTrimSpaces(true);
+        xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+        xmlSerializer.removeNamespace(line);
+        xmlSerializer.setForceTopLevelObject(false);
+	      secjsonxml = xmlSerializer.write( json );
+
+	     }	      // end-while 
+		        doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+
+    	      
+     }
+  
+  } // get  and No Auth
+ 
+ else if(authen1.equals("API keys")){  //API Keys
+	 if(rf1.equals("REST") && rm1.equals ("GET") && resf2.equals("XML") ){  //API XML get
+		 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
+		     secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4+"&"+se5+"="+p5+"&"+se6+"="+p6;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4+"&"+se5+"="+p5;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2;}
+		 
+		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && "flow".equals(cycle1)){
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2)&& "flow".equals(cycle1)){
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+p1+"&"+se2+"="+p2;}
+		 
+		 else if(!"null".equals(se1)&& "flow".equals(cycle1)){
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+p1;}
+		 
+		 else if(!"null".equals(secid)&& !"null".equals(pid) && "flow".equals(cycle1))
+			 secdurl=securl1+"?"+secid+"="+pid;
+		 else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
+		     secdurl=securl1+"/"+pid;
+		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "null".equals(se1) &&"entity".equals(cycle1))
+		      secdurl=securl1+"?"+ak1+"="+ak2;
+		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
+			      secdurl=securl1;	
+		 doc=builder.parse(new URL(secdurl).openStream());
+	       
+	 }  //end if JSON
+	 
+	 else if(rf1.equals("REST") && rm1.equals ("GET") && resf2.equals("JSON") ){  //API XML get
+		 if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5) && !"null".equals(se6)&& "entity".equals(cycle1)){
+		     secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4+"&"+se5+"="+p5+"&"+se6+"="+p6;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4) && !"null".equals(se5)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4+"&"+se5+"="+p5;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && !"null".equals(se4)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3+"&"+se4+"="+p4;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2;}
+		 
+		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && "flow".equals(cycle1)){
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+p1+"&"+se2+"="+p2+"&"+se3+"="+p3;}
+		 
+		 else if(!"null".equals(se1) && !"null".equals(se2)&& "flow".equals(cycle1)){
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+p1+"&"+se2+"="+p2;}
+		 
+		 else if(!"null".equals(se1)&& "flow".equals(cycle1)){
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+p1;}
+		 
+		 else if(!"null".equals(secid)&& !"null".equals(pid) && "flow".equals(cycle1))
+			 secdurl=securl1+"?"+secid+"="+pid;
+		 else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
+		     secdurl=securl1+"/"+pid;
+		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "null".equals(se1) &&"entity".equals(cycle1))
+		      secdurl=securl1+"?"+ak1+"="+ak2;
+		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
+			      secdurl=securl1;	
+		 
+		 URL second_url=new URL(secdurl);
+		 URLConnection uconn = second_url.openConnection();
+	     HttpURLConnection conn = (HttpURLConnection) uconn;
+	         conn.connect();
+	         Object content = conn.getContent();
+	         InputStream stream = (InputStream) content;
+	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	         while ((line = br.readLine()) != null)    { 		  
+	      JSON json = JSONSerializer.toJSON( line );  
+        XMLSerializer xmlSerializer = new XMLSerializer();  
+        xmlSerializer.setTypeHintsEnabled(false);
+        xmlSerializer.setSkipWhitespace(true);
+        xmlSerializer.setTrimSpaces(true);
+        xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+        xmlSerializer.removeNamespace(line);
+        xmlSerializer.setForceTopLevelObject(false);
+	      secjsonxml = xmlSerializer.write( json );
+
+	     }	      // end-while 
+		        doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+
+	       
+	 }  //end if JSON
+
+ 
+ }
+  
+       
+        Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+        Element outevent=outdoc.createElement("MPulpy");
+        NodeList inevent=null;
+        XPath xPath=XPathFactory.newInstance().newXPath();
+        inevent=(NodeList) xPath.evaluate("//"+secroot,doc,XPathConstants.NODESET); 
+        if(inevent!=null){
+      	  
+          	for(int i=0;i<inevent.getLength();i++){
+          		Element outputEvent=outdoc.createElement("root"); // create mpulpy xml here
+          		Node inputEvent=inevent.item(i);
+          		       
+          	    if(!"null".equals(sx1)){   //validation for not return null tag
+          		Element param1=outdoc.createElement(sx1);  //create element
+                if(sxv1.equals(""))
+          		param1.setTextContent("null");
+          		else
+          		param1.setTextContent(xPath.evaluate(sxv1, inputEvent)); // map our xml with third party server xml
+          		outputEvent.appendChild(param1);}
+          		
+          		if(!"null".equals(sx2)){
+                Element param2=outdoc.createElement(sx2);
+                if(sxv2.equals(""))
+          		param2.setTextContent("null");
+          		else
+          		param2.setTextContent(xPath.evaluate(sxv2, inputEvent));
+          		outputEvent.appendChild(param2);}
+          		
+          		if(!"null".equals(sx3)){
+          		Element param3=outdoc.createElement(sx3);
+                if(sxv3.equals(""))
+          		param3.setTextContent("null");
+          		else
+          		param3.setTextContent(xPath.evaluate(sxv3, inputEvent));
+          		outputEvent.appendChild(param3);}
+          		
+          		if(!"null".equals(sx4)){
+          		Element param4=outdoc.createElement(sx4);
+                if(sxv4.equals(""))
+          		param4.setTextContent("null");
+          		else
+          		param4.setTextContent(xPath.evaluate(sxv4, inputEvent));
+          		outputEvent.appendChild(param4);}
+          		
+      		    if(!"null".equals(sx5)){
+              	Element param5=outdoc.createElement(sx5);
+                if(sxv5.equals(""))
+          		param5.setTextContent("null");
+          		else
+          		param5.setTextContent(xPath.evaluate(sxv5, inputEvent));
+          		outputEvent.appendChild(param5);}
+          		
+          		if(!"null".equals(sx6)){
+          		Element param6=outdoc.createElement(sx6);
+                if(sxv6.equals(""))
+          		param6.setTextContent("null");
+          		else
+          		param6.setTextContent(xPath.evaluate(sxv6, inputEvent));
+          		outputEvent.appendChild(param6);}
+          		
+          		if(!"null".equals(sx7)){
+          		Element param7=outdoc.createElement(sx7);
+          		if(sxv7.equals(""))
+          		param7.setTextContent("");
+          		else
+          		param7.setTextContent(xPath.evaluate(sxv7, inputEvent));
+          		outputEvent.appendChild(param7);}
+          		
+          		if(!"null".equals(sx8)){
+          		Element param8=outdoc.createElement(sx8);
+          		if(sxv8.equals(""))
+          		param8.setTextContent("");
+          		else
+          		param8.setTextContent(xPath.evaluate(sxv8, inputEvent));
+          		outputEvent.appendChild(param8);}
+          		
+          		if(!"null".equals(sx9)){
+          		Element param9=outdoc.createElement(sx9);
+          		if(sxv9.equals(""))
+          		param9.setTextContent("");
+          		else
+          		param9.setTextContent(xPath.evaluate(sxv9, inputEvent));
+          		outputEvent.appendChild(param9);}
+          		
+          		if(!"null".equals(sx10)){
+          		Element param10=outdoc.createElement(sx10);
+          		if(sxv10.equals(""))
+          		param10.setTextContent("null");
+          		else
+          		param10.setTextContent(xPath.evaluate(sxv10, inputEvent));
+          		outputEvent.appendChild(param10);}
+          		
+          		if(!"null".equals(sx11)){
+          		Element param11=outdoc.createElement(sx11);
+          		if(sxv11.equals(""))
+          		param11.setTextContent("null");
+          		else
+          		param11.setTextContent(xPath.evaluate(sxv11, inputEvent));
+          		outputEvent.appendChild(param11);}
+          		
+          		if(!"null".equals(sx12)){
+          		Element param12=outdoc.createElement(sx12);
+          		if(sxv12.equals(""))
+          		param12.setTextContent("null");
+          		else
+          		param12.setTextContent(xPath.evaluate(sxv12, inputEvent));
+          		outputEvent.appendChild(param12);}
+          		
+          		if(!"null".equals(sx13)){
+          		Element param13=outdoc.createElement(sx13);
+          		if(sxv13.equals(""))
+          		param13.setTextContent("null");
+          		else
+          		param13.setTextContent(xPath.evaluate(sxv13, inputEvent));
+          		outputEvent.appendChild(param13);}
+          		
+          		if(!"null".equals(sx14)){
+          		Element param14=outdoc.createElement(sx14);
+          		if(sxv14.equals(""))
+          		param14.setTextContent("null");
+          		else
+          		param14.setTextContent(xPath.evaluate(sxv14, inputEvent));
+          		outputEvent.appendChild(param14);}
+          		
+          		if(!"null".equals(sx15)){
+          		Element param15=outdoc.createElement(sx15);
+          		if(sxv15.equals(""))
+          		param15.setTextContent("null");
+          		else
+          		param15.setTextContent(xPath.evaluate(sxv15, inputEvent));
+          		outputEvent.appendChild(param15);}
+          		
+          		if(!"null".equals(sx16)){
+          		Element param16=outdoc.createElement(sx16);
+          		if(sxv16.equals(""))
+          		param16.setTextContent("null");
+          		else
+          		param16.setTextContent(xPath.evaluate(sxv16, inputEvent));
+          		outputEvent.appendChild(param16);}
+          		
+          		if(!"null".equals(sx17)){
+          		Element param17=outdoc.createElement(sx17);
+          		if(sxv17.equals(""))
+          		param17.setTextContent("null");
+          		else
+          		param17.setTextContent(xPath.evaluate(sxv17, inputEvent));
+          		outputEvent.appendChild(param17);}
+          		
+          		if(!"null".equals(sx18)){
+          		Element param18=outdoc.createElement(sx18);
+          		if(sxv18.equals(""))
+          		param18.setTextContent("null");
+          		else
+          		param18.setTextContent(xPath.evaluate(sxv18, inputEvent));
+          		outputEvent.appendChild(param18);}
+          		
+          		if(!"null".equals(sx19)){
+          		Element param19=outdoc.createElement(sx19);
+          		if(sxv19.equals(""))
+          		param19.setTextContent("null");
+          		else
+          		param19.setTextContent(xPath.evaluate(sxv19, inputEvent));
+          		outputEvent.appendChild(param19);}
+          		
+          		if(!"null".equals(sx20)){
+          		Element param20=outdoc.createElement(sx20);
+          		if(sxv20.equals(""))
+          		param20.setTextContent("null");
+          		else
+          		param20.setTextContent(xPath.evaluate(sxv20, inputEvent));
+          		outputEvent.appendChild(param20);}
+          		
+          		
+          		if(!"null".equals(sx21)){
+          		Element param21=outdoc.createElement(sx21);
+          		if(sxv21.equals(""))
+          		param21.setTextContent("null");
+          		else
+          		param21.setTextContent(xPath.evaluate(sxv21, inputEvent));
+          		outputEvent.appendChild(param21);}
+          		
+          		if(!"null".equals(sx22)){
+          		Element param22=outdoc.createElement(sx22);
+          		if(sxv22.equals(""))
+          		param22.setTextContent("null");
+          		else
+          		param22.setTextContent(xPath.evaluate(sxv22, inputEvent));
+          		outputEvent.appendChild(param22);}
+          		
+          		if(!"null".equals(sx23)){
+          		Element param23=outdoc.createElement(sx23);
+          		if(sxv23.equals(""))
+          		param23.setTextContent("null");
+          		else
+          		param23.setTextContent(xPath.evaluate(sxv23, inputEvent));
+          		outputEvent.appendChild(param23);}
+          		
+          		if(!"null".equals(sx24)){
+          		Element param24=outdoc.createElement(sx24);
+          		if(sxv24.equals(""))
+          		param24.setTextContent("null");
+          		else
+          		param24.setTextContent(xPath.evaluate(sxv24, inputEvent));
+          		outputEvent.appendChild(param24);}
+          		
+          		if(!"null".equals(sx25)){
+          		Element param25=outdoc.createElement(sx25);
+          		if(sxv25.equals(""))
+          		param25.setTextContent("null");
+          		else
+          		param25.setTextContent(xPath.evaluate(sxv25, inputEvent));
+          		outputEvent.appendChild(param25);}
+          		
+          		if(!"null".equals(sx26)){
+          		Element param26=outdoc.createElement(sx26);
+          		if(sxv26.equals(""))
+          		param26.setTextContent("null");
+          		else
+          		param26.setTextContent(xPath.evaluate(sxv26, inputEvent));
+          		outputEvent.appendChild(param26);}
+          		
+          		if(!"null".equals(sx27)){
+          		Element param27=outdoc.createElement(sx27);
+          		if(sxv27.equals(""))
+          		param27.setTextContent("null");
+          		else
+          		param27.setTextContent(xPath.evaluate(sxv27, inputEvent));
+          		outputEvent.appendChild(param27);}
+          		
+          		if(!"null".equals(sx28)){
+          		Element param28=outdoc.createElement(sx28);
+          		if(sxv28.equals(""))
+          		param28.setTextContent("null");
+          		else
+          		param28.setTextContent(xPath.evaluate(sxv28, inputEvent));
+          		outputEvent.appendChild(param28);}
+          		
+          		if(!"null".equals(sx29)){
+          		Element param29=outdoc.createElement(sx29);
+          		if(sxv29.equals(""))
+          		param29.setTextContent("null");
+          		else
+          		param29.setTextContent(xPath.evaluate(sxv29, inputEvent));
+          		outputEvent.appendChild(param29);}
+          		
+          		if(!"null".equals(sx30)){
+          		Element param30=outdoc.createElement(sx30);
+          		if(sxv30.equals(""))
+          		param30.setTextContent("null");
+          		else
+          		param30.setTextContent(xPath.evaluate(sxv30, inputEvent));
+          		outputEvent.appendChild(param30);}
+           		outevent.appendChild(outputEvent);
+          	}
+          	}
+       
+	                   outdoc.appendChild(outevent); //the full formed mpulpy xml now in document
+	                   Transformer transformer1=null;
+	                   try {
+	           			 transformer1=TransformerFactory.newInstance().newTransformer();
+	           		} catch (TransformerConfigurationException e) {
+	           			// TODO Auto-generated catch block
+	           		} 
+	           	 transformer1.setOutputProperty(OutputKeys.INDENT,"yes");
+	           	 transformer1.setOutputProperty(OutputKeys.METHOD,"xml");
+
+	           	 StreamResult result=new StreamResult(new StringWriter());
+	                DOMSource source=new DOMSource(outdoc);
+	                try {
+	            		transformer1.transform(source, result);  //transform mpulpy xml from document to xml string and make display in browser ->to send client(phonegap)
+	            	} catch (TransformerException e) {
+	            		e.printStackTrace();
+	            	}
+	                 Writer output=null;
+	                // output=new BufferedWriter(new FileWriter("F:/workspace/mind.xml"));
+	                 String xmloutput=result.getWriter().toString();
+	                /* output.write(xmloutput);
+	                 output.close();*/
+	                 out.println(xmloutput);
+            }//while
+            }//second config
 		}
 		catch(Exception e){}
 	}

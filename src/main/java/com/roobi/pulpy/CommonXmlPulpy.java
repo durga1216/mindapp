@@ -1122,7 +1122,7 @@ String resf2=rs.getString("resf2");
               }
               outdoc1.appendChild(outevent1); //the full formed mpulpy xml now in document
         
-                           
+                           //mashup starts from here
            NodeList ndListFirstFile = outdoc.getElementsByTagName("root");
             for(int i=0;i<ndListFirstFile.getLength();i++){
             if(!"null".equals(tx1))	{

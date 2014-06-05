@@ -88,7 +88,8 @@ padding:10px;
 <script>
 function myFunction() {
     var x = document.getElementById('apid').value;
-    var ur="mobile_client.jsp?ai="+x+"";
+    var y = document.getElementById('eurl').value;
+    var ur="mobile_client.jsp?ai="+x+"&au="+y+"";
 	window.location=""+ur+"";
 
 
@@ -97,7 +98,7 @@ function myFunction() {
 </script>
 <body><div class="head">
 
-<center>Mobile App</center></div><br><br>
+<center>Mobile App</center></div>
 <form action="AuthXmlPulpy" method="post">
 <%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
@@ -107,15 +108,15 @@ function myFunction() {
 <%
 response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 
-<select id='apid' name='appid' onchange='myFunction()'><option value='dummy'>--Choose Your APP_ID Here--</option>
+<select id='apid' name='appid' ><option value='dummy'>--Choose Your APP_ID Here--</option>
 <%
 String id1=(String) session.getAttribute("id");
 try{
 Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-//Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+//Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 PreparedStatement st1=cn.prepareStatement("SELECT appid FROM authen1 WHERE id=?");
-st1.setString(1,id1);
+st1.setString(1,"MP_0021");
 ResultSet rs1 = st1.executeQuery();
 while(rs1.next()){
 	String ap=rs1.getString("appid");
@@ -128,13 +129,20 @@ session.setAttribute("xx",xx);
 PreparedStatement st2=cn.prepareStatement("SELECT * FROM config WHERE appid=?");
 st2.setString(1,xx);
 ResultSet rs2 = st2.executeQuery();
+PreparedStatement st3=cn.prepareStatement("SELECT * FROM secondconfig WHERE appid=?");
+st3.setString(1,xx);
+ResultSet rs3 = st3.executeQuery();
 %>
-<select name="eurl"><option>First configuration</option>
-<option>Second configuration</option>
-<option>Third configuration</option></select><br><br><br><br>
+<select id='eurl' name='eurl' onchange='myFunction()'><option value='dummy'>--Choose Your config Here--</option>
+<option value='1'>First configuration</option>
+<option value='2'>Second configuration</option>
+<option value='3'>Third configuration</option></select><br><br><br><br>
 <table align='center'  border='0' bordercolor='#000000' style='width:700px;'>
 <tr><th>Parameter</th><th>Example_Value</th><th>Param_Value</th></tr>
 <%
+String el=request.getParameter("au");
+session.setAttribute("el",el);
+if(el.equals("1")){
 while(rs2.next()){
 	String pa1=rs2.getString("p1");String pva1=rs2.getString("pv1");
     String pa2=rs2.getString("p2");String pva2=rs2.getString("pv2");
@@ -147,8 +155,7 @@ while(rs2.next()){
     String pa9=rs2.getString("p9");String pva9=rs2.getString("pv9");
     String pa10=rs2.getString("p10");String pva10=rs2.getString("pv10");
 
-if(!pa1.equals("null")){%>
-<tr><td><%=rs2.getString("p1") %></td><td><%=rs2.getString("pv1") %></td><td><input type="text" id="na" name="p1" placeholder="value"></td></tr>
+if(!pa1.equals("null")){%><tr><td><%=rs2.getString("p1") %></td><td><%=rs2.getString("pv1") %></td><td><input type="text" id="na" name="p1" placeholder="value"></td></tr>
 <%}if(!pa2.equals("null")){%><tr><td><%=rs2.getString("p2") %></td><td><%=rs2.getString("pv2") %></td><td><input type="text" id="na" name="p2" placeholder="value"></td></tr>
 <%}if(!pa3.equals("null")){%><tr><td><%=rs2.getString("p3") %></td><td><%=rs2.getString("pv3") %></td><td><input type="text" id="na" name="p3" placeholder="value"></td></tr>
 <%}if(!pa4.equals("null")){%><tr><td><%=rs2.getString("p4") %></td><td><%=rs2.getString("pv4") %></td><td><input type="text" id="na" name="p4" placeholder="value"></td></tr>
@@ -161,6 +168,40 @@ if(!pa1.equals("null")){%>
 <% 
 }
 rs2.close();
+}
+}
+else if(el.equals("2"))
+{
+	while(rs3.next()){
+		String pa1=rs3.getString("s1");String pva1=rs3.getString("sv1");
+	    String pa2=rs3.getString("s2");String pva2=rs3.getString("sv2");
+	    String pa3=rs3.getString("s3");String pva3=rs3.getString("sv3");
+	    String pa4=rs3.getString("s4");String pva4=rs3.getString("sv4");
+	    String pa5=rs3.getString("s5");String pva5=rs3.getString("sv5");
+	    String pa6=rs3.getString("s6");String pva6=rs3.getString("sv6");
+	    String pa7=rs3.getString("s7");String pva7=rs3.getString("sv7");
+	    String pa8=rs3.getString("s8");String pva8=rs3.getString("sv8");
+	    String pa9=rs3.getString("s9");String pva9=rs3.getString("sv9");
+	    String pa10=rs3.getString("s10");String pva10=rs3.getString("sv10");
+	    if(pa1.equals("null")){
+%><h2>NO second configuration</h2>
+<%	    }
+	if(!pa1.equals("null")){%>
+	<tr><td><%=rs3.getString("s1") %></td><td><%=rs3.getString("sv1") %></td><td><input type="text" id="na" name="p1" placeholder="value"></td></tr>
+	<%}if(!pa2.equals("null")){%><tr><td><%=rs3.getString("s2") %></td><td><%=rs3.getString("sv2") %></td><td><input type="text" id="na" name="p2" placeholder="value"></td></tr>
+	<%}if(!pa3.equals("null")){%><tr><td><%=rs3.getString("s3") %></td><td><%=rs3.getString("sv3") %></td><td><input type="text" id="na" name="p3" placeholder="value"></td></tr>
+	<%}if(!pa4.equals("null")){%><tr><td><%=rs3.getString("s4") %></td><td><%=rs3.getString("sv4") %></td><td><input type="text" id="na" name="p4" placeholder="value"></td></tr>
+	<%}if(!pa5.equals("null")){%><tr><td><%=rs3.getString("s5") %></td><td><%=rs3.getString("sv5") %></td><td><input type="text" id="na" name="p5" placeholder="value"></td></tr>
+	<%}if(!pa6.equals("null")){%><tr><td><%=rs3.getString("s6") %></td><td><%=rs3.getString("sv6") %></td><td><input type="text" id="na" name="p6" placeholder="value"></td></tr>
+	<%}if(!pa7.equals("null")){%><tr><td><%=rs3.getString("s7") %></td><td><%=rs3.getString("sv7") %></td><td><input type="text" id="na" name="p7" placeholder="value"></td></tr>
+	<%}if(!pa8.equals("null")){%><tr><td><%=rs3.getString("s8") %></td><td><%=rs3.getString("sv8") %></td><td><input type="text" id="na" name="p8" placeholder="value"></td></tr>
+	<%}if(!pa9.equals("null")){%><tr><td><%=rs3.getString("s9") %></td><td><%=rs3.getString("sv9") %></td><td><input type="text" id="na" name="p9" placeholder="value"></td></tr>
+	<%}if(!pa10.equals("null")){%><tr><td><%=rs3.getString("s10") %></td><td><%=rs3.getString("sv10") %></td><td><input type="text" id="na" name="p10" placeholder="value"></td></tr>
+	<% 
+	}
+	rs3.close();
+	}
+
 }
 }
 catch(Exception e)
