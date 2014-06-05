@@ -399,8 +399,8 @@ public class AuthXmlPulpy extends HttpServlet {
 		        	     if(resf1.equals("XML")){
 		        	     while((line=br.readLine())!=null){
 		         	 	  	       		     str+=line;
-		         	 	 out.println(str); 	       		     
 		        	     }
+				          doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 		        		 }
 		        		 else if(resf1.equals("JSON")){
 		        			 while ((line = br.readLine()) != null)    { 
@@ -416,6 +416,8 @@ public class AuthXmlPulpy extends HttpServlet {
 		   	     	          xmlSerializer.setForceTopLevelObject(false);
 		   	     		      str = xmlSerializer.write( json );
 		        		 } //while
+				               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+
 		        		 } //if
 		        		 }//try
 		         	     catch(Exception e){

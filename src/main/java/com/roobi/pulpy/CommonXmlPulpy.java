@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -63,12 +64,14 @@ public class CommonXmlPulpy extends HttpServlet {
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
-		String pid=request.getParameter("pid");String s1=request.getParameter("s1");String s2=request.getParameter("s2");
-		String s3=request.getParameter("s3");String s4=request.getParameter("s4");
-		String s5=request.getParameter("s5");String s6=request.getParameter("s6");
-		String paid=request.getParameter("paid");String th1=request.getParameter("th1");String th2=request.getParameter("th2");
-		String th3=request.getParameter("th3");String th4=request.getParameter("th4");
-		String th5=request.getParameter("th5");String th6=request.getParameter("th6");
+		HttpSession session=request.getSession(true);
+		 // String appid=(String) session.getAttribute("xx"); 
+		String pid=request.getParameter("pid");String s1=request.getParameter("p1");String s2=request.getParameter("p2");
+		String s3=request.getParameter("p3");String s4=request.getParameter("p4");
+		String s5=request.getParameter("p5");String s6=request.getParameter("p6");
+		String paid=request.getParameter("paid");String th1=request.getParameter("pa1");String th2=request.getParameter("pa2");
+		String th3=request.getParameter("pa3");String th4=request.getParameter("pa4");
+		String th5=request.getParameter("pa5");String th6=request.getParameter("pa6");
         Connection con=null;
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
