@@ -35,6 +35,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 import org.w3c.dom.Document;
@@ -119,7 +120,7 @@ public class AuthXmlPulpy extends HttpServlet {
             String rm1=rs.getString("rm");
 
         	String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
-
+             String mname=rs.getString("baseurl");
             String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
             String pa2=rs.getString("p2");String pva2=rs.getString("pv2");
             String pa3=rs.getString("p3");String pva3=rs.getString("pv3");
@@ -369,7 +370,6 @@ public class AuthXmlPulpy extends HttpServlet {
 	        	 else if(rf1.equals("REST") && rm1.equals ("POST")){
 	        		 String USER_AGENT = "Mozilla/5.0";
 		        	 String url=endurl1;
-		        		String str = "";
 		        		 try
 		        		 {
 		        			 HttpClient client1 = new DefaultHttpClient();
@@ -468,7 +468,6 @@ public class AuthXmlPulpy extends HttpServlet {
         		 else if("null".equals(pa1))
         			eurl="";
 	        	 
-	        	 String str="";	        	 
 	        	 
 		          if(rm1.equals("GET")){ 
 		        	  
