@@ -63,9 +63,9 @@ public class CommonXmlPulpy extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		PrintWriter out=response.getWriter();
-		String appid=request.getParameter("appid");
+		//String appid=request.getParameter("appid");
 		HttpSession session=request.getSession(true);
-		 // String appid=(String) session.getAttribute("xx"); 
+		  String appid=(String) session.getAttribute("xx"); 
 		String pid=request.getParameter("pid");String s1=request.getParameter("p1");String s2=request.getParameter("p2");
 		String s3=request.getParameter("p3");String s4=request.getParameter("p4");
 		String s5=request.getParameter("p5");String s6=request.getParameter("p6");
