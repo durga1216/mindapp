@@ -290,7 +290,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	        	 }  //JSON
 	        	     
 	        	 } //get
-	        	 if(rf1.equals("REST") && rm1.equals ("POST")){
+	        	 else if(rf1.equals("REST") && rm1.equals ("POST")){
 	        		 String USER_AGENT = "Mozilla/5.0";
 		        	 String url=endurl1;
 		        		String str = "";
@@ -319,7 +319,9 @@ public class AuthXmlPulpy extends HttpServlet {
 		        		StringBuffer result = new StringBuffer();
 		        	     if(resf1.equals("XML")){
 		        	     while((line=br.readLine())!=null){
-		         	 	  	       		     str+=line;}
+		         	 	  	       		     str+=line;
+		         	 	 out.println(str); 	       		     
+		        	     }
 		        		 }
 		        		 else if(resf1.equals("JSON")){
 		        			 while ((line = br.readLine()) != null)    { 
@@ -340,9 +342,9 @@ public class AuthXmlPulpy extends HttpServlet {
 		         	     catch(Exception e){
 		 	    	      out.println(e);}	
 		        		 session.setAttribute("xml1", str);
-		        			out.println(str);
+		         	 	 out.println(str); 	       		     
 
-		               	}//post 
+	        	 }//post 
 	        	 
 	        		 
 	        		 
