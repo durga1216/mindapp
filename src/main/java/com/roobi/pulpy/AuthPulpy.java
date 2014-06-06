@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -53,6 +54,10 @@ import javax.servlet.http.HttpSession;
 
 
 
+
+
+
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -63,9 +68,11 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.xmlrpc.XmlRpcException;
-import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 
+import redstone.xmlrpc.XmlRpcClient;
+import redstone.xmlrpc.XmlRpcFault;
+import redstone.xmlrpc.XmlRpcSerializer;
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
 import net.sf.json.xml.XMLSerializer;
@@ -250,7 +257,7 @@ public class AuthPulpy extends HttpServlet {
 	     		        
 	               	} // NO Auth GET
                
-               else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")) // No Auth XML-RPC
+            /*   else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")) // No Auth XML-RPC
 	        	     
       	     {
             	 
@@ -310,7 +317,7 @@ public class AuthPulpy extends HttpServlet {
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
    		        
-      	 } //XML RPC        	 
+      	 } //XML RPC      */  	 
 
                
                else  if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
@@ -450,16 +457,9 @@ public class AuthPulpy extends HttpServlet {
 	        	     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
 	        	     
 	        	     {
+	        	    	   XmlRpcClient client = new XmlRpcClient(endurl1,false);
 
-	        	    	 XmlRpcClient xmlrpc = new XmlRpcClient();
-	        			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
-	        			try {
-	        				config1.setServerURL(new URL(endurl1));
-	        			} catch (MalformedURLException e) {
-	        				throw new RuntimeException("Bad endpoint: " + endurl1, e);
-	        			}
-	        			xmlrpc.setConfig(config1);
-	        			HashMap mergeVars = new HashMap();
+	        	    	HashMap mergeVars = new HashMap();
 		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);mergeVars.put(pa10,pva10);
 		        		 }
@@ -491,18 +491,22 @@ public class AuthPulpy extends HttpServlet {
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);}
 		        			 
 		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}
-		     			try {
-	        				obj=xmlrpc.execute(mname, new Object[] {
-	        						mergeVars
-	        				});
-	        				str=obj.toString();
-	        				//out.println(str);
-	        				}
-	        			 catch (XmlRpcException e) {
-	        				throw new RuntimeException("Error", e);}
-	        			
-        	 	  
-	        			  session.setAttribute("xml1", str);
+		     			
+		        		 Object token = null;
+		        			try {
+		        				token = client.invoke( mname,new Object[] {
+		        						mergeVars
+		        				});
+		        			} 
+		        			 catch (XmlRpcFault e) {
+		        				// TODO Auto-generated catch block
+		        				e.printStackTrace();
+		        			}
+		        			Writer writer = new OutputStreamWriter(response.getOutputStream());
+		        		    XmlRpcSerializer.serialize( token, writer );
+		        		    writer.flush();	
+      	 	  
+	        			  session.setAttribute("xml1", writer);
 			              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        

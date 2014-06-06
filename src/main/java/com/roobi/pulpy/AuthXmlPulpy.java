@@ -356,10 +356,8 @@ public class AuthXmlPulpy extends HttpServlet {
 	        			 catch (XmlRpcException e) {
 	        				throw new RuntimeException("Error", e);}
 	        			
-        	 	  
-	        			  session.setAttribute("xml1", str);
-			              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
+			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+
 
 	        		 
 	     		        

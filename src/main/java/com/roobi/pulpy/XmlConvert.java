@@ -27,12 +27,16 @@ public class XmlConvert extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	    PrintWriter out=response.getWriter();
+		try{
 		HttpSession session=request.getSession(true);
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
-		PrintWriter out=response.getWriter();
 		String xml=(String)session.getAttribute("xml1");
-		out.println(xml);
+		out.println(xml);}
+		catch(Exception e){
+			out.println(e);
+			
+		}
 		//String xml=(String) request.getAttribute("xml1");
 		//out.println(xml);
 	}
