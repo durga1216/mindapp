@@ -39,7 +39,7 @@ import org.xml.sax.SAXException;
  *  implements the XmlRpcInvocationHandler so that it may be used as a relay
  *  to other XML-RP
  *
- *  @author Greger Olsson
+ *  
  */
 
 public class XmlRpcClient extends XmlRpcParser implements XmlRpcInvocationHandler
