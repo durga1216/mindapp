@@ -61,8 +61,8 @@ public class XmlRpcServlet extends HttpServlet
         
         if ( contentType != null && contentType.startsWith( "text/javascript+json" ) )
         {
-            this.contentType = "text/javascript+json";
-            server = new XmlRpcServer( new XmlRpcJsonSerializer() );
+            this.contentType = "text/xml";
+            server = new XmlRpcServer( new XmlRpcSerializer() );
         }
         else
         {
