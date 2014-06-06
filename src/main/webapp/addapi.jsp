@@ -12,7 +12,7 @@ body{background-color:#FF9900;}
 .head{
     color:#FFFFFF;
     font-family:verdana;
-    font-size:35px;}
+    font-size:34px;}
     .au{
 font-family:verdana;
 font-weight:bold;
