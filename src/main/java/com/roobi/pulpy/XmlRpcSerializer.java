@@ -143,7 +143,7 @@ public class XmlRpcSerializer
      *  the XML-RPC specification.
      */
 
-    public void serialize(
+    public static void serialize(
         Object value,
         Writer writer )
         throws XmlRpcException, IOException
@@ -238,7 +238,7 @@ public class XmlRpcSerializer
                 
                 if ( serializer.getSupportedClass().isInstance( value ) )
                 {
-                    serializer.serialize( value, writer, this );
+                    serializer.serialize( value, writer, null );
                     writer.write( "</value>" );
                     return;
                 }
@@ -304,7 +304,7 @@ public class XmlRpcSerializer
 
 
     /** The list of currently registered custom serializers */
-    protected List/*<XmlRpcCustomSerializer>*/ customSerializers = new ArrayList();
+    protected static List/*<XmlRpcCustomSerializer>*/ customSerializers = new ArrayList();
     
     /** Date formatter shared by all XmlRpcValues */
     private static final SimpleDateFormat dateFormatter = new SimpleDateFormat( "yyyyMMdd'T'HH:mm:ss" );

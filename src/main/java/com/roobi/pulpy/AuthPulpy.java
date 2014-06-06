@@ -219,7 +219,7 @@ public class AuthPulpy extends HttpServlet {
 	     		        
 	               	} // NO Auth GET
                
-            /*   else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")) // No Auth XML-RPC
+          /*    else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")) // No Auth XML-RPC
 	        	     
       	     {
             	 
@@ -279,7 +279,7 @@ public class AuthPulpy extends HttpServlet {
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
    		        
-      	 } //XML RPC      */  	 
+      	 } //XML RPC       */	 
 
                
                else  if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
@@ -416,7 +416,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     
 	        	 } //XML and JSON get
 	        	     
-	        	  /*   else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
+	        	     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
 	        	     
 	        	     {
 	        	    	   XmlRpcClient client = new XmlRpcClient(endurl1,false);
