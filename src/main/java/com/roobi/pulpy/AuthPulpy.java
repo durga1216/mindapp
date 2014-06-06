@@ -37,7 +37,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
 import net.sf.json.xml.XMLSerializer;
@@ -417,7 +416,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     
 	        	 } //XML and JSON get
 	        	     
-	        	/*     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
+	        	  /*   else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
 	        	     
 	        	     {
 	        	    	   XmlRpcClient client = new XmlRpcClient(endurl1,false);
