@@ -49,8 +49,8 @@ public class XmlRpcMessages
     
     
     /** <describe> */
-    private static final String BUNDLE_NAME = "com.roobi.pulpy.XmlRpcMessages.properties";
+    //private static final String BUNDLE_NAME = "XmlRpcMessages.properties";
 
     /** <describe> */
-    private static final ResourceBundle RESOURCE_BUNDLE =ResourceBundle.getBundle( BUNDLE_NAME );
+   private static final ResourceBundle RESOURCE_BUNDLE =ResourceBundle.getBundle( "com.roobi.pulpy.XmlRpcMessages" );
 }
