@@ -22,29 +22,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -54,17 +37,14 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-
 import redstone.xmlrpc.XmlRpcClient;
 import redstone.xmlrpc.XmlRpcFault;
 import redstone.xmlrpc.XmlRpcSerializer;
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
 import net.sf.json.xml.XMLSerializer;
-
 import com.mindots.util.Utils;
 import com.mysql.jdbc.Connection;
-
 public class AuthPulpy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   Connection con=null;
@@ -439,7 +419,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     
 	        	 } //XML and JSON get
 	        	     
-	        	     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
+	        	/*     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
 	        	     
 	        	     {
 	        	    	   XmlRpcClient client = new XmlRpcClient(endurl1,false);
@@ -495,7 +475,7 @@ public class AuthPulpy extends HttpServlet {
 			              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
-	        	 } //XML RPC        	 
+	        	 } //XML RPC        */	 
 	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
 	        		 
 	          		 String USER_AGENT = "Mozilla/5.0";
