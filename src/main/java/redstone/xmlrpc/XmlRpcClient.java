@@ -37,9 +37,9 @@ import org.xml.sax.SAXException;
 /**
  *  An XmlRpcClient represents a connection to an XML-RPC enabled server. It
  *  implements the XmlRpcInvocationHandler so that it may be used as a relay
- *  to other XML-RP
+ *  to other XML-RPC servers when installed in an XmlRpcServer. 
  *
- *  
+ *  @author Greger Olsson
  */
 
 public class XmlRpcClient extends XmlRpcParser implements XmlRpcInvocationHandler
