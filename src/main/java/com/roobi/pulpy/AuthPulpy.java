@@ -22,12 +22,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -37,9 +39,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
+import org.apache.xmlrpc.client.XmlRpcClient;
+
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
 import net.sf.json.xml.XMLSerializer;
+
 import com.mindots.util.Utils;
 import com.mysql.jdbc.Connection;
 public class AuthPulpy extends HttpServlet {
@@ -419,7 +425,14 @@ public class AuthPulpy extends HttpServlet {
 	        	     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
 	        	     
 	        	     {
-	        	    	   XmlRpcClient client = new XmlRpcClient(endurl1,false);
+	        	    	 XmlRpcClient xmlrpc = new XmlRpcClient();
+	           			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
+	           			try {
+	           				config1.setServerURL(new URL(endurl1));
+	           			} catch (MalformedURLException e) {
+	           				throw new RuntimeException("Bad endpoint: " + endurl1, e);
+	           			}
+	           			xmlrpc.setConfig(config1);
 
 	        	    	HashMap mergeVars = new HashMap();
 		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -455,15 +468,14 @@ public class AuthPulpy extends HttpServlet {
 		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}
 		     			
 		        		 Object token = null;
-		        			try {
-		        				token = client.invoke( mname,new Object[] {
-		        						mergeVars
-		        				});
-		        			} 
-		        			 catch (XmlRpcFault e) {
-		        				// TODO Auto-generated catch block
-		        				e.printStackTrace();
-		        			}
+		        		 try {
+		       				token=xmlrpc.execute(mname, new Object[] {
+		       						mergeVars
+		       				});
+		       				//out.println(str);
+		       				}
+		       			 catch (XmlRpcException e) {
+		       				throw new RuntimeException("Error", e);}
 		        			Writer writer = new OutputStreamWriter(response.getOutputStream());
 		        		    XmlRpcSerializer.serialize( token, writer );
 		        		    writer.flush();	
