@@ -50,7 +50,7 @@ public class XmlRpcMessages
     
     
     /** <describe> */
-    private static final String BUNDLE_NAME = "redstone.xmlrpc.XmlRpcMessages";
+    private static final String BUNDLE_NAME = "com.roobi.pulpy.XmlRpcMessages";
 
     /** <describe> */
     private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle( BUNDLE_NAME );
