@@ -427,6 +427,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
 	        	     
 	        	     {
+	        	    	 response.setContentType("text/xml");
 	        	    	 XmlRpcClient xmlrpc = new XmlRpcClient();
 	           			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
 	           			try {
@@ -482,9 +483,9 @@ public class AuthPulpy extends HttpServlet {
 		        		    XmlRpcSerializer.serialize( token, writer );
 		        		    writer.flush();	
       	 	  
-	        			  session.setAttribute("xml1", writer);
+	        			 // session.setAttribute("xml1", writer);
 			          //    out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
+		     		    //  response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
 	        	 } //XML RPC        */	 
 	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
