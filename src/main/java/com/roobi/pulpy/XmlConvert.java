@@ -34,7 +34,7 @@ public class XmlConvert extends HttpServlet {
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		String xml=(String)session.getAttribute("xml1");
 		if(xml.equals("XML-RPC")){
-			String token=(String)session.getAttribute("token");
+			Object token=(Object)session.getAttribute("token");
 			Writer writer = new OutputStreamWriter(response.getOutputStream());
 		    XmlRpcSerializer.serialize( token, writer );
 		    writer.flush();
