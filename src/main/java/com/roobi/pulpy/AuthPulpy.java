@@ -475,11 +475,13 @@ public class AuthPulpy extends HttpServlet {
 		        				// TODO Auto-generated catch block
 		        				e.printStackTrace();
 		        			}
-		        			Writer writer = new OutputStreamWriter(response.getOutputStream());
+		        			/*Writer writer = new OutputStreamWriter(response.getOutputStream());
 		        		    XmlRpcSerializer.serialize( token, writer );
-		        		    writer.flush();	
+		        		    writer.flush();*/
+		        		   
       	 	  
-	        			  session.setAttribute("xml1", writer);
+	        			  session.setAttribute("xml1", resf1);
+	        			  session.setAttribute("token", token);
 			         //     out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
