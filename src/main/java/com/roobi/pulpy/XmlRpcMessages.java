@@ -48,9 +48,11 @@ public class XmlRpcMessages
     }
     
     
+    
     /** <describe> */
-    //private static final String BUNDLE_NAME = "XmlRpcMessages.properties";
+    private static final String BUNDLE_NAME = "redstone.xmlrpc.XmlRpcMessages";
 
     /** <describe> */
-   private static final ResourceBundle RESOURCE_BUNDLE =ResourceBundle.getBundle( "com.roobi.pulpy.XmlRpcMessages" );
+    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle( BUNDLE_NAME );
+
 }
