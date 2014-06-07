@@ -61,7 +61,7 @@ public class AuthPulpy extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 
-		PrintWriter out=response.getWriter();
+	//	PrintWriter out=response.getWriter();
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 
       String rf=request.getParameter("rf");String select2=request.getParameter("rm");
@@ -218,7 +218,8 @@ public class AuthPulpy extends HttpServlet {
 	        		 } //if
 	        		 }//try
 	         	     catch(Exception e){
-	 	    	      out.println(e);}	
+	 	//    	      out.println(e);
+	         	    	 }	
 	        		 session.setAttribute("xml1", str);
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
@@ -337,7 +338,8 @@ public class AuthPulpy extends HttpServlet {
 	        		 } //if
 	        		 }//try
 	         	     catch(Exception e){
-	 	    	      out.println(e);}	
+	 	    	    //  out.println(e);
+	 	    	      }	
 	        		 session.setAttribute("xml1", str);
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} //  post
@@ -417,7 +419,7 @@ public class AuthPulpy extends HttpServlet {
 	        	    	 
 	        	     } // else if
 	        	    session.setAttribute("xml1", str);
-		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		         //     out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	        	     
 	        	 } //XML and JSON get
@@ -481,7 +483,7 @@ public class AuthPulpy extends HttpServlet {
 		        		    writer.flush();	
       	 	  
 	        			  session.setAttribute("xml1", writer);
-			              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+			          //    out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
 	        	 } //XML RPC        */	 
@@ -534,7 +536,8 @@ public class AuthPulpy extends HttpServlet {
 		        		 } //if
 		        		 }//try
 		         	     catch(Exception e){
-		 	    	      out.println(e);}	
+		 	    	    //  out.println(e);
+		         	    	 }	
 		        		 session.setAttribute("xml1", str);
 		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 		               	}//post 
@@ -653,7 +656,7 @@ public class AuthPulpy extends HttpServlet {
 	            	  }//while}
 	              }//json
 	              session.setAttribute("xml1", str);
-	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	            //  out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
      		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 		          }//get
 	              else if(rm1.equals("POST")){ 
@@ -728,7 +731,7 @@ public class AuthPulpy extends HttpServlet {
 		     		      //out.println(xmlout);
 	            	  }//while
 	            	  session.setAttribute("xml1", str);
-		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		      //        out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	              }//post
 	           
@@ -737,7 +740,9 @@ public class AuthPulpy extends HttpServlet {
 	              } //  else-if json
 	             }//try
 	              
-	   	             catch(Exception e){out.println(e);}
+	   	             catch(Exception e){
+	   	            	// out.println(e);
+	   	            	 }
 	   	          
 	        	 
 	        	 
@@ -906,7 +911,9 @@ public class AuthPulpy extends HttpServlet {
 	         }//try
 	         } // while database
 	         
-	         catch(Exception e){out.println(e);}
+	         catch(Exception e){
+	        //	 out.println(e);
+	        	 }
       
 	} //post
 	
