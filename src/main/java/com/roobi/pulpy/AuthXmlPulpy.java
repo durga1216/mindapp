@@ -35,9 +35,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.xmlrpc.XmlRpcException;
-import org.apache.xmlrpc.client.XmlRpcClient;
-import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -68,7 +65,6 @@ public class AuthXmlPulpy extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
-		PrintWriter out=response.getWriter();
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
 		  String appid=(String) session.getAttribute("xx"); 
@@ -308,14 +304,8 @@ public class AuthXmlPulpy extends HttpServlet {
 		        	     
 	        	     {
 
-	        	    	 XmlRpcClient xmlrpc = new XmlRpcClient();
-	        			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
-	        			try {
-	        				config1.setServerURL(new URL(endurl1));
-	        			} catch (MalformedURLException e) {
-	        				throw new RuntimeException("Bad endpoint: " + endurl1, e);
-	        			}
-	        			xmlrpc.setConfig(config1);
+		        	 		XmlRpcClient client1 = new XmlRpcClient( endurl1, false );
+
 	        			HashMap mergeVars = new HashMap();
 		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);mergeVars.put(pa10,pva10);
@@ -349,19 +339,24 @@ public class AuthXmlPulpy extends HttpServlet {
 		        			 
 		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}
 	        				        	 
-	        			try {
-	        				obj=xmlrpc.execute(mname, new Object[] {
-	        						mergeVars
-	        				});
-	        				str=obj.toString();
-	        				//out.println(str);
-	        				}
-	        			 catch (XmlRpcException e) {
-	        				throw new RuntimeException("Error", e);}
-	        			
-			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
-
-
+		        		 Object token = null;
+		        			try {
+		        				token = client1.invoke( mname,new Object[] {
+		        						mergeVars
+		        				});
+		        			} catch (XmlRpcException e) {
+		        				// TODO Auto-generated catch block
+		        				e.printStackTrace();
+		        			} catch (XmlRpcFault e) {
+		        				// TODO Auto-generated catch block
+		        				e.printStackTrace();
+		        			}
+		        			Writer writer =new OutputStreamWriter(response.getOutputStream());
+		        		    XmlRpcSerializer.serialize( token, writer );
+		        		    writer.close();
+                            str=writer.toString();
+                            
+                            
 	        		 
 	     		        
 	        	 } //XML RPC        	 
@@ -419,9 +414,9 @@ public class AuthXmlPulpy extends HttpServlet {
 		        		 } //if
 		        		 }//try
 		         	     catch(Exception e){
-		 	    	      out.println(e);}	
+		 	    	     // out.println(e);}	
 		        		 session.setAttribute("xml1", str);
-		         	 	 out.println(str); 	       		     
+		         	 	// out.println(str); 	       		     
 
 	        	 }//post 
 	        	 
@@ -539,7 +534,9 @@ public class AuthXmlPulpy extends HttpServlet {
 	              }//json
 	               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 		          }//try
-		          catch(Exception e){out.println(e);}
+		          catch(Exception e){  //out.println(e);
+		          }
+		          }
 		          }//get
 		          
 		          
@@ -616,7 +613,8 @@ public class AuthXmlPulpy extends HttpServlet {
 	                	
 	              } //  try
 	              
-	   	             catch(Exception e){out.println(e);}
+	   	             catch(Exception e){  //out.println(e);
+	   	             }
 	   	          
 	         } //post
 	        	 
@@ -1068,6 +1066,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	                 String xmloutput=result.getWriter().toString();
 	                /* output.write(xmloutput);
 	                 output.close();*/
+	                 PrintWriter out=response.getWriter();
 	                 out.println(xmloutput);
 	              	
         }//while
@@ -1470,6 +1469,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	                 String xmloutput=result.getWriter().toString();
 	                /* output.write(xmloutput);
 	                 output.close();*/
+	                 PrintWriter out=response.getWriter();
 	                out.println(xmloutput);
             }//while
             }//second config
@@ -1906,6 +1906,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	                 String xmloutput=result.getWriter().toString();
 	                /* output.write(xmloutput);
 	                 output.close();*/
+	                 PrintWriter out=response.getWriter();
 	                out.println(xmloutput);
             }
             }
