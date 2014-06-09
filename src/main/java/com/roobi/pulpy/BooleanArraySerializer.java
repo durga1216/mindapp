@@ -17,7 +17,9 @@
 package com.roobi.pulpy;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.io.Writer;
+
 import com.roobi.pulpy.XmlRpcCustomSerializer;
 import com.roobi.pulpy.XmlRpcException;
 import com.roobi.pulpy.XmlRpcSerializer;

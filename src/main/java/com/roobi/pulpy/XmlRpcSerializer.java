@@ -125,7 +125,7 @@ public class XmlRpcSerializer
      * @throws IOException 
      */
 
-    public void writeError( int code, String message, StringWriter writer ) throws IOException
+    public void writeError( int code, String message, Writer writer ) throws IOException
     {
         writer.write( "<?xml version=\"1.0\" encoding=\"" );
         writer.write( "UTF-8" );
@@ -147,7 +147,7 @@ public class XmlRpcSerializer
 
     public static void serialize(
         Object value,
-        StringWriter writer )
+        Writer writer )
         throws XmlRpcException, IOException
     {
         writer.write( "<value>" );

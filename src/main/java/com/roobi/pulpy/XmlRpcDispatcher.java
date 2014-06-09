@@ -286,7 +286,7 @@ public class XmlRpcDispatcher extends XmlRpcParser
         
         if ( value != null )
         {
-            server.getSerializer().serialize( value , (StringWriter) writer );
+            server.getSerializer().serialize( value , writer );
         }
         
         server.getSerializer().writeEnvelopeFooter( value, writer );
@@ -305,7 +305,7 @@ public class XmlRpcDispatcher extends XmlRpcParser
         try
         {
             logger.log( Level.WARNING, message );
-          //  this.server.getSerializer().writeError( code, message, writer );
+           this.server.getSerializer().writeError( code, message, writer );
         }
         catch ( Exception ignore )
         {
