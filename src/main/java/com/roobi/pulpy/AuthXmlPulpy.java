@@ -355,7 +355,7 @@ public class AuthXmlPulpy extends HttpServlet {
 
 		        		   Writer writer =new OutputStreamWriter(response.getOutputStream());
 		        		   XmlRpcSerializer.serialize( token, writer );
-		        		   writer.close();
+		        		 //  writer.close();
 		        	    BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
                     PrintWriter pw=new PrintWriter(response.getOutputStream());
                     
