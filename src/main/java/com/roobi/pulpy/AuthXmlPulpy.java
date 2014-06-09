@@ -352,11 +352,11 @@ public class AuthXmlPulpy extends HttpServlet {
 		        				e.printStackTrace();
 		        			}
 		        			StringWriter writer =new StringWriter();
-		        			StreamResult stream=new StreamResult(writer);
 		        		    XmlRpcSerializer.serialize( token, writer );
-		        		     str = writer.getBuffer().toString();
-
- 			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+		        		     writer.flush();
+		        		   //  PrintWriter out=response.getWriter();
+                            // out.println(str);
+ 			             //  doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
      
 	        		 
 	     		        
