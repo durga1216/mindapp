@@ -363,10 +363,9 @@ public class AuthXmlPulpy extends HttpServlet {
 		                                                           }
 
 		        		  /*String suc=writer.toString();*/
-		        		     PrintWriter out=response.getWriter();
-                             out.println(str);
+		        		     
 
-				             //  doc= builder.parse(new InputSource(new ByteArrayInputStream(suc.getBytes("UTF-8"))));
+				        doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
      
 	        		 
 	     		        
