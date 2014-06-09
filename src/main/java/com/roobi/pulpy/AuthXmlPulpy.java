@@ -352,16 +352,19 @@ public class AuthXmlPulpy extends HttpServlet {
 		        				e.printStackTrace();
 		        			}
 			        		   String program=null;
-			        		   Process p = Runtime.getRuntime().exec(program);  
 
-		        		   Writer writer =new OutputStreamWriter(p.getOutputStream());
+		        		   Writer writer =new OutputStreamWriter(response.getOutputStream());
 		        		   XmlRpcSerializer.serialize( token, writer );
 		        		   writer.flush();
+		        	    BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
 
+		           	 while ((line = reader.readLine()) != null) {
+		    		     str+=line;
+		                                                           }
 
-		        		  /*String suc=writer.toString();
+		        		  /*String suc=writer.toString();*/
 		        		     PrintWriter out=response.getWriter();
-                             out.println(suc);*/
+                             out.println(str);
 
 				             //  doc= builder.parse(new InputSource(new ByteArrayInputStream(suc.getBytes("UTF-8"))));
      
