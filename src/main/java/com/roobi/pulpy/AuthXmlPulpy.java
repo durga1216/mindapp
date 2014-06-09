@@ -353,7 +353,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		        			}
 		        			Writer writer =new OutputStreamWriter(response.getOutputStream());
 		        		    XmlRpcSerializer.serialize( token, writer );
-		        		    //writer.close();
+		        		    writer.close();
                             str=writer.toString();
                             
  			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
