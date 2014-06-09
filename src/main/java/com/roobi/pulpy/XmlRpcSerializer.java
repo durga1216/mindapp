@@ -17,12 +17,14 @@
 package com.roobi.pulpy;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 import com.roobi.pulpy.Base64;
 
 /**
@@ -123,7 +125,7 @@ public class XmlRpcSerializer
      * @throws IOException 
      */
 
-    public void writeError( int code, String message, Writer writer ) throws IOException
+    public void writeError( int code, String message, StringWriter writer ) throws IOException
     {
         writer.write( "<?xml version=\"1.0\" encoding=\"" );
         writer.write( "UTF-8" );
@@ -145,7 +147,7 @@ public class XmlRpcSerializer
 
     public static void serialize(
         Object value,
-        Writer writer )
+        StringWriter writer )
         throws XmlRpcException, IOException
     {
         writer.write( "<value>" );
