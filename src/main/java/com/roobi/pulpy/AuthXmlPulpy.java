@@ -353,20 +353,17 @@ public class AuthXmlPulpy extends HttpServlet {
 		        			}
 			        		   String program=null;
 
-		        		/*   Writer writer =new OutputStreamWriter(response.getOutputStream());
+		        		   Writer writer =new OutputStreamWriter(response.getOutputStream());
 		        		   XmlRpcSerializer.serialize( token, writer );
-		        		  writer.flush();*/
-                    Writer pw=new PrintWriter(response.getOutputStream());
-	        		   XmlRpcSerializer.serialize( token, pw );
+		        		  writer.flush();
+
 		        	    BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+String line1=null;
+		           	 while ((line1 = reader.readLine()) != null) {
+		    		     str+=line1;
 
-		           	 while ((line = reader.readLine()) != null) {
-		    		     str+=line;
-
-		                //  pw.write(line);                                      
-                          pw.flush();
-                          pw.close();
-                       //   writer.close();
+		                
+                          writer.close();
                           }
 		        		  /*String suc=writer.toString();*/
 		        		     
