@@ -18,11 +18,13 @@ package com.roobi.pulpy;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.xml.sax.SAXException;
 
 /**
@@ -284,7 +286,7 @@ public class XmlRpcDispatcher extends XmlRpcParser
         
         if ( value != null )
         {
-            server.getSerializer().serialize( value , writer );
+            server.getSerializer().serialize( value , (StringWriter) writer );
         }
         
         server.getSerializer().writeEnvelopeFooter( value, writer );
@@ -303,9 +305,9 @@ public class XmlRpcDispatcher extends XmlRpcParser
         try
         {
             logger.log( Level.WARNING, message );
-            this.server.getSerializer().writeError( code, message, writer );
+          //  this.server.getSerializer().writeError( code, message, writer );
         }
-        catch ( IOException ignore )
+        catch ( Exception ignore )
         {
             // If an exception occurs at this point there is no way to recover.
             // We are already trying to send a fault to the client. We swallow

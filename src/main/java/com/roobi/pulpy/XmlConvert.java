@@ -3,6 +3,7 @@ package com.roobi.pulpy;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.io.Writer;
 
 import javax.servlet.ServletException;
@@ -35,7 +36,7 @@ public class XmlConvert extends HttpServlet {
 		String xml=(String)session.getAttribute("xml1");
 		if(xml.equals("XML-RPC")){
 			Object token=(Object)session.getAttribute("token");
-			Writer writer = new OutputStreamWriter(response.getOutputStream());
+			StringWriter writer = new StringWriter();
 		    XmlRpcSerializer.serialize( token, writer );
 		    writer.flush();
 		}
