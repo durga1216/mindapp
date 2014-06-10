@@ -225,19 +225,12 @@ public class AuthPulpy extends HttpServlet {
 	     		        
 	               	} // NO Auth GET
                
-          /*    else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")) // No Auth XML-RPC
+              else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")) // No Auth XML-RPC
 	        	     
       	     {
             	 
-
-      	    	 XmlRpcClient xmlrpc = new XmlRpcClient();
-      			XmlRpcClientConfigImpl config1 = new XmlRpcClientConfigImpl();
-      			try {
-      				config1.setServerURL(new URL(endurl1));
-      			} catch (MalformedURLException e) {
-      				throw new RuntimeException("Bad endpoint: " + endurl1, e);
-      			}
-      			xmlrpc.setConfig(config1);
+      	 		XmlRpcClient client = new XmlRpcClient( endurl1, false );
+     	    	
       			HashMap mergeVars = new HashMap();
 	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	        			 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);mergeVars.put(pa10,pva10);
@@ -270,22 +263,25 @@ public class AuthPulpy extends HttpServlet {
 	        			 mergeVars.put(pa1,pva1);}
 	        			 
 	        	     else if("null".equals(pa1)){mergeVars.put("", "");}
-	     			try {
-      				obj=xmlrpc.execute(mname, new Object[] {
-      						mergeVars
-      				});
-      				str=obj.toString();
-      				//out.println(str);
-      				}
-      			 catch (XmlRpcException e) {
-      				throw new RuntimeException("Error", e);}
-      			
-  	 	  
-      			  session.setAttribute("xml1", str);
-		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	        		 Object token = null;
+	        			try {
+	        				token = client.invoke( mname,new Object[] {
+	        						mergeVars
+	        				});
+	        			} catch (XmlRpcException e) {
+	        				e.printStackTrace();
+	        			} catch (XmlRpcFault e) {
+	        				e.printStackTrace();
+	        			}
+	        		
+	 	  
+     			  session.setAttribute("xml1", resf1);
+     			  session.setAttribute("token", token);
 	     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
+  		   
+	     			
    		        
-      	 } //XML RPC       */	 
+      	 } //XML RPC        
 
                
                else  if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
@@ -410,7 +406,6 @@ public class AuthPulpy extends HttpServlet {
 	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
 	   	     	          xmlSerializer.removeNamespace(line);
 	   	     	          xmlSerializer.setRootName("root");
-	   	     	          
 	   	     	          xmlSerializer.setForceTopLevelObject(false);
 	   	     		      str = xmlSerializer.write( json );
 	   	    			
@@ -427,8 +422,6 @@ public class AuthPulpy extends HttpServlet {
 	        	     
 	        	     {
 	        	 		XmlRpcClient client = new XmlRpcClient( endurl1, false );
-
-
 	        	    	HashMap mergeVars = new HashMap();
 		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 		        			 mergeVars.put(ak1, ak2);mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);mergeVars.put(pa10,pva10);
@@ -475,14 +468,10 @@ public class AuthPulpy extends HttpServlet {
 		        				// TODO Auto-generated catch block
 		        				e.printStackTrace();
 		        			}
-		        			/*Writer writer = new OutputStreamWriter(response.getOutputStream());
-		        		    XmlRpcSerializer.serialize( token, writer );
-		        		    writer.flush();*/
-		        		   
-      	 	  
+		     			
+		        		     	 	  
 	        			  session.setAttribute("xml1", resf1);
 	        			  session.setAttribute("token", token);
-			         //     out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
 	        	 } //XML RPC        */	 

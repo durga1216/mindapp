@@ -226,6 +226,71 @@ public class AuthXmlPulpy extends HttpServlet {
 			               doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
 
 	        		 }// else-if json
+	                
+ else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
+		        	     
+	        	     {
+
+		        	 		XmlRpcClient client1 = new XmlRpcClient( endurl1, false );
+
+	        			HashMap mergeVars = new HashMap();
+		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+		        			 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);mergeVars.put(pa10,pva10);
+		        		 }
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
+		        			 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);mergeVars.put(pa9,pva9);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
+		        			 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);mergeVars.put(pa8,pva8);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
+		        			 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);mergeVars.put(pa7,pva7);}
+	        			
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+		        			 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);mergeVars.put(pa6,pva6);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+			        		 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);mergeVars.put(pa5,pva5);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
+		        			 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);mergeVars.put(pa4,pva4);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
+		        			 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);mergeVars.put(pa3,pva3);}
+		        		 
+		        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
+		        			 mergeVars.put(pa1,pva1);mergeVars.put(pa2,pva2);}
+	        		 
+		        		 else if(!"null".equals(pa1)){
+		        			 mergeVars.put(pa1,pva1);}
+		        			 
+		        			 else if("null".equals(pa1)){mergeVars.put(ak1, ak2);}
+	        				        	 
+		        		 Object token = null;
+		        			try {
+		        				token = client1.invoke( mname,new Object[] {
+		        						mergeVars
+		        				});
+		        			} catch (XmlRpcException e) {
+		        				// TODO Auto-generated catch block
+		        				e.printStackTrace();
+		        			} catch (XmlRpcFault e) {
+		        				// TODO Auto-generated catch block
+		        				e.printStackTrace();
+		        			}
+			        		   String program=null;
+
+		        		   Writer writer =new OutputStreamWriter(response.getOutputStream());
+		        		   XmlRpcSerializer.serialize( token, writer );
+		        		   writer.flush();
+
+		        	 
+				    //    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+     
+	        		 
+	     		        
+	        	 } //XML RPC        	 
+
 	             
 	               	  }} // No auth and GET
 	         
@@ -355,12 +420,11 @@ public class AuthXmlPulpy extends HttpServlet {
 
 		        		   Writer writer =new OutputStreamWriter(response.getOutputStream());
 		        		   XmlRpcSerializer.serialize( token, writer );
-		        		  writer.flush();
+		        		   writer.flush();
 
 		        	 
 				    //    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
-     
-	        		 
+            		 
 	     		        
 	        	 } //XML RPC        	 
 

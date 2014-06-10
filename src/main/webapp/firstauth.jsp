@@ -268,7 +268,7 @@ text-align:right;}
 <label for="rd1">No Auth</label>
 <input type="radio" name="authen"   value="Basic Auth">
 
-<label for="rd1">Basic Auth/Others</label>
+<label for="rd1">Basic Auth/Http headers</label>
 <input type="radio" name="authen"   value="API keys" >
 
 <label for="rd1">API keys</label>
@@ -279,7 +279,7 @@ text-align:right;}
 <label for="rd1">OAuth2</label>
 </div>
 <div id="req" style="display:none">Fine! Go ahead</div>
-<br><div id="others" style="display:none">If others,please leave username & password fields and add your credentials in header</div>
+<br><div id="others" style="display:none">If Http headers, Please leave username & password fields and add your credentials in header</div>
 <div id="divid" style="display:none"><br>
 <input type="text" name="b2" value="" placeholder="UserName" >
 <input type="text" name="b4" value="" placeholder="Password"><br><br><br>
