@@ -162,7 +162,7 @@ public class MobiClient extends HttpServlet {
    	String str="";
     Object obj;
        if(authen1.equals("No Auth")){ //No Authentication
-	         if(rf1.equals("REST") && rm1.equals ("GET") ){  //No Auth GET XML
+	         if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON") ){  //No Auth GET XML
 	        	 
 	             if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	         		 eurl=endurl1+"?"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
@@ -300,7 +300,7 @@ public class MobiClient extends HttpServlet {
 	         
 	         else if(authen1.equals("API keys")){  //API Keys
 	        	 
-	        	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get       		 
+	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get       		 
 
 	        		 if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4) && !"".equals(p5) && !"".equals(p6)&& !"".equals(p7) && !"".equals(p8) && !"".equals(p9) && !"".equals(p10)){
 	        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
