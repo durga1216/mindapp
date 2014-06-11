@@ -49,7 +49,7 @@ public class LoginCheckPulpy extends HttpServlet {
          }
          st=con.prepareStatement("SELECT * From authen1 where id='"+id+"'");
        
-             if(mail!=null && pwd!=null){
+             if(t1.equals(mail) && t2.equals(pwd)){
             	 
             	 HttpSession session=request.getSession(true);
                  session.setAttribute("id", id);
