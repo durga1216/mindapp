@@ -98,7 +98,7 @@ public class AuthPulpy extends HttpServlet {
 
       try{
   		//out.println("start");
-
+            PrintWriter out=response.getWriter();
     	    response.setContentType("text/html");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -186,7 +186,7 @@ public class AuthPulpy extends HttpServlet {
 	        			        		         		 
 	        		    		
 	        		
-	        			 
+	        			 out.println(eurl);
 	        		 URL eurl1=new URL(eurl);
 	        		 URLConnection uconn = eurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;

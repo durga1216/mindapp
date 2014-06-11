@@ -31,9 +31,9 @@ public class XmlConvert extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		PrintWriter out=response.getWriter();
 		HttpSession session=request.getSession(true);
 		String xml=(String)session.getAttribute("xml1");
-		PrintWriter out=response.getWriter();
  		out.println(xml);
 		//String res=(String)session.getAttribute("res");
 	/*	if(res.equals("XML-RPC")){
