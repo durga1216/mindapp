@@ -306,7 +306,7 @@ catch(Exception e)
 </select><br><br>
 
 
-<input type="submit" name="submit" value="single" formAction="AuthXmlPulpy" formmethod="post">
+<input type="submit" name="submit" value="single" formAction="MobiClient" formmethod="post">
 <input type="submit" name="submit" value="mashapp" formAction="CommonXmlPulpy" formmethod="post"></form>
 </body>
 </html>
