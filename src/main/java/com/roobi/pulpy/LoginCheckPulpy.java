@@ -57,7 +57,7 @@ public class LoginCheckPulpy extends HttpServlet {
                  request.getSession().setAttribute("user", "mind");
     		     response.setHeader("Refresh", "1; URL=logsucess.jsp");
                  }
-             else if(mail.equals("") && pwd.equals("")){
+             else if(mail.equals("null") && pwd.equals("null")){
              String alert="Please Enter UserName and Password!!";
     	     RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
              request.setAttribute("alert", alert); // set your String value in the attribute
