@@ -33,21 +33,19 @@ public class LoginCheckPulpy extends HttpServlet {
 	    PrintWriter out=response.getWriter();
 	    String t1=request.getParameter("t1");
 	    String t2=request.getParameter("t2");
-	    String id=null;
-	    String mail="sample";
-	    String pwd="sample";
+	    
 	    try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
          PreparedStatement st=null;
-         st=con.prepareStatement("SELECT * From login where email='"+t1+"' and pwd='"+t2+"'");
+         st=con.prepareStatement("SELECT * From login");
          ResultSet rs = st.executeQuery();
          while(rs.next()){
-	          id=rs.getString("id");
-              mail=rs.getString("email");
-              pwd=rs.getString("pwd");
-         }
-         st=con.prepareStatement("SELECT * From authen1 where id='"+id+"'");
+	          String id=rs.getString("id");
+              String mail=rs.getString("email");
+              String pwd=rs.getString("pwd");
+         
+      //   st=con.prepareStatement("SELECT * From authen1 where id='"+id+"'");
        
              if(t1.equals(mail) && t2.equals(pwd)){
             	 
@@ -69,7 +67,7 @@ public class LoginCheckPulpy extends HttpServlet {
          request.setAttribute("alert", alert); // set your String value in the attribute
          dispatcher.forward( request, response );  	 }
          }
-         
+	    }  
          
          catch(Exception e){
         	 out.println(e);
