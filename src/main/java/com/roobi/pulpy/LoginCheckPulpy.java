@@ -40,13 +40,13 @@ public class LoginCheckPulpy extends HttpServlet {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
          PreparedStatement st=null;
-         st=con.prepareStatement("SELECT * From login");
+         st=con.prepareStatement("SELECT * From login where email='"+t1+"' and pwd='"+t2+"'");
          ResultSet rs = st.executeQuery();
          while(rs.next()){
 	          id=rs.getString("id");
               mail=rs.getString("email");
               pwd=rs.getString("pwd");
-         
+         }
          st=con.prepareStatement("SELECT * From authen1 where id='"+id+"'");
        
              if(t1.equals(mail) && t2.equals(pwd)){
@@ -57,7 +57,7 @@ public class LoginCheckPulpy extends HttpServlet {
                  request.getSession().setAttribute("user", "mind");
     		     response.setHeader("Refresh", "1; URL=logsucess.jsp");
                  }
-             else if(t1==null && t2==null){
+             else if(!(t1.length() > 0) &&  !(t2.length() > 0) ){
              String alert="Please Enter UserName and Password!!";
     	     RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
              request.setAttribute("alert", alert); // set your String value in the attribute
@@ -70,7 +70,7 @@ public class LoginCheckPulpy extends HttpServlet {
          dispatcher.forward( request, response );  	 }
          }
          
-         }
+         
          catch(Exception e){
         	 out.println(e);
          }
