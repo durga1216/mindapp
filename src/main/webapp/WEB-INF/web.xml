@@ -360,6 +360,16 @@
     <servlet-name>apis</servlet-name>
     <url-pattern>/apis</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>MobiClient</display-name>
+    <servlet-name>MobiClient</servlet-name>
+    <servlet-class>com.roobi.pulpy.MobiClient</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MobiClient</servlet-name>
+    <url-pattern>/MobiClient</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>FirstAuthPulpy</display-name>
