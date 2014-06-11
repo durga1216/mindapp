@@ -38,36 +38,44 @@ public class LoginCheckPulpy extends HttpServlet {
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
          PreparedStatement st=null;
-         st=con.prepareStatement("SELECT * From login");
+         String id="";
+         String mail="";
+         String pwd="";
+         st=con.prepareStatement("SELECT id,email,pwd From login where email='"+t1+"' && pwd='"+t2+"'");
          ResultSet rs = st.executeQuery();
+         if(rs != null){
          while(rs.next()){
-	          String id=rs.getString("id");
-              String mail=rs.getString("email");
-              String pwd=rs.getString("pwd");
-         
+	          id=rs.getString("id");
+              mail=rs.getString("email");
+              pwd=rs.getString("pwd");
+         }}
       //   st=con.prepareStatement("SELECT * From authen1 where id='"+id+"'");
        
-             if(t1.equals(mail) && t2.equals(pwd)){
-            	 
-            	 HttpSession session=request.getSession(true);
-                 session.setAttribute("id", id);
-                 session.setAttribute("mail", mail);
-                 request.getSession().setAttribute("user", "mind");
-    		     response.setHeader("Refresh", "1; URL=logsucess.jsp");
-                 }
-             else if(t1.equals(null) &&  t2.equals(null) ){
+            
+              if(t1.equals("null") &&  t2.equals("null") ){
              String alert="Please Enter UserName and Password!!";
     	     RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
              request.setAttribute("alert", alert); // set your String value in the attribute
              dispatcher.forward( request, response ); 
              }
+              else  if(t1.equals(mail) && t2.equals(pwd)){
+             	 
+             	 HttpSession session=request.getSession(true);
+                  session.setAttribute("id", id);
+                  session.setAttribute("mail", mail);
+                  request.getSession().setAttribute("user", "mind");
+     		     response.setHeader("Refresh", "1; URL=logsucess.jsp");
+                  }
              else{
          String alert="Incorrect UserName and Password!! Try Again";
     	 RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
          request.setAttribute("alert", alert); // set your String value in the attribute
          dispatcher.forward( request, response );  	 }
-         }
-	    }  
+        
+         
+	   
+	    
+	    }//try  
          
          catch(Exception e){
         	 out.println(e);
