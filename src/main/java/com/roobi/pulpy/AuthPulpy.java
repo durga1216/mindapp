@@ -187,20 +187,21 @@ public class AuthPulpy extends HttpServlet {
 	        		    		
 	        		
 	        			 out.println(eurl);
-	        		 URL eurl1=new URL(eurl);
-	        		 URLConnection uconn = eurl1.openConnection();
-	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
-	        	     conn.connect();
-	        	     Object content = conn.getContent();
-	        	     InputStream stream = (InputStream) content;
-	        	     String line=null;
-	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	        	    if(resf1.equals("XML")){
+	        			 URL eurl1=new URL(eurl);
+		        		 URLConnection uconn = eurl1.openConnection();
+		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+		        	     conn.connect();
+		        	     Object content = conn.getContent();
+		        	     InputStream stream = (InputStream) content;
+		        	     String line=null;
+		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	        	  //  if(resf1.equals("XML")){
 	        	     while((line=br.readLine())!=null){
     	  	       	 str+=line;
     	  	       	 }
-	        	     }
-	        	     else if(resf1.equals("JSON")){
+	        	     out.println(str);
+	        	  //   }
+	        	    /* else if(resf1.equals("JSON")){
 	        	    	 while ((line = br.readLine()) != null)    { 
 	        	    	  JSON json = JSONSerializer.toJSON( line) ;
 	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
@@ -215,7 +216,7 @@ public class AuthPulpy extends HttpServlet {
 	   	    			
 	   	    		     }//while
 	        	    	 
-	        	     } // else if
+	        	     } // else if*/
 	        	    session.setAttribute("xml1", str);
 		        //    out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
