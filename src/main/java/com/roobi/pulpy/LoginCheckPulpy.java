@@ -52,7 +52,7 @@ public class LoginCheckPulpy extends HttpServlet {
       //   st=con.prepareStatement("SELECT * From authen1 where id='"+id+"'");
        
             
-              if(t1.equals("null") &&  t2.equals("null") ){
+              if(t1.equals("") &&  t2.equals("") ){
              String alert="Please Enter UserName and Password!!";
     	     RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
              request.setAttribute("alert", alert); // set your String value in the attribute
