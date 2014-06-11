@@ -34,8 +34,8 @@ public class LoginCheckPulpy extends HttpServlet {
 	    String t1=request.getParameter("t1");
 	    String t2=request.getParameter("t2");
 	    String id=null;
-	    String mail=null;
-	    String pwd=null;
+	    String mail="sample";
+	    String pwd="sample";
 	    try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -57,7 +57,7 @@ public class LoginCheckPulpy extends HttpServlet {
                  request.getSession().setAttribute("user", "mind");
     		     response.setHeader("Refresh", "1; URL=logsucess.jsp");
                  }
-             else if(!(t1.length() > 0) &&  !(t2.length() > 0) ){
+             else if(t1.equals(null) &&  t2.equals(null) ){
              String alert="Please Enter UserName and Password!!";
     	     RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
              request.setAttribute("alert", alert); // set your String value in the attribute
