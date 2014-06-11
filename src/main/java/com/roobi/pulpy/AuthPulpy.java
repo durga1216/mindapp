@@ -270,7 +270,7 @@ public class AuthPulpy extends HttpServlet {
 	        			}
 	        		
 	 	  
-     			  session.setAttribute("xml1", resf1);
+     			  session.setAttribute("res", resf1);
      			  session.setAttribute("token", token);
 	     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
   		   
@@ -465,7 +465,7 @@ public class AuthPulpy extends HttpServlet {
 		        			}
 		     			
 		        		     	 	  
-	        			  session.setAttribute("xml1", resf1);
+	        			  session.setAttribute("res", resf1);
 	        			  session.setAttribute("token", token);
 		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        

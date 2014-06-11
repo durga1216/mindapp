@@ -33,15 +33,16 @@ public class XmlConvert extends HttpServlet {
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		HttpSession session=request.getSession(true);
 		String xml=(String)session.getAttribute("xml1");
-		if(xml.equals("XML-RPC")){
+		PrintWriter out=response.getWriter();
+ 		out.println(xml);
+		//String res=(String)session.getAttribute("res");
+	/*	if(res.equals("XML-RPC")){
 			Object token=(Object)session.getAttribute("token");
 			Writer writer=new OutputStreamWriter(response.getOutputStream());
 		    XmlRpcSerializer.serialize( token, writer );
 		    writer.flush();
-		}
-		else{
-			PrintWriter out=response.getWriter();
-     		out.println(xml);}
+		}*/
+		
 	}
 
 	/**
