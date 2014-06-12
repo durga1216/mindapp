@@ -23,7 +23,7 @@ background-color:#FF9900;}
 color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
-margin-left:100px;
+margin-left:500px;
 font-family:verdana;
 width:400px;
 height:25px;
@@ -34,12 +34,39 @@ font-family:verdana;
 font-weight:bold;
 font-size: 20px;
 color:#FF9900;
-margin-left:360px;
+margin-left:500px;
 width:25%;
 height:30%;
 background-color:#FFFFFF;
 border-radius:50px;
 padding:15px;
+}
+input[type="submit"]{
+
+color:#FFFFFF;
+font-size:20px;
+background-color:#FF9900;
+margin-left:380px;
+font-family:verdana;
+width:140px;
+height:50px;
+border:solid 2px;
+border-color:#FFFFFF;
+border-radius:50px;
+padding:10px;
+}
+#na{
+margin-top:0;
+color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+text-align:right;}
+
+#doc{
+font-size:15px;
+font-family:verdana;
+color:#FFFFFF;
+margin-left:100px;
 }
  </style>
 <script type="text/javascript">
@@ -57,7 +84,7 @@ padding:15px;
 
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form action="ApiDoc" method="post">
-<div class="au"><center>MPulpy Documentation</center></div>
+<div class="au"><center>MPulpy Documentation</center></div><br><br>
 <input type="text" name="appid" id="appid" value="" placeholder="Enter Appid To check documentation*"><br/><br/> 
 <input type="submit" name="submit" value="check">
 <div id="doc">AppName</div>
