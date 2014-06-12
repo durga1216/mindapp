@@ -306,7 +306,7 @@ catch(Exception e)
 </select><br><br>
 
 
-<input type="submit" name="submit" value="single" formAction="MobiClient" formmethod="post">
-<input type="submit" name="submit" value="mashapp" formAction="CommonXmlPulpy" formmethod="post"></form>
+<input type="submit" name="submit" value="Single" formAction="MobiClient" formmethod="post">
+<input type="submit" name="submit" value="Mix/Mashup" formAction="MobiClient1" formmethod="post"></form>
 </body>
 </html>

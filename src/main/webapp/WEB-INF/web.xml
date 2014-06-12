@@ -372,6 +372,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>MobiClient1</display-name>
+    <servlet-name>MobiClient1</servlet-name>
+    <servlet-class>com.roobi.pulpy.MobiClient1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MobiClient1</servlet-name>
+    <url-pattern>/MobiClient1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>FirstAuthPulpy</display-name>
     <servlet-name>FirstAuthPulpy</servlet-name>
     <servlet-class>com.roobi.pulpy.FirstAuthPulpy</servlet-class>
