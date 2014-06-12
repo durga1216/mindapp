@@ -119,6 +119,7 @@ if(!"null".equals(endurl1)){
                         	session.setAttribute("pa8",pa8);else if(pa9!=null)
                             	session.setAttribute("pa9",pa9);else if(pa10!=null)
                                 	session.setAttribute("pa10",pa10);
+                                	    response.sendRedirect("apidoc.jsp");
                                 	
 		 		}
  

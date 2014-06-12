@@ -94,10 +94,10 @@ text-align:right;
 <div class="au"><center>MPulpy Documentation</center></div><br><br>
 <input type="text" name="appid" id="appid" value="" placeholder="Enter Appid To check documentation*"><br/><br/> 
 <input type="submit" name="submit" value="check">
-<div id="doc">Appname&nbsp;&nbsp;&nbsp;&nbsp;<%=session.getAttribute("appname")%>
-              Authentication&nbsp;&nbsp;&nbsp;&nbsp;<%=session.getAttribute("appid")%>
-              URL for ClientSide&nbsp;&nbsp;&nbsp;&nbsp;https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy
-              Request Method&nbsp;&nbsp;&nbsp;&nbsp;POST
+<div id="doc"><br>Appname&nbsp;&nbsp;&nbsp;&nbsp;<%=session.getAttribute("appname")%><br>
+              Authentication&nbsp;&nbsp;&nbsp;&nbsp;<%=session.getAttribute("appid")%><br>
+              URL for ClientSide&nbsp;&nbsp;&nbsp;&nbsp;https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy<br>
+              Request Method&nbsp;&nbsp;&nbsp;&nbsp;POST<br>
               Parameters
               <table><tr><td><%=session.getAttribute("pa1")%></td><td><%=session.getAttribute("pva1")%></td></tr>
               <tr><td><%=session.getAttribute("pa2")%></td><td><%=session.getAttribute("pva2")%></td></tr>
