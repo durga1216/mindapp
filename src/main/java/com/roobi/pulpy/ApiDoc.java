@@ -193,7 +193,7 @@ String resf2=rs1.getString("resf2");
         
         }//while  */
   
-	
+	}
 	} // try
 	
 	  catch(Exception e){}
