@@ -44,9 +44,9 @@ padding:15px;
 input[type="submit"]{
 
 color:#FFFFFF;
-font-size:20px;
+font-size:15px;
 background-color:#FF9900;
-margin-left:580px;
+margin-left:610px;
 font-family:verdana;
 width:140px;
 height:40px;
