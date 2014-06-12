@@ -19,7 +19,7 @@ public class ApiDoc extends HttpServlet {
 	}
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+	/* Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
 		 		try{
@@ -35,7 +35,7 @@ public class ApiDoc extends HttpServlet {
 	
 	} // try
 	
-	  catch(Exception e){}
+	  catch(Exception e){}*/
 
 }
 }
