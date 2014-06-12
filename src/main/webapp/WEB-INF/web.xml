@@ -380,4 +380,16 @@
     <servlet-name>FirstAuthPulpy</servlet-name>
     <url-pattern>/FirstAuthPulpy</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <description></description>
+    <display-name>ApiDoc</display-name>
+    <servlet-name>ApiDoc</servlet-name>
+    <servlet-class>com.roobi.pulpy.ApiDoc</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApiDoc</servlet-name>
+    <url-pattern>/ApiDoc</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
