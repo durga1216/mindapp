@@ -46,10 +46,10 @@ input[type="submit"]{
 color:#FFFFFF;
 font-size:20px;
 background-color:#FF9900;
-margin-left:380px;
+margin-left:580px;
 font-family:verdana;
 width:140px;
-height:50px;
+height:40px;
 border:solid 2px;
 border-color:#FFFFFF;
 border-radius:50px;
@@ -67,6 +67,13 @@ font-size:15px;
 font-family:verdana;
 color:#FFFFFF;
 margin-left:100px;
+}
+a{
+margin-top:0;
+color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+text-align:right;
 }
  </style>
 <script type="text/javascript">
