@@ -20,7 +20,6 @@ public class ApiDoc extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
 		 		try{
@@ -32,8 +31,11 @@ public class ApiDoc extends HttpServlet {
         while(rs.next()){ 
         
         
-        }
+        }//while
 	
-	}
+	} // try
+	
+	  catch(Exception e){}
 
+}
 }
