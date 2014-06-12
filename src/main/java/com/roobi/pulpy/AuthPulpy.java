@@ -150,7 +150,7 @@ public class AuthPulpy extends HttpServlet {
 	              
 	         if(authen1.equals("No Auth")){
 	        	 Object obj;
-	        	 String str=null;
+	        	 String str="";
 	        	 	         
                   if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //No Auth XML get
 	        		 
