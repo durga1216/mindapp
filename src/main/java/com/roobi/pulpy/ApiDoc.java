@@ -103,8 +103,23 @@ public class ApiDoc extends HttpServlet {
  String x27=rs.getString("x27"); String xv27=rs.getString("xv27");String x28=rs.getString("x28"); String xv28=rs.getString("xv28");
  String x29=rs.getString("x29"); String xv29=rs.getString("xv29");String x30=rs.getString("x30"); String xv30=rs.getString("xv30");
  
-        out.println(endurl1);
-
+if(!"null".equals(endurl1)){
+	session.setAttribute("appname", appname1);
+	session.setAttribute("authen", authen1);
+    if(pa1!=null)
+    	session.setAttribute("pa1",pa1);
+    else if(pa2!=null)
+    	session.setAttribute("pa2",pa2);
+    else if(pa3!=null)
+    	session.setAttribute("pa3",pa3);else if(pa4!=null)
+        	session.setAttribute("pa4",pa4);else if(pa5!=null)
+            	session.setAttribute("pa5",pa5);else if(pa6!=null)
+                	session.setAttribute("pa6",pa6);else if(pa7!=null)
+                    	session.setAttribute("pa7",pa7);else if(pa8!=null)
+                        	session.setAttribute("pa8",pa8);else if(pa9!=null)
+                            	session.setAttribute("pa9",pa9);else if(pa10!=null)
+                                	session.setAttribute("pa10",pa10);
+                                	
 		 		}
  
  

@@ -66,7 +66,7 @@ text-align:right;}
 font-size:15px;
 font-family:verdana;
 color:#FFFFFF;
-margin-left:100px;
+margin-left:200px;
 }
 a{
 margin-top:0;
@@ -94,7 +94,19 @@ text-align:right;
 <div class="au"><center>MPulpy Documentation</center></div><br><br>
 <input type="text" name="appid" id="appid" value="" placeholder="Enter Appid To check documentation*"><br/><br/> 
 <input type="submit" name="submit" value="check">
-<div id="doc">AppName</div>
+<div id="doc">Appname&nbsp;&nbsp;&nbsp;&nbsp;<%=session.getAttribute("appname")%>
+              Authentication&nbsp;&nbsp;&nbsp;&nbsp;<%=session.getAttribute("appid")%>
+              URL for ClientSide&nbsp;&nbsp;&nbsp;&nbsp;https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy
+              Request Method&nbsp;&nbsp;&nbsp;&nbsp;POST
+              Parameters
+              <table><tr><td><%=session.getAttribute("pa1")%></td><td><%=session.getAttribute("pva1")%></td></tr>
+              <tr><td><%=session.getAttribute("pa2")%></td><td><%=session.getAttribute("pva2")%></td></tr>
+              <tr><td><%=session.getAttribute("pa3")%></td><td><%=session.getAttribute("pva3")%></td></tr>
+              <tr><td><%=session.getAttribute("pa4")%></td><td><%=session.getAttribute("pva4")%></td></tr>
+              <tr><td><%=session.getAttribute("pa5")%></td><td><%=session.getAttribute("pva5")%></td></tr>
+              <tr><td><%=session.getAttribute("pa6")%></td><td><%=session.getAttribute("pva6")%></td></tr></table>
+              
+</div>
 </form>
 </body>
 </html>
