@@ -150,7 +150,7 @@ public class AuthPulpy extends HttpServlet {
 	              
 	         if(authen1.equals("No Auth")){
 	        	 Object obj;
-	        	 String str=null;
+	        	 String str="";
 	        	 	         
                   if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //No Auth XML get
 	        		 
@@ -195,13 +195,12 @@ public class AuthPulpy extends HttpServlet {
 		        	     InputStream stream = (InputStream) content;
 		        	     String line=null;
 		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-	        	  //  if(resf1.equals("XML")){
+	        	   if(resf1.equals("XML")){
 	        	     while((line=br.readLine())!=null){
     	  	       	 str+=line;
     	  	       	 }
-	        	     out.println(str);
-	        	  //   }
-	        	    /* else if(resf1.equals("JSON")){
+	        	   }
+	        	    else if(resf1.equals("JSON")){
 	        	    	 while ((line = br.readLine()) != null)    { 
 	        	    	  JSON json = JSONSerializer.toJSON( line) ;
 	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
@@ -273,7 +272,7 @@ public class AuthPulpy extends HttpServlet {
 	        			}
 	        		
 	 	  
-     			  session.setAttribute("res", resf1);
+     			  session.setAttribute("xml1", resf1);
      			  session.setAttribute("token", token);
 	     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
   		   
@@ -468,7 +467,7 @@ public class AuthPulpy extends HttpServlet {
 		        			}
 		     			
 		        		     	 	  
-	        			  session.setAttribute("res", resf1);
+	        			  session.setAttribute("xml1", resf1);
 	        			  session.setAttribute("token", token);
 		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
