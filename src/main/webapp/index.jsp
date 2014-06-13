@@ -174,9 +174,10 @@ function load1(){
 }
 </script>
 </head>
+
 <body>
 <form action="LoginPulpy" name="myForm" method="post" onsubmit="return validateForm()">
-<div id=na><a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi?category=Search'>View API's</a></div>
+<div id=na><a id="indiv" href='comments.jsp'>Add Your Valuable Comments Here</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi?category=Search'>View API's</a></div>
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <div class="sec">
 <center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
@@ -187,5 +188,6 @@ function load1(){
 <input type="submit" name="submit" id='sign' value="Sign Up">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="b2" value="Login" Onclick="add()"><br><br>
 </form>
+
 </body>
 </html>
