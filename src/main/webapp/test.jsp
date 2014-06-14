@@ -84,7 +84,8 @@
             </div>
             <div class="dropitems">
                 <textarea id="TextArea1" cols="50" name="S1"
-                rows="20"></textarea>
+                rows="20"><?xml version="1.0" encoding="utf-8"?>
+                </textarea>
             </div>
         </div>
         </form>
