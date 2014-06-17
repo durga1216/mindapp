@@ -100,7 +100,7 @@ text-align:right;}
     response.sendRedirect("logout.jsp");
     }%>
     
-<div id=na><%=session.getAttribute("mail")%> &nbsp;|<a id="indiv" href='<%=request.getContextPath()%>/ApiDoc1'>API Documentation</a>&nbsp;|&nbsp;&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Test </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
+<div id=na><%=session.getAttribute("mail")%> &nbsp;|<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Test </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form action="AuthPulpy1" method="post" onsubmit="return validateForm()">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
