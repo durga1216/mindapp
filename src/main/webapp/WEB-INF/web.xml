@@ -360,7 +360,7 @@
     <servlet-name>apis</servlet-name>
     <url-pattern>/apis</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>MobiClient</display-name>
     <servlet-name>MobiClient</servlet-name>
@@ -390,8 +390,7 @@
     <servlet-name>FirstAuthPulpy</servlet-name>
     <url-pattern>/FirstAuthPulpy</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>ApiDoc</display-name>
     <servlet-name>ApiDoc</servlet-name>
@@ -401,5 +400,4 @@
     <servlet-name>ApiDoc</servlet-name>
     <url-pattern>/ApiDoc</url-pattern>
   </servlet-mapping>
-  
 </web-app>
