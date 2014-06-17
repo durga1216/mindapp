@@ -18,9 +18,9 @@ import javax.servlet.http.HttpSession;
 import com.mindots.util.Utils;
 
 /**
- * Servlet implementation class EditPulpy
+ * Servlet implementation class ApiDoc
  */
-@WebServlet("/EditPulpy")
+@WebServlet("/ApiDoc")
 public class ApiDoc extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,7 +43,7 @@ public class ApiDoc extends HttpServlet {
 		 Connection con1=null;
 		 out.println("<a style='color:#ffffff;margin-left:1250px;font-size:22px;' href='logsucess.jsp'>Back</a></div>");
         out.println("<style>h2{margin-right:150px;color:#ffffff;}input[type='text']{ padding:7px;text-align:left;text-weight:bold;width:200px;color:#FF9900;font-weight:bold;}select,th,td{ padding:7px;text-align:left;text-weight:bold;width:250px;color:#FF9900;font-weight:bold;}input[type='submit']{color:#FFFFFF;background-color:#FF9900;border:solid 2px;border-radius:20px;padding:10px;width:120px;height:40px;font-family:verdana;font-size:17px;margin-left:50px;}</style>");
-		 out.println("<html><body bgcolor='#FF9900'><br><center><h2>Enter Your APP_ID</h2><br><form action='EditPulpy' method='post'>"
+		 out.println("<html><body bgcolor='#FF9900'><br><center><h2>Enter Your APP_ID</h2><br><form action='ApiDoc' method='post'>"
 			 		+ "<input type='text' name='usrid'>");
 		
 		    out.println("</select><input type='submit' value='submit'></form>");
