@@ -27,7 +27,10 @@ margin-left:400px;
 color:#ffffff;
 padding:10px;
 }
-
+a{
+color:#ffffff;
+font-weight:bold;
+}
 img{
 height:70px;
 width:200px;
@@ -52,7 +55,8 @@ font-size:50px;
 <li>Defining the request parameters (the input).</li>
 <li>Defining the response parameters (the output).</li></ul><br>
 <h2>Quickstart</h2>
-<p>If you’re new to Mind Pulpy, please try these <a href="">API console</a></p><br>
+<p>If you’re new to Mind Pulpy, please try these  <a href="mobile_client.jsp">Developer console</a>..<br><br>
+And If you’re new to App Development, Building Your First App here: please try these  <a href="https://mindtools-inputs.rhcloud.com/index.jsp">Code Generator</a>.</p><br>
 <h2>Request</h2>
 <h3>For Single Configuration</h3>
 <ul style="list-style-type:number">

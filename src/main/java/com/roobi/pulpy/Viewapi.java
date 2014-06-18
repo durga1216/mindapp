@@ -58,19 +58,15 @@ public class Viewapi extends HttpServlet {
 				   //out.println("<div style='padding:9px 0;font-size: 20px;margin-left: 50px;top: 100px;width:200px;bottom: 10px;padding: 19px;background-color: #FF9900;border: 1px solid gainsboro;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
 out.println("<p style='font-weight:bold'>Category</p><a style='color:#ffffff' href='/Viewapi?category=Search'>Search</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=General'>General</a><br>"
- 		+"<a style='color:#ffffff' href='/Viewapi?category=Backend'>Backend</a><br>"
  		+"<a style='color:#ffffff' style='font-color:#FFFFFF;'href='/Viewapi?category=Social'>Social</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Tools'>Tools</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Enterprise'>Enterprise</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Entertainment'>Entertainment</a><br>"
- 		+"<a style='color:#ffffff' href='/Viewapi?category=Security'>Security</a><br>"
- 		+"<a style='color:#ffffff' href='/Viewapi?category=Database'>Database</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Maps'>Maps</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Education'>Education</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Health'>Health</a><br>"
- 		+"<a style='color:#ffffff' href='/Viewapi?category=Music'>Music</a><br>"
+ 		+"<a style='color:#ffffff' href='/Viewapi?category=Music'>Music</a> <br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Shopping'>Shopping</a><br>"
- 		+"<a style='color:#ffffff' href='/Viewapi?category=Blogging'>Blogging</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Photos'>Photos</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Messaging'>Messaging</a></div>");
 out.println("<br><div style='padding: 9px 0;position: fixed;font-size: 18px;text-align:left;margin-left: 1150px;top: 30px;width: 70px;bottom:5px;min-height: 20px;padding: 19px;margin-bottom: 10px;background-color: #FF9900;border: 1px solid gainsboro; border-color:#FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");

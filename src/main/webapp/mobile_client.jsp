@@ -10,23 +10,23 @@
 </head>
 <style>
 .head{
-    color:#000000;
+    color:#ffffff;
     font-family:verdana;
     font-size:35px;
     font-weight:bold;
 }
 body{
-background-color:#33FF99;
+background-color:#ff9900;
 
 }
 option{
 font-size:20px;
 }
 select{
-color:#33FF99;
+color:#ff9900;
 font-size:20px;
 margin-left:80px;
-background-color:#000000;
+background-color:#ffffff;
 font-family:verdana;
 width:440px;
 height:60px;
@@ -34,9 +34,9 @@ padding:10px;
 }
 
 input[type="text"]{
-color:#33FF99;
+color:#ff9900;
 font-size:20px;
-background-color:#000000;
+background-color:#ffffff;
 margin-left:80px;
 font-family:verdana;
 width:400px;
@@ -66,10 +66,10 @@ padding:20px;
   font-weight:bold;
   }
 #na{
-color:#33FF99;
+color:#ff9900;
 margin-left:1px;
 font-size:20px;
-background-color:#000000;
+background-color:#ffffff;
 font-family:verdana;
 width:200px;
 height:15px;
@@ -77,15 +77,15 @@ padding:10px;
 }
 input[type="submit"]{
 
-color:#000000;
+color:#ffffff;
 font-size:20px;
-background-color:#33FF99;
+background-color:#ff9900;
 margin-left:280px;
 font-family:verdana;
 width:140px;
 height:50px;
 border:solid 2px;
-border-color:#000000;
+border-color:#ffffff;
 border-radius:50px;
 padding:10px;
 }
@@ -150,7 +150,7 @@ boolean empty = true;
 <option value='2'>Second configuration</option>
 <option value='3'>Third configuration</option>
 <option value='mas'>Mashup Second and Third_config</option></select><br><br><br><br>
-<table align='center'  border='0' bordercolor='#000000' style='width:700px;'>
+<table align='center'  border='0' bordercolor='#ffffff' style='width:700px;'>
 <tr><th>Parameter</th><th>Example_Value</th><th>Param_Value</th></tr>
 <%
 String el=request.getParameter("au");
