@@ -326,7 +326,7 @@ text-align:right;}
     <option value="SOAP">SOAP</option>
     
 </select></div><br/><br/>
-<div class="rmethod" style="display:none"><center>Request Method</center></div>
+<div class="rmethod" style="display:none"><center>Access Token Method</center></div>
 <select name="select2"  id="select2" onchange="change()" style="display:none">
     <option value="GET">GET</option>
     <option value="POST">POST</option>

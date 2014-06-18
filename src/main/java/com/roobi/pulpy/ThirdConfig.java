@@ -234,6 +234,8 @@ public class ThirdConfig extends HttpServlet {
     	         	     catch(Exception e){
     	 	    	      out.println(e);}	
     	        		 session.setAttribute("xml1", str);
+    	     			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+
     	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
     	               	} // NO Auth post    
              }
@@ -353,6 +355,8 @@ public class ThirdConfig extends HttpServlet {
 			         	     catch(Exception e){
 			 	    	      out.println(e);}	
 			        		 session.setAttribute("xml1", str);
+			     			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+
 			     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 			               	}//post api key
 		        	 

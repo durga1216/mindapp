@@ -82,7 +82,7 @@ public class FirstAuthPulpy extends HttpServlet {
 	             if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
 	            	 
 
-	                out.println("Your id:"+appid1);
+	               // out.println("Your id:"+appid1);
 	               
 	             out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
     		     response.setHeader("Refresh", "1; URL=auth.jsp");

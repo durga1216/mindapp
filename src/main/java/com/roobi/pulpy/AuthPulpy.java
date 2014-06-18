@@ -98,7 +98,7 @@ public class AuthPulpy extends HttpServlet {
 
       try{
   		//out.println("start");
-            PrintWriter out=response.getWriter();
+           PrintWriter out=response.getWriter();
     	    response.setContentType("text/html");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -186,7 +186,7 @@ public class AuthPulpy extends HttpServlet {
 	        			        		         		 
 	        		    		
 	        		
-	        			 out.println(eurl);
+	        			// out.println(eurl);
 	        			 URL eurl1=new URL(eurl);
 		        		 URLConnection uconn = eurl1.openConnection();
 		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -217,7 +217,7 @@ public class AuthPulpy extends HttpServlet {
 	        	    	 
 	        	     } // else if*/
 	        	    session.setAttribute("xml1", str);
-		        //    out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	        	     
 	        	 } //XML and JSON get No Auth
@@ -274,6 +274,7 @@ public class AuthPulpy extends HttpServlet {
 	 	  
      			  session.setAttribute("xml1", resf1);
      			  session.setAttribute("token", token);
+     			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
   		   
 	     			
@@ -333,6 +334,7 @@ public class AuthPulpy extends HttpServlet {
 	 	    	    //  out.println(e);
 	 	    	      }	
 	        		 session.setAttribute("xml1", str);
+	        		 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} //  post
 	        	        	 
@@ -410,7 +412,7 @@ public class AuthPulpy extends HttpServlet {
 	        	    	 
 	        	     } // else if
 	        	    session.setAttribute("xml1", str);
-		         //     out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		            out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	        	     
 	        	 } //XML and JSON get
@@ -469,6 +471,8 @@ public class AuthPulpy extends HttpServlet {
 		        		     	 	  
 	        			  session.setAttribute("xml1", resf1);
 	        			  session.setAttribute("token", token);
+	          			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+
 		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
 	        	 } //XML RPC        */	 
@@ -524,6 +528,8 @@ public class AuthPulpy extends HttpServlet {
 		 	    	    //  out.println(e);
 		         	    	 }	
 		        		 session.setAttribute("xml1", str);
+		     			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+
 		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 		               	}//post 
 	        	 
@@ -641,7 +647,7 @@ public class AuthPulpy extends HttpServlet {
 	            	  }//while}
 	              }//json
 	              session.setAttribute("xml1", str);
-	            //  out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
      		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 		          }//get
 	              else if(rm1.equals("POST")){ 
@@ -716,7 +722,7 @@ public class AuthPulpy extends HttpServlet {
 		     		      //out.println(xmlout);
 	            	  }//while
 	            	  session.setAttribute("xml1", str);
-		      //        out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	              }//post
 	           
@@ -888,6 +894,8 @@ public class AuthPulpy extends HttpServlet {
                  else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
 			    
                 	 session.setAttribute("xml1", GetResponse);
+         			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
                  } // if
             

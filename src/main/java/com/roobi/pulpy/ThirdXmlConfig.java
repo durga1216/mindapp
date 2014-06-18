@@ -98,7 +98,7 @@ public class ThirdXmlConfig extends HttpServlet {
                  request.setAttribute("id", appid); // set your String value in the attribute
                  dispatcher.forward( request, response );
      	         }
-	            //  out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
                 // response.setHeader("Refresh", "1; URL=final.jsp");
                 }
          catch(Exception e){}
