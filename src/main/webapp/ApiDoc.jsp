@@ -117,6 +117,5 @@ And If you’re new to App Development, Building Your First App here: please try
 <tr><td>&nbsp;&nbsp;&nbsp;&lt;/root&gt;</td></tr>
 <tr><td>&lt;/Mpulpy&gt;</td></tr>
 </table>
-
 </body>
 </html>

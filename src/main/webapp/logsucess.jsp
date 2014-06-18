@@ -75,7 +75,7 @@ function load(){
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
-<div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;|&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;|&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Test </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='login.jsp'> Sign Out </a></div>
+<div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Test </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='login.jsp'> Sign Out </a></div>
 
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br>
 <div class='suc'><center><h3>Login Sucess!!</h3></center></div>

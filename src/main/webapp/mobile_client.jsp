@@ -89,6 +89,9 @@ border-color:#ffffff;
 border-radius:50px;
 padding:10px;
 }
+th,td,p{
+color:#ffffff;
+}
 </style>
 <script>
 function myFunction() {
