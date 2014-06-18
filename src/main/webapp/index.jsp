@@ -84,7 +84,7 @@ font-size:50px;
 #na{
 margin-top:0;
 color:#FFFFFF;
-font-size:25px;
+font-size:20px;
 font-family:verdana;
 text-align:right;}
 .space{
@@ -97,7 +97,7 @@ font-family:verdana;
 color:#FFFFFF;
 }
 a{
-    font-size:20px;
+    font-size:18px;
     font-family:verdana;
     color:#FFFFFF;
     
