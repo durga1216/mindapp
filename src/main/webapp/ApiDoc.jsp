@@ -68,6 +68,15 @@ font-size:50px;
 <tr><td>nameValuePair.add(new BasicNameValuePair("p2","events"));</td></tr>
 <tr><td>httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));</td></tr>
 </table>
+<p>For JavaScript:</p>
+<table>
+<tr><td>var xhr = new XMLHttpRequest();</td></tr>
+<tr><td>xhr.open('POST', 'https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy', true);</td></tr>
+<tr><td>data.append('appid', 'MPAPP_0001');</td></tr>
+<tr><td>data.append('p1', 'chennai');</td></tr>
+<tr><td>data.append('p2', 'events');</td></tr>
+<tr><td>xhr.send(data);</td></tr>
+</table>
 <br>
 <h3>For Mashup Configuration</h3>
 <ul style="list-style-type:number">
