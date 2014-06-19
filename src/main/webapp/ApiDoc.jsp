@@ -20,6 +20,7 @@ margin-left:350px;
 margin-right:250px;
 }
 table{
+background-color:#F79D16;
 border:1px solid white;
 border-size:1px;
 width:800px;
@@ -47,16 +48,24 @@ font-size:50px;
 <hr>
 <body>
 <h2>Introduction</h2><br>
-<p>You can use REST services to integrate backend cloud services that support RESTful APIs. Like any other service, REST services usually have inputs and outputs, and must be set up within Mind Pulpy</p>
-<p>Creating a service consists of:</p>
+<p>Our API's pretty simple to use, like any other apis our apis also consist of simple input and xml data as output. In order to use our API, user must have configured third party apis with MindPulpy</p>
+<p>MindPulpy API consist of:</p>
 <ul style="list-style-type:number">
-<li>Entering the service URL.</li>
+<li>Entering the base URL.</li>
 <li>Entering the AppID.</li>
 <li>Defining the request parameters (the input).</li>
-<li>Defining the response parameters (the output).</li></ul><br>
+<li>Defining the response parameters (the output).</li></ul>
+<p>User can configure any kind of thirdy apis/ web services:</p>
+<ul style="list-style-type:number">
+<li>Protocol: HTTP/ HTTPS. Rest, SOAP.</li>
+<li>Output Data Format: XML/ JSON.</li>
+<li>Method: Get/ Post.</li>
+<li>RPC: XML-RPC.</li><li>Auth: Basic Auth, OAUTH2.0</li></ul>
+<br>
 <h2>Quickstart</h2>
 <p>If you’re new to Mind Pulpy, please try these  <a href="mobile_client.jsp">Developer console</a>..<br><br>
-And If you’re new to App Development, Building Your First App here: please try these  <a href="https://mindtools-inputs.rhcloud.com/index.jsp">Code Generator</a>.</p><br>
+And If you’re new to App Development, Building Your First App here: please try these  <a href="https://mindtools-inputs.rhcloud.com/index.jsp">Code Generator</a>.
+<br><br>For Videos: &nbsp;&nbsp;&nbsp;<a href="https://www.youtube.com/channel/UCetbDIh3u2tZrlEeDH5m9TA">Video Resources</a>.</p><br>
 <h2>Request</h2>
 <h3>For Single Configuration</h3>
 <ul style="list-style-type:number">
@@ -116,6 +125,9 @@ And If you’re new to App Development, Building Your First App here: please try
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/b&gt;</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&lt;/root&gt;</td></tr>
 <tr><td>&lt;/Mpulpy&gt;</td></tr>
-</table>
+</table><br>
+<h2>For Queries</h2>
+<p>If you have any queries, please drop a note to <a href="">developer@minddotss.com</a>,<br>
+else post it in the <a href="http://mindapp-pulpy.rhcloud.com/comments.jsp">Discussion Forum</a></p>
 </body>
 </html>

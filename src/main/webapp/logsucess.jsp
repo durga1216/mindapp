@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mind Pulpy</title>
 <script src="js/jquery-latest.js"></script>
+	 <%response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);%>
+
 <link rel="shortcut icon" href="favicon.ico" />
 <style>
 body{
