@@ -35,13 +35,13 @@ padding:10px;
 
 input[type="text"]{
 color:#ff9900;
-font-size:20px;
+font-size:17px;
 background-color:#ffffff;
 margin-left:80px;
 font-family:verdana;
 width:400px;
 height:25px;
-padding:20px;
+padding:10px;
 } 
 #pa{
   font-family:verdana;
