@@ -181,18 +181,13 @@ public class AuthPulpy extends HttpServlet {
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
 		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2;}
 	        		 
+	        		 else if("".equals(pa1) && !"null".equals(pva1)){
+	        			  eurl=endurl1+"/"+pva1;}
+	        		 
 	        		 else if(!"null".equals(pa1)){
 		        		 eurl=endurl1+"?"+pa1+"="+pva1;}
 	        		 
-	        		 else if("null".equals(pa1) && !"null".equals(pva1)){
-	        			  eurl=endurl1+"/"+pva1;
-	        		 }
-	        		 
-	        		 
-	        		 
-	        			        		         		 
-	        		    		
-	        		
+	   
 	        			// out.println(eurl);
 	        			 URL eurl1=new URL(eurl);
 		        		 URLConnection uconn = eurl1.openConnection();
