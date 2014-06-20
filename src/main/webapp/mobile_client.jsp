@@ -329,7 +329,7 @@ catch(Exception e)
 
 
 <input type="submit" name="submit" value="Single" formAction="MobiClient" formmethod="post">
-<input type="submit" name="oauth"  value="Oauth"  id="oauth" formAction="ClientOauth" formmethod="post">
+<input type="submit" name="oauth"  value="Oauth"  id="oauth">
 <input type="submit" name="submit" value="Mix/Mashup" formAction="MobiClient1" formmethod="post"></form>
 </body>
 </html>
