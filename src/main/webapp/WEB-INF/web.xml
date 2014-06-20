@@ -400,4 +400,14 @@
     <servlet-name>ApiDoc</servlet-name>
     <url-pattern>/ApiDoc</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClientOauth</display-name>
+    <servlet-name>ClientOauth</servlet-name>
+    <servlet-class>com.roobi.pulpy.ClientOauth</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientOauth</servlet-name>
+    <url-pattern>/ClientOauth</url-pattern>
+  </servlet-mapping>
 </web-app>
