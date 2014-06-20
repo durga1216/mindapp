@@ -103,13 +103,13 @@ function myFunction() {
 
 }
 $(document).ready(function(){
-
+   var appid=document.getElementById('aid').value;
 $('#oauth').click(function(){
 	
 	 $.ajax({
 		    type: "POST",
 		    url: "https://mindapp-pulpy.rhcloud.com/ClientOauth",
-		    data: {appid:x},
+		    data: {appid:appid},
 		    success: function(data) {
 		      //alert(data);
 		       //$('#results').html(data);
@@ -174,6 +174,9 @@ boolean empty = true;
 <%
 String el=request.getParameter("au");
 session.setAttribute("el",el);
+%>
+<div id="aid" style=display:none><%=el%></div>
+<%
 if(el.equals("1")){
 while(rs2.next()){
 	String pa1=rs2.getString("p1");String pva1=rs2.getString("pv1");
@@ -326,7 +329,7 @@ catch(Exception e)
 
 
 <input type="submit" name="submit" value="Single" formAction="MobiClient" formmethod="post">
-<input type="submit" name="oauth"  value="Oauth"  id="oauth" formAction="ClientOauth" formmethod="get">
+<input type="submit" name="oauth"  value="Oauth"  id="oauth" formAction="ClientOauth" formmethod="post">
 <input type="submit" name="submit" value="Mix/Mashup" formAction="MobiClient1" formmethod="post"></form>
 </body>
 </html>
