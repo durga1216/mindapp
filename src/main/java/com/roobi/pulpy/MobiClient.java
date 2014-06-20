@@ -193,17 +193,15 @@ public class MobiClient extends HttpServlet {
 	        		 
 	        		 else if(!"null".equals(pa1)){
 		        		 eurl=endurl1+"?"+"&"+pa1+"="+p1;}
-	             
-	        		 else if("".equals(pa1) && !"".equals(pva1)){
-	        			  eurl=endurl1+"/"+pva1;}
-	             
 	        		 else if("null".equals(pa1))
 	        			 eurl=endurl1;
-	        		
+	        		 else if("".equals(pa1) && !"null".equals(p1))
+	                     eurl=endurl1+"/"+p1;
 	                if(resf1.equals("XML")){
       	        	  doc=builder.parse(new URL(eurl).openStream());
 
                     }
+	        		 
 	        		 
 	        		 else if(resf1.equals("JSON")){
 		        			        		 
@@ -466,22 +464,21 @@ public class MobiClient extends HttpServlet {
 				          doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 		        		 }
 		        		 else if(resf1.equals("JSON")){
-		        			 while ((line = br.readLine()) != null)    { 		  
-				         	      JSON json = JSONSerializer.toJSON( line );  
-				     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-				     	          xmlSerializer.setTypeHintsEnabled(false);
-				     	          xmlSerializer.setSkipWhitespace(true);
-				     	          xmlSerializer.setTrimSpaces(true);
-				     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-				     	          xmlSerializer.removeNamespace(line);
-				     	          xmlSerializer.setForceTopLevelObject(false);
-				     		      jsonxmlout = xmlSerializer.write( json );
+		        			 while ((line = br.readLine()) != null)    { 
+		 	        	    	
+		   	         		  JSON json = JSONSerializer.toJSON( line)  ;
+		   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+		   	     	          xmlSerializer.setTypeHintsEnabled(false);
+		   	     	          xmlSerializer.setSkipWhitespace(true);
+		   	     	          xmlSerializer.setTrimSpaces(true);
+		   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+		   	     	          xmlSerializer.removeNamespace(line);
+		   	     	          xmlSerializer.setRootName("root");
+		   	     	          xmlSerializer.setForceTopLevelObject(false);
+		   	     		      str = xmlSerializer.write( json );
+		        		 } //while
+				               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 
-				        	     }	
-			                 PrintWriter out=response.getWriter();
-		        			 out.println(jsonxmlout);// end-while  	
-					               //doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
-break;
 		        		 } //if
 		        		 }//try
 		         	     catch(Exception e){
