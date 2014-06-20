@@ -194,7 +194,7 @@ public class MobiClient extends HttpServlet {
 	        		 else if(!"null".equals(pa1)){
 		        		 eurl=endurl1+"?"+"&"+pa1+"="+p1;}
 	             
-	        		 else if("".equals(pa1) && !"null".equals(pva1)){
+	        		 else if("".equals(pa1) && !"".equals(pva1)){
 	        			  eurl=endurl1+"/"+pva1;}
 	             
 	        		 else if("null".equals(pa1))
