@@ -466,20 +466,19 @@ public class MobiClient extends HttpServlet {
 				          doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 		        		 }
 		        		 else if(resf1.equals("JSON")){
-		        			 while ((line = br.readLine()) != null)    { 
-		 	        	    	
-		   	         		  JSON json = JSONSerializer.toJSON( line)  ;
-		   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-		   	     	          xmlSerializer.setTypeHintsEnabled(false);
-		   	     	          xmlSerializer.setSkipWhitespace(true);
-		   	     	          xmlSerializer.setTrimSpaces(true);
-		   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-		   	     	          xmlSerializer.removeNamespace(line);
-		   	     	          xmlSerializer.setRootName("root");
-		   	     	          xmlSerializer.setForceTopLevelObject(false);
-		   	     		      str = xmlSerializer.write( json );
-		        		 } //while
-				               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+		        			 while ((line = br.readLine()) != null)    { 		  
+				         	      JSON json = JSONSerializer.toJSON( line );  
+				     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+				     	          xmlSerializer.setTypeHintsEnabled(false);
+				     	          xmlSerializer.setSkipWhitespace(true);
+				     	          xmlSerializer.setTrimSpaces(true);
+				     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+				     	          xmlSerializer.removeNamespace(line);
+				     	          xmlSerializer.setForceTopLevelObject(false);
+				     		      jsonxmlout = xmlSerializer.write( json );
+
+				        	     }	      // end-while  	
+					               doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
 
 		        		 } //if
 		        		 }//try

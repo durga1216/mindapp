@@ -160,7 +160,7 @@ function removeParent(){
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
-<div id=na><%=session.getAttribute("mail")%>|<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Test </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>|<a id='indiv' href='logout.jsp'> Sign Out </a></div>
+<div id=na><%=session.getAttribute("mail")%>|<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Console </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>|<a id='indiv' href='logout.jsp'> Sign Out </a></div>
 <div id="head"><center>Mind Pulpy<center></center></div><br><br>
 <form action="SecondConfig" method="post">
 <center><div class='heading'>Second Step Configuration</div></center>

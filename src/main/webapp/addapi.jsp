@@ -114,22 +114,18 @@ function back()
 <input type="text" name="t2"  placeholder="Provider Name*" ><br><br>
 <select name="t6">
 <option value="Search">Search</option>
-<option value="General" selected>General</option>
-<option value="Backend">Backend</option>
-<option value="Social">Social</option>
-<option value="Tools" >Tools</option>
+<option value="Education">Education</option>
 <option value="Enterprise">Enterprise</option>
 <option value="Entertainment">Entertainment</option>
-<option value="Security">Security</option>
-<option value="Database">Database</option>
-<option value="Maps">Maps</option>
-<option value="Education">Education</option>
+<option value="General" selected>General</option>
 <option value="Health">Health</option>
-<option value="Music">Music</option>
-<option value="Shopping">Shopping</option>
-<option value="Blogging">Blogging</option>
-<option value="Photos">Photos</option>
+<option value="Maps">Maps</option>
 <option value="Messaging">Messaging</option>
+<option value="Music">Music</option>
+<option value="Photos">Photos</option>
+<option value="Shopping">Shopping</option>
+<option value="Social">Social</option>
+<option value="Tools" >Tools</option>
 </select><br><br>
 <input type="text" name="t3"  placeholder="Eg: http://api.example.com*"><br><br>
 <textarea name="t4" rows="10" cols="30" placeholder="Description*(Less than 1000 characters)"></textarea><br><br>
