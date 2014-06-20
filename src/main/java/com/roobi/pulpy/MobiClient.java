@@ -205,7 +205,6 @@ public class MobiClient extends HttpServlet {
 
                     }
 	        		 
-	        		 
 	        		 else if(resf1.equals("JSON")){
 		        			        		 
 		        		 URL eurl1=new URL(eurl);
