@@ -1136,7 +1136,6 @@ public class MobiClient extends HttpServlet {
 	                 String xmloutput=result.getWriter().toString();
 	                /* output.write(xmloutput);
 	                 output.close();*/
-	                 PrintWriter out=response.getWriter();
 	                 out.println(xmloutput);
 	              	
         }//while
@@ -1539,7 +1538,6 @@ public class MobiClient extends HttpServlet {
 	                 String xmloutput=result.getWriter().toString();
 	                /* output.write(xmloutput);
 	                 output.close();*/
-	                 PrintWriter out=response.getWriter();
 	                out.println(xmloutput);
             }//while
             }//second config
