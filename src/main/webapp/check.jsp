@@ -42,24 +42,15 @@ padding:10px;
 }
 
 </style>
-
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/jquery-latest.js"></script>
 <script type="text/javascript">
-/*$(document).ready(function() {                        // When the HTML DOM is ready loading, then execute the following function...
-    $('#submit').click(function() {               // Locate HTML DOM element with ID "somebutton" and assign the following function to its "click" event...
-        $.post('http://localhost:8080/MindPulpy1/ClientOauth', function(responseText) { // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-            alert(responseText);
-        });
-    });
-});*/
-
 $(document).ready(function() {  
     
 	$('#submit').click(function(){
 		var appid=$("#appid").val();
 	    $.ajax({
 	    type: "POST",
-	    url: "http://192.168.0.100:8080/MindPulpy1/ClientOauth",
+	    url: "https://mindapp-pulpy.rhcloud.com/ClientOauth",
 	    data: {appid:appid},
 	    success: function(data) {
 	      //alert(data);

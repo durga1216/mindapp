@@ -49,7 +49,6 @@ background-color:#ff9900;}
 </head>
 <body>
 <br><br><center><div class="head">Mobile App</div></center>
-<br><br><center> <input type="text" name="p1" id="p1" value="" placeholder="Param 1"/> </center>
 <br><br><center><input type="text" name="appid" id="appid" value="" placeholder='APP_ID'/></center>
 <br><center><input type="submit" name="submit" id="submit" value="Submit"/></center>
 
