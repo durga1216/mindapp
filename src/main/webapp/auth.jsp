@@ -300,6 +300,7 @@ $('#select3').on('change', function() {
 <input type="text" name="endurl" placeholder="End_Point_URL*"><br><br>
 <input type="text" name="method" id="method" placeholder="Method_name" style="display:none"><br><br>
 <div class="link"><center>Add Parameters</center></div><br><br>
+<div id='mnote' >* If parameters join with Url, then leave Param-label field</div><br>
 <a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
 <div id="content"></div><br><br>
 <input type="submit" name="first" value="Continue">
