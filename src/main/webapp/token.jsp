@@ -11,21 +11,18 @@
 $(document).ready(function() {
 	$('#submit').click(function(){
 		var appid=$("#appid").val();
-		var p1=$("#p1").val();
 	 $.ajax({
 		    type: 'POST',
-		    url: "http://192.168.0.100:8080/MindPulpy1/AuthXmlPulpy",
+		    url: "https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy",
 		    data: {appid:appid,
-		    p1:p1},
+		    },
             dataType: "xml",
 		     success: function(data) {
 		    //   alert("Sucess"+appid);
                $(data).find("root").each(function () {
-                    a=$(this).find("first-name").text();
-                    b=$(this).find("last-name").text();
-                    c=$(this).find("headline").text();
-       //  alert('Name:'+a+ '<br>Description :'+b+'<br>Address :'+c+'<br>City  :'+d);
-           $("#result").append('First-Name:'+a+ '<br>Last-Name:'+b+'<br>HeadLine :'+c+'<br><br>');  
+                    a=$(this).find("a").text();
+                    b=$(this).find("b").text();
+           $("#result").append('a:'+a+ '<br>b:'+b+'<br><br>');  
        
                                                           });
 		    }
@@ -36,14 +33,14 @@ $(document).ready(function() {
 </script>
 <style>
 body{
-background-color:#33FF99;}
+background-color:#ff9900;}
 .head{
-    color:#000000;
+    color:#ffffff;
     font-family:verdana;
     font-size:40px;}
     
     #result{
-    color:#000000;
+    color:#ffffff;
     font-family:verdana;
     font-size:20px;
     border:1px;

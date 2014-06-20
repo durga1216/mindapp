@@ -57,9 +57,16 @@ padding:10px;
   }
   tr{
   font-size:20px;
-  padding:13px;
-  
+  padding:13px;}
+  a{
+   color:#ffffff;
+   font-size:25px;
   }
+  #oth{
+  float:right;
+  margin-right:100px;
+  }
+  
   p{
   font-size:25px;
   margin-left:550px;
@@ -102,23 +109,6 @@ function myFunction() {
 
 
 }
-$(document).ready(function(){
-   var appid=document.getElementById('aid').value;
-$('#oauth').click(function(){
-	
-	 $.ajax({
-		    type: "POST",
-		    url: "https://mindapp-pulpy.rhcloud.com/ClientOauth",
-		    data: {appid:appid},
-		    success: function(data) {
-		      //alert(data);
-		       //$('#results').html(data);
-		       window.location=data;
-		    }
-		});
-	
-});
-});
 </script>
 <body><div class="head">
 
@@ -137,8 +127,8 @@ response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 String id1=(String) session.getAttribute("id");
 try{
 Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-//Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+//Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 PreparedStatement st1=cn.prepareStatement("SELECT appid FROM authen1 WHERE id=?");
 st1.setString(1,id1);
 ResultSet rs1 = st1.executeQuery();
@@ -147,7 +137,7 @@ while(rs1.next()){
     out.println("<option value='"+ap+"'>"+ap+"</option>");
 
 }
-out.println("</select><br><br>");
+out.println("</select><br>");
 String xx=request.getParameter("ai");
 session.setAttribute("xx",xx);
 PreparedStatement st2=cn.prepareStatement("SELECT * FROM config WHERE appid=?");
@@ -164,6 +154,7 @@ st5.setString(1,xx);
 ResultSet rs5 = st5.executeQuery();
 boolean empty = true;
 %>
+<div id="oth"><a href="check.jsp">For Oauth Check Here</a></div><br>
 <select id='eurl' name='eurl' onchange='myFunction()'><option value='dummy'>--Choose Your config Here--</option>
 <option value='1'>First configuration</option>
 <option value='2'>Second configuration</option>
@@ -174,9 +165,6 @@ boolean empty = true;
 <%
 String el=request.getParameter("au");
 session.setAttribute("el",el);
-%>
-<div id="aid" style=display:none><%=el%></div>
-<%
 if(el.equals("1")){
 while(rs2.next()){
 	String pa1=rs2.getString("p1");String pva1=rs2.getString("pv1");
@@ -329,7 +317,6 @@ catch(Exception e)
 
 
 <input type="submit" name="submit" value="Single" formAction="MobiClient" formmethod="post">
-<input type="submit" name="oauth"  value="Oauth"  id="oauth">
 <input type="submit" name="submit" value="Mix/Mashup" formAction="MobiClient1" formmethod="post"></form>
 </body>
 </html>

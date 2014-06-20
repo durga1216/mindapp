@@ -7,19 +7,19 @@
 <title>MindPulpy</title>
 <link rel="shortcut icon" href="favicon.ico" /><style>
 .head{
-    color:#000000;
+    color:#ffffff;
     font-family:verdana;
     font-size:35px;
     font-weight:bold;
 }
 body{
-background-color:#33FF99;
+background-color:#ff9900;
 
 }
 input[type="text"]{
-color:#33FF99;
+color:#ff9900;
 font-size:20px;
-background-color:#000000;
+background-color:#ffffff;
 margin-left:80px;
 font-family:verdana;
 width:300px;
@@ -28,15 +28,15 @@ padding:20px;
 } 
 input[type="submit"]{
 
-color:#000000;
+color:#ffffff;
 font-size:20px;
-background-color:#33FF99;
+background-color:#ff9900;
 margin-left:280px;
 font-family:verdana;
 width:140px;
 height:50px;
 border:solid 2px;
-border-color:#000000;
+border-color:#ffffff;
 border-radius:50px;
 padding:10px;
 }
