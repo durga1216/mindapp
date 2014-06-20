@@ -1,0 +1,83 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>MindPulpy</title>
+<link rel="shortcut icon" href="favicon.ico" /><style>
+.head{
+    color:#000000;
+    font-family:verdana;
+    font-size:35px;
+    font-weight:bold;
+}
+body{
+background-color:#33FF99;
+
+}
+input[type="text"]{
+color:#33FF99;
+font-size:20px;
+background-color:#000000;
+margin-left:80px;
+font-family:verdana;
+width:300px;
+height:20px;
+padding:20px;
+} 
+input[type="submit"]{
+
+color:#000000;
+font-size:20px;
+background-color:#33FF99;
+margin-left:280px;
+font-family:verdana;
+width:140px;
+height:50px;
+border:solid 2px;
+border-color:#000000;
+border-radius:50px;
+padding:10px;
+}
+
+</style>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+/*$(document).ready(function() {                        // When the HTML DOM is ready loading, then execute the following function...
+    $('#submit').click(function() {               // Locate HTML DOM element with ID "somebutton" and assign the following function to its "click" event...
+        $.post('http://localhost:8080/MindPulpy1/ClientOauth', function(responseText) { // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+            alert(responseText);
+        });
+    });
+});*/
+
+$(document).ready(function() {  
+    
+	$('#submit').click(function(){
+		var appid=$("#appid").val();
+	    $.ajax({
+	    type: "POST",
+	    url: "http://192.168.0.100:8080/MindPulpy1/ClientOauth",
+	    data: {appid:appid},
+	    success: function(data) {
+	      //alert(data);
+	       //$('#results').html(data);
+	       window.location=data;
+	    }
+	});
+	});              
+});
+
+</script>
+</head>
+
+<body>
+<br><br><center><div class='head'>Authentication</div></center>
+<br><br><center><input type="text" name="appid" id="appid" value="" placeholder='APP_ID'/></center>
+
+<div id='results'></div>
+<br><center><input type="submit" name="submit" id="submit" value="Sign in"/></center>
+</body>
+</html>

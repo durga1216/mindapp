@@ -102,7 +102,23 @@ function myFunction() {
 
 
 }
+$(document).ready(function(){
 
+$('#oauth').click(function(){
+	
+	 $.ajax({
+		    type: "POST",
+		    url: "https://mindapp-pulpy.rhcloud.com/ClientOauth",
+		    data: {appid:x},
+		    success: function(data) {
+		      //alert(data);
+		       //$('#results').html(data);
+		       window.location=data;
+		    }
+		});
+	
+});
+});
 </script>
 <body><div class="head">
 
@@ -121,8 +137,8 @@ response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 String id1=(String) session.getAttribute("id");
 try{
 Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-//Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+//Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 PreparedStatement st1=cn.prepareStatement("SELECT appid FROM authen1 WHERE id=?");
 st1.setString(1,id1);
 ResultSet rs1 = st1.executeQuery();
@@ -310,6 +326,7 @@ catch(Exception e)
 
 
 <input type="submit" name="submit" value="Single" formAction="MobiClient" formmethod="post">
+<input type="submit" name="oauth" id="oauth" formAction="ClientOauth" formmethod="get">
 <input type="submit" name="submit" value="Mix/Mashup" formAction="MobiClient1" formmethod="post"></form>
 </body>
 </html>
