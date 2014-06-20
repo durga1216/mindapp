@@ -477,9 +477,11 @@ public class MobiClient extends HttpServlet {
 				     	          xmlSerializer.setForceTopLevelObject(false);
 				     		      jsonxmlout = xmlSerializer.write( json );
 
-				        	     }	      // end-while  	
-					               doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
-
+				        	     }	
+			                 PrintWriter out=response.getWriter();
+		        			 out.println(jsonxmlout);// end-while  	
+					               //doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
+break;
 		        		 } //if
 		        		 }//try
 		         	     catch(Exception e){
