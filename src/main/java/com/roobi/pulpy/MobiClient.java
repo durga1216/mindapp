@@ -65,7 +65,7 @@ public class MobiClient extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
          PrintWriter out=response.getWriter();
 
-		//response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
 		  String appid=(String) session.getAttribute("xx"); 
@@ -202,7 +202,6 @@ public class MobiClient extends HttpServlet {
 	        			 eurl=endurl1;
 	        		 
 	             
-	                 out.println(eurl);
 	                if(resf1.equals("XML")){
       	        	  doc=builder.parse(new URL(eurl).openStream());
 

@@ -188,13 +188,14 @@ public class AuthXmlPulpy extends HttpServlet {
 		        		 eurl=endurl1+"?"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
-		        		 eurl=endurl1+"?"+"&"+pa1+"="+p1+"&"+pa2+"="+p2;}
+		        		 eurl=endurl1+"?"+pa1+"="+p1+"&"+pa2+"="+p2;}
 	        		 
-	        		 else if(!"null".equals(pa1)){
-		        		 eurl=endurl1+"?"+"&"+pa1+"="+p1;}
+	        		 else if("".equals(pa1) && !"null".equals(p1))
+	                     eurl=endurl1+"/"+p1;
 	             
-	        		 else if("".equals(pa1) && !"null".equals(pva1)){
-	        			  eurl=endurl1+"/"+pva1;}
+	        		 else if(!"null".equals(pa1) && !"".equals(pa1)){
+		        		 eurl=endurl1+"?"+pa1+"="+p1;}
+	             
 	        		 else if("null".equals(pa1))
 	        			 eurl=endurl1;
 	        		 
