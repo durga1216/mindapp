@@ -31,7 +31,6 @@ input[type="submit"]{
 color:#ffffff;
 font-size:20px;
 background-color:#ff9900;
-margin-left:280px;
 font-family:verdana;
 width:140px;
 height:50px;
@@ -65,10 +64,10 @@ $(document).ready(function() {
 </head>
 
 <body>
-<br><br><center><div class='head'>Authentication</div></center>
-<br><br><center><input type="text" name="appid" id="appid" value="" placeholder='APP_ID'/></center>
+<br><br><center><div class='head'>Authentication</div></center><br>
+<br><br><center><input type="text" name="appid" id="appid" value="" placeholder='APP_ID'/></center><br>
 
 <div id='results'></div>
-<br><center><input type="submit" name="submit" id="submit" value="Sign in"/></center>
+<br><center><input type="submit" name="submit" id="submit" value="Check"/></center>
 </body>
 </html>

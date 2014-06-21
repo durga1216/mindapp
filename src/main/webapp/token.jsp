@@ -60,7 +60,6 @@ input[type="submit"]{
 color:#ffffff;
 font-size:20px;
 background-color:#ff9900;
-margin-left:280px;
 font-family:verdana;
 width:140px;
 height:50px;
@@ -73,8 +72,8 @@ padding:10px;
 </style>
 </head>
 <body>
-<br><br><center><div class="head">Mobile App</div></center>
-<br><br><center><input type="text" name="appid" id="appid" value="" placeholder='APP_ID'/></center>
+<br><br><center><div class="head">Mobile App</div></center><br>
+<br><br><center><input type="text" name="appid" id="appid" value="" placeholder='APP_ID'/></center><br>
 <br><center><input type="submit" name="submit" id="submit" value="check"/></center>
 
 <br><br><center><div id='result'></div></center>
