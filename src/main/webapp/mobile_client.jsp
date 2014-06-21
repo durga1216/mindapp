@@ -21,12 +21,14 @@ background-color:#ff9900;
 }
 option{
 font-size:20px;
+background-color:#ff9900;
 }
 select{
-color:#ff9900;
+border-color:#ff9900;
+color:#ffffff;
 font-size:20px;
 margin-left:80px;
-background-color:#ffffff;
+background-color:#ff9900;
 font-family:verdana;
 width:440px;
 height:60px;

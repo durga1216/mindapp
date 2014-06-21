@@ -64,7 +64,7 @@ font-size:50px;
 <br>
 <h2>Quickstart</h2>
 <p>If you’re new to Mind Pulpy, please try these  <a href="mobile_client.jsp">Developer console</a>..<br><br>
-And If you’re new to App Development, Building Your First App here: please try these  <a href="https://mindtools-inputs.rhcloud.com/index.jsp">Code Generator</a>.
+And If you’re new to Apps Development, Build Your First App here: please try these <a href="https://mindtools-inputs.rhcloud.com/index.jsp">Code Generator</a>.
 <br><br>For Videos: &nbsp;&nbsp;&nbsp;<a href="https://www.youtube.com/channel/UCetbDIh3u2tZrlEeDH5m9TA">Video Resources</a>.</p><br>
 <h2>Request</h2>
 <h3>For Single Configuration</h3>
