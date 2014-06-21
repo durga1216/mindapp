@@ -99,6 +99,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			
 	        String line = "";
 			HttpClient client=new DefaultHttpClient();
+            pw.println("<body style='background-color:#ff9900;'>");
 
 
 			if(rm1.equals("POST")){
@@ -175,13 +176,13 @@ public class OauthCallBackServlet extends HttpServlet {
 					   session1.setAttribute("access_token", access_token);
 					   session1.setAttribute("id", id);
 					   if(access_token.equals(""))
-				            {pw.println("<br><br><center><b><h2><font color='green'>Authentication Error with "+appname+"</font></center></h2></b>");}
+				            {pw.println("<br><br><center><b><h2><font color='white'>Authentication Error with "+appname+"</font></center></h2></b>");}
 					   else{
 					    response.setContentType("text/html;charset=utf-8");
 			        	response.setCharacterEncoding("UTF-8");
-			            pw.println("<br><br><center><b><h2><font color='green'>Sucessfully Authenticated with "+appname+"</font></center></h2></b>");
-			            pw.println("<br><br><h3><center><a href='auth.jsp'>Continue with Config</a></center></h3>");
-			            pw.println("<br><br><h3><center><a href='token.jsp'>Continue with App</a></center></h3>");}
+			            pw.println("<br><br><center><b><h2><font color='#ffffff;'>Sucessfully Authenticated with "+appname+"</font></center></h2></b>");
+			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='auth.jsp'>Continue with Config</a></center></h3>");
+			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='token.jsp'>Continue with App</a></center></h3></body>");}
 			}
 			catch(Exception e){
 				pw.println(e);
