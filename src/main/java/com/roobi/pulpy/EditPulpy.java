@@ -42,21 +42,22 @@ public class EditPulpy extends HttpServlet {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		 Connection con1=null;
 		 out.println("<a style='color:#ffffff;margin-left:1250px;font-size:22px;' href='logsucess.jsp'>Back</a></div>");
-        out.println("<style>h2{margin-right:150px;color:#ffffff;}option{font-size:22px;}select,th,td,input[type='text']{ padding:7px;text-align:left;text-weight:bold;width:250px;color:#FF9900;font-weight:bold;}input[type='submit']{color:#FFFFFF;background-color:#FF9900;border:solid 2px;border-radius:20px;padding:10px;width:120px;height:40px;font-family:verdana;font-size:17px;margin-left:50px;}</style>");
-		 out.println("<html><body bgcolor='#FF9900'><br><center><h2>Enter Your APP_ID</h2><br><form action='EditPulpy' method='post'>"
-		 		+ "<select name='usrid'><option value='dummy'>***Choose Your APP_ID Here***</option>");
+        out.println("<style>h2{margin-right:150px;color:#ffffff;}select,option{border-color:#ff9900;font-family:verdana;width:440px;height:60px;padding:10px;background-color:#ff9900;color:#ffffff;font-size:20px;}th,td,input[type='text']{ padding:7px;text-align:left;text-weight:bold;width:250px;color:#FF9900;font-weight:bold;}input[type='submit']{color:#FFFFFF;background-color:#FF9900;border:solid 2px;border-radius:20px;padding:10px;width:120px;height:40px;font-family:verdana;font-size:17px;margin-left:50px;}</style>");
+		 out.println("<html><body bgcolor='#FF9900'><br><br><center><form action='EditPulpy' method='post'>"
+		 		+ "<select name='usrid'><option value='dummy'>--Choose Your APP_ID Here--</option>");
 		 HttpSession session=request.getSession(true);
 		  String id1=(String) session.getAttribute("id");
 		  try{
 			    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	        con1 = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 
-		    PreparedStatement st1=con1.prepareStatement("SELECT appid FROM authen1 WHERE id=?");
+		    PreparedStatement st1=con1.prepareStatement("SELECT * FROM authen1 WHERE id=?");
 		    st1.setString(1,id1);
 		    ResultSet rs1 = st1.executeQuery();
 		    while(rs1.next()){
+		    	String nme=rs1.getString("appname");
 	        	String ap=rs1.getString("appid");
-	        out.println("<option value='"+ap+"'>"+ap+"</option>");
+	        out.println("<option value='"+ap+"'>"+ap+" ("+nme+")</option>");
 	        
 	        }
 		    out.println("</select><input type='submit' value='submit'></form>");
@@ -82,21 +83,22 @@ public class EditPulpy extends HttpServlet {
 		 Connection con=null;
 		 Connection con1=null;
 		 out.println("<a style='color:#ffffff;margin-left:1250px;font-size:22px;' href='logsucess.jsp'>Back</a></div>");
-		out.println("<style>h2{margin-right:150px;color:#ffffff;}option{font-size:22px;}select,th,td,input[type='text']{ padding:7px;text-align:left;text-weight:bold;width:250px;color:#FF9900;font-weight:bold;}input[type='submit']{color:#FFFFFF;background-color:#FF9900;border:solid 2px;border-radius:20px;padding:10px;width:120px;height:40px;font-family:verdana;font-size:17px;margin-left:50px;}</style>");
-		 out.println("<html><body bgcolor='#FF9900'><br><center><h2>Enter Your APP_ID</h2><br><form action='EditPulpy' method='post'>"
-			 		+ "<select name='usrid'><option value='dummy'>***Choose Your APP_ID Here***</option>");
+		out.println("<style>h2{margin-right:150px;color:#ffffff;}select,option{border-color:#ff9900;font-family:verdana;width:440px;height:60px;padding:10px;background-color:#ff9900;color:#ffffff;font-size:20px;}th,td,input[type='text']{ padding:7px;text-align:left;text-weight:bold;width:250px;color:#FF9900;font-weight:bold;}input[type='submit']{color:#FFFFFF;background-color:#FF9900;border:solid 2px;border-radius:20px;padding:10px;width:120px;height:40px;font-family:verdana;font-size:17px;margin-left:50px;}</style>");
+		 out.println("<html><body bgcolor='#FF9900'><br><br><center><form action='EditPulpy' method='post'>"
+			 		+ "<select name='usrid'><option value='dummy'>--Choose Your APP_ID Here--</option>");
 			 HttpSession session=request.getSession(true);
 			  String id1=(String) session.getAttribute("id");
 			  try{
 				    Class.forName("com.mysql.jdbc.Driver").newInstance();
 		        con1 = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 
-			    PreparedStatement st1=con1.prepareStatement("SELECT appid FROM authen1 WHERE id=?");
+			    PreparedStatement st1=con1.prepareStatement("SELECT * FROM authen1 WHERE id=?");
 			    st1.setString(1,id1);
 			    ResultSet rs1 = st1.executeQuery();
 			    while(rs1.next()){
+			    	String nme=rs1.getString("appname");
 		        	String ap=rs1.getString("appid");
-		        out.println("<option value='"+ap+"'>"+ap+"</option>");
+		        out.println("<option value='"+ap+"'>"+ap+" ("+nme+")</option>");
 		        
 		        }
 			    out.println("</select><input type='submit' value='submit'></form>");

@@ -114,7 +114,7 @@ function myFunction() {
 </script>
 <body><div class="head">
 
-<center>Mobile App</center></div>
+<center>Developer Console</center></div>
 <form >
 <%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
