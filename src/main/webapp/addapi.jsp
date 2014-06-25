@@ -126,6 +126,7 @@ function back()
 <option value="Shopping">Shopping</option>
 <option value="Social">Social</option>
 <option value="Tools" >Tools</option>
+<option value="wearable">Hardware/wearable</option>
 </select><br><br>
 <input type="text" name="t3"  placeholder="Eg: http://api.example.com*"><br><br>
 <textarea name="t4" rows="10" cols="30" placeholder="Description*(Less than 1000 characters)"></textarea><br><br>

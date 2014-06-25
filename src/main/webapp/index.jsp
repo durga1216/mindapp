@@ -110,7 +110,10 @@ color:#FFFFFF;
 font-size:20px;
 font-family:verdana;
 text-align:right;}
-
+img{
+height:50px;
+width:60px;
+}
  </style>
  <script>
  function validateForm()
@@ -183,7 +186,7 @@ function load1(){
 </head>
 <body>
 <form action="LoginPulpy" name="myForm" method="post" onsubmit="return validateForm()">
-<div id=na><img src="images/log.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi?category=Search'>View API's</a></div>
+<div id=na><img src="images/log.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi?category=Search'>Search API's</a></div>
 <br><hr>
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <div class="sec">
@@ -193,7 +196,9 @@ function load1(){
 <input type=password name="s4" id='s4'  placeholder="Password"><br><br>
 <div style='color:#ffffff;margin-left:70px;font-size:15px;font-family:verdana;'><input type="checkbox" value="0" name="agree">I agree to the Minddots <a style='font-size:15px;'href="javascript:load()">Terms of service</a> and <a style='font-size:15px;'href="javascript:load()">Privacy Policy</a></div><br><br></center>
 <input type="submit" name="submit" id='sign' value="Sign Up">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="b2" value="Login" Onclick="add()"><br><br>
+<input type="button" name="b2" value="Login" Onclick="add()"><br><br><br>
+<center>&nbsp;&nbsp;<img alt="mobile" src="images/mobile.png">&nbsp;&nbsp;<img alt="tablet" src="images/tablet.png">&nbsp;&nbsp;<img alt="smart tv" src="images/TV.png">&nbsp;&nbsp;<img alt="smart watch" src="images/watch-2.png">&nbsp;&nbsp;<img alt="google glass" src="images/Glass-Icon.png">
+</center>
 </form>
 
 </body>

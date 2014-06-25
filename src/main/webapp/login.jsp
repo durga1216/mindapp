@@ -46,6 +46,10 @@ width:300px;
 height:25px;
 padding:10px;
 } 
+img{
+height:50px;
+width:60px;
+}
 input[type="button"],input[type="submit"]{
 
 color:#FFFFFF;
@@ -95,8 +99,9 @@ function load(){
 <center><input type=text name="t1" id='t1' placeholder="Email"><br><br>
 <input type=password name="t2" id='t2'  placeholder="Password"><br><br><br></center>
 <center><input type="submit" name="submit" id='Login' value="Login">&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="b2" value="Signup" Onclick="add()"><center><br>
-
+<input type="button" name="b2" value="Signup" Onclick="add()"><center><br><br><br>
+<center>&nbsp;&nbsp;<img alt="mobile" src="images/mobile.png">&nbsp;&nbsp;<img alt="tablet" src="images/tablet.png">&nbsp;&nbsp;<img alt="smart tv" src="images/TV.png">&nbsp;&nbsp;<img alt="smart watch" src="images/watch-2.png">&nbsp;&nbsp;<img alt="google glass" src="images/Glass-Icon.png">
+</center>
 </form>
 </body>
 </html>

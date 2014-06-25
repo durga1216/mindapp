@@ -62,6 +62,7 @@ out.println("<p style='font-weight:bold'>Category</p><a style='color:#ffffff' hr
  		+"<a style='color:#ffffff' href='/Viewapi?category=Tools'>Tools</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Enterprise'>Enterprise</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Entertainment'>Entertainment</a><br>"
+ 		+"<a style='color:#ffffff' href='/Viewapi?category=wearable'>Hardware/wearable</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Maps'>Maps</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Education'>Education</a><br>"
  		+"<a style='color:#ffffff' href='/Viewapi?category=Health'>Health</a><br>"

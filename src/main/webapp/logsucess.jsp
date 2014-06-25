@@ -66,7 +66,7 @@ text-align:left;}
 </style>
 <script type="text/javascript">
 function load(){
-	window.open("https://www.youtube.com/watch?v=lqkEmqNi_10&feature=youtu.be", '_blank');
+	window.open("http://www.youtube.com/channel/UCc0XVG8gFmFMi1jh_hj0sQA", '_blank');
 	
 }
 </script>
