@@ -41,7 +41,6 @@ font-size:20px;
 background-color:#FFFFFF;
 margin-left:80px;
 font-family:verdana;
-width:300px;
 height:25px;
 padding:10px;
 } 
@@ -175,6 +174,5 @@ catch(Exception e){
 }
 %>
 
-</form>
 </body>
 </html>
