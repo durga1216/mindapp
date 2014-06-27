@@ -410,4 +410,15 @@
     <servlet-name>ClientOauth</servlet-name>
     <url-pattern>/ClientOauth</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>AdminPulpy</display-name>
+    <servlet-name>AdminPulpy</servlet-name>
+    <servlet-class>com.roobi.pulpy.AdminPulpy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminPulpy</servlet-name>
+    <url-pattern>/AdminPulpy</url-pattern>
+  </servlet-mapping>
 </web-app>
