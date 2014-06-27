@@ -83,7 +83,7 @@ font-size:20px;
 background-color:#FFFFFF;
 margin-left:80px;
 font-family:verdana;
-width:400px;
+width:350px;
 height:25px;
 padding:10px;
 } 
@@ -219,7 +219,7 @@ function addParent()
   var contentID = document.getElementById('content');
   var newTBDiv = document.createElement('div');
       newTBDiv.setAttribute('id','strText'+intTextBox);
-  newTBDiv.innerHTML = "<input type='text' id='p" + intTextBox + "'    name='p" + intTextBox + "' placeholder='Param_Label'/>" + "<input type='text' id='pv"+ intTextBox + " ' name='pv"+intTextBox+"' placeholder='Param_Value'/>";
+newTBDiv.innerHTML = "<input type='text' id='p" + intTextBox + "'    name='p" + intTextBox + "' placeholder='Param_Label'/>" + "<input type='text' id='pv"+ intTextBox + " ' name='pv"+intTextBox+"' placeholder='Param_Value'/><input type='radio' name='field"+intTextBox+"'  value='Optional'><label for='rd"+intTextBox+"'>Optional</label><input type='radio' name='field"+intTextBox+"'   value='Mandatory'><label for='rd"+intTextBox+"'>Mandatory</label>";
   contentID.appendChild(newTBDiv);
 // alert( "Text "+intTextBox+":  id='p" + intTextBox + "'    name='p" + intTextBox + "'");
 }

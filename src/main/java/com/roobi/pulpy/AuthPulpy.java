@@ -76,6 +76,11 @@ public class AuthPulpy extends HttpServlet {
       String p8=request.getParameter("p8"); String pv8=request.getParameter("pv8");
       String p9=request.getParameter("p9");String pv9=request.getParameter("pv9");
       String p10=request.getParameter("p10");String pv10=request.getParameter("pv10");
+      String field1=request.getParameter("field1");      String field2=request.getParameter("field2");
+      String field3=request.getParameter("field3");      String field4=request.getParameter("field4");
+      String field5=request.getParameter("field5");      String field6=request.getParameter("field6");
+      String field7=request.getParameter("field7");      String field8=request.getParameter("field8");
+      String field9=request.getParameter("field9");      String field10=request.getParameter("field10");
       HttpSession session=request.getSession(true);
       HttpSession session3=request.getSession(true);
 	  String id=(String) session.getAttribute("id");
@@ -104,7 +109,7 @@ public class AuthPulpy extends HttpServlet {
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             String sam=null;
              PreparedStatement st=null;
-			 st=con.prepareStatement("insert into config(id,appid,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10) values ('"+id+"','"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"')");
+			 st=con.prepareStatement("insert into config(id,appid,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10) values ('"+id+"','"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"')");
 			 st.executeUpdate();
 		     st.close();
 		  		//out.println("start2");
@@ -145,7 +150,11 @@ public class AuthPulpy extends HttpServlet {
              String h3=rs.getString("h3");String hv3=rs.getString("hv3");
              String h4=rs.getString("h4");String hv4=rs.getString("hv4");
              String h5=rs.getString("h5");String hv5=rs.getString("hv5");
-	        
+             String f1=rs.getString("f1"); String f2=rs.getString("f2");
+             String f3=rs.getString("f3"); String f4=rs.getString("f4");
+             String f5=rs.getString("f5"); String f6=rs.getString("f6");
+             String f7=rs.getString("f7"); String f8=rs.getString("f8");
+             String f9=rs.getString("f9"); String f10=rs.getString("f10");
              String eurl=null;
 	              
 	         if(authen1.equals("No Auth")){
