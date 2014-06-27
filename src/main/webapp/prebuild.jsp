@@ -15,6 +15,32 @@ function change(){
 }
 </script>
 <style>
+input[type="submit"]{
+
+	color:#FFFFFF;
+	font-size:20px;
+	background-color:#FF9900;
+	margin-left:300px;
+	font-family:verdana;
+	width:140px;
+	height:50px;
+	border:solid 2px;
+	border-color:#FFFFFF;
+	border-radius:50px;
+	padding:10px;
+	}
+ .param{
+ font-family:verdana;
+font-weight:bold;
+font-size: 20px;
+color:#FF9900;
+margin-left:500px;
+width:23%;
+height:30%;
+background-color:#FFFFFF;
+border-radius:50px;
+padding:15px;
+ }
 body{
 background-color:#FF9900;}
 .head{

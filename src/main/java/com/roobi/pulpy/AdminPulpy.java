@@ -146,8 +146,8 @@ String postparam=null;
 String getparam=null;
 String eurl=null;
     
-     
-if(authen1.equals("No Auth")){
+     out.println(authen1+"<br>"+appid+"<br>"+pv1);
+/*if(authen1.equals("No Auth")){
 	 Object obj;
 	 String str="";
 	 	         
@@ -216,7 +216,7 @@ if(authen1.equals("No Auth")){
   			
   		     }//while
 	    	 
-	     } // else if*/
+	     } // else if
 	    session.setAttribute("xml1", str);
      out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	        response.setHeader("Refresh", "1; URL=auth1.jsp");	
@@ -476,7 +476,7 @@ if(authen1.equals("API keys")){  //API Keys
 
 		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	        
-	 } //XML RPC        */	 
+	 } //XML RPC        
 	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
 		 
  		 String USER_AGENT = "Mozilla/5.0";
@@ -900,7 +900,7 @@ else if(authen1.equals("Oauth2")){
 	        response.setHeader("Refresh", "1; URL=auth1.jsp");	
     } // if
 
-}//oauth	
+}//oauth	*/
 
 }//try
 } // while database
