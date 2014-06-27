@@ -42,6 +42,7 @@ public class LoginPulpy extends HttpServlet {
 		String s2=request.getParameter("s2");
 		String s3=request.getParameter("s3");
 		String s4=request.getParameter("s4");
+		String s5=request.getParameter("s5");
 		try{
 			
 			Class.forName("com.mysql.jdbc.Driver").newInstance();

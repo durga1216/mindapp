@@ -188,6 +188,7 @@ function load1(){
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <div class="sec">
 <center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
+<input  type=text name="s5" id='s5' placeholder="Mobile Number"><br><br>
 <input  type=text name="s2" id='s2' placeholder="First Name"><br><br>
 <input  type=text name="s3" id='s3' placeholder="Last Name"><br><br>
 <input type=password name="s4" id='s4'  placeholder="Password"><br><br>
