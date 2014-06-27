@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,6 +38,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.mindots.util.Utils;
 import com.mysql.jdbc.Connection;
 
 /**
@@ -90,11 +92,11 @@ public class AdminPulpy extends HttpServlet {
 	    String pv10=request.getParameter("pv10");
 	    try{
 	        Connection con=null;
+			Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-           String url = "jdbc:mysql://localhost/MPULPY";
-           final String USER = "root";
-           final String PASS = "root";
-           con = (Connection) DriverManager.getConnection(url,USER,PASS);
+            con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+
            String sam=null;
            PreparedStatement st=con.prepareStatement("update config,xmlconfig set config.pv1='"+pv1+"',config.pv2='"+pv2+"',config.pv3='"+pv3+"',config.pv4='"+pv4+"',config.pv5='"+pv5+"',config.pv6='"+pv6+"',config.pv7='"+pv7+"',config.pv8='"+pv8+"',config.pv9='"+pv9+"',config.pv10='"+pv10+"' where config.appid='"+appid+"';");                
            st.executeUpdate();
@@ -147,7 +149,7 @@ String getparam=null;
 String eurl=null;
     
      out.println(authen1+"<br>"+appid+"<br>"+pv1);
-/*if(authen1.equals("No Auth")){
+if(authen1.equals("No Auth")){
 	 Object obj;
 	 String str="";
 	 	         
@@ -900,7 +902,7 @@ else if(authen1.equals("Oauth2")){
 	        response.setHeader("Refresh", "1; URL=auth1.jsp");	
     } // if
 
-}//oauth	*/
+}//oauth	
 
 }//try
 } // while database
