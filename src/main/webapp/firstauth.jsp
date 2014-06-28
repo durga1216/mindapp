@@ -316,7 +316,7 @@ text-align:right;}
 
 <center><div id="def">* Tokens placed in headers will look like Authorization: Bearer <token> and tokens in querystrings will look like ?access_token=token</div></center><br>
 <input type="text" name="el" value="" placeholder="Extra_Field_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="ev" value="" placeholder="Extra_Field_Value"></div>
+<input type="text" name="ev" value="" placeholder="Extra_Field_Value">
 
 <div class="sselect" style="display:none">
 <div class="rformat"><center>Request Format</center></div>
@@ -325,15 +325,14 @@ text-align:right;}
     <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
     
-</select></div><br/><br/>
+</select><br/><br/>
 <div class="rmethod" style="display:none"><center>Access Token Method</center></div>
 <select name="select2"  id="select2" onchange="change()" style="display:none">
     <option value="GET">GET</option>
     <option value="POST">POST</option>
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
-</select><br/><br/>
-
+</select></div><br/><br/>
 <input type="submit" name="submit" value="Continue">
 </body>
 </html>
