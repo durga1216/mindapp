@@ -294,7 +294,7 @@ text-align:right;}
 
 </div>
 <br><br><div id="oauth2" style="display:none"><br>
-<center><div class='redirect'>Redirect URI=/OauthCallBackServlet</div></center><br><br>
+<center><div class='redirect'>Redirect URI=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet</div></center><br><br>
 <input type="text" name="cname" value="" placeholder="Client_ID_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="ckey" value="" placeholder="Client_ID_KEY"><br><br>
 <input type="text" name="csecname" value="" placeholder="Client_Secret_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -318,7 +318,6 @@ text-align:right;}
 <input type="text" name="el" value="" placeholder="Extra_Field_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="ev" value="" placeholder="Extra_Field_Value">
 
-<div class="sselect" style="display:none">
 <div class="rformat"><center>Request Format</center></div>
 <select name="select1"  id="select1" onchange="change()">
     <option value="REST">REST</option>
@@ -332,7 +331,8 @@ text-align:right;}
     <option value="POST">POST</option>
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
-</select></div><br/><br/>
+</select></div>
+<br/><br/>
 <input type="submit" name="submit" value="Continue">
 </body>
 </html>
