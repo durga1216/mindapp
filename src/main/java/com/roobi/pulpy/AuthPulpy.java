@@ -696,6 +696,10 @@ public class AuthPulpy extends HttpServlet {
 	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 
 	   	            	 } 
+	            	 else if("null".equals(b2) && "null".equals(b4)){
+	            		 encoding=null;
+	            	 }
+	            	 
 	              if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
 		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
 		              }
@@ -721,7 +725,7 @@ public class AuthPulpy extends HttpServlet {
 	                    }} // while and xml
 	              else if(resf1.equals("JSON")){
 	            	  while((line=in.readLine())!=null){
-	            		  JSON json = JSONSerializer.toJSON( line .replaceAll("\\s+","")  );  
+	            		  JSON json = JSONSerializer.toJSON( line );  
 		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
 		     	          xmlSerializer.setTypeHintsEnabled(false);
 		     	          xmlSerializer.setSkipWhitespace(true);

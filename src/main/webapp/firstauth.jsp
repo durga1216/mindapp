@@ -317,7 +317,7 @@ text-align:right;}
 <center><div id="def">* Tokens placed in headers will look like Authorization: Bearer <token> and tokens in querystrings will look like ?access_token=token</div></center><br>
 <input type="text" name="el" value="" placeholder="Extra_Field_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="ev" value="" placeholder="Extra_Field_Value">
-
+<br><br>
 <div class="rformat"><center>Request Format</center></div>
 <select name="select1"  id="select1" onchange="change()">
     <option value="REST">REST</option>
