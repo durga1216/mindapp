@@ -41,8 +41,8 @@ public class Apilogo extends HttpServlet {
 		out.println("<div>");
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
-			//Connection con=DriverManager.getConnection("jdbc:mysql://127.4.215.130:3306/glass", "adminejLNKKj", "SHcP4fCwMWqi");
+		//	Connection con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+		Connection con=DriverManager.getConnection("jdbc:mysql://127.4.215.130:3306/glass", "adminejLNKKj", "SHcP4fCwMWqi");
 		PreparedStatement ps=con.prepareStatement("select * addapi from  where name=?");
 		ps.setString(1, logo);
 		ResultSet rs=ps.executeQuery();
