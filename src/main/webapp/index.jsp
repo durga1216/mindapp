@@ -48,7 +48,7 @@ padding:8px;
 color:#FFFFFF;
 font-size:15px;
 background-color:#FF9900;
-margin-left:550px;
+margin-left:150px;
 font-family:verdana;
 width:150px;
 height:50px;
@@ -110,6 +110,28 @@ text-align:right;}
 img{
 height:50px;
 width:60px;
+}
+#sec{
+width:41%;
+height:500px;
+background-color:#FF9900;
+float: left;
+overflow:auto;
+}
+#imdv{
+margin-left:100px;
+width:41%;
+height:500px;
+background-color:#FF9900;
+float: left;
+overflow:auto;
+}
+#ful{
+ width:100%;
+ height:500px;
+ background:#FF9900;
+ border:0px solid #FFFFFF;
+ float:left;
 }
  </style>
  <script>
@@ -185,8 +207,9 @@ function load1(){
 <form action="LoginPulpy" name="myForm" method="post" onsubmit="return validateForm()">
 <div id=na><img style="height:60px;width:200px;"src="images/log.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'apidisp.jsp'>Other API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>/Viewapi?category=Search'>Search API's</a></div>
 <br><hr>
-<br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
-<div class="sec">
+<br><div class="head"><center>Mind Pulpy</center></h2></div><br><br><div id=ful>
+<div id=imdv><img alt="logo" src="images/MindPulpy_Illustration.PNG"style="height:400px;width:500px;"></div>
+<div id="sec">
 <center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
 <input  type=text name="s5" id='s5' placeholder="Mobile Number"><br><br>
 <input  type=text name="s2" id='s2' placeholder="First Name"><br><br>
@@ -195,8 +218,7 @@ function load1(){
 <div style='color:#ffffff;margin-left:70px;font-size:15px;font-family:verdana;'><input type="checkbox" value="0" name="agree">I agree to the Minddots <a style='font-size:15px;'href="javascript:load()">Terms of service</a> and <a style='font-size:15px;'href="javascript:load()">Privacy Policy</a></div><br><br></center>
 <input type="submit" name="submit" id='sign' value="Sign Up">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="b2" value="Login" Onclick="add()"><br><br><br>
-<center>&nbsp;&nbsp;<img alt="mobile" src="images/mobile.png">&nbsp;&nbsp;<img alt="tablet" src="images/tablet.png">&nbsp;&nbsp;<img alt="smart tv" src="images/TV.png">&nbsp;&nbsp;<img alt="smart watch" src="images/watch-2.png">&nbsp;&nbsp;<img alt="google glass" src="images/Glass-Icon.png">
-</center>
+</div></dir></div>
 </form>
 
 </body>

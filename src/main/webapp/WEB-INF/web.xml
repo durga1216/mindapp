@@ -410,7 +410,6 @@
     <servlet-name>ClientOauth</servlet-name>
     <url-pattern>/ClientOauth</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>AdminPulpy</display-name>
