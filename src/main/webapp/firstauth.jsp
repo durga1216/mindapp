@@ -245,6 +245,11 @@ color:#FFFFFF;
 font-size:15px;
 font-family:verdana;
 text-align:right;}
+#tt{
+font-size:20px;
+color:#ffffff;
+margin-left:100px;
+}
 </style>
 </head>
 <body>
@@ -259,8 +264,9 @@ text-align:right;}
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id='indiv' href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Console </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
 
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
-<form action="FirstAuthPulpy" method="post">
-<input type="text" name="app1" value="" placeholder="Application Name*"><br/><br/> 
+<form action="FirstAuthPulpy" method="post" enctype="multipart/form-data">
+<input type="text" name="app1" value="" placeholder="Application Name*"><br/><br>
+<div id="tt">Select Image  &nbsp;&nbsp;&nbsp;&nbsp;<input style="color:#ffffff;" type="file" name="logo" placeholder="image location"></div><br><br>
 <textarea id="txt" name="descr" placeholder="Description*"></textarea><br><br>
 <div class="au"><center>Authentication Scheme</center></div><div class="space"></div>
 <div id="inline_content">
@@ -294,7 +300,7 @@ text-align:right;}
 
 </div>
 <br><br><div id="oauth2" style="display:none"><br>
-<center><div class='redirect'>Redirect URI=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet</div></center><br><br>
+<center><div class='redirect'>Redirect URI=/OauthCallBackServlet</div></center><br><br>
 <input type="text" name="cname" value="" placeholder="Client_ID_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="ckey" value="" placeholder="Client_ID_KEY"><br><br>
 <input type="text" name="csecname" value="" placeholder="Client_Secret_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -316,23 +322,24 @@ text-align:right;}
 
 <center><div id="def">* Tokens placed in headers will look like Authorization: Bearer <token> and tokens in querystrings will look like ?access_token=token</div></center><br>
 <input type="text" name="el" value="" placeholder="Extra_Field_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="ev" value="" placeholder="Extra_Field_Value">
-<br><br>
+<input type="text" name="ev" value="" placeholder="Extra_Field_Value"></div>
+
+<div class="sselect" style="display:none">
 <div class="rformat"><center>Request Format</center></div>
 <select name="select1"  id="select1" onchange="change()">
     <option value="REST">REST</option>
     <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
     
-</select><br/><br/>
+</select></div><br/><br/>
 <div class="rmethod" style="display:none"><center>Access Token Method</center></div>
 <select name="select2"  id="select2" onchange="change()" style="display:none">
     <option value="GET">GET</option>
     <option value="POST">POST</option>
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
-</select></div>
-<br/><br/>
+</select><br/><br/>
+
 <input type="submit" name="submit" value="Continue">
 </body>
 </html>

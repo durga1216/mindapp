@@ -1,6 +1,7 @@
 package com.roobi.pulpy;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.mindots.util.Utils;
 
@@ -42,10 +44,12 @@ public class Addapi extends HttpServlet {
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 			String name=request.getParameter("t1");
+			InputStream inputStream=null;
 		String pname=request.getParameter("t2");
 		String link=request.getParameter("t3");
 		String des=request.getParameter("t4");
-		String img=request.getParameter("t5");
+        Part filePart = request.getPart("t5");  
+        inputStream = filePart.getInputStream();
 		String cat=request.getParameter("t6");
 		Connection con=null;
 		PrintWriter out=response.getWriter();
@@ -59,7 +63,7 @@ public class Addapi extends HttpServlet {
 			 st.setString(2, pname);
 			 st.setString(3, link);
 			 st.setString(4, des);
-			 st.setString(5, img);
+			 st.setBlob(5, inputStream);
 			 st.setString(6, cat);
 			 st.executeUpdate();
 		     st.close();
