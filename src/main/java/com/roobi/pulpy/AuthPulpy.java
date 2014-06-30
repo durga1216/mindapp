@@ -579,7 +579,7 @@ public class AuthPulpy extends HttpServlet {
         		 else if(!"null".equals(pa1)){
 	        		 eurl=pa1+"="+pva1;}
         		 else if("null".equals(pa1))
-        			eurl="";
+        			eurl="{ 'filter' : { }}";
 	        	 
 	        	 
 	        	 String str="";
