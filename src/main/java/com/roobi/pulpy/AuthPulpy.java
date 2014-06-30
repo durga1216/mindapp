@@ -696,6 +696,8 @@ public class AuthPulpy extends HttpServlet {
 	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 
 	   	            	 } 
+	            	 
+	            	 else if("null".equals(b2) && "null".equals(b4)){encoding=null;}
 	            	
 	            	 
 	              if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
