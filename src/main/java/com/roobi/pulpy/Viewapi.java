@@ -100,24 +100,28 @@ out.println("<a style='color:#ffffff' href='/Viewapi?search=A'>A</a>&nbsp;&nbsp;
 out.println("<div style='padding: 9px 0;position: fixed;font-size: 18px;text-align:left;margin-left:20px;top: 10px;width: 40px;min-height: 20px;padding: 19px;bottom:1200px;background-color: #FF9900;border: 1px solid gainsboro; border-color:#FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
 out.println("<a style='color:#ffffff' href='index.jsp'>Back</a></div>");
 			while(rs.next()){
-				out.println("<div style='font-size:17px;'>");
+				out.println("<div style='font-size:17px;height:110px; border:0px solid #FFFFFF;'>");
 			        	String name=rs.getString("name");
 			            String pname=rs.getString("pname");
 			            String cat=rs.getString("cat");
 			            String link=rs.getString("link");
 			            String des=rs.getString("des");
-			            out.println("<img src='Addapi?idl="+name+"' width='100' height='100'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
+			            out.println("<div style='width:10%;overflow:auto;margin-left:500px;height:100px;float:left; border:0px solid #FFFFFF;'><img src='Addapi?idl="+name+"' width='100' height='100'></div>"
+			            		+ "<div style='width:25%;float:left;overflow:auto;border:0px solid #FFFFFF;'>Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a></div></div>");
 			            
-			           // out.println("<tr><td>"+name+"</td><td>"+pname+"</td><td>"+cat+"</td><td>"+link+"</td><td>"+des+"</td></tr>");
+			           out.println("<div><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
 				 }
 			while(rs1.next()){
-				out.println("<div style='font-size:17px;'>");
-			        	String name=rs1.getString("name");
-			            String pname=rs1.getString("pname");
-			            String cat=rs1.getString("cat");
-			            String link=rs1.getString("link");
-			            String des=rs1.getString("des");
-			            out.println("Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
+				out.println("<div style='font-size:17px;height:110px; border:0px solid #FFFFFF;'>");
+	        	String name=rs.getString("name");
+	            String pname=rs.getString("pname");
+	            String cat=rs.getString("cat");
+	            String link=rs.getString("link");
+	            String des=rs.getString("des");
+	            out.println("<div style='width:10%;overflow:auto;margin-left:500px;height:100px;float:left; border:0px solid #FFFFFF;'><img src='Addapi?idl="+name+"' width='100' height='100'></div>"
+	            		+ "<div style='width:25%;float:left;overflow:auto;border:0px solid #FFFFFF;'>Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a></div></div>");
+	            
+	           out.println("<div><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
 			}}
           catch(Exception e)
 			{
