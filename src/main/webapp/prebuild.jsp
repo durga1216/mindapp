@@ -139,8 +139,7 @@ try{
 Class.forName("com.mysql.jdbc.Driver");
 Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
 //Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
-PreparedStatement st1=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.id=a2.id WHERE a1.id='MP_0102'");
-//st1.setString(1,id1);
+PreparedStatement st1=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.id=a2.id WHERE a1.id='MP_0120'");
 ResultSet rs1 = st1.executeQuery();
 while(rs1.next()){
 	String ap=rs1.getString("appid");
