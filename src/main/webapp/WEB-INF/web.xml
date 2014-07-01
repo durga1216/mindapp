@@ -430,4 +430,14 @@
     <servlet-name>PreBuild</servlet-name>
     <url-pattern>/PreBuild</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>PreBuildXmlConfig</display-name>
+    <servlet-name>PreBuildXmlConfig</servlet-name>
+    <servlet-class>com.roobi.pulpy.PreBuildXmlConfig</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PreBuildXmlConfig</servlet-name>
+    <url-pattern>/PreBuildXmlConfig</url-pattern>
+  </servlet-mapping>
 </web-app>

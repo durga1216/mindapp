@@ -898,7 +898,7 @@ public class PreBuild extends HttpServlet {
                         	 session.setAttribute("xml1", GetResponse);
                  			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
-        	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
+        	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
                          } // if
                     
         	         }//oauth	

@@ -113,12 +113,13 @@ text-align:right;}
 </style>
 </head>
 <body>
+
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Console </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
 <form action="PreBuildXmlConfig" method="post">
 <br><br><div class="head"><center>Mind Pulpy</center></div><br><br>
 <div class="au"><center>PreBuild API's</center></div><br><br>
-<div class="au"><center>Xml Configuration</center></div>
-<%@page import="com.mindots.util.Utils"%>
+<center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
+<center><h2><a id='pa1' href="javascript:load()">Load_Xml</a></h2></center><br><br><%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
