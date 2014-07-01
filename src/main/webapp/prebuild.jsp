@@ -184,7 +184,7 @@ while(rs2.next()){
       f3=rs2.getString("f3"); f4=rs2.getString("f4");
       f5=rs2.getString("f5"); f6=rs2.getString("f6");
       f7=rs2.getString("f7"); f8=rs2.getString("f8");
-      f9=rs2.getString("f9"); f10=rs2.getString("f10");rf=rs2.getString("rf");
+      f9=rs2.getString("f9"); f10=rs2.getString("f10");rf=rs2.getString("resf");
  	  rmethod=rs2.getString("rmethod");
 	 
 	   cname=request.getParameter("cname");  ckey=request.getParameter("ckey");  csecname=request.getParameter("csecname");
