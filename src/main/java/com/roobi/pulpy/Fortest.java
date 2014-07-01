@@ -59,7 +59,7 @@ public class Fortest extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	        PreparedStatement st=null;
-			 st=con.prepareStatement("update addapi set photo=? where pname=?");
+			 st=con.prepareStatement("update addapi set photo=? where no=?");
 			 if (inputStream != null) {  
 			        st.setBlob(1, inputStream);  
 			}
