@@ -3,10 +3,24 @@
 <html>  
 <head>  
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
-<title>File Upload</title>  
+<title>Prebuilt api</title> 
+<link rel="shortcut icon" href="favicon.ico" />
+ 
+<style type="text/css">
+body{
+background-color:#ff9900;
+}
+h1{
+color:#ffffff;
+}
+table,td{
+padding:8px;
+}
+</style>
 </head>  
 <body>  
-<form action="">
+<form action=""><br>
+<center><h1>Pre-Built API's</h1></center><br><br>
 <table><tr>
 <%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
