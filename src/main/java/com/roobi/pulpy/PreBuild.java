@@ -118,7 +118,7 @@ public class PreBuild extends HttpServlet {
                 	 String treplace1=rs.getString("treplace");
                 	 String el1=rs.getString("el");
                 	 String ev1=rs.getString("ev");
-                     String rf1=rs.getString("resf");String rm1=rs.getString("rm");
+                     String rm1=rs.getString("rm");
                      String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
                      String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
                      String pa2=rs.getString("p2");String pva2=rs.getString("pv2");
@@ -147,7 +147,7 @@ public class PreBuild extends HttpServlet {
         	        	 Object obj;
         	        	 String str="";
         	        	 	         
-                          if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //No Auth XML get
+                          if(resf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //No Auth XML get
         	        		 
         	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
         		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
@@ -219,7 +219,7 @@ public class PreBuild extends HttpServlet {
         	        	     
         	        	 } //XML and JSON get No Auth
         	        	               
-                      else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")) // No Auth XML-RPC
+                      else if(resf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")) // No Auth XML-RPC
         	        	     
               	     {
                     	 
@@ -279,7 +279,7 @@ public class PreBuild extends HttpServlet {
               	 } //XML RPC        
 
                        
-                       else  if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
+                       else  if(resf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
         	        		 
                   		 String USER_AGENT = "Mozilla/5.0";
         	        	 String url1=endurl1;	 	        		         		
@@ -342,7 +342,7 @@ public class PreBuild extends HttpServlet {
                 	     String str="";
                          Object obj;
                          out.println("inside API keys");
-        	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
+        	        	 if(resf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
         	        		 
         	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
         		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
@@ -415,7 +415,7 @@ public class PreBuild extends HttpServlet {
         	        	     
         	        	 } //XML and JSON get
         	        	     
-        	        	     else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
+        	        	     else if(resf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC"))
         	        	     
         	        	     {
         	        	 		XmlRpcClient client = new XmlRpcClient( endurl1, false );
@@ -474,7 +474,7 @@ public class PreBuild extends HttpServlet {
         		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
         	     		        
         	        	 } //XML RPC        */	 
-        	        	 if(rf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
+        	        	 if(resf1.equals("REST") && rm1.equals ("POST")){  // apikey XML post
         	        		 
         	          		 String USER_AGENT = "Mozilla/5.0";
         		        	 String url1=endurl1;

@@ -123,6 +123,7 @@ padding:15px;}
 </head>
 
 <body><form>
+<div id=na><%=session.getAttribute("mail")%> &nbsp;|<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Console </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
 <br><br><div class="head"><center>Mind Pulpy</center></div><br><br>
 <div class="au"><center>PreBuild API's</center></div><br><br>
 <div id="sel"><select name="select1"  id="select1" onchange="change()">
