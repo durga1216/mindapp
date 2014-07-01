@@ -111,26 +111,20 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
 //Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 PreparedStatement st1=cn.prepareStatement("SELECT * FROM authen1 WHERE id='MP_0120'");
-ResultSet rs1 = st1.executeQuery();
-while(rs1.next()){
-	String ap=rs1.getString("appid");
-	String nme=rs1.getString("appname");
-    out.println("<option value='"+ap+"'>"+nme+" </option>");}
-out.println("</select><br>");%><br><br>
-
-<% String name=request.getParameter("name");
-PreparedStatement st2=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.appid=a2.appid WHERE a1.appid=?");
-st2.setString(1,name);
-ResultSet rs2 = st2.executeQuery();
+ResultSet rs2 = st1.executeQuery();
 String appid="null";String uid="null";
 String endurl="";String pa1="null";String pa2="null";String pa3="null";String pa4="null";String pa5="null";String pa6="null";String pa7="null";String pa8="null";String pa9="null";String pa10="null";
 String pva1="null";String pva2="null";String pva3="null";String pva4="null";String pva5="null";String pva6="null";String pva7="null";String pva8="null";String pva9="null";String pva10="null";
 String f1="null";String f2="null";String f3="null";String f4="null";String f5="";String f6="null";String f7="null";String f8="null";String f9="null";String f10="null";
-HttpSession session1=request.getSession(true);
-
+String authen="";String appname="";String desc=""; String a1="null"; String a2="null";
+String cname="null";String ckey="null";String csecname="null";String cseckey="null";String sname="null";String svalue="null";
+String aurl="null";String tokenurl="null";String tlabel="null";String treplace="null";String el="null";String ev="null";
+String rf="";String rmethod="";HttpSession session1=request.getSession(true);
 
 while(rs2.next()){
-	   
+	   authen=rs2.getString("auth");
+	   appname=rs2.getString("appname");  a1=rs2.getString("a1"); a2=rs2.getString("a2");
+	    //change
       endurl=rs2.getString("endurl");
       appid=rs2.getString("appid");
       uid=rs2.getString("id");
@@ -148,14 +142,44 @@ while(rs2.next()){
       f3=rs2.getString("f3"); f4=rs2.getString("f4");
       f5=rs2.getString("f5"); f6=rs2.getString("f6");
       f7=rs2.getString("f7"); f8=rs2.getString("f8");
-      f9=rs2.getString("f9"); f10=rs2.getString("f10");
+      f9=rs2.getString("f9"); f10=rs2.getString("f10");rf=rs2.getString("rf");
+ 	  rmethod=rs2.getString("rmethod");
+	 
+	   cname=request.getParameter("cname");  ckey=request.getParameter("ckey");  csecname=request.getParameter("csecname");
+	   cseckey=request.getParameter("cseckey"); sname=request.getParameter("sname");  svalue=request.getParameter("svalue");
+	   aurl=request.getParameter("aurl");  tokenurl=request.getParameter("tokenurl");  tlabel=request.getParameter("tlabel");
+	   treplace=request.getParameter("treplace"); el=request.getParameter("el");  ev=request.getParameter("ev");
 }
+      session1.setAttribute("authen",authen);session1.setAttribute("appname",appname);
       session1.setAttribute("pa1",pa1); session1.setAttribute("pa2",pa2);session1.setAttribute("pa3",pa3);
       session1.setAttribute("pa4",pa4);session1.setAttribute("pa5",pa5);session1.setAttribute("pa6",pa6);
       session1.setAttribute("pa7",pa7);session1.setAttribute("pa8",pa8);session1.setAttribute("pa9",pa9);
       session1.setAttribute("pa10",pa10);session1.setAttribute("appid",appid);session1.setAttribute("id",uid);
+      session1.setAttribute("f1",f1);      session1.setAttribute("f2",f2);      session1.setAttribute("f3",f3);
+      session1.setAttribute("f4",f4);      session1.setAttribute("f5",f5);      session1.setAttribute("f6",f6);
+      session1.setAttribute("f7",f7);      session1.setAttribute("f8",f8);      session1.setAttribute("f9",f9);
+      session1.setAttribute("f10",f10);
+
+
+
+
 %>
-<div class="text"><input type="text" name="ur" id="ur" value="<%=endurl %>" placeholder="End_Point_URL" style="width:600px;"></div><br><br><br>
+
+<div id="name">You Choose <%=appname%> Pre-Build APP and the Authentication for <b><%=appname %></b> is <b><%=authen %></b></div><br><br>
+<%if(authen.equals("API keys")){
+out.println("<div id='api'><a href='http://en.wikipedia.org/wiki/Application_programming_interface_key'>To Know More About API keys Click Here</a></div><br>");
+out.println("<input type='text' name='a1' value='"+a1+"'>");
+out.println("<input type='text' name='a2' value='' placeholder='Enter your API_KEY here' style='width:350px;'><br><br>");
+} else if(authen.equals("Oauth")){
+out.println("<div id='api'><a href='http://oauth.net'>To know more about Oauth Click here</a></div><br>");
+	
+}%><br>
+<div class="au"><center>Request Method</center></div><br>
+<div class="text"><input type="text" name="rf" id="rf" value="<%=rf%>" placeholder="Request Method"></div><br><br>
+<div class="au"><center>Response Format</center></div><br>
+<div class="text"><input type="text" name="rm" id="rm" value="<%=rmethod%>" placeholder="Response Format"></div><br><br>
+<div class="au"><center>End Point URL</center></div><br>
+<div class="text"><input type="text" name="endurl" id="endurl" value="<%=endurl %>" placeholder="End_Point_URL" style="width:600px;"></div><br><br><br>
 <div class="param"><center>Parameters</center></div><br><br>
 <table color='#FFFFFF' height=100%>
 <tr><th>Parameter_name</th><th>Parameter_Value</th><th>Scope</th></tr>
@@ -190,8 +214,7 @@ out.println("<tr><td>"+pa2+"</td><td><input type='text' name='pv2' value='' plac
 } 
 %>
 </table><br><br>
-<input type="submit" name="submit" value="Simplify O/P" formAction="AdminPulpy" formmethod="post">
-<input type="submit" name="submit" value="Raw O/P" formAction="MobiClient" formmethod="post">
+<input type="submit" name="submit" value="Simplify O/P" formAction="PreBuild" formmethod="post">
 </form>
 <% 
 }

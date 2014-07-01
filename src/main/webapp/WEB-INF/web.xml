@@ -420,4 +420,15 @@
     <servlet-name>AdminPulpy</servlet-name>
     <url-pattern>/AdminPulpy</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>PreBuild</display-name>
+    <servlet-name>PreBuild</servlet-name>
+    <servlet-class>com.roobi.pulpy.PreBuild</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PreBuild</servlet-name>
+    <url-pattern>/PreBuild</url-pattern>
+  </servlet-mapping>
 </web-app>
