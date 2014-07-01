@@ -119,6 +119,14 @@ background-color:#FFFFFF;
 border-radius:50px;
 padding:15px;}
 
+#indiv{color:#FFFFFF;
+}
+#na{
+margin-top:0;
+color:#FFFFFF;
+font-size:15px;
+font-family:verdana;
+text-align:right;}
 </style>
 </head>
 
