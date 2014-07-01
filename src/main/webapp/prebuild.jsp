@@ -145,7 +145,8 @@ while(rs1.next()){
 	String ap=rs1.getString("appid");
 	String nme=rs1.getString("appname");
     out.println("<option value='"+ap+"'>"+nme+" </option>");
-    break;}
+    break;
+    }
 out.println("</select></div><br>");%><br><br>
 
 <% String name=request.getParameter("name");

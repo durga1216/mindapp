@@ -141,6 +141,7 @@ public class PreBuild extends HttpServlet {
                      String f7=rs.getString("f7"); String f8=rs.getString("f8");
                      String f9=rs.getString("f9"); String f10=rs.getString("f10");
                      String eurl=null;
+                     out.println(authen);
                      if(authen1.equals("No Auth")){
         	        	 Object obj;
         	        	 String str="";
@@ -181,7 +182,7 @@ public class PreBuild extends HttpServlet {
         		        		 eurl=endurl1+"?"+pa1+"="+pva1;}
         	        		 
         	   
-        	        			// out.println(eurl);
+        	        			 out.println(eurl);
         	        			 URL eurl1=new URL(eurl);
         		        		 URLConnection uconn = eurl1.openConnection();
         		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
