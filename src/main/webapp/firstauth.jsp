@@ -246,7 +246,7 @@ font-size:15px;
 font-family:verdana;
 text-align:right;}
 #tt{
-font-size:20px;
+font-size:25px;
 color:#ffffff;
 margin-left:100px;
 }
@@ -266,7 +266,7 @@ margin-left:100px;
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form action="FirstAuthPulpy" method="post" enctype="multipart/form-data">
 <input type="text" name="app1" value="" placeholder="Application Name*"><br/><br>
-<div id="tt">Select Image  &nbsp;&nbsp;&nbsp;&nbsp;<input style="color:#ffffff;" type="file" name="logo" placeholder="image location"></div><br><br>
+<div id="tt">Select Logo:  &nbsp;&nbsp;&nbsp;&nbsp;<input style="color:#ffffff;" type="file" name="logo" placeholder="image location"></div><br><br>
 <textarea id="txt" name="descr" placeholder="Description*"></textarea><br><br>
 <div class="au"><center>Authentication Scheme</center></div><div class="space"></div>
 <div id="inline_content">

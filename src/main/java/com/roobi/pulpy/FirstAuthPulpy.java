@@ -35,13 +35,15 @@ public class FirstAuthPulpy extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		  Connection con=null;  
 		   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
+		   	InputStream inputStream=null;
 			 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 	      PrintWriter out=response.getWriter();
 	      String appname=request.getParameter("app1"); String descr=request.getParameter("descr"); String authen=request.getParameter("authen");
 	      String select1=request.getParameter("select1"); String select2=request.getParameter("select2");
 	      HttpSession session=request.getSession(true);
-		  String id=(String) session.getAttribute("id");        Part filePart = request.getPart("logo");  
-          InputStream inputStream = filePart.getInputStream();  
+		  String id=(String) session.getAttribute("id");        
+		  Part filePart = request.getPart("logo");  
+          inputStream = filePart.getInputStream();  
 	      String b1=request.getParameter("b1");String b2=request.getParameter("b2");
 	      String b3=request.getParameter("b3");String b4=request.getParameter("b4");
 	      String h1=request.getParameter("h1"); String hv1=request.getParameter("hv1");
@@ -68,7 +70,8 @@ public class FirstAuthPulpy extends HttpServlet {
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	             PreparedStatement st=null;
-	             st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,logo) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+inputStream+"')");				 
+	             st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,logo) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"',?)");				 
+	             st.setBlob(1, inputStream);
 	             st.executeUpdate();
 			     st.close();
 			   
