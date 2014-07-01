@@ -106,10 +106,10 @@ out.println("<a style='color:#ffffff' href='index.jsp'>Back</a></div>");
 			            String cat=rs.getString("cat");
 			            String link=rs.getString("link");
 			            String des=rs.getString("des");
-			            out.println("<div style='width:10%;overflow:auto;margin-left:500px;height:100px;float:left; border:0px solid #FFFFFF;'><img src='Addapi?idl="+name+"' width='100' height='100'></div>"
+			            out.println("<div style='width:10%;overflow:auto;margin-left:450px;height:100px;float:left; border:0px solid #FFFFFF;'><img src='Addapi?idl="+name+"' width='100' height='100'></div>"
 			            		+ "<div style='width:40%;float:left;overflow:auto;border:0px solid #FFFFFF;'>Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a></div></div>");
 			            
-			           out.println("<div><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
+			           out.println("<div><hr style='margin-left:400px; margin-right:250px;color:#FFFFFF;'></div>");
 				 }
 			while(rs1.next()){
 				out.println("<div style='font-size:17px;height:110px; border:0px solid #FFFFFF;'>");
@@ -118,7 +118,7 @@ out.println("<a style='color:#ffffff' href='index.jsp'>Back</a></div>");
 	            String cat=rs1.getString("cat");
 	            String link=rs1.getString("link");
 	            String des=rs1.getString("des");
-	            out.println("<div style='width:10%;overflow:auto;margin-left:400px;height:100px;float:left; border:0px solid #FFFFFF;'><img src='Addapi?idl="+name+"' width='100' height='100'></div>"
+	            out.println("<div style='width:10%;overflow:auto;margin-left:450px;height:100px;float:left; border:0px solid #FFFFFF;'><img src='Addapi?idl="+name+"' width='100' height='100'></div>"
 	            		+ "<div style='width:40%;float:left;overflow:auto;border:0px solid #FFFFFF;'>Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a></div></div>");
 	           out.println("<div><hr style='margin-left:400px; margin-right:250px;color:#FFFFFF;'></div>");
 			}}

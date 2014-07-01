@@ -6,17 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-<script type="text/javascript">
-function change(){
-   
-   
-	 var jname=document.getElementById("select1").value;
-     var ur="prebuild.jsp?name="+jname;
-     window.location=ur;
-}
-
-</script>
 <style>
 body{
 background-color:#FF9900;}
@@ -134,8 +123,6 @@ text-align:right;}
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Console </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
 <br><br><div class="head"><center>Mind Pulpy</center></div><br><br>
 <div class="au"><center>PreBuild API's</center></div><br><br>
-<div id="sel"><select name="select1"  id="select1" onchange="change()">
-<option value='dummy'>--Choose Your API Here--</option>
 <%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
@@ -148,17 +135,7 @@ try{
 Class.forName("com.mysql.jdbc.Driver");
 Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
 //Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
-PreparedStatement st1=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.id=a2.id WHERE a1.id='MP_0120'");
-ResultSet rs1 = st1.executeQuery();
-while(rs1.next()){
-	String ap=rs1.getString("appid");
-	String nme=rs1.getString("appname");
-    out.println("<option value='"+ap+"'>"+nme+" </option>");
-    break;
-    }
-out.println("</select></div><br>");%><br><br>
-
-<% String name=request.getParameter("name");
+String name=request.getParameter("name");
 PreparedStatement st2=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.appid=a2.appid WHERE a1.appid=?");
 st2.setString(1,name);
 ResultSet rs2 = st2.executeQuery();
