@@ -53,7 +53,7 @@ public class Viewapi extends HttpServlet {
 				    ResultSet rs = st.executeQuery();
 				    ResultSet rs1 = st1.executeQuery();
 				
-				   out.println("<br><br><head><link rel='stylesheet' type='text/css' href='apidisp.css'></head><body bgcolor='#FF9900'><div id='re' style='color:#FFFFFF; font-family:verdana; font-size:40px;'><center>Mind Pulpy</center></div><br><div id='re1' style='color:#FFFFFF; font-family:verdana; font-size:25px;'><center>Free Public APIs<center><div><br><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'>");
+				   out.println("<br><br><head><link rel='stylesheet' type='text/css' href='apidisp.css'></head><body bgcolor='#FF9900'><div id='re' style='color:#FFFFFF; font-family:verdana; font-size:40px;'><center>Mind Pulpy</center></div><br><div id='re1' style='color:#FFFFFF; font-family:verdana; font-size:25px;'><center>Free Public APIs<center><div><br><hr style='margin-left:400px; margin-right:250px;color:#FFFFFF;'>");
 				out.println("<div style='padding: 9px 0;position: fixed;font-size: 18px;text-align:left;margin-left: 80px;top: 100px;width: 200px;bottom: 10px;min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #FF9900;border: 1px solid gainsboro; border-color:#FFFFFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
 				   //out.println("<div style='padding:9px 0;font-size: 20px;margin-left: 50px;top: 100px;width:200px;bottom: 10px;padding: 19px;background-color: #FF9900;border: 1px solid gainsboro;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);'>");
 out.println("<p style='font-weight:bold'>Category</p><a style='color:#ffffff' href='/Viewapi?category=Search'>Search</a><br>"
@@ -118,9 +118,9 @@ out.println("<a style='color:#ffffff' href='index.jsp'>Back</a></div>");
 	            String cat=rs1.getString("cat");
 	            String link=rs1.getString("link");
 	            String des=rs1.getString("des");
-	            out.println("<div style='width:10%;overflow:auto;margin-left:500px;height:100px;float:left; border:0px solid #FFFFFF;'><img src='Addapi?idl="+name+"' width='100' height='100'></div>"
+	            out.println("<div style='width:10%;overflow:auto;margin-left:400px;height:100px;float:left; border:0px solid #FFFFFF;'><img src='Addapi?idl="+name+"' width='100' height='100'></div>"
 	            		+ "<div style='width:40%;float:left;overflow:auto;border:0px solid #FFFFFF;'>Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a></div></div>");
-	           out.println("<div><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
+	           out.println("<div><hr style='margin-left:400px; margin-right:250px;color:#FFFFFF;'></div>");
 			}}
           catch(Exception e)
 			{
