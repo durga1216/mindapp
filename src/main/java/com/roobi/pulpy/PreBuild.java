@@ -141,8 +141,8 @@ public class PreBuild extends HttpServlet {
                      String f7=rs.getString("f7"); String f8=rs.getString("f8");
                      String f9=rs.getString("f9"); String f10=rs.getString("f10");
                      String eurl=null;
-                     out.println(authen);
-                     if(authen1.equals("No Auth")){
+                     out.println(authen1);
+                     if(authen.equals("No Auth")){
         	        	 Object obj;
         	        	 String str="";
         	        	 	         
@@ -337,7 +337,7 @@ public class PreBuild extends HttpServlet {
         	         }    // No Auth  
         	               
         	         
-        	         if(authen1.equals("API keys")){  //API Keys
+        	         if(authen.equals("API keys")){  //API Keys
                 	     String str="";
                          Object obj;
         	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
@@ -533,7 +533,7 @@ public class PreBuild extends HttpServlet {
         	         
                     //Basic Auth
         	         
-        	         else if(authen1.equals("Basic Auth")){ //m15
+        	         else if(authen.equals("Basic Auth")){ //m15
         	        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
         	        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
                 		 
@@ -742,7 +742,7 @@ public class PreBuild extends HttpServlet {
         	         
 
         	         
-        	         else if(authen1.equals("Oauth2")){
+        	         else if(authen.equals("Oauth2")){
         	 			HttpClient client=new DefaultHttpClient();
                         String Response=null;
         	        	HttpSession session1=request.getSession(true);
