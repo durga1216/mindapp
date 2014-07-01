@@ -46,9 +46,9 @@ public class Viewapi extends HttpServlet {
 	            con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 		        PreparedStatement st=null;
 		        PreparedStatement st1=null;
-				 st=con.prepareStatement("select * from addapi where cat=?");
+				 st=con.prepareStatement("select * from addapi where cat=? ORDER BY pname");
 	               st.setString(1, cat1);
-				 st1=con.prepareStatement("select * from addapi where pname like ?");
+				 st1=con.prepareStatement("select * from addapi where pname like ? ORDER BY pname");
                st1.setString(1, ser+"%");
 				    ResultSet rs = st.executeQuery();
 				    ResultSet rs1 = st1.executeQuery();
