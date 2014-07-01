@@ -159,7 +159,7 @@ while(rs2.next()){
       session1.setAttribute("f4",f4);      session1.setAttribute("f5",f5);      session1.setAttribute("f6",f6);
       session1.setAttribute("f7",f7);      session1.setAttribute("f8",f8);      session1.setAttribute("f9",f9);
       session1.setAttribute("f10",f10);
-
+// add method name field for basic authentication
 
 
 
