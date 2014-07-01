@@ -9,12 +9,34 @@
 
 <script type="text/javascript">
 function change(){
-   	 var jname=document.getElementById("select1").value;
+   
+   
+	 var jname=document.getElementById("select1").value;
      var ur="prebuild.jsp?name="+jname;
      window.location=ur;
 }
+
 </script>
 <style>
+body{
+background-color:#FF9900;}
+.head{
+    color:#FFFFFF;
+    font-family:verdana;
+    font-size:40px;}
+    
+    .au{
+font-family:verdana;
+font-weight:bold;
+font-size: 20px;
+color:#FF9900;
+margin-left:500px;
+width:23%;
+height:30%;
+background-color:#FFFFFF;
+border-radius:50px;
+padding:15px;
+}
 input[type="submit"]{
 
 	color:#FFFFFF;
@@ -41,25 +63,7 @@ background-color:#FFFFFF;
 border-radius:50px;
 padding:15px;
  }
-body{
-background-color:#FF9900;}
-.head{
-    color:#FFFFFF;
-    font-family:verdana;
-    font-size:40px;}
-    
-    .au{
-font-family:verdana;
-font-weight:bold;
-font-size: 20px;
-color:#FF9900;
-margin-left:500px;
-width:23%;
-height:30%;
-background-color:#FFFFFF;
-border-radius:50px;
-padding:15px;
-}
+ 
 
 input[type="text"]{
 color:#FF9900;
@@ -69,8 +73,7 @@ margin-left:80px;
 font-family:verdana;
 height:25px;
 padding:10px;
-} 
-
+}
 select{color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
@@ -89,13 +92,40 @@ margin-left:80px;
 border-spacing:20px;
 
 }
+
+#name{
+font-size:15px;
+color:#FFFFFF;
+font-family:verdana;
+margin-left:80px;
+}
+
+#api{
+font-size:15px;
+color:#FFFFFF;
+font-family:verdana;
+margin-left:80px;
+}
+a{color:#FFFFFF;}
+.au1{
+font-family:verdana;
+font-weight:bold;
+font-size: 20px;
+color:#FF9900;
+width:23%;
+height:30%;
+margin-left:80px;
+background-color:#FFFFFF;
+border-radius:50px;
+padding:15px;}
+
 </style>
 </head>
 
 <body><form>
 <br><br><div class="head"><center>Mind Pulpy</center></div><br><br>
 <div class="au"><center>PreBuild API's</center></div><br><br>
-<select name="select1"  id="select1" onchange="change()">
+<div id="sel"><select name="select1"  id="select1" onchange="change()">
 <option value='dummy'>--Choose Your API Here--</option>
 <%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
@@ -105,13 +135,23 @@ border-spacing:20px;
 <%
 response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 <%
-String id1=(String) session.getAttribute("id");
 try{
 Class.forName("com.mysql.jdbc.Driver");
 Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
 //Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
-PreparedStatement st1=cn.prepareStatement("SELECT * FROM authen1 WHERE id='MP_0120'");
-ResultSet rs2 = st1.executeQuery();
+PreparedStatement st1=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.id=a2.id WHERE a1.id='MP_0102'");
+//st1.setString(1,id1);
+ResultSet rs1 = st1.executeQuery();
+while(rs1.next()){
+	String ap=rs1.getString("appid");
+	String nme=rs1.getString("appname");
+    out.println("<option value='"+ap+"'>"+nme+" </option>");}
+out.println("</select></div><br>");%><br><br>
+
+<% String name=request.getParameter("name");
+PreparedStatement st2=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.appid=a2.appid WHERE a1.appid=?");
+st2.setString(1,name);
+ResultSet rs2 = st2.executeQuery();
 String appid="null";String uid="null";
 String endurl="";String pa1="null";String pa2="null";String pa3="null";String pa4="null";String pa5="null";String pa6="null";String pa7="null";String pa8="null";String pa9="null";String pa10="null";
 String pva1="null";String pva2="null";String pva3="null";String pva4="null";String pva5="null";String pva6="null";String pva7="null";String pva8="null";String pva9="null";String pva10="null";
@@ -119,8 +159,8 @@ String f1="null";String f2="null";String f3="null";String f4="null";String f5=""
 String authen="";String appname="";String desc=""; String a1="null"; String a2="null";
 String cname="null";String ckey="null";String csecname="null";String cseckey="null";String sname="null";String svalue="null";
 String aurl="null";String tokenurl="null";String tlabel="null";String treplace="null";String el="null";String ev="null";
-String rf="";String rmethod="";HttpSession session1=request.getSession(true);
-
+String rf="";String rmethod="";// change
+HttpSession session1=request.getSession(true);
 while(rs2.next()){
 	   authen=rs2.getString("auth");
 	   appname=rs2.getString("appname");  a1=rs2.getString("a1"); a2=rs2.getString("a2");
@@ -159,12 +199,11 @@ while(rs2.next()){
       session1.setAttribute("f4",f4);      session1.setAttribute("f5",f5);      session1.setAttribute("f6",f6);
       session1.setAttribute("f7",f7);      session1.setAttribute("f8",f8);      session1.setAttribute("f9",f9);
       session1.setAttribute("f10",f10);
-// add method name field for basic authentication
+
 
 
 
 %>
-
 <div id="name">You Choose <%=appname%> Pre-Build APP and the Authentication for <b><%=appname %></b> is <b><%=authen %></b></div><br><br>
 <%if(authen.equals("API keys")){
 out.println("<div id='api'><a href='http://en.wikipedia.org/wiki/Application_programming_interface_key'>To Know More About API keys Click Here</a></div><br>");
