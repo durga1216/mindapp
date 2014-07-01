@@ -173,5 +173,11 @@ catch(Exception e){}
 <br><br>
 <input type='submit' name='submit' value='Continue'>
 </form>
+<script type="text/javascript">
+function load(){
+	window.open("<%=request.getContextPath()%>/XmlConvert", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+	
+	
+}
 </body>
 </html>
