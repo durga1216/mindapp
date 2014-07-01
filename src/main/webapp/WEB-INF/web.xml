@@ -420,7 +420,6 @@
     <servlet-name>AdminPulpy</servlet-name>
     <url-pattern>/AdminPulpy</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>PreBuild</display-name>

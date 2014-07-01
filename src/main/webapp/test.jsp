@@ -2,92 +2,73 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title></title>
-     
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
-         type="text/javascript"></script>
-        <script src="http://code.jquery.com/ui/1.8.20/jquery-ui.min.js"
-         type="text/javascript"></script>
-        <script src="http://jquery-ui.googlecode.com/svn/tags/latest/external/jquery.bgiframe-2.1.2.js"
-            type="text/javascript"></script>
-        <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery-ui-i18n.min.js"
-            type="text/javascript"></script>
-        <style>
-            .textarea{background: #fff;}
-            .dragitems{width: 20%; float: left; background: #f1f1f1;}
-            .dropitems{width: 70%;float: left;background: #f1f1f1;
-                       margin-left: 20px;padding:5px 5px 5px 5px;}
-            .dragitems ul{list-style-type: none;padding-left: 5px;
-                       display: block;}
-            #content{height: 400px;width: 650px;}
-        </style>
-        <script language="javascript" type="text/javascript">
-            $(function() {
-                $("#allfields li").draggable({
-                    appendTo: "body",
-                    helper: "clone",
-                    cursor: "select",
-                    revert: "invalid"
-                });
-                initDroppable($("#TextArea1"));
-                function initDroppable($elements) {
-                    $elements.droppable({
-                        hoverClass: "textarea",
-                        accept: ":not(.ui-sortable-helper)",
-                        drop: function(event, ui) {
-                            var $this = $(this);
-                            var dropText;
-                            var tempid = ui.draggable.text();
-                            if (tempid=="Textview")
-                            	{
-                                 dropText = " <input type=text> ";
-                            	}
-                            else if (tempid=="Editview")
-                        	{
-                             dropText = " <input type=text> ";
-                        	}
-                            else if (tempid=="Button")
-                        	{
-                                dropText = " <input type=fdsf> ";
-                           	}
-                            else if (tempid=="Image")
-                        	{
-                                dropText = " <input type=text> ";
-                           	}
-                           
-                            var droparea = document.getElementById('TextArea1');
-                            var range1 = droparea.selectionStart;
-                            var range2 = droparea.selectionEnd;
-                            var val = droparea.value;
-                            var str1 = val.substring(0, range1);
-                            var str3 = val.substring(range1, val.length);
-                            droparea.value = str1 + dropText + str3;
-                        }
-                    });
-                }
-            });
-        </script>
-     
+     <style>
+     body{
+background-color:#ff9900;
+
+}
+option{
+font-size:20px;
+background-color:#ff9900;
+}
+select{
+border-color:#ff9900;
+color:#ffffff;
+font-size:20px;
+margin-left:80px;
+background-color:#ff9900;
+font-family:verdana;
+width:440px;
+height:60px;
+padding:10px;
+}
+input[type="submit"]{
+
+color:#FFFFFF;
+font-size:15px;
+background-color:#FF9900;
+margin-left:20px;
+font-family:verdana;
+width:120px;
+height:40px;
+border:solid 2px;
+border-color:#FFFFFF;
+border-radius:20px;
+padding:10px;
+}
+
+     </style>
     </head>
-    <body>
-        <form id="form1" runat="server">
-        <div id="content">
-            <div class="dragitems">
-                <h3>
-                    <span>Available Fields</span></h3>
-                <ul id="allfields" runat="server">
-                    <li id="node1" >Textview</li>
-                    <li id="node2">Edittext</li>
-                    <li id="node3">Button</li>
-                    <li id="node4">Image</li>
-                    
-                </ul>
-            </div>
-            <div class="dropitems">
-                <textarea id="TextArea1" cols="50" name="S1"
-                rows="20"><?xml version="1.0" encoding="utf-8"?>
-                </textarea>
-            </div>
-        </div>
-        </form>
+    <body><center>
+ <form method="post" action="Fortest" enctype="multipart/form-data">  
+      <%@page import="com.mindots.util.Utils"%>
+      <%@page import=" java.sql.PreparedStatement"%>
+      <%@page import="java.sql.ResultSet"%>
+      <%@page import="java.sql.DriverManager"%>
+      <%@page import="java.sql.Connection"%>
+      <select id='apid' name='no' ><option value='dummy'>--Choose API--</option>
+      <%
+      String id1=(String) session.getAttribute("id");
+      try{
+      Class.forName("com.mysql.jdbc.Driver");
+      Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+      //Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+      PreparedStatement st1=cn.prepareStatement("SELECT * FROM addapi");
+      ResultSet rs1 = st1.executeQuery();
+      while(rs1.next()){
+      	String ap=rs1.getString("no");
+      	String nme=rs1.getString("pname");
+          out.println("<option value='"+ap+"'>"+ap+",&nbsp;&nbsp;&nbsp;  "+nme+"</option>");
+
+      }
+      out.println("</select><br>");
+      }
+      catch(Exception e)
+      {}
+      %>
+      <br><br>
+      <div style="color:#ffffff;font-size:25px;">Select Logo:</div><input style="color:#ffffff;" type="file" name="logo" placeholder="image location"><br><br>
+     <input type="submit" name="submit" value="update"></input>
+     </center> </form>
     </body>
     </html>
