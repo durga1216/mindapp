@@ -30,14 +30,14 @@ font-size:20px;
 background-color:#FFFFFF;
 font-family:verdana;
 width:300px;
-height:25px;
+height:40px;
 padding:10px;
 ;
 } 
 select{
 color:#FF9900;
 font-size:20px;
-width:320px;
+width:300px;
 height:50px;
 padding:10px
 
@@ -107,8 +107,7 @@ function back()
 	}
 </script>
 <body>
- <form method="post" action="Addapi"  
-        enctype="multipart/form-data">  
+ <form method="post" action="Addapi" enctype="multipart/form-data">  
         <br><br><div class="head"><center>Mind Pulpy</center></div><br>
 <center><input type="text" name="t1" placeholder="Api Name"><br><br>
 <input type="text" name="t2"  placeholder="Provider Name*" ><br><br>

@@ -106,10 +106,9 @@ out.println("<a style='color:#ffffff' href='index.jsp'>Back</a></div>");
 			            String cat=rs.getString("cat");
 			            String link=rs.getString("link");
 			            String des=rs.getString("des");
-			            out.println("<img src='Apilogo?idl="+name+"' width='100' height='100'>Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
+			            out.println("<img src='Apilogo?idl="+name+"' width='100' height='100'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provider name:<br>"+pname+"<br><br>Links:<br><a style='color:#ffffff' href="+link+">"+link+"</a><hr style='margin-left:450px; margin-right:300px;color:#FFFFFF;'></div>");
 			            
 			           // out.println("<tr><td>"+name+"</td><td>"+pname+"</td><td>"+cat+"</td><td>"+link+"</td><td>"+des+"</td></tr>");
-
 				 }
 			while(rs1.next()){
 				out.println("<div style='font-size:17px;'>");

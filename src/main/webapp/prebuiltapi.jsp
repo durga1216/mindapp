@@ -3,55 +3,36 @@
 <html>  
 <head>  
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
-<title>pre-built</title>  
-<style type="text/css">
-body{
-color:#ff9900;
-}
-img{
- width:100;
- height:100;
-}
-</style>
+<title>File Upload</title>  
 </head>  
-
 <body>  
 <form action="">
+<table><tr>
 <%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.io.InputStream"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%
-String imgLen="";
-
 try{
-	Class.forName("com.mysql.jdbc.Driver").newInstance();
-	Connection con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
-	//Connection con=DriverManager.getConnection("jdbc:mysql://127.4.215.130:3306/glass", "adminejLNKKj", "SHcP4fCwMWqi");
-PreparedStatement ps=con.prepareStatement("select * from storage");
-ResultSet rs=ps.executeQuery();
-while(rs.next()){
-	  imgLen = rs.getString("photo");
-	int len = imgLen.length();
-	  byte [] rb = new byte[len];
-	  InputStream readImg = rs.getBinaryStream("photo");
-	  int index=readImg.read(rb, 0, len);  
-	  System.out.println("index"+index);
-	  response.reset();
-	  response.setContentType("image/jpg");
-	  response.getOutputStream().write(rb,0,len);
-	  response.getOutputStream().flush(); 
+Class.forName("com.mysql.jdbc.Driver");
+Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+//Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+PreparedStatement st1=cn.prepareStatement("SELECT * FROM authen1 WHERE id='MP_0102'");
+ResultSet rs1 = st1.executeQuery();
+while(rs1.next()){
+	String ap=rs1.getString("appid");
+	%>
+<td><a href="prebuilt.jsp"><img alt="<%=rs1.getString("appid") %>" src="Apilogo?idl=<%=rs1.getString("appid") %>" width='100' height='100'></a></td>
+	<% 
 }
 }
 catch(Exception e)
-{ e.printStackTrace();
+{
 	}
 %>
-  <table>
-  <tr><td><img alt="hjbjh" src="sample?idl=1"></td></tr>
-  </table>
-    </form>  
+</tr>
+</table>
+</form>
 </body>  
 </html>  
