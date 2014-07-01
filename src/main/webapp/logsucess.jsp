@@ -87,7 +87,7 @@ function load(){
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>
 <center><div id='pa'><a href='firstauth.jsp'>Create Application here</a></div></center><br><br>
 <center><div id='pa'><a href='<%=request.getContextPath()%>/EditPulpy' >Edit Your Application here</a></div></center><br><br>
-<center><div id='pa'><a href='prebuild.jsp'> PreBuild APP</a></div></center><br><br>
+<center><div id='pa'><a href='prebuiltapi.jsp'> PreBuild APP</a></div></center><br><br>
 <center><div id='pa'><img src="images/you.png" width="41" height="18"><a href="javascript:load()">YouTube Link For Help</a></div></center><br><br>
 <center><div id='pa'><a href='mobile_client.jsp'>Mobile Client Application here</a></div></center><br><br>
 
