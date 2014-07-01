@@ -185,13 +185,13 @@ while(rs2.next()){
       f5=rs2.getString("f5"); f6=rs2.getString("f6");
       f7=rs2.getString("f7"); f8=rs2.getString("f8");
       f9=rs2.getString("f9"); f10=rs2.getString("f10");rf=rs2.getString("resf");
- 	  rmethod=rs2.getString("rmethod");
-	 
+ 	  rmethod=rs2.getString("rm");
+	} 
 	   cname=request.getParameter("cname");  ckey=request.getParameter("ckey");  csecname=request.getParameter("csecname");
 	   cseckey=request.getParameter("cseckey"); sname=request.getParameter("sname");  svalue=request.getParameter("svalue");
 	   aurl=request.getParameter("aurl");  tokenurl=request.getParameter("tokenurl");  tlabel=request.getParameter("tlabel");
 	   treplace=request.getParameter("treplace"); el=request.getParameter("el");  ev=request.getParameter("ev");
-}
+
       session1.setAttribute("authen",authen);session1.setAttribute("appname",appname);
       session1.setAttribute("pa1",pa1); session1.setAttribute("pa2",pa2);session1.setAttribute("pa3",pa3);
       session1.setAttribute("pa4",pa4);session1.setAttribute("pa5",pa5);session1.setAttribute("pa6",pa6);
