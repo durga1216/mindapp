@@ -146,9 +146,9 @@ String x1=rs2.getString("x1");String xv1=rs2.getString("xv1");
 String x2=rs2.getString("x2");String xv2=rs2.getString("xv2");
 String x3=rs2.getString("x3");String xv3=rs2.getString("xv3");
 String x4=rs2.getString("x4");String xv4=rs2.getString("xv4");
-String x5=rs2.getString("x5");String xv5=rs2.getString("xv5");%>
+String x5=rs2.getString("x5");String xv5=rs2.getString("xv5");
 session.setAttribute("xr",xr);session.setAttribute("x1",x1);session.setAttribute("xv1",xv1);
-session.setAttribute("x2",x2);session.setAttribute("xv2",xv2);
+session.setAttribute("x2",x2);session.setAttribute("xv2",xv2);%>
 
 
 <table><tr><td><input type='text' name='xr' value='' placeholder='Parent_Tag' style='width:300px;'></td><td><div class='pa'>Example:"<%=xr %>"</div></td></tr><br>
