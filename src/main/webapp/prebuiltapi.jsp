@@ -37,7 +37,7 @@ ResultSet rs1 = st1.executeQuery();
 while(rs1.next()){
 	String ap=rs1.getString("appid");
 	%>
-<td><a href="prebuilt.jsp"><img alt="<%=rs1.getString("appid") %>" src="Apilogo?idl=<%=rs1.getString("appid") %>" width='100' height='100'></a></td>
+<td><a href="prebuild.jsp"><img alt="<%=rs1.getString("appid") %>" src="Apilogo?idl=<%=rs1.getString("appid") %>" width='100' height='100'></a></td>
 	<% 
 }
 }

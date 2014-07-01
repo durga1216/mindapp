@@ -41,7 +41,7 @@ public class Apilogo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String logo=request.getParameter("idl");
+		String log=request.getParameter("idl");
 		Connection con=null;
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		BufferedImage buffimg = null;PrintWriter out=response.getWriter();
@@ -52,19 +52,18 @@ public class Apilogo extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 		PreparedStatement ps=con.prepareStatement("select * from authen1 where appid=?");
-		ps.setString(1, logo);
+		ps.setString(1, log);
 		ResultSet rs=ps.executeQuery();
 		while(rs.next()){
-			  imgLen = rs.getString("logo").toString();
-			int len = imgLen.length();
-			System.out.println(len);
-			  byte [] rb = new byte[len];
-			  InputStream readImg = rs.getBinaryStream("logo");
-			  int index=readImg.read(rb, 0, len);  
-			  response.reset();
-			  response.setContentType("image/jpg");
-			  response.getOutputStream().write(rb,0,len);
-			  response.getOutputStream().flush(); 
+			 imgLen = rs.getString("logo").toString();
+				int len = imgLen.length();
+				  byte [] rb = new byte[len];
+				  InputStream readImg = rs.getBinaryStream("logo");
+				  int index=readImg.read(rb, 0, len);  
+				  response.reset();
+				  response.setContentType("image/jpg");
+				  response.getOutputStream().write(rb,0,len);
+				  response.getOutputStream().flush(); 
 		}
 		}
 		catch(Exception e)

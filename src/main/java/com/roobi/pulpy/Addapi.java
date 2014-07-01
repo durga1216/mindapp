@@ -55,7 +55,6 @@ public class Addapi extends HttpServlet {
 		while(rs.next()){
 			  imgLen = rs.getString("photo").toString();
 			int len = imgLen.length();
-			System.out.println(len);
 			  byte [] rb = new byte[len];
 			  InputStream readImg = rs.getBinaryStream("photo");
 			  int index=readImg.read(rb, 0, len);  
