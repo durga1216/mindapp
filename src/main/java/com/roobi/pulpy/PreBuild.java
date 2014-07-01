@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +37,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.mindots.util.Utils;
 import com.mysql.jdbc.Connection;
 
 public class PreBuild extends HttpServlet {
@@ -53,6 +55,7 @@ public class PreBuild extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
+		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		HttpSession session=request.getSession(true);
 	    String id=(String) session.getAttribute("id");
 		String appid=(String) session.getAttribute("appid");String appname=(String)session.getAttribute("appname");String b1=request.getParameter("b1");String b2=request.getParameter("b2");
@@ -90,10 +93,8 @@ public class PreBuild extends HttpServlet {
 	    	  
 	            Connection con;
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
-	            String url = "jdbc:mysql://localhost/MPULPY";
-	            final String USER = "root";
-	            final String PASS = "root";
-	            con = (Connection) DriverManager.getConnection(url,USER,PASS);
+	            con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+
 	            String sam=null;
 	             PreparedStatement st=null;
 				 st=con.prepareStatement("insert into authen2(id,appid,appname,auth,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,resf,rm,endurl,baseurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10) values ('"+id+"','"+appid+"','"+appname+"','"+authen+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+rf+"','"+rm+"','"+endurl+"','"+method+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"')");

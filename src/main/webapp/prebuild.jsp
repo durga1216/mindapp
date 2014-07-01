@@ -144,7 +144,8 @@ ResultSet rs1 = st1.executeQuery();
 while(rs1.next()){
 	String ap=rs1.getString("appid");
 	String nme=rs1.getString("appname");
-    out.println("<option value='"+ap+"'>"+nme+" </option>");}
+    out.println("<option value='"+ap+"'>"+nme+" </option>");
+    break;}
 out.println("</select></div><br>");%><br><br>
 
 <% String name=request.getParameter("name");
