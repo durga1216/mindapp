@@ -140,6 +140,7 @@ while(rs1.next()){
     out.println("<option value='"+ap+"'>"+ap+"   ("+nme+")</option>");
 
 }
+
 out.println("</select><br>");
 String xx=request.getParameter("ai");
 session.setAttribute("xx",xx);
