@@ -57,6 +57,7 @@ public class PreBuild extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		HttpSession session=request.getSession(true);
+		HttpSession session2=request.getSession(true);
 	    String id=(String) session.getAttribute("id");
 		String appid=(String) session.getAttribute("appid");String appname=(String)session.getAttribute("appname");String b1=request.getParameter("b1");String b2=request.getParameter("b2");
 	    String authen=(String) session.getAttribute("authen"); 
@@ -182,9 +183,7 @@ public class PreBuild extends HttpServlet {
         	        		 else if(!"null".equals(pa1)){
         		        		 eurl=endurl1+"?"+pa1+"="+pva1;}
         	        		 
-        	   
-        	        			 out.println(eurl);
-        	        			 URL eurl1=new URL(eurl);
+        	           	        			 URL eurl1=new URL(eurl);
         		        		 URLConnection uconn = eurl1.openConnection();
         		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
         		        	     conn.connect();
@@ -213,7 +212,7 @@ public class PreBuild extends HttpServlet {
         	   	    		     }//while
         	        	    	 
         	        	     } // else if*/
-        	        	    session.setAttribute("xml1", str);
+        	        	    session2.setAttribute("xml1", str);
         		          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
         	        	     
@@ -269,8 +268,8 @@ public class PreBuild extends HttpServlet {
         	        			}
         	        		
         	 	  
-             			  session.setAttribute("xml1", resf1);
-             			  session.setAttribute("token", token);
+             			  session2.setAttribute("xml1", resf1);
+             			  session2.setAttribute("token", token);
              			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		      response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
           		   
@@ -330,7 +329,7 @@ public class PreBuild extends HttpServlet {
         	         	     catch(Exception e){
         	 	    	    //  out.println(e);
         	 	    	      }	
-        	        		 session.setAttribute("xml1", str);
+        	        		 session2.setAttribute("xml1", str);
         	        		 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
         	               	} //  post
@@ -409,7 +408,7 @@ public class PreBuild extends HttpServlet {
         	   	    		     }//while
         	        	    	 
         	        	     } // else if
-        	        	    session.setAttribute("xml1", str);
+        	        	    session2.setAttribute("xml1", str);
         		            out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
         	        	     
@@ -467,8 +466,8 @@ public class PreBuild extends HttpServlet {
         		        			}
         		     			
         		        		     	 	  
-        	        			  session.setAttribute("xml1", resf1);
-        	        			  session.setAttribute("token", token);
+        	        			  session2.setAttribute("xml1", resf1);
+        	        			  session2.setAttribute("token", token);
         	          			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
         		     		      response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
@@ -525,7 +524,7 @@ public class PreBuild extends HttpServlet {
         		         	     catch(Exception e){
         		 	    	    //  out.println(e);
         		         	    	 }	
-        		        		 session.setAttribute("xml1", str);
+        		        		 session2.setAttribute("xml1", str);
         		     			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
         		     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
@@ -644,7 +643,7 @@ public class PreBuild extends HttpServlet {
         		     		      str = xmlSerializer.write( json );
         	            	  }//while}
         	              }//json
-        	              session.setAttribute("xml1", str);
+        	              session2.setAttribute("xml1", str);
         	             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
              		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
         		          }//get
@@ -723,7 +722,7 @@ public class PreBuild extends HttpServlet {
         		     		      str = xmlSerializer.write( json );
         		     		      //out.println(xmlout);
         	            	  }//while
-        	            	  session.setAttribute("xml1", str);
+        	            	  session2.setAttribute("xml1", str);
         		             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
         	              }//post
@@ -889,13 +888,13 @@ public class PreBuild extends HttpServlet {
            	              xmlSerializer.removeNamespace(GetResponse);
            	              xmlSerializer.setForceTopLevelObject(false);
            	              String xmlout=xmlSerializer.write(json);
-           	           session.setAttribute("xml1", xmlout);
+           	           session2.setAttribute("xml1", xmlout);
         		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
                          } // if
                          
                          else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
         			    
-                        	 session.setAttribute("xml1", GetResponse);
+                        	 session2.setAttribute("xml1", GetResponse);
                  			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
         	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
