@@ -105,7 +105,7 @@ public class PreXmlPulpy extends HttpServlet {
 			        out.println("Inside while");
 
 		        	String id=rs.getString("id");	 String appname1=rs.getString("appname");
-		        	out.print(id);
+		        	out.println(id);
 		            String authen1=rs.getString("auth");String ba1=rs.getString("b1");String b2=rs.getString("b2");
 		            String ba3=rs.getString("b3");String b4=rs.getString("b4");String ak1=rs.getString("a1");
 		            String ak2=rs.getString("a2"); String cname=rs.getString("cname");
@@ -130,7 +130,7 @@ public class PreXmlPulpy extends HttpServlet {
 		            String rm1=rs.getString("rm");
 
 		        	String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
-		        	out.print(resf1);
+		        	out.println(resf1);
 
 		             String mname=rs.getString("baseurl");
 		            String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
