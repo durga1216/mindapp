@@ -311,6 +311,7 @@ public class PreXmlPulpy extends HttpServlet {
 			        	 out.println("inside api keys");
 			        	 
 			        	 if( rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get       		 
+				        	 out.println("inside get");
 
 			        		 if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4) && !"".equals(p5) && !"".equals(p6)&& !"".equals(p7) && !"".equals(p8) && !"".equals(p9) && !"".equals(p10)){
 			        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
@@ -345,6 +346,8 @@ public class PreXmlPulpy extends HttpServlet {
 			        			eurl=endurl1+"?"+ak1+"="+ak2;
 			        	 
 		                     if(resf1.equals("XML")){
+					        	 out.println("inside XML");
+
 		       	        	  doc=builder.parse(new URL(eurl).openStream());
 
 		                     }
@@ -669,6 +672,7 @@ public class PreXmlPulpy extends HttpServlet {
 			              if(resf1.equals("XML")){
 			                    while((line=in.readLine())!=null){
 			                    	str+=line;
+			                    	out.println(str);
 			                    }} // while and xml
 			              else if(resf1.equals("JSON")){
 			            	  while((line=in.readLine())!=null){
@@ -1139,10 +1143,9 @@ public class PreXmlPulpy extends HttpServlet {
 			            		e.printStackTrace();
 			            	}
 			                 Writer output=null;
-			                // output=new BufferedWriter(new FileWriter("F:/workspace/mind.xml"));
 			                 String xmloutput=result.getWriter().toString();
 			               
-			                 out.println(xmloutput);
+			               //  out.println(xmloutput);
 			              	
 		        }//while
 		       
