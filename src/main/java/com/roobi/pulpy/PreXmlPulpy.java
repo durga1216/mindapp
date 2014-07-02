@@ -119,7 +119,6 @@ public class PreXmlPulpy extends HttpServlet {
 		       	 String treplace=rs.getString("treplace");
 		       	 String el=rs.getString("el");
 		       	 String ev=rs.getString("ev");
-		         String rf1=rs.getString("rf");
 		         String h1=rs.getString("h1");String hv1=rs.getString("hv1");
 		         String h2=rs.getString("h2");String hv2=rs.getString("hv2");
 		         String h3=rs.getString("h3");String hv3=rs.getString("hv3");
