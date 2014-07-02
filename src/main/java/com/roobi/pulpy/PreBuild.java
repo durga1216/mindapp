@@ -142,8 +142,8 @@ public class PreBuild extends HttpServlet {
                      String f7=rs.getString("f7"); String f8=rs.getString("f8");
                      String f9=rs.getString("f9"); String f10=rs.getString("f10");
                      String eurl=null;
-                     out.println(authen1);
-                     out.println(endurl1);
+                 //    out.println(authen1);
+                   //  out.println(endurl1);
                      if(authen1.equals("No Auth")){
         	        	 Object obj;
         	        	 String str="";
@@ -341,7 +341,7 @@ public class PreBuild extends HttpServlet {
         	         if(authen1.equals("API keys")){  //API Keys
                 	     String str="";
                          Object obj;
-                         out.println("inside API keys");
+                        // out.println("inside API keys");
         	        	 if(rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
         	        		 
         	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -379,7 +379,7 @@ public class PreBuild extends HttpServlet {
         	        		 else if("null".equals(ak1) && "null".equals(ak2))
         	        			 eurl=endurl1;	        		
         	        		
-        	        			 
+        	        			 out.println(eurl);
         	        		 URL eurl1=new URL(eurl);
         	        		 URLConnection uconn = eurl1.openConnection();
         	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -412,7 +412,7 @@ public class PreBuild extends HttpServlet {
          	        	   out.println(str);
         	        	    session2.setAttribute("xml1", str);
         		            out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-        	     		        //response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
+        	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
         	        	     
         	        	 } //XML and JSON get
         	        	     
