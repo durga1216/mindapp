@@ -21,6 +21,12 @@ function removeParam()
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
 	}
+	
+	function load(){
+	window.open("<%=request.getContextPath()%>/XmlConvert", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+	
+	
+}
 </script>
 <style>
 body{
@@ -101,6 +107,11 @@ margin-left:80px;
 border-spacing:20px;
 
 }
+#pa{margin-left:500px;
+font-size:20px;
+font-family:verdana;
+color:#FFFFFF;}
+
 #indiv{color:#FFFFFF;
 }
 #na{
@@ -168,17 +179,12 @@ session.setAttribute("x2",x2);session.setAttribute("xv2",xv2);%>
 }
 catch(Exception e){}
 %>
-<br><br><a id='pa1' href="javascript:addParam()">Add_XML_Tags</a>
+<br><br><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
 <a id='pa1' href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>	
 <br><div id="content"></div> 
 <br><br>
 <input type='submit' name='submit' value='Continue'>
 </form>
-<script type="text/javascript">
-function load(){
-	window.open("<%=request.getContextPath()%>/XmlConvert", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
-	
-	
-}
+
 </body>
 </html>
