@@ -80,11 +80,10 @@ public class PreXmlPulpy extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		PrintWriter out=response.getWriter();
-			//	response.setHeader("Content-Type","text/xml; charset=UTF-8");
+			response.setHeader("Content-Type","text/xml; charset=UTF-8");
 				Connection con=null;
 				 HttpSession session=request.getSession(true);
 				  String appid1=(String) session.getAttribute("appid1"); 
-				  out.println(appid1);
 					//String appid=request.getParameter("appid");
 				//String eurl11=request.getParameter("eurl");
 				String pid=request.getParameter("pid");
@@ -96,16 +95,11 @@ public class PreXmlPulpy extends HttpServlet {
 				try{
 			    Class.forName("com.mysql.jdbc.Driver").newInstance();
 		        con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-
 			    PreparedStatement st=con.prepareStatement("SELECT * FROM authen2 t1 JOIN prexmlconfig t2 ON t1.appid = t2.appid   WHERE t1.appid=?");
 			    st.setString(1, appid1);
 		        ResultSet rs = st.executeQuery();
-		        out.println("Inside Select");
 		        while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
-			        out.println("Inside while");
-
 		        	String id=rs.getString("id");	 String appname1=rs.getString("appname");
-		        	out.println(id);
 		            String authen1=rs.getString("auth");String ba1=rs.getString("b1");String b2=rs.getString("b2");
 		            String ba3=rs.getString("b3");String b4=rs.getString("b4");String ak1=rs.getString("a1");
 		            String ak2=rs.getString("a2"); String cname=rs.getString("cname");
@@ -130,8 +124,6 @@ public class PreXmlPulpy extends HttpServlet {
 		            String rm1=rs.getString("rm");
 
 		        	String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
-		        	out.println(resf1);
-
 		             String mname=rs.getString("baseurl");
 		            String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
 		            String pa2=rs.getString("p2");String pva2=rs.getString("pv2");
@@ -161,7 +153,6 @@ public class PreXmlPulpy extends HttpServlet {
 		 String x25=rs.getString("x25"); String xv25=rs.getString("xv25");String x26=rs.getString("x26"); String xv26=rs.getString("xv26");
 		 String x27=rs.getString("x27"); String xv27=rs.getString("xv27");String x28=rs.getString("x28"); String xv28=rs.getString("xv28");
 		 String x29=rs.getString("x29"); String xv29=rs.getString("xv29");String x30=rs.getString("x30"); String xv30=rs.getString("xv30");
-		    out.println(appname1);out.println(authen1);out.println(endurl1);
 		 
 		  Document doc=null;  //TO Convert XMLSTRING TO DOCUMENT
 		       DocumentBuilder builder=null;
@@ -174,7 +165,7 @@ public class PreXmlPulpy extends HttpServlet {
 		   	String jsonxmlout=null;
 		   	String str="";
 		    Object obj;
-		    /*   if(authen1.equals("No Auth")){ //No Authentication
+		       if(authen1.equals("No Auth")){ //No Authentication
 			         if( rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON") ){  //No Auth GET XML
 			        	 
 			             if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -495,7 +486,6 @@ public class PreXmlPulpy extends HttpServlet {
 				   	     		      str = xmlSerializer.write( json );
 				        		 } //while
 						               //doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
-					                 PrintWriter out=response.getWriter();
 					                 out.println(str);
 
 				        		 } //if
@@ -1151,9 +1141,8 @@ public class PreXmlPulpy extends HttpServlet {
 			                // output=new BufferedWriter(new FileWriter("F:/workspace/mind.xml"));
 			                 String xmloutput=result.getWriter().toString();
 			               
-			                 PrintWriter out=response.getWriter();
 			                 out.println(xmloutput);
-			              	*/
+			              	
 		        }//while
 		       
 		        	
