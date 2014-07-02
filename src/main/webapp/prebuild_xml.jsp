@@ -42,7 +42,19 @@ background-color:#FF9900;}
    color:#FFFFFF;
    
     }
-    
+.heading{
+font-family:verdana;
+font-size: 20px;
+font-weight:bold;
+color:#FF9900;
+width:25%;
+height:30%;
+background-color:#FFFFFF;
+border:solid 2px;
+border-color:#FF9900;
+border-radius:25px;
+padding:15px;
+}    
     .au{
 font-family:verdana;
 font-weight:bold;
@@ -179,7 +191,7 @@ session.setAttribute("x2",x2);session.setAttribute("xv2",xv2);%>
 }
 catch(Exception e){}
 %>
-<br><br><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
+<br><br><a id='pa1' href="javascript:addParam()">Add_XML_Tags</a>
 <a id='pa1' href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>	
 <br><div id="content"></div> 
 <br><br>
