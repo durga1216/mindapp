@@ -329,6 +329,7 @@ public class PreBuild extends HttpServlet {
         	         	     catch(Exception e){
         	 	    	    //  out.println(e);
         	 	    	      }	
+          	        	   out.println(str);
         	        		 session2.setAttribute("xml1", str);
         	        		 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
@@ -408,9 +409,10 @@ public class PreBuild extends HttpServlet {
         	   	    		     }//while
         	        	    	 
         	        	     } // else if
+         	        	   out.println(str);
         	        	    session2.setAttribute("xml1", str);
         		            out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-        	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
+        	     		        //response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
         	        	     
         	        	 } //XML and JSON get
         	        	     
