@@ -80,7 +80,7 @@ public class PreXmlPulpy extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		PrintWriter out=response.getWriter();
-			//response.setHeader("Content-Type","text/xml; charset=UTF-8");
+			response.setHeader("Content-Type","text/xml; charset=UTF-8");
 				Connection con=null;
 				 HttpSession session=request.getSession(true);
 				  String appid1=(String) session.getAttribute("appid1"); 
