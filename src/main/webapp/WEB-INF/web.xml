@@ -440,4 +440,15 @@
     <servlet-name>PreBuildXmlConfig</servlet-name>
     <url-pattern>/PreBuildXmlConfig</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>PreXmlPulpy</display-name>
+    <servlet-name>PreXmlPulpy</servlet-name>
+    <servlet-class>com.roobi.pulpy.PreXmlPulpy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PreXmlPulpy</servlet-name>
+    <url-pattern>/PreXmlPulpy</url-pattern>
+  </servlet-mapping>
 </web-app>

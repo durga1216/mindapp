@@ -152,7 +152,7 @@ response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 <%
 try{
 	HttpSession session1=request.getSession(true);
-    String appid=(String)session1.getAttribute("appid1");
+    String appid=(String)session1.getAttribute("appid");
     String id=(String)session1.getAttribute("id");
 
     session1.setAttribute("appid",appid);

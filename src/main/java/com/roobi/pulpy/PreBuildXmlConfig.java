@@ -35,7 +35,7 @@ public class PreBuildXmlConfig extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		HttpSession session4=request.getSession(true);
 		String id=(String) session.getAttribute("id");
-		String appid=(String) session.getAttribute("appid1");  //change
+		String appid1=(String) session.getAttribute("appid1");  //change
 		String xr=(String) session.getAttribute("xr");  //change
 		String x1=(String) session.getAttribute("x1");  //change
 		String x2=(String) session.getAttribute("x2");  //change
@@ -75,7 +75,6 @@ public class PreBuildXmlConfig extends HttpServlet {
 		String x28=request.getParameter("x28");String xv28=request.getParameter("xv28");
 		String x29=request.getParameter("x29");String xv29=request.getParameter("xv29");
 		String x30=request.getParameter("x30");String xv30=request.getParameter("xv30");
-		session4.setAttribute("appid", appid);
 		session4.setAttribute("partag",xr);session4.setAttribute("roottag",xrv);
 		session4.setAttribute("x1",x1);session4.setAttribute("xv1",xv1);
 	      session4.setAttribute("x2",x2);session4.setAttribute("xv2",xv2);
@@ -113,7 +112,7 @@ public class PreBuildXmlConfig extends HttpServlet {
         		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
                  Class.forName("com.mysql.jdbc.Driver").newInstance();
    	             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-                 PreparedStatement st=con.prepareStatement("insert into prexmlconfig(id,appid,xr,x1,xv1,x2,xv2,x3,xv3,x4,xv4,x5,xv5,x6,xv6,x7,xv7,x8,xv8,x9,xv9,x10,xv10,x11,xv11,x12,xv12,x13,xv13,x14,xv14,x15,xv15,x16,xv16,x17,xv17,x18,xv18,x19,xv19,x20,xv20,x21,xv21,x22,xv22,x23,xv23,x24,xv24,x25,xv25,x26,xv26,x27,xv27,x28,xv28,x29,xv29,x30,xv30) values ('"+id+"','"+appid+"','"+xr+"','"+x1+"','"+xv1+"','"+x2+"','"+xv2+"','"+x3+"','"+xv3+"','"+x4+"','"+xv4+"','"+x5+"','"+xv5+"','"+x6+"','"+xv6+"','"+x7+"','"+xv7+"','"+x8+"','"+xv8+"','"+x9+"','"+xv9+"','"+x10+"','"+xv10+"','"+x11+"','"+xv11+"','"+x12+"','"+xv12+"','"+x13+"','"+xv13+"','"+x14+"','"+xv14+"','"+x15+"','"+xv15+"','"+x16+"','"+xv16+"','"+x17+"','"+xv17+"','"+x18+"','"+xv18+"','"+x19+"','"+xv19+"','"+x20+"','"+xv20+"','"+x21+"','"+xv21+"','"+x22+"','"+xv22+"','"+x23+"','"+xv23+"','"+x24+"','"+xv24+"','"+x25+"','"+xv25+"','"+x26+"','"+xv26+"','"+x27+"','"+xv27+"','"+x28+"','"+xv28+"','"+x29+"','"+xv29+"','"+x30+"','"+xv30+"')");                
+                 PreparedStatement st=con.prepareStatement("insert into prexmlconfig(id,appid,xr,x1,xv1,x2,xv2,x3,xv3,x4,xv4,x5,xv5,x6,xv6,x7,xv7,x8,xv8,x9,xv9,x10,xv10,x11,xv11,x12,xv12,x13,xv13,x14,xv14,x15,xv15,x16,xv16,x17,xv17,x18,xv18,x19,xv19,x20,xv20,x21,xv21,x22,xv22,x23,xv23,x24,xv24,x25,xv25,x26,xv26,x27,xv27,x28,xv28,x29,xv29,x30,xv30) values ('"+id+"','"+appid1+"','"+xr+"','"+x1+"','"+xv1+"','"+x2+"','"+xv2+"','"+x3+"','"+xv3+"','"+x4+"','"+xv4+"','"+x5+"','"+xv5+"','"+x6+"','"+xv6+"','"+x7+"','"+xv7+"','"+x8+"','"+xv8+"','"+x9+"','"+xv9+"','"+x10+"','"+xv10+"','"+x11+"','"+xv11+"','"+x12+"','"+xv12+"','"+x13+"','"+xv13+"','"+x14+"','"+xv14+"','"+x15+"','"+xv15+"','"+x16+"','"+xv16+"','"+x17+"','"+xv17+"','"+x18+"','"+xv18+"','"+x19+"','"+xv19+"','"+x20+"','"+xv20+"','"+x21+"','"+xv21+"','"+x22+"','"+xv22+"','"+x23+"','"+xv23+"','"+x24+"','"+xv24+"','"+x25+"','"+xv25+"','"+x26+"','"+xv26+"','"+x27+"','"+xv27+"','"+x28+"','"+xv28+"','"+x29+"','"+xv29+"','"+x30+"','"+xv30+"')");                
                  st.executeUpdate();
                  st.close();
                

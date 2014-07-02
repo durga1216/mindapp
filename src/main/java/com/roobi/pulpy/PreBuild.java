@@ -59,7 +59,8 @@ public class PreBuild extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		HttpSession session2=request.getSession(true);
 	    String id=(String) session.getAttribute("id");
-		String appid=(String) session.getAttribute("appid");String appname=(String)session.getAttribute("appname");String b1=request.getParameter("b1");String b2=request.getParameter("b2");
+	    String appid=(String) session.getAttribute("appid");
+		String appname=(String)session.getAttribute("appname");String b1=request.getParameter("b1");String b2=request.getParameter("b2");
 	    String authen=(String) session.getAttribute("authen"); 
 		String b3=request.getParameter("b3");String b4=request.getParameter("b4");
 	      String h1=request.getParameter("h1"); String hv1=request.getParameter("hv1");
@@ -98,7 +99,7 @@ public class PreBuild extends HttpServlet {
 
 	            String sam=null;
 	             PreparedStatement st=null;
-				 st=con.prepareStatement("insert into authen2(id,appid,appname,auth,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,resf,rm,endurl,baseurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10) values ('"+id+"','"+appid+"','"+appname+"','"+authen+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+rf+"','"+rm+"','"+endurl+"','"+method+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"')");
+				 st=con.prepareStatement("insert into authen2(id,appid,appname,auth,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,resf,rm,endurl,baseurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10) values ('"+id+"','"+appname+"','"+authen+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+rf+"','"+rm+"','"+endurl+"','"+method+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"')");
 				 st.executeUpdate();
 			     st.close();
 			     st=con.prepareStatement("SELECT * FROM authen2  ORDER BY appid DESC LIMIT 1"); //change
@@ -142,7 +143,8 @@ public class PreBuild extends HttpServlet {
                      String f7=rs.getString("f7"); String f8=rs.getString("f8");
                      String f9=rs.getString("f9"); String f10=rs.getString("f10");
                      String eurl=null;
-                     session2.setAttribute("appid", appid1);
+                     session2.setAttribute("appid", appid);
+                     session2.setAttribute("appid1", appid1);
                      out.println(authen1);
                      out.println(endurl1);
                      if(authen1.equals("No Auth")){
