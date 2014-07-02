@@ -86,11 +86,12 @@ public class PreXmlPulpy extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-
-		response.setHeader("Content-Type","text/xml; charset=UTF-8");
+PrintWriter out=response.getWriter();
+	//	response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
 		  String appid1=(String) session.getAttribute("appid1"); 
+		  out.println(appid1);
 			//String appid=request.getParameter("appid");
 		//String eurl11=request.getParameter("eurl");
 		String pid=request.getParameter("pid");
@@ -164,7 +165,7 @@ public class PreXmlPulpy extends HttpServlet {
  String x25=rs.getString("x25"); String xv25=rs.getString("xv25");String x26=rs.getString("x26"); String xv26=rs.getString("xv26");
  String x27=rs.getString("x27"); String xv27=rs.getString("xv27");String x28=rs.getString("x28"); String xv28=rs.getString("xv28");
  String x29=rs.getString("x29"); String xv29=rs.getString("xv29");String x30=rs.getString("x30"); String xv30=rs.getString("xv30");
-    
+    out.println(appname1+""+authen1);
  
   Document doc=null;  //TO Convert XMLSTRING TO DOCUMENT
        DocumentBuilder builder=null;
@@ -177,7 +178,7 @@ public class PreXmlPulpy extends HttpServlet {
    	String jsonxmlout=null;
    	String str="";
     Object obj;
-       if(authen1.equals("No Auth")){ //No Authentication
+    /*   if(authen1.equals("No Auth")){ //No Authentication
 	         if( rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON") ){  //No Auth GET XML
 	        	 
 	             if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -1153,11 +1154,10 @@ public class PreXmlPulpy extends HttpServlet {
 	                 Writer output=null;
 	                // output=new BufferedWriter(new FileWriter("F:/workspace/mind.xml"));
 	                 String xmloutput=result.getWriter().toString();
-	                /* output.write(xmloutput);
-	                 output.close();*/
+	               
 	                 PrintWriter out=response.getWriter();
 	                 out.println(xmloutput);
-	              	
+	              	*/
         }//while
        
         	
