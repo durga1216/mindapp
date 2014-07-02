@@ -100,8 +100,9 @@ public class PreXmlPulpy extends HttpServlet {
 			    PreparedStatement st=con.prepareStatement("SELECT * FROM authen2 t1 JOIN prexmlconfig t2 ON t1.appid = t2.appid   WHERE t1.appid=?");
 			    st.setString(1, appid1);
 		        ResultSet rs = st.executeQuery();
-		        
+		        out.println("Inside Select");
 		        while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
+			        out.println("Inside while");
 
 		        	String id=rs.getString("id");	 String appname1=rs.getString("appname");
 		            String authen1=rs.getString("auth");String ba1=rs.getString("b1");String b2=rs.getString("b2");
@@ -158,7 +159,7 @@ public class PreXmlPulpy extends HttpServlet {
 		 String x25=rs.getString("x25"); String xv25=rs.getString("xv25");String x26=rs.getString("x26"); String xv26=rs.getString("xv26");
 		 String x27=rs.getString("x27"); String xv27=rs.getString("xv27");String x28=rs.getString("x28"); String xv28=rs.getString("xv28");
 		 String x29=rs.getString("x29"); String xv29=rs.getString("xv29");String x30=rs.getString("x30"); String xv30=rs.getString("xv30");
-		    out.println(appname1+""+authen1);
+		    out.println(appname1);out.println(authen1);out.println(endurl1);
 		 
 		  Document doc=null;  //TO Convert XMLSTRING TO DOCUMENT
 		       DocumentBuilder builder=null;
