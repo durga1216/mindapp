@@ -88,10 +88,9 @@ public class PreXmlPulpy extends HttpServlet {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
-		response.setHeader("Access-Control-Request-Headers"," X-Requested-With, accept, content-type");
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
-		  String appid=(String) session.getAttribute("appid"); 
+		  String appid1=(String) session.getAttribute("appid1"); 
 			//String appid=request.getParameter("appid");
 		//String eurl11=request.getParameter("eurl");
 		String pid=request.getParameter("pid");
@@ -105,7 +104,7 @@ public class PreXmlPulpy extends HttpServlet {
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 
 	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen2 t1 JOIN prexmlconfig t2 ON t1.appid = t2.appid   WHERE t1.appid=?");
-	    st.setString(1, appid);
+	    st.setString(1, appid1);
         ResultSet rs = st.executeQuery();
         
         while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
