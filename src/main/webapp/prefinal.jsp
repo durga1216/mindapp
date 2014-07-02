@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -41,11 +40,11 @@ font-family:verdana;
 </head>
 <body>
 <%
-HttpSession session=request.getSession(true);
+HttpSession session1=request.getSession(true);
 %>
 <center><div class="head">Mind Pulpy</div></center>
 <center><div class="main">Configuration completed! With PRE-BUILD APP</div></center><br>
-<div id="result">Your Appid is : <%=session.getAttribute("appid");%>
+<div id="result">Your Appid is : <%=session1.getAttribute("appid")%>
 <a href='' id='pa'>Check your Simplified Output here</a>
 </body>
 </html>
