@@ -74,15 +74,15 @@ public class PreBuild extends HttpServlet {
 		  String treplace=request.getParameter("treplace");String el=request.getParameter("el"); String ev=request.getParameter("ev");
 		String rf=request.getParameter("rf");String rm=request.getParameter("rm");
 	    String endurl=request.getParameter("endurl");
-	      String p1=(String) session.getAttribute("p1");String pv1=request.getParameter("pv1");
-	      String p2=(String) session.getAttribute("p2");String pv2=request.getParameter("pv2");
-	      String p3=(String) session.getAttribute("p3");String pv3=request.getParameter("pv3");
-	      String p4=(String) session.getAttribute("p4");String pv4=request.getParameter("pv4");
-	      String p5=(String) session.getAttribute("p5");String pv5=request.getParameter("pv5");
-	      String p6=(String) session.getAttribute("p6");String pv6=request.getParameter("pv6");
-	      String p7=(String) session.getAttribute("p7");String pv7=request.getParameter("pv7");
-	      String p8=(String) session.getAttribute("p8"); String pv8=request.getParameter("pv8");
-	      String p9=(String) session.getAttribute("p9");String pv9=request.getParameter("pv9");
+	      String p1=(String) session.getAttribute("pa1");String pv1=request.getParameter("pv1");
+	      String p2=(String) session.getAttribute("pa2");String pv2=request.getParameter("pv2");
+	      String p3=(String) session.getAttribute("pa3");String pv3=request.getParameter("pv3");
+	      String p4=(String) session.getAttribute("pa4");String pv4=request.getParameter("pv4");
+	      String p5=(String) session.getAttribute("pa5");String pv5=request.getParameter("pv5");
+	      String p6=(String) session.getAttribute("pa6");String pv6=request.getParameter("pv6");
+	      String p7=(String) session.getAttribute("pa7");String pv7=request.getParameter("pv7");
+	      String p8=(String) session.getAttribute("pa8"); String pv8=request.getParameter("pv8");
+	      String p9=(String) session.getAttribute("pa9");String pv9=request.getParameter("pv9");
 	      String p10=(String) session.getAttribute("p10");String pv10=request.getParameter("pv10");
 	      String method=request.getParameter("method");
 	      String field1=(String) session.getAttribute("field1");      String field2=(String) session.getAttribute("field2");
@@ -142,8 +142,8 @@ public class PreBuild extends HttpServlet {
                      String f7=rs.getString("f7"); String f8=rs.getString("f8");
                      String f9=rs.getString("f9"); String f10=rs.getString("f10");
                      String eurl=null;
-                 //    out.println(authen1);
-                   //  out.println(endurl1);
+                     out.println(authen1);
+                     out.println(endurl1);
                      if(authen1.equals("No Auth")){
         	        	 Object obj;
         	        	 String str="";
@@ -329,7 +329,6 @@ public class PreBuild extends HttpServlet {
         	         	     catch(Exception e){
         	 	    	    //  out.println(e);
         	 	    	      }	
-          	        	   out.println(str);
         	        		 session2.setAttribute("xml1", str);
         	        		 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
@@ -341,7 +340,7 @@ public class PreBuild extends HttpServlet {
         	         if(authen1.equals("API keys")){  //API Keys
                 	     String str="";
                          Object obj;
-                        // out.println("inside API keys");
+                         out.println("inside API keys");
         	        	 if(rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
         	        		 
         	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -379,7 +378,7 @@ public class PreBuild extends HttpServlet {
         	        		 else if("null".equals(ak1) && "null".equals(ak2))
         	        			 eurl=endurl1;	        		
         	        		
-        	        			 out.println(eurl);
+        	        			 
         	        		 URL eurl1=new URL(eurl);
         	        		 URLConnection uconn = eurl1.openConnection();
         	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -409,7 +408,6 @@ public class PreBuild extends HttpServlet {
         	   	    		     }//while
         	        	    	 
         	        	     } // else if
-         	        	   out.println(str);
         	        	    session2.setAttribute("xml1", str);
         		            out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
