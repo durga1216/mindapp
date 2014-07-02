@@ -868,7 +868,7 @@ public class PreXmlPulpy extends HttpServlet {
 			       
 			          
 			          
-			          Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+			       /*   Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 			        		 Element outevent=outdoc.createElement("MPulpy");
 			        		 NodeList inevent=null;
 			        		 XPath xPath=XPathFactory.newInstance().newXPath();
@@ -1145,7 +1145,7 @@ public class PreXmlPulpy extends HttpServlet {
 			                 Writer output=null;
 			                 String xmloutput=result.getWriter().toString();
 			               
-			               //  out.println(xmloutput);
+			               //  out.println(xmloutput);*/
 			              	
 		        }//while
 		       
