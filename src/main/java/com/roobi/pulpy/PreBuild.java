@@ -104,7 +104,7 @@ public class PreBuild extends HttpServlet {
 			     st=con.prepareStatement("SELECT * FROM authen2  ORDER BY appid DESC LIMIT 1"); //change
                  ResultSet rs = st.executeQuery();
                  while(rs.next()){
-                	 String appname1=rs.getString("appname");
+                	 String appname1=rs.getString("appname");String appid1=rs.getString("appid");
                      String authen1=rs.getString("auth");String ba1=rs.getString("b1");String ba2=rs.getString("b2"); String mname=rs.getString("baseurl");
                      String ba3=rs.getString("b3");String ba4=rs.getString("b4");String ak1=rs.getString("a1");
                      String ak2=rs.getString("a2"); String cname1=rs.getString("cname");
@@ -142,6 +142,7 @@ public class PreBuild extends HttpServlet {
                      String f7=rs.getString("f7"); String f8=rs.getString("f8");
                      String f9=rs.getString("f9"); String f10=rs.getString("f10");
                      String eurl=null;
+                     session2.setAttribute("appid", appid1);
                      out.println(authen1);
                      out.println(endurl1);
                      if(authen1.equals("No Auth")){
