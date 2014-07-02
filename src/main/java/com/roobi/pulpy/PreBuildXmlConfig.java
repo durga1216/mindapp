@@ -75,6 +75,7 @@ public class PreBuildXmlConfig extends HttpServlet {
 		String x28=request.getParameter("x28");String xv28=request.getParameter("xv28");
 		String x29=request.getParameter("x29");String xv29=request.getParameter("xv29");
 		String x30=request.getParameter("x30");String xv30=request.getParameter("xv30");
+		session4.setAttribute("appid", appid);
 		session4.setAttribute("partag",xr);session4.setAttribute("roottag",xrv);
 		session4.setAttribute("x1",x1);session4.setAttribute("xv1",xv1);
 	      session4.setAttribute("x2",x2);session4.setAttribute("xv2",xv2);
