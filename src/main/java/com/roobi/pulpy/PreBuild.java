@@ -56,37 +56,8 @@ public class PreBuild extends HttpServlet {
 		HttpSession session2=request.getSession(true);
 	    String id=(String) session.getAttribute("id");
 	    String appid=(String) session.getAttribute("appid");
-		String appname=(String)session.getAttribute("appname");String b1=request.getParameter("b1");String b2=request.getParameter("b2");
-	    String authen=(String) session.getAttribute("authen"); 
-		String b3=request.getParameter("b3");String b4=request.getParameter("b4");
-	      String h1=request.getParameter("h1"); String hv1=request.getParameter("hv1");
-	      String h2=request.getParameter("h2"); String hv2=request.getParameter("hv2");
-	      String h3=request.getParameter("h3"); String hv3=request.getParameter("hv3");
-	      String h4=request.getParameter("h4"); String hv4=request.getParameter("hv4");
-	      String h5=request.getParameter("h5"); String hv5=request.getParameter("hv5");
-		  String a1=request.getParameter("a1");String a2=request.getParameter("a2");
-		  String cname=request.getParameter("cname"); String ckey=request.getParameter("ckey"); String csecname=request.getParameter("csecname");
-		  String cseckey=request.getParameter("cseckey");String sname=request.getParameter("sname"); String svalue=request.getParameter("svalue");
-		  String aurl=request.getParameter("aurl"); String tokenurl=request.getParameter("tokenurl"); String tlabel=request.getParameter("tlabel");
-		  String treplace=request.getParameter("treplace");String el=request.getParameter("el"); String ev=request.getParameter("ev");
-		String rf=request.getParameter("rf");String rm=request.getParameter("rm");
-	    String endurl=request.getParameter("endurl");
-	      String p1=(String) session.getAttribute("pa1");String pv1=request.getParameter("pv1");
-	      String p2=(String) session.getAttribute("pa2");String pv2=request.getParameter("pv2");
-	      String p3=(String) session.getAttribute("pa3");String pv3=request.getParameter("pv3");
-	      String p4=(String) session.getAttribute("pa4");String pv4=request.getParameter("pv4");
-	      String p5=(String) session.getAttribute("pa5");String pv5=request.getParameter("pv5");
-	      String p6=(String) session.getAttribute("pa6");String pv6=request.getParameter("pv6");
-	      String p7=(String) session.getAttribute("pa7");String pv7=request.getParameter("pv7");
-	      String p8=(String) session.getAttribute("pa8"); String pv8=request.getParameter("pv8");
-	      String p9=(String) session.getAttribute("pa9");String pv9=request.getParameter("pv9");
-	      String p10=(String) session.getAttribute("p10");String pv10=request.getParameter("pv10");
-	      String method=request.getParameter("method");
-	      String field1=(String) session.getAttribute("field1");      String field2=(String) session.getAttribute("field2");
-	      String field3=(String) session.getAttribute("field3");      String field4=(String) session.getAttribute("field4");
-	      String field5=(String) session.getAttribute("field5");      String field6=(String) session.getAttribute("field6");
-	      String field7=(String) session.getAttribute("field7");      String field8=(String) session.getAttribute("field8");
-	      String field9=(String) session.getAttribute("field9");      String field10=(String) session.getAttribute("field10");
+	
+		
 	      try{
 	    	  
 	            Connection con;
@@ -100,18 +71,18 @@ public class PreBuild extends HttpServlet {
                  ResultSet rs = st.executeQuery();
                  while(rs.next()){
                 	 String appname1=rs.getString("appname");String appid1=rs.getString("appid");
-                     String authen1=rs.getString("auth");String ba1=rs.getString("b1");String ba2=rs.getString("b2"); String mname=rs.getString("baseurl");
-                     String ba3=rs.getString("b3");String ba4=rs.getString("b4");String ak1=rs.getString("a1");
+                     String authen1=rs.getString("auth");String b1=rs.getString("b1");String b2=rs.getString("b2"); String mname=rs.getString("baseurl");
+                     String b3=rs.getString("b3");String b4=rs.getString("b4");String ak1=rs.getString("a1");
                      String ak2=rs.getString("a2"); String cname1=rs.getString("cname");
-                	 String ckey1=rs.getString("ckey"); 
-                	 String csecname1=rs.getString("csecname");
-                	 String cseckey1=rs.getString("cseckey");
-                	 String sname1=rs.getString("sname");
-                	 String svalue1=rs.getString("svalue");
-                	 String aurl1=rs.getString("aurl");
-                	 String tokenurl1=rs.getString("tokenurl");
-                	 String tlabel1=rs.getString("tlabel");
-                	 String treplace1=rs.getString("treplace");
+                	 String ckey=rs.getString("ckey"); 
+                	 String csecname=rs.getString("csecname");
+                	 String cseckey=rs.getString("cseckey");
+                	 String sname=rs.getString("sname");
+                	 String svalue=rs.getString("svalue");
+                	 String aurl=rs.getString("aurl");
+                	 String tokenurl=rs.getString("tokenurl");
+                	 String tlabel=rs.getString("tlabel");
+                	 String treplace=rs.getString("treplace");
                 	 String el1=rs.getString("el");
                 	 String ev1=rs.getString("ev");
                      String rm1=rs.getString("rm");
@@ -126,11 +97,11 @@ public class PreBuild extends HttpServlet {
                      String pa8=rs.getString("p8");;String pva8=rs.getString("pv8");
                      String pa9=rs.getString("p9");;String pva9=rs.getString("pv9");
                      String pa10=rs.getString("p10");;String pva10=rs.getString("pv10");
-                    String he1=rs.getString("h1");String hva1=rs.getString("hv1");
-                    String he2=rs.getString("h2");String hva2=rs.getString("hv2");
-                    String he3=rs.getString("h3");String hva3=rs.getString("hv3");
-                    String he4=rs.getString("h4");String hva4=rs.getString("hv4");
-                    String he5=rs.getString("h5");String hva5=rs.getString("hv5");
+                    String h1=rs.getString("h1");String hv1=rs.getString("hv1");
+                    String h2=rs.getString("h2");String hv2=rs.getString("hv2");
+                    String h3=rs.getString("h3");String hv3=rs.getString("hv3");
+                    String h4=rs.getString("h4");String hv4=rs.getString("hv4");
+                    String h5=rs.getString("h5");String hv5=rs.getString("hv5");
                      String f1=rs.getString("f1"); String f2=rs.getString("f2");
                      String f3=rs.getString("f3"); String f4=rs.getString("f4");
                      String f5=rs.getString("f5"); String f6=rs.getString("f6");
@@ -804,7 +775,7 @@ public class PreBuild extends HttpServlet {
         			     	}   // Get
 
         			    	else if(rm1.equals("POST")){
-        			     		HttpPost post=new HttpPost(endurl);
+        			     		HttpPost post=new HttpPost(endurl1);
         			     		
         			     		if("Authorization:Bearer".equals(treplace)){
         							post.addHeader("Authorization", "Bearer "+access_token);
