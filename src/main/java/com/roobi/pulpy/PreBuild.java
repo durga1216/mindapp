@@ -754,7 +754,7 @@ public class PreBuild extends HttpServlet {
         			     	if(rm1.equals("GET")){ 
         			     	//GetMethod get=new GetMethod(tokenurl);
         			     	if("Authorization:Bearer".equals(treplace)){
-        			     		HttpGet get=new HttpGet(endurl);
+        			     		HttpGet get=new HttpGet(endurl1);
         				       get.addHeader("Authorization", "Bearer "+access_token);
         			     		HttpResponse response1 = client.execute(get);
         			     		BufferedReader rd = new BufferedReader(
