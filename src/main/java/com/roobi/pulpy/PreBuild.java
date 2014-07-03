@@ -741,169 +741,167 @@ public class PreBuild extends HttpServlet {
 
         	         
         	         else if(authen1.equals("Oauth2")){
-        	 			HttpClient client=new DefaultHttpClient();
-                        String Response=null;
-        	        	HttpSession session1=request.getSession(true);
-        		     	String access_token=(String)session1.getAttribute("access_token");
-        		     	String GetResponse=null;
-        	     		 StringBuilder result=new StringBuilder();
-        	     			String line = "";
+        		 			HttpClient client=new DefaultHttpClient();
+        	                String Response=null;
+        		        	HttpSession session1=request.getSession(true);
+        			     	String access_token=(String)session1.getAttribute("access_token");
+        			     	out.println(access_token);
+        			     	String GetResponse=null;
+        		     		 StringBuilder result=new StringBuilder();
+        		     			String line = "";
 
 
-        		     	if(rm1.equals("GET")){ 
-        		     	//GetMethod get=new GetMethod(tokenurl);
-        		     	if("Authorization:Bearer".equals(treplace)){
-        		     		HttpGet get=new HttpGet(endurl);
-        			       get.addHeader("Authorization", "Bearer "+access_token);
-        		     		HttpResponse response1 = client.execute(get);
-        		     		BufferedReader rd = new BufferedReader(
-        		     				new InputStreamReader(response1.getEntity().getContent()));
-        		     			while ((line = rd.readLine()) != null) {
-        		     				GetResponse=line;
-        		     			}
-        	     	
-        		     	}   // auth bearer treplace
-        		     	else if("QueryString".equals(treplace)){
-        		     		String param = null;
-        		     	   List<NameValuePair> params = new LinkedList<NameValuePair>();
-
-        		     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
-        		     			 param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;
-        		        		 
-        		             else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5))
-                                 param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;
-
-        		     	
-        		              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4))
-        	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;
-
-        		              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3))
-        	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;
-
-        		        	  else if(!"null".equals(pa1) && !"null".equals(pa2))
-        	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2;
-
-        		              else if(!"null".equals(pa1))
-        	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1;
-
-        		        	  else if("null".equals(pa1))
-        	                         param=tlabel+"="+access_token;
-        		     		 String pointurl=endurl1+"?"+param;
-        		     	    //String paramString = URLEncodedUtils.format(param, "utf-8");
-        				     	HttpGet get=new HttpGet(pointurl);
-        			            HttpResponse response1=client.execute(get);
-        			            BufferedReader rd = new BufferedReader
-        					    		  (new InputStreamReader(response1.getEntity().getContent()));
-        					    		    
-        					    		while ((line = rd.readLine()) != null) {
-                                        GetResponse=line;
-        					    		} // while
-        					    			
-        					    		} // querystring
-        		     	}   // Get
-
-        		    	else if(rm1.equals("POST")){
-        		     		HttpPost post=new HttpPost(endurl);
-        		     		
-        		     		if("Authorization:Bearer".equals(treplace)){
-        						post.addHeader("Authorization", "Bearer "+access_token);
-        						HttpResponse response1=client.execute(post);
-        						BufferedReader rd = new BufferedReader(
+        			     	if(rm1.equals("GET")){ 
+        			     	//GetMethod get=new GetMethod(tokenurl);
+        			     	if("Authorization:Bearer".equals(treplace)){
+        			     		HttpGet get=new HttpGet(endurl);
+        				       get.addHeader("Authorization", "Bearer "+access_token);
+        			     		HttpResponse response1 = client.execute(get);
+        			     		BufferedReader rd = new BufferedReader(
         			     				new InputStreamReader(response1.getEntity().getContent()));
         			     			while ((line = rd.readLine()) != null) {
         			     				GetResponse=line;
-        		     			} // while
+        			     			}
         		     	
-        					    }   // Auth Bearer POST
-        		     		
-        		     		else if("QueryString".equals(treplace)){
-        				    	 List <NameValuePair> cod = new ArrayList <NameValuePair>();
-        			     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
-        					    	 cod.add(new BasicNameValuePair(tlabel,access_token));
-        				    	     cod.add(new BasicNameValuePair(pa1,pva1));
-        				    	     cod.add(new BasicNameValuePair(pa2,pva2));
-        				    	     cod.add(new BasicNameValuePair(pa3,pva3));
-        				    	     cod.add(new BasicNameValuePair(pa4,pva4));
-        				    	     cod.add(new BasicNameValuePair(pa5,pva5));
-        				    	     cod.add(new BasicNameValuePair(pa6,pva6));}
+        			     	}   // auth bearer treplace
+        			     	else if("QueryString".equals(treplace)){
+        			     		String param = null;
+        			     	   List<NameValuePair> params = new LinkedList<NameValuePair>();
 
+        			     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
+        			     			 param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;
+        			        		 
+        			             else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5))
+        	                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;
 
-        			     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
-        			     				  cod.add(new BasicNameValuePair(tlabel,access_token));
+        			     	
+        			              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4))
+        		                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;
+
+        			              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3))
+        		                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;
+
+        			        	  else if(!"null".equals(pa1) && !"null".equals(pa2))
+        		                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2;
+
+        			              else if(!"null".equals(pa1))
+        		                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1;
+
+        			        	  else if("null".equals(pa1))
+        		                         param=tlabel+"="+access_token;
+        			     		 String pointurl=endurl1+"?"+param;
+        			     	    //String paramString = URLEncodedUtils.format(param, "utf-8");
+        					     	HttpGet get=new HttpGet(pointurl);
+        				            HttpResponse response1=client.execute(get);
+        				            BufferedReader rd = new BufferedReader
+        						    		  (new InputStreamReader(response1.getEntity().getContent()));
+        						    		    
+        						    		while ((line = rd.readLine()) != null) {
+        	                                GetResponse=line;
+        						    		} // while
+        						    			
+        						    		} // querystring
+        			     	}   // Get
+
+        			    	else if(rm1.equals("POST")){
+        			     		HttpPost post=new HttpPost(endurl);
+        			     		
+        			     		if("Authorization:Bearer".equals(treplace)){
+        							post.addHeader("Authorization", "Bearer "+access_token);
+        							HttpResponse response1=client.execute(post);
+        							BufferedReader rd = new BufferedReader(
+        				     				new InputStreamReader(response1.getEntity().getContent()));
+        				     			while ((line = rd.readLine()) != null) {
+        				     				GetResponse=line;
+        			     			} // while
+        			     	
+        						    }   // Auth Bearer POST
+        			     		
+        			     		else if("QueryString".equals(treplace)){
+        					    	 List <NameValuePair> cod = new ArrayList <NameValuePair>();
+        				     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+        						    	 cod.add(new BasicNameValuePair(tlabel,access_token));
         					    	     cod.add(new BasicNameValuePair(pa1,pva1));
         					    	     cod.add(new BasicNameValuePair(pa2,pva2));
         					    	     cod.add(new BasicNameValuePair(pa3,pva3));
         					    	     cod.add(new BasicNameValuePair(pa4,pva4));
-        					    	     cod.add(new BasicNameValuePair(pa5,pva5));	}    
-        				     		
-        			     			 
-        			     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){cod.add(new BasicNameValuePair(tlabel,access_token));
-        				    	     cod.add(new BasicNameValuePair(pa1,pva1));
-        				    	     cod.add(new BasicNameValuePair(pa2,pva2));
-        				    	     cod.add(new BasicNameValuePair(pa3,pva3));
-        				    	     cod.add(new BasicNameValuePair(pa4,pva4));
-        				    	     }
+        					    	     cod.add(new BasicNameValuePair(pa5,pva5));
+        					    	     cod.add(new BasicNameValuePair(pa6,pva6));}
+
+
+        				     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+        				     				  cod.add(new BasicNameValuePair(tlabel,access_token));
+        						    	     cod.add(new BasicNameValuePair(pa1,pva1));
+        						    	     cod.add(new BasicNameValuePair(pa2,pva2));
+        						    	     cod.add(new BasicNameValuePair(pa3,pva3));
+        						    	     cod.add(new BasicNameValuePair(pa4,pva4));
+        						    	     cod.add(new BasicNameValuePair(pa5,pva5));	}    
         					     		
-        				     		 
-        				     		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){cod.add(new BasicNameValuePair(tlabel,access_token));
+        				     			 
+        				     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){cod.add(new BasicNameValuePair(tlabel,access_token));
         					    	     cod.add(new BasicNameValuePair(pa1,pva1));
         					    	     cod.add(new BasicNameValuePair(pa2,pva2));
         					    	     cod.add(new BasicNameValuePair(pa3,pva3));
+        					    	     cod.add(new BasicNameValuePair(pa4,pva4));
         					    	     }
         						     		
         					     		 
-        					     		 else if(!"null".equals(pa1) && !"null".equals(pa2)){cod.add(new BasicNameValuePair(tlabel,access_token));
+        					     		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){cod.add(new BasicNameValuePair(tlabel,access_token));
         						    	     cod.add(new BasicNameValuePair(pa1,pva1));
         						    	     cod.add(new BasicNameValuePair(pa2,pva2));
+        						    	     cod.add(new BasicNameValuePair(pa3,pva3));
         						    	     }
         							     		
         						     		 
-        						     		 else if(!"null".equals(pa1)){
-        							     			cod.add(new BasicNameValuePair(tlabel,access_token));
-        								    	    cod.add(new BasicNameValuePair(pa1,pva1));
-        								    	     
+        						     		 else if(!"null".equals(pa1) && !"null".equals(pa2)){cod.add(new BasicNameValuePair(tlabel,access_token));
+        							    	     cod.add(new BasicNameValuePair(pa1,pva1));
+        							    	     cod.add(new BasicNameValuePair(pa2,pva2));
+        							    	     }
+        								     		
+        							     		 
+        							     		 else if(!"null".equals(pa1)){
+        								     			cod.add(new BasicNameValuePair(tlabel,access_token));
+        									    	    cod.add(new BasicNameValuePair(pa1,pva1));
+        									    	     
+        								     		 }
+        							     		 else if("null".equals(pa1)){
+        								     			cod.add(new BasicNameValuePair(tlabel,access_token));
+
         							     		 }
-        						     		 else if("null".equals(pa1)){
-        							     			cod.add(new BasicNameValuePair(tlabel,access_token));
+        						        post.setEntity(new UrlEncodedFormEntity(cod));
+        						        HttpResponse response1 = client.execute(post);
+        						        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
+        						        while ((line = rd.readLine()) != null) {
+        						        	GetResponse=line;} // while
+        	 		     		}  // query string
+        			     		   
+        			     	}  // POST
+        	                 if(authen1.equals("Oauth2") && resf1.equals("JSON")){
+        	                  JSON json = JSONSerializer.toJSON( GetResponse );  
+        	   	              XMLSerializer xmlSerializer = new XMLSerializer();  
+        	   	              xmlSerializer.setTypeHintsEnabled(false);
+        	   	              xmlSerializer.setSkipWhitespace(true);
+        	   	              xmlSerializer.setTrimSpaces(true);
+        	   	              xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+        	   	              xmlSerializer.removeNamespace(GetResponse);
+        	   	              xmlSerializer.setForceTopLevelObject(false);
+        	   	              String xmlout=xmlSerializer.write(json);
+        	   				out.println(xmlout);
 
-        						     		 }
-        					        post.setEntity(new UrlEncodedFormEntity(cod));
-        					        HttpResponse response1 = client.execute(post);
-        					        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
-        					        while ((line = rd.readLine()) != null) {
-        					        	GetResponse=line;} // while
-         		     		}  // query string
-        		     		   
-        		     	}  // POST
-                         if(authen1.equals("Oauth2") && resf1.equals("JSON")){
-                          JSON json = JSONSerializer.toJSON( GetResponse );  
-           	              XMLSerializer xmlSerializer = new XMLSerializer();  
-           	              xmlSerializer.setTypeHintsEnabled(false);
-           	              xmlSerializer.setSkipWhitespace(true);
-           	              xmlSerializer.setTrimSpaces(true);
-           	              xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-           	              xmlSerializer.removeNamespace(GetResponse);
-           	              xmlSerializer.setForceTopLevelObject(false);
-           	              String xmlout=xmlSerializer.write(json);
-           	           session2.setAttribute("xml1", xmlout);
-                       out.println(xmlout);
+        	   	           session.setAttribute("xml1", xmlout);
+        			        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
+        	                 } // if
+        	                 
+        	                 else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
+        		     				out.println(GetResponse);
 
-        		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
-                         } // if
-                         
-                         else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
-        			    
-                        	 session2.setAttribute("xml1", GetResponse);
-                             out.println(GetResponse);
+        	                	 session.setAttribute("xml1", GetResponse);
+        	         			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
-                 			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-
-        	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
-                         } // if
-                    
-        	         }//oauth	
-        	         
-                     
+        		     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
+        	                 } // if
+        	            
+        		         }//oauth	                     
         	        
                  }//while
 	      } //try
