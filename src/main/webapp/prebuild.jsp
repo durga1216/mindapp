@@ -204,9 +204,10 @@ while(rs2.next()){
 out.println("<div id='api'><a href='http://en.wikipedia.org/wiki/Application_programming_interface_key'>To Know More About API keys Click Here</a></div><br>");
 out.println("<input type='text' name='a1' value='"+a1+"'>");
 out.println("<input type='text' name='a2' value='' placeholder='Enter your API_KEY here' style='width:350px;'><br><br>");
-} else if(authen.equals("Oauth")){
+} 
+else if(authen.equals("Oauth2")){
 out.println("<div id='api'><a href='http://oauth.net'>To know more about Oauth Click here</a></div><br>");
-	out.println("<input type='text' name='ckey' value='' placeholder='Enter Your API Key here'>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here'>");	
+out.println("<input type='text' name='ckey' value='' placeholder='Enter Your API Key here'>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here'>");	
 out.println("<input type='text' name='aurl' value='"+aurl+"' >&nbsp;&nbsp;&nbsp;<input type='text' name='tokenurl' value='"+tokenurl+"' >");
 out.println("<input type='text' name='sname' value='"+sname+"' >&nbsp;&nbsp;&nbsp;<input type='text' name='svalue' value='' placeholder='Scope_Value' >");
 out.println("<input type='text' name='tlabel' value='"+tlabel+"' ><br>");

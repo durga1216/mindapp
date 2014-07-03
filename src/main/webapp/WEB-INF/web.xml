@@ -451,4 +451,15 @@
     <servlet-name>PreXmlPulpy</servlet-name>
     <url-pattern>/PreXmlPulpy</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>PreAuthPulpy</display-name>
+    <servlet-name>PreAuthPulpy</servlet-name>
+    <servlet-class>com.roobi.pulpy.PreAuthPulpy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PreAuthPulpy</servlet-name>
+    <url-pattern>/PreAuthPulpy</url-pattern>
+  </servlet-mapping>
 </web-app>
