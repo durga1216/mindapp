@@ -31,47 +31,49 @@ public class PreAuthPulpy extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
-		out.println("SUCEESS");
+		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+		HttpSession session=request.getSession(true);
+		HttpSession session2=request.getSession(true);
+	    String id=(String) session.getAttribute("id");
+	    String appid=(String) session.getAttribute("appid");
+		String appname=(String)session.getAttribute("appname");String b1=request.getParameter("b1");String b2=request.getParameter("b2");
+	    String authen=(String) session.getAttribute("authen"); 
+		String b3=request.getParameter("b3");String b4=request.getParameter("b4");
+	      String h1=request.getParameter("h1"); String hv1=request.getParameter("hv1");
+	      String h2=request.getParameter("h2"); String hv2=request.getParameter("hv2");
+	      String h3=request.getParameter("h3"); String hv3=request.getParameter("hv3");
+	      String h4=request.getParameter("h4"); String hv4=request.getParameter("hv4");
+	      String h5=request.getParameter("h5"); String hv5=request.getParameter("hv5");
+		  String a1=request.getParameter("a1");String a2=request.getParameter("a2");
+		  String cname=request.getParameter("cname"); String ckey=request.getParameter("ckey"); String csecname=request.getParameter("csecname");
+		  String cseckey=request.getParameter("cseckey");String sname=request.getParameter("sname"); String svalue=request.getParameter("svalue");
+		  String aurl=request.getParameter("aurl"); String tokenurl=request.getParameter("tokenurl"); String tlabel=request.getParameter("tlabel");
+		  String treplace=request.getParameter("treplace");String el=request.getParameter("el"); String ev=request.getParameter("ev");
+		String rf=request.getParameter("rf");String rm=request.getParameter("rm");
+	    String endurl=request.getParameter("endurl");
+	      String p1=(String) session.getAttribute("pa1");String pv1=request.getParameter("pv1");
+	      String p2=(String) session.getAttribute("pa2");String pv2=request.getParameter("pv2");
+	      String p3=(String) session.getAttribute("pa3");String pv3=request.getParameter("pv3");
+	      String p4=(String) session.getAttribute("pa4");String pv4=request.getParameter("pv4");
+	      String p5=(String) session.getAttribute("pa5");String pv5=request.getParameter("pv5");
+	      String p6=(String) session.getAttribute("pa6");String pv6=request.getParameter("pv6");
+	      String p7=(String) session.getAttribute("pa7");String pv7=request.getParameter("pv7");
+	      String p8=(String) session.getAttribute("pa8"); String pv8=request.getParameter("pv8");
+	      String p9=(String) session.getAttribute("pa9");String pv9=request.getParameter("pv9");
+	      String p10=(String) session.getAttribute("p10");String pv10=request.getParameter("pv10");
+	      String method=request.getParameter("method");
+	      String field1=(String) session.getAttribute("field1");      String field2=(String) session.getAttribute("field2");
+	      String field3=(String) session.getAttribute("field3");      String field4=(String) session.getAttribute("field4");
+	      String field5=(String) session.getAttribute("field5");      String field6=(String) session.getAttribute("field6");
+	      String field7=(String) session.getAttribute("field7");      String field8=(String) session.getAttribute("field8");
+	      String field9=(String) session.getAttribute("field9");      String field10=(String) session.getAttribute("field10");
 
-		/* Connection con=null;  
-	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
-	   	InputStream inputStream=null;
-		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-      PrintWriter out=response.getWriter();
-      String appname=request.getParameter("app1");  String authen=request.getParameter("authen");
-      String select1=request.getParameter("select1"); String select2=request.getParameter("select2");
-      HttpSession session=request.getSession(true);
-	  String id=(String) session.getAttribute("id");        
-	  Part filePart = request.getPart("logo");  
-      inputStream = filePart.getInputStream();  
-      String b1=request.getParameter("b1");String b2=request.getParameter("b2");
-      String b3=request.getParameter("b3");String b4=request.getParameter("b4");
-      String h1=request.getParameter("h1"); String hv1=request.getParameter("hv1");
-      String h2=request.getParameter("h2"); String hv2=request.getParameter("hv2");
-      String h3=request.getParameter("h3"); String hv3=request.getParameter("hv3");
-      String h4=request.getParameter("h4"); String hv4=request.getParameter("hv4");
-      String h5=request.getParameter("h5"); String hv5=request.getParameter("hv5");
-	  String a1=request.getParameter("a1");String a2=request.getParameter("a2");
-	  String cname=request.getParameter("cname"); String ckey=request.getParameter("ckey"); String csecname=request.getParameter("csecname");
-	  String cseckey=request.getParameter("cseckey");String sname=request.getParameter("sname"); String svalue=request.getParameter("svalue");
-	  String aurl=request.getParameter("aurl"); String tokenurl=request.getParameter("tokenurl"); String tlabel=request.getParameter("tlabel");
-	  String treplace=request.getParameter("treplace");String el=request.getParameter("el"); String ev=request.getParameter("ev");
-      HttpSession session2 = request.getSession(true);
-      session2.setAttribute("appname",appname);
-      session2.setAttribute("apikey",a2);
-      session2.setAttribute("apiname",a1);
-      session2.setAttribute("authtype",authen);
-      session2.setAttribute("ckey",ckey);
-      session2.setAttribute("cseckey",cseckey);
-      session2.setAttribute("aurl",aurl);
-      session2.setAttribute("tokenurl",tokenurl);
-      session2.setAttribute("tlabel",tlabel);
 	  try{
+		  Connection con=null;
 		  Class.forName("com.mysql.jdbc.Driver").newInstance();
 		  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
              PreparedStatement st=null;
-             st=con.prepareStatement("insert into authen2(id,appname,auth,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,logo) values ('"+id+"','"+appname+"','"+authen+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"',?)");				 
-             st.setBlob(1, inputStream);
+             st=con.prepareStatement("insert into authen2(id,appname,auth,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev) values ('"+id+"','"+appname+"','"+authen+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"')");				 
              st.executeUpdate();
 		     st.close();
 		   
@@ -137,6 +139,5 @@ public class PreAuthPulpy extends HttpServlet {
 	  catch(Exception e){
 		  out.println("<html><body bgcolor='#FF9900'><h2 style='color:#ffffff;'><center>You can configure only one time with the same id</h2><h3 style='color:#ffffff;'><a href='logout.jsp'>signout</a></h3></center></body></html>");}
 	  
-	 */ 
 	  }
 }
