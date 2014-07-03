@@ -124,7 +124,7 @@ public class PreAuthPulpy extends HttpServlet {
             	    session.setAttribute("treplace", treplace1);
             	    session.setAttribute("el", el1);
             	    session.setAttribute("ev", ev1);
-            	    session.setAttribute("orm", rm1);
+            	    session.setAttribute("rm1", rm1);
             	  
             	 if(sname1.equals("") && el1.equals(""))
             		  response.sendRedirect(aurl+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1);
