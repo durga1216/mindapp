@@ -80,7 +80,7 @@ public class PreXmlPulpy extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		PrintWriter out=response.getWriter();
-			response.setHeader("Content-Type","text/xml; charset=UTF-8");
+			//response.setHeader("Content-Type","text/xml; charset=UTF-8");
 				Connection con=null;
 				 HttpSession session=request.getSession(true);
 				  String appid1=(String) session.getAttribute("appid1"); 
@@ -153,7 +153,7 @@ public class PreXmlPulpy extends HttpServlet {
 		 String x25=rs.getString("x25"); String xv25=rs.getString("xv25");String x26=rs.getString("x26"); String xv26=rs.getString("xv26");
 		 String x27=rs.getString("x27"); String xv27=rs.getString("xv27");String x28=rs.getString("x28"); String xv28=rs.getString("xv28");
 		 String x29=rs.getString("x29"); String xv29=rs.getString("xv29");String x30=rs.getString("x30"); String xv30=rs.getString("xv30");
-		 
+		 out.println(xr+"" +x1+""+xv1);
 		  Document doc=null;  //TO Convert XMLSTRING TO DOCUMENT
 		       DocumentBuilder builder=null;
 		       DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
