@@ -889,7 +889,7 @@ public class PreXmlPulpy extends HttpServlet {
 			              		param2.setTextContent(xPath.evaluate(xv2, inputEvent));
 			              		outputEvent.appendChild(param2);}
 			              		
-			              		if(!"null".equals(x3)){
+			              	/*	if(!"null".equals(x3)){
 			              		Element param3=outdoc.createElement(x3);
 			                    if(xv3.equals(""))
 			              		param3.setTextContent("null");
@@ -1112,7 +1112,7 @@ public class PreXmlPulpy extends HttpServlet {
 			              		param30.setTextContent("null");
 			              		else
 			              		param30.setTextContent(xPath.evaluate(xv30, inputEvent));
-			              		outputEvent.appendChild(param30);}
+			              		outputEvent.appendChild(param30);} */
 			             		
 			              		outevent.appendChild(outputEvent);
 
