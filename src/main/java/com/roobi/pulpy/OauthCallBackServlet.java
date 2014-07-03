@@ -90,7 +90,6 @@ public class OauthCallBackServlet extends HttpServlet {
 	 		String el=(String) session1.getAttribute("el");
 	 		String ev=(String) session1.getAttribute("ev");
 	 		String rm1=(String)session1.getAttribute("rm1");
-	 		pw.println(rm1);
 			String code = request.getParameter(OAuthConstants.CODE);
 			//pw.println(apikey+"<br>"+apisecvalue+"<br>"+tokenurl);
 			String responseBody=null;
@@ -174,6 +173,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				
 				
 					   session1.setAttribute("access_token", access_token);
+					   pw.println(access_token);
 					   session1.setAttribute("id", id);
 					   if(access_token.equals(""))
 				            {pw.println("<br><br><center><b><h2><font color='white'>Authentication Error with "+appname+"</font></center></h2></b>");}
