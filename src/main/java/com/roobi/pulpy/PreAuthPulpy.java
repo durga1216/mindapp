@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -79,7 +80,7 @@ public class PreAuthPulpy extends HttpServlet {
 				 st.executeUpdate();
 			     st.close();
 			     out.println("Insert Sucess");
-		/*	     st=con.prepareStatement("SELECT * FROM authen2  ORDER BY appid DESC LIMIT 1"); //change
+	    st=con.prepareStatement("SELECT * FROM authen2  ORDER BY appid DESC LIMIT 1"); //change
 		
                  ResultSet rs = st.executeQuery();
 
@@ -90,14 +91,14 @@ public class PreAuthPulpy extends HttpServlet {
 
    	      session.setAttribute("appid", appid1);
 
-             if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
+           /*  if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
             	 
 
                
              out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
-             response.sendRedirect("https://mindapp-pulpy.rhcloud.com/PreBuild");
-             }
-             else if("Oauth2".equals(authen1)){
+             RequestDispatcher disp = getServletContext().getRequestDispatcher("/PreBuild");
+             disp.forward( request, response );             }*/
+              if("Oauth2".equals(authen1)){
             	 String cname1=rs.getString("cname");
             	 String ckey1=rs.getString("ckey");
             	 String csecname1=rs.getString("csecname");
