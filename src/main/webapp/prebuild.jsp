@@ -215,10 +215,11 @@ else if(authen.equals("Oauth2")){
 out.println("<div id='api'><a href='http://oauth.net'>To know more about Oauth Click here</a></div><br>");
 out.println("<input type='text' name='ckey' style='width:300px' value='' placeholder='Enter Your API Key here'>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here' style='width:300px'><br><br>");	
 out.println("<input type='text' name='aurl' value='"+aurl+"' style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='tokenurl' value='"+tokenurl+"' style='width:300px' ><br><br>");
-out.println("<input type='text' name='sname' value='"+sname+"' style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='svalue'style='width:300px'  value='' placeholder='Scope_Value' ><br><br>");
+out.println("<input type='text' name='sname' value='"+sname+"' placeholder='Scope_Label' style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='svalue'style='width:300px'  value='' placeholder='Scope_Value' ><br><br>");
 out.println("<input type='text' name='tlabel' style='width:300px' value='"+tlabel+"' ><br><br>");
-out.println("<div id='re'><center>Access Token Replacemnt</center></div><br>");
+out.println("<div id='re'><center>Access Token Replacement</center></div><br><br>");
 out.println("<input type='text' name='treplace' style='width:300px' value='"+treplace+"'>");
+out.println("<div id='re'><center>Extra Fields(Optional)</center></div><br><br>");
 out.println("<input type='text' name='el' value='"+el+"' placeholder='State_label'style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='ev' value='"+ev+"' placeholder='State_Value' style='width:300px' >");
 }%><br>
 <div class="au"><center>Request Method</center></div><br>
