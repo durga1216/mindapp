@@ -508,7 +508,7 @@ public class PreXmlPulpy extends HttpServlet {
 		       
 		       
 		       
-			   /*      else if(authen1.equals("Basic Auth")){ //m15
+			        else if(authen1.equals("Basic Auth")){ //m15
 			        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
 		        		 
@@ -854,7 +854,7 @@ public class PreXmlPulpy extends HttpServlet {
 			         
 			          
 			         else if(resf1.equals("XML") && authen1.equals("Oauth2"))
-			        	  doc=builder.parse(new InputSource(new ByteArrayInputStream(GetResponse.getBytes("UTF-8"))));*/}
+			        	  doc=builder.parse(new InputSource(new ByteArrayInputStream(GetResponse.getBytes("UTF-8"))));
 
 			       Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 	        		 Element outevent=outdoc.createElement("MPulpy");
@@ -883,7 +883,7 @@ public class PreXmlPulpy extends HttpServlet {
 	              		param2.setTextContent(xPath.evaluate(xv2, inputEvent));
 	              		outputEvent.appendChild(param2);}
 	              		
-	              		/*if(!"null".equals(x3)){
+	              		if(!"null".equals(x3)){
 	              		Element param3=outdoc.createElement(x3);
 	                    if(xv3.equals(""))
 	              		param3.setTextContent("null");
@@ -1106,7 +1106,7 @@ public class PreXmlPulpy extends HttpServlet {
 	              		param30.setTextContent("null");
 	              		else
 	              		param30.setTextContent(xPath.evaluate(xv30, inputEvent));
-	              		outputEvent.appendChild(param30);}*/
+	              		outputEvent.appendChild(param30);}
 	             		
 	              		outevent.appendChild(outputEvent);
 
