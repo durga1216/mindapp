@@ -182,7 +182,9 @@ public class OauthCallBackServlet extends HttpServlet {
 			        	response.setCharacterEncoding("UTF-8");
 			            pw.println("<br><br><center><b><h2><font color='#ffffff;'>Sucessfully Authenticated with "+appname+"</font></center></h2></b>");
 			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='auth.jsp'>Continue with Config</a></center></h3>");
-			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='token.jsp'>Continue with App</a></center></h3></body>");}
+			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='token.jsp'>Continue with App</a></center></h3></body>");
+			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with pre-Build APP</a></center></h3></body>");
+}
 			}
 			catch(Exception e){
 				pw.println(e);

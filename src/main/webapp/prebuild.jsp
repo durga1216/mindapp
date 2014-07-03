@@ -170,13 +170,21 @@ while(rs2.next()){
       f5=rs2.getString("f5"); f6=rs2.getString("f6");
       f7=rs2.getString("f7"); f8=rs2.getString("f8");
       f9=rs2.getString("f9"); f10=rs2.getString("f10");rf=rs2.getString("resf");
- 	  rmethod=rs2.getString("rm");
+ 	  rmethod=rs2.getString("rm");cname=rs2.getString("cname");
+ 	 ckey=rs2.getString("ckey");
+	 csecname=rs2.getString("csecname");
+	 cseckey=rs2.getString("cseckey");
+	 sname=rs2.getString("sname");
+	 svalue=rs2.getString("svalue");
+	 aurl=rs2.getString("aurl");
+	 tokenurl=rs2.getString("tokenurl");
+	 tlabel=rs2.getString("tlabel");
+	 treplace=rs2.getString("treplace");
+	 el=rs2.getString("el");
+	 ev=rs2.getString("ev");
+ 	  
 	} 
-	   cname=request.getParameter("cname");  ckey=request.getParameter("ckey");  csecname=request.getParameter("csecname");
-	   cseckey=request.getParameter("cseckey"); sname=request.getParameter("sname");  svalue=request.getParameter("svalue");
-	   aurl=request.getParameter("aurl");  tokenurl=request.getParameter("tokenurl");  tlabel=request.getParameter("tlabel");
-	   treplace=request.getParameter("treplace"); el=request.getParameter("el");  ev=request.getParameter("ev");
-
+	 
       session1.setAttribute("authen",authen);session1.setAttribute("appname",appname);
       session1.setAttribute("pa1",pa1); session1.setAttribute("pa2",pa2);session1.setAttribute("pa3",pa3);
       session1.setAttribute("pa4",pa4);session1.setAttribute("pa5",pa5);session1.setAttribute("pa6",pa6);
@@ -198,7 +206,13 @@ out.println("<input type='text' name='a1' value='"+a1+"'>");
 out.println("<input type='text' name='a2' value='' placeholder='Enter your API_KEY here' style='width:350px;'><br><br>");
 } else if(authen.equals("Oauth")){
 out.println("<div id='api'><a href='http://oauth.net'>To know more about Oauth Click here</a></div><br>");
-	
+	out.println("<input type='text' name='ckey' value='' placeholder='Enter Your API Key here'>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here'>");	
+out.println("<input type='text' name='aurl' value='"+aurl+"' >&nbsp;&nbsp;&nbsp;<input type='text' name='tokenurl' value='"+tokenurl+"' >");
+out.println("<input type='text' name='sname' value='"+sname+"' >&nbsp;&nbsp;&nbsp;<input type='text' name='svalue' value='' placeholder='Scope_Value' >");
+out.println("<input type='text' name='tlabel' value='"+tlabel+"' ><br>");
+out.println("<div id='re'>Access Token Replacemnt</div><br>");
+out.println("<input type='text' name='treplace' value='"+treplace+"'>");
+out.println("<input type='text' name='el' value='"+el+"' >&nbsp;&nbsp;&nbsp;<input type='text' name='ev' value='"+ev+"' >");
 }%><br>
 <div class="au"><center>Request Method</center></div><br>
 <div class="text"><input type="text" name="rf" id="rf" value="<%=rf%>" placeholder="Request Method"></div><br><br>
@@ -240,7 +254,7 @@ out.println("<tr><td>"+pa2+"</td><td><input type='text' name='pv2' value='' plac
 } 
 %>
 </table><br><br>
-<input type="submit" name="submit" value="Simplify O/P" formAction="PreBuild" formmethod="post">
+<input type="submit" name="submit" value="Simplify O/P" formAction="PreAuthPulpy" formmethod="post">
 </form>
 <% 
 }
