@@ -49,7 +49,7 @@ public class LoginCheckPulpy extends HttpServlet {
               mail=rs.getString("email");
               pwd=rs.getString("pwd");
          }}
-      //   st=con.prepareStatement("SELECT * From authen1 where id='"+id+"'");
+      // //  st=con.prepareStatement("SELECT * From authen1 where id='"+id+"'");
        
             
               if(t1.equals("") &&  t2.equals("") ){
