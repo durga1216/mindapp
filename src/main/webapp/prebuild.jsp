@@ -151,7 +151,7 @@ String pva1="null";String pva2="null";String pva3="null";String pva4="null";Stri
 String f1="null";String f2="null";String f3="null";String f4="null";String f5="";String f6="null";String f7="null";String f8="null";String f9="null";String f10="null";
 String authen="";String appname="";String desc=""; String a1="null"; String a2="null";
 String cname="null";String ckey="null";String csecname="null";String cseckey="null";String sname="null";String svalue="null";
-String aurl="null";String tokenurl="null";String tlabel="null";String treplace="null";String el="null";String ev="null";
+String aurl="null";String tokenurl="null";String tlabel="null";String treplace="null";String el="null";String ev="null";String orm="null";
 String rf="";String rmethod="";// change
 HttpSession session1=request.getSession(true);
 while(rs2.next()){
@@ -175,6 +175,7 @@ while(rs2.next()){
       f3=rs2.getString("f3"); f4=rs2.getString("f4");
       f5=rs2.getString("f5"); f6=rs2.getString("f6");
       f7=rs2.getString("f7"); f8=rs2.getString("f8");
+      
       f9=rs2.getString("f9"); f10=rs2.getString("f10");rf=rs2.getString("resf");
  	  rmethod=rs2.getString("rm");cname=rs2.getString("cname");
  	 ckey=rs2.getString("ckey");
@@ -187,7 +188,7 @@ while(rs2.next()){
 	 tlabel=rs2.getString("tlabel");
 	 treplace=rs2.getString("treplace");
 	 el=rs2.getString("el");
-	 ev=rs2.getString("ev");
+	 ev=rs2.getString("ev");orm=rs2.getString("rmethod");
  	  
 	} 
 	 
@@ -199,7 +200,7 @@ while(rs2.next()){
       session1.setAttribute("f1",f1);      session1.setAttribute("f2",f2);      session1.setAttribute("f3",f3);
       session1.setAttribute("f4",f4);      session1.setAttribute("f5",f5);      session1.setAttribute("f6",f6);
       session1.setAttribute("f7",f7);      session1.setAttribute("f8",f8);      session1.setAttribute("f9",f9);
-      session1.setAttribute("f10",f10);
+      session1.setAttribute("f10",f10); session1.setAttribute("orm",orm);
 
 
 

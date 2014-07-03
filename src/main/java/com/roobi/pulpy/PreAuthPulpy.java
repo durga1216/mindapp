@@ -62,7 +62,7 @@ public class PreAuthPulpy extends HttpServlet {
 	      String p8=(String) session.getAttribute("pa8"); String pv8=request.getParameter("pv8");
 	      String p9=(String) session.getAttribute("pa9");String pv9=request.getParameter("pv9");
 	      String p10=(String) session.getAttribute("p10");String pv10=request.getParameter("pv10");
-	      String method=request.getParameter("method");
+	      String method=request.getParameter("method");String rm1=(String)session.getAttribute("orm");
 	      String field1=(String) session.getAttribute("field1");      String field2=(String) session.getAttribute("field2");
 	      String field3=(String) session.getAttribute("field3");      String field4=(String) session.getAttribute("field4");
 	      String field5=(String) session.getAttribute("field5");      String field6=(String) session.getAttribute("field6");
@@ -124,6 +124,7 @@ public class PreAuthPulpy extends HttpServlet {
             	    session.setAttribute("treplace", treplace1);
             	    session.setAttribute("el", el1);
             	    session.setAttribute("ev", ev1);
+            	    session.setAttribute("orm", rm1);
             	  
             	 if(sname1.equals("") && el1.equals(""))
             		  response.sendRedirect(aurl+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1);

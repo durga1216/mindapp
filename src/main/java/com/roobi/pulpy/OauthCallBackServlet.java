@@ -89,8 +89,8 @@ public class OauthCallBackServlet extends HttpServlet {
 	 		String treplace=(String) session1.getAttribute("treplace");
 	 		String el=(String) session1.getAttribute("el");
 	 		String ev=(String) session1.getAttribute("ev");
-	 		String rf1=(String)session1.getAttribute("rf1");
 	 		String rm1=(String)session1.getAttribute("rm1");
+	 		
 			String code = request.getParameter(OAuthConstants.CODE);
 			//pw.println(apikey+"<br>"+apisecvalue+"<br>"+tokenurl);
 			String responseBody=null;
