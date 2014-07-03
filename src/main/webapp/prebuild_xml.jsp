@@ -175,7 +175,7 @@ session.setAttribute("xr",xr);session.setAttribute("x1",x1);session.setAttribute
 session.setAttribute("x2",x2);session.setAttribute("xv2",xv2);%>
 
 
-<table><tr><td><input type='text' name='xr' value='' placeholder='Parent_Tag' style='width:300px;'></td><td><div class='pa'>Example:"<%=xr %>"</div></td></tr><br>
+<table><tr><td><input type='text' name='xr' value='' placeholder='Parent_Tag' style='width:300px; margin-left:400px;'></td><td><div class='pa'>Example:"<%=xr %>"</div></td></tr><br>
 
 <%if(!"null".equals(x1)) {%>
 	

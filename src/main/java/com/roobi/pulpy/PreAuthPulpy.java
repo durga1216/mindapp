@@ -30,8 +30,10 @@ public class PreAuthPulpy extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
+		out.println("SUCEESS");
 
-		 Connection con=null;  
+		/* Connection con=null;  
 	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 	   	InputStream inputStream=null;
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
@@ -135,6 +137,6 @@ public class PreAuthPulpy extends HttpServlet {
 	  catch(Exception e){
 		  out.println("<html><body bgcolor='#FF9900'><h2 style='color:#ffffff;'><center>You can configure only one time with the same id</h2><h3 style='color:#ffffff;'><a href='logout.jsp'>signout</a></h3></center></body></html>");}
 	  
-	  
+	 */ 
 	  }
 }

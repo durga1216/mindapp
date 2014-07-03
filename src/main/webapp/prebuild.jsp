@@ -207,13 +207,13 @@ out.println("<input type='text' name='a2' value='' placeholder='Enter your API_K
 } 
 else if(authen.equals("Oauth2")){
 out.println("<div id='api'><a href='http://oauth.net'>To know more about Oauth Click here</a></div><br>");
-out.println("<input type='text' name='ckey' value='' placeholder='Enter Your API Key here'>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here'>");	
-out.println("<input type='text' name='aurl' value='"+aurl+"' >&nbsp;&nbsp;&nbsp;<input type='text' name='tokenurl' value='"+tokenurl+"' >");
-out.println("<input type='text' name='sname' value='"+sname+"' >&nbsp;&nbsp;&nbsp;<input type='text' name='svalue' value='' placeholder='Scope_Value' >");
-out.println("<input type='text' name='tlabel' value='"+tlabel+"' ><br>");
+out.println("<input type='text' name='ckey' style='width:250px' value='' placeholder='Enter Your API Key here'>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here' style='width:250px'><br>");	
+out.println("<input type='text' name='aurl' value='"+aurl+"' style='width:250px' >&nbsp;&nbsp;&nbsp;<input type='text' name='tokenurl' value='"+tokenurl+"' style='width:250px' ><br>");
+out.println("<input type='text' name='sname' value='"+sname+"' >&nbsp;&nbsp;&nbsp;<input type='text' name='svalue' value='' placeholder='Scope_Value' ><br>");
+out.println("<input type='text' name='tlabel' style='width:250px' value='"+tlabel+"' ><br>");
 out.println("<div id='re'>Access Token Replacemnt</div><br>");
-out.println("<input type='text' name='treplace' value='"+treplace+"'>");
-out.println("<input type='text' name='el' value='"+el+"' >&nbsp;&nbsp;&nbsp;<input type='text' name='ev' value='"+ev+"' >");
+out.println("<input type='text' name='treplace' style='width:250px' value='"+treplace+"'>");
+out.println("<input type='text' name='el' value='"+el+"' placeholder='State_label'style='width:250px' >&nbsp;&nbsp;&nbsp;<input type='text' name='ev' value='"+ev+"' placeholder='State_Value' style='width:250px' >");
 }%><br>
 <div class="au"><center>Request Method</center></div><br>
 <div class="text"><input type="text" name="rf" id="rf" value="<%=rf%>" placeholder="Request Method"></div><br><br>
