@@ -77,7 +77,7 @@ public class PreAuthPulpy extends HttpServlet {
              st.executeUpdate();
 		     st.close();
 		   
-		     //out.println("insert sucess");
+		    out.println("insert sucess");
 		     
 		    st=con.prepareStatement("SELECT * From authen2 ORDER BY appid DESC LIMIT 1");
 	         ResultSet rs = st.executeQuery();
@@ -137,7 +137,6 @@ public class PreAuthPulpy extends HttpServlet {
              } //else-if
 	  } //try
 	  catch(Exception e){
-		  out.println("<html><body bgcolor='#FF9900'><h2 style='color:#ffffff;'><center>You can configure only one time with the same id</h2><h3 style='color:#ffffff;'><a href='logout.jsp'>signout</a></h3></center></body></html>");}
-	  
+out.println(e);	  }
 	  }
 }
