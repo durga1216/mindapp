@@ -36,7 +36,7 @@ public class PreAuthPulpy extends HttpServlet {
 	   	InputStream inputStream=null;
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
       PrintWriter out=response.getWriter();
-      String appname=request.getParameter("app1"); String descr=request.getParameter("descr"); String authen=request.getParameter("authen");
+      String appname=request.getParameter("app1");  String authen=request.getParameter("authen");
       String select1=request.getParameter("select1"); String select2=request.getParameter("select2");
       HttpSession session=request.getSession(true);
 	  String id=(String) session.getAttribute("id");        
@@ -68,7 +68,7 @@ public class PreAuthPulpy extends HttpServlet {
 		  Class.forName("com.mysql.jdbc.Driver").newInstance();
 		  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
              PreparedStatement st=null;
-             st=con.prepareStatement("insert into authen2(id,appname,descr,auth,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,logo) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"',?)");				 
+             st=con.prepareStatement("insert into authen2(id,appname,auth,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,logo) values ('"+id+"','"+appname+"','"+authen+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"',?)");				 
              st.setBlob(1, inputStream);
              st.executeUpdate();
 		     st.close();
@@ -127,14 +127,14 @@ public class PreAuthPulpy extends HttpServlet {
                  else if(sname1.equals("")&& !el1.equals(""))
             		  response.sendRedirect(aurl+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
             	 
-
+             } //while
             	 
             	 
-             }
-	         }
-	  }
+             } //else-if
+	  } //try
 	  catch(Exception e){
-		  out.println("<html><body bgcolor='#FF9900'><h2 style='color:#ffffff;'><center>You can configure only one time with the same id</h2><h3 style='color:#ffffff;'><a href='logout.jsp'>signout</a></h3></center></body></html>");
-	  }}
-
+		  out.println("<html><body bgcolor='#FF9900'><h2 style='color:#ffffff;'><center>You can configure only one time with the same id</h2><h3 style='color:#ffffff;'><a href='logout.jsp'>signout</a></h3></center></body></html>");}
+	  
+	  
+	  }
 }
