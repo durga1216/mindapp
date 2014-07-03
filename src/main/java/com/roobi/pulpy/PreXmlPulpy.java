@@ -79,7 +79,9 @@ public class PreXmlPulpy extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-			response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		//	response.setHeader("Content-Type","text/xml; charset=UTF-8");
+            PrintWriter out=response.getWriter();
+
 				Connection con=null;
 				 HttpSession session=request.getSession(true);
 				  String appid1=(String) session.getAttribute("appid1"); 
@@ -506,7 +508,7 @@ public class PreXmlPulpy extends HttpServlet {
 		       
 		       
 		       
-			         else if(authen1.equals("Basic Auth")){ //m15
+			   /*      else if(authen1.equals("Basic Auth")){ //m15
 			        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
 		        		 
@@ -852,13 +854,13 @@ public class PreXmlPulpy extends HttpServlet {
 			         
 			          
 			         else if(resf1.equals("XML") && authen1.equals("Oauth2"))
-			        	  doc=builder.parse(new InputSource(new ByteArrayInputStream(GetResponse.getBytes("UTF-8"))));
+			        	  doc=builder.parse(new InputSource(new ByteArrayInputStream(GetResponse.getBytes("UTF-8"))));*/}
 
 			       Document outdoc=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 	        		 Element outevent=outdoc.createElement("MPulpy");
 	        		 NodeList inevent=null;
 	        		 XPath xPath=XPathFactory.newInstance().newXPath();
-	        		 inevent=(NodeList) xPath.evaluate("//event",doc,XPathConstants.NODESET); //using XPATH to simply xml from third party server
+	        		 inevent=(NodeList) xPath.evaluate("//"+xr,doc,XPathConstants.NODESET); //using XPATH to simply xml from third party server
 	                   if(inevent!=null){
 	            	  
 	              	for(int i=0;i<inevent.getLength();i++){
@@ -1132,18 +1134,17 @@ public class PreXmlPulpy extends HttpServlet {
 	                // output=new BufferedWriter(new FileWriter("F:/workspace/mind.xml"));
 	                 String xmloutput=result.getWriter().toString();
 	              
-	                 PrintWriter out=response.getWriter();
 	                 out.println(xmloutput);
 	              	
 			       
 			        
 			       
 			          
-			          
+		           
 			                  	
 		        }//while
 		       
-		        	
+		             	
 				}
 				catch(Exception e){}	}
 
