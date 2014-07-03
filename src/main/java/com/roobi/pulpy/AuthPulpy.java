@@ -777,6 +777,7 @@ public class AuthPulpy extends HttpServlet {
 		     				new InputStreamReader(response1.getEntity().getContent()));
 		     			while ((line = rd.readLine()) != null) {
 		     				GetResponse=line;
+		     				out.println(GetResponse);
 		     			}
 	     	
 		     	}   // auth bearer treplace
@@ -902,12 +903,15 @@ public class AuthPulpy extends HttpServlet {
    	              xmlSerializer.removeNamespace(GetResponse);
    	              xmlSerializer.setForceTopLevelObject(false);
    	              String xmlout=xmlSerializer.write(json);
+   				out.println(xmlout);
+
    	           session.setAttribute("xml1", xmlout);
 		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
                  } // if
                  
                  else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
-			    
+	     				out.println(GetResponse);
+
                 	 session.setAttribute("xml1", GetResponse);
          			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
