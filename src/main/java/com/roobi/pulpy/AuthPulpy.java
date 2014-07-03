@@ -98,12 +98,12 @@ public class AuthPulpy extends HttpServlet {
       session3.setAttribute("p8",p8);session3.setAttribute("pv8",pv8);
       session3.setAttribute("p9",p9);session3.setAttribute("pv9",pv9);
       session3.setAttribute("p10",p10);session3.setAttribute("pv10",pv10);
+      PrintWriter out=response.getWriter();
 
 
 
       try{
   		//out.println("start");
-           PrintWriter out=response.getWriter();
     	    response.setContentType("text/html");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -418,7 +418,7 @@ public class AuthPulpy extends HttpServlet {
 	   	     	          xmlSerializer.setRootName("root");
 	   	     	          xmlSerializer.setForceTopLevelObject(false);
 	   	     		      str = xmlSerializer.write( json );
-	   	    			
+	   	    			out.println(str);
 	   	    		     }//while
 	        	    	 
 	        	     } // else if
@@ -920,7 +920,7 @@ public class AuthPulpy extends HttpServlet {
 	         } // while database
 	         
 	         catch(Exception e){
-	        //	 out.println(e);
+	        	 out.println(e);
 	        	 }
       
 	} //post
