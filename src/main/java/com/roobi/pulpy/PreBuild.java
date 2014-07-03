@@ -886,12 +886,16 @@ public class PreBuild extends HttpServlet {
            	              xmlSerializer.setForceTopLevelObject(false);
            	              String xmlout=xmlSerializer.write(json);
            	           session2.setAttribute("xml1", xmlout);
+                       out.println(xmlout);
+
         		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
                          } // if
                          
                          else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
         			    
                         	 session2.setAttribute("xml1", GetResponse);
+                             out.println(GetResponse);
+
                  			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
         	     		        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
