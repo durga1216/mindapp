@@ -154,7 +154,7 @@ try{
 	HttpSession session1=request.getSession(true);
     String appid=(String)session1.getAttribute("appid");
     String id=(String)session1.getAttribute("id");
-     out.println(appid);
+
     session1.setAttribute("appid",appid);
     session1.setAttribute("id",id);
 
