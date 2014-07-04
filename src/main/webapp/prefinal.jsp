@@ -25,16 +25,24 @@ color:#FFFFFF;
     font-size:40px;
     margin-top:20px;
 }
-color:#FFFFFF;
-    font-family:verdana;
-    font-size:30px;
-    margin-top:50px;
+.main{
+font-family:verdana;
+ font-size:30px;
+ color:#FFFFFF;
+    
 }
+     
 #pa{
 font-size:15px;
 margin-left:500px;
 color:#FFFFFF;
 font-family:verdana;
+}
+
+#result{
+color:#FFFFFF;
+    font-family:verdana;
+    font-size:30px;
 }
 </style>
 </head>
@@ -42,9 +50,9 @@ font-family:verdana;
 <%
 HttpSession session1=request.getSession(true);
 %>
-<center><div class="head">Mind Pulpy</div></center>
-<center><div class="main">Configuration completed! With PRE-BUILD APP</div></center><br>
-<div id="result">Your Appid is : <%=session1.getAttribute("appid1")%>
-<a id='pa' href='javascript:load()' >Check your Simplified Output here</a>
+<center><div class="head">Mind Pulpy</div></center><br><br>
+<div class="main"><center>Configuration completed! With PRE-BUILD APP</center></div><br><br>
+<div id="result">Your Appid is : <%=session1.getAttribute("appid1")%><br><br>
+<a id='pa' href='javascript:load()' >Check your Simplified Output here</a><br><br>
 </body>
 </html>
