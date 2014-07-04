@@ -154,7 +154,7 @@ try{
 	HttpSession session1=request.getSession(true);
     String appid=(String)session1.getAttribute("appid");
     String id=(String)session1.getAttribute("id");
-
+     out.println(appid);
     session1.setAttribute("appid",appid);
     session1.setAttribute("id",id);
 
@@ -174,7 +174,7 @@ String x5=rs2.getString("x5");String xv5=rs2.getString("xv5");
 session.setAttribute("xr",xr);session.setAttribute("x1",x1);session.setAttribute("xv1",xv1);
 session.setAttribute("x2",x2);session.setAttribute("xv2",xv2);%>
 
-<div id='sam'><%=appid%></div>
+
 <table><tr><td><input type='text' name='xr' value='' placeholder='Parent_Tag' style='width:300px; margin-left:400px;'></td><td><div class='pa'>Example:"<%=xr %>"</div></td></tr><br>
 
 <%if(!"null".equals(x1)) {%>
