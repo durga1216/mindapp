@@ -41,7 +41,7 @@ import com.mindots.util.Utils;
 import com.mysql.jdbc.Connection;
 
 public class PreBuild extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private                                       static  final long serialVersionUID       = 1L;
        
     
     public PreBuild() {
