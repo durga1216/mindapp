@@ -109,8 +109,8 @@ function back()
 <body>
  <form method="post" action="Addapi" enctype="multipart/form-data">  
         <br><br><div class="head"><center>Mind Pulpy</center></div><br>
-<center><input type="text" name="t1" placeholder="Api Name"><br><br>
-<input type="text" name="t2"  placeholder="Provider Name*" ><br><br>
+<center><input type="text" name="t1" placeholder="Api Name" required><br><br>
+<input type="text" name="t2"  placeholder="Provider Name*" required><br><br>
 <select name="t6">
 <option value="Search">Search</option>
 <option value="Education">Education</option>
@@ -127,9 +127,9 @@ function back()
 <option value="Tools" >Tools</option>
 <option value="wearable">Hardware/wearable</option>
 </select><br><br>
-<input type="text" name="t3"  placeholder="Eg: http://api.example.com*"><br><br>
-<textarea name="t4" rows="10" cols="30" placeholder="Description*(Less than 1000 characters)"></textarea><br><br>
-<div id="txt">Select Image</div><input style="color:#ffffff;" type="file" name="t5" placeholder="image location"><br><br>
+<input type="text" name="t3"  placeholder="Eg: http://api.example.com*" required><br><br>
+<textarea name="t4" rows="10" cols="30" placeholder="Description*(Less than 1000 characters)" required></textarea><br><br>
+<div id="txt">Select Image</div><input style="color:#ffffff;" type="file" name="t5" placeholder="image location" required><br><br>
 <input type="submit" value="Add Api">&nbsp;&nbsp;
 <input type="button" name="b2" value="Back" Onclick="back()">
 </center>

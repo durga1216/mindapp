@@ -96,8 +96,8 @@ function load(){
 <form action="LoginCheckPulpy" method="post">
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br><center><div class='au'><center>Login Here</center></div></center>
 <center>&nbsp;&nbsp;&nbsp;&nbsp;<div class="result">${alert}</div></center><br><br>
-<center><input type=text name="t1" id='t1' placeholder="Email"><br><br>
-<input type=password name="t2" id='t2'  placeholder="Password"><br><br><br></center>
+<center><input type=text name="t1" id='t1' placeholder="Email" required><br><br>
+<input type=password name="t2" id='t2'  placeholder="Password" required><br><br><br></center>
 <center><input type="submit" name="submit" id='Login' value="Login">&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="b2" value="Signup" Onclick="add()"><center><br><br><br>
 <center>&nbsp;&nbsp;<img alt="mobile" src="images/mobile.png">&nbsp;&nbsp;<img alt="tablet" src="images/tablet.png">&nbsp;&nbsp;<img alt="smart tv" src="images/TV.png">&nbsp;&nbsp;<img alt="smart watch" src="images/watch-2.png">&nbsp;&nbsp;<img alt="google glass" src="images/Glass-Icon.png">
