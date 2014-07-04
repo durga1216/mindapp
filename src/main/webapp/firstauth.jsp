@@ -265,9 +265,9 @@ margin-left:100px;
 
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 <form action="FirstAuthPulpy" method="post" enctype="multipart/form-data">
-<input type="text" name="app1" value="" placeholder="Application Name*"><br/><br>
+<input type="text" name="app1" value="" placeholder="Application Name*" required><br/><br>
 <div id="tt">Select Logo:  &nbsp;&nbsp;&nbsp;&nbsp;<input style="color:#ffffff;" type="file" name="logo" placeholder="image location"></div><br><br>
-<textarea id="txt" name="descr" placeholder="Description*"></textarea><br><br>
+<textarea id="txt" name="descr" placeholder="Description*" required></textarea><br><br>
 <div class="au"><center>Authentication Scheme</center></div><div class="space"></div>
 <div id="inline_content">
 <input type="radio" name="authen"  value="No Auth">
