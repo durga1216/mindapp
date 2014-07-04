@@ -79,7 +79,7 @@ public class PreXmlPulpy extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-			//response.setHeader("Content-Type","text/xml; charset=UTF-8");
+			response.setHeader("Content-Type","text/xml; charset=UTF-8");
             PrintWriter out=response.getWriter();
 
 				Connection con=null;
@@ -165,8 +165,7 @@ public class PreXmlPulpy extends HttpServlet {
 		   	String jsonxmlout=null;
 		   	String str="";
 		    Object obj;
-		    out.println(xv1+"<br>"+xv2);
-		    /*   if(authen1.equals("No Auth")){ //No Authentication
+		    if(authen1.equals("No Auth")){ //No Authentication
 			         if( rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON") ){  //No Auth GET XML
 			        	 
 			             if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -870,17 +869,13 @@ public class PreXmlPulpy extends HttpServlet {
 	              		      
 	              	    if(!"null".equals(x1)){   //validation for not return null tag
 	              		Element param1=outdoc.createElement(x1);  //create element
-	                    if(xv1.equals(""))
-	              		param1.setTextContent("null");
-	              		else
+	                    
 	              		param1.setTextContent(xPath.evaluate(xv1, inputEvent)); // map our xml with third party server xml
 	              		outputEvent.appendChild(param1);}
 	              		
 	              		if(!"null".equals(x2)){
 	              		Element param2=outdoc.createElement(x2);
-	                    if(xv2.equals(""))
-	              		param2.setTextContent("null");
-	              		else
+	                    
 	              		param2.setTextContent(xPath.evaluate(xv2, inputEvent));
 	              		outputEvent.appendChild(param2);}
 	              		
@@ -1141,7 +1136,6 @@ public class PreXmlPulpy extends HttpServlet {
 			        
 			       
 			          
-		           */
 			                  	
 		        }//while
 		       
