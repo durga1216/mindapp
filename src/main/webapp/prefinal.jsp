@@ -52,7 +52,7 @@ HttpSession session1=request.getSession(true);
 %>
 <center><div class="head">Mind Pulpy</div></center><br><br>
 <div class="main"><center>Configuration completed! With PRE-BUILD APP</center></div><br><br>
-<div id="result">Your Appid is : <%=session1.getAttribute("appid1")%><br><br>
+<div id="result"><center>Your Appid is : <%=session1.getAttribute("appid1")%></center><br><br>
 <a id='pa' href='javascript:load()' >Check your Simplified Output here</a><br><br>
 </body>
 </html>

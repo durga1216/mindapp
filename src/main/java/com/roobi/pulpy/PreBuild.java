@@ -56,7 +56,7 @@ public class PreBuild extends HttpServlet {
 		HttpSession session2=request.getSession(true);
 	    String id=(String) session.getAttribute("id");
 	    String appid=(String) session.getAttribute("appid");
-	
+	 response.setContentType("text/html");
 		
 	      try{
 	    	  
@@ -857,14 +857,12 @@ public class PreBuild extends HttpServlet {
         	   	              xmlSerializer.removeNamespace(GetResponse);
         	   	              xmlSerializer.setForceTopLevelObject(false);
         	   	              String xmlout=xmlSerializer.write(json);
-        	   				out.println(xmlout);
 
         	   	           session.setAttribute("xml1", xmlout);
         			        response.setHeader("Refresh", "1; URL=prebuild_xml.jsp");	
         	                 } // if
         	                 
         	                 else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
-        		     				out.println(GetResponse);
 
         	                	 session.setAttribute("xml1", GetResponse);
         	         			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");

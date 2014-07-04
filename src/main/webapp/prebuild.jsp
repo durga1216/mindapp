@@ -222,7 +222,7 @@ out.println("<div id='re'><center>Access Token Replacement</center></div><br><br
 out.println("<input type='text' name='treplace' style='width:300px' value='"+treplace+"'>");
 out.println("<div id='re'><center>Access Token Method :"+orm+"</center></div>");
 out.println("<div id='re'><center>Extra Fields(Optional)</center></div><br><br>");
-out.println("<input type='text' name='el' value='"+el+"' placeholder='State_label'style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='ev' value='"+ev+"' placeholder='State_Value' style='width:300px' >");
+out.println("<input type='text' name='el' value='"+el+"' placeholder='State_label'style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='ev' value='"+ev+"' placeholder='State_Value' style='width:300px' ><br><br>");
 }%><br>
 <div class="au"><center>Request Method</center></div><br>
 <div class="text"><input type="text" name="rf" id="rf" value="<%=rf%>" placeholder="Request Method"></div><br><br>

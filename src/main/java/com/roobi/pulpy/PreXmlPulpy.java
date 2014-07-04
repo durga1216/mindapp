@@ -869,7 +869,7 @@ public class PreXmlPulpy extends HttpServlet {
 	              		       
 	              	    if(!"null".equals(x1)){   //validation for not return null tag
 	              		Element param1=outdoc.createElement(x1);  //create element
-	                    if(xv1.equals(""))
+	                    if(xv1.equals("null"))
 	              		param1.setTextContent("null");
 	              		else
 	              		param1.setTextContent(xPath.evaluate(xv1, inputEvent)); // map our xml with third party server xml
@@ -877,7 +877,7 @@ public class PreXmlPulpy extends HttpServlet {
 	              		
 	              		if(!"null".equals(x2)){
 	              		Element param2=outdoc.createElement(x2);
-	                    if(xv2.equals(""))
+	                    if(xv2.equals("null"))
 	              		param2.setTextContent("null");
 	              		else
 	              		param2.setTextContent(xPath.evaluate(xv2, inputEvent));

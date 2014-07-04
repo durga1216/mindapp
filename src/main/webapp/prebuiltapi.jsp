@@ -15,6 +15,7 @@ color:#ffffff;
 }
 table,td{
 padding:8px;
+margin-left:250px;
 }
 </style>
 </head>  
