@@ -101,8 +101,8 @@ public class PreXmlPulpy extends HttpServlet {
 		        ResultSet rs = st.executeQuery();
 		        while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
 		        	String id=rs.getString("id");	 String appname1=rs.getString("appname");
-		            String authen1=rs.getString("auth");String ba1=rs.getString("b1");String b2=rs.getString("b2");
-		            String ba3=rs.getString("b3");String b4=rs.getString("b4");String ak1=rs.getString("a1");
+		            String authen1=rs.getString("auth");String b1=rs.getString("b1");String b2=rs.getString("b2");
+		            String b3=rs.getString("b3");String b4=rs.getString("b4");String ak1=rs.getString("a1");
 		            String ak2=rs.getString("a2"); String cname=rs.getString("cname");
 		       	 String ckey=rs.getString("ckey"); 
 		       	 String csecname=rs.getString("csecname");
@@ -510,7 +510,7 @@ public class PreXmlPulpy extends HttpServlet {
 		       
 			        else if(authen1.equals("Basic Auth")){ //m15
 			        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
+			        		 eurl=pa1+"="+pva1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
 		        		 
 		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
 			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9;}
