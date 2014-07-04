@@ -37,6 +37,7 @@ public class PreAuthPulpy extends HttpServlet {
 		HttpSession session2=request.getSession(true);
 	    String id=(String) session.getAttribute("id");
 	    String appid=(String) session.getAttribute("appid");
+	    session.setAttribute("appid", appid);
 		String appname=(String)session.getAttribute("appname");String b1=request.getParameter("b1");String b2=request.getParameter("b2");
 	    String authen=(String) session.getAttribute("authen"); 
 		String b3=request.getParameter("b3");String b4=request.getParameter("b4");
@@ -89,7 +90,7 @@ public class PreAuthPulpy extends HttpServlet {
    	         String appid1=rs.getString("appid");
    	         String authen1=rs.getString("auth");
 
-   	      session.setAttribute("appid", appid1);
+   	      session.setAttribute("appid1", appid1);
 
            /*  if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
             	 
