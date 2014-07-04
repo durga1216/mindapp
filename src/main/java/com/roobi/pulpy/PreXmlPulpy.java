@@ -165,7 +165,8 @@ public class PreXmlPulpy extends HttpServlet {
 		   	String jsonxmlout=null;
 		   	String str="";
 		    Object obj;
-		       if(authen1.equals("No Auth")){ //No Authentication
+		    out.println(xv1+"<br>"+xv2);
+		    /*   if(authen1.equals("No Auth")){ //No Authentication
 			         if( rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON") ){  //No Auth GET XML
 			        	 
 			             if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -866,10 +867,10 @@ public class PreXmlPulpy extends HttpServlet {
 	              	for(int i=0;i<inevent.getLength();i++){
 	              		Element outputEvent=outdoc.createElement("root"); // create mpulpy xml here
 	              		Node inputEvent=inevent.item(i);
-	              		       
+	              		      
 	              	    if(!"null".equals(x1)){   //validation for not return null tag
 	              		Element param1=outdoc.createElement(x1);  //create element
-	                    if(xv1.equals("null"))
+	                    if(xv1.equals(""))
 	              		param1.setTextContent("null");
 	              		else
 	              		param1.setTextContent(xPath.evaluate(xv1, inputEvent)); // map our xml with third party server xml
@@ -877,7 +878,7 @@ public class PreXmlPulpy extends HttpServlet {
 	              		
 	              		if(!"null".equals(x2)){
 	              		Element param2=outdoc.createElement(x2);
-	                    if(xv2.equals("null"))
+	                    if(xv2.equals(""))
 	              		param2.setTextContent("null");
 	              		else
 	              		param2.setTextContent(xPath.evaluate(xv2, inputEvent));
@@ -1140,7 +1141,7 @@ public class PreXmlPulpy extends HttpServlet {
 			        
 			       
 			          
-		           
+		           */
 			                  	
 		        }//while
 		       
