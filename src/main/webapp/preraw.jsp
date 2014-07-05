@@ -119,7 +119,7 @@ margin-left:80px;
 border-spacing:20px;
 
 }
-#pa1{margin-left:300px;
+#pa1{margin-left:500px;
 font-size:20px;
 font-family:verdana;
 color:#FFFFFF;}

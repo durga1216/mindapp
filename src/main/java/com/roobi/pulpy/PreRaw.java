@@ -181,7 +181,6 @@ public class PreRaw extends HttpServlet {
         	        	    	 
         	        	     } // else if*/
         	        	    session2.setAttribute("xml1", str);
-        		          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=preraw.jsp");	
         	        	     
         	        	 } //XML and JSON get No Auth
@@ -238,7 +237,6 @@ public class PreRaw extends HttpServlet {
         	 	  
              			  session2.setAttribute("xml1", resf1);
              			  session2.setAttribute("token", token);
-             			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		      response.setHeader("Refresh", "1; URL=preraw.jsp");	
           		   
         	     			
@@ -298,7 +296,6 @@ public class PreRaw extends HttpServlet {
         	 	    	    //  out.println(e);
         	 	    	      }	
         	        		 session2.setAttribute("xml1", str);
-        	        		 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=preraw.jsp");	
         	               	} //  post
         	        	        	 
@@ -376,7 +373,6 @@ public class PreRaw extends HttpServlet {
         	        	    	 
         	        	     } // else if
         	        	    session2.setAttribute("xml1", str);
-        		            out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=preraw.jsp");	
         	        	     
         	        	 } //XML and JSON get
@@ -435,7 +431,6 @@ public class PreRaw extends HttpServlet {
         		        		     	 	  
         	        			  session2.setAttribute("xml1", resf1);
         	        			  session2.setAttribute("token", token);
-        	          			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
         		     		      response.setHeader("Refresh", "1; URL=preraw.jsp");	
         	     		        
@@ -492,7 +487,6 @@ public class PreRaw extends HttpServlet {
         		 	    	    //  out.println(e);
         		         	    	 }	
         		        		 session2.setAttribute("xml1", str);
-        		     			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
         		     		        response.setHeader("Refresh", "1; URL=preraw.jsp");	
         		               	}//post 
@@ -611,7 +605,6 @@ public class PreRaw extends HttpServlet {
         	            	  }//while}
         	              }//json
         	              session2.setAttribute("xml1", str);
-        	             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
              		        response.setHeader("Refresh", "1; URL=preraw.jsp");	
         		          }//get
         	              else if(rm1.equals("POST")){ 
@@ -690,7 +683,6 @@ public class PreRaw extends HttpServlet {
         		     		      //out.println(xmlout);
         	            	  }//while
         	            	  session2.setAttribute("xml1", str);
-        		             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
         	     		        response.setHeader("Refresh", "1; URL=preraw.jsp");	
         	              }//post
         	           
@@ -863,7 +855,6 @@ public class PreRaw extends HttpServlet {
         	                 else  if(authen1.equals("Oauth2") && resf1.equals("XML")){
 
         	                	 session.setAttribute("xml1", GetResponse);
-        	         			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 
         		     		        response.setHeader("Refresh", "1; URL=preraw.jsp");	
         	                 } // if
