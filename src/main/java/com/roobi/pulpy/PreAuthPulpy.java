@@ -97,8 +97,10 @@ public class PreAuthPulpy extends HttpServlet {
 
                
              out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
-	          out.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with pre-Build APP</a></center></h3></body>");
-            }
+	         out.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with pre-Build APP</a></center></h3></body>");
+
+             
+             }
              
              
               if("Oauth2".equals(authen1)){
