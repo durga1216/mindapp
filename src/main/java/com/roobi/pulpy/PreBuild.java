@@ -110,8 +110,7 @@ public class PreBuild extends HttpServlet {
                      String eurl=null;
                      session2.setAttribute("appid", appid);
                      session2.setAttribute("appid1", appid1);
-                     out.println(authen1);
-                     out.println(endurl1);
+                    
                      if(authen1.equals("No Auth")){
         	        	 Object obj;
         	        	 String str="";
@@ -308,7 +307,6 @@ public class PreBuild extends HttpServlet {
         	         if(authen1.equals("API keys")){  //API Keys
                 	     String str="";
                          Object obj;
-                         out.println("inside API keys");
         	        	 if(rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
         	        		 
         	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -716,7 +714,6 @@ public class PreBuild extends HttpServlet {
         	                String Response=null;
         		        	HttpSession session1=request.getSession(true);
         			     	String access_token=(String)session1.getAttribute("access_token");
-        			     	out.println(access_token);
         			     	String GetResponse=null;
         		     		 StringBuilder result=new StringBuilder();
         		     			String line = "";
