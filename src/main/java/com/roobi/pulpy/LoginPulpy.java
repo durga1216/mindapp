@@ -48,7 +48,7 @@ public class LoginPulpy extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	        PreparedStatement st=null;
-			 st=con.prepareStatement("insert into login(email,fn,ln,pwd,phone) values ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"')");
+			 st=con.prepareStatement("insert into login(email,fn,ln,pwd) values ('"+s1+"','"+s2+"','"+s3+"','"+s4+"')");
 			 st.executeUpdate();
 		     st.close();
 		      String userName = "marketing@minddotss.com";
