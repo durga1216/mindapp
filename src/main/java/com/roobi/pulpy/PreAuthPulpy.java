@@ -97,8 +97,10 @@ public class PreAuthPulpy extends HttpServlet {
 
                
              out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
-             RequestDispatcher disp = getServletContext().getRequestDispatcher("/PreBuild");
+             RequestDispatcher disp = getServletContext().getRequestDispatcher("https://mindapp-pulpy.rhcloud.com/PreBuild");
              disp.forward( request, response );             }
+             
+             
               if("Oauth2".equals(authen1)){
             	 String cname1=rs.getString("cname");
             	 String ckey1=rs.getString("ckey");
