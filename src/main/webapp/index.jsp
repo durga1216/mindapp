@@ -103,6 +103,7 @@ a{
 }
 #na{
 margin-top:0;
+width:1300px;
 color:#FFFFFF;
 font-size:20px;
 font-family:verdana;
@@ -112,24 +113,22 @@ height:50px;
 width:60px;
 }
 #sec{
-width:41%;
+width:49%;
 height:500px;
 background-color:#FF9900;
-float: left;
-overflow:auto;
+float:left;
 }
 #imdv{
-margin-left:100px;
-width:41%;
+width:49%;
 height:500px;
 background-color:#FF9900;
 float: left;
-overflow:auto;
 }
 #ful{
- width:100%;
+ width:1200px;
  height:500px;
  background:#FF9900;
+ margin-left:80px;
  border:0px solid #FFFFFF;
  float:left;
 }
@@ -209,7 +208,7 @@ function load1(){
 <br><hr>
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br><br><div id=ful>
 <div id=imdv><img alt="logo" src="images/MindPulpy_Illustration.PNG"style="height:400px;width:500px;"></div>
-<div id="sec">
+<div id="sec"><br>
 <center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
 <input  type=text name="s5" id='s5' placeholder="Mobile Number"><br><br>
 <input  type=text name="s2" id='s2' placeholder="First Name"><br><br>
