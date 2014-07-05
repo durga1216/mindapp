@@ -462,4 +462,15 @@
     <servlet-name>PreAuthPulpy</servlet-name>
     <url-pattern>/PreAuthPulpy</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <description></description>
+    <display-name>PreRaw</display-name>
+    <servlet-name>PreRaw</servlet-name>
+    <servlet-class>com.roobi.pulpy.PreRaw</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PreRaw</servlet-name>
+    <url-pattern>/PreRaw</url-pattern>
+  </servlet-mapping>
 </web-app>
