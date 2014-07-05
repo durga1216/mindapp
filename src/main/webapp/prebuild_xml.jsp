@@ -119,7 +119,7 @@ margin-left:80px;
 border-spacing:20px;
 
 }
-#pa{margin-left:500px;
+#pa{margin-left:550px;
 font-size:20px;
 font-family:verdana;
 color:#FFFFFF;}
@@ -142,7 +142,7 @@ text-align:right;}
 <br><br><div class="head"><center>Mind Pulpy</center></div><br><br>
 <div class="au"><center>PreBuild API's</center></div><br><br>
 <center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
-<center><h2><a id='pa' href="javascript:load()">Load_Xml</a></h2></center><%@page import="com.mindots.util.Utils"%>
+<h2><a id='pa' href="javascript:load()">Load_Xml</a></h2></center><%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>

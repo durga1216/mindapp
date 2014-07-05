@@ -97,9 +97,9 @@ public class PreAuthPulpy extends HttpServlet {
             	 
 
                
-            out.println("<html><body style='background-color:#ff9900;'><h2><center><font color='#FFFFFF'>Processing...</font></center></h2><br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with Simplify Output</a></center></h3></body></html>");
+            out.println("<html><body style='background-color:#ff9900;'><center><h1 style='color:#FFFFFF;'>Mind Pulpy</h1></center><br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with Simplify Output</a></center></h3></body></html>");
             out.println("<br><br></center></h2><br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with pre-Build APP</a></center></h3></body></html>");
-            out.println("<html><body style='background-color:#ff9900;'><h2><center><font color='#FFFFFF'>Processing...</font></center></h2><br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreRaw'>Continue with Raw Output</a></center></h3></body></html>");
+            out.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreRaw'>Continue with Raw Output</a></center></h3></body></html>");
 
 
              
