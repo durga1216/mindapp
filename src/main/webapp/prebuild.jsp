@@ -264,7 +264,7 @@ out.println("<tr><td>"+pa2+"</td><td><input type='text' name='pv2' value='' plac
 } 
 %>
 </table><br><br>
-<input type="submit" name="submit" value="Simplify O/P" formAction="PreAuthPulpy" formmethod="post">
+<input type="submit" name="submit" value="Continue" formAction="PreAuthPulpy" formmethod="post">
 
 </form>
 <% 
