@@ -92,13 +92,13 @@ public class PreAuthPulpy extends HttpServlet {
 
    	      session.setAttribute("appid1", appid1);
 
-           /*  if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
+             if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
             	 
 
                
              out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
              RequestDispatcher disp = getServletContext().getRequestDispatcher("/PreBuild");
-             disp.forward( request, response );             }*/
+             disp.forward( request, response );             }
               if("Oauth2".equals(authen1)){
             	 String cname1=rs.getString("cname");
             	 String ckey1=rs.getString("ckey");
