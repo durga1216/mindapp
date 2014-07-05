@@ -210,19 +210,19 @@ while(rs2.next()){
 <%if(authen.equals("API keys")){
 out.println("<div id='api'><a href='http://en.wikipedia.org/wiki/Application_programming_interface_key'>To Know More About API keys Click Here</a></div><br>");
 out.println("<input type='text' name='a1' value='"+a1+"'>");
-out.println("<input type='text' name='a2' value='' placeholder='Enter your API_KEY here' style='width:350px;'><br><br>");
+out.println("<input type='text' name='a2' value='' placeholder='Enter your API_KEY here' style='width:350px;'required><br><br>");
 } 
 else if(authen.equals("Oauth2")){
 out.println("<div id='api'><a href='http://oauth.net'>To know more about Oauth Click here</a></div><br>");
-out.println("<input type='text' name='ckey' style='width:300px' value='' placeholder='Enter Your API Key here'>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here' style='width:300px'><br><br>");	
-out.println("<input type='text' name='aurl' value='"+aurl+"' style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='tokenurl' value='"+tokenurl+"' style='width:300px' ><br><br>");
-out.println("<input type='text' name='sname' value='"+sname+"' placeholder='Scope_Label' style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='svalue'style='width:300px'  value='' placeholder='Scope_Value' ><br><br>");
-out.println("<input type='text' name='tlabel' style='width:300px' value='"+tlabel+"' ><br><br>");
+out.println("<input type='text' name='ckey' style='width:300px' value='' placeholder='Enter Your API Key here' required>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here' style='width:300px'required><br><br>");	
+out.println("<input type='text' name='aurl' value='"+aurl+"' style='width:300px' required>&nbsp;&nbsp;&nbsp;<input type='text' name='tokenurl' value='"+tokenurl+"' style='width:300px'required ><br><br>");
+out.println("<input type='text' name='sname' value='"+sname+"' placeholder='Scope_Label' style='width:300px' required>&nbsp;&nbsp;&nbsp;<input type='text' name='svalue'style='width:300px'  value='' placeholder='Scope_Value' required><br><br>");
+out.println("<input type='text' name='tlabel' style='width:300px' value='"+tlabel+"' required><br><br>");
 out.println("<div id='re'><center>Access Token Replacement</center></div><br><br>");
-out.println("<input type='text' name='treplace' style='width:300px' value='"+treplace+"'>");
+out.println("<input type='text' name='treplace' style='width:300px' value='"+treplace+"'required>");
 out.println("<div id='re'><center>Access Token Method :"+orm+"</center></div>");
 out.println("<div id='re'><center>Extra Fields(Optional)</center></div><br><br>");
-out.println("<input type='text' name='el' value='"+el+"' placeholder='State_label'style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='ev' value='"+ev+"' placeholder='State_Value' style='width:300px' ><br><br>");
+out.println("<input type='text' name='el' value='"+el+"' placeholder='State_label'style='width:300px' required>&nbsp;&nbsp;&nbsp;<input type='text' name='ev' value='"+ev+"' placeholder='State_Value' style='width:300px' required><br><br>");
 }%><br>
 <div class="au"><center>Request Method</center></div><br>
 <div class="text"><input type="text" name="rf" id="rf" value="<%=rf%>" placeholder="Request Method"></div><br><br>
