@@ -217,7 +217,7 @@ out.println("<div id='api'><a href='http://oauth.net'>To know more about Oauth C
 out.println("<input type='text' name='ckey' style='width:300px' value='' placeholder='Enter Your API Key here' required>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here' style='width:300px'required><br><br>");	
 out.println("<input type='text' name='aurl' value='"+aurl+"' style='width:300px' required>&nbsp;&nbsp;&nbsp;<input type='text' name='tokenurl' value='"+tokenurl+"' style='width:300px'required ><br><br>");
 out.println("<input type='text' name='sname' value='"+sname+"' placeholder='Scope_Label' style='width:300px'>&nbsp;&nbsp;&nbsp;<input type='text' name='svalue'style='width:300px'  value='' placeholder='Scope_Value'><br><br>");
-out.println("<input type='text' name='tlabel' style='width:300px' value='"+tlabel+"' required><br><br>");
+out.println("<input type='text' name='tlabel' style='width:300px' value='"+tlabel+"' ><br><br>");
 out.println("<div id='re'><center>Access Token Replacement</center></div><br><br>");
 out.println("<input type='text' name='treplace' style='width:300px' value='"+treplace+"'required>");
 out.println("<div id='re'><center>Access Token Method :"+orm+"</center></div>");
