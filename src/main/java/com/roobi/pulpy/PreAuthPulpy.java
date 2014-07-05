@@ -97,7 +97,7 @@ public class PreAuthPulpy extends HttpServlet {
 
                
              out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
-             RequestDispatcher disp = getServletContext().getRequestDispatcher("https://mindapp-pulpy.rhcloud.com/PreBuild");
+             RequestDispatcher disp = getServletContext().getRequestDispatcher("/PreBuild");
              disp.forward( request, response );             }
              
              
