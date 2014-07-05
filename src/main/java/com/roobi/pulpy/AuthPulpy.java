@@ -924,7 +924,7 @@ public class AuthPulpy extends HttpServlet {
 	         } // while database
 	         
 	         catch(Exception e){
-	        	 out.println(e);
+	        	 out.println("<h2><center><font color='green'> Please Enter correct values</font></center></h3>");
 	        	 }
       
 	} //post
