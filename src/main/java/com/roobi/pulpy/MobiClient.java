@@ -367,7 +367,7 @@ public class MobiClient extends HttpServlet {
 	     	            str = serializer.write(json);
 
 		        	           // end-while  	
-			               doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
+			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 
 	        	 }  //JSON
                      

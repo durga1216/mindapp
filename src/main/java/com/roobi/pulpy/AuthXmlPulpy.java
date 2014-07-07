@@ -364,7 +364,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	     	            serializer.setRootName("root");
 	     	            serializer.setTypeHintsEnabled(false);
 	     	            str = serializer.write(json);
-			               doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
+			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 
 	        	 }  //JSON
                      
