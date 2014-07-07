@@ -204,7 +204,8 @@ public class AuthPulpy extends HttpServlet {
 		        	     conn.connect();
 		        	     Object content = conn.getContent();
 		        	     InputStream stream = (InputStream) content;
-		        	     String line=null;
+		        	     String line=null;String strcon=null;
+		        	     StringBuilder strb=new StringBuilder();
 		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 	        	   if(resf1.equals("XML")){
 	        	     while((line=br.readLine())!=null){
@@ -213,7 +214,11 @@ public class AuthPulpy extends HttpServlet {
 	        	   }
 	        	    else if(resf1.equals("JSON")){
 	        	    	 while ((line = br.readLine()) != null)    { 
-	        	    	  JSON json = JSONSerializer.toJSON( line) ;
+	        	    	   strb.append(line);
+	   	    			
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 JSON json = JSONSerializer.toJSON( strb) ;
 	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
 	   	     	          xmlSerializer.setTypeHintsEnabled(false);
 	   	     	          xmlSerializer.setSkipWhitespace(true);
@@ -223,9 +228,6 @@ public class AuthPulpy extends HttpServlet {
 	   	     	          xmlSerializer.setRootName("root");
 	   	     	          xmlSerializer.setForceTopLevelObject(false);
 	   	     		      str = xmlSerializer.write( json );
-	   	    			
-	   	    		     }//while
-	        	    	 
 	        	     } // else if*/
 	        	    session.setAttribute("xml1", str);
 		          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
@@ -399,8 +401,9 @@ public class AuthPulpy extends HttpServlet {
 	        	     conn.connect();
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
-	        	     String line=null;
+	        	     String line=null;String strcon=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	        	     StringBuilder strb=new StringBuilder();
 	        	    if(resf1.equals("XML")){
 	        	     while((line=br.readLine())!=null){
     	  	       	 str+=line;
@@ -408,7 +411,10 @@ public class AuthPulpy extends HttpServlet {
 	        	     }
 	        	     else if(resf1.equals("JSON")){
 	        	    	 while ((line = br.readLine()) != null)    { 
-	        	    	  JSON json = JSONSerializer.toJSON( line) ;
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	  JSON json = JSONSerializer.toJSON( strcon) ;
 	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
 	   	     	          xmlSerializer.setTypeHintsEnabled(false);
 	   	     	          xmlSerializer.setSkipWhitespace(true);
@@ -418,8 +424,6 @@ public class AuthPulpy extends HttpServlet {
 	   	     	          xmlSerializer.setRootName("root");
 	   	     	          xmlSerializer.setForceTopLevelObject(false);
 	   	     		      str = xmlSerializer.write( json );
-	   	    			out.println(str);
-	   	    		     }//while
 	        	    	 
 	        	     } // else if
 	        	    session.setAttribute("xml1", str);
