@@ -430,7 +430,7 @@
     <servlet-name>PreBuild</servlet-name>
     <url-pattern>/PreBuild</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>PreBuildXmlConfig</display-name>
     <servlet-name>PreBuildXmlConfig</servlet-name>
@@ -440,7 +440,6 @@
     <servlet-name>PreBuildXmlConfig</servlet-name>
     <url-pattern>/PreBuildXmlConfig</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>PreXmlPulpy</display-name>
@@ -451,8 +450,7 @@
     <servlet-name>PreXmlPulpy</servlet-name>
     <url-pattern>/PreXmlPulpy</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>PreAuthPulpy</display-name>
     <servlet-name>PreAuthPulpy</servlet-name>
@@ -462,8 +460,7 @@
     <servlet-name>PreAuthPulpy</servlet-name>
     <url-pattern>/PreAuthPulpy</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>PreRaw</display-name>
     <servlet-name>PreRaw</servlet-name>

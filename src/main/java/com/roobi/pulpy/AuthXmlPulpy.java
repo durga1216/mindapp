@@ -338,6 +338,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	        		 else if("".equals(p1))
 	        			eurl=endurl1+"?"+ak1+"="+ak2;
 	        	 
+	        		 
                      if(resf1.equals("XML")){
        	        	  doc=builder.parse(new URL(eurl).openStream());
 
@@ -345,7 +346,8 @@ public class AuthXmlPulpy extends HttpServlet {
 	        		 
 	        		 
 	        		 else if(resf1.equals("JSON")){
-		        			        		 
+	        			 line=null;String strcon=null;
+		        	     StringBuilder strb=new StringBuilder();
 		        		 URL eurl1=new URL(eurl);
 		        		 URLConnection uconn = eurl1.openConnection();
 		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -353,18 +355,15 @@ public class AuthXmlPulpy extends HttpServlet {
 		        	     Object content = conn.getContent();
 		        	     InputStream stream = (InputStream) content;
 		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-		        	     while ((line = br.readLine()) != null)    { 		  
-		         	      JSON json = JSONSerializer.toJSON( line );  
-		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-		     	          xmlSerializer.setTypeHintsEnabled(false);
-		     	          xmlSerializer.setSkipWhitespace(true);
-		     	          xmlSerializer.setTrimSpaces(true);
-		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-		     	          xmlSerializer.removeNamespace(line);
-		     	          xmlSerializer.setForceTopLevelObject(false);
-		     		      jsonxmlout = xmlSerializer.write( json );
-
-		        	     }	      // end-while  	
+		        	     while ((line = br.readLine()) != null)    { 
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	            str = serializer.write(json);
 			               doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
 
 	        	 }  //JSON
