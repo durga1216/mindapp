@@ -14,8 +14,9 @@ h1{
 color:#ffffff;
 }
 table,td{
-padding:8px;
-margin-left:250px;
+padding:9px;
+margin-left:200px;
+box-shadow: 4px 4px 15px 2px;
 }
 </style>
 </head>  
