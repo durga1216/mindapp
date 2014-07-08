@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import com.mindots.util.Utils;
 
 public class ThirdXmlConfig extends HttpServlet {
@@ -34,6 +35,7 @@ public class ThirdXmlConfig extends HttpServlet {
 		HttpSession session4=request.getSession(true);
 		String id=(String) session.getAttribute("id");
 		String appid=(String) session.getAttribute("appid");
+		String submit=request.getParameter("submit");
 		String thrdroot=request.getParameter("thrdroot"); String thrdparent=request.getParameter("thrdparent");
 		String tx1=request.getParameter("tx1");String txv1=request.getParameter("txv1");
 		String tx2=request.getParameter("tx2");String txv2=request.getParameter("txv2");
@@ -92,15 +94,14 @@ public class ThirdXmlConfig extends HttpServlet {
                  st.setString(1, appid);
            
                  ResultSet rs = st.executeQuery();
-     	         while(rs.next()){
-        	     String id1=rs.getString("id");
-                 RequestDispatcher dispatcher = request.getRequestDispatcher("final.jsp");
-                 request.setAttribute("id", appid); // set your String value in the attribute
-                 dispatcher.forward( request, response );
-     	         }
-	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-                // response.setHeader("Refresh", "1; URL=final.jsp");
-                }
+                 while(rs.next()){
+                     out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+                     if(submit.equals("Continue"))
+                    response.setHeader("Refresh", "1; URL=fourth_config.jsp");
+                     else if(submit.equals("Finish")){
+        	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/final.jsp");
+                        disp.forward( request, response );    }  
+                   }}
          catch(Exception e){}
 		
 		

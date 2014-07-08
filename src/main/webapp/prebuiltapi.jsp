@@ -17,7 +17,18 @@ color:#ffffff;
 }
 table,td{
 padding:9px;
-margin-left:200px;
+margin-left:100px;
+}
+img{
+box-shadow: 7px 7px 15px 3px;
+color:#000000;
+border-radius: 8px;
+}
+a{
+color:#ffffff;
+font-size:20px;
+font-family:verdana;
+align:center;
 }
 </style>
 </head>  
@@ -55,7 +66,7 @@ ResultSet rs1 = st1.executeQuery();
 while(rs1.next()){
 	String ap=rs1.getString("appid");
 	%>
-<td><a href="prebuild.jsp?name=<%=rs1.getString("appid") %>"><img  src="Apilogo?idl=<%=rs1.getString("appid") %>" data-toggle="tooltip" title="" alt="testimonial" data-original-title="Dailymile" width='100' height='100'></a></td>
+<td><a href="prebuild.jsp?name=<%=rs1.getString("appid") %>"><img  src="Apilogo?idl=<%=rs1.getString("appid") %>" data-toggle="tooltip" title="" data-original-title="<%=rs1.getString("appname") %>" width='100' height='100'></a></td>
 	<% 
 }
 }

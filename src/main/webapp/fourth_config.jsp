@@ -119,12 +119,12 @@ text-align:right;}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('input[name=Fourthcycle]').click(function(){
-		    if($('input:radio[name=Fourthcycle]:checked').val() == "flow"){
+	$('input[name=fourthcycle]').click(function(){
+		    if($('input:radio[name=fourthcycle]:checked').val() == "flow"){
 			$('#ent').hide();
 		    $('#flo').show();
 			    }
-		    else if($('input:radio[name=Fourthcycle]:checked').val() == "entity"){
+		    else if($('input:radio[name=fourthcycle]:checked').val() == "entity"){
 		     $('#ent').show();
 			$('#flo').hide();
 
@@ -151,7 +151,7 @@ function removeParent(){
 </head>
 <body>
 <%String u = (String) request.getSession().getAttribute("user");
-    if (u == null ) {
+    if (u != null ) {
    // System.out.println("user != null");
    // out.print("Welcome "+u);
     }else{
@@ -165,9 +165,9 @@ function removeParent(){
 <center><div class='heading'>Fourth Step Configuration</div></center>
 <br><br><input type="text" name="fourthurl" value="" placeholder="Fourth_End_Point_Url*"><br><br>
 
-<input type="radio" name="Fourthcycle"  value="flow">
+<input type="radio" name="fourthcycle"  value="flow">
 <label for="rd2">Flow Based</label>
-<input type="radio" name="Fourthcycle"   value="entity">
+<input type="radio" name="fourthcycle"   value="entity">
 <label for="rd2">Entity Based</label><br>
 
 <div id="ent" style="display:none">

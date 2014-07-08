@@ -289,6 +289,7 @@ if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
 	        		
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(fourthcycle1))
 	        			      fourthurl11=fourthurl1+"?"+ak1+"="+ak2;
+	        		 out.println(fourthurl11);
 	        		 URL url1=new URL(fourthurl11);
     				 URLConnection uconn = url1.openConnection();
     				 String str="";
@@ -379,7 +380,9 @@ if(rf1.equals("REST") && rm1.equals ("POST")){  // No Auth XML post
    } 	//while 
 } // try
 
-  	 catch(Exception e){}
+  	 catch(Exception e){
+  		 out.println(e);
+  	 }
 	}
 
 }

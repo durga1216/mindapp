@@ -118,7 +118,9 @@ public class FourthXmlConfig extends HttpServlet {
 	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
                 // response.setHeader("Refresh", "1; URL=final.jsp");
                 }
-         catch(Exception e){}
+         catch(Exception e){
+        	 out.println(e);
+         }
 		
 		
 	}

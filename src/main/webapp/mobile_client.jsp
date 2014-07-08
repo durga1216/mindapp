@@ -153,6 +153,9 @@ ResultSet rs3 = st3.executeQuery();
 PreparedStatement st4=cn.prepareStatement("SELECT * FROM thirdconfig WHERE appid=?");
 st4.setString(1,xx);
 ResultSet rs4 = st4.executeQuery();
+PreparedStatement st6=cn.prepareStatement("SELECT * FROM fourthconfig WHERE appid=?");
+st6.setString(1,xx);
+ResultSet rs6 = st6.executeQuery();
 PreparedStatement st5=cn.prepareStatement("SELECT * FROM secondconfig t2 JOIN thirdconfig t3 ON t2.appid=t3.appid  WHERE t2.appid=?");
 st5.setString(1,xx);
 ResultSet rs5 = st5.executeQuery();
@@ -163,6 +166,7 @@ boolean empty = true;
 <option value='1'>First configuration</option>
 <option value='2'>Second configuration</option>
 <option value='3'>Third configuration</option>
+<option value='4'>Fourth configuration</option>
 <option value='mas'>Mashup Second and Third_config</option></select><br><br><br><br>
 <table align='center'  border='0' bordercolor='#ffffff' style='width:700px;'>
 <tr><th>Parameter</th><th>Example_Value</th><th>Param_Value</th></tr>
@@ -265,6 +269,35 @@ else if(el.equals("3"))
 	}
 	if( empty ) {
 out.println("<p>Third_Configuration Not Exist</p>");
+	}	
+}
+else if(el.equals("4"))
+{	    
+
+	while(rs6.next()){
+		String pa1=rs6.getString("f1");String pa2=rs6.getString("f2");
+	    String pa3=rs6.getString("f3");String pa4=rs6.getString("f4");
+	    String pa5=rs6.getString("f5");String pa6=rs6.getString("f6");
+	    String pa7=rs6.getString("f7");String pa8=rs6.getString("f8");
+	    String pa9=rs6.getString("f9");String pa10=rs6.getString("f10");
+	    empty=true;
+	if(!pa1.equals("null")){%><tr><td><%=rs6.getString("f1") %></td><td><%=rs6.getString("fv1") %></td><td><input type="text" id="na" name="p1" placeholder="value"></td></tr>
+	<%}if(!pa2.equals("null")){%><tr><td><%=rs6.getString("f2") %></td><td><%=rs6.getString("fv2") %></td><td><input type="text" id="na" name="p2" placeholder="value"></td></tr>
+	<%}if(!pa3.equals("null")){%><tr><td><%=rs6.getString("f3") %></td><td><%=rs6.getString("fv3") %></td><td><input type="text" id="na" name="p3" placeholder="value"></td></tr>
+	<%}if(!pa4.equals("null")){%><tr><td><%=rs6.getString("f4") %></td><td><%=rs6.getString("fv4") %></td><td><input type="text" id="na" name="p4" placeholder="value"></td></tr>
+	<%}if(!pa5.equals("null")){%><tr><td><%=rs6.getString("f5") %></td><td><%=rs6.getString("fv5") %></td><td><input type="text" id="na" name="p5" placeholder="value"></td></tr>
+	<%}if(!pa6.equals("null")){%><tr><td><%=rs6.getString("f6") %></td><td><%=rs6.getString("fv6") %></td><td><input type="text" id="na" name="p6" placeholder="value"></td></tr>
+	<%}if(!pa7.equals("null")){%><tr><td><%=rs6.getString("f7") %></td><td><%=rs6.getString("fv7") %></td><td><input type="text" id="na" name="p7" placeholder="value"></td></tr>
+	<%}if(!pa8.equals("null")){%><tr><td><%=rs6.getString("f8") %></td><td><%=rs6.getString("fv8") %></td><td><input type="text" id="na" name="p8" placeholder="value"></td></tr>
+	<%}if(!pa9.equals("null")){%><tr><td><%=rs6.getString("f9") %></td><td><%=rs6.getString("fv9") %></td><td><input type="text" id="na" name="p9" placeholder="value"></td></tr>
+	<%}if(!pa10.equals("null")){%><tr><td><%=rs6.getString("f10") %></td><td><%=rs6.getString("fv10") %></td><td><input type="text" id="na" name="p10" placeholder="value"></td></tr>
+	
+	<% 
+	}
+	rs6.close();
+	}
+	if( empty ) {
+out.println("<p>Fourth_Configuration Not Exist</p>");
 	}	
 }
 else if(el.equals("mas"))

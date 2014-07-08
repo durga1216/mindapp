@@ -100,7 +100,7 @@ function removeParam()
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
-<form action="ThirdXmlConfig" method="post">
+<form action="ThirdXmlConfig" method="post" onsubmit="return validateForm()">
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Console </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href='logout.jsp'> Sign Out </a></div>
 
 <center><div class="head">Mind Pulpy</div></center><br><br>
@@ -110,14 +110,24 @@ function removeParam()
 <input type="text" name="thrdroot" value="" placeholder="Root_Tag"></div></center>
 <br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a><a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>
 <br><center><div id="content"></div></center><br><br>
-<center><div id="but"><input type="submit" value="Continue" name="submit"></div></center>
+<center><input type="submit" value="Continue" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Finish" name="submit"></center>
 </form>
 <script type="text/javascript">
 function load(){
 	window.open("<%=request.getContextPath()%>/XmlConvert", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 	
-	
 }
+function validateForm(){
+	var x=confirm("Confirm submit?");
+	if (x==true)
+	{
+	return true;
+	}
+	else
+	{
+	return false;
+	}
+	}
 </script>
 </body>
 </html>
