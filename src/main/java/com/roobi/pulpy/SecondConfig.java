@@ -148,7 +148,7 @@ public class SecondConfig extends HttpServlet {
     	        		 
     	        		 else if(!"null".equals(secid)&& !"null".equals(secval) && "null".equals(ak1) && "null".equals(ak2)&& "flow".equals(cycle1))
     	        			 secdurl=securl1+"?"+secid+"="+secval;
-    	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
+    	        		 else if(!"".equals(ak1) && !"".equals(ak2)&& "entity".equals(cycle1))
     	        			 secdurl=securl1+"?"+ak1+"="+ak2;
     	        	 
     	        	 URL secdurl1=new URL(securl);
@@ -260,7 +260,7 @@ public class SecondConfig extends HttpServlet {
 	        		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
 		        		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1+"&"+se2+"="+sev2;}
 	        		 
-	        		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+	        		 else if(!"".equals(se1)&& "entity".equals(cycle1)){
 		        		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1;}
 	        		 
 	        		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && "flow".equals(cycle1)){
@@ -276,14 +276,14 @@ public class SecondConfig extends HttpServlet {
 	        			 secdurl=securl1+"?"+secid+"="+secval;
 	        		 else if("null".equals(secid) && "null".equals(secval) && "flow".equals(cycle1))
 	        		     secdurl=securl1+"/"+secval;
-	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
+	        		 else if(!"".equals(ak1) && !"".equals(ak2)&& "entity".equals(cycle1))
        			      secdurl=securl1+"?"+ak1+"="+ak2;
-	        		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& !"null".equals(sev1))
+	        		 else if("".equals(ak1) && "".equals(ak2) && "entity".equals(cycle1)&& !"null".equals(sev1))
        			      secdurl=securl1+"/"+sev1;
 	        		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& "null".equals(sev1))
 	        			      secdurl=securl1;
 	        		  
-	        		
+	        		//out.println("afsdfsd"+secdurl);
 	        		 URL secdurl1=new URL(secdurl);
 	        		 URLConnection uconn = secdurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -374,7 +374,9 @@ public class SecondConfig extends HttpServlet {
    	     } // database while
            
            } //try
-   	 catch(Exception e){}
+   	 catch(Exception e){
+   		 out.println(e);
+   	 }
 
 	}
 
