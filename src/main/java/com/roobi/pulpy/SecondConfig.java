@@ -278,9 +278,11 @@ public class SecondConfig extends HttpServlet {
 	        		     secdurl=securl1+"/"+secval;
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
        			      secdurl=securl1+"?"+ak1+"="+ak2;
-	        		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
+	        		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& !"null".equals(sev1))
+       			      secdurl=securl1+"/"+sev1;
+	        		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& "null".equals(sev1))
 	        			      secdurl=securl1;
-	        		 
+	        		  
 	        		
 	        		 URL secdurl1=new URL(secdurl);
 	        		 URLConnection uconn = secdurl1.openConnection();

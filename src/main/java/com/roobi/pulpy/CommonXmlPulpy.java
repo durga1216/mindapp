@@ -117,6 +117,8 @@ String resf2=rs.getString("resf2");
  String tp7=rs.getString("t7"); String tpv7=rs.getString("tv7");String tp8=rs.getString("t8"); String tpv8=rs.getString("tv8");
  String tp9=rs.getString("t9"); String tpv9=rs.getString("tv9");String tp10=rs.getString("t10"); String tpv10=rs.getString("tv10");
  String resf3=rs.getString("resf3");
+ 
+
  //get from thirdxmlconfig
  String thrdparent=rs.getString("thrdparent");String thrdroot=rs.getString("thrdroot");
  String tx1=rs.getString("tx1"); String txv1=rs.getString("txv1");String tx2=rs.getString("tx2"); String txv2=rs.getString("txv2");
@@ -291,8 +293,10 @@ String resf2=rs.getString("resf2");
 		     secdurl=securl1+"/"+pid;
 		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "null".equals(se1) &&"entity".equals(cycle1))
 		      secdurl=securl1+"?"+ak1+"="+ak2;
-		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
-			      secdurl=securl1;	
+		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& !"null".equals(sev1))
+			      secdurl=securl1+"/"+sev1;
+   		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& "null".equals(sev1))
+   			      secdurl=securl1;
 		 doc=builder.parse(new URL(secdurl).openStream());
 	       
 	 }  //end if JSON
