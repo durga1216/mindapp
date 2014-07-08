@@ -276,27 +276,27 @@ String resf2=rs.getString("resf2");
     		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2;}
 		 
 		 else if(!"".equals(se1)&& "entity".equals(cycle1)){
-    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1;}
+    		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+sev1;}
 		 
 		 else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && "flow".equals(cycle1)){
-    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+s1+"&"+se2+"="+s2+"&"+se3+"="+s3;}
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+se1+"="+sev1+"&"+se2+"="+sev2+"&"+se3+"="+sev3;}
 		 
 		 else if(!"null".equals(se1) && !"null".equals(se2)&& "flow".equals(cycle1)){
-    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+s1+"&"+se2+"="+s2;}
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+se1+"="+sev1+"&"+se2+"="+sev2;}
 		 
 		 else if(!"null".equals(se1)&& "flow".equals(cycle1)){
-    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+secid+"="+pid+"&"+se1+"="+s1;}
+    		 secdurl=securl1+"?"+oriapilabel+"="+oriapikey+"&"+se1+"="+sev1;}
 		 
-		 else if(!"null".equals(secid)&& !"null".equals(pid) && "flow".equals(cycle1))
-			 secdurl=securl1+"?"+secid+"="+pid;
-		 else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
-		     secdurl=securl1+"/"+pid;
-		 else if(!"".equals(ak1) && !"".equals(ak2)&& "null".equals(se1) &&"entity".equals(cycle1))
+		 else if(!"null".equals(secid)&& !"null".equals(secval) && "flow".equals(cycle1))
+			 secdurl=securl1+"?"+secid+"="+secval;
+		 else if("null".equals(secid) && "null".equals(secval) && "flow".equals(cycle1))
+		     secdurl=securl1+"/"+secval;
+		 else if(!"".equals(ak1) && !"".equals(ak2)&& "entity".equals(cycle1))
 		      secdurl=securl1+"?"+ak1+"="+ak2;
-		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& !"null".equals(sev1))
-			      secdurl=securl1+"/"+sev1;
-   		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& "null".equals(sev1))
-   			      secdurl=securl1;
+		 else if("".equals(ak1) && "".equals(ak2) && "entity".equals(cycle1)&& !"null".equals(sev1))
+		      secdurl=securl1+"/"+sev1;
+		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& "null".equals(sev1))
+			      secdurl=securl1;
 		 doc=builder.parse(new URL(secdurl).openStream());
 	       
 	 }  //end if JSON
