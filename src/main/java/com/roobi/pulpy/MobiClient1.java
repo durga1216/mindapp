@@ -61,7 +61,7 @@ public class MobiClient1 extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-        response.setHeader("Content-Type","text/xml; charset=UTF-8");
+       response.setHeader("Content-Type","text/xml; charset=UTF-8");
         PrintWriter out=response.getWriter();
         //String appid=request.getParameter("appid");
         HttpSession session=request.getSession(true);
@@ -164,6 +164,7 @@ String resf2=rs.getString("resf2");
          
              else if("".equals(se1)&& "entity".equals(cycle1))
                 secdurl=securl1+"/"+s1;
+         
              else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
                  secdurl=securl1+"/"+pid;
          
@@ -183,7 +184,6 @@ String resf2=rs.getString("resf2");
                  secdurl=securl1+"?"+secid+"="+pid;
              else if(!"".equals(ak1) && !"".equals(ak2)&& "entity".equals(cycle1))
                  secdurl=securl1+"?"+ak1+"="+ak2;
-         
          doc=builder.parse(new URL(secdurl).openStream());
 
               
@@ -274,7 +274,7 @@ String resf2=rs.getString("resf2");
          else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
              secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2;}
          
-         else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+         else if(!"".equals(se1)&& "entity".equals(cycle1)){
              secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1;}
          
          else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && "flow".equals(cycle1)){
@@ -292,8 +292,9 @@ String resf2=rs.getString("resf2");
              secdurl=securl1+"/"+pid;
          else if(!"null".equals(ak1) && !"null".equals(ak2)&& "null".equals(se1) &&"entity".equals(cycle1))
               secdurl=securl1+"?"+ak1+"="+ak2;
-         else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
-                  secdurl=securl1;    
+         else if("".equals(ak1) && "".equals(ak2) && "entity".equals(cycle1))
+                  secdurl=securl1+"/"+s1; 
+         //out.println(secdurl);
          doc=builder.parse(new URL(secdurl).openStream());
            
      }  //end if JSON
@@ -628,7 +629,7 @@ String resf2=rs.getString("resf2");
                    outevent.appendChild(outputEvent);
               }}
         outdoc.appendChild(outevent);
-              
+              //out.println("te"+outdoc.toString());
               // third API
               
         Document doc1=null;  //TO Convert XMLSTRING TO DOCUMENT
@@ -791,7 +792,8 @@ String resf2=rs.getString("resf2");
                     
                     else if("null".equals(akt1) && "null".equals(akt2))
                              thirdurl11=thirdurl1;
-                    
+                   // out.println(thirdurl11);
+                  // doc1=builder1.parse(new URL(thirdurl11).openStream());
                    doc1=builder1.parse(new URL(thirdurl11).openStream());
 
                    
@@ -836,7 +838,7 @@ String resf2=rs.getString("resf2");
                    
                    else if("null".equals(akt1) && "null".equals(akt2))
                             thirdurl11=thirdurl1;
-                   
+                   //out.println(thirdurl11);
 
                   URL third=new URL(thirdurl11);
                   URLConnection uconn = third.openConnection();
@@ -1125,129 +1127,134 @@ String resf2=rs.getString("resf2");
              }   
               }
               outdoc1.appendChild(outevent1); //the full formed mpulpy xml now in document
-        
+        //out.println("test"+outdoc1.toString());
                            //mashup starts from here
-           NodeList ndListFirstFile = outdoc.getElementsByTagName("root");
-            for(int i=0;i<ndListFirstFile.getLength();i++){
+           NodeList nd1 = outdoc.getElementsByTagName("root");
+           NodeList nd2 = outdoc1.getElementsByTagName("root");
+           int nn;
+if(nd1.getLength()>nd2.getLength()){nn=nd2.getLength();}else{nn=nd1.getLength();}
+           //out.println("len"+nd1.getLength());
+            for(int i=0;i<nn;i++){
+            	//out.println(i);
             if(!"null".equals(tx1))    {
               Node nodeid = outdoc.importNode(outdoc1.getElementsByTagName(tx1).item(i), true);
-              ndListFirstFile.item(i).appendChild(nodeid);}
+              nd1.item(i).appendChild(nodeid);}
               
              if(!"null".equals(tx2)){
               Node nodename = outdoc.importNode(outdoc1.getElementsByTagName(tx2).item(i), true);
-              ndListFirstFile.item(i).appendChild(nodename);}
+              nd1.item(i).appendChild(nodename);}
 
              if(!"null".equals(tx3)){
              Node nodeorgdes=outdoc.importNode(outdoc1.getElementsByTagName(tx3).item(i),true);
-             ndListFirstFile.item(i).appendChild(nodeorgdes);}
+             nd1.item(i).appendChild(nodeorgdes);}
 
             if(!"null".equals(tx4)){
              Node node4=outdoc.importNode(outdoc1.getElementsByTagName(tx4).item(i),true);
-             ndListFirstFile.item(i).appendChild(node4);}
+             nd1.item(i).appendChild(node4);}
 
              if(!"null".equals(tx5)){
              Node node5=outdoc.importNode(outdoc1.getElementsByTagName(tx5).item(i),true);
-             ndListFirstFile.item(i).appendChild(node5);}
+             nd1.item(i).appendChild(node5);}
 
              if(!"null".equals(tx6)){
              Node node6=outdoc.importNode(outdoc1.getElementsByTagName(tx6).item(i),true);
-             ndListFirstFile.item(i).appendChild(node6);}
+             nd1.item(i).appendChild(node6);}
              
              if(!"null".equals(tx7)){
                  Node node7=outdoc.importNode(outdoc1.getElementsByTagName(tx7).item(i),true);
-                 ndListFirstFile.item(i).appendChild(node7);}
+                 nd1.item(i).appendChild(node7);}
              
             if(!"null".equals(tx8)){
                  Node node8=outdoc.importNode(outdoc1.getElementsByTagName(tx8).item(i),true);
-                 ndListFirstFile.item(i).appendChild(node8);}
+                 nd1.item(i).appendChild(node8);}
              
             if(!"null".equals(tx9)){
             Node node9=outdoc.importNode(outdoc1.getElementsByTagName(tx9).item(i),true);
-            ndListFirstFile.item(i).appendChild(node9);}
+            nd1.item(i).appendChild(node9);}
             
             if(!"null".equals(tx10)){
                 Node node10=outdoc.importNode(outdoc1.getElementsByTagName(tx10).item(i),true);
-                ndListFirstFile.item(i).appendChild(node10);}
+                nd1.item(i).appendChild(node10);}
              
             if(!"null".equals(tx11)){
                 Node node11=outdoc.importNode(outdoc1.getElementsByTagName(tx11).item(i),true);
-                ndListFirstFile.item(i).appendChild(node11);}
+                nd1.item(i).appendChild(node11);}
             
             if(!"null".equals(tx12)){
                 Node node12=outdoc.importNode(outdoc1.getElementsByTagName(tx12).item(i),true);
-                ndListFirstFile.item(i).appendChild(node12);}
+                nd1.item(i).appendChild(node12);}
             
             if(!"null".equals(tx13)){
                 Node node13=outdoc.importNode(outdoc1.getElementsByTagName(tx13).item(i),true);
-                ndListFirstFile.item(i).appendChild(node13);}
+                nd1.item(i).appendChild(node13);}
             
             if(!"null".equals(tx14)){
                 Node node14=outdoc.importNode(outdoc1.getElementsByTagName(tx14).item(i),true);
-                ndListFirstFile.item(i).appendChild(node14);}
+                nd1.item(i).appendChild(node14);}
             
             if(!"null".equals(tx15)){
                 Node node15=outdoc.importNode(outdoc1.getElementsByTagName(tx15).item(i),true);
-                ndListFirstFile.item(i).appendChild(node15);}
+                nd1.item(i).appendChild(node15);}
             
             if(!"null".equals(tx16)){
                 Node node16=outdoc.importNode(outdoc1.getElementsByTagName(tx16).item(i),true);
-                ndListFirstFile.item(i).appendChild(node16);}
+                nd1.item(i).appendChild(node16);}
             
             if(!"null".equals(tx17)){
                 Node node17=outdoc.importNode(outdoc1.getElementsByTagName(tx17).item(i),true);
-                ndListFirstFile.item(i).appendChild(node17);}
+                nd1.item(i).appendChild(node17);}
             
             if(!"null".equals(tx18)){
                 Node node18=outdoc.importNode(outdoc1.getElementsByTagName(tx18).item(i),true);
-                ndListFirstFile.item(i).appendChild(node18);}
+                nd1.item(i).appendChild(node18);}
             
             if(!"null".equals(tx19)){
                 Node node19=outdoc.importNode(outdoc1.getElementsByTagName(tx19).item(i),true);
-                ndListFirstFile.item(i).appendChild(node19);}
+                nd1.item(i).appendChild(node19);}
             
             if(!"null".equals(tx20)){
                 Node node20=outdoc.importNode(outdoc1.getElementsByTagName(tx20).item(i),true);
-                ndListFirstFile.item(i).appendChild(node20);}
+                nd1.item(i).appendChild(node20);}
             
             if(!"null".equals(tx21)){
                 Node node21=outdoc.importNode(outdoc1.getElementsByTagName(tx21).item(i),true);
-                ndListFirstFile.item(i).appendChild(node21);}
+                nd1.item(i).appendChild(node21);}
             
             if(!"null".equals(tx22)){
                 Node node22=outdoc.importNode(outdoc1.getElementsByTagName(tx22).item(i),true);
-                ndListFirstFile.item(i).appendChild(node22);}
+                nd1.item(i).appendChild(node22);}
             
             if(!"null".equals(tx23)){
                 Node node23=outdoc.importNode(outdoc1.getElementsByTagName(tx23).item(i),true);
-                ndListFirstFile.item(i).appendChild(node23);}
+                nd1.item(i).appendChild(node23);}
             
             if(!"null".equals(tx24)){
                 Node node24=outdoc.importNode(outdoc1.getElementsByTagName(tx24).item(i),true);
-                ndListFirstFile.item(i).appendChild(node24);}
+                nd1.item(i).appendChild(node24);}
             
             if(!"null".equals(tx25)){
                 Node node25=outdoc.importNode(outdoc1.getElementsByTagName(tx25).item(i),true);
-                ndListFirstFile.item(i).appendChild(node25);}
+                nd1.item(i).appendChild(node25);}
             
             if(!"null".equals(tx26)){
                 Node node26=outdoc.importNode(outdoc1.getElementsByTagName(tx26).item(i),true);
-                ndListFirstFile.item(i).appendChild(node26);}
+                nd1.item(i).appendChild(node26);}
             
             if(!"null".equals(tx27)){
                 Node node27=outdoc.importNode(outdoc1.getElementsByTagName(tx27).item(i),true);
-                ndListFirstFile.item(i).appendChild(node27);}
+                nd1.item(i).appendChild(node27);}
             
             if(!"null".equals(tx28)){
                 Node node28=outdoc.importNode(outdoc1.getElementsByTagName(tx28).item(i),true);
-                ndListFirstFile.item(i).appendChild(node28);}
+                nd1.item(i).appendChild(node28);}
            
             if(!"null".equals(tx29)){
                 Node node29=outdoc.importNode(outdoc1.getElementsByTagName(tx29).item(i),true);
-                ndListFirstFile.item(i).appendChild(node29);}
+                nd1.item(i).appendChild(node29);}
             
             if(!"null".equals(tx30)){
                 Node node30=outdoc.importNode(outdoc1.getElementsByTagName(tx30).item(i),true);
-                ndListFirstFile.item(i).appendChild(node30);}
+                nd1.item(i).appendChild(node30);}
         }
              
              
@@ -1261,7 +1268,7 @@ String resf2=rs.getString("resf2");
               }*/
               
               
-              
+              //out.println("tes");
                            
         Transformer transformer1=null;
         try {
@@ -1290,7 +1297,7 @@ String resf2=rs.getString("resf2");
     
               
         catch(Exception e){
-            out.println(e);
+           // out.println("RRRR"+e);
         }
     }
 

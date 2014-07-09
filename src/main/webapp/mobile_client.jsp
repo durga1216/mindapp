@@ -241,16 +241,11 @@ else if(el.equals("3"))
 {	    
 
 	while(rs4.next()){
-		String pa1=rs4.getString("t1");String pva1=rs4.getString("s1");
-	    String pa2=rs4.getString("t2");String pva2=rs4.getString("s2");
-	    String pa3=rs4.getString("t3");String pva3=rs4.getString("s3");
-	    String pa4=rs4.getString("t4");String pva4=rs4.getString("s4");
-	    String pa5=rs4.getString("t5");String pva5=rs4.getString("s5");
-	    String pa6=rs4.getString("t6");String pva6=rs4.getString("s6");
-	    String pa7=rs4.getString("t7");String pva7=rs4.getString("s7");
-	    String pa8=rs4.getString("t8");String pva8=rs4.getString("s8");
-	    String pa9=rs4.getString("t9");String pva9=rs4.getString("s9");
-	    String pa10=rs4.getString("t10");String pva10=rs4.getString("s10");
+		String pa1=rs4.getString("t1");String pa2=rs4.getString("t2");
+	    String pa3=rs4.getString("t3");String pa4=rs4.getString("t4");
+	    String pa5=rs4.getString("t5");String pa6=rs4.getString("t6");
+	    String pa7=rs4.getString("t7");String pa8=rs4.getString("t8");
+	    String pa9=rs4.getString("t9");String pa10=rs4.getString("t10");
 	    empty=true;
 	if(!pa1.equals("null")){%><tr><td><%=rs4.getString("t1") %></td><td><%=rs4.getString("tv1") %></td><td><input type="text" id="na" name="p1" placeholder="value"></td></tr>
 	<%}if(!pa2.equals("null")){%><tr><td><%=rs4.getString("t2") %></td><td><%=rs4.getString("tv2") %></td><td><input type="text" id="na" name="p2" placeholder="value"></td></tr>

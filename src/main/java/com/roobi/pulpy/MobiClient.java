@@ -1202,13 +1202,13 @@ public class MobiClient extends HttpServlet {
 		 else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
     		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1+"&"+se2+"="+p2;}
 		 
-		 else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+		 else if(!"".equals(se1)&& "entity".equals(cycle1)){
     		 secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+p1;}
 		 
-		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "null".equals(se1) &&"entity".equals(cycle1))
+		 else if(!"".equals(ak1) && !"".equals(ak2)&& "".equals(se1) &&"entity".equals(cycle1))
 		      secdurl=securl1+"?"+ak1+"="+ak2;
-		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
-			      secdurl=securl1;	
+		 else if("".equals(ak1) && "".equals(ak2) && "entity".equals(cycle1))
+			      secdurl=securl1+"/"+p1;	
 		 doc=builder.parse(new URL(secdurl).openStream());
 	       
 	 }  //end if JSON
