@@ -159,10 +159,11 @@ String resf2=rs.getString("resf2");
              else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
                  secdurl=securl1+"?"+se1+"="+s1+"&"+se2+"="+s2;}
              
-             else if(!"null".equals(se1)&& "entity".equals(cycle1)){
+             else if(!"".equals(se1)&& "entity".equals(cycle1)){
                  secdurl=securl1+"?"+se1+"="+s1;}
-             else if("null".equals(se1)&& "entity".equals(cycle1))
-                secdurl=securl1;
+         
+             else if("".equals(se1)&& "entity".equals(cycle1))
+                secdurl=securl1+"/"+s1;
              else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
                  secdurl=securl1+"/"+pid;
          
@@ -180,7 +181,7 @@ String resf2=rs.getString("resf2");
              
              else if(!"null".equals(secid)&& !"null".equals(pid) && "null".equals(ak1) && "null".equals(ak2)&& "flow".equals(cycle1))
                  secdurl=securl1+"?"+secid+"="+pid;
-             else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
+             else if(!"".equals(ak1) && !"".equals(ak2)&& "entity".equals(cycle1))
                  secdurl=securl1+"?"+ak1+"="+ak2;
          
          doc=builder.parse(new URL(secdurl).openStream());
@@ -273,7 +274,7 @@ String resf2=rs.getString("resf2");
          else if(!"null".equals(se1) && !"null".equals(se2)&& "entity".equals(cycle1)){
              secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1+"&"+se2+"="+s2;}
          
-         else if(!"".equals(se1)&& !"null".equals(se1)&& "entity".equals(cycle1)){
+         else if(!"null".equals(se1)&& "entity".equals(cycle1)){
              secdurl=securl1+"?"+ak1+"="+ak2+"&"+se1+"="+s1;}
          
          else if(!"null".equals(se1) && !"null".equals(se2) && !"null".equals(se3) && "flow".equals(cycle1)){
@@ -289,12 +290,10 @@ String resf2=rs.getString("resf2");
              secdurl=securl1+"?"+secid+"="+pid;
          else if("null".equals(secid) && "null".equals(pid) && "flow".equals(cycle1))
              secdurl=securl1+"/"+pid;
-         else if(!"".equals(ak1) && !"".equals(ak2)&& "entity".equals(cycle1))
-			      secdurl=securl1+"?"+ak1+"="+ak2;
-   		 else if("".equals(ak1) && "".equals(ak2) && "entity".equals(cycle1)&& !"null".equals(s1))
-			      secdurl=securl1+"/"+s1;
-   		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& "null".equals(s1))
-   			      secdurl=securl1; 
+         else if(!"null".equals(ak1) && !"null".equals(ak2)&& "null".equals(se1) &&"entity".equals(cycle1))
+              secdurl=securl1+"?"+ak1+"="+ak2;
+         else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
+                  secdurl=securl1;    
          doc=builder.parse(new URL(secdurl).openStream());
            
      }  //end if JSON
