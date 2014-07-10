@@ -30,7 +30,7 @@ public class ViewRestApi {
 	
 	@Path("/viewapi")
 	
-	public Response getResult(@Context HttpServletRequest request,@Context HttpServletResponse response,@PathParam("category") String cat1) {
+	public Response getResult(@Context HttpServletRequest request,@Context HttpServletResponse response,@PathParam("category") String cat1,@PathParam("search") String ser) {
 
 	try{
         response.setContentType("text/html");
@@ -39,7 +39,8 @@ public class ViewRestApi {
           PrintWriter out=response.getWriter();
 		 Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-		String ser=request.getParameter("search");
+		 ser=request.getParameter("search");
+		 cat1=request.getParameter("category");
         PreparedStatement st=null;
 
 	        PreparedStatement st1=null;
@@ -53,9 +54,9 @@ public class ViewRestApi {
 			   out.println("<br><br><body bgcolor='#FF9900'><div id='re' style='color:#FFFFFF; font-family:verdana; font-size:40px;'><center>Mind Pulpy</center></div><br><div id='re1' style='color:#FFFFFF; font-family:verdana; font-size:25px;'><center>Free Public APIs<center><div><br><hr style='margin-left:400px; margin-right:250px;color:#FFFFFF;'>");
 			out.println("<div style='position: fixed;font-size: 18px;text-align:left;margin-left: 80px;top: 100px;width: 200px;padding: 19px;background-color: #FF9900;border: 1px solid gainsboro; border-color:#FFFFFF;border-radius: 4px;'>");
 out.println("<p style='font-weight:bold'>Category</p><a style='color:#ffffff' href='/rest/pulpy/viewapi?category=Search'>Search</a><br>"
-		+"<a style='color:#ffffff' href='/pulpy/xml/viewapi?category=General'>General</a><br>"
-		+"<a style='color:#ffffff' style='font-color:#FFFFFF;'href='/Viewapi?category=Social'>Social</a><br>"
-		+"<a style='color:#ffffff' href='/pulpy/viewapi?category=Tools'>Tools</a><br>"
+		+"<a style='color:#ffffff' href='/rest/pulpy/viewapi?category=General'>General</a><br>"
+		+"<a style='color:#ffffff' style='font-color:#FFFFFF;'href='/rest/pulpy/viewapi?category=Social'>Social</a><br>"
+		+"<a style='color:#ffffff' href='/rest/pulpy/viewapi?category=Tools'>Tools</a><br>"
 		+"<a style='color:#ffffff' href='/rest/pulpy/viewapi?category=Enterprise'>Enterprise</a><br>"
 		+"<a style='color:#ffffff' href='/rest/pulpy/viewapi?category=Entertainment'>Entertainment</a><br>"
 		+"<a style='color:#ffffff' href='/rest/pulpy/viewapi?category=wearable'>Hardware/wearable</a><br>"
