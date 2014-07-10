@@ -26,14 +26,13 @@ public class ViewRestApi {
 	
 	@GET
 	
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_HTML)
 	
 	@Path("/viewapi")
 	
 	public Response getResult(@Context HttpServletRequest request,@Context HttpServletResponse response,@PathParam("category") String cat1) {
 
 	try{
-        response.setContentType("text/html");
 
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
