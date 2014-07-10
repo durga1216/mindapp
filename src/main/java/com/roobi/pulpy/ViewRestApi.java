@@ -33,7 +33,7 @@ public class ViewRestApi {
 	public Response getResult(@Context HttpServletRequest request,@Context HttpServletResponse response,@PathParam("category") String cat1) {
 
 	try{
-
+        response.setContentType("text/html");
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
           PrintWriter out=response.getWriter();
