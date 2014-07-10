@@ -143,15 +143,19 @@ font-family:verdana;
 <%
 response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 <%
+String apid=request.getParameter("name");
+String id=(String)session.getAttribute("id");
 try{
 Class.forName("com.mysql.jdbc.Driver");
 Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
 //Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 String name=request.getParameter("name");
 PreparedStatement st2=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.appid=a2.appid WHERE a1.appid=?");
-st2.setString(1,"MPAPP_0507");
+st2.setString(1,apid);
 ResultSet rs2 = st2.executeQuery();
-session.setAttribute("appid1", "MPAPP_0507");
+PreparedStatement st3=cn.prepareStatement("insert into preid(appid) values(?)");
+st3.setString(1,id);
+st3.executeUpdate();
 HttpSession session1=request.getSession(true);
 while(rs2.next()){
 	   String a1=rs2.getString("a1"); String a2=rs2.getString("a2");

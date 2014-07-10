@@ -78,6 +78,7 @@ public class PreFstPulpy extends HttpServlet {
  	        try {
           Class.forName("com.mysql.jdbc.Driver").newInstance();
           con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+          PreparedStatement st1=con.prepareStatement("select preid from preid");
           PreparedStatement st=con.prepareStatement("insert into prefirst(id,appid,endurl,flabel,fkey,f1,fv1,f2,fv2,f3,fv3,f4,fv4,f5,fv5,f6,fv6,f7,fv7,f8,fv8,f9,fv9,f10,fv10,resf) values ('"+id+"','"+appid+"','"+thirdurl+"','"+al+"','"+ak+"','"+t1+"','"+tv1+"','"+t2+"','"+tv2+"','"+t3+"','"+tv3+"','"+t4+"','"+tv4+"','"+t5+"','"+tv5+"','"+t6+"','"+tv6+"','"+t7+"','"+tv7+"','"+t8+"','"+tv8+"','"+t9+"','"+tv9+"','"+t10+"','"+tv10+"','"+respf3+"')");                
           st.executeUpdate();
           st.close();
