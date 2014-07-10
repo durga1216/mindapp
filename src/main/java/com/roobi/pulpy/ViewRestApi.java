@@ -31,6 +31,7 @@ public class ViewRestApi {
 	@Path("/viewapi")
 	
 	public Response getResult(@Context HttpServletRequest request,@Context HttpServletResponse response,@PathParam("category") String cat1) {
+        response.setContentType("text/html");
 
 	try{
 		Connection con=null;
