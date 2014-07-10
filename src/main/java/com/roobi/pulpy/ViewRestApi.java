@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.HttpHeaders;
 
-@Path ("/xml")
+@Path ("/pulpy")
 
 public class ViewRestApi {
 	
