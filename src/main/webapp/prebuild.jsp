@@ -197,10 +197,6 @@ while(rs2.next()){
       session1.setAttribute("pa4",pa4);session1.setAttribute("pa5",pa5);session1.setAttribute("pa6",pa6);
       session1.setAttribute("pa7",pa7);session1.setAttribute("pa8",pa8);session1.setAttribute("pa9",pa9);
       session1.setAttribute("pa10",pa10);session1.setAttribute("appid",appid);session1.setAttribute("id",uid);
-      session1.setAttribute("f1",f1);      session1.setAttribute("f2",f2);      session1.setAttribute("f3",f3);
-      session1.setAttribute("f4",f4);      session1.setAttribute("f5",f5);      session1.setAttribute("f6",f6);
-      session1.setAttribute("f7",f7);      session1.setAttribute("f8",f8);      session1.setAttribute("f9",f9);
-      session1.setAttribute("f10",f10); session1.setAttribute("orm",orm); session1.setAttribute("appid",appid);
 
 
 

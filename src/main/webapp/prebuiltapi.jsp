@@ -19,6 +19,9 @@ table,td{
 padding:9px;
 margin-left:100px;
 }
+#t2 td{
+padding:5px;
+}
 img{
 box-shadow: 7px 7px 15px 3px;
 color:#000000;
@@ -49,7 +52,7 @@ align:center;
 </script>
 <body>  
 <form action=""><br>
-<center><h1>Pre-Built API's</h1></center><br><br>
+<center><h1>Pre-Built API's</h1></center><br>
 <table><tr>
 <%@page import="com.mindots.util.Utils"%>
 <%@page import=" java.sql.PreparedStatement"%>
@@ -69,13 +72,21 @@ while(rs1.next()){
 <td><a href="prebuild.jsp?name=<%=rs1.getString("appid") %>"><img  src="Apilogo?idl=<%=rs1.getString("appid") %>" data-toggle="tooltip" title="" data-original-title="<%=rs1.getString("appname") %>" width='100' height='100'></a></td>
 	<% 
 }
+%>
+</tr></table><br>
+<center><h1>Mashap Pre-Built API's</h1></center>
+<div id=t2><table><tr><td><img  src="images/p1.gif" data-toggle="tooltip" title="" data-original-title="upto-75" width='100' height='100'></td>
+<td><a href="prebuilt1.jsp?name=MPAPP_0507"><img  src="images/p2.jpg" data-toggle="tooltip" title="" data-original-title="mashup" width='100' height='100'></td>
+<td><img  src="images/p3.jpg" data-toggle="tooltip" title="" data-original-title="Asklaila" width='100' height='100'></td></tr>
+<tr><td></td><td><img  src="images/p4.jpg" data-toggle="tooltip" title="" data-original-title="Eventfull" width='100' height='100'></td><td></td></tr>
+</table></div>
+<%
 }
 catch(Exception e)
 {
 	}
 %>
-</tr>
-</table>
+
 </form>
 </body>  
 </html>  
