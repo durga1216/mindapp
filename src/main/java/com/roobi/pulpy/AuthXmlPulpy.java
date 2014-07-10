@@ -65,7 +65,8 @@ public class AuthXmlPulpy extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
-	    response.addHeader("Access-Control-Allow-Origin", "*");  		Connection con=null;
+	    response.addHeader("Access-Control-Allow-Origin", "*");  		
+	    Connection con=null;
 		 HttpSession session=request.getSession(true);
 		 // String appid=(String) session.getAttribute("xx"); 
 			String appid=request.getParameter("appid");

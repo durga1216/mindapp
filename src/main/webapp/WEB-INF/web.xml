@@ -11,7 +11,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Jersey</servlet-name>
-    <url-pattern>/calc/*</url-pattern>
+    <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
