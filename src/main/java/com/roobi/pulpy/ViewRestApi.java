@@ -30,7 +30,7 @@ public class ViewRestApi {
 	
 	@Path("/viewapi")
 	
-	public Response getResult(@Context HttpServletRequest request,@Context HttpServletResponse response,@PathParam("category") String category) {
+	public Response getResult(@Context HttpServletRequest request,@Context HttpServletResponse response,@PathParam("category") String cat1) {
 
 	try{
 		Connection con=null;
@@ -38,7 +38,6 @@ public class ViewRestApi {
           PrintWriter out=response.getWriter();
 		 Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-	    String cat1=request.getParameter("category");
 		String ser=request.getParameter("search");
         PreparedStatement st=null;
 

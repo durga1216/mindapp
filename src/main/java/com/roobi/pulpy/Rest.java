@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.util.Map;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -51,11 +52,10 @@ import com.mindots.util.Utils;
 @Path("/result")
 public class Rest {
     Connection con=null;
-    @GET
-    @Path("/{a}/{b}")
-    @Produces(MediaType.TEXT_PLAIN)
+    @POST
+    @Produces(MediaType.TEXT_XML)
     public String addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
-String result11="";
+     String result11="";
         try{
     	    Class.forName("com.mysql.jdbc.Driver").newInstance();
     	    con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
