@@ -40,6 +40,7 @@ public class ViewRestApi {
 		 Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
 		 ser=request.getParameter("search");
+		 cat1=request.getParameter("category");
         PreparedStatement st=null;
 
 	        PreparedStatement st1=null;
