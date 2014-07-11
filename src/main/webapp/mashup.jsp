@@ -19,7 +19,9 @@ box-shadow:6px 6px 10px #000000;
 background: #ff9900;
 overflow: hidden;
 }
-h2,h1{
+h1{
+color:#ffffff;}
+h2{
 color:#ffffff;
 text-align:center;
 }
@@ -30,10 +32,21 @@ border-radius:8px;
 box-shadow:5px 5px 10px 2px #000000;
 color:#ff9900;
 }
+#lt{
+top-margin:50px;
+float:left;
+margin-left:50px;
+font-size:20px;
+}
+#rt{
+float:right;
+margin-right:50px;
+font-size:20px;
+}
 </style>
 </head>
 <body>
-<div id=hd><br><h1>Prebuilt MashUp Result</h1></div><br>
+<div id=hd><br><br><div id=lt><a href="prebuiltapi.jsp">Back</a></div><div id=rt><a href="logout.jsp">Sign Out</a></div><center><h1>Prebuilt MashUp Result</h1></center></div><br>
 <div id=hd><br><br><br><h2><a href="PreMashup?conf=1">Click Here for first configuration result</a></h2>
 <br><br><h2><a href="PreMashup?conf=2">Click Here for second configuration result</a></h2>
 <br><br><h2><a href="PreMashup?conf=3">Click Here for Third configuration result</a></h2>
