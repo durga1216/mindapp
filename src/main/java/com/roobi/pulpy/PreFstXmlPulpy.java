@@ -46,7 +46,8 @@ public class PreFstXmlPulpy extends HttpServlet {
 		PrintWriter out=response.getWriter();    
 		HttpSession session=request.getSession(true);
 		String id=(String) session.getAttribute("id");
-		String appid1=(String) session.getAttribute("appid1");
+		HttpSession session1=request.getSession(true);
+        int appid1=(Integer)session1.getAttribute("preid");
 		String sxr=request.getParameter("fxrv");
 			String sx1=request.getParameter("fx1");String sxv1=request.getParameter("fxv1");
 			String sx2=request.getParameter("fx2");String sxv2=request.getParameter("fxv2");

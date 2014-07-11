@@ -46,7 +46,8 @@ public class PreThrdXmlPulpy extends HttpServlet {
 		PrintWriter out=response.getWriter();    
 		HttpSession session=request.getSession(true);
 		String id=(String) session.getAttribute("id");
-		String appid1=(String) session.getAttribute("appid1");
+		HttpSession session1=request.getSession(true);
+        int appid1=(Integer)session1.getAttribute("preid");
 		String txr=request.getParameter("txrv");
 			String tx1=request.getParameter("tx1");String txv1=request.getParameter("txv1");
 			String tx2=request.getParameter("tx2");String txv2=request.getParameter("txv2");

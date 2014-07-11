@@ -46,7 +46,9 @@ public class PreSecXmlPulpy extends HttpServlet {
 		PrintWriter out=response.getWriter();    
 		HttpSession session=request.getSession(true);
 		String id=(String) session.getAttribute("id");
-		String appid1=(String) session.getAttribute("appid1");
+		HttpSession session1=request.getSession(true);
+        int appid1=(Integer)session1.getAttribute("preid");
+		//String appid1=(String) session.getAttribute("appid1");
 		String sxr=request.getParameter("sxrv");
 			String sx1=request.getParameter("sx1");String sxv1=request.getParameter("sxv1");
 			String sx2=request.getParameter("sx2");String sxv2=request.getParameter("sxv2");

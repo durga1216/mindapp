@@ -70,8 +70,8 @@ public class PreSecPulpy extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		HttpSession session1=request.getSession(true);
 		String id=(String) session.getAttribute("id");
-		//String appid=(String) session.getAttribute("appid1");
-		String appid="MPAPP_0507";
+        int appid=(Integer)session1.getAttribute("preid");
+
 		String t1=(String) session1.getAttribute("sa1");String t2=(String) session1.getAttribute("sa2");
 		String t3=(String) session1.getAttribute("sa3");String t7=(String) session1.getAttribute("sa7");
 		String t4=(String) session1.getAttribute("sa4");String t8=(String) session1.getAttribute("sa8");
@@ -94,11 +94,11 @@ public class PreSecPulpy extends HttpServlet {
            st.executeUpdate();
            st.close();
            st=con.prepareStatement("SELECT * FROM presecond  WHERE appid=?");
-           st.setString(1, "MPAPP_0507");
+           st.setInt(1, appid);
      
            ResultSet rs = st.executeQuery();
 	         while(rs.next()){
-	        	 out.println("INsert sucess");
+	        	// out.println("INsert sucess");
             String thirdurl1=rs.getString("securl");String thirdcycle1=rs.getString("scycle"); String ak1=rs.getString("slabel");String ak2=rs.getString("skey");
             String tp1=rs.getString("s1"); String tpv1=rs.getString("sv1");String tp2=rs.getString("s2"); String tpv2=rs.getString("sv2");
             String tp3=rs.getString("s3"); String tpv3=rs.getString("sv3");String tp4=rs.getString("s4"); String tpv4=rs.getString("sv4");
@@ -132,7 +132,7 @@ public class PreSecPulpy extends HttpServlet {
 	        		 else if("".equals(tp1)&&"".equals(ak1) && "null".equals(ak2)&& "entity".equals(thirdcycle1))
        			                thirdurl11=thirdurl1+"/"+tpv1;
 	        		 
-	        		 out.println("ur"+thirdurl11);
+	        		// out.println("ur"+thirdurl11);
 	        		 URL url1=new URL(thirdurl11);
     				 URLConnection uconn = url1.openConnection();
     				 String str="";

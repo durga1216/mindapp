@@ -140,18 +140,18 @@ font-family:verdana;
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@include file="con.jsp" %>
 <%
 response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 <%
 try{
-Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-//Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+	HttpSession session1=request.getSession(true);
+    String appid=(String)session1.getAttribute("apid");
+    String id=(String)session.getAttribute("id");
 String name=request.getParameter("name");
 PreparedStatement st2=cn.prepareStatement("SELECT * FROM  thirdconfig  WHERE appid=?");
-st2.setString(1,"MPAPP_0507");
+st2.setString(1,appid);
 ResultSet rs2 = st2.executeQuery();
-HttpSession session1=request.getSession(true);
 while(rs2.next()){
 	   String a1=rs2.getString("alabel"); String a2=rs2.getString("akey");
 	   String endurl=rs2.getString("thrdurl");

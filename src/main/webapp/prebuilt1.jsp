@@ -140,15 +140,13 @@ font-family:verdana;
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@include file="con.jsp" %>
 <%
 response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 <%
 String apid=request.getParameter("name");
 String id=(String)session.getAttribute("id");
 try{
-Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-//Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 String name=request.getParameter("name");
 PreparedStatement st2=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.appid=a2.appid WHERE a1.appid=?");
 st2.setString(1,apid);
@@ -157,6 +155,7 @@ PreparedStatement st3=cn.prepareStatement("insert into preid(appid) values(?)");
 st3.setString(1,id);
 st3.executeUpdate();
 HttpSession session1=request.getSession(true);
+session1.setAttribute("apid", apid);
 while(rs2.next()){
 	   String a1=rs2.getString("a1"); String a2=rs2.getString("a2");
 	   String endurl=rs2.getString("endurl");
@@ -180,8 +179,8 @@ while(rs2.next()){
 %>
 <table color='#FFFFFF' height=100%>
 <%if(!a2.equals("")){%><tr><td>API Key</label></td><td><input type='text' name='a2' value='<%=a2%>' placeholder='Enter your API_KEY here' style='width:350px;'required></td></tr><%} %>
-<tr><td>Request Method</td><td><input  type="text" name="rf" id="rf" value="GET" placeholder="Request Method"></td></tr>
-<tr><td>Response Format</td><td><input type="text" name="resf2" id="rm" value="<%=rf%>" placeholder="Response Format"></td></tr>
+<tr><td>Request Method</td><td><input  type="text" name="dff" id="rf" value="GET" placeholder="Request Method"></td></tr>
+<tr><td>Response Format</td><td><input type="text" name="rf" id="rm" value="<%=rf%>" placeholder="Response Format"></td></tr>
 <tr><td>End Point URL</td><td><input  type="text" name="endurl" id="endurl" value="<%=endurl %>" placeholder="End_Point_URL" style="width:600px;"></td></tr><br>
 </table>
 <div class="Param"><center>Parameters</center></div><br>

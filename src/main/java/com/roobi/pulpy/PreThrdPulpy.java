@@ -58,8 +58,7 @@ public class PreThrdPulpy extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		HttpSession session1=request.getSession(true);
 		String id=(String) session.getAttribute("id");
-		//String appid=(String) session.getAttribute("appid1");
-		String appid="MPAPP_0507";
+        int appid=(Integer)session1.getAttribute("preid");
 		String t1=(String) session1.getAttribute("ta1");String t2=(String) session1.getAttribute("ta2");
 		String t3=(String) session1.getAttribute("ta3");String t7=(String) session1.getAttribute("ta7");
 		String t4=(String) session1.getAttribute("ta4");String t8=(String) session1.getAttribute("ta8");
@@ -84,7 +83,7 @@ public class PreThrdPulpy extends HttpServlet {
           st.close();
          // out.println("INsert sucess");
           st=con.prepareStatement("SELECT * FROM  prethird  WHERE appid=?");
-          st.setString(1, "MPAPP_0507");
+          st.setInt(1, appid);
     
           ResultSet rs = st.executeQuery();
 	         while(rs.next()){
@@ -119,7 +118,7 @@ public class PreThrdPulpy extends HttpServlet {
 	        		 else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(thirdcycle1))
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
 	        		 
-	        		 out.println(thirdurl11);
+	        		 //out.println(thirdurl11);
 	        		 URL url1=new URL(thirdurl11);
 	    
    				 URLConnection uconn = url1.openConnection();
