@@ -147,6 +147,7 @@ text-align:right;}
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@include file="con.jsp" %>
 <%
 response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 <%
@@ -154,9 +155,6 @@ try{
 	HttpSession session1=request.getSession(true);
     String appid=(String)session1.getAttribute("apid");
     String id=(String)session.getAttribute("id");
-Class.forName("com.mysql.jdbc.Driver");
-//Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 PreparedStatement st2=cn.prepareStatement("SELECT * FROM xmlconfig WHERE appid=?");
 st2.setString(1,appid);
 ResultSet rs2 = st2.executeQuery();
