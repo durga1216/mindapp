@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Mash Up</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <script type="text/javascript">
 var intTextBox=2;
 function addParam(){
@@ -166,14 +167,14 @@ String sx1=rs2.getString("x1");String sxv1=rs2.getString("xv1");
 String sx2=rs2.getString("x2");String sxv2=rs2.getString("xv2");
 %>
 
-<table><tr><td><input type='text' name='fxrv' value='' placeholder='Parent_Tag' style='width:300px; '></td><td><div class='pa'>Example:"<%=secroot %>"</div></td></tr><br>
+<table><tr><td><input type='text' name='fxrv' value='<%=secroot %>' placeholder='Parent_Tag' style='width:300px; '></td><td><div class='pa'>Example:"<%=secroot %>"</div></td></tr><br>
 
 <%if(!"null".equals(sx1)) {%>
 	
-	<tr><td><input type='text' name='fx1' value="<%=sx1 %>" placeholder='Tag_Label' style='height:20px;'></td><td><input type='text' name='fxv1' value='' placeholder='Tag_Value' style='height:15px;'></td><td><div class='pa'>Example:"<%=sxv1 %>"</div></td></tr><br>
+	<tr><td><input type='text' name='fx1' value="<%=sx1 %>" placeholder='Tag_Label' style='height:20px;'></td><td><input type='text' name='fxv1' value='<%=sxv1 %>' placeholder='Tag_Value' style='height:15px;'></td><td><div class='pa'>Example:"<%=sxv1 %>"</div></td></tr><br>
 	<%}
 	if(!"null".equals(sx2)){%>
-	<tr><td><input type='text' name='fx2' value="<%=sx2 %>" placeholder='Tag_Label' style='height:20px;'></td><td><input type='text' name='fxv2' value='' placeholder='Tag_Value' style='height:15px;'></td><td><div class='pa'>Example:"<%=sxv2%>"</div></td></tr><br>
+	<tr><td><input type='text' name='fx2' value="<%=sx2 %>" placeholder='Tag_Label' style='height:20px;'></td><td><input type='text' name='fxv2' value='<%=sxv2 %>' placeholder='Tag_Value' style='height:15px;'></td><td><div class='pa'>Example:"<%=sxv2%>"</div></td></tr><br>
 	<%}
 %>
 </table>

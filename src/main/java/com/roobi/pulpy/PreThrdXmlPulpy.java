@@ -78,9 +78,9 @@ public class PreThrdXmlPulpy extends HttpServlet {
              PreparedStatement st=con.prepareStatement("insert into prethrdxml(id,appid,txr,tx1,txv1,tx2,txv2,tx3,txv3,tx4,txv4,tx5,txv5,tx6,txv6,tx7,txv7,tx8,txv8,tx9,txv9,tx10,txv10,tx11,txv11,tx12,txv12,tx13,txv13,tx14,txv14,tx15,txv15,tx16,txv16,tx17,txv17,tx18,txv18,tx19,txv19,tx20,txv20) values ('"+id+"','"+appid1+"','"+txr+"','"+tx1+"','"+txv1+"','"+tx2+"','"+txv2+"','"+tx3+"','"+txv3+"','"+tx4+"','"+txv4+"','"+tx5+"','"+txv5+"','"+tx6+"','"+txv6+"','"+tx7+"','"+txv7+"','"+tx8+"','"+txv8+"','"+tx9+"','"+txv9+"','"+tx10+"','"+txv10+"','"+tx11+"','"+txv11+"','"+tx12+"','"+txv12+"','"+tx13+"','"+txv13+"','"+tx14+"','"+txv14+"','"+tx15+"','"+txv15+"','"+tx16+"','"+txv16+"','"+tx17+"','"+txv17+"','"+tx18+"','"+txv18+"','"+tx19+"','"+txv19+"','"+tx20+"','"+txv20+"')");                
              st.executeUpdate();
              st.close();
-           
-             RequestDispatcher disp = getServletContext().getRequestDispatcher("/mashup.jsp");
-             disp.forward( request, response );  
+             response.setHeader("Refresh", "1; URL=mashup.jsp");
+             //RequestDispatcher disp = getServletContext().getRequestDispatcher("/mashup.jsp");
+             //disp.forward( request, response );  
     	 }
     	 catch(Exception e){out.println(e);}
 }

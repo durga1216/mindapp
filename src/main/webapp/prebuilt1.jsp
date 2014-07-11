@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Mash Up</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <style>
 body{

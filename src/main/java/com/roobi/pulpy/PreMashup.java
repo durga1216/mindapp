@@ -455,7 +455,7 @@ public class PreMashup extends HttpServlet {
                     		 else if(!"".equals(akt1) && !"".equals(akt2))
                     			      thirdurl11=thirdurl1+"?"+akt1+"="+akt2;
                     		 
-                    		 else if("".equals(akt1) && "".equals(akt2))
+                    		 else if("".equals(tp1))
                     			      thirdurl11=thirdurl1+"/"+tpv1;
                     		 
                    		 doc1=builder1.parse(new URL(thirdurl11).openStream());

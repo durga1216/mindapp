@@ -74,7 +74,7 @@ while(rs1.next()){
 </tr></table><br>
 <center><h1>Mashap Pre-Built API's</h1></center>
 <div id=t2><table><tr><td><img  src="images/p1.gif" data-toggle="tooltip" title="" data-original-title="upto-75" width='100' height='100'></td>
-<td><a href="prebuilt1.jsp?name=MPAPP_0507"><img  src="images/p2.jpg" data-toggle="tooltip" title="" data-original-title="mashup" width='100' height='100'></td>
+<td><a href="prebuilt1.jsp?name=MPAPP_0579"><img  src="images/p2.jpg" data-toggle="tooltip" title="" data-original-title="mashup" width='100' height='100'></td>
 <td><img  src="images/p3.jpg" data-toggle="tooltip" title="" data-original-title="Asklaila" width='100' height='100'></td></tr>
 <tr><td></td><td><img  src="images/p4.jpg" data-toggle="tooltip" title="" data-original-title="Eventfull" width='100' height='100'></td><td></td></tr>
 </table></div>
