@@ -44,12 +44,26 @@ margin-right:50px;
 font-size:20px;
 }
 </style>
+<script type="text/javascript">
+function load1(){
+	window.open("PreMashup?conf=1", '_blank');
+}
+function load2(){
+	window.open("PreMashup?conf=2", '_blank');
+}
+function load3(){
+	window.open("PreMashup?conf=3", '_blank');
+}
+function load4(){
+	window.open("PreMashup1", '_blank');
+}
+</script>
 </head>
 <body>
 <div id=hd><br><br><div id=lt><a href="prebuiltapi.jsp">Back</a></div><div id=rt><a href="logout.jsp">Sign Out</a></div><center><h1>Prebuilt MashUp Result</h1></center></div><br>
-<div id=hd><br><br><br><h2><a href="PreMashup?conf=1">Click Here for first configuration result</a></h2>
-<br><br><h2><a href="PreMashup?conf=2">Click Here for second configuration result</a></h2>
-<br><br><h2><a href="PreMashup?conf=3">Click Here for Third configuration result</a></h2>
-<br><br><h2><a href="PreMashup1">Click Here for Final MashUp result</a></h2><br><br></div>
+<div id=hd><br><br><br><h2><a href="javascript:load1()">Click Here for first configuration result</a></h2>
+<br><br><h2><a href="javascript:load2()">Click Here for second configuration result</a></h2>
+<br><br><h2><a href="javascript:load3()">Click Here for Third configuration result</a></h2>
+<br><br><h2><a href="javascript:load4()">Click Here for Final MashUp result</a></h2><br><br></div>
 </body>
 </html>

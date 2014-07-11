@@ -187,8 +187,8 @@ while(rs2.next()){
 <div class="Param"><center>Parameters</center></div><br>
 <table color='#FFFFFF' height=100%>
 <tr><th>Parameter_name</th><th>Example_Value</th><th>Scope</th></tr>
-    <%if(!pa1.equals("null")){%><tr><td><%=rs2.getString("p1") %></td><td><%=rs2.getString("pv1") %></td><td><input  type="text" name="p1" placeholder="value"></td></tr>
-	<%}if(!pa2.equals("null")){%><tr><td><%=rs2.getString("p2") %></td><td><%=rs2.getString("pv2") %></td><td><input type="text"  name="p2" placeholder="value"></td></tr>
+    <%if(!pa1.equals("null")){%><tr><td><%=rs2.getString("p1") %></td><td><%=rs2.getString("pv1") %></td><td><input  type="text" value="<%=rs2.getString("pv1") %>" name="p1" placeholder="value"></td></tr>
+	<%}if(!pa2.equals("null")){%><tr><td><%=rs2.getString("p2") %></td><td><%=rs2.getString("pv2") %></td><td><input type="text" value="<%=rs2.getString("pv2") %>" name="p2" placeholder="value"></td></tr>
 	<%}if(!pa3.equals("null")){%><tr><td><%=rs2.getString("p3") %></td><td><%=rs2.getString("pv3") %></td><td><input type="text"  name="p3" placeholder="value"></td></tr>
 	<%}if(!pa4.equals("null")){%><tr><td><%=rs2.getString("p4") %></td><td><%=rs2.getString("pv4") %></td><td><input type="text"  name="p4" placeholder="value"></td></tr>
 	<%}if(!pa5.equals("null")){%><tr><td><%=rs2.getString("p5") %></td><td><%=rs2.getString("pv5") %></td><td><input type="text"  name="p5" placeholder="value"></td></tr>
