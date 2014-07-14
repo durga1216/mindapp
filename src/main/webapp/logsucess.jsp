@@ -85,11 +85,11 @@ function load(){
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br>
 <div class='suc'><center><h3>Login Sucess!!</h3></center></div>
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>
-<center><div id='pa'><a href='firstauth.jsp'>Create Application here</a></div></center><br><br>
-<center><div id='pa'><a href='<%=request.getContextPath()%>/EditPulpy' >Edit Your Application here</a></div></center><br><br>
-<center><div id='pa'><a href='prebuiltapi.jsp'> PreBuild APP</a></div></center><br><br>
+<center><div id='pa'><a href='firstauth.jsp'>Create Application Here</a></div></center><br><br>
+<center><div id='pa'><a href='<%=request.getContextPath()%>/EditPulpy' >Edit Your Application Here</a></div></center><br><br>
+<center><div id='pa'><a href='prebuiltapi.jsp'> PreBuild APPs Here</a></div></center><br><br>
 <center><div id='pa'><img src="images/you.png" width="41" height="18"><a href="javascript:load()">YouTube Link For Help</a></div></center><br><br>
-<center><div id='pa'><a href='mobile_client.jsp'>Mobile Client Application here</a></div></center><br><br>
+<center><div id='pa'><a href='mobile_client.jsp'>Mobile Client Application Here</a></div></center><br><br>
 
 </body>
 
