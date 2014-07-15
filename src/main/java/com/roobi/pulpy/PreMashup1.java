@@ -192,7 +192,7 @@ public class PreMashup1 extends HttpServlet {
                  		 else if("null".equals(akt1) && "null".equals(akt2))
                  			      thirdurl11=thirdurl1;
                  		 
-
+                 		StringBuilder strb=new StringBuilder();String strcon="";
                  		URL third=new URL(thirdurl11);
          		        URLConnection uconn = third.openConnection();
          	            HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -200,18 +200,18 @@ public class PreMashup1 extends HttpServlet {
          	            Object content = conn.getContent();
          	            InputStream stream = (InputStream) content;
          	            BufferedReader in=new BufferedReader(new InputStreamReader(stream));
-         	           while ((line = in.readLine()) != null)    { 		  
-          	       JSON json = JSONSerializer.toJSON( line );  
-       	           XMLSerializer xmlSerializer = new XMLSerializer();  
-       	           xmlSerializer.setTypeHintsEnabled(false);
-       	           xmlSerializer.setSkipWhitespace(true);
-       	           xmlSerializer.setTrimSpaces(true);
-       	           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-       	           xmlSerializer.removeNamespace(line);
-       	           xmlSerializer.setForceTopLevelObject(false);
-       		       thrdjsonxmlout = xmlSerializer.write( json );
+         	           while ((line = in.readLine()) != null)    { 
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	           thrdjsonxmlout= serializer.write(json);
+       		       //thrdjsonxmlout = xmlSerializer.write( json );
 
-         	              }
+         	              
          	     // end-while 
        	    	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(thrdjsonxmlout.getBytes("UTF-8")))); 
  	

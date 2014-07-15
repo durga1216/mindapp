@@ -76,6 +76,7 @@ while(rs1.next()){
 <div id=t2><table><tr>
 <td><a href="prebuilt1.jsp?name=MPAPP_0579"><img  src="images/p2.jpg" data-toggle="tooltip" title="" data-original-title="Upto75-Eventfull-Asklaila" width='150' height='150'></a></td>
 <td><a href="prebuilt1.jsp?name=MPAPP_0613"><img  src="images/event.jpg" data-toggle="tooltip" title="" data-original-title="Eventbrite-Eventfull-Seatgeek" width='150' height='150'></a></td>
+<td><a href="prebuilt1.jsp?name=MPAPP_0615"><img  src="images/jobs.jpg" data-toggle="tooltip" title="" data-original-title="Indeed-Careerbuilder-Glassdoor" width='150' height='150'></a></td>
 <td><a href=""><img  src="images/social2.png" data-toggle="tooltip" title="" data-original-title="(Social-Network)-Mashup" width='150' height='150'></a></td></tr>
 </table></div>
 <%
