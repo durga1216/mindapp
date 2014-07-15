@@ -66,24 +66,59 @@ public class CommonXmlPulpy extends HttpServlet {
 		String appid=request.getParameter("appid");
 		//HttpSession session=request.getSession(true);
 		 // String appid=(String) session.getAttribute("xx"); 
-		String pid=request.getParameter("pid");String s1=request.getParameter("p1");String s2=request.getParameter("p2");
-		String s3=request.getParameter("p3");String s4=request.getParameter("p4");
-		String s5=request.getParameter("p5");String s6=request.getParameter("p6");
-		String paid=request.getParameter("paid");String th1=request.getParameter("pa1");String th2=request.getParameter("pa2");
-		String th3=request.getParameter("pa3");String th4=request.getParameter("pa4");
-		String th5=request.getParameter("pa5");String th6=request.getParameter("pa6");
+		String p1=request.getParameter("p1");String p2=request.getParameter("p2");
+		String p3=request.getParameter("p3");String p4=request.getParameter("p4");String p5=request.getParameter("p5");String p6=request.getParameter("p6");
+		String p7=request.getParameter("p7");String p8=request.getParameter("p8");String p9=request.getParameter("p9");String p10=request.getParameter("p10");
+		String pid=request.getParameter("pid");String s1=request.getParameter("s1");String s2=request.getParameter("s2");
+		String s3=request.getParameter("s3");String s4=request.getParameter("s4");
+		String s5=request.getParameter("s5");String s6=request.getParameter("s6");
+		String paid=request.getParameter("paid");String th1=request.getParameter("t1");String th2=request.getParameter("t2");
+		String th3=request.getParameter("t3");String th4=request.getParameter("t4");
+		String th5=request.getParameter("t5");String th6=request.getParameter("t6");
         Connection con=null;
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 c1  JOIN secondconfig c2 ON c1.appid=c2.appid JOIN secxmlconfig cx2 ON c1.appid=cx2.appid JOIN thirdconfig c3 ON c1.appid=c3.appid JOIN thrdxmlconfig cx3 on c1.appid=cx3.appid JOIN config c4 ON c1.appid=c4.appid  WHERE c1.appid=?");
+	    PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 c1  JOIN secondconfig c2 ON c1.appid=c2.appid JOIN secxmlconfig cx2 ON c1.appid=cx2.appid JOIN thirdconfig c3 ON c1.appid=c3.appid JOIN thrdxmlconfig cx3 on c1.appid=cx3.appid JOIN config c4 ON c1.appid=c4.appid JOIN xmlconfig cx4 ON c1.appid=cx4.appid  WHERE c1.appid=?");
 	    st.setString(1, appid);
         ResultSet rs = st.executeQuery();
         while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
         	String id=rs.getString("id");	 String appname1=rs.getString("appname");
             String authen1=rs.getString("auth");String ba1=rs.getString("b1");String ba2=rs.getString("b2");
             String ba3=rs.getString("b3");String ba4=rs.getString("b4");;String rf1=rs.getString("rf");String rm1=rs.getString("rm");
-            String oriapilabel=rs.getString("a1"); String oriapikey=rs.getString("a2"); String endurl1=rs.getString("endurl");//get from secondconfig
+            String oriapilabel=rs.getString("a1"); String oriapikey=rs.getString("a2"); String endurl1=rs.getString("endurl");
+            String resf1=rs.getString("resf");String ak=rs.getString("a1");String akk=rs.getString("a2");
+            String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
+            String pa2=rs.getString("p2");String pva2=rs.getString("pv2");
+            String pa3=rs.getString("p3");String pva3=rs.getString("pv3");
+            String pa4=rs.getString("p4");String pva4=rs.getString("pv4");
+            String pa5=rs.getString("p5");String pva5=rs.getString("pv5");
+            String pa6=rs.getString("p6");String pva6=rs.getString("pv6");
+            String pa7=rs.getString("p7");String pva7=rs.getString("pv7");
+            String pa8=rs.getString("p8");String pva8=rs.getString("pv8");
+            String pa9=rs.getString("p9");String pva9=rs.getString("pv9");
+            String pa10=rs.getString("p10");String pva10=rs.getString("pv10");
+
+            String xr=rs.getString("xr");String xrv=rs.getString("xrv");
+            
+ String x1=rs.getString("x1"); String xv1=rs.getString("xv1");String x2=rs.getString("x2"); String xv2=rs.getString("xv2");
+ String x3=rs.getString("x3"); String xv3=rs.getString("xv3");String x4=rs.getString("x4"); String xv4=rs.getString("xv4");
+ String x5=rs.getString("x5"); String xv5=rs.getString("xv5");String x6=rs.getString("x6"); String xv6=rs.getString("xv6");
+ String x7=rs.getString("x7"); String xv7=rs.getString("xv7");String x8=rs.getString("x8"); String xv8=rs.getString("xv8");
+ String x9=rs.getString("x9"); String xv9=rs.getString("xv9");String x10=rs.getString("x10"); String xv10=rs.getString("xv10");
+ String x11=rs.getString("x11"); String xv11=rs.getString("xv11");String x12=rs.getString("x12"); String xv12=rs.getString("xv12");
+ String x13=rs.getString("x13"); String xv13=rs.getString("xv13");String x14=rs.getString("x14"); String xv14=rs.getString("xv14");
+ String x15=rs.getString("x15"); String xv15=rs.getString("xv15");String x16=rs.getString("x16"); String xv16=rs.getString("xv16");
+ String x17=rs.getString("x17"); String xv17=rs.getString("xv17");String x18=rs.getString("x18"); String xv18=rs.getString("xv18");
+ String x19=rs.getString("x19"); String xv19=rs.getString("xv19");String x20=rs.getString("x20"); String xv20=rs.getString("xv20");
+ String x21=rs.getString("x21"); String xv21=rs.getString("xv21");String x22=rs.getString("x22"); String xv22=rs.getString("xv22");
+ String x23=rs.getString("x23"); String xv23=rs.getString("xv23");String x24=rs.getString("x24"); String xv24=rs.getString("xv24");
+ String x25=rs.getString("x25"); String xv25=rs.getString("xv25");String x26=rs.getString("x26"); String xv26=rs.getString("xv26");
+ String x27=rs.getString("x27"); String xv27=rs.getString("xv27");String x28=rs.getString("x28"); String xv28=rs.getString("xv28");
+ String x29=rs.getString("x29"); String xv29=rs.getString("xv29");String x30=rs.getString("x30"); String xv30=rs.getString("xv30");
+            
+            
+            //get from secondconfig
             String securl1=rs.getString("securl");String cycle1=rs.getString("cycle");String secid=rs.getString("sec1"); String secval=rs.getString("sec2");
             String ak1=rs.getString("alabel1");String ak2=rs.getString("akey1");String se1=rs.getString("s1"); String sev1=rs.getString("sv1");String se2=rs.getString("s2"); String sev2=rs.getString("sv2");
             String se3=rs.getString("s3"); String sev3=rs.getString("sv3");String se4=rs.getString("s4"); String sev4=rs.getString("sv4");
@@ -1128,171 +1163,557 @@ String resf2=rs.getString("resf2");
          	}   
               }
               outdoc1.appendChild(outevent1); //the full formed mpulpy xml now in document
-        
+              
+        //first config
+              Document doc2=null;  //TO Convert XMLSTRING TO DOCUMENT
+              DocumentBuilder builder2=null;
+              DocumentBuilderFactory domFactory2=DocumentBuilderFactory.newInstance();
+              builder2=domFactory2.newDocumentBuilder();
+                  String eurl=null;
+                  String line=null;
+                  String str=null;
+                  if(authen1.equals("API keys")){  //API Keys
+     	        	 
+     	        	 if(rf1.equals("REST") && rm1.equals ("GET")){  //API XML get       		 
+
+     	        		 if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4) && !"".equals(p5) && !"".equals(p6)&& !"".equals(p7) && !"".equals(p8) && !"".equals(p9) && !"".equals(p10)){
+     	        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
+     	        		 
+     	        		 else if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4) && !"".equals(p5) && !"".equals(p6)&& !"".equals(p7) && !"".equals(p8) && !"".equals(p9)){
+     		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9;}
+     	        		 
+     	        		 else if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4) && !"".equals(p5) && !"".equals(p6)&& !"".equals(p7) && !"".equals(p8)){
+     		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8;}
+     	        		 
+     	        		 else if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4) && !"".equals(p5) && !"".equals(p6)&& !"".equals(p7)){
+     		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7;}
+     	        		 
+     	        		 else if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4) && !"".equals(p5)&& !"".equals(p6)){
+     		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6;}
+     	        		 
+     	        		 else if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4) && !"".equals(p5)){
+     		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5;}
+     	        		 
+     	        		 else if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3) && !"".equals(p4)){
+     		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4;}
+     	        		 
+     	        		 else if(!"".equals(p1) && !"".equals(p2) && !"".equals(p3)){
+     		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3;}
+     	        		 
+     	        		 else if(!"".equals(p1) && !"".equals(p2)){
+     		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1+"&"+pa2+"="+p2;}
+     	        		 
+     	        		 else if(!"".equals(p1)){
+     		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1;}
+     	        		 else if("".equals(p1))
+     	        			eurl=endurl1+"?"+ak+"="+akk;
+     	        	 
+                          if(resf1.equals("XML")){
+            	        	  doc2=builder2.parse(new URL(eurl).openStream());
+
+                          }
+     	        		 
+     	        		 
+     	        		 else if(resf1.equals("JSON")){
+     	        			 line=null;String strcon=null;
+     		        	     StringBuilder strb=new StringBuilder();
+     		        		 URL eurl1=new URL(eurl);
+     		        		 URLConnection uconn = eurl1.openConnection();
+     		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+     		        	     conn.connect();
+     		        	     Object content = conn.getContent();
+     		        	     InputStream stream = (InputStream) content;
+     		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+     		        	     while ((line = br.readLine()) != null)    { 
+     	        	    	      strb.append(line);
+     	   	    		     }//while
+     	        	    	 strcon=strb.toString();
+     	        	    	 XMLSerializer serializer = new XMLSerializer();
+     	     	            JSON json = JSONSerializer.toJSON(strcon);
+     	     	            serializer.setRootName("root");
+     	     	            serializer.setTypeHintsEnabled(false);
+     	     	            str = serializer.write(json);
+
+     		        	           // end-while  	
+     			               doc2= builder2.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+
+     	        	 }} 
+                  }
+                  Document outdoc2=DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+	        		 Element outevent2=outdoc2.createElement("MPulpy");
+	        		 NodeList inevent2=null;
+	        		 XPath xPath2=XPathFactory.newInstance().newXPath();
+	        		 inevent2=(NodeList) xPath2.evaluate("//"+xr,doc2,XPathConstants.NODESET); //using XPATH to simply xml from third party server
+	                   if(inevent2!=null){
+	            	  
+	              	for(int i=0;i<inevent2.getLength();i++){
+	              		Element outputEvent=outdoc2.createElement("root"); // create mpulpy xml here
+	              		Node inputEvent=inevent2.item(i);
+	              		       
+	              	    if(!"null".equals(x1)){   //validation for not return null tag
+	              		Element param1=outdoc2.createElement(x1);  //create element
+	                    if(xv1.equals(""))
+	              		param1.setTextContent("null");
+	              		else
+	              		param1.setTextContent(xPath2.evaluate(xv1, inputEvent)); // map our xml with third party server xml
+	              		outputEvent.appendChild(param1);}
+	              		
+	              		if(!"null".equals(x2)){
+	              		Element param2=outdoc2.createElement(x2);
+	                    if(xv2.equals(""))
+	              		param2.setTextContent("null");
+	              		else
+	              		param2.setTextContent(xPath2.evaluate(xv2, inputEvent));
+	              		outputEvent.appendChild(param2);}
+	              		
+	              		if(!"null".equals(x3)){
+	              		Element param3=outdoc2.createElement(x3);
+	                    if(xv3.equals(""))
+	              		param3.setTextContent("null");
+	              		else
+	              		param3.setTextContent(xPath2.evaluate(xv3, inputEvent));
+	              		outputEvent.appendChild(param3);}
+	              		
+	              		if(!"null".equals(x4)){
+	              		Element param4=outdoc2.createElement(x4);
+	                    if(xv4.equals(""))
+	              		param4.setTextContent("null");
+	              		else
+	              		param4.setTextContent(xPath2.evaluate(xv4, inputEvent));
+	              		outputEvent.appendChild(param4);}
+	              		
+           		    if(!"null".equals(x5)){
+		              	Element param5=outdoc2.createElement(x5);
+	                    if(xv5.equals(""))
+	              		param5.setTextContent("null");
+	              		else
+	              		param5.setTextContent(xPath2.evaluate(xv5, inputEvent));
+	              		outputEvent.appendChild(param5);}
+	              		
+	              		if(!"null".equals(x6)){
+	              		Element param6=outdoc2.createElement(x6);
+	                    if(xv6.equals(""))
+	              		param6.setTextContent("null");
+	              		else
+	              		param6.setTextContent(xPath2.evaluate(xv6, inputEvent));
+	              		outputEvent.appendChild(param6);}
+	              		
+	              		if(!"null".equals(x7)){
+	              		Element param7=outdoc2.createElement(x7);
+	              		if(xv7.equals(""))
+	              		param7.setTextContent("");
+	              		else
+	              		param7.setTextContent(xPath2.evaluate(xv7, inputEvent));
+	              		outputEvent.appendChild(param7);}
+	              		
+	              		if(!"null".equals(x8)){
+	              		Element param8=outdoc2.createElement(x8);
+	              		if(xv8.equals(""))
+	              		param8.setTextContent("");
+	              		else
+	              		param8.setTextContent(xPath2.evaluate(xv8, inputEvent));
+	              		outputEvent.appendChild(param8);}
+	              		
+	              		if(!"null".equals(x9)){
+	              		Element param9=outdoc2.createElement(x9);
+	              		if(xv9.equals(""))
+	              		param9.setTextContent("");
+	              		else
+	              		param9.setTextContent(xPath2.evaluate(xv9, inputEvent));
+	              		outputEvent.appendChild(param9);}
+	              		
+	              		if(!"null".equals(x10)){
+	              		Element param10=outdoc2.createElement(x10);
+	              		if(xv10.equals(""))
+	              		param10.setTextContent("null");
+	              		else
+	              		param10.setTextContent(xPath2.evaluate(xv10, inputEvent));
+	              		outputEvent.appendChild(param10);}
+	              		
+	              		if(!"null".equals(x11)){
+	              		Element param11=outdoc2.createElement(x11);
+	              		if(xv11.equals(""))
+	              		param11.setTextContent("null");
+	              		else
+	              		param11.setTextContent(xPath2.evaluate(xv11, inputEvent));
+	              		outputEvent.appendChild(param11);}
+	              		
+	              		if(!"null".equals(x12)){
+	              		Element param12=outdoc2.createElement(x12);
+	              		if(xv12.equals(""))
+	              		param12.setTextContent("null");
+	              		else
+	              		param12.setTextContent(xPath2.evaluate(xv12, inputEvent));
+	              		outputEvent.appendChild(param12);}
+	              		
+	              		if(!"null".equals(x13)){
+	              		Element param13=outdoc2.createElement(x13);
+	              		if(xv13.equals(""))
+	              		param13.setTextContent("null");
+	              		else
+	              		param13.setTextContent(xPath2.evaluate(xv13, inputEvent));
+	              		outputEvent.appendChild(param13);}
+	              		
+	              		if(!"null".equals(x14)){
+	              		Element param14=outdoc2.createElement(x14);
+	              		if(xv14.equals(""))
+	              		param14.setTextContent("null");
+	              		else
+	              		param14.setTextContent(xPath2.evaluate(xv14, inputEvent));
+	              		outputEvent.appendChild(param14);}
+	              		
+	              		if(!"null".equals(x15)){
+	              		Element param15=outdoc2.createElement(x15);
+	              		if(xv15.equals(""))
+	              		param15.setTextContent("null");
+	              		else
+	              		param15.setTextContent(xPath2.evaluate(xv15, inputEvent));
+	              		outputEvent.appendChild(param15);}
+	              		
+	              		if(!"null".equals(x16)){
+	              		Element param16=outdoc2.createElement(x16);
+	              		if(xv16.equals(""))
+	              		param16.setTextContent("null");
+	              		else
+	              		param16.setTextContent(xPath2.evaluate(xv16, inputEvent));
+	              		outputEvent.appendChild(param16);}
+	              		
+	              		if(!"null".equals(x17)){
+	              		Element param17=outdoc2.createElement(x17);
+	              		if(xv17.equals(""))
+	              		param17.setTextContent("null");
+	              		else
+	              		param17.setTextContent(xPath2.evaluate(xv17, inputEvent));
+	              		outputEvent.appendChild(param17);}
+	              		
+	              		if(!"null".equals(x18)){
+	              		Element param18=outdoc2.createElement(x18);
+	              		if(xv18.equals(""))
+	              		param18.setTextContent("null");
+	              		else
+	              		param18.setTextContent(xPath2.evaluate(xv18, inputEvent));
+	              		outputEvent.appendChild(param18);}
+	              		
+	              		if(!"null".equals(x19)){
+	              		Element param19=outdoc2.createElement(x19);
+	              		if(xv19.equals(""))
+	              		param19.setTextContent("null");
+	              		else
+	              		param19.setTextContent(xPath2.evaluate(xv19, inputEvent));
+	              		outputEvent.appendChild(param19);}
+	              		
+	              		if(!"null".equals(x20)){
+	              		Element param20=outdoc2.createElement(x20);
+	              		if(xv20.equals(""))
+	              		param20.setTextContent("null");
+	              		else
+	              		param20.setTextContent(xPath2.evaluate(xv20, inputEvent));
+	              		outputEvent.appendChild(param20);}
+	              		
+	              		
+	              		if(!"null".equals(x21)){
+	              		Element param21=outdoc2.createElement(x21);
+	              		if(xv21.equals(""))
+	              		param21.setTextContent("null");
+	              		else
+	              		param21.setTextContent(xPath2.evaluate(xv21, inputEvent));
+	              		outputEvent.appendChild(param21);}
+	              		
+	              		if(!"null".equals(x22)){
+	              		Element param22=outdoc2.createElement(x22);
+	              		if(xv22.equals(""))
+	              		param22.setTextContent("null");
+	              		else
+	              		param22.setTextContent(xPath2.evaluate(xv22, inputEvent));
+	              		outputEvent.appendChild(param22);}
+	              		
+	              		if(!"null".equals(x23)){
+	              		Element param23=outdoc2.createElement(x23);
+	              		if(xv23.equals(""))
+	              		param23.setTextContent("null");
+	              		else
+	              		param23.setTextContent(xPath2.evaluate(xv23, inputEvent));
+	              		outputEvent.appendChild(param23);}
+	              		
+	              		if(!"null".equals(x24)){
+	              		Element param24=outdoc2.createElement(x24);
+	              		if(xv24.equals(""))
+	              		param24.setTextContent("null");
+	              		else
+	              		param24.setTextContent(xPath2.evaluate(xv24, inputEvent));
+	              		outputEvent.appendChild(param24);}
+	              		
+	              		if(!"null".equals(x25)){
+	              		Element param25=outdoc2.createElement(x25);
+	              		if(xv25.equals(""))
+	              		param25.setTextContent("null");
+	              		else
+	              		param25.setTextContent(xPath2.evaluate(xv25, inputEvent));
+	              		outputEvent.appendChild(param25);}
+	              		
+	              		if(!"null".equals(x26)){
+	              		Element param26=outdoc2.createElement(x26);
+	              		if(xv26.equals(""))
+	              		param26.setTextContent("null");
+	              		else
+	              		param26.setTextContent(xPath2.evaluate(xv26, inputEvent));
+	              		outputEvent.appendChild(param26);}
+	              		
+	              		if(!"null".equals(x27)){
+	              		Element param27=outdoc2.createElement(x27);
+	              		if(xv27.equals(""))
+	              		param27.setTextContent("null");
+	              		else
+	              		param27.setTextContent(xPath2.evaluate(xv27, inputEvent));
+	              		outputEvent.appendChild(param27);}
+	              		
+	              		if(!"null".equals(x28)){
+	              		Element param28=outdoc2.createElement(x28);
+	              		if(xv28.equals(""))
+	              		param28.setTextContent("null");
+	              		else
+	              		param28.setTextContent(xPath2.evaluate(xv28, inputEvent));
+	              		outputEvent.appendChild(param28);}
+	              		
+	              		if(!"null".equals(x29)){
+	              		Element param29=outdoc2.createElement(x29);
+	              		if(xv29.equals(""))
+	              		param29.setTextContent("null");
+	              		else
+	              		param29.setTextContent(xPath2.evaluate(xv29, inputEvent));
+	              		outputEvent.appendChild(param29);}
+	              		
+	              		if(!"null".equals(x30)){
+	              		Element param30=outdoc2.createElement(x30);
+	              		if(xv30.equals(""))
+	              		param30.setTextContent("null");
+	              		else
+	              		param30.setTextContent(xPath2.evaluate(xv30, inputEvent));
+	              		outputEvent.appendChild(param30);}
+	             		
+	              		outevent2.appendChild(outputEvent);
+
+		        	  	       		
+	              	}   
+	                   }
+	                   outdoc2.appendChild(outevent2);
+                  
                            //mashup starts from here
-              NodeList nd1 = outdoc.getElementsByTagName("root");
-              NodeList nd2 = outdoc1.getElementsByTagName("root");
-              int nn;
-   if(nd1.getLength()>nd2.getLength())
-   {
-	   nn=nd2.getLength();}
-   else{
-	   nn=nd1.getLength();}
-            for(int i=0;i<nn;i++){
-            if(!"null".equals(tx1))	{
-              Node nodeid = outdoc.importNode(outdoc1.getElementsByTagName(tx1).item(i), true);
-              nd1.item(i).appendChild(nodeid);}
-              
-             if(!"null".equals(tx2)){
-              Node nodename = outdoc.importNode(outdoc1.getElementsByTagName(tx2).item(i), true);
-              nd1.item(i).appendChild(nodename);}
-
-             if(!"null".equals(tx3)){
-             Node nodeorgdes=outdoc.importNode(outdoc1.getElementsByTagName(tx3).item(i),true);
-             nd1.item(i).appendChild(nodeorgdes);}
-
-            if(!"null".equals(tx4)){
-             Node node4=outdoc.importNode(outdoc1.getElementsByTagName(tx4).item(i),true);
-             nd1.item(i).appendChild(node4);}
-
-             if(!"null".equals(tx5)){
-             Node node5=outdoc.importNode(outdoc1.getElementsByTagName(tx5).item(i),true);
-             nd1.item(i).appendChild(node5);}
-
-             if(!"null".equals(tx6)){
-             Node node6=outdoc.importNode(outdoc1.getElementsByTagName(tx6).item(i),true);
-             nd1.item(i).appendChild(node6);}
-             
-             if(!"null".equals(tx7)){
-            	 Node node7=outdoc.importNode(outdoc1.getElementsByTagName(tx7).item(i),true);
-                 nd1.item(i).appendChild(node7);}
-             
-            if(!"null".equals(tx8)){
-            	 Node node8=outdoc.importNode(outdoc1.getElementsByTagName(tx8).item(i),true);
-                 nd1.item(i).appendChild(node8);}
-             
-            if(!"null".equals(tx9)){
-            Node node9=outdoc.importNode(outdoc1.getElementsByTagName(tx9).item(i),true);
-            nd1.item(i).appendChild(node9);}
-            
-            if(!"null".equals(tx10)){
-                Node node10=outdoc.importNode(outdoc1.getElementsByTagName(tx10).item(i),true);
-                nd1.item(i).appendChild(node10);}
-             
-            if(!"null".equals(tx11)){
-                Node node11=outdoc.importNode(outdoc1.getElementsByTagName(tx11).item(i),true);
-                nd1.item(i).appendChild(node11);}
-            
-            if(!"null".equals(tx12)){
-                Node node12=outdoc.importNode(outdoc1.getElementsByTagName(tx12).item(i),true);
-                nd1.item(i).appendChild(node12);}
-            
-            if(!"null".equals(tx13)){
-                Node node13=outdoc.importNode(outdoc1.getElementsByTagName(tx13).item(i),true);
-                nd1.item(i).appendChild(node13);}
-            
-            if(!"null".equals(tx14)){
-                Node node14=outdoc.importNode(outdoc1.getElementsByTagName(tx14).item(i),true);
-                nd1.item(i).appendChild(node14);}
-            
-            if(!"null".equals(tx15)){
-                Node node15=outdoc.importNode(outdoc1.getElementsByTagName(tx15).item(i),true);
-                nd1.item(i).appendChild(node15);}
-            
-            if(!"null".equals(tx16)){
-                Node node16=outdoc.importNode(outdoc1.getElementsByTagName(tx16).item(i),true);
-                nd1.item(i).appendChild(node16);}
-            
-            if(!"null".equals(tx17)){
-                Node node17=outdoc.importNode(outdoc1.getElementsByTagName(tx17).item(i),true);
-                nd1.item(i).appendChild(node17);}
-            
-            if(!"null".equals(tx18)){
-                Node node18=outdoc.importNode(outdoc1.getElementsByTagName(tx18).item(i),true);
-                nd1.item(i).appendChild(node18);}
-            
-            if(!"null".equals(tx19)){
-                Node node19=outdoc.importNode(outdoc1.getElementsByTagName(tx19).item(i),true);
-                nd1.item(i).appendChild(node19);}
-            
-            if(!"null".equals(tx20)){
-                Node node20=outdoc.importNode(outdoc1.getElementsByTagName(tx20).item(i),true);
-                nd1.item(i).appendChild(node20);}
-            
-            if(!"null".equals(tx21)){
-                Node node21=outdoc.importNode(outdoc1.getElementsByTagName(tx21).item(i),true);
-                nd1.item(i).appendChild(node21);}
-            
-            if(!"null".equals(tx22)){
-                Node node22=outdoc.importNode(outdoc1.getElementsByTagName(tx22).item(i),true);
-                nd1.item(i).appendChild(node22);}
-            
-            if(!"null".equals(tx23)){
-                Node node23=outdoc.importNode(outdoc1.getElementsByTagName(tx23).item(i),true);
-                nd1.item(i).appendChild(node23);}
-            
-            if(!"null".equals(tx24)){
-                Node node24=outdoc.importNode(outdoc1.getElementsByTagName(tx24).item(i),true);
-                nd1.item(i).appendChild(node24);}
-            
-            if(!"null".equals(tx25)){
-                Node node25=outdoc.importNode(outdoc1.getElementsByTagName(tx25).item(i),true);
-                nd1.item(i).appendChild(node25);}
-            
-            if(!"null".equals(tx26)){
-                Node node26=outdoc.importNode(outdoc1.getElementsByTagName(tx26).item(i),true);
-                nd1.item(i).appendChild(node26);}
-            
-            if(!"null".equals(tx27)){
-                Node node27=outdoc.importNode(outdoc1.getElementsByTagName(tx27).item(i),true);
-                nd1.item(i).appendChild(node27);}
-            
-            if(!"null".equals(tx28)){
-                Node node28=outdoc.importNode(outdoc1.getElementsByTagName(tx28).item(i),true);
-                nd1.item(i).appendChild(node28);}
-           
-            if(!"null".equals(tx29)){
-                Node node29=outdoc.importNode(outdoc1.getElementsByTagName(tx29).item(i),true);
-                nd1.item(i).appendChild(node29);}
-            
-            if(!"null".equals(tx30)){
-                Node node30=outdoc.importNode(outdoc1.getElementsByTagName(tx30).item(i),true);
-                nd1.item(i).appendChild(node30);}
-        }
-		     
-             
-           /*  Element fromRoot = outdoc.getDocumentElement();
-              Element toRoot = outdoc1.getDocumentElement();
-
-              Node child = null;
-              while ((child = fromRoot.getFirstChild()) != null) {
-                  outdoc1.adoptNode(child);
-                  toRoot.appendChild(child);
-              }*/
-              
-              
-              
+	                   NodeList ndListFirstFile = outdoc.getElementsByTagName("root");
+	                   NodeList ndListFirstFile1 = outdoc1.getElementsByTagName("root");
+	                   NodeList ndListFirstFile2 = outdoc2.getElementsByTagName("root");
+	                    int first=ndListFirstFile.getLength();
+	                    int second=ndListFirstFile1.getLength();
+	                    int third=ndListFirstFile2.getLength();
+	                   // out.println(first+"--"+second+"--"+third);
+              if(second >= first && second >= third){
+              	 for(int i=0;i<first;i++){
+              		// out.println("inside 1");
+              		 if(!"null".equals(sx1)){
+                           Node noden1 = outdoc1.importNode(outdoc.getElementsByTagName(sx1).item(i), true);
+                           ndListFirstFile1.item(i).appendChild(noden1);}
                            
-        Transformer transformer1=null;
-        try {
-			 transformer1=TransformerFactory.newInstance().newTransformer();
-		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
-		} 
-	 transformer1.setOutputProperty(OutputKeys.INDENT,"yes");
-	 transformer1.setOutputProperty(OutputKeys.METHOD,"xml");
+                           if(!"null".equals(sx2)){
+                           Node noden2 = outdoc1.importNode(outdoc.getElementsByTagName(sx2).item(i), true);
+                           ndListFirstFile1.item(i).appendChild(noden2);}
+                           if(!"null".equals(sx3)){
+                               Node noden3 = outdoc1.importNode(outdoc.getElementsByTagName(sx3).item(i), true);
+                               ndListFirstFile1.item(i).appendChild(noden3);}
+                               
+                               if(!"null".equals(sx4)){
+                               Node noden4 = outdoc1.importNode(outdoc.getElementsByTagName(sx4).item(i), true);
+                               ndListFirstFile1.item(i).appendChild(noden4);}
+                               if(!"null".equals(sx5)){
+                                   Node noden5 = outdoc1.importNode(outdoc.getElementsByTagName(sx5).item(i), true);
+                                   ndListFirstFile1.item(i).appendChild(noden5);}
+                                   
+                                   if(!"null".equals(sx6)){
+                                   Node noden6 = outdoc1.importNode(outdoc.getElementsByTagName(sx6).item(i), true);
+                                   ndListFirstFile1.item(i).appendChild(noden6);}
+                                   
+                           if(!"null".equals(x1)){
+                               Node nodeid1 = outdoc1.importNode(outdoc2.getElementsByTagName(x1).item(i), true);
+                               ndListFirstFile1.item(i).appendChild(nodeid1);}
+                             
+                               if(!"null".equals(x2)){
 
-	 StreamResult result=new StreamResult(new StringWriter());
-     DOMSource source=new DOMSource(outdoc);
-     try {
- 		transformer1.transform(source, result);  //transform mpulpy xml from document to xml string and make display in browser ->to send client(phonegap)
- 	} catch (TransformerException e) {
- 		e.printStackTrace();
- 	}
-     
-      String xmloutput=result.getWriter().toString();
-     
-      out.println(xmloutput);
+                               Node nodeid2 = outdoc1.importNode(outdoc2.getElementsByTagName(x2).item(i), true);
+                               ndListFirstFile1.item(i).appendChild(nodeid2);}                       
+                               if(!"null".equals(x3)){
+                                   Node nodeid3 = outdoc1.importNode(outdoc2.getElementsByTagName(x3).item(i), true);
+                                   ndListFirstFile1.item(i).appendChild(nodeid3);}
+                                 
+                                   if(!"null".equals(x4)){
+                                   Node nodeid4 = outdoc1.importNode(outdoc2.getElementsByTagName(x4).item(i), true);
+                                   ndListFirstFile1.item(i).appendChild(nodeid4);}
+                       if(!"null".equals(x5)){
+                       Node nodeid5 = outdoc1.importNode(outdoc2.getElementsByTagName(x5).item(i), true);
+                       ndListFirstFile1.item(i).appendChild(nodeid5);}
+                     
+                       if(!"null".equals(x6)){
+
+                       Node nodeid6 = outdoc1.importNode(outdoc2.getElementsByTagName(x6).item(i), true);
+                       ndListFirstFile1.item(i).appendChild(nodeid6);}
+              	 }
+               }
+               
+            else if(third >= second && third >= first){
+              for(int i=0;i<second;i++){ 
+             	 //out.println("inside 2"+i+"--"+sx1+"--"+tx1);
+             	 if(!"null".equals(sx1)){
+                      Node noden1 = outdoc2.importNode(outdoc.getElementsByTagName(sx1).item(i), true);
+                      ndListFirstFile2.item(i).appendChild(noden1);}
+                      
+                      if(!"null".equals(sx2)){
+                      Node noden2 = outdoc2.importNode(outdoc.getElementsByTagName(sx2).item(i), true);
+                      ndListFirstFile2.item(i).appendChild(noden2);}
+                      if(!"null".equals(sx3)){
+                          Node noden3 = outdoc2.importNode(outdoc.getElementsByTagName(sx3).item(i), true);
+                          ndListFirstFile2.item(i).appendChild(noden3);}
+                          
+                          if(!"null".equals(sx4)){
+                          Node noden4 = outdoc2.importNode(outdoc.getElementsByTagName(sx4).item(i), true);
+                          ndListFirstFile2.item(i).appendChild(noden4);}
+                          if(!"null".equals(sx5)){
+                              Node noden5 = outdoc2.importNode(outdoc.getElementsByTagName(sx5).item(i), true);
+                              ndListFirstFile2.item(i).appendChild(noden5);}
+                              
+                              if(!"null".equals(sx6)){
+                              Node noden6 = outdoc2.importNode(outdoc.getElementsByTagName(sxv6).item(i), true);
+                              ndListFirstFile2.item(i).appendChild(noden6);}
+                              
+                if(!"null".equals(tx1)){
+                    Node node1 = outdoc2.importNode(outdoc1.getElementsByTagName(tx1).item(i), true);
+                    ndListFirstFile2.item(i).appendChild(node1);}
+                    
+                    if(!"null".equals(tx2)){
+                    Node node2 = outdoc2.importNode(outdoc1.getElementsByTagName(tx2).item(i), true);
+                    ndListFirstFile2.item(i).appendChild(node2);}
+        		  if(!"null".equals(tx3)){
+                      Node node3 = outdoc2.importNode(outdoc1.getElementsByTagName(tx3).item(i), true);
+                      ndListFirstFile2.item(i).appendChild(node3);}
+                      
+                      if(!"null".equals(tx4)){
+                      Node node4 = outdoc2.importNode(outdoc1.getElementsByTagName(tx4).item(i), true);
+                      ndListFirstFile2.item(i).appendChild(node4);}
+                      if(!"null".equals(tx5)){
+                          Node node5 = outdoc2.importNode(outdoc1.getElementsByTagName(tx5).item(i), true);
+                          ndListFirstFile2.item(i).appendChild(node5);}
+                          
+                          if(!"null".equals(tx6)){
+                          Node node6 = outdoc2.importNode(outdoc1.getElementsByTagName(tx6).item(i), true);
+                          ndListFirstFile2.item(i).appendChild(node6);}
+              }   
+              
+
+         }
+            else if(first >= second && first >= third){
+          	  for(int i=0;i<second;i++){
+          		// out.println("inside 3");
+          		 if(!"null".equals(tx1)){
+                      Node node1 = outdoc.importNode(outdoc1.getElementsByTagName(tx1).item(i), true);
+                      ndListFirstFile.item(i).appendChild(node1);}
+                      
+                      if(!"null".equals(tx2)){
+                      Node node2 = outdoc.importNode(outdoc1.getElementsByTagName(tx2).item(i), true);
+                      ndListFirstFile.item(i).appendChild(node2);}
+          		  if(!"null".equals(tx3)){
+                        Node node3 = outdoc.importNode(outdoc1.getElementsByTagName(tx3).item(i), true);
+                        ndListFirstFile.item(i).appendChild(node3);}
+                        
+                        if(!"null".equals(tx4)){
+                        Node node4 = outdoc.importNode(outdoc1.getElementsByTagName(tx4).item(i), true);
+                        ndListFirstFile.item(i).appendChild(node4);}
+                        if(!"null".equals(tx5)){
+                            Node node5 = outdoc.importNode(outdoc1.getElementsByTagName(tx5).item(i), true);
+                            ndListFirstFile.item(i).appendChild(node5);}
+                            
+                            if(!"null".equals(tx6)){
+                            Node node6 = outdoc.importNode(outdoc1.getElementsByTagName(tx6).item(i), true);
+                            ndListFirstFile.item(i).appendChild(node6);}
+                            
+                            if(!"null".equals(x1)){
+                                Node nodeid1 = outdoc.importNode(outdoc2.getElementsByTagName(x1).item(i), true);
+                                ndListFirstFile.item(i).appendChild(nodeid1);}
+                              
+                                if(!"null".equals(x2)){
+
+                                Node nodeid2 = outdoc.importNode(outdoc2.getElementsByTagName(x2).item(i), true);
+                                ndListFirstFile.item(i).appendChild(nodeid2);}                       
+                                if(!"null".equals(x3)){
+                                    Node nodeid3 = outdoc.importNode(outdoc2.getElementsByTagName(x3).item(i), true);
+                                    ndListFirstFile.item(i).appendChild(nodeid3);}
+                                  
+                                    if(!"null".equals(x4)){
+                                    Node nodeid4 = outdoc.importNode(outdoc2.getElementsByTagName(x4).item(i), true);
+                                    ndListFirstFile.item(i).appendChild(nodeid4);}
+                        if(!"null".equals(x5)){
+                        Node nodeid5 = outdoc.importNode(outdoc2.getElementsByTagName(x5).item(i), true);
+                        ndListFirstFile.item(i).appendChild(nodeid5);}
+                      
+                        if(!"null".equals(x6)){
+
+                        Node nodeid6 = outdoc.importNode(outdoc2.getElementsByTagName(x6).item(i), true);
+                        ndListFirstFile.item(i).appendChild(nodeid6);}
+          		  
+          	  }
+          	  
+          	  
+            }
+   
+               
+                 
+             /*  Element fromRoot = outdoc.getDocumentElement();
+                Element toRoot = outdoc1.getDocumentElement();
+
+                Node child = null;
+                while ((child = fromRoot.getFirstChild()) != null) {
+                    outdoc1.adoptNode(child);
+                    toRoot.appendChild(child);
+                }*/
+                
+                
+                
+                             
+          Transformer transformer1=null;
+          try {
+  			 transformer1=TransformerFactory.newInstance().newTransformer();
+  		} catch (TransformerConfigurationException e) {
+  			// TODO Auto-generated catch block
+  		} 
+  	 transformer1.setOutputProperty(OutputKeys.INDENT,"yes");
+  	 transformer1.setOutputProperty(OutputKeys.METHOD,"xml");
+
+  	 StreamResult result=new StreamResult(new StringWriter());
+  	 DOMSource source = null;
+      if(second >= first && second >= third){
+     	// out.println("iiii111iiin");
+            source=new DOMSource(outdoc1);
+
+       }
+      else if(third >= second && third >= first){
+     	 //out.println("ii222iiiin");
+            source=new DOMSource(outdoc2);
+
+       }
+      
+      else if(first >= second && first >= third){
+     	 //out.println("iii333iiiiin");
+          source=new DOMSource(outdoc);
+
+      }
+
+       try {
+   		transformer1.transform(source, result);  //transform mpulpy xml from document to xml string and make display in browser ->to send client(phonegap)
+   	} catch (TransformerException e) {
+   		e.printStackTrace();
+   	}
+       // Writer output=null;
+       // output=new BufferedWriter(new FileWriter("F:/workspace/mind.xml"));
+        String xmloutput=result.getWriter().toString();
+       // output.write(xmloutput);
+        //output.close();
+        out.println(xmloutput);
    	
      	
   }

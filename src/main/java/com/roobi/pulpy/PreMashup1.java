@@ -1043,7 +1043,7 @@ public class PreMashup1 extends HttpServlet {
              	 }
               }
               
-           else if(third > second && third > first){
+           else if(third >= second && third >= first){
              for(int i=0;i<first;i++){ 
             	// out.println("inside 2");
             	 if(!"null".equals(fx1)){
@@ -1053,19 +1053,19 @@ public class PreMashup1 extends HttpServlet {
                      if(!"null".equals(fx2)){
                      Node noden2 = outdoc2.importNode(outdoc.getElementsByTagName(fx2).item(i), true);
                      ndListFirstFile1.item(i).appendChild(noden2);}
-                     if(fxv3!=null){
-                         Node noden3 = outdoc2.importNode(outdoc.getElementsByTagName(fxv3).item(i), true);
+                     if(!"null".equals(fx3)){
+                         Node noden3 = outdoc2.importNode(outdoc.getElementsByTagName(fx3).item(i), true);
                          ndListFirstFile1.item(i).appendChild(noden3);}
                          
-                         if(fxv4!=null){
-                         Node noden4 = outdoc2.importNode(outdoc.getElementsByTagName(fxv4).item(i), true);
+                         if(!"null".equals(fx4)){
+                         Node noden4 = outdoc2.importNode(outdoc.getElementsByTagName(fx4).item(i), true);
                          ndListFirstFile1.item(i).appendChild(noden4);}
-                         if(fxv5!=null){
-                             Node noden5 = outdoc2.importNode(outdoc.getElementsByTagName(fxv5).item(i), true);
+                         if(!"null".equals(fx5)){
+                             Node noden5 = outdoc2.importNode(outdoc.getElementsByTagName(fx5).item(i), true);
                              ndListFirstFile1.item(i).appendChild(noden5);}
                              
-                             if(fxv6!=null){
-                             Node noden6 = outdoc2.importNode(outdoc.getElementsByTagName(fxv6).item(i), true);
+                             if(!"null".equals(fx6)){
+                             Node noden6 = outdoc2.importNode(outdoc.getElementsByTagName(fx6).item(i), true);
                              ndListFirstFile1.item(i).appendChild(noden6);}
                              
                if(!"null".equals(sx1)){
@@ -1075,25 +1075,25 @@ public class PreMashup1 extends HttpServlet {
                    if(!"null".equals(sx2)){
                    Node node2 = outdoc2.importNode(outdoc1.getElementsByTagName(sx2).item(i), true);
                    ndListFirstFile2.item(i).appendChild(node2);}
-       		  if(sxv3!=null){
-                     Node node3 = outdoc2.importNode(outdoc1.getElementsByTagName(sxv3).item(i), true);
+       		  if(!"null".equals(sx3)){
+                     Node node3 = outdoc2.importNode(outdoc1.getElementsByTagName(sx3).item(i), true);
                      ndListFirstFile2.item(i).appendChild(node3);}
                      
-                     if(sxv4!=null){
-                     Node node4 = outdoc2.importNode(outdoc1.getElementsByTagName(sxv4).item(i), true);
+                     if(!"null".equals(sx4)){
+                     Node node4 = outdoc2.importNode(outdoc1.getElementsByTagName(sx4).item(i), true);
                      ndListFirstFile2.item(i).appendChild(node4);}
-                     if(sxv5!=null){
-                         Node node5 = outdoc2.importNode(outdoc1.getElementsByTagName(sxv5).item(i), true);
+                     if(!"null".equals(sx5)){
+                         Node node5 = outdoc2.importNode(outdoc1.getElementsByTagName(sx5).item(i), true);
                          ndListFirstFile2.item(i).appendChild(node5);}
                          
-                         if(sxv6!=null){
-                         Node node6 = outdoc2.importNode(outdoc1.getElementsByTagName(sxv6).item(i), true);
+                         if(!"null".equals(sx6)){
+                         Node node6 = outdoc2.importNode(outdoc1.getElementsByTagName(sx6).item(i), true);
                          ndListFirstFile2.item(i).appendChild(node6);}
              }   
              
 
         }
-           else if(first > second && first > third){
+           else if(first >= second && first >= third){
          	  for(int i=0;i<first;i++){
          		// out.println("inside 3");
          		 if(!"null".equals(sx1)){
@@ -1103,19 +1103,19 @@ public class PreMashup1 extends HttpServlet {
                      if(!"null".equals(sx2)){
                      Node node2 = outdoc.importNode(outdoc1.getElementsByTagName(sx2).item(i), true);
                      ndListFirstFile.item(i).appendChild(node2);}
-         		  if(sxv3!=null){
-                       Node node3 = outdoc.importNode(outdoc1.getElementsByTagName(sxv3).item(i), true);
+         		  if(!"null".equals(sx3)){
+                       Node node3 = outdoc.importNode(outdoc1.getElementsByTagName(sx3).item(i), true);
                        ndListFirstFile.item(i).appendChild(node3);}
                        
-                       if(sxv4!=null){
-                       Node node4 = outdoc.importNode(outdoc1.getElementsByTagName(sxv4).item(i), true);
+                       if(!"null".equals(sx4)){
+                       Node node4 = outdoc.importNode(outdoc1.getElementsByTagName(sx4).item(i), true);
                        ndListFirstFile.item(i).appendChild(node4);}
-                       if(sxv5!=null){
-                           Node node5 = outdoc.importNode(outdoc1.getElementsByTagName(sxv5).item(i), true);
+                       if(!"null".equals(sx5)){
+                           Node node5 = outdoc.importNode(outdoc1.getElementsByTagName(sx5).item(i), true);
                            ndListFirstFile.item(i).appendChild(node5);}
                            
-                           if(sxv6!=null){
-                           Node node6 = outdoc.importNode(outdoc1.getElementsByTagName(sxv6).item(i), true);
+                           if(!"null".equals(sx6)){
+                           Node node6 = outdoc.importNode(outdoc1.getElementsByTagName(sx6).item(i), true);
                            ndListFirstFile.item(i).appendChild(node6);}
                            
                            if(!"null".equals(tx1)){
@@ -1126,20 +1126,20 @@ public class PreMashup1 extends HttpServlet {
 
                                Node nodeid2 = outdoc.importNode(outdoc2.getElementsByTagName(tx2).item(i), true);
                                ndListFirstFile.item(i).appendChild(nodeid2);}                       
-                               if(txv3!=null){
-                                   Node nodeid3 = outdoc.importNode(outdoc2.getElementsByTagName(txv3).item(i), true);
+                               if(!"null".equals(tx3)){
+                                   Node nodeid3 = outdoc.importNode(outdoc2.getElementsByTagName(tx3).item(i), true);
                                    ndListFirstFile.item(i).appendChild(nodeid3);}
                                  
-                                   if(txv4!=null){
-                                   Node nodeid4 = outdoc.importNode(outdoc2.getElementsByTagName(txv4).item(i), true);
+                                   if(!"null".equals(tx4)){
+                                   Node nodeid4 = outdoc.importNode(outdoc2.getElementsByTagName(tx4).item(i), true);
                                    ndListFirstFile.item(i).appendChild(nodeid4);}
-                       if(txv5!=null){
-                       Node nodeid5 = outdoc.importNode(outdoc2.getElementsByTagName(txv5).item(i), true);
+                       if(!"null".equals(tx5)){
+                       Node nodeid5 = outdoc.importNode(outdoc2.getElementsByTagName(tx5).item(i), true);
                        ndListFirstFile.item(i).appendChild(nodeid5);}
                      
-                       if(txv6!=null){
+                       if(!"null".equals(tx6)){
 
-                       Node nodeid6 = outdoc.importNode(outdoc2.getElementsByTagName(txv6).item(i), true);
+                       Node nodeid6 = outdoc.importNode(outdoc2.getElementsByTagName(tx6).item(i), true);
                        ndListFirstFile.item(i).appendChild(nodeid6);}
          		  
          	  }
@@ -1177,13 +1177,13 @@ public class PreMashup1 extends HttpServlet {
            source=new DOMSource(outdoc1);
 
       }
-     else if(third > second && third > first){
+     else if(third >= second && third >= first){
     	 //out.println("iiiiiiiiiin");
            source=new DOMSource(outdoc2);
 
       }
      
-     else if(first > second && first > third){
+     else if(first >= second && first >= third){
     	 //out.println("iiiiiiiiiin");
          source=new DOMSource(outdoc);
 
