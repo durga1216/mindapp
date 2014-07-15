@@ -1044,29 +1044,29 @@ public class PreMashup1 extends HttpServlet {
               }
               
            else if(third >= second && third >= first){
-             for(int i=0;i<first;i++){ 
+             for(int i=0;i<second;i++){ 
             	// out.println("inside 2");
             	 if(!"null".equals(fx1)){
                      Node noden1 = outdoc2.importNode(outdoc.getElementsByTagName(fx1).item(i), true);
-                     ndListFirstFile1.item(i).appendChild(noden1);}
+                     ndListFirstFile2.item(i).appendChild(noden1);}
                      
                      if(!"null".equals(fx2)){
                      Node noden2 = outdoc2.importNode(outdoc.getElementsByTagName(fx2).item(i), true);
-                     ndListFirstFile1.item(i).appendChild(noden2);}
+                     ndListFirstFile2.item(i).appendChild(noden2);}
                      if(!"null".equals(fx3)){
                          Node noden3 = outdoc2.importNode(outdoc.getElementsByTagName(fx3).item(i), true);
-                         ndListFirstFile1.item(i).appendChild(noden3);}
+                         ndListFirstFile2.item(i).appendChild(noden3);}
                          
                          if(!"null".equals(fx4)){
                          Node noden4 = outdoc2.importNode(outdoc.getElementsByTagName(fx4).item(i), true);
-                         ndListFirstFile1.item(i).appendChild(noden4);}
+                         ndListFirstFile2.item(i).appendChild(noden4);}
                          if(!"null".equals(fx5)){
                              Node noden5 = outdoc2.importNode(outdoc.getElementsByTagName(fx5).item(i), true);
-                             ndListFirstFile1.item(i).appendChild(noden5);}
+                             ndListFirstFile2.item(i).appendChild(noden5);}
                              
                              if(!"null".equals(fx6)){
                              Node noden6 = outdoc2.importNode(outdoc.getElementsByTagName(fx6).item(i), true);
-                             ndListFirstFile1.item(i).appendChild(noden6);}
+                             ndListFirstFile2.item(i).appendChild(noden6);}
                              
                if(!"null".equals(sx1)){
                    Node node1 = outdoc2.importNode(outdoc1.getElementsByTagName(sx1).item(i), true);
