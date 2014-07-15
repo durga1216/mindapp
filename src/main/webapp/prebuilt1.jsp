@@ -189,10 +189,10 @@ while(rs2.next()){
 <tr><th>Parameter_name</th><th>Example_Value</th><th>Scope</th></tr>
     <%if(!pa1.equals("null")){%><tr><td><%=rs2.getString("p1") %></td><td><%=rs2.getString("pv1") %></td><td><input  type="text" value="<%=rs2.getString("pv1") %>" name="p1" placeholder="value"></td></tr>
 	<%}if(!pa2.equals("null")){%><tr><td><%=rs2.getString("p2") %></td><td><%=rs2.getString("pv2") %></td><td><input type="text" value="<%=rs2.getString("pv2") %>" name="p2" placeholder="value"></td></tr>
-	<%}if(!pa3.equals("null")){%><tr><td><%=rs2.getString("p3") %></td><td><%=rs2.getString("pv3") %></td><td><input type="text"  name="p3" placeholder="value"></td></tr>
-	<%}if(!pa4.equals("null")){%><tr><td><%=rs2.getString("p4") %></td><td><%=rs2.getString("pv4") %></td><td><input type="text"  name="p4" placeholder="value"></td></tr>
-	<%}if(!pa5.equals("null")){%><tr><td><%=rs2.getString("p5") %></td><td><%=rs2.getString("pv5") %></td><td><input type="text"  name="p5" placeholder="value"></td></tr>
-	<%}if(!pa6.equals("null")){%><tr><td><%=rs2.getString("p6") %></td><td><%=rs2.getString("pv6") %></td><td><input type="text"  name="p6" placeholder="value"></td></tr>
+	<%}if(!pa3.equals("null")){%><tr><td><%=rs2.getString("p3") %></td><td><%=rs2.getString("pv3") %></td><td><input type="text" value="<%=rs2.getString("pv3") %>" name="p3" placeholder="value"></td></tr>
+	<%}if(!pa4.equals("null")){%><tr><td><%=rs2.getString("p4") %></td><td><%=rs2.getString("pv4") %></td><td><input type="text" value="<%=rs2.getString("pv4") %>" name="p4" placeholder="value"></td></tr>
+	<%}if(!pa5.equals("null")){%><tr><td><%=rs2.getString("p5") %></td><td><%=rs2.getString("pv5") %></td><td><input type="text" value="<%=rs2.getString("pv5") %>" name="p5" placeholder="value"></td></tr>
+	<%}if(!pa6.equals("null")){%><tr><td><%=rs2.getString("p6") %></td><td><%=rs2.getString("pv6") %></td><td><input type="text" value="<%=rs2.getString("pv6") %>" name="p6" placeholder="value"></td></tr>
 	<%}if(!pa7.equals("null")){%><tr><td><%=rs2.getString("p7") %></td><td><%=rs2.getString("pv7") %></td><td><input type="text"  name="p7" placeholder="value"></td></tr>
 	<%}if(!pa8.equals("null")){%><tr><td><%=rs2.getString("p8") %></td><td><%=rs2.getString("pv8") %></td><td><input type="text"  name="p8" placeholder="value"></td></tr>
 	<%}if(!pa9.equals("null")){%><tr><td><%=rs2.getString("p9") %></td><td><%=rs2.getString("pv9") %></td><td><input type="text" name="p9" placeholder="value"></td></tr>

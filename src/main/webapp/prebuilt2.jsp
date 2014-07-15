@@ -186,9 +186,9 @@ while(rs2.next()){
 <tr><th>Parameter_name</th><th>Example_Value</th><th>Scope</th></tr>
     <%if(!sa1.equals("null")){%><tr><td><%=rs2.getString("s1") %></td><td><%=rs2.getString("sv1") %></td><td><input  type="text" value="<%=rs2.getString("sv1") %>" name="p1" placeholder="value"></td></tr>
 	<%}if(!sa2.equals("null")){%><tr><td><%=rs2.getString("s2") %></td><td><%=rs2.getString("sv2") %></td><td><input type="text" value="<%=rs2.getString("sv2") %>" name="p2" placeholder="value"></td></tr>
-	<%}if(!sa3.equals("null")){%><tr><td><%=rs2.getString("s3") %></td><td><%=rs2.getString("sv3") %></td><td><input type="text"  name="p3" placeholder="value"></td></tr>
-	<%}if(!sa4.equals("null")){%><tr><td><%=rs2.getString("s4") %></td><td><%=rs2.getString("sv4") %></td><td><input type="text"  name="p4" placeholder="value"></td></tr>
-	<%}if(!sa5.equals("null")){%><tr><td><%=rs2.getString("s5") %></td><td><%=rs2.getString("sv5") %></td><td><input type="text"  name="p5" placeholder="value"></td></tr>
+	<%}if(!sa3.equals("null")){%><tr><td><%=rs2.getString("s3") %></td><td><%=rs2.getString("sv3") %></td><td><input type="text" value="<%=rs2.getString("sv3") %>" name="p3" placeholder="value"></td></tr>
+	<%}if(!sa4.equals("null")){%><tr><td><%=rs2.getString("s4") %></td><td><%=rs2.getString("sv4") %></td><td><input type="text" value="<%=rs2.getString("sv4") %>" name="p4" placeholder="value"></td></tr>
+	<%}if(!sa5.equals("null")){%><tr><td><%=rs2.getString("s5") %></td><td><%=rs2.getString("sv5") %></td><td><input type="text" value="<%=rs2.getString("sv5") %>" name="p5" placeholder="value"></td></tr>
 	<%}if(!sa6.equals("null")){%><tr><td><%=rs2.getString("s6") %></td><td><%=rs2.getString("sv6") %></td><td><input type="text"  name="p6" placeholder="value"></td></tr>
 	<%}if(!sa7.equals("null")){%><tr><td><%=rs2.getString("s7") %></td><td><%=rs2.getString("sv7") %></td><td><input type="text"  name="p7" placeholder="value"></td></tr>
 	<%}if(!sa8.equals("null")){%><tr><td><%=rs2.getString("s8") %></td><td><%=rs2.getString("sv8") %></td><td><input type="text" name="p8" placeholder="value"></td></tr>

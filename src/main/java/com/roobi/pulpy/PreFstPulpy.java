@@ -128,7 +128,7 @@ public class PreFstPulpy extends HttpServlet {
 	        			      thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
 	        		 URL url1=new URL(thirdurl11);
    				 URLConnection uconn = url1.openConnection();
-   				 String str="";
+   				 String str="";StringBuilder strb=new StringBuilder();String strcon="";
                     BufferedReader br = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
         		     String line=null;
         		     FileWriter fw=null;
@@ -137,17 +137,16 @@ public class PreFstPulpy extends HttpServlet {
        	       		     str+=line;
           	         }} //if and while
         		     else if(resf3.equals("JSON")){ 
-        		    	 while ((line = br.readLine()) != null) {
-               	      JSON json = JSONSerializer.toJSON( line );  
-		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-		     	          xmlSerializer.setTypeHintsEnabled(false);
-		     	          xmlSerializer.setSkipWhitespace(true);
-		     	          xmlSerializer.setTrimSpaces(true);
-		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-		     	          xmlSerializer.removeNamespace(line);
-		     	          xmlSerializer.setForceTopLevelObject(false);
-		     		      str = xmlSerializer.write( json );
-        		    	 }} //elseif and while
+        		    	 while ((line = br.readLine()) != null)    { 
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	           str= serializer.write(json);
+        		    	 } //elseif and while
         		     
         		  session.setAttribute("xml1", str);
 	              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
