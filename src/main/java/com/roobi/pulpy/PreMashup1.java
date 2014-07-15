@@ -992,9 +992,9 @@ public class PreMashup1 extends HttpServlet {
               int second=ndListFirstFile1.getLength();
               int third=ndListFirstFile2.getLength();
              // out.println(first+"----"+second+"----"+third);
-              if(second > first && second > third){
+              if(second >= first && second >= third){
              	 for(int i=0;i<first;i++){
-             		 //out.println("inside 1"+fxv1+"---"+txv1);
+             	//	 out.println("inside 1"+fxv1+"---"+txv1);
              		 if(!"null".equals(fx1)){
                           Node noden1 = outdoc1.importNode(outdoc.getElementsByTagName(fx1).item(i), true);
                           ndListFirstFile1.item(i).appendChild(noden1);}
@@ -1172,7 +1172,7 @@ public class PreMashup1 extends HttpServlet {
 
  	 StreamResult result=new StreamResult(new StringWriter());
  	 DOMSource source = null;
-     if(second > first && second > third){
+     if(second >= first && second >= third){
     	 //out.println("iiiiiiiiiin");
            source=new DOMSource(outdoc1);
 
