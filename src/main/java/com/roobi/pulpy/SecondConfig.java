@@ -65,11 +65,7 @@ public class SecondConfig extends HttpServlet {
 		String s7=request.getParameter("s7");  String sv7=request.getParameter("sv7"); String s8=request.getParameter("s8"); String sv8=request.getParameter("sv8");
 		String s9=request.getParameter("s9");  String sv9=request.getParameter("sv9"); String s10=request.getParameter("s10"); String sv10=request.getParameter("sv10");
 	   String al=request.getParameter("alabel"); String ak=request.getParameter("akey");
-	   if(sv1.equals(null)){sv1=sv1.replaceAll(" ","%20");}if(sv6.equals(null)){sv6=sv6.replaceAll(" ","%20");}
-       if(sv2.equals(null)){sv2=sv2.replaceAll(" ","%20");}if(sv7.equals(null)){sv7=sv7.replaceAll(" ","%20");}
-       if(sv3.equals(null)){sv3=sv3.replaceAll(" ","%20");}if(sv8.equals(null)){sv8=sv8.replaceAll(" ","%20");}
-       if(sv4.equals(null)){sv4=sv4.replaceAll(" ","%20");}if(sv9.equals(null)){sv9=sv9.replaceAll(" ","%20");}
-       if(sv5.equals(null)){sv5=sv5.replaceAll(" ","%20");}if(sv10.equals(null)){sv10=sv10.replaceAll(" ","%20");}
+	  
 	   session4.setAttribute("securl",securl);session4.setAttribute("cycle",cycle);
 	   session4.setAttribute("alabel",al);session4.setAttribute("akey",ak);
 		session4.setAttribute("s1",s1);session4.setAttribute("sv1",sv1);

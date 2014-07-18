@@ -60,28 +60,25 @@ public class AuthPulpy extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    	 response.setHeader("Content-Type","text/html;charset=UTF-8");
 
-	//	PrintWriter out=response.getWriter();
+		PrintWriter out=response.getWriter();
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 
       String rf=request.getParameter("rf");String select2=request.getParameter("rm");
       String select=request.getParameter("select2");
       String select3=request.getParameter("select3");String burl=request.getParameter("method");String endurl=request.getParameter("endurl");
-      String p1=request.getParameter("p1");String pv1=request.getParameter("pv1");
-      String p2=request.getParameter("p2");String pv2=request.getParameter("pv2");
-      String p3=request.getParameter("p3");String pv3=request.getParameter("pv3");
-      String p4=request.getParameter("p4");String pv4=request.getParameter("pv4");
-      String p5=request.getParameter("p5");String pv5=request.getParameter("pv5");
-      String p6=request.getParameter("p6");String pv6=request.getParameter("pv6");
-      String p7=request.getParameter("p7");String pv7=request.getParameter("pv7");
-      String p8=request.getParameter("p8"); String pv8=request.getParameter("pv8");
-      String p9=request.getParameter("p9");String pv9=request.getParameter("pv9");
+      String pv1=null;String pv2=null;String pv3=null;String pv4=null;
+      String pv5=null;String pv6=null;String pv7=null;String pv8=null;
+      String p1=request.getParameter("p1"); pv1=request.getParameter("pv1");
+      String p2=request.getParameter("p2"); pv2=request.getParameter("pv2");
+      String p3=request.getParameter("p3"); pv3=request.getParameter("pv3");
+      String p4=request.getParameter("p4"); pv4=request.getParameter("pv4");
+      String p5=request.getParameter("p5"); pv5=request.getParameter("pv5");
+      String p6=request.getParameter("p6"); pv6=request.getParameter("pv6");
+      String p7=request.getParameter("p7"); pv7=request.getParameter("pv7");
+      String p8=request.getParameter("p8");  pv8=request.getParameter("pv8");
+      String p9=request.getParameter("p9"); String pv9=request.getParameter("pv9");
       String p10=request.getParameter("p10");String pv10=request.getParameter("pv10");
-        if(pv1.equals(null)){pv1=pv1.replaceAll(" ","%20");}if(pv6.equals(null)){pv6=pv6.replaceAll(" ","%20");}
-        if(pv2.equals(null)){pv2=pv2.replaceAll(" ","%20");}if(pv7.equals(null)){pv7=pv7.replaceAll(" ","%20");}
-        if(pv3.equals(null)){pv3=pv3.replaceAll(" ","%20");}if(pv8.equals(null)){pv8=pv8.replaceAll(" ","%20");}
-        if(pv4.equals(null)){pv4=pv4.replaceAll(" ","%20");}if(pv9.equals(null)){pv9=pv9.replaceAll(" ","%20");}
-        if(pv5.equals(null)){pv5=pv5.replaceAll(" ","%20");}if(pv10.equals(null)){pv10=pv10.replaceAll(" ","%20");}
-      String field1=request.getParameter("field1");      String field2=request.getParameter("field2");
+              String field1=request.getParameter("field1");      String field2=request.getParameter("field2");
       String field3=request.getParameter("field3");      String field4=request.getParameter("field4");
       String field5=request.getParameter("field5");      String field6=request.getParameter("field6");
       String field7=request.getParameter("field7");      String field8=request.getParameter("field8");
@@ -103,7 +100,7 @@ public class AuthPulpy extends HttpServlet {
       session3.setAttribute("p8",p8);session3.setAttribute("pv8",pv8);
       session3.setAttribute("p9",p9);session3.setAttribute("pv9",pv9);
       session3.setAttribute("p10",p10);session3.setAttribute("pv10",pv10);
-      PrintWriter out=response.getWriter();
+     // PrintWriter out=response.getWriter();
 
 
 
