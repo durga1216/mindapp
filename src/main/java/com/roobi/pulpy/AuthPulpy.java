@@ -76,6 +76,11 @@ public class AuthPulpy extends HttpServlet {
       String p8=request.getParameter("p8"); String pv8=request.getParameter("pv8");
       String p9=request.getParameter("p9");String pv9=request.getParameter("pv9");
       String p10=request.getParameter("p10");String pv10=request.getParameter("pv10");
+        if(pv1.equals(null)){pv1=pv1.replaceAll(" ","%20");}if(pv6.equals(null)){pv6=pv6.replaceAll(" ","%20");}
+        if(pv2.equals(null)){pv2=pv2.replaceAll(" ","%20");}if(pv7.equals(null)){pv7=pv7.replaceAll(" ","%20");}
+        if(pv3.equals(null)){pv3=pv3.replaceAll(" ","%20");}if(pv8.equals(null)){pv8=pv8.replaceAll(" ","%20");}
+        if(pv4.equals(null)){pv4=pv4.replaceAll(" ","%20");}if(pv9.equals(null)){pv9=pv9.replaceAll(" ","%20");}
+        if(pv5.equals(null)){pv5=pv5.replaceAll(" ","%20");}if(pv10.equals(null)){pv10=pv10.replaceAll(" ","%20");}
       String field1=request.getParameter("field1");      String field2=request.getParameter("field2");
       String field3=request.getParameter("field3");      String field4=request.getParameter("field4");
       String field5=request.getParameter("field5");      String field6=request.getParameter("field6");
@@ -923,7 +928,8 @@ public class AuthPulpy extends HttpServlet {
 	         } // while database
 	         
 	         catch(Exception e){
-	        	 out.println("<h2><center><font color='green'> Please Enter correct values</font></center></h3>");
+	        	out.println(e);
+	        	 // out.println("<h2><center><font color='green'> Please Enter correct values</font></center></h3>");
 	        	 }
       
 	} //post

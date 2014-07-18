@@ -64,7 +64,12 @@ public class ThirdConfig extends HttpServlet {
 		String t5=request.getParameter("t5");  String tv5=request.getParameter("tv5"); String t6=request.getParameter("t6"); String tv6=request.getParameter("tv6");
 		String t7=request.getParameter("t7");  String tv7=request.getParameter("tv7"); String t8=request.getParameter("t8"); String tv8=request.getParameter("tv8");
 		String t9=request.getParameter("t9");  String tv9=request.getParameter("tv9"); String t10=request.getParameter("t10"); String tv10=request.getParameter("tv10");
-	   String al=request.getParameter("alabel"); String ak=request.getParameter("akey");
+		if(tv1.equals(null)){tv1=tv1.replaceAll(" ","%20");}if(tv6.equals(null)){tv6=tv6.replaceAll(" ","%20");}
+        if(tv2.equals(null)){tv2=tv2.replaceAll(" ","%20");}if(tv7.equals(null)){tv7=tv7.replaceAll(" ","%20");}
+        if(tv3.equals(null)){tv3=tv3.replaceAll(" ","%20");}if(tv8.equals(null)){tv8=tv8.replaceAll(" ","%20");}
+        if(tv4.equals(null)){tv4=tv4.replaceAll(" ","%20");}if(tv9.equals(null)){tv9=tv9.replaceAll(" ","%20");}
+        if(tv5.equals(null)){tv5=tv5.replaceAll(" ","%20");}if(tv10.equals(null)){tv10=tv10.replaceAll(" ","%20");}
+		String al=request.getParameter("alabel"); String ak=request.getParameter("akey");
 	   session4.setAttribute("thirdurl",thirdurl);session4.setAttribute("thirdcycle",thirdcycle);
 	   session4.setAttribute("a2label",al);session4.setAttribute("a2key",ak);
 		session4.setAttribute("t1",t1);session4.setAttribute("tv1",tv1);
