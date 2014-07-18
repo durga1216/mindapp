@@ -82,12 +82,12 @@ public class CommonXml extends HttpServlet {
 		String appid=request.getParameter("appid");
 		//HttpSession session=request.getSession(true);
 		 // String appid=(String) session.getAttribute("xx"); 
-		String pid=request.getParameter("pid");String s1=request.getParameter("p1");String s2=request.getParameter("p2");
-		String s3=request.getParameter("p3");String s4=request.getParameter("p4");
-		String s5=request.getParameter("p5");String s6=request.getParameter("p6");
-		String paid=request.getParameter("paid");String th1=request.getParameter("pa1");String th2=request.getParameter("pa2");
-		String th3=request.getParameter("pa3");String th4=request.getParameter("pa4");
-		String th5=request.getParameter("pa5");String th6=request.getParameter("pa6");
+		String pid=request.getParameter("pid");String s1=request.getParameter("s1");String s2=request.getParameter("s2");
+		String s3=request.getParameter("s3");String s4=request.getParameter("s4");
+		String s5=request.getParameter("s5");String s6=request.getParameter("s6");
+		String paid=request.getParameter("paid");String th1=request.getParameter("t1");String th2=request.getParameter("t2");
+		String th3=request.getParameter("t3");String th4=request.getParameter("t4");
+		String th5=request.getParameter("t5");String th6=request.getParameter("t6");
         Connection con=null;
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
