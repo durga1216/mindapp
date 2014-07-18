@@ -46,6 +46,21 @@ width:300px;
 height:25px;
 padding:10px;
 } 
+a{
+    font-size:18px;
+    font-family:verdana;
+    color:#FFFFFF;
+    
+    }
+#indiv{color:#FFFFFF;
+}
+#na{
+margin-top:0;
+width:1300px;
+color:#FFFFFF;
+font-size:20px;
+font-family:verdana;
+text-align:right;}
 img{
 height:50px;
 width:60px;
@@ -82,7 +97,7 @@ color:#FFFFFF;
     
 </style>
 </head>
- <script type="text/javascript">
+  <script type="text/javascript">
 function add()
 {
 	window.location="index.jsp";
@@ -91,10 +106,19 @@ function load(){
 	window.open("terms.jsp", '_blank');
 	
 }
+function load1(){
+	window.open("MindPulpy_FAQ.pdf", '_blank');
+}
+function load2(){
+	window.open("https://mindtools-inputs.rhcloud.com/index.jsp", '_blank');
+}
+
 </script>
 <body>
 <form action="LoginCheckPulpy" method="post">
-<br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br><center><div class='au'><center>Login Here</center></div></center>
+<div id=na><a href="http://minddotss.com/"><img style="height:60px;width:200px;" src="images/log.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load2()'>APP Builder</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>Viewapi?category=Search'>Search API's</a></div>
+<br><hr><br><div class="head"><center>Mind Pulpy</center></h2></div>
+<br><br><center><div class='au'><center>Login Here</center></div></center>
 <center>&nbsp;&nbsp;&nbsp;&nbsp;<div class="result">${alert}</div></center><br><br>
 <center><input type=text name="t1" id='t1' placeholder="Email" required><br><br>
 <input type=password name="t2" id='t2'  placeholder="Password" required><br><br><br></center>

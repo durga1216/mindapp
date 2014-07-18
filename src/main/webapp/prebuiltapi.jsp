@@ -33,6 +33,15 @@ font-size:20px;
 font-family:verdana;
 align:center;
 }
+#bak a{
+color:#ffffff;
+margin-left:50px;
+font-size:25px;
+border:solid 2px #ffffff;
+padding:10px;
+border-radius:20px;
+width:70px;
+}
 </style>
 </head>  
 <script>
@@ -52,6 +61,7 @@ align:center;
 </script>
 <body>  
 <form action=""><br>
+<div id=bak><a href="logsucess.jsp">Back</a></div>
 <center><h1>Pre-Built API's</h1></center><br>
 <table><tr>
 <%@page import="com.mindots.util.Utils"%>
