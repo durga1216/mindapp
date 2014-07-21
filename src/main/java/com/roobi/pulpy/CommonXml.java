@@ -78,7 +78,8 @@ public class CommonXml extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
-		PrintWriter out=response.getWriter();
+	    response.addHeader("Access-Control-Allow-Origin", "*");
+	    PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
 		//HttpSession session=request.getSession(true);
 		 // String appid=(String) session.getAttribute("xx"); 
