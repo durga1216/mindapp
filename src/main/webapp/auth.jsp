@@ -196,6 +196,24 @@ color:#FFFFFF;
 font-size:15px;
 font-family:verdana;
 text-align:right;}
+#eg{
+font-size:15px;
+color:#ffffff;
+margin-left:70px;
+float:left;
+}
+#eg1{
+font-size:15px;
+color:#ffffff;
+float:left;
+}
+#hlt{
+color:#ffffff;
+float:left;
+font-size:20px;
+box-shadow:2px 2px 5px 1px black;
+border-radius:3px;
+}
 </style>
 <script type="text/javascript">
 function basauth(){
@@ -296,11 +314,14 @@ $('#select3').on('change', function() {
     <option value="SOAP">SOAP</option>
 </select><br><br>
 <div id='mnote' style="display:none">* Enter Base-URL inside of End_Point_URL and also enter appropriate Method Name</div><br>
+<div id=eg>Eg:&nbsp; </div><div id=hlt> &nbsp;http://abc.com/search &nbsp;</div><div id=eg1>&nbsp;?api_key=xxxxxxxxx & params1=bangalore</div><br><br>
 <input type="text" name="endurl" placeholder="End_Point_URL*"><br><br>
 <input type="text" name="method" id="method" placeholder="Method_name" style="display:none"><br><br>
 <div class="link"><center>Add Parameters</center></div><br><br>
 <div id='mnote' >* If parameters join with Url, then leave Param-label field</div><br>
-<a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br><br>
+<a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br>
+<br><div id=eg>Eg: http://ABC.com/search?api_key=xxx& </div><div id=hlt> &nbsp;param1 &nbsp;</div><div id=eg1>&nbsp;=bangalore</div>
+<div id=eg>Eg: http://ABC.com/search?api_key=xxx& param1=</div><div id=hlt>&nbsp; bangalore &nbsp;</div><br><br>
 <div id="content"></div><br><br>
 <input type="submit" name="first" value="Continue">
 </form>

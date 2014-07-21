@@ -250,6 +250,24 @@ font-size:25px;
 color:#ffffff;
 margin-left:100px;
 }
+#eg{
+font-size:15px;
+color:#ffffff;
+margin-left:70px;
+float:left;
+}
+#eg1{
+font-size:15px;
+color:#ffffff;
+float:left;
+}
+#hlt{
+color:#ffffff;
+float:left;
+font-size:20px;
+box-shadow:2px 2px 5px 1px black;
+border-radius:3px;
+}
 </style>
 </head>
 <body>
@@ -295,7 +313,9 @@ margin-left:100px;
 
 
 <div id="apiid" style="display:none"><br>
-<br><br><input type="text" name="a1" value="" placeholder="APIkey_Label" >
+<br><div id=eg>Eg: http://ABC.com/search?</div><div id=hlt> &nbsp;api_key &nbsp;</div><div id=eg1>=xxxxxxxxx & params1=bangalore</div>
+<div id=eg>Eg: http://ABC.com/search?api_key=</div><div id=hlt>&nbsp; xxxxxxxxx &nbsp;</div><div id=eg1> & param1=bangalore</div><br><br>
+<input type="text" name="a1" value="" placeholder="APIkey_Label" >
 <input type="text" name="a2" value="" placeholder="API_Key" >
 
 </div>
