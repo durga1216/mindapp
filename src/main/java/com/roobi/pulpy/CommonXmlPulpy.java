@@ -57,11 +57,9 @@ public class CommonXmlPulpy extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-		 response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		 //response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		    response.addHeader("Access-Control-Allow-Origin", "*");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
@@ -333,6 +331,7 @@ String resf2=rs.getString("resf2");
 		      secdurl=securl1+"/"+s1;
 		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& "null".equals(s1))
 			      secdurl=securl1;
+		 out.println(secdurl);
 		 doc=builder.parse(new URL(secdurl).openStream());
 	       
 	 }  //end if JSON
@@ -830,7 +829,7 @@ String resf2=rs.getString("resf2");
            		 
            		 else if("null".equals(akt1) && "null".equals(akt2))
            			      thirdurl11=thirdurl1;
-           		 
+           		 out.println(thirdurl11);
           		 doc1=builder1.parse(new URL(thirdurl11).openStream());
 
            		
@@ -1506,7 +1505,7 @@ String resf2=rs.getString("resf2");
 	                    int first=ndListFirstFile.getLength();
 	                    int second=ndListFirstFile1.getLength();
 	                    int third=ndListFirstFile2.getLength();
-	                   // out.println(first+"--"+second+"--"+third);
+	                    out.println(first+"--"+second+"--"+third);
               if(second >= first && second >= third){
               	 for(int i=0;i<first;i++){
               		// out.println("inside 1");

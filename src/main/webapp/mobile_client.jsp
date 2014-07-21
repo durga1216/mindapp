@@ -121,6 +121,7 @@ function myFunction() {
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@include file="con.jsp" %>
 <%
 response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 
@@ -129,8 +130,6 @@ response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 String id1=(String) session.getAttribute("id");
 try{
 Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-//Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 PreparedStatement st1=cn.prepareStatement("SELECT * FROM authen1 WHERE id=?");
 st1.setString(1,id1);
 ResultSet rs1 = st1.executeQuery();
