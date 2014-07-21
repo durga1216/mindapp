@@ -90,6 +90,10 @@ public class FirstAuthPulpy extends HttpServlet {
 	             out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
     		     response.setHeader("Refresh", "1; URL=auth.jsp");
 	             }
+	             else if("Oauth1".equals(authen1)){
+	            	 out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
+	    		     response.setHeader("Refresh", "1; URL=Oauth1Call");
+	             }
 	             else if("Oauth2".equals(authen1)){
 	            	 String cname1=rs.getString("cname");
 	            	 String ckey1=rs.getString("ckey");

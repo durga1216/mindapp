@@ -88,7 +88,26 @@ height:25px;
 padding:10px;
 } 
 
- 
+ #sec{
+width:49%;
+height:500px;
+background-color:#FF9900;
+float:left;
+}
+#imdv{
+width:49%;
+height:500px;
+background-color:#FF9900;
+float: left;
+}
+#ful{
+ width:1200px;
+ height:500px;
+ background:#FF9900;
+ margin-left:80px;
+ border:0px solid #FFFFFF;
+ float:left;
+}
 
 .result{
 color:#FFFFFF;
@@ -117,15 +136,17 @@ function load2(){
 <body>
 <form action="LoginCheckPulpy" method="post">
 <div id=na><a href="http://minddotss.com/"><img style="height:60px;width:200px;" src="images/log.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load2()'>Apps Builder</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>Viewapi?category=Search'>Search API's</a></div>
-<br><hr><br><div class="head"><center>Mind Pulpy</center></h2></div>
-<br><br><center><div class='au'><center>Login Here</center></div></center>
+<br><hr><br><div class="head"><center>Mind Pulpy</center></h2></div><dir id=full>
+<div id=imdv><center><img alt="logo" src="images/login-Page.PNG"style="height:400px;width:500px;"></center></div>
+<div id="sec"><br>
+<center><div class='au'><center>Login Here</center></div></center>
 <center>&nbsp;&nbsp;&nbsp;&nbsp;<div class="result">${alert}</div></center><br><br>
 <center><input type=text name="t1" id='t1' placeholder="Email" required><br><br>
 <input type=password name="t2" id='t2'  placeholder="Password" required><br><br><br></center>
 <center><input type="submit" name="submit" id='Login' value="Login">&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="b2" value="Signup" Onclick="add()"><center><br><br><br>
 <center>&nbsp;&nbsp;<img alt="mobile" src="images/mobile.png">&nbsp;&nbsp;<img alt="tablet" src="images/tablet.png">&nbsp;&nbsp;<img alt="smart tv" src="images/TV.png">&nbsp;&nbsp;<img alt="smart watch" src="images/watch-2.png">&nbsp;&nbsp;<img alt="google glass" src="images/Glass-Icon.png">
-</center>
+</center></div></dir>
 </form>
 </body>
 </html>

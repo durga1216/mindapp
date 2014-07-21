@@ -40,6 +40,7 @@ $(document).ready(function(){
 				  $('.rmethod').hide();
 					$('#select2').hide();
 									$('#others').hide();
+									$('#oauth1').hide();
 					
 				  
 			    }
@@ -51,6 +52,7 @@ $(document).ready(function(){
 			$('.rmethod').hide();
 			$('#select2').hide();
 							$('#others').show();
+							$('#oauth1').hide();
 			
 
 		    }
@@ -62,6 +64,7 @@ $(document).ready(function(){
 			$('.rmethod').hide();
 			$('#select2').hide();
 							$('#others').hide();
+							$('#oauth1').hide();
 			
 		    }
 
@@ -73,6 +76,7 @@ $(document).ready(function(){
 		$('.rmethod').hide();
 		$('#select2').hide();
 						$('#others').hide();
+						$('#oauth1').show();
 		
 	}
 
@@ -84,7 +88,8 @@ $(document).ready(function(){
 		
 		$('#oauth2').show();
 		$('.rmethod').show();
-		$('#select2').show();	}
+		$('#select2').show();
+		$('#oauth1').hide();}
  
 		});
 });
@@ -319,6 +324,27 @@ border-radius:3px;
 <input type="text" name="a2" value="" placeholder="API_Key" >
 
 </div>
+<br><div id="oauth1" style="display:none"><br>
+<select name="oapp">
+<option value="dummy">App_class</option>
+    <option value="FlickrApi.class">FlickrApi.class</option>
+     <option value="TwitterApi.class">TwitterApi.class</option>
+    <option value="TumblrApi.class">TumblrApi.class</option>
+    <option value="LinkedInApi.class">LinkedInApi.class</option>
+</select><br/><br/>
+<select name="meth">
+<option value="dummy">Request Method</option>
+    <option value="GET">GET</option>
+    <option value="POST">POST</option>
+    <option value="PUT">PUT</option>
+    <option value="DELETE">DELETE</option>
+</select><br/><br/>
+<input type="text" name="ckey" value="" placeholder="Client_ID_KEY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="skey" value="" placeholder="Client_Secret_Key"><br><br>
+<input type="text" name="aurl" value="" placeholder="RESOURCE_URL">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="amethod" value="" placeholder="Method_Name"><br><br>
+</div>
+
 <br><br><div id="oauth2" style="display:none"><br>
 <center><div class='redirect'>Redirect URI=/OauthCallBackServlet</div></center><br><br>
 <input type="text" name="cname" value="" placeholder="Client_ID_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
