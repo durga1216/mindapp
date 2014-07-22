@@ -57,7 +57,10 @@ public class CommonXmlPulpy extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		 response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		    response.addHeader("Access-Control-Allow-Origin", "*");
