@@ -1508,7 +1508,7 @@ String resf2=rs.getString("resf2");
 	                    out.println(first+"--"+second+"--"+third);
               if(second >= first && second >= third){
               	 for(int i=0;i<first;i++){
-              		// out.println("inside 1");
+              		 out.println("inside 1");
               		 if(!"null".equals(sx1)){
                            Node noden1 = outdoc1.importNode(outdoc.getElementsByTagName(sx1).item(i), true);
                            ndListFirstFile1.item(i).appendChild(noden1);}
@@ -1559,7 +1559,7 @@ String resf2=rs.getString("resf2");
                
             else if(third >= second && third >= first){
               for(int i=0;i<second;i++){ 
-             	 //out.println("inside 2"+i+"--"+sx1+"--"+tx1);
+             	 out.println("inside 2"+i+"--"+sx1+"--"+tx1);
              	 if(!"null".equals(sx1)){
                       Node noden1 = outdoc2.importNode(outdoc.getElementsByTagName(sx1).item(i), true);
                       ndListFirstFile2.item(i).appendChild(noden1);}
@@ -1609,7 +1609,7 @@ String resf2=rs.getString("resf2");
          }
             else if(first >= second && first >= third){
           	  for(int i=0;i<second;i++){
-          		// out.println("inside 3");
+          		 out.println("inside 3");
           		 if(!"null".equals(tx1)){
                       Node node1 = outdoc.importNode(outdoc1.getElementsByTagName(tx1).item(i), true);
                       ndListFirstFile.item(i).appendChild(node1);}
@@ -1687,18 +1687,18 @@ String resf2=rs.getString("resf2");
   	 StreamResult result=new StreamResult(new StringWriter());
   	 DOMSource source = null;
       if(second >= first && second >= third){
-     	// out.println("iiii111iiin");
+     	 out.println("iiii111iiin");
             source=new DOMSource(outdoc1);
 
        }
       else if(third >= second && third >= first){
-     	 //out.println("ii222iiiin");
+     	 out.println("ii222iiiin");
             source=new DOMSource(outdoc2);
 
        }
       
       else if(first >= second && first >= third){
-     	 //out.println("iii333iiiiin");
+     	 out.println("iii333iiiiin");
           source=new DOMSource(outdoc);
 
       }
