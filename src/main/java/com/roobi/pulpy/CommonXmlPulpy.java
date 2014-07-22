@@ -59,7 +59,7 @@ public class CommonXmlPulpy extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-		 //response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		 response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		    response.addHeader("Access-Control-Allow-Origin", "*");
 		PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
@@ -331,7 +331,7 @@ String resf2=rs.getString("resf2");
 		      secdurl=securl1+"/"+s1;
 		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& "null".equals(s1))
 			      secdurl=securl1;
-		 out.println(secdurl);
+		// out.println(secdurl);
 		 doc=builder.parse(new URL(secdurl).openStream());
 	       
 	 }  //end if JSON
@@ -829,7 +829,7 @@ String resf2=rs.getString("resf2");
            		 
            		 else if("null".equals(akt1) && "null".equals(akt2))
            			      thirdurl11=thirdurl1;
-           		 out.println(thirdurl11);
+           		 //out.println(thirdurl11);
           		 doc1=builder1.parse(new URL(thirdurl11).openStream());
 
            		
@@ -1505,10 +1505,10 @@ String resf2=rs.getString("resf2");
 	                    int first=ndListFirstFile.getLength();
 	                    int second=ndListFirstFile1.getLength();
 	                    int third=ndListFirstFile2.getLength();
-	                    out.println(first+"--"+second+"--"+third);
+	                   // out.println(first+"--"+second+"--"+third);
               if(second >= first && second >= third){
               	 for(int i=0;i<first;i++){
-              		 out.println("inside 1");
+              		 //out.println("inside 1");
               		 if(!"null".equals(sx1)){
                            Node noden1 = outdoc1.importNode(outdoc.getElementsByTagName(sx1).item(i), true);
                            ndListFirstFile1.item(i).appendChild(noden1);}
@@ -1559,7 +1559,7 @@ String resf2=rs.getString("resf2");
                
             else if(third >= second && third >= first){
               for(int i=0;i<second;i++){ 
-             	 out.println("inside 2"+i+"--"+sx1+"--"+tx1);
+             	 //out.println("inside 2"+i+"--"+sx1+"--"+tx1);
              	 if(!"null".equals(sx1)){
                       Node noden1 = outdoc2.importNode(outdoc.getElementsByTagName(sx1).item(i), true);
                       ndListFirstFile2.item(i).appendChild(noden1);}
@@ -1579,7 +1579,7 @@ String resf2=rs.getString("resf2");
                               ndListFirstFile2.item(i).appendChild(noden5);}
                               
                               if(!"null".equals(sx6)){
-                              Node noden6 = outdoc2.importNode(outdoc.getElementsByTagName(sxv6).item(i), true);
+                              Node noden6 = outdoc2.importNode(outdoc.getElementsByTagName(sx6).item(i), true);
                               ndListFirstFile2.item(i).appendChild(noden6);}
                               
                 if(!"null".equals(tx1)){
@@ -1609,7 +1609,7 @@ String resf2=rs.getString("resf2");
          }
             else if(first >= second && first >= third){
           	  for(int i=0;i<second;i++){
-          		 out.println("inside 3");
+          		// out.println("inside 3");
           		 if(!"null".equals(tx1)){
                       Node node1 = outdoc.importNode(outdoc1.getElementsByTagName(tx1).item(i), true);
                       ndListFirstFile.item(i).appendChild(node1);}
@@ -1687,18 +1687,18 @@ String resf2=rs.getString("resf2");
   	 StreamResult result=new StreamResult(new StringWriter());
   	 DOMSource source = null;
       if(second >= first && second >= third){
-     	 out.println("iiii111iiin");
+     	// out.println("iiii111iiin");
             source=new DOMSource(outdoc1);
 
        }
       else if(third >= second && third >= first){
-     	 out.println("ii222iiiin");
+     	// out.println("ii222iiiin");
             source=new DOMSource(outdoc2);
 
        }
       
       else if(first >= second && first >= third){
-     	 out.println("iii333iiiiin");
+     	// out.println("iii333iiiiin");
           source=new DOMSource(outdoc);
 
       }
