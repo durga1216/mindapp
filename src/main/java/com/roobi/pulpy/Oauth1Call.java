@@ -6,9 +6,15 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -17,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.apache.http.NameValuePair;
@@ -29,6 +36,8 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+
+import com.mindots.util.Utils;
 
 /**
  * Servlet implementation class Oauth1Call
@@ -49,71 +58,48 @@ public class Oauth1Call extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setHeader("Content-Type","text/html;charset=UTF-8");
-		InputStream is=null;
-		PrintWriter tt=response.getWriter();
-		tt.println("<body style='background-color=#ff9900;'>");
-		tt.println("<p>for test</p></body>");
-		//String apiSecret=request.getParameter("a");
-		//String apiKey =request.getParameter("b");
-		Part filePart = request.getPart("t5"); 
-		if (filePart != null) {  
-        is = filePart.getInputStream();}
-		String RESOURCE_URL = "https://api.flickr.com/services/rest/";
-		 String RESOURCE_URL1 ="https://up.flickr.com/services/upload/";
-		  
-		    // Replace these with your own api key and secret
-		    String apiKey = "8cd156666f78aa30085da4a604a370c9";
-		    String apiSecret = "a8ad3f781a1c6c9c";
-		   
-		    OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret).build();
-		    Scanner in = new Scanner(System.in);
-
-		    System.out.println("Flickr");
-		    System.out.println();
-		    
-		    // Obtain the Request Token
-		    System.out.println("Fetching the Request Token...");
-		    Token requestToken = service.getRequestToken();
-		    String authorizationUrl = service.getAuthorizationUrl(requestToken);
-		    System.out.println(authorizationUrl + "&perms=write");
-		    String ur=authorizationUrl + "&perms=write";
-		    if (Desktop.isDesktopSupported()) {
-		        Desktop desktop = Desktop.getDesktop();
-		        if (desktop.isSupported(Desktop.Action.BROWSE)) {
-		            try {
-		                desktop.browse(new URI(ur));
-		            }
-		            catch(IOException ioe) {
-		                ioe.printStackTrace();
-		            }
-		            catch(URISyntaxException use) {
-		                use.printStackTrace();
-		            }
-		        }
-		    }
-		    System.out.println("And paste the verifier here");
-		    System.out.print(">>");
-		    Verifier verifier = new Verifier(in.nextLine());
-		    System.out.println();
-
-		    // Trade the Request Token and Verfier for the Access Token
-		    System.out.println("Trading the Request Token for an Access Token...");
+		Connection con=null;  
+	   	 response.setHeader("Content-Type","text/html;charset=UTF-8");
+	   	InputStream inputStream=null;
+		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+        PrintWriter out=response.getWriter();
+		String oauth_verifier=request.getParameter("oauth_verifier");
+		HttpSession session=request.getSession(true);
+	    String appid=(String) session.getAttribute("appid");
+	    Token requestToken=(Token) session.getAttribute("tok");
+		try {
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+				con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+	             PreparedStatement st=null;
+	             st=con.prepareStatement("SELECT * From authen1 where appid=?");
+	             st.setString(1, appid);
+		         ResultSet rs = st.executeQuery();
+		         while(rs.next()){
+	             String oapp1=rs.getString("oapp"); String oreq1=rs.getString("oreq");
+            	 String ockey1=rs.getString("ockey"); String oskey1=rs.getString("oskey");
+            	 String ourl1=rs.getString("ourl"); String omethod1=rs.getString("omethod");   
+	            // String omethod1="flickr.test.login";
+	            String RESOURCE_URL =ourl1; String apiKey= ockey1; String apiSecret = oskey1;
+	    	  // String RESOURCE_URL ="https://api.flickr.com/services/rest/"; String apiKey = "9f17ba0ed1e29e91e1e8829dd3e6f889";String apiSecret = "5e636fa8d8f0968b"; 
+		      // String call="http://localhost:8071/mindapp/Oauth1Call";
+		       String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
+		    OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+		    Verifier verifier = new Verifier(oauth_verifier);
 		    Token accessToken = service.getAccessToken(requestToken, verifier);
-		    System.out.println("Got the Access Token!");
-		    System.out.println("(if your curious it looks like this: " + accessToken + " )");
-		    System.out.println("(you can get the username, full name, and nsid by parsing the rawResponse: " + accessToken.getRawResponse() + ")");
-		    //OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
-		    OAuthRequest request1 = new OAuthRequest(Verb.POST,RESOURCE_URL1);
-		    request1.addQuerystringParameter("method", "flickr.photos.getRecent");
-		    //request1.addOAuthParameter("photo", is);
+		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
+		    request1.addQuerystringParameter("method", omethod1);
 		    service.signRequest(accessToken, request1);
 		    Response response1 = request1.send();
-		    System.out.println("Got it! Lets see what we found...");
-		    System.out.println();
-		    System.out.println(response1.getBody());
-		    }
-
+		    String res=response1.getBody();
+		    session.setAttribute("xml1", res);
+	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+   		        response.setHeader("Refresh", "1; URL=auth1.jsp");
+		         }    
+	 } catch (Exception e) {
+		 out.println("ewwwwww"+e);
+		}
+}
+	 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -1,12 +1,16 @@
 package com.roobi.pulpy;
 
+import java.awt.Desktop;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Map;
+import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,7 +18,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.model.OAuthRequest;
+import org.scribe.model.Response;
+import org.scribe.model.Token;
+import org.scribe.model.Verb;
+import org.scribe.model.Verifier;
+import org.scribe.oauth.OAuthService;
 
 import com.mindots.util.Utils;
 
@@ -39,7 +53,19 @@ public class Fortest extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}
+		    String apiKey = "9f17ba0ed1e29e91e1e8829dd3e6f889";
+		    String apiSecret = "5e636fa8d8f0968b";
+		    String call="http://localhost:8071/mindapp/Oauth1Call";
+		    //String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
+		    OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build();
+		    Token requestToken = service.getRequestToken();
+		    HttpSession session=request.getSession(true);
+		    session.setAttribute("tok", requestToken);
+		    String authorizationUrl = service.getAuthorizationUrl(requestToken);
+		    String ur=authorizationUrl + "&perms=write";
+		    response.sendRedirect(ur);
+		  }
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

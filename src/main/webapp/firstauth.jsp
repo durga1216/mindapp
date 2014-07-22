@@ -327,22 +327,22 @@ border-radius:3px;
 <br><div id="oauth1" style="display:none"><br>
 <select name="oapp">
 <option value="dummy">App_class</option>
-    <option value="FlickrApi.class">FlickrApi.class</option>
-     <option value="TwitterApi.class">TwitterApi.class</option>
-    <option value="TumblrApi.class">TumblrApi.class</option>
-    <option value="LinkedInApi.class">LinkedInApi.class</option>
+    <option value="FlickrApi.class">FlickrApi</option>
+     <option value="TwitterApi.class">TwitterApi</option>
+    <option value="TumblrApi.class">TumblrApi</option>
+    <option value="LinkedInApi.class">LinkedInApi</option>
 </select><br/><br/>
-<select name="meth">
+<select name="oreq">
 <option value="dummy">Request Method</option>
     <option value="GET">GET</option>
     <option value="POST">POST</option>
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
 </select><br/><br/>
-<input type="text" name="ckey" value="" placeholder="Client_ID_KEY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="skey" value="" placeholder="Client_Secret_Key"><br><br>
-<input type="text" name="aurl" value="" placeholder="RESOURCE_URL">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="amethod" value="" placeholder="Method_Name"><br><br>
+<input type="text" name="ockey" value="" placeholder="Client_ID_KEY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="oskey" value="" placeholder="Client_Secret_Key"><br><br>
+<input type="text" name="ourl" value="" placeholder="RESOURCE_URL">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="omethod" value="" placeholder="Method_Name"><br><br>
 </div>
 
 <br><br><div id="oauth2" style="display:none"><br>

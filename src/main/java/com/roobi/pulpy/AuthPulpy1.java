@@ -119,7 +119,9 @@ public class AuthPulpy1 extends HttpServlet {
 	 	     		    RequestDispatcher disp = getServletContext().getRequestDispatcher("/final.jsp");
 	                // set your String value in the attribute
 	                 disp.forward( request, response );    }            }}
-         catch(Exception e){}
+         catch(Exception e){
+        	 out.println(e);
+         }
 
 
 		

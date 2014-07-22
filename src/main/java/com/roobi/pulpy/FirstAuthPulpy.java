@@ -17,6 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.model.Token;
+import org.scribe.oauth.OAuthService;
+
 import com.mindots.util.Utils;
 
 @MultipartConfig(maxFileSize = 16177215) // upload file up to 16MB  
@@ -44,6 +49,9 @@ public class FirstAuthPulpy extends HttpServlet {
 		  String id=(String) session.getAttribute("id");        
 		  Part filePart = request.getPart("logo");  
           inputStream = filePart.getInputStream();  
+          String oapp=request.getParameter("oapp");String oreq=request.getParameter("oreq");
+          String ockey=request.getParameter("ockey");String oskey=request.getParameter("oskey");
+          String ourl=request.getParameter("ourl");String omethod=request.getParameter("omethod");
 	      String b1=request.getParameter("b1");String b2=request.getParameter("b2");
 	      String b3=request.getParameter("b3");String b4=request.getParameter("b4");
 	      String h1=request.getParameter("h1"); String hv1=request.getParameter("hv1");
@@ -66,7 +74,7 @@ public class FirstAuthPulpy extends HttpServlet {
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	             PreparedStatement st=null;
-	             st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,logo) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"',?)");				 
+	             st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,oapp,oreq,ockey,oskey,ourl,omethod,logo) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+oapp+"','"+oreq+"','"+ockey+"','"+oskey+"','"+ourl+"','"+omethod+"',?)");				 
 	             st.setBlob(1, inputStream);
 	             st.executeUpdate();
 			     st.close();
@@ -91,9 +99,20 @@ public class FirstAuthPulpy extends HttpServlet {
     		     response.setHeader("Refresh", "1; URL=auth.jsp");
 	             }
 	             else if("Oauth1".equals(authen1)){
-	            	 out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
-	    		     response.setHeader("Refresh", "1; URL=Oauth1Call");
+	            	 String oapp1=rs.getString("oapp");
+	            	 String ockey1=rs.getString("ockey"); String oskey1=rs.getString("oskey");
+	            	// String call="http://localhost:8071/mindapp/Oauth1Call";
+	     		    String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
+	     		    OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(ockey1).apiSecret(oskey1).callback(call).build();
+	     		    Token requestToken = service.getRequestToken();
+	     		    session.setAttribute("tok", requestToken);
+	     		    String authorizationUrl = service.getAuthorizationUrl(requestToken);
+	     		    String ur=authorizationUrl + "&perms=write";
+	     		    response.sendRedirect(ur);	             
+	     		    
 	             }
+	             
+	             
 	             else if("Oauth2".equals(authen1)){
 	            	 String cname1=rs.getString("cname");
 	            	 String ckey1=rs.getString("ckey");
@@ -139,7 +158,8 @@ public class FirstAuthPulpy extends HttpServlet {
 		         }
 		  }
 		  catch(Exception e){
-			  out.println("<html><body bgcolor='#FF9900'><h2 style='color:#ffffff;'><center>You can configure only one time with the same id</h2><h3 style='color:#ffffff;'><a href='logout.jsp'>signout</a></h3></center></body></html>");
+			  out.println(e);
+			  //out.println("<html><body bgcolor='#FF9900'><h2 style='color:#ffffff;'><center>You can configure only one time with the same id</h2><h3 style='color:#ffffff;'><a href='logout.jsp'>signout</a></h3></center></body></html>");
 		  }
 	}
 
