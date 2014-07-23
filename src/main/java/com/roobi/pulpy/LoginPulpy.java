@@ -63,7 +63,7 @@ public class LoginPulpy extends HttpServlet {
 			 st=con.prepareStatement("insert into login(email,fn,ln,pwd) values ('"+s1+"','"+s2+"','"+s3+"','"+s4+"')");
 			 st.executeUpdate();
 		     st.close();
-	/*	      String userName = "marketing@minddotss.com";
+		      String userName = "marketing@minddotss.com";
 		  String host = "smtp.mandrillapp.com";
 		String port="587";
 		String text="Hi "+s2+",\nGreetings from Mind Dots!!"
@@ -103,7 +103,7 @@ public class LoginPulpy extends HttpServlet {
 		                   transport.close();
 		   }catch (MessagingException mex) {
 		out.println(mex);      
-		   }         */
+		   }         
 		     out.println("<br><br><br><br><html><body bgcolor='#FF9900'><center><h2 style='color:#ffffff'>SIGNUP SUCCESSFULLY</h2></center></body></html>");
 		     response.setHeader("Refresh", "1; URL=login.jsp");
 		}

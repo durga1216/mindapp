@@ -41,10 +41,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
+import org.scribe.builder.api.FreelancerApi;
+import org.scribe.builder.api.LinkedInApi;
 import org.scribe.builder.api.TumblrApi;
 import org.scribe.builder.api.TwitterApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
+import org.scribe.model.SignatureType;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
@@ -797,6 +800,23 @@ public class AuthPulpy extends HttpServlet {
 			     		    Verifier verifier = new Verifier(oauth_verifier);
 			     		    Token accessToken = service.getAccessToken(requestToken, verifier);
 			     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
+			     		    service.signRequest(accessToken, request1);
+			     		    Response response1 = request1.send();
+			     		    res=response1.getBody();}
+	        		 else if (oapp1.equals("LinkedInApi")){
+		        		 OAuthService service = new ServiceBuilder().provider(LinkedInApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+			     		    Verifier verifier = new Verifier(oauth_verifier);
+			     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+			     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
+			     		    service.signRequest(accessToken, request1);
+			     		    Response response1 = request1.send();
+			     		    res=response1.getBody();}
+	        		 else if (oapp1.equals("FreelancerApi")){
+			     		    OAuthService service = new ServiceBuilder().provider(FreelancerApi.Sandbox.class).signatureType(SignatureType.QueryString).apiKey(ockey1).apiSecret(oskey1).scope("http://api.sandbox.freelancer.com").callback(call).build();
+			     		    Verifier verifier = new Verifier(oauth_verifier);
+			     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+			     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
+			     		   request1.addHeader("GData-Version", "3.0");
 			     		    service.signRequest(accessToken, request1);
 			     		    Response response1 = request1.send();
 			     		    res=response1.getBody();}

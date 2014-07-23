@@ -19,8 +19,11 @@ import javax.servlet.http.Part;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
+import org.scribe.builder.api.FreelancerApi;
+import org.scribe.builder.api.LinkedInApi;
 import org.scribe.builder.api.TumblrApi;
 import org.scribe.builder.api.TwitterApi;
+import org.scribe.model.SignatureType;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
@@ -125,6 +128,20 @@ public class FirstAuthPulpy extends HttpServlet {
 		     		    session.setAttribute("tok", requestToken);
 		     		    String authorizationUrl = service.getAuthorizationUrl(requestToken);
 		     		    String ur=authorizationUrl;
+		     		    response.sendRedirect(ur);	             }
+	     		  else if(oapp1.equals("LinkedInApi")){
+		     		    OAuthService service = new ServiceBuilder().provider(LinkedInApi.class).apiKey(ockey1).apiSecret(oskey1).callback(call).build();
+		     		    Token requestToken = service.getRequestToken();
+		     		    session.setAttribute("tok", requestToken);
+		     		    String authorizationUrl = service.getAuthorizationUrl(requestToken);
+		     		    String ur=authorizationUrl;
+		     		    response.sendRedirect(ur);	             }
+	     		 else if(oapp1.equals("FreelancerApi")){
+		     		    OAuthService service = new ServiceBuilder().provider(FreelancerApi.Sandbox.class).signatureType(SignatureType.QueryString).apiKey(ockey1).apiSecret(oskey1).scope("http://api.sandbox.freelancer.com").callback(call).build();
+		     		    Token requestToken = service.getRequestToken();
+		     		    session.setAttribute("tok", requestToken);
+		     		    String authorizationUrl = "http://www.sandbox.freelancer.com/users/api-token/auth.php?oauth_token=";
+		     		    String ur=authorizationUrl + requestToken.getToken();
 		     		    response.sendRedirect(ur);	             }
 	     		    
 	     		    
