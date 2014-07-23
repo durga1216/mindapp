@@ -327,12 +327,12 @@ border-radius:3px;
 <br><div id="oauth1" style="display:none"><br>
 <select name="oapp">
 <option value="dummy">App_class</option>
-    <option value="FlickrApi.class">FlickrApi</option>
-     <option value="TwitterApi.class">TwitterApi</option>
-    <option value="TumblrApi.class">TumblrApi</option>
-    <option value="LinkedInApi.class">LinkedInApi</option>
-</select><br/><br/>
-<select name="oreq">
+    <option value="FlickrApi">FlickrApi</option>
+    <option value="TumblrApi">TumblrApi</option>
+     <option value="TwitterApi">TwitterApi</option>
+    <option value="LinkedInApi">LinkedInApi</option>
+</select><br/><br/><input type="text" name="omethod" value="" placeholder="Method_Name">
+<select name="oreq" Style='display:none'>
 <option value="dummy">Request Method</option>
     <option value="GET">GET</option>
     <option value="POST">POST</option>
@@ -341,8 +341,6 @@ border-radius:3px;
 </select><br/><br/>
 <input type="text" name="ockey" value="" placeholder="Client_ID_KEY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="oskey" value="" placeholder="Client_Secret_Key"><br><br>
-<input type="text" name="ourl" value="" placeholder="RESOURCE_URL">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="omethod" value="" placeholder="Method_Name"><br><br>
 </div>
 
 <br><br><div id="oauth2" style="display:none"><br>

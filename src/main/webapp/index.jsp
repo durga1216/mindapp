@@ -132,10 +132,22 @@ float: left;
  border:0px solid #FFFFFF;
  float:left;
 }
+#err{
+color:#ffffff;
+font-size:15px;
+}
  </style>
+ <%@page import=" java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@include file="con.jsp" %>
  <script>
+
  function validateForm()
  {
+	
+	
 	 if (myForm.agree.checked == false )
 	 {
 	 alert('Please read the Terms and Fill the check box.');
@@ -172,7 +184,7 @@ if (passid_len == 0 ||passid_len >= my || passid_len < mx)
  } 
  }
  </script>
- 
+
  <script>
  
   $(document).ready(function(){

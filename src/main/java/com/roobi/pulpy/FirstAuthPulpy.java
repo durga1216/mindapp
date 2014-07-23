@@ -19,6 +19,8 @@ import javax.servlet.http.Part;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
+import org.scribe.builder.api.TumblrApi;
+import org.scribe.builder.api.TwitterApi;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
@@ -101,14 +103,30 @@ public class FirstAuthPulpy extends HttpServlet {
 	             else if("Oauth1".equals(authen1)){
 	            	 String oapp1=rs.getString("oapp");
 	            	 String ockey1=rs.getString("ockey"); String oskey1=rs.getString("oskey");
-	            	// String call="http://localhost:8071/mindapp/Oauth1Call";
-	     		    String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
+	             //String call="http://localhost:8071/mindapp/Oauth1Call";
+	     		   String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
+	     		    if(oapp1.equals("FlickrApi")){
 	     		    OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(ockey1).apiSecret(oskey1).callback(call).build();
 	     		    Token requestToken = service.getRequestToken();
 	     		    session.setAttribute("tok", requestToken);
 	     		    String authorizationUrl = service.getAuthorizationUrl(requestToken);
 	     		    String ur=authorizationUrl + "&perms=write";
-	     		    response.sendRedirect(ur);	             
+	     		    response.sendRedirect(ur);	             }
+	     		    else if(oapp1.equals("TumblrApi")){
+		     		    OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(ockey1).apiSecret(oskey1).callback(call).build();
+		     		    Token requestToken = service.getRequestToken();
+		     		    session.setAttribute("tok", requestToken);
+		     		    String authorizationUrl = service.getAuthorizationUrl(requestToken);
+		     		    String ur=authorizationUrl;
+		     		    response.sendRedirect(ur);	             }
+	     		   else if(oapp1.equals("TwitterApi")){
+		     		    OAuthService service = new ServiceBuilder().provider(TwitterApi.SSL.class).apiKey(ockey1).apiSecret(oskey1).callback(call).build();
+		     		    Token requestToken = service.getRequestToken();
+		     		    session.setAttribute("tok", requestToken);
+		     		    String authorizationUrl = service.getAuthorizationUrl(requestToken);
+		     		    String ur=authorizationUrl;
+		     		    response.sendRedirect(ur);	             }
+	     		    
 	     		    
 	             }
 	             

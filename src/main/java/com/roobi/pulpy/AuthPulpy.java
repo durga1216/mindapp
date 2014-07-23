@@ -39,7 +39,16 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.FlickrApi;
+import org.scribe.builder.api.TumblrApi;
+import org.scribe.builder.api.TwitterApi;
+import org.scribe.model.OAuthRequest;
+import org.scribe.model.Response;
+import org.scribe.model.Token;
+import org.scribe.model.Verb;
+import org.scribe.model.Verifier;
+import org.scribe.oauth.OAuthService;
 
 import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
@@ -101,6 +110,10 @@ public class AuthPulpy extends HttpServlet {
       session3.setAttribute("p9",p9);session3.setAttribute("pv9",pv9);
       session3.setAttribute("p10",p10);session3.setAttribute("pv10",pv10);
      // PrintWriter out=response.getWriter();
+      Token requestToken=(Token) session.getAttribute("tok");
+      String oauth_verifier=(String) session.getAttribute("oauth_verifier");
+      String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
+     // String call="http://localhost:8071/mindapp/Oauth1Call";
 
 
 
@@ -157,6 +170,9 @@ public class AuthPulpy extends HttpServlet {
              String f5=rs.getString("f5"); String f6=rs.getString("f6");
              String f7=rs.getString("f7"); String f8=rs.getString("f8");
              String f9=rs.getString("f9"); String f10=rs.getString("f10");
+             String oapp1=rs.getString("oapp"); String omethod1=rs.getString("omethod");
+        	 String ockey1=rs.getString("ockey"); String oskey1=rs.getString("oskey");
+        	 String RESOURCE_URL =endurl1; String apiKey= ockey1; String apiSecret = oskey1;
              String eurl=null;
 	              
 	         if(authen1.equals("No Auth")){
@@ -755,9 +771,65 @@ public class AuthPulpy extends HttpServlet {
 	        	 
 	         }// Basic Auth
 	         //m15  //m16 //m17
-	         
+	         //---------------------oauth1-----------------------
+	         else if(authen1.equals("Oauth1")){
+	        	 String res="";
+	        	 if(rm1.equals ("GET")){
+	        		 if (oapp1.equals("FlickrApi")){
+	        		 OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+	     		    Verifier verifier = new Verifier(oauth_verifier);
+	     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+	     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
+	     		    request1.addQuerystringParameter("method", omethod1);
+	     		    service.signRequest(accessToken, request1);
+	     		    Response response1 = request1.send();
+	     		    res=response1.getBody();}
+	        		 else if (oapp1.equals("TumblrApi")){
+		        		 OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+			     		    Verifier verifier = new Verifier(oauth_verifier);
+			     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+			     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
+			     		    service.signRequest(accessToken, request1);
+			     		    Response response1 = request1.send();
+			     		    res=response1.getBody();}
+	        		 else if (oapp1.equals("TwitterApi")){
+		        		 OAuthService service = new ServiceBuilder().provider(TwitterApi.SSL.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+			     		    Verifier verifier = new Verifier(oauth_verifier);
+			     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+			     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
+			     		    service.signRequest(accessToken, request1);
+			     		    Response response1 = request1.send();
+			     		    res=response1.getBody();}
+	        	if( resf1.equals("XML")){
+	        		session.setAttribute("xml1", res);
+	  	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
+	        	}
+	        	else if( resf1.equals("JSON")){
+	        		XMLSerializer serializer = new XMLSerializer();
+     	            JSON json = JSONSerializer.toJSON(res);
+     	            serializer.setRootName("root");
+     	            serializer.setTypeHintsEnabled(false);
+     	            String str = serializer.write(json);
+	        		session.setAttribute("xml1", str);
+	  	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
+	        	}
+	        	 }
+	        	 else if(rm1.equals ("POST")){
+	        		 
+	 	        	if( resf1.equals("XML")){
+	 	        		
+	 	        	}
+	 	        	else if( resf1.equals("JSON")){
+	 	        		
+	 	        	}
+	 	        	 }
+	        	 
+	        	 
+	         }
 
-	         
+	         //=================oauth1 end====================
 	         else if(authen1.equals("Oauth2")){
 	 			HttpClient client=new DefaultHttpClient();
                 String Response=null;

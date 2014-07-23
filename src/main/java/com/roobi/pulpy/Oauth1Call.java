@@ -65,39 +65,13 @@ public class Oauth1Call extends HttpServlet {
         PrintWriter out=response.getWriter();
 		String oauth_verifier=request.getParameter("oauth_verifier");
 		HttpSession session=request.getSession(true);
+		String id=(String) session.getAttribute("id");
 	    String appid=(String) session.getAttribute("appid");
+session.setAttribute("oauth_verifier", oauth_verifier);
 	    Token requestToken=(Token) session.getAttribute("tok");
-		try {
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-	             PreparedStatement st=null;
-	             st=con.prepareStatement("SELECT * From authen1 where appid=?");
-	             st.setString(1, appid);
-		         ResultSet rs = st.executeQuery();
-		         while(rs.next()){
-	             String oapp1=rs.getString("oapp"); String oreq1=rs.getString("oreq");
-            	 String ockey1=rs.getString("ockey"); String oskey1=rs.getString("oskey");
-            	 String ourl1=rs.getString("ourl"); String omethod1=rs.getString("omethod");   
-	            // String omethod1="flickr.test.login";
-	            String RESOURCE_URL =ourl1; String apiKey= ockey1; String apiSecret = oskey1;
-	    	  // String RESOURCE_URL ="https://api.flickr.com/services/rest/"; String apiKey = "9f17ba0ed1e29e91e1e8829dd3e6f889";String apiSecret = "5e636fa8d8f0968b"; 
-		      // String call="http://localhost:8071/mindapp/Oauth1Call";
-		       String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
-		    OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
-		    Verifier verifier = new Verifier(oauth_verifier);
-		    Token accessToken = service.getAccessToken(requestToken, verifier);
-		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
-		    request1.addQuerystringParameter("method", omethod1);
-		    service.signRequest(accessToken, request1);
-		    Response response1 = request1.send();
-		    String res=response1.getBody();
-		    session.setAttribute("xml1", res);
-	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-   		        response.setHeader("Refresh", "1; URL=auth1.jsp");
-		         }    
-	 } catch (Exception e) {
-		 out.println("ewwwwww"+e);
-		}
+	    out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+        response.setHeader("Refresh", "1; URL=auth.jsp");
+       
 }
 	 
 	/**
@@ -105,7 +79,7 @@ public class Oauth1Call extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String key="9f17ba0ed1e29e91e1e8829dd3e6f889";
+		/*String key="9f17ba0ed1e29e91e1e8829dd3e6f889";
 		String secret="5e636fa8d8f0968b";
 		int millis = (int) System.currentTimeMillis() * -1;
         int time = (int) millis / 1000;
@@ -117,7 +91,37 @@ public class Oauth1Call extends HttpServlet {
         		+ "%26oauth_signature_method%3DHMAC-SHA1"
         		+ "%26oauth_timestamp%3D"+tstmp+""
         		+ "%26oauth_version%3D1.0";
-       
+        try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+             PreparedStatement st=null;
+             st=con.prepareStatement("SELECT * From authen1 where appid=?");
+             st.setString(1, appid);
+	         ResultSet rs = st.executeQuery();
+	         while(rs.next()){
+             String oapp1=rs.getString("oapp"); String oreq1=rs.getString("oreq");
+        	 String ockey1=rs.getString("ockey"); String oskey1=rs.getString("oskey");
+        	 String ourl1=rs.getString("ourl"); String omethod1=rs.getString("omethod");   
+            // String omethod1="flickr.test.login";
+            String RESOURCE_URL =ourl1; String apiKey= ockey1; String apiSecret = oskey1;
+    	  // String RESOURCE_URL ="https://api.flickr.com/services/rest/"; String apiKey = "9f17ba0ed1e29e91e1e8829dd3e6f889";String apiSecret = "5e636fa8d8f0968b"; 
+	      // String call="http://localhost:8071/mindapp/Oauth1Call";
+	       String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
+	    OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+	    Verifier verifier = new Verifier(oauth_verifier);
+	    Token accessToken = service.getAccessToken(requestToken, verifier);
+	    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
+	    request1.addQuerystringParameter("method", omethod1);
+	    service.signRequest(accessToken, request1);
+	    Response response1 = request1.send();
+	    String res=response1.getBody();
+	    session.setAttribute("xml1", res);
+          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		        response.setHeader("Refresh", "1; URL=auth1.jsp");
+	         }    
+ } catch (Exception e) {
+	 out.println("ewwwwww"+e);
+	}*/
 	}
 
 }
