@@ -234,21 +234,15 @@ public class AuthPulpy extends HttpServlet {
     	  	       	 }
 	        	   }
 	        	    else if(resf1.equals("JSON")){
-	        	    	 while ((line = br.readLine()) != null)    { 
-	        	    	   strb.append(line);
-	   	    			
+	        	    	while ((line = br.readLine()) != null)    { 
+	        	    	      strb.append(line);
 	   	    		     }//while
 	        	    	 strcon=strb.toString();
-	        	    	 JSON json = JSONSerializer.toJSON(strb) ;
-	   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-	   	     	          xmlSerializer.setTypeHintsEnabled(false);
-	   	     	          xmlSerializer.setSkipWhitespace(true);
-	   	     	          xmlSerializer.setTrimSpaces(true);
-	   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-	   	     	          xmlSerializer.removeNamespace(line);
-	   	     	          xmlSerializer.setRootName("root");
-	   	     	          xmlSerializer.setForceTopLevelObject(false);
-	   	     		      str = xmlSerializer.write( json );
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	            str = serializer.write(json);
 	        	     } // else if*/
 	        	    session.setAttribute("xml1", str);
 		          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");

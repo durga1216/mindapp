@@ -58,7 +58,8 @@ public class LoginPulpy extends HttpServlet {
 	        		String alert="*Email Aready exist.. Click login & forget Password";
 	           	 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 	                request.setAttribute("alert", alert); // set your String value in the attribute
-	                dispatcher.forward( request, response );  	 
+	                dispatcher.forward( request, response ); 
+	                response.sendRedirect("index.jsp");
 	        		
 	        	}
 	        	

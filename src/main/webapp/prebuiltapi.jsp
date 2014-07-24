@@ -103,11 +103,12 @@ while(rs1.next()){
 </tr></table><br>
 <center><h1>MashUp Pre-Built API's</h1></center>
 <div id=t2><table><tr>
-<td><a href="prebuilt1.jsp?name=MPAPP_0579"><img  src="images/p2.jpg" data-toggle="tooltip" title="" data-original-title="Upto75-Eventfull-Asklaila" width='150' height='150'></a></td>
-<td><a href="prebuilt1.jsp?name=MPAPP_0613"><img  src="images/event.jpg" data-toggle="tooltip" title="" data-original-title="Eventbrite-Eventfull-Seatgeek" width='150' height='150'></a></td>
-<td><a href="prebuilt1.jsp?name=MPAPP_0615"><img  src="images/jobs.jpg" data-toggle="tooltip" title="" data-original-title="Indeed-Careerbuilder-Glassdoor" width='150' height='150'></a></td>
+<td><a href="prebuilt1.jsp?name=MPAPP_0579"><img  src="images/p2.jpg" data-toggle="tooltip" title="" data-original-title="Upto75-Eventfull-Asklaila" width='120' height='120'></a></td>
+<td><a href="prebuilt1.jsp?name=MPAPP_0613"><img  src="images/event.jpg" data-toggle="tooltip" title="" data-original-title="Eventbrite-Eventfull-Seatgeek" width='120' height='120'></a></td>
+<td><a href="prebuilt1.jsp?name=MPAPP_0615"><img  src="images/jobs.jpg" data-toggle="tooltip" title="" data-original-title="Indeed-Careerbuilder-Glassdoor" width='120' height='120'></a></td>
+<td><a href="semantics.jsp"><img  src="images/sem.jpg" data-toggle="tooltip" title="" data-original-title="Semantics 3" width='120' height='120'></a></td>
 <td><center><div id=oth style="display:none"><div id=cl>EventFull city name</div><input type="text"><br>
-<input type="submit" value="Tweet Events" onsubmit=""><br></div></center><img name="tst" src="images/social2.png" data-toggle="tooltip" title="" data-original-title="" width='150' height='150'></td></tr>
+<input type="submit" value="Tweet Events" onsubmit=""><br></div></center><img name="tst" src="images/social2.png" data-toggle="tooltip" title="" data-original-title="" width='120' height='120'></td></tr>
 </table></div>
 <
 <%

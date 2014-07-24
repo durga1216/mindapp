@@ -1,67 +1,36 @@
 package com.roobi.pulpy;
-
-import org.scribe.builder.*;
-import org.scribe.builder.api.*;
-import org.scribe.model.*;
-import org.scribe.oauth.*;
-
-import java.awt.Desktop;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Scanner;
 
-import javax.servlet.http.HttpSession;
+import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthExpectationFailedException;
+import oauth.signpost.exception.OAuthMessageSignerException;
 
-public class FlickrExample
-{
-	 private static final String PROTECTED_RESOURCE_URL = "https://api.twitter.com/1.1/statuses/update.json";
-	  
-	  public static void main(String[] args)
-	  {
-	    // If you choose to use a callback, "oauth_verifier" will be the return value by Twitter (request param)
-	    OAuthService service = new ServiceBuilder()
-	                                .provider(TwitterApi.SSL.class)
-	                                .apiKey("6icbcAXyZx67r8uTAUM5Qw")
-	                                .apiSecret("SCCAdUUc6LXxiazxH3N0QfpNUvlUy84mZ2XZKiv39s")
-	                                .build();
-	    Scanner in = new Scanner(System.in);
+import org.json.JSONObject;
 
-	    System.out.println("=== Twitter's OAuth Workflow ===");
-	    System.out.println();
+import com.semantics3.api.Products;
 
-	    // Obtain the Request Token
-	    System.out.println("Fetching the Request Token...");
-	    Token requestToken = service.getRequestToken();
-	    System.out.println("Got the Request Token!");
-	    System.out.println();
+public class FlickrExample {
 
-	    System.out.println("Now go and authorize Scribe here:");
-	    System.out.println(service.getAuthorizationUrl(requestToken));
-	    System.out.println("And paste the verifier here");
-	    System.out.print(">>");
-	    Verifier verifier = new Verifier(in.nextLine());
-	    System.out.println();
+	/**
+	 * @param args
+	 */
+	public static void main(String args[]) {
 
-	    // Trade the Request Token and Verfier for the Access Token
-	    System.out.println("Trading the Request Token for an Access Token...");
-	    Token accessToken = service.getAccessToken(requestToken, verifier);
-	    System.out.println("Got the Access Token!");
-	    System.out.println("(if you're curious, it looks like this: " + accessToken + " )");
-	    System.out.println();
-
-	    // Now let's go and ask for a protected resource!
-	    System.out.println("Now we're going to access a protected resource...");
-	    OAuthRequest request = new OAuthRequest(Verb.POST, PROTECTED_RESOURCE_URL);
-	    request.addBodyParameter("status", "sparta");
-	    service.signRequest(accessToken, request);
-	    Response response = request.send();
-	    System.out.println("Got it! Lets see what we found...");
-	    System.out.println();
-	    System.out.println(response.getBody());
-
-	    System.out.println();
-	    System.out.println("That's it man! Go and build something awesome with Scribe! :)");
-	  }
-
+		try {
+			Products products = new Products(
+					"SEM3694554054990A563752AF2A49CEF2199",
+					"YzZmYjc0YWRmYjlkMGUzNzk3NDhmZDdmZTA2ODU2Yzg"
+				);
+			products
+			.field( "cat_id", 4992 )	
+			.field( "brand", "Toshiba" );
+			JSONObject results;	
+			results = products.get();
+			System.out.println(results.toString(4));
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+	}
+
+}

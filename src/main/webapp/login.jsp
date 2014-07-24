@@ -143,7 +143,7 @@ function load2(){
 <center>&nbsp;&nbsp;&nbsp;&nbsp;<div class="result">${alert}</div></center><br>
 <center><input type=text name="t1" id='t1' placeholder="Email" required><br><br>
 <input type=password name="t2" id='t2'  placeholder="Password" required><br>
-<div class="result" style="margin-left:180px;"><a href="fgtpass.jsp">Forget Password??</a></div><br></center>
+<div class="result" style="margin-left:180px;"><a href="fgtpass.jsp">Forgot Password?</a></div><br></center>
 <center><input type="submit" name="submit" id='Login' value="Login">&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="button" name="b2" value="Signup" Onclick="add()"><center><br><br><br>
 <center>&nbsp;&nbsp;<img alt="mobile" src="images/mobile.png">&nbsp;&nbsp;<img alt="tablet" src="images/tablet.png">&nbsp;&nbsp;<img alt="smart tv" src="images/TV.png">&nbsp;&nbsp;<img alt="smart watch" src="images/watch-2.png">&nbsp;&nbsp;<img alt="google glass" src="images/Glass-Icon.png">
