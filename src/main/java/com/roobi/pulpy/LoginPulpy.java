@@ -15,6 +15,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -54,13 +55,15 @@ public class LoginPulpy extends HttpServlet {
 	        	String mail=rs.getString("email");
 	        	if (mail.equals(s1)){
 	        		
-	        		out.println("<br><br><br><br><html><body bgcolor='#FF9900'><<center><h2 style='color:#ffffff'>------Email ID already exist-----</h2></center></body></html>");
-	    		     response.sendRedirect("index.jsp");
+	        		String alert="*Email Aready exist.. Click login & forget Password";
+	           	 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+	                request.setAttribute("alert", alert); // set your String value in the attribute
+	                dispatcher.forward( request, response );  	 
 	        		
 	        	}
 	        	
 	        }
-			 st=con.prepareStatement("insert into login(email,fn,ln,pwd) values ('"+s1+"','"+s2+"','"+s3+"','"+s4+"')");
+			 st=con.prepareStatement("insert into login(email,fn,ln,pwd,phone) values ('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"')");
 			 st.executeUpdate();
 		     st.close();
 		      String userName = "marketing@minddotss.com";
