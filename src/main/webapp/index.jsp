@@ -7,7 +7,16 @@
 
 <title>MindPulpy</title>
 <link rel="shortcut icon" href="favicon.ico" />
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-50928435-1', 'mindapp-pulpy.rhcloud.com');
+  ga('send', 'pageview');
+
+</script>
 	<script src="/jquery-latest.js"></script>
 <%@ page import="java.io.*,java.util.*,javax.mail.*"%>
 <%@ page import="javax.mail.internet.*,javax.activation.*"%>
@@ -134,7 +143,7 @@ float: left;
 }
 #err{
 color:#ffffff;
-font-size:15px;
+font-size:20px;
 }
  </style>
  <%@page import=" java.sql.PreparedStatement"%>
@@ -225,7 +234,8 @@ function load2(){
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br><br><div id=ful>
 <div id=imdv><img alt="logo" src="images/MindPulpy_Illustration.PNG"style="height:400px;width:500px;"></div>
 <div id="sec"><br>
-<center><input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
+<center><div id=err>${alert}</div><br>
+<input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
 <input  type=text name="s5" id='s5' placeholder="Mobile Number"><br><br>
 <input  type=text name="s2" id='s2' placeholder="First Name"><br><br>
 <input  type=text name="s3" id='s3' placeholder="Last Name"><br><br>

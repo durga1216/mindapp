@@ -42,6 +42,18 @@ padding:10px;
 border-radius:20px;
 width:70px;
 }
+input[type=text]{
+color:#ff9900;
+height:25px;
+}
+#cl{
+height:20px;
+color:#ffffff;
+}
+#oth{
+border:solid 2px #ffffff;
+width:200px;
+}
 </style>
 </head>  
 <script>
@@ -58,6 +70,13 @@ width:70px;
   ga('create', 'UA-49334062-1', 'humanapi.co');
   ga('send', 'pageview');
 
+</script>
+<script>
+$(document).ready(function(){
+	$('img[name=tst]').click(function(){
+		$('#oth').show();
+	});
+});
 </script>
 <body>  
 <form action=""><br>
@@ -87,8 +106,10 @@ while(rs1.next()){
 <td><a href="prebuilt1.jsp?name=MPAPP_0579"><img  src="images/p2.jpg" data-toggle="tooltip" title="" data-original-title="Upto75-Eventfull-Asklaila" width='150' height='150'></a></td>
 <td><a href="prebuilt1.jsp?name=MPAPP_0613"><img  src="images/event.jpg" data-toggle="tooltip" title="" data-original-title="Eventbrite-Eventfull-Seatgeek" width='150' height='150'></a></td>
 <td><a href="prebuilt1.jsp?name=MPAPP_0615"><img  src="images/jobs.jpg" data-toggle="tooltip" title="" data-original-title="Indeed-Careerbuilder-Glassdoor" width='150' height='150'></a></td>
-<td><a href=""><img  src="images/social2.png" data-toggle="tooltip" title="" data-original-title="(Social-Network)-Mashup" width='150' height='150'></a></td></tr>
+<td><center><div id=oth style="display:none"><div id=cl>EventFull city name</div><input type="text"><br>
+<input type="submit" value="Tweet Events" onsubmit=""><br></div></center><img name="tst" src="images/social2.png" data-toggle="tooltip" title="" data-original-title="" width='150' height='150'></td></tr>
 </table></div>
+<
 <%
 }
 catch(Exception e)

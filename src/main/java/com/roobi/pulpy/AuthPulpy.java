@@ -837,12 +837,63 @@ public class AuthPulpy extends HttpServlet {
 	        	}
 	        	 }
 	        	 else if(rm1.equals ("POST")){
-	        		 
+	        		 if (oapp1.equals("FlickrApi")){
+		        		 OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+		     		    Verifier verifier = new Verifier(oauth_verifier);
+		     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+		     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
+		     		    request1.addQuerystringParameter("method", omethod1);
+		     		    service.signRequest(accessToken, request1);
+		     		    Response response1 = request1.send();
+		     		    res=response1.getBody();}
+		        		 else if (oapp1.equals("TumblrApi")){
+			        		 OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+				     		    Verifier verifier = new Verifier(oauth_verifier);
+				     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+				     		    OAuthRequest request1 = new OAuthRequest(Verb.POST,RESOURCE_URL);
+				     		    service.signRequest(accessToken, request1);
+				     		    Response response1 = request1.send();
+				     		    res=response1.getBody();}
+		        		 else if (oapp1.equals("TwitterApi")){
+			        		 OAuthService service = new ServiceBuilder().provider(TwitterApi.SSL.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+				     		    Verifier verifier = new Verifier(oauth_verifier);
+				     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+				     		    OAuthRequest request1 = new OAuthRequest(Verb.POST,RESOURCE_URL);
+				     		    request1.addBodyParameter(pa1, pva1);
+				     		    service.signRequest(accessToken, request1);
+				     		    Response response1 = request1.send();
+				     		    res=response1.getBody();}
+		        		 else if (oapp1.equals("LinkedInApi")){
+			        		 OAuthService service = new ServiceBuilder().provider(LinkedInApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
+				     		    Verifier verifier = new Verifier(oauth_verifier);
+				     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+				     		    OAuthRequest request1 = new OAuthRequest(Verb.POST,RESOURCE_URL);
+				     		    service.signRequest(accessToken, request1);
+				     		    Response response1 = request1.send();
+				     		    res=response1.getBody();}
+		        		 else if (oapp1.equals("FreelancerApi")){
+				     		    OAuthService service = new ServiceBuilder().provider(FreelancerApi.Sandbox.class).signatureType(SignatureType.QueryString).apiKey(ockey1).apiSecret(oskey1).scope("http://api.sandbox.freelancer.com").callback(call).build();
+				     		    Verifier verifier = new Verifier(oauth_verifier);
+				     		    Token accessToken = service.getAccessToken(requestToken, verifier);
+				     		    OAuthRequest request1 = new OAuthRequest(Verb.POST,RESOURCE_URL);
+				     		   request1.addHeader("GData-Version", "3.0");
+				     		    service.signRequest(accessToken, request1);
+				     		    Response response1 = request1.send();
+				     		    res=response1.getBody();}
 	 	        	if( resf1.equals("XML")){
-	 	        		
+	 	        		session.setAttribute("xml1", res);
+	 		  	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	 		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
 	 	        	}
 	 	        	else if( resf1.equals("JSON")){
-	 	        		
+	 	        		XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(res);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	            String str = serializer.write(json);
+		        		session.setAttribute("xml1", str);
+		  	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
 	 	        	}
 	 	        	 }
 	        	 
