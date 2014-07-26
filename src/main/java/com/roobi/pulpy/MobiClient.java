@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -354,7 +355,7 @@ public class MobiClient extends HttpServlet {
 		        	     StringBuilder strb=new StringBuilder();
 		        		 URL eurl1=new URL(eurl);
 		        		 URLConnection uconn = eurl1.openConnection();
-		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+		        	     HttpsURLConnection conn = (HttpsURLConnection) uconn;
 		        	     conn.connect();
 		        	     Object content = conn.getContent();
 		        	     InputStream stream = (InputStream) content;

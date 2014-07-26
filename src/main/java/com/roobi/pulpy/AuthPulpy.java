@@ -23,6 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -90,6 +91,8 @@ public class AuthPulpy extends HttpServlet {
       String p8=request.getParameter("p8");  pv8=request.getParameter("pv8");
       String p9=request.getParameter("p9"); String pv9=request.getParameter("pv9");
       String p10=request.getParameter("p10");String pv10=request.getParameter("pv10");
+      pv1=pv1.replaceAll(" ","%20");
+      
               String field1=request.getParameter("field1");      String field2=request.getParameter("field2");
       String field3=request.getParameter("field3");      String field4=request.getParameter("field4");
       String field5=request.getParameter("field5");      String field6=request.getParameter("field6");
@@ -136,21 +139,11 @@ public class AuthPulpy extends HttpServlet {
 
 	         ResultSet rs = st.executeQuery();
 	         while(rs.next()){
-   	         String id1=rs.getString("id");	 String appname1=rs.getString("appname");
              String authen1=rs.getString("auth");String ba1=rs.getString("b1");String b2=rs.getString("b2");
              String ba3=rs.getString("b3");String b4=rs.getString("b4");String ak1=rs.getString("a1");
-             String ak2=rs.getString("a2"); String cname=rs.getString("cname");
-        	 String ckey=rs.getString("ckey"); String rmethod=rs.getString("rmethod");
-        	 String csecname=rs.getString("csecname");
-        	 String cseckey=rs.getString("cseckey");
-        	 String sname=rs.getString("sname");
-        	 String svalue=rs.getString("svalue");
-        	 String aurl=rs.getString("aurl");
-        	 String tokenurl=rs.getString("tokenurl");
+             String ak2=rs.getString("a2"); 
         	 String tlabel=rs.getString("tlabel");
         	 String treplace=rs.getString("treplace");
-        	 String el=rs.getString("el");
-        	 String ev=rs.getString("ev");
              String rf1=rs.getString("rf");String rm1=rs.getString("rm");
              String resf1=rs.getString("resf");String mname=rs.getString("baseurl");String endurl1=rs.getString("endurl");
              String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
@@ -168,11 +161,6 @@ public class AuthPulpy extends HttpServlet {
              String h3=rs.getString("h3");String hv3=rs.getString("hv3");
              String h4=rs.getString("h4");String hv4=rs.getString("hv4");
              String h5=rs.getString("h5");String hv5=rs.getString("hv5");
-             String f1=rs.getString("f1"); String f2=rs.getString("f2");
-             String f3=rs.getString("f3"); String f4=rs.getString("f4");
-             String f5=rs.getString("f5"); String f6=rs.getString("f6");
-             String f7=rs.getString("f7"); String f8=rs.getString("f8");
-             String f9=rs.getString("f9"); String f10=rs.getString("f10");
              String oapp1=rs.getString("oapp"); String omethod1=rs.getString("omethod");
         	 String ockey1=rs.getString("ockey"); String oskey1=rs.getString("oskey");
         	 String RESOURCE_URL =endurl1; String apiKey= ockey1; String apiSecret = oskey1;
@@ -369,7 +357,7 @@ public class AuthPulpy extends HttpServlet {
 	         }    // No Auth  
 	               
 	         
-	         if(authen1.equals("API keys")){  //API Keys
+	         else if(authen1.equals("API keys")){  //API Keys
         	     String str="";
                  Object obj;
 	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
@@ -412,7 +400,7 @@ public class AuthPulpy extends HttpServlet {
 	        			 
 	        		 URL eurl1=new URL(eurl);
 	        		 URLConnection uconn = eurl1.openConnection();
-	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+	        	     HttpsURLConnection conn = (HttpsURLConnection) uconn;
 	        	     conn.connect();
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;

@@ -70,7 +70,9 @@ And If you’re new to Apps Development, Build Your First App here: please try t
 <h3>For Single Configuration</h3>
 <ul style="list-style-type:number">
 <li>method: POST</li>
-<li>URL:    https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy</li><li>AppID: Get from After Successful Configuration</li>
+<li>HTTP Post URL:    https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy</li>
+<li>Rest Services URL:    https://mindapp-pulpy.rhcloud.com/rest/xml/simplify</li>
+<li>AppID: Get from After Successful Configuration</li>
 <li>parameters: Give parameters as p1,p2,p3... etc for what you want to search</li>
 <li>Examples:<ul style="margin-left:80px;"><li>appid=MPAPP_0001</li><li>p1=chennai</li><li>p2=events</li></ul></ul>
 <p>For JAVA:</p>
@@ -94,7 +96,9 @@ And If you’re new to Apps Development, Build Your First App here: please try t
 <h3>For Mashup Configuration</h3>
 <ul style="list-style-type:number">
 <li>method: POST</li>
-<li>URL:    https://mindapp-pulpy.rhcloud.com/CommonXmlPulpy</li><li>AppID: Get from After Successful Configuration</li>
+<li>HTTP Post URL:    https://mindapp-pulpy.rhcloud.com/CommonXmlPulpy</li>
+<li>Rest Services URL:    https://mindapp-pulpy.rhcloud.com/rest/commonxml/simplify</li>
+<li>AppID: Get from After Successful Configuration</li>
 <li>parameters: Give second configuration parameters as p1,p2,p3... etc for what you want to search</li>
 <li>parameters: Give third configuration parameters as pa1,pa2,pa3... etc for what you want to search</li>
 <li>Example:</li><ul style="margin-left:80px;"><li>appid=MPAPP_0001</li><li>p1=chennai</li><li>p2=events</li><li>pa1=bangalore</li><li>pa2=images</li></ul></ul>

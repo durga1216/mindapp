@@ -17,7 +17,7 @@ function addParam(){
 	  var contentID = document.getElementById('content');
 	  var newTBDiv = document.createElement('div');
 	      newTBDiv.setAttribute('id','strText'+intTextBox);
-	  newTBDiv.innerHTML = "<input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='Tag_Label'/>" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder='Tag_Value'/>";
+	  newTBDiv.innerHTML = "<input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='Label(Give any name)'/>" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder='Tag_Value(Refer Eg)'/>";
 	  contentID.appendChild(newTBDiv);
 }
 function removeParam()
@@ -87,6 +87,31 @@ color:#FFFFFF;
 font-size:15px;
 font-family:verdana;
 text-align:right;}
+#eg{
+margin-left:40px;
+float:left;
+
+}
+#eg1{
+
+font-size:15px;
+width:750px;
+color:#ffffff;
+float:left;
+}
+table{border:none;}
+td{
+color:#ffffff;
+}
+#hlt{
+color:#ffffff;
+font-size:20px;
+box-shadow:2px 2px 5px 1px black;
+border-radius:3px;
+}
+#fff{
+width:1300px;
+}
 </style>
 
 </head>
@@ -101,16 +126,25 @@ text-align:right;}
     }%>
     
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Console </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
-<br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
+<div class="head"><center>Mind Pulpy</center></h2></div><br>
 <form action="AuthPulpy1" method="post" onsubmit="return validateForm()">
-<center><div class="heading">M-Pulpy XML Structure</div></center><br><br>
-<center><h2><a id='pa' href="javascript:load()">Load_Xml</a></h2></center><br><br>
-<center><div="text"></div><input type="text" name="xr" value="" placeholder="Parent_Tag">
-<input type="text" name="xrv" value="" placeholder="Root_Tag"></div></center>
-<br><br><center><div class="href"></div><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
-<a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a><div></center></div><br><br>
-<br><center><div id="content"></div></center><br><br>
+<center><div class="heading">M-Pulpy XML Structure</div></center><br>
+<center><h2><a id='pa' href="javascript:load()">Click here to Load_Xml</a></h2></center><br><br>
+<div id=eg><table>
+<tr><td>Eg:</td><td id=hlt>parant tag</td><td></td><td id=hlt>&nbsp;&nbsp;details/name/@id</td></tr>
+<tr><td>&lt root &gt</td><td>&lt event &gt</td><td>&lt details &gt</td><td>&lt name id=123 ref=nms &gt</td><td>&lt /name &gt</td></tr>
+<tr><td></td><td></td><td></td><td>&lt city &gt chennai &lt /city &gt</td><td id=hlt>details/city</td><td></td><td></td></tr>
+<tr><td></td><td></td><td>&lt /details &gt</td><td>&lt /event &gt</td></tr>
+<tr><td></td><td></td><td>&nbsp;&nbsp;&lt Date &gt</td><td>12-12-2012&lt /Date &gt</td><td id=hlt>&nbsp;&nbsp;&nbsp;&nbsp;Date</td></tr>
+<tr><td></td><td>&lt event &gt....</td><td>&lt /event &gt</td><td></td></tr>
+<tr><td></td><td>&lt event &gt....</td><td>&lt /event &gt</td><td></td></tr>
+<tr><td>&lt /root &gt</td></tr></table></div>
+<div id=eg1><input type="text" name="xr" value="" placeholder="Parent_Tag(Refer Eg)"><br>
+<br><br><center><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
+<a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a></center><br>
+<br><center><div id="content"></div></center><br><br><br><br></div><div id=fff>
 <center><input type="submit" value="Continue" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Finish" name="submit"></center>
+</div>
 </form>
 
 <script type="text/javascript">
