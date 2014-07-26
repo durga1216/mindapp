@@ -79,6 +79,7 @@ public class MobiClient extends HttpServlet {
 		String p5=request.getParameter("p5");String p6=request.getParameter("p6");
 		String p7=request.getParameter("p7");String p8=request.getParameter("p8");
         String p9=request.getParameter("p9");String p10=request.getParameter("p10");
+        p1=p1.replaceAll(" ","%20");
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));

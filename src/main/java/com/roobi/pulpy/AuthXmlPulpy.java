@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -77,6 +78,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		String p5=request.getParameter("p5");String p6=request.getParameter("p6");
 		String p7=request.getParameter("p7");String p8=request.getParameter("p8");
         String p9=request.getParameter("p9");String p10=request.getParameter("p10");
+        
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -350,7 +352,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		        	     StringBuilder strb=new StringBuilder();
 		        		 URL eurl1=new URL(eurl);
 		        		 URLConnection uconn = eurl1.openConnection();
-		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+		        	     HttpsURLConnection conn = (HttpsURLConnection) uconn;
 		        	     conn.connect();
 		        	     Object content = conn.getContent();
 		        	     InputStream stream = (InputStream) content;
