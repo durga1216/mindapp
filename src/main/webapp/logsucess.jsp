@@ -77,6 +77,7 @@ padding:2px;
 font-size:15px;
 background-color:blue;
 color:#ffffff;
+box-shadow:2px 2px 5px 1px #000;
 border-radius:5px;}
 </style>
 <script type="text/javascript">

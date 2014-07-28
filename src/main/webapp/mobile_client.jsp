@@ -117,7 +117,30 @@ padding:2px;
 font-size:15px;
 background-color:blue;
 color:#ffffff;
+box-shadow:2px 2px 5px 1px #000;
 border-radius:5px;}
+.arrow_box:after, .arrow_box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: #88b7d5;
+	border-width: 10px;
+	margin-left: -10px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: #c2e1f5;
+	border-width: 16px;
+	margin-left: -16px;
+}
 </style>
 <script type="text/javascript">
 function load2(){

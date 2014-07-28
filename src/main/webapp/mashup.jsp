@@ -15,7 +15,7 @@ position: relative;
 max-width: 1200px;
 border-radius:10px;
 margin: 0 auto;
-box-shadow:6px 6px 10px #000000;
+box-shadow:3px 3px 6px 2px #000000;
 background: #ff9900;
 overflow: hidden;
 }
@@ -29,7 +29,8 @@ a{
 background-color:#ffffff;
 padding:10px;
 border-radius:8px;
-box-shadow:5px 5px 10px 2px #000000;
+text-decoration:none;
+box-shadow:2px 2px 5px 1px #000000;
 color:#ff9900;
 }
 #lt{
