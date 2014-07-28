@@ -60,10 +60,6 @@ padding:10px;
   tr{
   font-size:20px;
   padding:13px;}
-  a{
-   color:#ffffff;
-   font-size:25px;
-  }
   #oth{
   float:right;
   margin-right:100px;
@@ -75,15 +71,11 @@ padding:10px;
   font-weight:bold;
   }
 #na{
-color:#ff9900;
-margin-left:1px;
-font-size:20px;
-background-color:#ffffff;
+margin-top:0;
+color:#FFFFFF;
+font-size:18px;
 font-family:verdana;
-width:200px;
-height:15px;
-padding:10px;
-}
+text-align:right;}
 input[type="submit"]{
 
 color:#ffffff;
@@ -101,7 +93,27 @@ padding:10px;
 th,td,p{
 color:#ffffff;
 }
+a{ 
+padding:5px;
+font-size:20px;
+background-color:#ffffff;
+color:#ff9900;
+border:solid 1px #ccc;
+border-radius:10px;
+text-decoration:none;
+}
+sup { vertical-align: 3.5ex; 
+padding:2px;
+font-size:15px;
+background-color:blue;
+color:#ffffff;
+border-radius:5px;}
 </style>
+<script type="text/javascript">
+function load2(){
+	window.open("https://mindtools-inputs.rhcloud.com/index.jsp", '_blank');
+}
+</script>
 <script>
 function myFunction() {
     var x = document.getElementById('apid').value;
@@ -112,8 +124,9 @@ function myFunction() {
 
 }
 </script>
-<body><div class="head">
-
+<body><br>
+<div id=na><a href='logsucess.jsp'>Home</a>&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;<a id="indiv" href='javascript:load2()'>Apps Builder</a><sup>Try it.!</sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+<br><hr><br><div class="head">
 <center>Developer Console</center></div>
 <form >
 <%@page import="com.mindots.util.Utils"%>

@@ -17,9 +17,7 @@ body{background-color:#FF9900;}
 .head{
 color:#FFFFFF;
     font-family:verdana;
-    font-size:40px;
-    margin-top:20px;
-}
+    font-size:40px;}
 input[type="text"]{
 color:#FF9900;
 font-size:17px;
@@ -44,8 +42,7 @@ border-radius:50px;
 .main{
 color:#FFFFFF;
     font-family:verdana;
-    font-size:30px;
-    margin-top:50px;
+    font-size:27px;
 }
 .result{
 color:#FFFFFF;
@@ -98,11 +95,9 @@ function load2(){
     response.sendRedirect("logout.jsp");
     }%>
     <br>
-<div id=na><a href='logsucess.jsp'>Home</a>&nbsp;&nbsp;<a id="indiv" href='mobile_client.jsp'>API Console</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;<a id="indiv" href='javascript:load2()'>Apps Builder</a><sup>Try it.!</sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
-<form action="Edit" method="post">
-<center><div class="head">Mind Pulpy</div></center>
-<center><div class="main">Configuration completed! Check With Mobile App</div></center><br>
-<center><h2 style='color:#ffffff;font-family:verdana;'>Your App_Id :   <%=session.getAttribute("appid")%></h2></center>
+<div id=na><a href='logsucess.jsp'>Home</a>&nbsp;&nbsp;<a id="indiv" href='mobile_client.jsp'>API Console</a><sup>Check Result.!</sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;<a id="indiv" href='javascript:load2()'>Apps Builder</a><sup>Try it.!</sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+<br><hr><form action="Edit" method="post"><br>
+<center><div class="main">Configuration completed..! &nbsp; Your App_Id :   <%=session.getAttribute("appid")%></div></center><br>
 <c:if test="${sessionScope.appid!=null}">
 <center><h2 style='color:#ffffff;font-family:verdana;'>You Can Also Edit Here</h2></center>
 <center><h2 style='color:#ffffff;font-family:verdana;'>First Configuration Details</h2></center>

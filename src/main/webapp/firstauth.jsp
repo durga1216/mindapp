@@ -159,7 +159,7 @@ input[type="radio"]
    font-family:verdana;
    margin-left:60px;
  }
-input[type="text"]{
+input[type="text"],input[type="password"]{
 color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
