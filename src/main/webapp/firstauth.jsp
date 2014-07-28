@@ -311,7 +311,7 @@ border-radius:3px;
 <br><div id="others" style="display:none">If Http headers, Please leave username & password fields and add your credentials in header</div>
 <div id="divid" style="display:none"><br>
 <input type="text" name="b2" value="" placeholder="UserName" >
-<input type="text" name="b4" value="" placeholder="Password"><br><br><br>
+<input type="password" name="b4" value="" placeholder="Password"><br><br><br>
 <a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
 <br><div id="content"></div><br>
 </div>

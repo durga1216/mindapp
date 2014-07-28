@@ -91,7 +91,7 @@ public class AuthPulpy extends HttpServlet {
       String p8=request.getParameter("p8");  pv8=request.getParameter("pv8");
       String p9=request.getParameter("p9"); String pv9=request.getParameter("pv9");
       String p10=request.getParameter("p10");String pv10=request.getParameter("pv10");
-      pv1=pv1.replaceAll(" ","%20");
+     // pv1=pv1.replaceAll(" ","%20");
       
               String field1=request.getParameter("field1");      String field2=request.getParameter("field2");
       String field3=request.getParameter("field3");      String field4=request.getParameter("field4");

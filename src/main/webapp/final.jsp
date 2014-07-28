@@ -53,8 +53,6 @@ color:#FFFFFF;
     font-size:10px;
     margin-top:60px;
 }
-#indiv{color:#FFFFFF;
-}
 #na{
 margin-top:0;
 color:#FFFFFF;
@@ -68,7 +66,27 @@ text-align:left;
 color:#FF9900;
 font-weight:bold;
 }
+a{ 
+padding:5px;
+font-size:20px;
+background-color:#ffffff;
+color:#ff9900;
+border:solid 1px #ccc;
+border-radius:10px;
+text-decoration:none;
+}
+sup { vertical-align: 3.5ex; 
+padding:2px;
+font-size:15px;
+background-color:blue;
+color:#ffffff;
+border-radius:5px;}
 </style>
+<script type="text/javascript">
+function load2(){
+	window.open("https://mindtools-inputs.rhcloud.com/index.jsp", '_blank');
+}
+</script>
 </head>
 <body>
  <%String u = (String) request.getSession().getAttribute("user");
@@ -79,8 +97,8 @@ font-weight:bold;
    // System.out.println("user == null");
     response.sendRedirect("logout.jsp");
     }%>
-    
-<div id=na><a id="indiv" href='mobile_client.jsp'>API Console</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;<a id="indiv" href='https://mindtools-inputs.rhcloud.com/index.jsp'>https://mindtools-inputs.rhcloud.com/index.jsp </a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+    <br>
+<div id=na><a href='logsucess.jsp'>Home</a>&nbsp;&nbsp;<a id="indiv" href='mobile_client.jsp'>API Console</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;<a id="indiv" href='javascript:load2()'>Apps Builder</a><sup>Try it.!</sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
 <form action="Edit" method="post">
 <center><div class="head">Mind Pulpy</div></center>
 <center><div class="main">Configuration completed! Check With Mobile App</div></center><br>
