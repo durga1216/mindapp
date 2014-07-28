@@ -41,7 +41,7 @@ font-size:17px;
 background-color:#ffffff;
 margin-left:80px;
 font-family:verdana;
-width:400px;
+width:300px;
 height:25px;
 padding:10px;
 } 
@@ -70,7 +70,17 @@ padding:10px;
   margin-left:550px;
   font-weight:bold;
   }
-#na{
+  #na{
+color:#ff9900;
+margin-left:1px;
+font-size:20px;
+background-color:#ffffff;
+font-family:verdana;
+width:200px;
+height:15px;
+padding:10px;
+}
+#na1{
 margin-top:0;
 color:#FFFFFF;
 font-size:18px;
@@ -125,7 +135,7 @@ function myFunction() {
 }
 </script>
 <body><br>
-<div id=na><a href='logsucess.jsp'>Home</a>&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;<a id="indiv" href='javascript:load2()'>Apps Builder</a><sup>Try it.!</sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+<div id=na1><%=session.getAttribute("mail")%> &nbsp;<a href='logsucess.jsp'>Home</a>&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;<a id="indiv" href='javascript:load2()'>Apps Builder</a><sup>Try it.!</sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
 <br><hr><br><div class="head">
 <center>Developer Console</center></div>
 <form >

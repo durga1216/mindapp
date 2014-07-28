@@ -112,6 +112,9 @@ border-radius:3px;
 #fff{
 width:1300px;
 }
+#see{
+text-decoration:none;
+}
 </style>
 
 </head>
@@ -138,7 +141,8 @@ width:1300px;
 <tr><td></td><td></td><td>&nbsp;&nbsp;&lt Date &gt</td><td>12-12-2012&lt /Date &gt</td><td id=hlt>&nbsp;&nbsp;&nbsp;&nbsp;Date</td></tr>
 <tr><td></td><td>&lt event &gt....</td><td>&lt /event &gt</td><td></td></tr>
 <tr><td></td><td>&lt event &gt....</td><td>&lt /event &gt</td><td></td></tr>
-<tr><td>&lt /root &gt</td></tr></table></div>
+<tr><td>&lt /root &gt</td></tr>
+<tr><td><a id=see href='javascript:load1()'>See More..</a></td></tr></table></div>
 <div id=eg1><input type="text" name="xr" value="" placeholder="Parent_Tag(Refer Eg)"><br>
 <br><br><center><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
 <a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a></center><br>
@@ -150,8 +154,9 @@ width:1300px;
 <script type="text/javascript">
 function load(){
 	window.open("<%=request.getContextPath()%>/XmlConvert", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
-	
-	
+}
+function load1(){
+	window.open("images/exml.JPG", '_blank');
 }
 function validateForm(){
 var x=confirm("Confirm submit?");

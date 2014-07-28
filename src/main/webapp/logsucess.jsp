@@ -72,10 +72,20 @@ color:#FFFFFF;
 font-size:20px;
 font-family:verdana;
 text-align:left;}
+sup { vertical-align: 3.5ex; 
+padding:2px;
+font-size:15px;
+background-color:blue;
+color:#ffffff;
+border-radius:5px;}
 </style>
 <script type="text/javascript">
 function load(){
 	window.open("http://www.youtube.com/channel/UCc0XVG8gFmFMi1jh_hj0sQA", '_blank');
+	
+}
+function load1(){
+	window.open("<%=request.getContextPath()%>/Viewapi?category=Search", '_blank');
 	
 }
 </script>
@@ -94,9 +104,9 @@ function load(){
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br>
 <div class='suc'><center><h3>Login Sucess!!</h3></center></div>
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>
-<center><div id='pa'><a href='firstauth.jsp'>Create Application Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%=request.getContextPath()%>/EditPulpy' >Edit Your Application Here</a></div></center><br><br><br>
+<center><div id='pa'><a href='firstauth.jsp'>Create New Application Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%=request.getContextPath()%>/EditPulpy' >Edit Your Application Here</a></div></center><br><br><br>
 <center><div id='pa'><a href='prebuiltapi.jsp'> PreBuild APPs Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load()">YouTube Link For Help</a></div></center><br><br><br>
-<center><div id='pa'><a href='https://mindtools-inputs.rhcloud.com/login.jsp'>Apps Builder Here</a></div></center><br><br>
+<center><div id='pa'><a href='https://mindtools-inputs.rhcloud.com/login.jsp'>Apps Builder Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load1()">API Gallery</a><sup>400+ Api's</sup></div></center><br><br><br>
 
 </body>
 

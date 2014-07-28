@@ -12,6 +12,12 @@
 body{
 background-color:#ff9900;
 }
+#na{
+margin-top:0;
+color:#FFFFFF;
+font-size:18px;
+font-family:verdana;
+text-align:right;}
 h1{
 color:#ffffff;
 }
@@ -54,7 +60,27 @@ color:#ffffff;
 border:solid 2px #ffffff;
 width:200px;
 }
+#na a{ 
+padding:5px;
+font-size:20px;
+background-color:#ffffff;
+color:#ff9900;
+border:solid 1px #ccc;
+border-radius:10px;
+text-decoration:none;
+}
+sup { vertical-align: 3.5ex; 
+padding:2px;
+font-size:15px;
+background-color:blue;
+color:#ffffff;
+border-radius:5px;}
 </style>
+<script type="text/javascript">
+function load2(){
+	window.open("https://mindtools-inputs.rhcloud.com/index.jsp", '_blank');
+}
+</script>
 </head>  
 <script>
 
@@ -79,8 +105,10 @@ $(document).ready(function(){
 });
 </script>
 <body>  
-<form action=""><br>
-<div id=bak><a href="logsucess.jsp">Back</a></div>
+<form action="">
+<br>
+<div id=na><%=session.getAttribute("mail")%> &nbsp;<a href='logsucess.jsp'>Home</a>&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;<a id="indiv" href='javascript:load2()'>Apps Builder</a><sup>Try it.!</sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'logout.jsp'> Sign Out </a></div>
+<br><hr><br>
 <center><h1>Pre-Built API's</h1></center><br>
 <table><tr>
 <%@page import="com.mindots.util.Utils"%>
