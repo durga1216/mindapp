@@ -246,6 +246,21 @@ function removeParent(){
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
 }
+function addParent1()
+{
+  intTextBox = intTextBox + 1;
+  var contentID = document.getElementById('content1');
+  var newTBDiv = document.createElement('div');
+      newTBDiv.setAttribute('id','strText'+intTextBox);
+newTBDiv.innerHTML = "<input type='text' id='j" + intTextBox + "'    name='j" + intTextBox + "' placeholder='KEY'/>" + "<input type='text' id='jv"+ intTextBox + " ' name='jv"+intTextBox+"' placeholder='Value'/>";
+  contentID.appendChild(newTBDiv);
+}
+
+function removeParent1(){
+	var contentID = document.getElementById('content1');
+    contentID.removeChild(document.getElementById('strText'+intTextBox));
+    intTextBox = intTextBox-1;
+}
  function getApi(){
 	/* var contentID = document.getElementById('content');
      var newTBDiv = document.createElement('div');
@@ -276,10 +291,32 @@ $('#select3').on('change', function() {
    else if(this.value == 'SOAP'){
    $('#method').hide();
    $('#mnote').hide();
+
    }
 });
 });
-
+$(document).ready(function(){
+	$('#select2').on('change', function() {
+	    if (this.value == 'GET') {
+	    $('#jrpc').hide();
+	    
+	}
+	    else if(this.value == 'POST_JSON'){
+	    	   $('#jrpc').show();
+	    	   }
+	   else if(this.value == 'POST'){
+	   $('#jrpc').hide();
+	   }
+	   
+	   else if(this.value == 'PUT'){
+	   $('#jrpc').hide();
+	   }
+	   
+	   else if(this.value == 'DELETE'){
+	   $('#jrpc').hide();
+	   }
+	});
+	});
  </script>
 </head>
 <body>
@@ -302,6 +339,7 @@ $('#select3').on('change', function() {
 <select name="select2"  id="select2" onchange="change()">
     <option value="GET">GET</option>
     <option value="POST">POST</option>
+    <option value="POST_JSON">POST-JSON</option>
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
 </select><br/><br/>
@@ -316,7 +354,9 @@ $('#select3').on('change', function() {
 <div id='mnote' style="display:none">* Enter Base-URL inside of End_Point_URL and also enter appropriate Method Name</div><br>
 <div id=eg>Eg:&nbsp; </div><div id=hlt> &nbsp;http://abc.com/search &nbsp;</div><div id=eg1>&nbsp;?api_key=xxxxxxxxx & params1=bangalore</div><br><br>
 <input type="text" name="endurl" placeholder="End_Point_URL*"><br><br>
-<input type="text" name="method" id="method" placeholder="Method_name" style="display:none"><br><br>
+<input type="text" name="method" id="method" placeholder="Method_name" style="display:none">
+<div id=jrpc style='display:none;'><a id='pa' href="javascript:addParent1();">Add Key-value</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent1();">Remove Key-value</a><br>
+<br><div id="content1"></div></div><br><br>
 <div class="link"><center>Add Parameters</center></div><br><br>
 <div id='mnote' >* If parameters join with Url, then leave Param-label field</div><br>
 <a id='pa' href="javascript:addParent();">Add Params</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Params</a><br>

@@ -38,6 +38,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.scribe.builder.ServiceBuilder;
@@ -92,7 +93,9 @@ public class AuthPulpy extends HttpServlet {
       String p9=request.getParameter("p9"); String pv9=request.getParameter("pv9");
       String p10=request.getParameter("p10");String pv10=request.getParameter("pv10");
      // pv1=pv1.replaceAll(" ","%20");
-      
+      String j1=request.getParameter("j1"); String jv1=request.getParameter("jv1");
+      String j2=request.getParameter("j2"); String jv2=request.getParameter("jv2");
+      String j3=request.getParameter("j3"); String jv3=request.getParameter("jv3");
               String field1=request.getParameter("field1");      String field2=request.getParameter("field2");
       String field3=request.getParameter("field3");      String field4=request.getParameter("field4");
       String field5=request.getParameter("field5");      String field6=request.getParameter("field6");
@@ -700,7 +703,7 @@ public class AuthPulpy extends HttpServlet {
 	   	            	 } 
 	            	 
 	            	 else if("null".equals(b2) && "null".equals(b4)){encoding=null;}
-	            	
+	            	 out.println("inside...aaa");
 	            	 
 	              if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
 		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
@@ -737,19 +740,77 @@ public class AuthPulpy extends HttpServlet {
 		     	          xmlSerializer.setForceTopLevelObject(false);
 		     		      str = xmlSerializer.write( json );
 		     		      //out.println(xmlout);
-	            	  }//while
+	            	  }}//while
 	            	  session.setAttribute("xml1", str);
 		             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
-	              }//post
+	              //post
 	           
 	                            
 	                	
 	              } //  else-if json
+	              else if(rm1.equals("POST_JSON")){
+	            	  out.println("inside");
+	            		  DefaultHttpClient httpClient = new DefaultHttpClient();
+	            			HttpPost postRequest = new HttpPost(endurl1);
+	            	 
+		            	   if(!"null".equals(j1) && !"null".equals(j2) && !"null".equals(j3)){
+		            		   StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
+		            		   input.setContentType("application/json");
+		            		   postRequest.setEntity(input);}
+		         		 
+		         		 else if(!"null".equals(j1) && !"null".equals(j2)){
+		         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\"}");
+		         			input.setContentType("application/json");
+		         			postRequest.setEntity(input);}
+		         		 
+		         		 else if(!"null".equals(j1)){
+		         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\"}");
+		         			input.setContentType("application/json");
+		         			postRequest.setEntity(input);}
+		            	   
+		            	   String encoding = new String(
+		          		   		 org.apache.commons.codec.binary.Base64.encodeBase64   
+		          		   		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
+		          		   		  );
+		          		postRequest.setHeader("Authorization","Basic " + encoding);
+	            			
+	            	 
+	            			HttpResponse response1 = httpClient.execute(postRequest);
+	            	 
+	            			BufferedReader in = new BufferedReader(
+	            	                        new InputStreamReader((response1.getEntity().getContent())));
+	            			String line="";
+	            			if(resf1.equals("XML")){
+	    	                    while((line=in.readLine())!=null){
+	    	                    	str+=line;
+	    	                    }} // while and xml
+	    	              else if(resf1.equals("JSON")){
+	    	            	  while((line=in.readLine())!=null){
+	    	            		  JSON json = JSONSerializer.toJSON( line );  
+	    		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+	    		     	          xmlSerializer.setTypeHintsEnabled(false);
+	    		     	          xmlSerializer.setSkipWhitespace(true);
+	    		     	          xmlSerializer.setTrimSpaces(true);
+	    		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+	    		     	          xmlSerializer.removeNamespace(line);
+	    		     	          xmlSerializer.setForceTopLevelObject(false);
+	    		     		      str = xmlSerializer.write( json );
+	    		     		      //out.println(xmlout);
+	    	            	  }}//while
+	            			httpClient.getConnectionManager().shutdown();
+	    	            	  session.setAttribute("xml1", str);
+	    		             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	    	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
+	            	 
+	            			
+		            	  
+		              }
+	              
 	             }//try
 	              
 	   	             catch(Exception e){
-	   	            	// out.println(e);
+	   	            	 out.println(e);
 	   	            	 }
 	   	          
 	        	 
