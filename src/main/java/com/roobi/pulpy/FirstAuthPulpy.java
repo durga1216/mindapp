@@ -100,7 +100,8 @@ public class FirstAuthPulpy extends HttpServlet {
 
 	               // out.println("Your id:"+appid1);
 	               
-	             out.println("<html><h2><center><font color='green'>Processing...</font></center></h3><html>");
+	             out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
     		     response.setHeader("Refresh", "1; URL=auth.jsp");
 	             }
 	             else if("Oauth1".equals(authen1)){

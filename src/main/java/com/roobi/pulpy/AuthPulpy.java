@@ -96,6 +96,14 @@ public class AuthPulpy extends HttpServlet {
       String j1=request.getParameter("j1"); String jv1=request.getParameter("jv1");
       String j2=request.getParameter("j2"); String jv2=request.getParameter("jv2");
       String j3=request.getParameter("j3"); String jv3=request.getParameter("jv3");
+      String j4=request.getParameter("j4"); String jv4=request.getParameter("jv4");
+      String j5=request.getParameter("j5"); String jv5=request.getParameter("jv5");
+      String j6=request.getParameter("j6"); String jv6=request.getParameter("jv6");
+      String j7=request.getParameter("j7"); String jv7=request.getParameter("jv7");
+      String j8=request.getParameter("j8"); String jv8=request.getParameter("jv8");
+      String j9=request.getParameter("j9"); String jv9=request.getParameter("jv9");
+      String j11=request.getParameter("j11"); String jv11=request.getParameter("jv11");
+      String j12=request.getParameter("j12"); String jv12=request.getParameter("jv12");
               String field1=request.getParameter("field1");      String field2=request.getParameter("field2");
       String field3=request.getParameter("field3");      String field4=request.getParameter("field4");
       String field5=request.getParameter("field5");      String field6=request.getParameter("field6");
@@ -126,7 +134,8 @@ public class AuthPulpy extends HttpServlet {
 
 
 
-      try{
+      try
+      {
   		//out.println("start");
     	    response.setContentType("text/html");
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -353,7 +362,8 @@ public class AuthPulpy extends HttpServlet {
 	 	    	    //  out.println(e);
 	 	    	      }	
 	        		 session.setAttribute("xml1", str);
-	        		 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	        		 out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+	 	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} //  post
 	        	        	 
@@ -428,7 +438,8 @@ public class AuthPulpy extends HttpServlet {
 	        	    	 
 	        	     } // else if
 	        	    session.setAttribute("xml1", str);
-		            out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	        	    out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	        	     
 	        	 } //XML and JSON get
@@ -487,8 +498,8 @@ public class AuthPulpy extends HttpServlet {
 		        		     	 	  
 	        			  session.setAttribute("xml1", resf1);
 	        			  session.setAttribute("token", token);
-	          			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-
+	        			  out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+	      	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 		     		      response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	     		        
 	        	 } //XML RPC        */	 
@@ -544,7 +555,8 @@ public class AuthPulpy extends HttpServlet {
 		 	    	    //  out.println(e);
 		         	    	 }	
 		        		 session.setAttribute("xml1", str);
-		     			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		        		 out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+		 	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 
 		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 		               	}//post 
@@ -663,7 +675,8 @@ public class AuthPulpy extends HttpServlet {
 	            	  }//while}
 	              }//json
 	              session.setAttribute("xml1", str);
-	             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	              out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
      		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 		          }//get
 	              else if(rm1.equals("POST")){ 
@@ -742,7 +755,8 @@ public class AuthPulpy extends HttpServlet {
 		     		      //out.println(xmlout);
 	            	  }}//while
 	            	  session.setAttribute("xml1", str);
-		             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	            	  out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+	  	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	              //post
 	           
@@ -750,21 +764,47 @@ public class AuthPulpy extends HttpServlet {
 	                	
 	              } //  else-if json
 	              else if(rm1.equals("POST_JSON")){
-	            	  out.println("inside");
+	            	 // out.println("inside");
 	            		  DefaultHttpClient httpClient = new DefaultHttpClient();
 	            			HttpPost postRequest = new HttpPost(endurl1);
-	            	 
-		            	   if(!"null".equals(j1) && !"null".equals(j2) && !"null".equals(j3)){
-		            		   StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
+	            			if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null && j8!=null ){
+			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\",\""+j7+"\":\""+jv7+"\",\""+j8+"\":\""+jv8+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);}
+	            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null ){
+			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\",\""+j7+"\":\""+jv7+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);}
+	            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null ){
+			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);}
+	            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null){
+			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);}
+	            			else if(j1!=null && j2!=null && j3!=null && j4!=null){
+			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);} // */
+	            			else if(j1!=null && j2!=null && j3!=null ){
+	            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
 		            		   input.setContentType("application/json");
-		            		   postRequest.setEntity(input);}
+		            		   postRequest.setEntity(input); }
 		         		 
-		         		 else if(!"null".equals(j1) && !"null".equals(j2)){
+		         		 else if(j1!=null && j2!=null){
 		         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\"}");
 		         			input.setContentType("application/json");
 		         			postRequest.setEntity(input);}
-		         		 
-		         		 else if(!"null".equals(j1)){
+		         		else if(j1!=null  && j11!=null && j12!=null){
+		         			StringEntity input = new StringEntity("{\""+j1+"\":{\""+j11+"\":\""+jv11+"\",\""+j12+"\":\""+jv12+"\"}}");
+		         			input.setContentType("application/json");
+		         			postRequest.setEntity(input);}
+		         		else if(j1!=null && j11!=null){
+		         			StringEntity input = new StringEntity("{\""+j1+"\":{\""+j1+"\":{\""+j11+"\":\""+jv11+"\"}}");
+		         			input.setContentType("application/json");
+		         			postRequest.setEntity(input);}
+		         		 else if(j1!=null){
 		         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\"}");
 		         			input.setContentType("application/json");
 		         			postRequest.setEntity(input);}
@@ -800,7 +840,8 @@ public class AuthPulpy extends HttpServlet {
 	    	            	  }}//while
 	            			httpClient.getConnectionManager().shutdown();
 	    	            	  session.setAttribute("xml1", str);
-	    		             out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	    	            	  out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+	    	  	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	    	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	            	 
 	            			
@@ -865,7 +906,8 @@ public class AuthPulpy extends HttpServlet {
 			     		    res=response1.getBody();}
 	        	if( resf1.equals("XML")){
 	        		session.setAttribute("xml1", res);
-	  	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
 	        	}
 	        	else if( resf1.equals("JSON")){
@@ -875,7 +917,8 @@ public class AuthPulpy extends HttpServlet {
      	            serializer.setTypeHintsEnabled(false);
      	            String str = serializer.write(json);
 	        		session.setAttribute("xml1", str);
-	  	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
 	        	}
 	        	 }
@@ -925,7 +968,8 @@ public class AuthPulpy extends HttpServlet {
 				     		    res=response1.getBody();}
 	 	        	if( resf1.equals("XML")){
 	 	        		session.setAttribute("xml1", res);
-	 		  	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+	 	        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+	 		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	 		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
 	 	        	}
 	 	        	else if( resf1.equals("JSON")){
@@ -935,7 +979,8 @@ public class AuthPulpy extends HttpServlet {
 	     	            serializer.setTypeHintsEnabled(false);
 	     	            String str = serializer.write(json);
 		        		session.setAttribute("xml1", str);
-		  	          out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+		        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+			             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 		     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
 	 	        	}
 	 	        	 }
@@ -1100,7 +1145,8 @@ public class AuthPulpy extends HttpServlet {
 	     				out.println(GetResponse);
 
                 	 session.setAttribute("xml1", GetResponse);
-         			 out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
+                	 out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+     	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
                  } // if

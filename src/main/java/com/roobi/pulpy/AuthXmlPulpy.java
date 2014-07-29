@@ -34,6 +34,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.w3c.dom.Document;
@@ -78,6 +79,15 @@ public class AuthXmlPulpy extends HttpServlet {
 		String p5=request.getParameter("p5");String p6=request.getParameter("p6");
 		String p7=request.getParameter("p7");String p8=request.getParameter("p8");
         String p9=request.getParameter("p9");String p10=request.getParameter("p10");
+        String j1=request.getParameter("j1"); String jv1=request.getParameter("jv1");
+        String j2=request.getParameter("j2"); String jv2=request.getParameter("jv2");
+        String j3=request.getParameter("j3"); String jv3=request.getParameter("jv3");
+        String j4=request.getParameter("j4"); String jv4=request.getParameter("jv4");
+        String j5=request.getParameter("j5"); String jv5=request.getParameter("jv5");
+        String j6=request.getParameter("j6"); String jv6=request.getParameter("jv6");
+        String j7=request.getParameter("j7"); String jv7=request.getParameter("jv7");
+        String j8=request.getParameter("j8"); String jv8=request.getParameter("jv8");
+        String j9=request.getParameter("j9"); String jv9=request.getParameter("jv9");
         
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -690,7 +700,76 @@ public class AuthXmlPulpy extends HttpServlet {
 	   	             }
 	   	          
 	         } //post
-	        	 
+	              else if(rm1.equals("POST_JSON")){
+		            	 // out.println("inside");
+		            		  DefaultHttpClient httpClient = new DefaultHttpClient();
+		            			HttpPost postRequest = new HttpPost(endurl1);
+		            			if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null && j8!=null ){
+				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\",\""+j7+"\":\""+jv7+"\",\""+j8+"\":\""+jv8+"\"}");
+				         			input.setContentType("application/json");
+				         			postRequest.setEntity(input);}
+		            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null ){
+				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\",\""+j7+"\":\""+jv7+"\"}");
+				         			input.setContentType("application/json");
+				         			postRequest.setEntity(input);}
+		            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null ){
+				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\"}");
+				         			input.setContentType("application/json");
+				         			postRequest.setEntity(input);}
+		            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null){
+				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\"}");
+				         			input.setContentType("application/json");
+				         			postRequest.setEntity(input);}
+		            			else if(j1!=null && j2!=null && j3!=null && j4!=null){
+				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\"}");
+				         			input.setContentType("application/json");
+				         			postRequest.setEntity(input);} // */
+		            			else if(j1!=null && j2!=null && j3!=null ){
+		            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
+			            		   input.setContentType("application/json");
+			            		   postRequest.setEntity(input); }
+			         		 
+			         		 else if(j1!=null && j2!=null){
+			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);}
+			         		 else if(j1!=null){
+			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);}
+			            	   
+			            	   String encoding = new String(
+			          		   		 org.apache.commons.codec.binary.Base64.encodeBase64   
+			          		   		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
+			          		   		  );
+			          		postRequest.setHeader("Authorization","Basic " + encoding);
+		            			
+		            	 
+		            			HttpResponse response1 = httpClient.execute(postRequest);
+		            	 
+		            			BufferedReader in = new BufferedReader(
+		            	                        new InputStreamReader((response1.getEntity().getContent())));
+		            		 line="";
+		            			if(resf1.equals("XML")){
+		    	                    while((line=in.readLine())!=null){
+		    	                    	str+=line;
+		    	                    }} // while and xml
+		    	              else if(resf1.equals("JSON")){
+		    	            	  while((line=in.readLine())!=null){
+		    	            		  JSON json = JSONSerializer.toJSON( line );  
+		    		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
+		    		     	          xmlSerializer.setTypeHintsEnabled(false);
+		    		     	          xmlSerializer.setSkipWhitespace(true);
+		    		     	          xmlSerializer.setTrimSpaces(true);
+		    		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
+		    		     	          xmlSerializer.removeNamespace(line);
+		    		     	          xmlSerializer.setForceTopLevelObject(false);
+		    		     		      str = xmlSerializer.write( json );
+		    		     		      //out.println(xmlout);
+		    	            	  }}//while
+		            			httpClient.getConnectionManager().shutdown();
+		            			doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+	              }
 	         }// Basic Auth
 
        
