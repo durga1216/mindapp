@@ -1127,6 +1127,7 @@ public class AuthPulpy extends HttpServlet {
 		     		   
 		     	}  // POST
                  if(authen1.equals("Oauth2") && resf1.equals("JSON")){
+                	 strcon=GetResponse;
                   JSON json = JSONSerializer.toJSON( GetResponse );  
    	              XMLSerializer xmlSerializer = new XMLSerializer();  
    	              xmlSerializer.setTypeHintsEnabled(false);
@@ -1139,6 +1140,8 @@ public class AuthPulpy extends HttpServlet {
    				out.println(xmlout);
 
    	           session.setAttribute("xml1", xmlout);
+   	        out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
                  } // if
                  
