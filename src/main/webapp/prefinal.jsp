@@ -33,11 +33,27 @@ font-family:verdana;
 }
      
 #pa{
-font-size:15px;
-margin-left:500px;
-color:#FFFFFF;
+font-size:20px;
+color:#ff9900;
+background-color:#ffffff;
 font-family:verdana;
+border:solid 2px #fff;
+box-shadow:2px 2px 5px 1px #000;
+border-radius:5px;
+padding:7px;
+text-decoration:none;
 }
+#pa1 a{
+font-size:20px;
+color:#ff9900;
+background-color:#ffffff;
+font-family:verdana;
+border:solid 2px #fff;
+box-shadow:2px 2px 5px 1px #000;
+border-radius:5px;
+padding:7px;
+float:left;
+text-decoration:none;}
 
 #result{
 color:#FFFFFF;
@@ -50,9 +66,11 @@ color:#FFFFFF;
 <%
 HttpSession session1=request.getSession(true);
 %>
+<br><br>
+<div id=pa1><a style='margin-left:100px;' href='prebuiltapi.jsp'>Back</a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id=pa1><a style='margin-left:1050px;' href="logout.jsp">Sign Out</a></div>
 <center><div class="head">Mind Pulpy</div></center><br><br>
 <div class="main"><center>Configuration completed! With PRE-BUILD APP</center></div><br><br>
 <div id="result"><center>Your Appid is : <%=session1.getAttribute("appid1")%></center><br><br>
-<a id='pa' href='javascript:load()' >Check your Simplified Output here</a><br><br>
+<center><a id='pa' href='javascript:load()' >Check your Simplified Output here</a></center><br><br>
 </body>
 </html>

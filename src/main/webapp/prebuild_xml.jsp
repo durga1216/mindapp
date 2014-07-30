@@ -147,6 +147,7 @@ text-align:right;}
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@include file="con.jsp" %>
 <%
 response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 <%
@@ -159,8 +160,6 @@ try{
     session1.setAttribute("id",id);
 
 Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-//Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 PreparedStatement st2=cn.prepareStatement("SELECT * FROM xmlconfig WHERE appid=?");
 st2.setString(1,appid);
 ResultSet rs2 = st2.executeQuery();
@@ -172,14 +171,14 @@ String x2=rs2.getString("x2");String xv2=rs2.getString("xv2");
 session.setAttribute("xr",xr);session.setAttribute("x1",x1);session.setAttribute("xv1",xv1);
 session.setAttribute("x2",x2);session.setAttribute("xv2",xv2);%>
 
-<table><tr><td><input type='text' name='xr' value='' placeholder='Parent_Tag' style='width:300px; '></td><td><div class='pa'>Example:"<%=xr %>"</div></td></tr><br>
+<table><tr><td><input type='text' name='xr' value='<%=xr %>' placeholder='Parent_Tag' style='width:300px; '></td><td><div class='pa'>Example:"<%=xr %>"</div></td></tr><br>
 
 <%if(!"null".equals(x1)) {%>
 	
-	<tr><td><input type='text' name='x1' value="<%=x1 %>" placeholder='Tag_Label' style='height:20px;'></td><td><input type='text' name='xv1' value='' placeholder='Tag_Value' style='height:15px;'></td><td><div class='pa'>Example:"<%=xv1 %>"</div></td></tr><br>
+	<tr><td><input type='text' name='x1' value="<%=x1 %>" placeholder='Tag_Label' style='height:20px;'></td><td><input type='text' name='xv1' value='<%=xv1 %>' placeholder='Tag_Value' style='height:15px;'></td><td><div class='pa'>Example:"<%=xv1 %>"</div></td></tr><br>
 	<%}
 	if(!"null".equals(x2)){%>
-	<tr><td><input type='text' name='x2' value="<%=x2 %>" placeholder='Tag_Label' style='height:20px;'></td><td><input type='text' name='xv2' value='' placeholder='Tag_Value' style='height:15px;'></td><td><div class='pa'>Example:"<%=xv2%>"</div></td></tr><br>
+	<tr><td><input type='text' name='x2' value="<%=x2 %>" placeholder='Tag_Label' style='height:20px;'></td><td><input type='text' name='xv2' value='<%=xv2 %>' placeholder='Tag_Value' style='height:15px;'></td><td><div class='pa'>Example:"<%=xv2%>"</div></td></tr><br>
 	<%}
 %>
 </table>

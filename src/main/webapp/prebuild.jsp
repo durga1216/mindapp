@@ -54,7 +54,7 @@ padding:15px;
  }
  
 
-input[type="text"]{
+input[type="text"],input[type="password"]{
 color:#FF9900;
 font-size:20px;
 background-color:#FFFFFF;
@@ -107,7 +107,12 @@ margin-left:80px;
 background-color:#FFFFFF;
 border-radius:50px;
 padding:15px;}
-
+#pa{
+  font-family:verdana;
+  font-size:20px;
+  color:#FFFFFF;
+  margin-left:100px;
+  }
 #indiv{color:#FFFFFF;
 }
 #na{
@@ -123,6 +128,27 @@ font-size:15px;
 font-family:verdana;
 }
 </style>
+<script type="text/javascript">
+var intTextBox=1;
+function addParent1()
+{
+  intTextBox = intTextBox + 1;
+  var contentID = document.getElementById('content1');
+  var newTBDiv = document.createElement('div');
+      newTBDiv.setAttribute('id','strText'+intTextBox);
+newTBDiv.innerHTML = "<input type='text' id='j" + intTextBox + "'    name='j" + intTextBox + "' placeholder='KEY'/>" + "<input type='text' id='jv"+ intTextBox + " ' name='jv"+intTextBox+"' placeholder='Value'/>";
+  contentID.appendChild(newTBDiv);
+}
+
+function removeParent1(){
+	var contentID = document.getElementById('content1');
+    contentID.removeChild(document.getElementById('strText'+intTextBox));
+    intTextBox = intTextBox-1;
+}
+function load2(){
+	window.open("http://en.wikipedia.org/wiki/Basic_access_authentication", '_blank');
+}
+</script>
 </head>
 
 <body><form>
@@ -134,13 +160,12 @@ font-family:verdana;
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@include file="con.jsp" %>
 <%
 response.setHeader("Content-Type","text/html;charset=UTF-8");%>
 <%
 try{
 Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-//Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 String name=request.getParameter("name");
 PreparedStatement st2=cn.prepareStatement("SELECT * FROM authen1 a1 JOIN config a2 ON a1.appid=a2.appid WHERE a1.appid=?");
 st2.setString(1,name);
@@ -152,7 +177,7 @@ String f1="null";String f2="null";String f3="null";String f4="null";String f5=""
 String authen="";String appname="";String desc=""; String a1="null"; String a2="null";
 String cname="null";String ckey="null";String csecname="null";String cseckey="null";String sname="null";String svalue="null";
 String aurl="null";String tokenurl="null";String tlabel="null";String treplace="null";String el="null";String ev="null";String orm="null";
-String rf="";String rmethod="";// change
+String rf="";String rmethod=""; String b2="";String b4="";// change
 HttpSession session1=request.getSession(true);
 while(rs2.next()){
 	   authen=rs2.getString("auth");
@@ -175,6 +200,7 @@ while(rs2.next()){
       f3=rs2.getString("f3"); f4=rs2.getString("f4");
       f5=rs2.getString("f5"); f6=rs2.getString("f6");
       f7=rs2.getString("f7"); f8=rs2.getString("f8");
+      b2=rs2.getString("b2"); b4=rs2.getString("b4");
       
       f9=rs2.getString("f9"); f10=rs2.getString("f10");rf=rs2.getString("resf");
  	  rmethod=rs2.getString("rm");cname=rs2.getString("cname");
@@ -208,6 +234,11 @@ out.println("<div id='api'><a href='http://en.wikipedia.org/wiki/Application_pro
 out.println("<input type='text' name='a1' value='"+a1+"'>");
 out.println("<input type='text' name='a2' value='' placeholder='Enter your API_KEY here' style='width:350px;'required><br><br>");
 } 
+else if(authen.equals("Basic Auth")){
+out.println("<div id='api'><a href='javascript:load2()'>To Know More About Basic_access_authentication Click Here</a></div><br>");
+out.println("<input type='text' name='b2' value='"+b2+"' placeholder='Enter your username here' style='width:350px;'required>");
+out.println("<input type='password' name='b4' value='"+b4+"' placeholder='Enter your password here' style='width:350px;'required><br><br>");
+} 
 else if(authen.equals("Oauth2")){
 out.println("<div id='api'><a href='http://oauth.net'>To know more about Oauth Click here</a></div><br>");
 out.println("<input type='text' name='ckey' style='width:300px' value='' placeholder='Enter Your API Key here' required>&nbsp;&nbsp;&nbsp;<input type='text' name='cseckey' value='' placeholder='Enter Your API Secret Key here' style='width:300px'required><br><br>");	
@@ -219,11 +250,18 @@ out.println("<input type='text' name='treplace' style='width:300px' value='"+tre
 out.println("<div id='re'><center>Access Token Method :"+orm+"</center></div>");
 out.println("<div id='re'><center>Extra Fields(Optional)</center></div><br><br>");
 out.println("<input type='text' name='el' value='"+el+"' placeholder='State_label'style='width:300px' >&nbsp;&nbsp;&nbsp;<input type='text' name='ev' value='"+ev+"' placeholder='State_Value' style='width:300px' ><br><br>");
-}%><br>
+}
+if(rmethod.equals("POST_JSON")){ %>
+<div id=api>**Give Your Inputs Key-value Pair Below..</div><br>
+<a id='pa' href="javascript:addParent1();">Add Key-value</a>&nbsp;&nbsp;<a id='pa' href="javascript:removeParent1();">Remove Key-value</a><br>
+<br><br><input type='text' id='j1' name='j1' placeholder='KEY'required/><input type='text' id='jv1' name='jv1' placeholder='Value'required/>
+<div id="content1"></div><br><br>
+<% }
+%>
 <div class="au"><center>Request Method</center></div><br>
-<div class="text"><input type="text" name="rf" id="rf" value="<%=rf%>" placeholder="Request Method"></div><br><br>
+<div class="text"><input type="text" name="rm" id="rm" value="<%=rmethod%>" placeholder="Request Method"></div><br><br>
 <div class="au"><center>Response Format</center></div><br>
-<div class="text"><input type="text" name="rm" id="rm" value="<%=rmethod%>" placeholder="Response Format"></div><br><br>
+<div class="text"><input type="text" name="rf" id="rf" value="<%=rf%>" placeholder="Response Format"></div><br><br>
 <div class="au"><center>End Point URL</center></div><br>
 <div class="text"><input type="text" name="endurl" id="endurl" value="<%=endurl %>" placeholder="End_Point_URL" style="width:600px;"></div><br><br><br>
 <div class="param"><center>Parameters</center></div><br><br>

@@ -48,6 +48,15 @@ public class PreAuthPulpy extends HttpServlet {
 	      String h4=request.getParameter("h4"); String hv4=request.getParameter("hv4");
 	      String h5=request.getParameter("h5"); String hv5=request.getParameter("hv5");
 		  String a1=request.getParameter("a1");String a2=request.getParameter("a2");
+		  String j1=request.getParameter("j1"); String jv1=request.getParameter("jv1");
+	      String j2=request.getParameter("j2"); String jv2=request.getParameter("jv2");
+	      String j3=request.getParameter("j3"); String jv3=request.getParameter("jv3");
+	      String j4=request.getParameter("j4"); String jv4=request.getParameter("jv4");
+	      String j5=request.getParameter("j5"); String jv5=request.getParameter("jv5");
+	      String j6=request.getParameter("j6"); String jv6=request.getParameter("jv6");
+	      String j7=request.getParameter("j7"); String jv7=request.getParameter("jv7");
+	      String j8=request.getParameter("j8"); String jv8=request.getParameter("jv8");
+	      String j9=request.getParameter("j9"); String jv9=request.getParameter("jv9");
 		  String cname=request.getParameter("cname"); String ckey=request.getParameter("ckey"); String csecname=request.getParameter("csecname");
 		  String cseckey=request.getParameter("cseckey");String sname=request.getParameter("sname"); String svalue=request.getParameter("svalue");
 		  String aurl=request.getParameter("aurl"); String tokenurl=request.getParameter("tokenurl"); String tlabel=request.getParameter("tlabel");
@@ -70,6 +79,12 @@ public class PreAuthPulpy extends HttpServlet {
 	      String field5=(String) session.getAttribute("field5");      String field6=(String) session.getAttribute("field6");
 	      String field7=(String) session.getAttribute("field7");      String field8=(String) session.getAttribute("field8");
 	      String field9=(String) session.getAttribute("field9");      String field10=(String) session.getAttribute("field10");
+	      session.setAttribute("j1",j1); session.setAttribute("j2",j2);session.setAttribute("j3",j3);
+	      session.setAttribute("j4",j4);session.setAttribute("j5",j5);session.setAttribute("j6",j6);
+	      session.setAttribute("j7",j7);session.setAttribute("j8",j8);session.setAttribute("j9",j9);
+	      session.setAttribute("jv1",jv1); session.setAttribute("jv2",jv2);session.setAttribute("jv3",jv3);
+	      session.setAttribute("jv4",jv4);session.setAttribute("jv5",jv5);session.setAttribute("jv6",jv6);
+	      session.setAttribute("jv7",jv7);session.setAttribute("jv8",jv8);session.setAttribute("jv9",jv9);
 	      try{
 	    	  
 	            Connection con;
@@ -95,9 +110,11 @@ public class PreAuthPulpy extends HttpServlet {
              if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
             	 
 
-               
-            out.println("<html><body style='background-color:#ff9900;'><center><h1 style='color:#FFFFFF;'>Mind Pulpy</h1></center><br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with Simplify Output</a></center></h3></body></html>");
-            out.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreRaw'>Continue with Raw Output</a></center></h3></body></html>");
+            	 out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+	 	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
+	     		        response.setHeader("Refresh", "1; URL=PreBuild");	
+            //out.println("<html><body style='background-color:#ff9900;'><center><h1 style='color:#FFFFFF;'>Mind Pulpy</h1></center><br><br><h3><center><a style='color:#ffffff;' href='PreBuild'>Continue with Simplify Output</a></center></h3></body></html>");
+           // out.println("<br><br><h3><center><a style='color:#ffffff;' href='PreRaw'>Continue with Raw Output</a></center></h3></body></html>");
 
 
              
