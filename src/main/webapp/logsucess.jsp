@@ -107,7 +107,7 @@ function load1(){
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>
 <center><div id='pa'><a href='firstauth.jsp'>Create New Application Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%=request.getContextPath()%>/EditPulpy' >Edit Your Application Here</a></div></center><br><br><br>
 <center><div id='pa'><a href='prebuiltapi.jsp'> PreBuild APPs Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load()">YouTube Link For Help</a></div></center><br><br><br>
-<center><div id='pa'><a href='https://mindtools-inputs.rhcloud.com/login.jsp'>Apps Builder Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load1()">API Gallery</a><sup>400+ Api's</sup></div></center><br><br><br>
+<center><div id='pa'><a href='https://mindtools-inputs.rhcloud.com/login.jsp'>Apps Builder Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load1()">API Gallery</a><sup>500+ Api's</sup></div></center><br><br><br>
 
 </body>
 

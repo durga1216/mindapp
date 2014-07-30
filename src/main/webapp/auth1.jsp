@@ -88,12 +88,11 @@ font-size:15px;
 font-family:verdana;
 text-align:right;}
 #eg{
-margin-left:40px;
 float:left;
-
+margin-left:20px;
+width:550px;
 }
 #eg1{
-
 font-size:15px;
 width:750px;
 color:#ffffff;
@@ -102,10 +101,11 @@ float:left;
 table{border:none;}
 td{
 color:#ffffff;
+font-size:15px;
 }
 #hlt{
 color:#ffffff;
-font-size:20px;
+font-size:15px;
 box-shadow:2px 2px 5px 1px black;
 border-radius:3px;
 }
@@ -138,7 +138,7 @@ text-decoration:none;
 <tr><td>&lt root &gt</td><td>&lt event &gt</td><td>&lt details &gt</td><td>&lt name id=123 ref=nms &gt</td><td>&lt /name &gt</td></tr>
 <tr><td></td><td></td><td></td><td>&lt city &gt chennai &lt /city &gt</td><td id=hlt>details/city</td><td></td><td></td></tr>
 <tr><td></td><td></td><td>&lt /details &gt</td><td>&lt /event &gt</td></tr>
-<tr><td></td><td></td><td>&nbsp;&nbsp;&lt Date &gt</td><td>12-12-2012&lt /Date &gt</td><td id=hlt>&nbsp;&nbsp;&nbsp;&nbsp;Date</td></tr>
+<tr><td></td><td></td><td>&nbsp;&nbsp;&lt Date &gt</td><td>12-12&lt /Date &gt</td><td id=hlt>&nbsp;&nbsp;&nbsp;&nbsp;Date</td></tr>
 <tr><td></td><td>&lt event &gt....</td><td>&lt /event &gt</td><td></td></tr>
 <tr><td></td><td>&lt event &gt....</td><td>&lt /event &gt</td><td></td></tr>
 <tr><td>&lt /root &gt</td></tr>

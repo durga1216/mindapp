@@ -56,6 +56,7 @@ import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 import net.sf.json.JSON;
+import net.sf.json.JSONException;
 import net.sf.json.JSONSerializer;
 import net.sf.json.xml.XMLSerializer;
 
@@ -131,7 +132,7 @@ public class AuthPulpy extends HttpServlet {
       String oauth_verifier=(String) session.getAttribute("oauth_verifier");
       String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
      // String call="http://localhost:8071/mindapp/Oauth1Call";
-
+      String strcon=null;
 
 
       try
@@ -225,7 +226,7 @@ public class AuthPulpy extends HttpServlet {
 		        	     conn.connect();
 		        	     Object content = conn.getContent();
 		        	     InputStream stream = (InputStream) content;
-		        	     String line=null;String strcon=null;
+		        	     String line=null; strcon=null;
 		        	     StringBuilder strb=new StringBuilder();
 		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 	        	   if(resf1.equals("XML")){
@@ -417,7 +418,7 @@ public class AuthPulpy extends HttpServlet {
 	        	     conn.connect();
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
-	        	     String line=null;String strcon=null;
+	        	     String line=null; strcon=null;
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 	        	     StringBuilder strb=new StringBuilder();
 	        	    if(resf1.equals("XML")){
@@ -1155,9 +1156,13 @@ public class AuthPulpy extends HttpServlet {
 	         
 	         }//try
 	         } // while database
-	         
+	         catch(JSONException je1){
+	        	 out.println(je1+"\n SORRY invalid JSON format..\n \n"
+	        	 		+ "\n Your Raw Output:\n"+strcon);
+	         }
 	         catch(Exception e){
-	        	out.println(e);
+	        	out.println(e+"\n "
+	        			+ "\n Your Raw Output:\n"+strcon);
 	        	 // out.println("<h2><center><font color='green'> Please Enter correct values</font></center></h3>");
 	        	 }
       
