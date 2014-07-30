@@ -1160,12 +1160,12 @@ public class AuthPulpy extends HttpServlet {
 	         }//try
 	         } // while database
 	         catch(JSONException je1){
-	        	 out.println(je1+"\n SORRY invalid JSON format..\n \n"
-	        	 		+ "\n Your Raw Output:\n"+strcon);
+	        	 out.println("<a href='logsucess.jsp'>Click Here for HOME</a><br><br>Error Description: "+je1+"<br><br> SORRY invalid JSON format.. Your Raw Output:<br><br>"
+	        	 		+ "<html style='background-color:#ff9900;'><font color='white'>"+strcon+"</font><br>");
 	         }
 	         catch(Exception e){
-	        	out.println(e+"\n "
-	        			+ "\n Your Raw Output:\n"+strcon);
+	        	out.println("<a href='logsucess.jsp'>Click Here for HOME</a><br><br>Error Description: "+e+"<br><br>Your Raw Output:<br><br>"
+	        			+ "<html style='background-color:#ff9900;'><font color='white'>"+strcon+"</font><br><br><br><br>");
 	        	 // out.println("<h2><center><font color='green'> Please Enter correct values</font></center></h3>");
 	        	 }
       
