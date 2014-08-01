@@ -90,11 +90,11 @@ text-align:right;}
 #eg{
 float:left;
 margin-left:20px;
-width:550px;
+width:40%;
 }
 #eg1{
 font-size:15px;
-width:750px;
+width:55%;
 color:#ffffff;
 float:left;
 }
@@ -111,6 +111,7 @@ border-radius:3px;
 }
 #fff{
 width:1300px;
+height:relative;
 }
 #see{
 text-decoration:none;
@@ -133,7 +134,7 @@ String q = (String) session.getAttribute("q");
 <div class="head"><center>Mind Pulpy</center></h2></div><br>
 <form action="AuthPulpy1" method="post" onsubmit="return validateForm()">
 <center><div class="heading">M-Pulpy XML Structure</div></center><br>
-<center><h2><a id='pa' href="javascript:load()">Click here to Load_Xml</a></h2></center><br><br>
+<center><h2><a id='pa' href="javascript:load()">Click here to Load_Xml</a></h2></center><br><br><div id='fff'>
 <div id=eg><table>
 <tr><td>Eg:</td><td id=hlt>parant tag</td><td></td><td id=hlt>&nbsp;&nbsp;details/name/@id</td></tr>
 <tr><td>&lt root &gt</td><td>&lt event &gt</td><td>&lt details &gt</td><td>&lt name id=123 ref=nms &gt</td><td>&lt /name &gt</td></tr>
@@ -147,7 +148,7 @@ String q = (String) session.getAttribute("q");
 <div id=eg1><input type="text" name="xr" value="" placeholder="Parent_Tag(Refer Eg)"><br>
 <br><br><center><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
 <a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a></center><br>
-<br><center><div id="content"></div></center><br><br><br><br></div><div id=fff>
+<br><center><div id="content"></div></center><br><br><br><br></div></div><div id=fff>
 <center><% if (q.equals("mashup")){ %><input type="submit" value="Continue" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%} %><input type="submit" value="Finish" name="submit"></center>
 </div>
 </form>
