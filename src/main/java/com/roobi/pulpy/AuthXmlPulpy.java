@@ -211,7 +211,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	        		 else if("null".equals(pa1))
 	        			 eurl=endurl1;
 	        		 
-	           
+	             eurl=eurl.replaceAll(" ","%20");
 	                if(resf1.equals("XML")){
       	        	  doc=builder.parse(new URL(eurl).openStream());
 
@@ -350,7 +350,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		        		 else if(p1==null){
 		        			eurl=endurl1+"?"+ak1+"="+ak2;}
 	        	 
-	        		 
+	        		 eurl=eurl.replaceAll(" ","%20");
                      if(resf1.equals("XML")){
        	        	  doc=builder.parse(new URL(eurl).openStream());
 

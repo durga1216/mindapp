@@ -218,7 +218,7 @@ public class AuthPulpy extends HttpServlet {
 	        		 else if(!"null".equals(pa1)){
 		        		 eurl=endurl1+"?"+pa1+"="+pva1;}
 	        		 
-	   
+	        		 eurl=eurl.replaceAll(" ", "%20"); 
 	        			// out.println(eurl);
 	        			 URL eurl1=new URL(eurl);
 		        		 URLConnection uconn = eurl1.openConnection();
@@ -411,10 +411,10 @@ public class AuthPulpy extends HttpServlet {
 	        		 else if("null".equals(ak1) && "null".equals(ak2))
 	        			 eurl=endurl1;	        		
 	        		
-	        			 
+	        			eurl=eurl.replaceAll(" ", "%20"); 
 	        		 URL eurl1=new URL(eurl);
 	        		 URLConnection uconn = eurl1.openConnection();
-	        	     HttpsURLConnection conn = (HttpsURLConnection) uconn;
+	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	        	     conn.connect();
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
@@ -599,7 +599,7 @@ public class AuthPulpy extends HttpServlet {
         		 else if("null".equals(pa1))
         			eurl="filter=''";
 	        	 
-	        	 
+	        	 eurl=eurl.replaceAll(" ", "%20"); 
 	        	 String str="";
 	        	 try{
 		          if(rm1.equals("GET")){ 

@@ -79,6 +79,7 @@ public class MobiClient extends HttpServlet {
 		String p5=request.getParameter("p5");String p6=request.getParameter("p6");
 		String p7=request.getParameter("p7");String p8=request.getParameter("p8");
         String p9=request.getParameter("p9");String p10=request.getParameter("p10");
+        
 		try{
 			
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -204,7 +205,7 @@ public class MobiClient extends HttpServlet {
 	             
 	        		 else if("null".equals(pa1))
 	        			 eurl=endurl1;
-	        		 
+	             eurl=eurl.replaceAll(" ", "%20"); 
 	             
 	                if(resf1.equals("XML")){
       	        	  doc=builder.parse(new URL(eurl).openStream());
@@ -344,6 +345,7 @@ public class MobiClient extends HttpServlet {
 	        		 else if(p1==null){
 	        			eurl=endurl1+"?"+ak1+"="+ak2;}
 	        	 
+	        		 eurl=eurl.replaceAll(" ","%20");
                      if(resf1.equals("XML")){
        	        	  doc=builder.parse(new URL(eurl).openStream());
 
@@ -355,7 +357,7 @@ public class MobiClient extends HttpServlet {
 		        	     StringBuilder strb=new StringBuilder();
 		        		 URL eurl1=new URL(eurl);
 		        		 URLConnection uconn = eurl1.openConnection();
-		        	     HttpsURLConnection conn = (HttpsURLConnection) uconn;
+		        	     HttpURLConnection conn = (HttpsURLConnection) uconn;
 		        	     conn.connect();
 		        	     Object content = conn.getContent();
 		        	     InputStream stream = (InputStream) content;
