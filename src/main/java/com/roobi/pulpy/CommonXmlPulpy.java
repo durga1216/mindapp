@@ -334,6 +334,8 @@ String resf2=rs.getString("resf2");
 		      secdurl=securl1+"/"+s1;
 		 else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1)&& "null".equals(s1))
 			      secdurl=securl1;
+		 
+		 secdurl=secdurl.replaceAll(" ","%20");
 		// out.println(secdurl);
 		 doc=builder.parse(new URL(secdurl).openStream());
 	       
@@ -833,6 +835,7 @@ String resf2=rs.getString("resf2");
            		 else if("null".equals(akt1) && "null".equals(akt2))
            			      thirdurl11=thirdurl1;
            		 //out.println(thirdurl11);
+           		thirdurl11=thirdurl11.replaceAll(" ", "%20");
           		 doc1=builder1.parse(new URL(thirdurl11).openStream());
 
            		
@@ -878,7 +881,7 @@ String resf2=rs.getString("resf2");
           		 else if("null".equals(akt1) && "null".equals(akt2))
           			      thirdurl11=thirdurl1;
           		 
-
+          		 thirdurl11=thirdurl11.replaceAll(" ", "%20");
           		URL third=new URL(thirdurl11);
   		        URLConnection uconn = third.openConnection();
   	            HttpURLConnection conn = (HttpURLConnection) uconn;
@@ -1210,6 +1213,8 @@ String resf2=rs.getString("resf2");
      		        		 eurl=endurl1+"?"+ak+"="+akk+"&"+pa1+"="+p1;}
      	        		 else if("".equals(p1))
      	        			eurl=endurl1+"?"+ak+"="+akk;
+     	        		 
+     	        		 eurl=eurl.replaceAll(" ", "%20");
      	        	 
                           if(resf1.equals("XML")){
             	        	  doc2=builder2.parse(new URL(eurl).openStream());

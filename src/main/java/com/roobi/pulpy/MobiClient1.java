@@ -184,6 +184,8 @@ String resf2=rs.getString("resf2");
                  secdurl=securl1+"?"+secid+"="+pid;
              else if(!"".equals(ak1) && !"".equals(ak2)&& "entity".equals(cycle1))
                  secdurl=securl1+"?"+ak1+"="+ak2;
+         
+         secdurl=secdurl.replaceAll(" ", "%20");
          doc=builder.parse(new URL(secdurl).openStream());
 
               
@@ -229,6 +231,8 @@ String resf2=rs.getString("resf2");
                  secdurl=securl1+"?"+secid+"="+pid;
              else if(!"null".equals(ak1) && !"null".equals(ak2)&& "entity".equals(cycle1))
                  secdurl=securl1+"?"+ak1+"="+ak2;
+         
+         secdurl=secdurl.replaceAll(" ", "%20");
          
          URL second_url=new URL(secdurl);
          URLConnection uconn = second_url.openConnection();
@@ -295,6 +299,7 @@ String resf2=rs.getString("resf2");
          else if("".equals(ak1) && "".equals(ak2) && "entity".equals(cycle1))
                   secdurl=securl1+"/"+s1; 
          //out.println(secdurl);
+         secdurl=secdurl.replaceAll(" ", "%20");
          doc=builder.parse(new URL(secdurl).openStream());
            
      }  //end if JSON
@@ -335,6 +340,8 @@ String resf2=rs.getString("resf2");
               secdurl=securl1+"?"+ak1+"="+ak2;
          else if("null".equals(ak1) && "null".equals(ak2) && "entity".equals(cycle1))
                   secdurl=securl1;    
+         
+         secdurl=secdurl.replaceAll(" ", "%20");
          
          URL second_url=new URL(secdurl);
          URLConnection uconn = second_url.openConnection();
@@ -677,6 +684,7 @@ String resf2=rs.getString("resf2");
                           else if(!"null".equals(ak1) && !"null".equals(ak2))
                               thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
                           
+                      thirdurl11=thirdurl11.replaceAll(" ", "%20");	
                       
                        doc1=builder1.parse(new URL(thirdurl11).openStream());
 
@@ -718,6 +726,8 @@ String resf2=rs.getString("resf2");
                              thirdurl11=thirdurl1+"?"+thrdid+"="+paid;
                          else if(!"null".equals(ak1) && !"null".equals(ak2))
                              thirdurl11=thirdurl1+"?"+ak1+"="+ak2;
+                     
+                     thirdurl11=thirdurl11.replaceAll(" ", "%20");
                     
                      URL third=new URL(thirdurl11);
                           URLConnection uconn = third.openConnection();
@@ -793,6 +803,7 @@ String resf2=rs.getString("resf2");
                     else if("null".equals(akt1) && "null".equals(akt2))
                              thirdurl11=thirdurl1;
                    // out.println(thirdurl11);
+                    thirdurl11=thirdurl11.replaceAll(" ", "%20");
                   // doc1=builder1.parse(new URL(thirdurl11).openStream());
                    doc1=builder1.parse(new URL(thirdurl11).openStream());
 
@@ -839,6 +850,7 @@ String resf2=rs.getString("resf2");
                    else if("null".equals(akt1) && "null".equals(akt2))
                             thirdurl11=thirdurl1;
                    //out.println(thirdurl11);
+                   thirdurl11=thirdurl11.replaceAll(" ", "%20");
 
                   URL third=new URL(thirdurl11);
                   URLConnection uconn = third.openConnection();

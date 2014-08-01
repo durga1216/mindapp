@@ -120,6 +120,7 @@ text-decoration:none;
 </head>
 <body>
 <%String u = (String) request.getSession().getAttribute("user");
+String q = (String) session.getAttribute("q");
     if (u != null ) {
    // System.out.println("user != null");
    // out.print("Welcome "+u);
@@ -147,7 +148,7 @@ text-decoration:none;
 <br><br><center><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
 <a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a></center><br>
 <br><center><div id="content"></div></center><br><br><br><br></div><div id=fff>
-<center><input type="submit" value="Continue" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Finish" name="submit"></center>
+<center><% if (q.equals("mashup")){ %><input type="submit" value="Continue" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%} %><input type="submit" value="Finish" name="submit"></center>
 </div>
 </form>
 

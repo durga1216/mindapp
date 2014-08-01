@@ -277,6 +277,8 @@ border-radius:3px;
 </head>
 <body>
  <%String u = (String) request.getSession().getAttribute("user");
+ String q = request.getParameter("q");
+ session.setAttribute("q", q);
     if (u != null ) {
    // System.out.println("user != null");
    // out.print("Welcome "+u);
