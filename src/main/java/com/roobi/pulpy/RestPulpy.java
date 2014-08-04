@@ -73,7 +73,7 @@ import com.mindots.util.Utils;
 
 public class RestPulpy {
 
-	@POST
+	@GET
 	
     @Produces(MediaType.TEXT_XML)
 	
