@@ -327,22 +327,19 @@ border-radius:3px;
 
 </div>
 <br><div id="oauth1" style="display:none"><br>
-<select name="oapp">
-<option value="dummy">App_class</option>
-    <option value="FlickrApi">FlickrApi</option>
-    <option value="TumblrApi">TumblrApi</option>
-     <option value="TwitterApi">TwitterApi</option>
-    <option value="LinkedInApi">LinkedInApi</option>
-</select><br/><br/><input type="text" name="omethod" value="" placeholder="Method_Name">
-<select name="oreq" Style='display:none'>
+<input type="text" name="ockey" value="8cd156666f78aa30085da4a604a370c9" placeholder="oauth_consumer_key">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="oskey" value="a8ad3f781a1c6c9c" placeholder="oauth_secret_key"><br><br>
+<input type="text" name="ourl1" value="https://www.flickr.com/services/oauth/request_token" placeholder="Request_token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="ourl2" value="https://www.flickr.com/services/oauth/authorize" placeholder="Authorization_Url"><br><br>
+<input type="text" name="ourl3" value="https://www.flickr.com/services/oauth/access_token" placeholder="Access_Token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="osmeth" value="HMAC-SHA1" placeholder="Signature_Method"><br><br>
+<select name="oreq">
 <option value="dummy">Request Method</option>
     <option value="GET">GET</option>
     <option value="POST">POST</option>
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
 </select><br/><br/>
-<input type="text" name="ockey" value="" placeholder="Client_ID_KEY">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="oskey" value="" placeholder="Client_Secret_Key"><br><br>
 </div>
 
 <br><br><div id="oauth2" style="display:none"><br>

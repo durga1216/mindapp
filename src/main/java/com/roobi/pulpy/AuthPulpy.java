@@ -129,7 +129,9 @@ public class AuthPulpy extends HttpServlet {
       session3.setAttribute("p10",p10);session3.setAttribute("pv10",pv10);
      // PrintWriter out=response.getWriter();
       Token requestToken=(Token) session.getAttribute("tok");
-      String oauth_verifier=(String) session.getAttribute("oauth_verifier");
+      String access_token1=(String) session.getAttribute("access_token1");
+      String oauth_signature=(String) session.getAttribute("oauth_signature");
+	    String parameter_string=(String) session.getAttribute("parameter_string");
       String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
      // String call="http://localhost:8071/mindapp/Oauth1Call";
       String strcon=null;
@@ -174,9 +176,6 @@ public class AuthPulpy extends HttpServlet {
              String h3=rs.getString("h3");String hv3=rs.getString("hv3");
              String h4=rs.getString("h4");String hv4=rs.getString("hv4");
              String h5=rs.getString("h5");String hv5=rs.getString("hv5");
-             String oapp1=rs.getString("oapp"); String omethod1=rs.getString("omethod");
-        	 String ockey1=rs.getString("ockey"); String oskey1=rs.getString("oskey");
-        	 String RESOURCE_URL =endurl1; String apiKey= ockey1; String apiSecret = oskey1;
              String eurl=null;
 	              
 	         if(authen1.equals("No Auth")){
@@ -863,53 +862,64 @@ public class AuthPulpy extends HttpServlet {
 	         else if(authen1.equals("Oauth1")){
 	        	 String res="";
 	        	 if(rm1.equals ("GET")){
-	        		 if (oapp1.equals("FlickrApi")){
-	        		 OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
-	     		    Verifier verifier = new Verifier(oauth_verifier);
-	     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-	     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
-	     		    request1.addQuerystringParameter("method", omethod1);
-	     		    service.signRequest(accessToken, request1);
-	     		    Response response1 = request1.send();
-	     		    res=response1.getBody();}
-	        		 else if (oapp1.equals("TumblrApi")){
-		        		 OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
-			     		    Verifier verifier = new Verifier(oauth_verifier);
-			     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-			     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
-			     		    service.signRequest(accessToken, request1);
-			     		    Response response1 = request1.send();
-			     		    res=response1.getBody();}
-	        		 else if (oapp1.equals("TwitterApi")){
-		        		 OAuthService service = new ServiceBuilder().provider(TwitterApi.SSL.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
-			     		    Verifier verifier = new Verifier(oauth_verifier);
-			     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-			     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
-			     		    service.signRequest(accessToken, request1);
-			     		    Response response1 = request1.send();
-			     		    res=response1.getBody();}
-	        		 else if (oapp1.equals("LinkedInApi")){
-		        		 OAuthService service = new ServiceBuilder().provider(LinkedInApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
-			     		    Verifier verifier = new Verifier(oauth_verifier);
-			     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-			     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
-			     		    service.signRequest(accessToken, request1);
-			     		    Response response1 = request1.send();
-			     		    res=response1.getBody();}
-	        		 else if (oapp1.equals("FreelancerApi")){
-			     		    OAuthService service = new ServiceBuilder().provider(FreelancerApi.Sandbox.class).signatureType(SignatureType.QueryString).apiKey(ockey1).apiSecret(oskey1).scope("http://api.sandbox.freelancer.com").callback(call).build();
-			     		    Verifier verifier = new Verifier(oauth_verifier);
-			     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-			     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
-			     		   request1.addHeader("GData-Version", "3.0");
-			     		    service.signRequest(accessToken, request1);
-			     		    Response response1 = request1.send();
-			     		    res=response1.getBody();}
+	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+	        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2;}
+	        		 
+	        		 else if(!"null".equals(pa1)){
+		        		 eurl=endurl1+"?"+pa1+"="+pva1;}
+	        		 else if("null".equals(pa1))
+	        			eurl=endurl1;
+	        		 out.println(eurl);
+	        		 String oauthfinal=eurl+"&"+parameter_string+"&oauth_token="+access_token1+"&oauth_signature"+oauth_signature;
+	        		 out.println(oauthfinal);
+	        		 HttpClient httpclient = new DefaultHttpClient();
+               	   HttpGet get1=new HttpGet(oauthfinal);
+               	   HttpResponse response1=httpclient.execute(get1);
+                   /* HttpPost httppost = new HttpPost(url1);
+                       httppost.setHeader("Authorization",authorization_header_string);
+                       ResponseHandler<String> responseHandler = new BasicResponseHandler();
+                      String responseBody = httpclient.execute(httppost, responseHandler);
+                     oauth_token = responseBody.substring(responseBody.indexOf("oauth_token=") + 12, responseBody.indexOf("&oauth_token_secret="));
+                       System.out.println(responseBody); // */
+        
+       		BufferedReader rd = new BufferedReader(
+                              new InputStreamReader(response1.getEntity().getContent()));
+        
+       		StringBuffer result = new StringBuffer();
+       		String line = "";
+       		while ((line = rd.readLine()) != null) {
+       			result.append(line);
+       		}
+       		res=result.toString();
 	        	if( resf1.equals("XML")){
 	        		session.setAttribute("xml1", res);
 	        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
-	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
+	     		      //  response.setHeader("Refresh", "1; URL=auth1.jsp");
 	        	}
 	        	else if( resf1.equals("JSON")){
 	        		XMLSerializer serializer = new XMLSerializer();
@@ -920,53 +930,11 @@ public class AuthPulpy extends HttpServlet {
 	        		session.setAttribute("xml1", str);
 	        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
-	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
+	     		      //  response.setHeader("Refresh", "1; URL=auth1.jsp");
 	        	}
 	        	 }
 	        	 else if(rm1.equals ("POST")){
-	        		 if (oapp1.equals("FlickrApi")){
-		        		 OAuthService service = new ServiceBuilder().provider(FlickrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
-		     		    Verifier verifier = new Verifier(oauth_verifier);
-		     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-		     		    OAuthRequest request1 = new OAuthRequest(Verb.GET,RESOURCE_URL);
-		     		    request1.addQuerystringParameter("method", omethod1);
-		     		    service.signRequest(accessToken, request1);
-		     		    Response response1 = request1.send();
-		     		    res=response1.getBody();}
-		        		 else if (oapp1.equals("TumblrApi")){
-			        		 OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
-				     		    Verifier verifier = new Verifier(oauth_verifier);
-				     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-				     		    OAuthRequest request1 = new OAuthRequest(Verb.POST,RESOURCE_URL);
-				     		    service.signRequest(accessToken, request1);
-				     		    Response response1 = request1.send();
-				     		    res=response1.getBody();}
-		        		 else if (oapp1.equals("TwitterApi")){
-			        		 OAuthService service = new ServiceBuilder().provider(TwitterApi.SSL.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
-				     		    Verifier verifier = new Verifier(oauth_verifier);
-				     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-				     		    OAuthRequest request1 = new OAuthRequest(Verb.POST,RESOURCE_URL);
-				     		    request1.addBodyParameter(pa1, pva1);
-				     		    service.signRequest(accessToken, request1);
-				     		    Response response1 = request1.send();
-				     		    res=response1.getBody();}
-		        		 else if (oapp1.equals("LinkedInApi")){
-			        		 OAuthService service = new ServiceBuilder().provider(LinkedInApi.class).apiKey(apiKey).apiSecret(apiSecret).callback(call).build(); 
-				     		    Verifier verifier = new Verifier(oauth_verifier);
-				     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-				     		    OAuthRequest request1 = new OAuthRequest(Verb.POST,RESOURCE_URL);
-				     		    service.signRequest(accessToken, request1);
-				     		    Response response1 = request1.send();
-				     		    res=response1.getBody();}
-		        		 else if (oapp1.equals("FreelancerApi")){
-				     		    OAuthService service = new ServiceBuilder().provider(FreelancerApi.Sandbox.class).signatureType(SignatureType.QueryString).apiKey(ockey1).apiSecret(oskey1).scope("http://api.sandbox.freelancer.com").callback(call).build();
-				     		    Verifier verifier = new Verifier(oauth_verifier);
-				     		    Token accessToken = service.getAccessToken(requestToken, verifier);
-				     		    OAuthRequest request1 = new OAuthRequest(Verb.POST,RESOURCE_URL);
-				     		   request1.addHeader("GData-Version", "3.0");
-				     		    service.signRequest(accessToken, request1);
-				     		    Response response1 = request1.send();
-				     		    res=response1.getBody();}
+	        		 
 	 	        	if( resf1.equals("XML")){
 	 	        		session.setAttribute("xml1", res);
 	 	        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
