@@ -138,11 +138,13 @@ public class FirstAuthPulpy extends HttpServlet {
 	                    String oauth_signature = "";String oauth_signature1 = "";
 	                 try {
 	                      oauth_signature = computeSignature(signature_base_string, secret+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
-	                       oauth_signature1 = "";URLEncoder.encode(oauth_signature, "UTF-8");
+	                       oauth_signature1 =URLEncoder.encode(oauth_signature, "UTF-8");
 	                  } catch (GeneralSecurityException e) {
 	                     // TODO Auto-generated catch block
 	                     e.printStackTrace();
 	                   }
+	                 session.setAttribute("oauth_signature1", oauth_signature1);
+	                    session.setAttribute("parameter_string", parameter_string);
 	                  String authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"" + 
 	                         oauth_timestamp + "\",oauth_nonce=\"" + oauth_nonce + "\",oauth_version=\"1.0\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\"";
 	                  // System.out.println("authorization_header_string=" + authorization_header_string);
@@ -173,14 +175,15 @@ public class FirstAuthPulpy extends HttpServlet {
 	         		String tok=result.toString();
 	         		 String[] tok1=tok.split("&");
 	         		oauth_token=tok1[1];
+	         		String sec1=tok1[2];
+	         		session.setAttribute("secret1", sec1);
 	                        
 	                  } 
 	                     catch(ClientProtocolException cpe)  {  System.out.println(cpe.getMessage());  }
 	                    catch(IOException ioe) {   System.out.println(ioe.getMessage());  }
 	                    finally { httpclient.getConnectionManager().shutdown();  } 
  //=======Authorization=======
-	                    session.setAttribute("oauth_signature", oauth_signature1);
-	                    session.setAttribute("signature_base_string", parameter_string);
+	                    
 	                    String author=ourl21+"?"+oauth_token+"&perms=write";
 	                    response.sendRedirect(author);
 	             }

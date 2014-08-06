@@ -8,21 +8,28 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.security.GeneralSecurityException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,6 +38,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -128,10 +136,6 @@ public class AuthPulpy extends HttpServlet {
       session3.setAttribute("p9",p9);session3.setAttribute("pv9",pv9);
       session3.setAttribute("p10",p10);session3.setAttribute("pv10",pv10);
      // PrintWriter out=response.getWriter();
-      Token requestToken=(Token) session.getAttribute("tok");
-      String access_token1=(String) session.getAttribute("access_token1");
-      String oauth_signature=(String) session.getAttribute("oauth_signature");
-	    String parameter_string=(String) session.getAttribute("parameter_string");
       String call="https://mindapp-pulpy.rhcloud.com/Oauth1Call";
      // String call="http://localhost:8071/mindapp/Oauth1Call";
       String strcon=null;
@@ -863,50 +867,76 @@ public class AuthPulpy extends HttpServlet {
 	        	 String res="";
 	        	 if(rm1.equals ("GET")){
 	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9;}
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8;}
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7;}
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
-	        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
+	        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2;}
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2;}
 	        		 
 	        		 else if(!"null".equals(pa1)){
-		        		 eurl=endurl1+"?"+pa1+"="+pva1;}
+		        		 eurl=pa1+"="+pva1;}
 	        		 else if("null".equals(pa1))
-	        			eurl=endurl1;
-	        		 out.println(eurl);
-	        		 String oauthfinal=eurl+"&"+parameter_string+"&oauth_token="+access_token1+"&oauth_signature"+oauth_signature;
-	        		 out.println(oauthfinal);
+	        			eurl="";
+	        		// out.println(eurl);
+	        		 //=========================
+	        		 String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
+	            	 String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
+	            	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
+	            	 String oreq1=rs.getString("oreq");
+	            	 String oauth_token=(String ) session.getAttribute("access_token1");
+	            	 String access_secret1=(String ) session.getAttribute("access_secret1");
+	         	    String[] tok1=access_secret1.split("=");
+	         	    String sec1=tok1[1];
+	            	 //========initial=========
+	            	 String uuid_string = UUID.randomUUID().toString();
+	                 uuid_string = uuid_string.replaceAll("-", "");
+	                 String oauth_nonce = uuid_string; 
+	                 String enurl = URLEncoder.encode(endurl1, "UTF-8");
+	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
+	                   String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
+	                  String parameter_string = eurl+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+	                  String[] tst1=parameter_string.split("&");Arrays.sort(tst1);
+	          		int no=tst1.length;String tst3="";
+	          		for(int i=1;i<no;i++){
+	          			tst3=tst3+"&"+tst1[i];
+	          		}
+	          		String tst4=tst1[0]+tst3;
+	                  String signature_base_string = rm1+"&"+enurl+"&" + URLEncoder.encode(tst4, "UTF-8");
+	                 //  System.out.println("signature_base_string=" + signature_base_string);
+	                    String oauth_signature = "";String oauth_signature1 = "";
+	                    try {
+		                      oauth_signature = computeSignature(signature_base_string, secret+"&"+sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+		                       oauth_signature1 = URLEncoder.encode(oauth_signature, "UTF-8");
+		                  } catch (GeneralSecurityException e) {
+		                     // TODO Auto-generated catch block
+		                     out.println(e);
+		                   }
+		                  String actok=endurl1+"?"+tst4+"&oauth_signature="+oauth_signature1;
+		                  //out.println(actok);
 	        		 HttpClient httpclient = new DefaultHttpClient();
-               	   HttpGet get1=new HttpGet(oauthfinal);
+               	   HttpGet get1=new HttpGet(actok);
                	   HttpResponse response1=httpclient.execute(get1);
-                   /* HttpPost httppost = new HttpPost(url1);
-                       httppost.setHeader("Authorization",authorization_header_string);
-                       ResponseHandler<String> responseHandler = new BasicResponseHandler();
-                      String responseBody = httpclient.execute(httppost, responseHandler);
-                     oauth_token = responseBody.substring(responseBody.indexOf("oauth_token=") + 12, responseBody.indexOf("&oauth_token_secret="));
-                       System.out.println(responseBody); // */
-        
-       		BufferedReader rd = new BufferedReader(
+                  BufferedReader rd = new BufferedReader(
                               new InputStreamReader(response1.getEntity().getContent()));
         
        		StringBuffer result = new StringBuffer();
@@ -914,23 +944,24 @@ public class AuthPulpy extends HttpServlet {
        		while ((line = rd.readLine()) != null) {
        			result.append(line);
        		}
-       		res=result.toString();
+       		strcon=result.toString();
+       		//out.println(strcon);
 	        	if( resf1.equals("XML")){
-	        		session.setAttribute("xml1", res);
+	        		session.setAttribute("xml1", strcon);
 	        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
-	     		      //  response.setHeader("Refresh", "1; URL=auth1.jsp");
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");
 	        	}
 	        	else if( resf1.equals("JSON")){
 	        		XMLSerializer serializer = new XMLSerializer();
-     	            JSON json = JSONSerializer.toJSON(res);
+     	            JSON json = JSONSerializer.toJSON(strcon);
      	            serializer.setRootName("root");
      	            serializer.setTypeHintsEnabled(false);
      	            String str = serializer.write(json);
 	        		session.setAttribute("xml1", str);
 	        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
-	     		      //  response.setHeader("Refresh", "1; URL=auth1.jsp");
+	     		       response.setHeader("Refresh", "1; URL=auth1.jsp");
 	        	}
 	        	 }
 	        	 else if(rm1.equals ("POST")){
@@ -1138,6 +1169,20 @@ public class AuthPulpy extends HttpServlet {
 	        	 }
       
 	} //post
-	
+	private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
+		 
+        SecretKey secretKey = null;
+ 
+       byte[] keyBytes = keyString.getBytes();
+        secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
+ 
+        Mac mac = Mac.getInstance("HmacSHA1");
+ 
+      mac.init(secretKey);
+ 
+      byte[] text = baseString.getBytes();
+ 
+      return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
+  }	 
 } //class
 	

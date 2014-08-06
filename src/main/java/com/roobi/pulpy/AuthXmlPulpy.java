@@ -362,7 +362,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		        	     StringBuilder strb=new StringBuilder();
 		        		 URL eurl1=new URL(eurl);
 		        		 URLConnection uconn = eurl1.openConnection();
-		        	     HttpsURLConnection conn = (HttpsURLConnection) uconn;
+		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 		        	     conn.connect();
 		        	     Object content = conn.getContent();
 		        	     InputStream stream = (InputStream) content;

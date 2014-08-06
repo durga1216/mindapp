@@ -327,11 +327,11 @@ border-radius:3px;
 
 </div>
 <br><div id="oauth1" style="display:none"><br>
-<input type="text" name="ockey" value="8cd156666f78aa30085da4a604a370c9" placeholder="oauth_consumer_key">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="oskey" value="a8ad3f781a1c6c9c" placeholder="oauth_secret_key"><br><br>
-<input type="text" name="ourl1" value="https://www.flickr.com/services/oauth/request_token" placeholder="Request_token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="text" name="ourl2" value="https://www.flickr.com/services/oauth/authorize" placeholder="Authorization_Url"><br><br>
-<input type="text" name="ourl3" value="https://www.flickr.com/services/oauth/access_token" placeholder="Access_Token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="ockey" value="" placeholder="oauth_consumer_key">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="oskey" value="" placeholder="oauth_secret_key"><br><br>
+<input type="text" name="ourl1" value="" placeholder="Request_token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="ourl2" value="" placeholder="Authorization_Url"><br><br>
+<input type="text" name="ourl3" value="" placeholder="Access_Token_Url">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="osmeth" value="HMAC-SHA1" placeholder="Signature_Method"><br><br>
 <select name="oreq">
 <option value="dummy">Request Method</option>
