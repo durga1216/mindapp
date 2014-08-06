@@ -241,20 +241,19 @@ String resf2=rs.getString("resf2");
              Object content = conn.getContent();
              InputStream stream = (InputStream) content;
              String line=null;
-             BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-             while ((line = br.readLine()) != null)    {           
-          JSON json = JSONSerializer.toJSON( line );  
-        XMLSerializer xmlSerializer = new XMLSerializer();  
-        xmlSerializer.setTypeHintsEnabled(false);
-        xmlSerializer.setSkipWhitespace(true);
-        xmlSerializer.setTrimSpaces(true);
-        xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-        xmlSerializer.removeNamespace(line);
-        xmlSerializer.setForceTopLevelObject(false);
-          secjsonxml = xmlSerializer.write( json );
-
-         }          // end-while 
-                doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+             line=null;String strcon=null;String str=null;
+     	     StringBuilder strb=new StringBuilder();
+ 	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+     	     while ((line = br.readLine()) != null)    { 
+ 	    	      strb.append(line);
+    		     }//while
+ 	    	 strcon=strb.toString();
+ 	    	 XMLSerializer serializer = new XMLSerializer();
+ 	            JSON json = JSONSerializer.toJSON(strcon);
+ 	            serializer.setRootName("root");
+ 	            serializer.setTypeHintsEnabled(false);
+ 	            str = serializer.write(json);
+                doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8")))); 
 
               
      }
@@ -350,20 +349,19 @@ String resf2=rs.getString("resf2");
              Object content = conn.getContent();
              InputStream stream = (InputStream) content;
              String line=null;
-             BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-             while ((line = br.readLine()) != null)    {           
-          JSON json = JSONSerializer.toJSON( line );  
-        XMLSerializer xmlSerializer = new XMLSerializer();  
-        xmlSerializer.setTypeHintsEnabled(false);
-        xmlSerializer.setSkipWhitespace(true);
-        xmlSerializer.setTrimSpaces(true);
-        xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-        xmlSerializer.removeNamespace(line);
-        xmlSerializer.setForceTopLevelObject(false);
-          secjsonxml = xmlSerializer.write( json );
-
-         }          // end-while 
-                doc= builder.parse(new InputSource(new ByteArrayInputStream(secjsonxml.getBytes("UTF-8")))); 
+             line=null;String strcon=null;String str=null;
+     	     StringBuilder strb=new StringBuilder();
+ 	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+     	     while ((line = br.readLine()) != null)    { 
+ 	    	      strb.append(line);
+    		     }//while
+ 	    	 strcon=strb.toString();
+ 	    	 XMLSerializer serializer = new XMLSerializer();
+ 	            JSON json = JSONSerializer.toJSON(strcon);
+ 	            serializer.setRootName("root");
+ 	            serializer.setTypeHintsEnabled(false);
+ 	            str = serializer.write(json);
+                doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8")))); 
 
            
      }  //end if JSON
@@ -859,21 +857,19 @@ String resf2=rs.getString("resf2");
                   Object content = conn.getContent();
                   InputStream stream = (InputStream) content;
                   String line=null;
-                  BufferedReader in=new BufferedReader(new InputStreamReader(stream));
-                 while ((line = in.readLine()) != null)    {           
-              JSON json = JSONSerializer.toJSON( line );  
-               XMLSerializer xmlSerializer = new XMLSerializer();  
-               xmlSerializer.setTypeHintsEnabled(false);
-               xmlSerializer.setSkipWhitespace(true);
-               xmlSerializer.setTrimSpaces(true);
-               xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-               xmlSerializer.removeNamespace(line);
-               xmlSerializer.setForceTopLevelObject(false);
-               thrdjsonxmlout = xmlSerializer.write( json );
-
-                    }
-           // end-while 
-                    doc1= builder1.parse(new InputSource(new ByteArrayInputStream(thrdjsonxmlout.getBytes("UTF-8")))); 
+                  line=null;String strcon=null;String str=null;
+          	     StringBuilder strb=new StringBuilder();
+      	         BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+          	     while ((line = br.readLine()) != null)    { 
+      	    	      strb.append(line);
+         		     }//while
+      	    	 strcon=strb.toString();
+      	    	 XMLSerializer serializer = new XMLSerializer();
+      	            JSON json = JSONSerializer.toJSON(strcon);
+      	            serializer.setRootName("root");
+      	            serializer.setTypeHintsEnabled(false);
+      	            str = serializer.write(json);
+                    doc1= builder1.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8")))); 
 
             
                }//api keys and get     
