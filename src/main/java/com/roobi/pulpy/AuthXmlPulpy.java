@@ -126,7 +126,7 @@ public class AuthXmlPulpy extends HttpServlet {
          String h4=rs.getString("h4");String hv4=rs.getString("hv4");
          String h5=rs.getString("h5");String hv5=rs.getString("hv5");
 	     String line=null;
-
+	     String access_token=rs.getString("extoken");
             String rm1=rs.getString("rm");
 
         	String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
@@ -777,8 +777,7 @@ public class AuthXmlPulpy extends HttpServlet {
        
        
 	         else if(authen1.equals("Oauth2")){  //OAUTH authentication
-	     		 String id1=(String) session.getAttribute("id");
-	     		 String access_token=(String) session.getAttribute("access_token");
+	     	
 		     		
 
 	     		if(rm1.equals("GET")){ 
@@ -798,23 +797,23 @@ public class AuthXmlPulpy extends HttpServlet {
 				     	   // List<NameValuePair> params = new LinkedList<NameValuePair>();
 
 				     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
-				     			 param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+p6+"="+pva6;
+				     			 param=tlabel+"="+access_token+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+p6+"="+p6;
 				        		 
 				             else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5))
-		                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;
+		                         param=tlabel+"="+access_token+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5;
 
 				     	
 				              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4))
-			                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;
+			                         param=tlabel+"="+access_token+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4;
 
 				              else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3))
-			                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;
+			                         param=tlabel+"="+access_token+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3;
 
 				        	  else if(!"null".equals(pa1) && !"null".equals(pa2))
-			                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2;
+			                         param=tlabel+"="+access_token+"&"+pa1+"="+p1+"&"+pa2+"="+p2;
 
 				              else if(!"null".equals(pa1))
-			                         param=tlabel+"="+access_token+"&"+pa1+"="+pva1;
+			                         param=tlabel+"="+access_token+"&"+pa1+"="+p1;
 
 				        	  else if("null".equals(pa1))
 			                         param=tlabel+"="+access_token;
@@ -853,47 +852,47 @@ public class AuthXmlPulpy extends HttpServlet {
 			     			 List <NameValuePair> cod = new ArrayList <NameValuePair>();
 				     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
 						    	 cod.add(new BasicNameValuePair(tlabel,access_token));
-					    	     cod.add(new BasicNameValuePair(pa1,pva1));
-					    	     cod.add(new BasicNameValuePair(pa2,pva2));
-					    	     cod.add(new BasicNameValuePair(pa3,pva3));
-					    	     cod.add(new BasicNameValuePair(pa4,pva4));
-					    	     cod.add(new BasicNameValuePair(pa5,pva5));
-					    	     cod.add(new BasicNameValuePair(pa6,pva6));}
+					    	     cod.add(new BasicNameValuePair(pa1,p1));
+					    	     cod.add(new BasicNameValuePair(pa2,p2));
+					    	     cod.add(new BasicNameValuePair(pa3,p3));
+					    	     cod.add(new BasicNameValuePair(pa4,p4));
+					    	     cod.add(new BasicNameValuePair(pa5,p5));
+					    	     cod.add(new BasicNameValuePair(pa6,p6));}
 
 
 				     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
 				     				  cod.add(new BasicNameValuePair(tlabel,access_token));
-						    	     cod.add(new BasicNameValuePair(pa1,pva1));
-						    	     cod.add(new BasicNameValuePair(pa2,pva2));
-						    	     cod.add(new BasicNameValuePair(pa3,pva3));
-						    	     cod.add(new BasicNameValuePair(pa4,pva4));
-						    	     cod.add(new BasicNameValuePair(pa5,pva5));	}    
+						    	     cod.add(new BasicNameValuePair(pa1,p1));
+						    	     cod.add(new BasicNameValuePair(pa2,p2));
+						    	     cod.add(new BasicNameValuePair(pa3,p3));
+						    	     cod.add(new BasicNameValuePair(pa4,p4));
+						    	     cod.add(new BasicNameValuePair(pa5,p5));	}    
 					     		
 				     			 
 				     			 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){cod.add(new BasicNameValuePair(tlabel,access_token));
-					    	     cod.add(new BasicNameValuePair(pa1,pva1));
-					    	     cod.add(new BasicNameValuePair(pa2,pva2));
-					    	     cod.add(new BasicNameValuePair(pa3,pva3));
-					    	     cod.add(new BasicNameValuePair(pa4,pva4));
+					    	     cod.add(new BasicNameValuePair(pa1,p1));
+					    	     cod.add(new BasicNameValuePair(pa2,p2));
+					    	     cod.add(new BasicNameValuePair(pa3,p3));
+					    	     cod.add(new BasicNameValuePair(pa4,p4));
 					    	     }
 						     		
 					     		 
 					     		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){cod.add(new BasicNameValuePair(tlabel,access_token));
-						    	     cod.add(new BasicNameValuePair(pa1,pva1));
-						    	     cod.add(new BasicNameValuePair(pa2,pva2));
-						    	     cod.add(new BasicNameValuePair(pa3,pva3));
+						    	     cod.add(new BasicNameValuePair(pa1,p1));
+						    	     cod.add(new BasicNameValuePair(pa2,p2));
+						    	     cod.add(new BasicNameValuePair(pa3,p3));
 						    	     }
 							     		
 						     		 
 						     		 else if(!"null".equals(pa1) && !"null".equals(pa2)){cod.add(new BasicNameValuePair(tlabel,access_token));
-							    	     cod.add(new BasicNameValuePair(pa1,pva1));
-							    	     cod.add(new BasicNameValuePair(pa2,pva2));
+							    	     cod.add(new BasicNameValuePair(pa1,p1));
+							    	     cod.add(new BasicNameValuePair(pa2,p2));
 							    	     }
 								     		
 							     		 
 							     		 else if(!"null".equals(pa1)){
 								     			cod.add(new BasicNameValuePair(tlabel,access_token));
-									    	    cod.add(new BasicNameValuePair(pa1,pva1));
+									    	    cod.add(new BasicNameValuePair(pa1,p1));
 									    	     
 								     		 }
 							     		 else if("null".equals(pa1)){
