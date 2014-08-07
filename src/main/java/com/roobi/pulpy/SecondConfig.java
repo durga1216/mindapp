@@ -291,7 +291,8 @@ public class SecondConfig extends HttpServlet {
 	        	     conn.connect();
 	        	     Object content = conn.getContent();
 	        	     InputStream stream = (InputStream) content;
-	        	     String line=null;
+	        	     String line=null; String strcon=null;
+	        	     StringBuilder strb=new StringBuilder();
 	        	     String str="";
 	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
 	        	     if(resf2.equals("XML")){
@@ -299,16 +300,15 @@ public class SecondConfig extends HttpServlet {
 	    	       		     str+=line;
 	            	      }} //if and while
 	        	     else if(resf2.equals("JSON")){
-	        	          while ((line = br.readLine()) != null)    { 		  
-		         		  JSON json = JSONSerializer.toJSON( line );  
-		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-		     	          xmlSerializer.setTypeHintsEnabled(false);
-		     	          xmlSerializer.setSkipWhitespace(true);
-		     	          xmlSerializer.setTrimSpaces(true);
-		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-		     	          xmlSerializer.removeNamespace(line);
-		     	          xmlSerializer.setForceTopLevelObject(false);
-		     		      str = xmlSerializer.write( json );}} // else-if amd while
+	        	    	 while ((line = br.readLine()) != null)    { 
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	            str = serializer.write(json);} // else-if amd while
 	    	    	 session.setAttribute("xml1", str);
 		              out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	     		        response.setHeader("Refresh", "1; URL=sec_xml_config.jsp");	
