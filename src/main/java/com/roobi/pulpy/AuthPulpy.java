@@ -85,7 +85,8 @@ public class AuthPulpy extends HttpServlet {
 
 		PrintWriter out=response.getWriter();
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-
+		 HttpSession session1=request.getSession(true);
+	     	String access_token=(String)session1.getAttribute("access_token");
       String rf=request.getParameter("rf");String select2=request.getParameter("rm");
       String select=request.getParameter("select2");
       String select3=request.getParameter("select3");String burl=request.getParameter("method");String endurl=request.getParameter("endurl");
@@ -149,7 +150,7 @@ public class AuthPulpy extends HttpServlet {
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             String sam=null;
              PreparedStatement st=null;
-			 st=con.prepareStatement("insert into config(id,appid,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10) values ('"+id+"','"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"')");
+			 st=con.prepareStatement("insert into config(id,appid,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,extoken) values ('"+id+"','"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"','"+access_token+"')");
 			 st.executeUpdate();
 		     st.close();
 		  		//out.println("start2");
@@ -896,7 +897,7 @@ public class AuthPulpy extends HttpServlet {
 	        		 else if(!"null".equals(pa1)){
 		        		 eurl=pa1+"="+pva1;}
 	        		 else if("null".equals(pa1))
-	        			eurl="";
+	        			eurl="null";
 	        		// out.println(eurl);
 	        		 //=========================
 	        		 String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
@@ -914,8 +915,14 @@ public class AuthPulpy extends HttpServlet {
 	                 String enurl = URLEncoder.encode(endurl1, "UTF-8");
 	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
 	                   String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
-	                  String parameter_string = eurl+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
-	                  String[] tst1=parameter_string.split("&");Arrays.sort(tst1);
+	                   String parameter_string ="";
+	                   if(eurl.equals("null")){
+	                    parameter_string ="oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+	                  }
+	                  else{
+		                   parameter_string = eurl+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+	                  }
+	                   String[] tst1=parameter_string.split("&");Arrays.sort(tst1);
 	          		int no=tst1.length;String tst3="";
 	          		for(int i=1;i<no;i++){
 	          			tst3=tst3+"&"+tst1[i];
@@ -992,8 +999,7 @@ public class AuthPulpy extends HttpServlet {
 	         else if(authen1.equals("Oauth2")){
 	 			HttpClient client=new DefaultHttpClient();
                 String Response=null;
-	        	HttpSession session1=request.getSession(true);
-		     	String access_token=(String)session1.getAttribute("access_token");
+	        	
 		     	String GetResponse=null;
 	     		 StringBuilder result=new StringBuilder();
 	     			String line = "";
