@@ -66,7 +66,7 @@ public class MobiClient extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
          PrintWriter out=response.getWriter();
 
-		response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		//response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
 		  String appid=(String) session.getAttribute("xx"); 
@@ -1689,28 +1689,28 @@ public class MobiClient extends HttpServlet {
                   		 else if("null".equals(akt1) && "null".equals(akt2))
                   			      thirdurl11=thirdurl1;
                   		 
+                  		 //out.println(thirdurl11);
 
-                  		URL third=new URL(thirdurl11);
-          		        URLConnection uconn = third.openConnection();
-          	            HttpURLConnection conn = (HttpURLConnection) uconn;
-          	            conn.connect();
-          	            Object content = conn.getContent();
-          	            InputStream stream = (InputStream) content;
-          	            BufferedReader in=new BufferedReader(new InputStreamReader(stream));
-          	           while ((line = in.readLine()) != null)    { 		  
-           	       JSON json = JSONSerializer.toJSON( line );  
-        	           XMLSerializer xmlSerializer = new XMLSerializer();  
-        	           xmlSerializer.setTypeHintsEnabled(false);
-        	           xmlSerializer.setSkipWhitespace(true);
-        	           xmlSerializer.setTrimSpaces(true);
-        	           xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-        	           xmlSerializer.removeNamespace(line);
-        	           xmlSerializer.setForceTopLevelObject(false);
-        		       thrdjsonxmlout = xmlSerializer.write( json );
-
-          	              }
+                  		URL url1=new URL(thirdurl11);
+        				 URLConnection uconn = url1.openConnection();
+        				 String str="";
+                         BufferedReader br = new BufferedReader(new InputStreamReader(uconn.getInputStream()));
+                          line=null; String strcon=null;
+    	        	     StringBuilder strb=new StringBuilder();
+             		     FileWriter fw=null;
+          	          while ((line = br.readLine()) != null)    { 
+        	    	      strb.append(line);
+   	    		     }//while
+        	    	 strcon=strb.toString();
+        	    	 XMLSerializer serializer = new XMLSerializer();
+     	            JSON json = JSONSerializer.toJSON(strcon);
+     	            serializer.setRootName("root");
+     	            serializer.setTypeHintsEnabled(false);
+     	            str = serializer.write(json);
+//out.println(str);
+          	              
           	     // end-while 
-        	    	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(thrdjsonxmlout.getBytes("UTF-8")))); 
+        	    	  	  doc1= builder1.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8")))); 
 
            	     
                   	 
