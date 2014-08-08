@@ -1015,7 +1015,7 @@ public class AuthPulpy extends HttpServlet {
 		     				new InputStreamReader(response1.getEntity().getContent()));
 		     			while ((line = rd.readLine()) != null) {
 		     				GetResponse=line;
-		     				out.println(GetResponse);
+		     				//out.println(GetResponse);
 		     			}
 	     	
 		     	}   // auth bearer treplace
@@ -1142,7 +1142,7 @@ public class AuthPulpy extends HttpServlet {
    	              xmlSerializer.removeNamespace(GetResponse);
    	              xmlSerializer.setForceTopLevelObject(false);
    	              String xmlout=xmlSerializer.write(json);
-   				out.println(xmlout);
+   				//out.println(xmlout);
 
    	           session.setAttribute("xml1", xmlout);
    	        out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
