@@ -615,7 +615,7 @@ public class AuthPulpy extends HttpServlet {
 	        		            return;
 	        		        }
 	        		 String sigurl= helper.sign(eurl);
-	        		 URL eurl1=new URL(eurl);
+	        		 URL eurl1=new URL(sigurl);
 	        		 URLConnection uconn = eurl1.openConnection();
 	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
 	        	     conn.connect();
