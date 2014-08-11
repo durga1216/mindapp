@@ -60,6 +60,9 @@ public class amazon{
         System.out.println("String form example:");
         String queryString = "Service=AWSECommerceService&Version=2009-03-31&Operation=ItemLookup&AssociateTag=123&ResponseGroup=Small&ItemId="
                 + ITEM_ID;
+         queryString = "Service=AWSECommerceService&Version=2009-03-31&"
+        		+ "Operation=ItemSearch&AssociateTag=123&ResponseGroup=Medium&Keywords=moto g"
+        		+ "&SearchIndex=Electronics";
         requestUrl = helper.sign(queryString);
         System.out.println("Request is \"" + requestUrl + "\"");
 
