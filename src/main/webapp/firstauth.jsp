@@ -41,6 +41,7 @@ $(document).ready(function(){
 					$('#select2').hide();
 									$('#others').hide();
 									$('#oauth1').hide();
+									$('#sign').hide();
 					
 				  
 			    }
@@ -53,6 +54,7 @@ $(document).ready(function(){
 			$('#select2').hide();
 							$('#others').show();
 							$('#oauth1').hide();
+							$('#sign').hide();
 			
 
 		    }
@@ -65,6 +67,7 @@ $(document).ready(function(){
 			$('#select2').hide();
 							$('#others').hide();
 							$('#oauth1').hide();
+							$('#sign').hide();
 			
 		    }
 
@@ -77,6 +80,7 @@ $(document).ready(function(){
 		$('#select2').hide();
 						$('#others').hide();
 						$('#oauth1').show();
+						$('#sign').hide();
 		
 	}
 
@@ -89,7 +93,20 @@ $(document).ready(function(){
 		$('#oauth2').show();
 		$('.rmethod').show();
 		$('#select2').show();
-		$('#oauth1').hide();}
+		$('#oauth1').hide();
+		$('#sign').hide();}
+		    
+ else if($('input:radio[name=authen]:checked').val() == "Signed Auth"){
+	 $('#apiid').hide();
+		$('#divid').hide();
+		$('#req').hide();
+				$('#others').hide();
+		
+		$('#oauth2').hide();
+		$('.rmethod').hide();
+		$('#select2').hide();
+		$('#oauth1').hide();
+		$('#sign').show();}
  
 		});
 });
@@ -308,6 +325,9 @@ border-radius:3px;
 
 <input type="radio" name="authen"  value="Oauth2">
 <label for="rd1">OAuth2</label>
+
+<input type="radio" name="authen"  value="Signed Auth">
+<label for="rd1">Signed Auth</label>
 </div>
 <div id="req" style="display:none">Fine! Go ahead</div>
 <br><div id="others" style="display:none">If Http headers, Please leave username & password fields and add your credentials in header</div>
@@ -341,7 +361,11 @@ border-radius:3px;
     <option value="DELETE">DELETE</option>
 </select><br/><br/>
 </div>
-
+<br><div id='sign' style="display:none;"><br>
+<input type="text" name="sigckey" value="" placeholder="Signed_consumer_key">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="sigskey" value="" placeholder="Signed_secret_key"><br><br>
+<input type="text" name="Signmeth" value="HMAC-SHA1" placeholder="Signature_Method"><br><br>
+</div>
 <br><br><div id="oauth2" style="display:none"><br>
 <center><div class='redirect'>Redirect URI=/OauthCallBackServlet</div></center><br><br>
 <input type="text" name="cname" value="" placeholder="Client_ID_Label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

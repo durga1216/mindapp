@@ -181,6 +181,8 @@ public class AuthPulpy extends HttpServlet {
              String h3=rs.getString("h3");String hv3=rs.getString("hv3");
              String h4=rs.getString("h4");String hv4=rs.getString("hv4");
              String h5=rs.getString("h5");String hv5=rs.getString("hv5");
+             String sigckey=rs.getString("sigckey");
+             String sigskey=rs.getString("sigskey");
              String eurl=null;
 	              
 	         if(authen1.equals("No Auth")){
@@ -569,6 +571,82 @@ public class AuthPulpy extends HttpServlet {
 	         }  // API keys  
 	         
             //Basic Auth
+	         else if(authen1.equals("Signed Auth")){  //API Keys
+        	     String str="";
+                 Object obj;
+	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
+	        		 
+	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+	        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
+		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2;}
+	        		 
+	        		 else if(!"null".equals(pa1)){
+		        		 eurl=pa1+"="+pva1;}        		
+	        		 
+	        			eurl=eurl.replaceAll(" ", "%20"); 
+	        			 SignedRequestsHelper helper;
+	        		        try {
+	        		            helper = SignedRequestsHelper.getInstance(endurl1, sigckey, sigskey);
+	        		        } catch (Exception e) {
+	        		            e.printStackTrace();
+	        		            return;
+	        		        }
+	        		 String sigurl= helper.sign(eurl);
+	        		 URL eurl1=new URL(eurl);
+	        		 URLConnection uconn = eurl1.openConnection();
+	        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+	        	     conn.connect();
+	        	     Object content = conn.getContent();
+	        	     InputStream stream = (InputStream) content;
+	        	     String line=null; strcon=null;
+	        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+	        	     StringBuilder strb=new StringBuilder();
+	        	    if(resf1.equals("XML")){
+	        	     while((line=br.readLine())!=null){
+    	  	       	 str+=line;
+    	  	       	 }
+	        	     }
+	        	     else if(resf1.equals("JSON")){
+	        	    	 while ((line = br.readLine()) != null)    { 
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	            str = serializer.write(json);
+	        	    	 
+	        	     } // else if
+	        	    session.setAttribute("xml1", str);
+	        	    out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
+	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
+	        	     
+	        	 }}
 	         
 	         else if(authen1.equals("Basic Auth")){ //m15
 	        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
