@@ -72,7 +72,7 @@ Connection con=null;
 	
 
   	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+  		PrintWriter out=response.getWriter();
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 
 		//response.setHeader("Content-Type","text/xml; charset=UTF-8");
@@ -503,7 +503,7 @@ Connection con=null;
 		   	     		      str = xmlSerializer.write( json );
 		        		 } //while
 				               //doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
-			                 PrintWriter out=response.getWriter();
+			                // PrintWriter out=response.getWriter();
 			                 out.println(str);
 
 		        		 } //if
@@ -564,35 +564,37 @@ Connection con=null;
 		        		            return;
 		        		        }
 		        		 String sigurl= helper.sign(eurl);
-		        		 URL eurl1=new URL(sigurl);
-		        		 URLConnection uconn = eurl1.openConnection();
-		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
-		        	     conn.connect();
-		        	     Object content = conn.getContent();
-		        	     InputStream stream = (InputStream) content;
-		        	      line=null; String strcon=null;
-		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-		        	     StringBuilder strb=new StringBuilder();
-		        	    if(resf1.equals("XML")){
-		        	     while((line=br.readLine())!=null){
-	    	  	       	 str+=line;
-	    	  	       	 }
-		        	     }
-		        	     else if(resf1.equals("JSON")){
-		        	    	 while ((line = br.readLine()) != null)    { 
-		        	    	      strb.append(line);
-		   	    		     }//while
-		        	    	 strcon=strb.toString();
-		        	    	 XMLSerializer serializer = new XMLSerializer();
-		     	            JSON json = JSONSerializer.toJSON(strcon);
-		     	            serializer.setRootName("root");
-		     	            serializer.setTypeHintsEnabled(false);
-		     	            str = serializer.write(json);
-		        	    	 
-		        	     } // else if
-		        	    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));	
-		        	     
-		        	 }}
+		        		 out.println(sigurl);
+		        		 if(resf1.equals("XML")){
+		       	        	  doc=builder.parse(new URL(sigurl).openStream());
+
+		                     }
+			        		 
+			        		 
+			        		 else if(resf1.equals("JSON")){
+			        			 line=null;String strcon=null;
+				        	     StringBuilder strb=new StringBuilder();
+				        		 URL eurl1=new URL(sigurl);
+				        		 URLConnection uconn = eurl1.openConnection();
+				        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+				        	     conn.connect();
+				        	     Object content = conn.getContent();
+				        	     InputStream stream = (InputStream) content;
+				        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+				        	     while ((line = br.readLine()) != null)    { 
+			        	    	      strb.append(line);
+			   	    		     }//while
+			        	    	 strcon=strb.toString();
+			        	    	 XMLSerializer serializer = new XMLSerializer();
+			     	            JSON json = JSONSerializer.toJSON(strcon);
+			     	            serializer.setRootName("root");
+			     	            serializer.setTypeHintsEnabled(false);
+			     	            str = serializer.write(json);
+					               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+
+			        	 }
+		        		 
+	        		 }}
 	       
        
        
@@ -1299,7 +1301,7 @@ Connection con=null;
 	                 String xmloutput=result.getWriter().toString();
 	                /* output.write(xmloutput);
 	                 output.close();*/
-	                 PrintWriter out=response.getWriter();
+	                 
 	                 out.println(xmloutput);
 	              	
         }//while
@@ -1307,7 +1309,7 @@ Connection con=null;
         	
 		}
 		catch(Exception e){
-			PrintWriter out=response.getWriter();
+			//PrintWriter out=response.getWriter();
 			out.println(e);
 		}
 	}
