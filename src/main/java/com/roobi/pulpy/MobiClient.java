@@ -508,7 +508,7 @@ public class MobiClient extends HttpServlet {
 	         } // Main END of API Keys
        
 	         }
-       //Basic Authentication
+       //Basic Authentication////
        
 	         else if(authen1.equals("Signed Auth")){  //API Keys
 	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
