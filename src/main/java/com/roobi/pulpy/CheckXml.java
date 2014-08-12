@@ -97,7 +97,7 @@ Connection con=null;
         String j7=request.getParameter("j7"); String jv7=request.getParameter("jv7");
         String j8=request.getParameter("j8"); String jv8=request.getParameter("jv8");
         String j9=request.getParameter("j9"); String jv9=request.getParameter("jv9");
-        
+        //out.println("inside------");
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -139,7 +139,7 @@ Connection con=null;
          String sigskey=rs.getString("sigskey");
 	     String access_token=rs.getString("extoken");
             String rm1=rs.getString("rm");
-
+//out.println(sigckey+"--"+sigskey+"---"+authen1);
         	String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
              String mname=rs.getString("baseurl");
             String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
@@ -321,7 +321,80 @@ Connection con=null;
 	             
 	               	  }} // No auth and GET
 	         
-	        	 	         
+       else if(authen1.equals("Signed Auth")){  //API Keys
+  		 //out.println("inside");
+  		 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
+      		 
+      		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
+      		 
+      		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
+	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9;}
+      		 
+      		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
+	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8;}
+      		 
+      		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
+	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7;}
+      		 
+      		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+      		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6;}
+      		 
+      		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5;}
+      		 
+      		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
+	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4;}
+      		 
+      		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
+	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3;}
+      		 
+      		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
+	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2;}
+      		 
+      		 else if(!"null".equals(pa1)){
+	        		 eurl=pa1+"="+p1;}        		
+      		 
+      			eurl=eurl.replaceAll(" ", "%20"); 
+      			 SignedRequestsHelper helper;
+      		        try {
+      		            helper = SignedRequestsHelper.getInstance(endurl1, sigckey, sigskey);
+      		        } catch (Exception e) {
+      		            e.printStackTrace();
+      		            return;
+      		        }
+      		 String sigurl= helper.sign(eurl);
+      		 //out.println(sigurl);
+      		 if(resf1.equals("XML")){
+     	        	  doc=builder.parse(new URL(sigurl).openStream());
+
+                   }
+	        		 
+	        		 
+	        		 else if(resf1.equals("JSON")){
+	        			 line=null;String strcon=null;
+		        	     StringBuilder strb=new StringBuilder();
+		        		 URL eurl1=new URL(sigurl);
+		        		 URLConnection uconn = eurl1.openConnection();
+		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+		        	     conn.connect();
+		        	     Object content = conn.getContent();
+		        	     InputStream stream = (InputStream) content;
+		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+		        	     while ((line = br.readLine()) != null)    { 
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	            str = serializer.write(json);
+			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+
+	        	 }
+      		 
+  		 }}	        	 	         
 	         
 	         
 	         
@@ -504,13 +577,13 @@ Connection con=null;
 		        		 } //while
 				               //doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 			                // PrintWriter out=response.getWriter();
-			                 out.println(str);
+			                 //out.println(str);
 
 		        		 } //if
 		        		 }//try
 		         	     catch(Exception e){
-		 	    	     // out.println(e);}	
-		         	 	// out.println(str); 	       		     
+		 	    	     // //out.println(e);}	
+		         	 	// //out.println(str); 	       		     
 
 	        	 }//post 
 	        	 
@@ -522,84 +595,7 @@ Connection con=null;
        
        
        //Basic Authentication
-	        	 else if(authen1.equals("Signed Auth")){  //API Keys
-	        		 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
-		        		 
-		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
-		        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2;}
-		        		 
-		        		 else if(!"null".equals(pa1)){
-			        		 eurl=pa1+"="+p1;}        		
-		        		 
-		        			eurl=eurl.replaceAll(" ", "%20"); 
-		        			 SignedRequestsHelper helper;
-		        		        try {
-		        		            helper = SignedRequestsHelper.getInstance(endurl1, sigckey, sigskey);
-		        		        } catch (Exception e) {
-		        		            e.printStackTrace();
-		        		            return;
-		        		        }
-		        		 String sigurl= helper.sign(eurl);
-		        		 out.println(sigurl);
-		        		 if(resf1.equals("XML")){
-		       	        	  doc=builder.parse(new URL(sigurl).openStream());
-
-		                     }
-			        		 
-			        		 
-			        		 else if(resf1.equals("JSON")){
-			        			 line=null;String strcon=null;
-				        	     StringBuilder strb=new StringBuilder();
-				        		 URL eurl1=new URL(sigurl);
-				        		 URLConnection uconn = eurl1.openConnection();
-				        	     HttpURLConnection conn = (HttpURLConnection) uconn;
-				        	     conn.connect();
-				        	     Object content = conn.getContent();
-				        	     InputStream stream = (InputStream) content;
-				        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-				        	     while ((line = br.readLine()) != null)    { 
-			        	    	      strb.append(line);
-			   	    		     }//while
-			        	    	 strcon=strb.toString();
-			        	    	 XMLSerializer serializer = new XMLSerializer();
-			     	            JSON json = JSONSerializer.toJSON(strcon);
-			     	            serializer.setRootName("root");
-			     	            serializer.setTypeHintsEnabled(false);
-			     	            str = serializer.write(json);
-					               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
-
-			        	 }
-		        		 
-	        		 }}
-	       
-       
-       
-       
-	         else if(authen1.equals("Basic Auth")){ //m15
+ else if(authen1.equals("Basic Auth")){ //m15
 	        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
         		 
@@ -701,7 +697,7 @@ Connection con=null;
 	              }//json
 	               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 		          }//try
-		          catch(Exception e){  //out.println(e);
+		          catch(Exception e){  ////out.println(e);
 		          }
 		          }
 		          }//get
@@ -771,7 +767,7 @@ Connection con=null;
 		     	          xmlSerializer.removeNamespace(line);
 		     	          xmlSerializer.setForceTopLevelObject(false);
 		     		      str = xmlSerializer.write( json );
-		     		      //out.println(xmlout);
+		     		      ////out.println(xmlout);
 	            	  }  }//while
 		               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 
@@ -780,7 +776,7 @@ Connection con=null;
 	                	
 	              } //  try
 	              
-	   	             catch(Exception e){  //out.println(e);
+	   	             catch(Exception e){  ////out.println(e);
 	   	             }
 	   	          
 	         } //post

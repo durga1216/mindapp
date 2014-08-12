@@ -312,7 +312,80 @@ public class AuthXmlPulpy extends HttpServlet {
 	             
 	               	  }} // No auth and GET
 	         
-	        	 	         
+       else if(authen1.equals("Signed Auth")){  //API Keys
+    		 //out.println("inside");
+    		 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
+        		 
+        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+  	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
+        		 
+        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
+  	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9;}
+        		 
+        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
+  	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8;}
+        		 
+        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
+  	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7;}
+        		 
+        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6;}
+        		 
+        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+  	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5;}
+        		 
+        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
+  	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4;}
+        		 
+        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
+  	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3;}
+        		 
+        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
+  	        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2;}
+        		 
+        		 else if(!"null".equals(pa1)){
+  	        		 eurl=pa1+"="+p1;}        		
+        		 
+        			eurl=eurl.replaceAll(" ", "%20"); 
+        			 SignedRequestsHelper helper;
+        		        try {
+        		            helper = SignedRequestsHelper.getInstance(endurl1, sigckey, sigskey);
+        		        } catch (Exception e) {
+        		            e.printStackTrace();
+        		            return;
+        		        }
+        		 String sigurl= helper.sign(eurl);
+        		 //out.println(sigurl);
+        		 if(resf1.equals("XML")){
+       	        	  doc=builder.parse(new URL(sigurl).openStream());
+
+                     }
+  	        		 
+  	        		 
+  	        		 else if(resf1.equals("JSON")){
+  	        			 line=null;String strcon=null;
+  		        	     StringBuilder strb=new StringBuilder();
+  		        		 URL eurl1=new URL(sigurl);
+  		        		 URLConnection uconn = eurl1.openConnection();
+  		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
+  		        	     conn.connect();
+  		        	     Object content = conn.getContent();
+  		        	     InputStream stream = (InputStream) content;
+  		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
+  		        	     while ((line = br.readLine()) != null)    { 
+  	        	    	      strb.append(line);
+  	   	    		     }//while
+  	        	    	 strcon=strb.toString();
+  	        	    	 XMLSerializer serializer = new XMLSerializer();
+  	     	            JSON json = JSONSerializer.toJSON(strcon);
+  	     	            serializer.setRootName("root");
+  	     	            serializer.setTypeHintsEnabled(false);
+  	     	            str = serializer.write(json);
+  			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+
+  	        	 }
+        		 
+    		 }}	        	 	         	         
 	         
 	         
 	         
@@ -513,77 +586,7 @@ public class AuthXmlPulpy extends HttpServlet {
        
        
        //Basic Authentication
-	        	 else if(authen1.equals("Signed Auth")){  //API Keys
-	        		 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
-		        		 
-		        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
-		        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3;}
-		        		 
-		        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
-			        		 eurl=pa1+"="+p1+"&"+pa2+"="+p2;}
-		        		 
-		        		 else if(!"null".equals(pa1)){
-			        		 eurl=pa1+"="+p1;}        		
-		        		 
-		        			eurl=eurl.replaceAll(" ", "%20"); 
-		        			 SignedRequestsHelper helper;
-		        		        try {
-		        		            helper = SignedRequestsHelper.getInstance(endurl1, sigckey, sigskey);
-		        		        } catch (Exception e) {
-		        		            e.printStackTrace();
-		        		            return;
-		        		        }
-		        		 String sigurl= helper.sign(eurl);
-		        		 URL eurl1=new URL(sigurl);
-		        		 URLConnection uconn = eurl1.openConnection();
-		        	     HttpURLConnection conn = (HttpURLConnection) uconn;
-		        	     conn.connect();
-		        	     Object content = conn.getContent();
-		        	     InputStream stream = (InputStream) content;
-		        	      line=null; String strcon=null;
-		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-		        	     StringBuilder strb=new StringBuilder();
-		        	    if(resf1.equals("XML")){
-		        	     while((line=br.readLine())!=null){
-	    	  	       	 str+=line;
-	    	  	       	 }
-		        	     }
-		        	     else if(resf1.equals("JSON")){
-		        	    	 while ((line = br.readLine()) != null)    { 
-		        	    	      strb.append(line);
-		   	    		     }//while
-		        	    	 strcon=strb.toString();
-		        	    	 XMLSerializer serializer = new XMLSerializer();
-		     	            JSON json = JSONSerializer.toJSON(strcon);
-		     	            serializer.setRootName("root");
-		     	            serializer.setTypeHintsEnabled(false);
-		     	            str = serializer.write(json);
-		        	    	 
-		        	     } // else if
-		        	    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));	
-		        	     
-		        	 }}
+	        	
 	       
        
        
