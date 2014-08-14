@@ -390,6 +390,7 @@ Connection con=null;
 	     	            serializer.setRootName("root");
 	     	            serializer.setTypeHintsEnabled(false);
 	     	            str = serializer.write(json);
+	     	            session.setAttribute("xml1", str);
 			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 
 	        	 }
