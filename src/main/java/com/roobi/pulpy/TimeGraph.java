@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -71,14 +72,27 @@ public class TimeGraph extends HttpServlet {
 	 */
 	protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Thread t1;		PrintWriter out=response.getWriter();
-		t1=new Thread() {
-			PrintWriter out=response.getWriter();
+		final PrintWriter out=response.getWriter();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		
+		Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+		//Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+		Statement st=cn.createStatement();
+		ResultSet rs=st.executeQuery("select * from mtest1");
+		String[] id1=new String[2];int j=0;
+		while(rs.next()){
+				id1[j]=rs.getString("ids");
+				j++;
+		}
+		int ino=id1.length;
+		Thread[] thrd=new Thread[ino];
+		for(int i=0;i<ino;i++){
+		final String id=id1[i];
+    	thrd[i]=new Thread() {
     	    public void run() {
     	        try {
     	        	while (true) {
-    	        		//String id="x23m7my";
-    	        		String id=request.getParameter("id"); 
     	        		Class.forName("com.mysql.jdbc.Driver");
     	        		Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
     	        		//Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
@@ -101,7 +115,8 @@ public class TimeGraph extends HttpServlet {
     	   	            JSONObject jsonObject = (JSONObject) jsonParser.parse(str);
     	   	         long value =  (Long) jsonObject.get("views_last_hour");
     	   	     st.executeUpdate("insert into mtest (m1,date,time,video_id) values ('"+value+"','"+dt+"','"+tm+"','"+id+"')");
-    	                Thread.sleep(5 * 1000);
+    	   	  out.println("Startedddd");       
+    	   	     Thread.sleep(10 * 1000);
     	            }
     	        } catch(InterruptedException v) {
     	            out.println(v);
@@ -124,7 +139,15 @@ public class TimeGraph extends HttpServlet {
     	    }  
     	};
     	out.println("Started");
-    	t1.start();
+    	thrd[i].start();
+		}
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 }

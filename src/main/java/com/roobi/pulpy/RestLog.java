@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 public class RestLog {
 	 Connection con=null;
 	    @GET
-	    @Produces(MediaType.TEXT_XML)
+	    @Produces(MediaType.TEXT_PLAIN)
 	    @Path("/check/{a}/{b}")
 	    public String addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
 	     String result11="";
@@ -28,25 +28,16 @@ public class RestLog {
 
          PreparedStatement st=null;
          String id="";
-         String mail="";
-         String pwd="";
-         String fn="";
-         st=con.prepareStatement("SELECT id,email,fn,pwd From login where email='"+a+"' && pwd='"+b+"'");
+         st=con.prepareStatement("SELECT m1 from mtest where video_id='"+a+"' && date='"+b+"'");
          ResultSet rs = st.executeQuery();
          if(rs != null){
+        	 
          while(rs.next()){
-	          id=rs.getString("id");
-              mail=rs.getString("email");
-              pwd=rs.getString("pwd");
-              fn=rs.getString("fn");
+	          id=id+"-"+rs.getString("ids");
+	          
+              
          }}       
-              if(a.equals(mail) && b.equals(pwd)){
-             	 
-             	 result11= "welcome "+fn;
-                  }
-             else{
-            	 result11= "Invalid User";
-          	 }
+             	 result11= id;
 
 	    }//try  
          
