@@ -8,6 +8,7 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +20,7 @@ public class RestLog {
 	    @GET
 	    @Produces(MediaType.TEXT_PLAIN)
 	    @Path("/check/{a}/{b}")
-	    public String addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
+	    public Response addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
 	     String result11="";
 	        try{
 	    	    Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -45,7 +46,10 @@ public class RestLog {
          catch(Exception e){
         	 e.printStackTrace();
          }
-			return result11;
+	        return Response.ok(result11)
+				      .header("Access-Control-Allow-Origin", "*")
+				      .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
+				      .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
 	
 	}
 
