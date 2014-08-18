@@ -116,7 +116,7 @@ public class TimeGraph extends HttpServlet {
     	   	         long value =  (Long) jsonObject.get("views_last_hour");
     	   	     st.executeUpdate("insert into mtest (m1,date,time,video_id) values ('"+value+"','"+dt+"','"+tm+"','"+id+"')");
     	   	  out.println("Startedddd");       
-    	   	     Thread.sleep(10 * 1000);
+    	   	     Thread.sleep(360 * 1000);
     	            }
     	        } catch(InterruptedException v) {
     	            out.println(v);
@@ -138,7 +138,7 @@ public class TimeGraph extends HttpServlet {
 				}
     	    }  
     	};
-    	out.println("Started");
+    	//out.println("Started");
     	thrd[i].start();
 		}
 		} catch (ClassNotFoundException e1) {
