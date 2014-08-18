@@ -53,6 +53,16 @@
     <servlet-name>FirstPulpy</servlet-name>
     <url-pattern>/FirstPulpy</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>TimeGraph</display-name>
+    <servlet-name>TimeGraph</servlet-name>
+    <servlet-class>com.roobi.pulpy.TimeGraph</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TimeGraph</servlet-name>
+    <url-pattern>/TimeGraph</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>XmlgenPulpy</display-name>

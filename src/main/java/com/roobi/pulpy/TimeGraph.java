@@ -69,9 +69,11 @@ public class TimeGraph extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(final HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		new Thread() {
+		Thread t1;		PrintWriter out=response.getWriter();
+		t1=new Thread() {
+			PrintWriter out=response.getWriter();
     	    public void run() {
     	        try {
     	        	while (true) {
@@ -102,25 +104,27 @@ public class TimeGraph extends HttpServlet {
     	                Thread.sleep(5 * 1000);
     	            }
     	        } catch(InterruptedException v) {
-    	            System.out.println(v);
+    	            out.println(v);
     	        } catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					out.println(e);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					out.println(e);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					out.println(e);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					out.println(e);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					out.println(e);
 				}
     	    }  
-    	}.start();
+    	};
+    	out.println("Started");
+    	t1.start();
 	}
 
 }
