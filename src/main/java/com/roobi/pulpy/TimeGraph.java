@@ -80,7 +80,7 @@ public class TimeGraph extends HttpServlet {
 		//Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 		Statement st=cn.createStatement();
 		ResultSet rs=st.executeQuery("select * from mtest1");
-		String[] id1=new String[2];int j=0;
+		String[] id1=new String[10];int j=0;
 		while(rs.next()){
 				id1[j]=rs.getString("ids");
 				j++;
