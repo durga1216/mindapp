@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -25,16 +26,29 @@ import com.mysql.jdbc.Connection;
 
 public class amazon{
 
-    public static void main(String[] args) {
-    	
-    	new Thread() {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    	Class.forName("com.mysql.jdbc.Driver");
+		Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+		//Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+		Statement st=cn.createStatement();
+		ResultSet rs=st.executeQuery("select * from mtest1");
+		String[] id1=new String[3];int j=0;
+		while(rs.next()){
+				id1[j]=rs.getString("ids");
+				j++;
+		}
+		int ino=id1.length;
+		Thread[] thrd=new Thread[ino];
+		for(int i=0;i<ino;i++){
+		final String id=id1[i];
+    	thrd[i]=new Thread() {
     	    public void run() {
     	        try {
     	        	while (true) {
-    	        		String id="x23m7my";
     	        		Class.forName("com.mysql.jdbc.Driver");
-    	        		//Connection cn=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-    	        		Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+    	        	System.out.println(id);
+    	        		Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+    	        		//Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
     	        		Statement st=cn.createStatement();
     	        		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     	        		DateFormat dateFormat1 = new SimpleDateFormat("HH:mm:ss");
@@ -75,7 +89,9 @@ public class amazon{
 					e.printStackTrace();
 				}
     	    }  
-    	}.start();
-    }
+    	};
+    	thrd[i].start();
+    }}
+    
 
 }
