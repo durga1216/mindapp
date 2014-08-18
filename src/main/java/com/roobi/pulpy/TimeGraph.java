@@ -97,7 +97,7 @@ public class TimeGraph extends HttpServlet {
     	        		Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
     	        		//Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
     	        		Statement st=cn.createStatement();
-    	        		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    	        		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	        		DateFormat dateFormat1 = new SimpleDateFormat("HH:mm:ss");
     	        		 Date date = new Date();
     	        	     String dt=dateFormat.format(date);
@@ -116,7 +116,7 @@ public class TimeGraph extends HttpServlet {
     	   	         long value =  (Long) jsonObject.get("views_last_hour");
     	   	     st.executeUpdate("insert into mtest (m1,date,time,video_id) values ('"+value+"','"+dt+"','"+tm+"','"+id+"')");
     	   	  out.println("Startedddd");       
-    	   	     Thread.sleep(360 * 1000);
+    	   	     Thread.sleep(30 * 1000);
     	            }
     	        } catch(InterruptedException v) {
     	            out.println(v);

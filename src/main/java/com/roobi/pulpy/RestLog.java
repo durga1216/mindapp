@@ -28,12 +28,13 @@ public class RestLog {
 
          PreparedStatement st=null;
          String id="";
-         st=con.prepareStatement("SELECT m1 from mtest where video_id='"+a+"' && date='"+b+"'");
+         st=con.prepareStatement("SELECT * from mtest where video_id='"+a+"' && date='"+b+"'");
          ResultSet rs = st.executeQuery();
          if(rs != null){
         	 
          while(rs.next()){
-	          id=id+"-"+rs.getString("ids");
+	          id=id+","+rs.getString("time");
+	          id=id+"-"+rs.getString("m1");
 	          
               
          }}       
