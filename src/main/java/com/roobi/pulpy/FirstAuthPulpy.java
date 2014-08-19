@@ -160,9 +160,8 @@ public class FirstAuthPulpy extends HttpServlet {
 	                    	if(oreq1.equals("GET")){
 	 	                 	   HttpGet get1=new HttpGet(uurl);
 	 	                 	    response1=httpclient.execute(get1);
-	 	                 	    out.println("ddddddd");}
+                                  }
 	 	                    	else{
-	 	                    		 out.println("dfdfdfdfdfdf");
 	 	                      HttpPost post = new HttpPost(url1);
 	 	                      post.setHeader("Authorization", authorization_header_string);
 	 	      				 response1 = httpclient.execute(post);
@@ -176,11 +175,11 @@ public class FirstAuthPulpy extends HttpServlet {
 	         			result.append(line);
 	         		}
 	         		String tok=result.toString();
-	         		System.out.println("dsdsdsdsssssdf"+tok);
-	         		 String[] tok1=tok.split("&");
-	         		oauth_token=tok1[1];
-	         		String sec1=tok1[2];
-	         		session.setAttribute("secret1", sec1);
+	         		out.println("dsdsdsdsssssdf"+tok);
+	         		 //String[] tok1=tok.split("&");
+	         		//oauth_token=tok1[1];
+	         		//String sec1=tok1[2];
+	         		//session.setAttribute("secret1", sec1);
 	                        
 	                  } 
 	                     catch(ClientProtocolException cpe)  {  System.out.println(cpe.getMessage());  }
