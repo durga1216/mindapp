@@ -364,7 +364,7 @@ Connection con=null;
       		            return;
       		        }
       		 String sigurl= helper.sign(eurl);
-      		 //out.println(sigurl);
+      		 out.println(sigurl);
       		 if(resf1.equals("XML")){
      	        	  doc=builder.parse(new URL(sigurl).openStream());
 

@@ -176,10 +176,10 @@ public class FirstAuthPulpy extends HttpServlet {
 	         		}
 	         		String tok=result.toString();
 	         		out.println("dsdsdsdsssssdf"+tok);
-	         		 //String[] tok1=tok.split("&");
-	         		//oauth_token=tok1[1];
-	         		//String sec1=tok1[2];
-	         		//session.setAttribute("secret1", sec1);
+	         		 String[] tok1=tok.split("&");
+	         		oauth_token=tok1[1];
+	         		String sec1=tok1[2];
+	         		session.setAttribute("secret1", sec1);
 	                        
 	                  } 
 	                     catch(ClientProtocolException cpe)  {  System.out.println(cpe.getMessage());  }

@@ -146,6 +146,9 @@ border-radius:5px;}
 function load2(){
 	window.open("https://mindtools-inputs.rhcloud.com/index.jsp", '_blank');
 }
+function load(){
+	window.open("<%=request.getContextPath()%>/XmlConvert", "tese", "toolbar=no, menubar=no,location=no, directories=no, status=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+}
 </script>
 <script>
 function myFunction() {
