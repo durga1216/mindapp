@@ -18,24 +18,27 @@ import java.sql.ResultSet;
 public class RestLog {
 	 Connection con=null;
 	    @GET
-	    @Produces(MediaType.TEXT_PLAIN)
+	    @Produces(MediaType.TEXT_XML)
 	    @Path("/check/{a}/{b}")
 	    public Response addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
 	     String result11="";
 	        try{
 	    	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-	    	    con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-	    	   //con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+	    	   // con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+	    	   con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 
          PreparedStatement st=null;
-         String id="";
+         String id="<?xml version=\"1.0\"?>";
          st=con.prepareStatement("SELECT * from mtest where video_id='"+a+"' && date='"+b+"'");
          ResultSet rs = st.executeQuery();
          if(rs != null){
         	 
          while(rs.next()){
-	          id=id+","+rs.getString("time");
-	          id=id+"-"+rs.getString("m1");
+        	 String t=rs.getString("time");
+        	 String d=rs.getString("m1");
+        	 String dt=rs.getString("date");
+	          id=id+"<"+dt+"> <"+t+">"+d+"</"+t+"> </"+dt+">";
+	          
 	          
               
          }}       
