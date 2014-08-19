@@ -128,12 +128,13 @@ public class FirstAuthPulpy extends HttpServlet {
 	            	 String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
 	            	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
 	            	 String oreq1=rs.getString("oreq");
+	            	 if(oreq1.equals("GET")){
 	            	 String uuid_string = UUID.randomUUID().toString();
 	                 uuid_string = uuid_string.replaceAll("-", "");
 	                 String oauth_nonce = uuid_string; 
 	                 String eurl = URLEncoder.encode(url1, "UTF-8");
 	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
-	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
+	                   String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
 	                  String parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 	                  // System.out.println("parameter_string=" + parameter_string);
 	                  String signature_base_string = oreq1+"&"+eurl+"&" + URLEncoder.encode(parameter_string, "UTF-8");
@@ -157,15 +158,11 @@ public class FirstAuthPulpy extends HttpServlet {
 	                 HttpClient httpclient = new DefaultHttpClient();
 	                 HttpResponse response1=null;
 	                    try {
-	                    	if(oreq1.equals("GET")){
+	                    	
 	 	                 	   HttpGet get1=new HttpGet(uurl);
 	 	                 	    response1=httpclient.execute(get1);
-                                  }
-	 	                    	else{
-	 	                      HttpPost post = new HttpPost(url1);
-	 	                      post.setHeader("Authorization", authorization_header_string);
-	 	      				 response1 = httpclient.execute(post);
-	 	                    	}
+                                  
+	 	                   
 	                BufferedReader rd = new BufferedReader(
 	                                new InputStreamReader(response1.getEntity().getContent()));
 	          
@@ -189,6 +186,65 @@ public class FirstAuthPulpy extends HttpServlet {
 	                    
 	                    String author=ourl21+"?"+oauth_token+"&perms=write";
 	                    response.sendRedirect(author);
+	            	 }
+	            	 else {
+	            		 String uuid_string = UUID.randomUUID().toString();
+		                 uuid_string = uuid_string.replaceAll("-", "");
+		                 String oauth_nonce = uuid_string; 
+		                 String eurl = URLEncoder.encode(url1, "UTF-8");
+		                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
+		                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+		                  String parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
+		                  // System.out.println("parameter_string=" + parameter_string);
+		                  String signature_base_string = oreq1+"&"+eurl+"&" + URLEncoder.encode(parameter_string, "UTF-8");
+		                   System.out.println("signature_base_string=" + signature_base_string);
+		                    String oauth_signature = "";String oauth_signature1 = "";
+		                 try {
+		                      oauth_signature = computeSignature(signature_base_string, secret+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+		                       oauth_signature1 =URLEncoder.encode(oauth_signature, "UTF-8");
+		                  } catch (GeneralSecurityException e) {
+		                     // TODO Auto-generated catch block
+		                     e.printStackTrace();
+		                   }
+		                 session.setAttribute("oauth_signature1", oauth_signature1);
+		                    session.setAttribute("parameter_string", parameter_string);
+		                    String authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
+		                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+		                            oauth_timestamp + "\",oauth_version=\"1.0\"";
+		                   String uurl=url1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
+		                   System.out.println(uurl);
+		                  String oauth_token = "";
+		                 HttpClient httpclient = new DefaultHttpClient();
+		                 HttpResponse response1=null;
+		                    try {
+	            		 HttpPost post = new HttpPost(url1);
+	                      post.setHeader("Authorization", authorization_header_string);
+	      				 response1 = httpclient.execute(post);
+	                    	
+               BufferedReader rd = new BufferedReader(
+                               new InputStreamReader(response1.getEntity().getContent()));
+         
+        		StringBuffer result = new StringBuffer();
+        		String line = "";
+        		while ((line = rd.readLine()) != null) {
+        			result.append(line);
+        		}
+        		String tok=result.toString();
+        		out.println("dsdsdsdsssssdf"+tok);
+        		 String[] tok1=tok.split("&");
+        		oauth_token=tok1[0];
+        		String sec1=tok1[1];
+        		session.setAttribute("secret1", sec1);
+                       
+                 } 
+                    catch(ClientProtocolException cpe)  {  System.out.println(cpe.getMessage());  }
+                   catch(IOException ioe) {   System.out.println(ioe.getMessage());  }
+                   finally { httpclient.getConnectionManager().shutdown();  } 
+//=======Authorization=======
+                   
+                   String author=ourl21+"?"+oauth_token+"&perms=write";
+                   response.sendRedirect(author);
+	            	 }
 	             }
 	             
 	             
