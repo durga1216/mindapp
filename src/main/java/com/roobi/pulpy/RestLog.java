@@ -24,8 +24,8 @@ public class RestLog {
 	     String result11="";
 	        try{
 	    	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-	    	   // con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-	    	   con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+	    	   con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+	    	  // con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 
          PreparedStatement st=null;
          String id="<?xml version=\"1.0\"?>";
