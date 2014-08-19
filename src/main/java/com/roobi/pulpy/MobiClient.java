@@ -578,6 +578,7 @@ public class MobiClient extends HttpServlet {
 	     	            str = serializer.write(json);
 	        	    	 
 	        	     } // else if
+	        	    out.println(str);
 	        	    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));	
 	        	     
 	        	 }}
@@ -1229,7 +1230,7 @@ public class MobiClient extends HttpServlet {
 	                 String xmloutput=result.getWriter().toString();
 	                /* output.write(xmloutput);
 	                 output.close();*/
-	                 out.println(xmloutput);
+	                 //out.println(xmloutput);
 	              	
         }//while
         }// first config

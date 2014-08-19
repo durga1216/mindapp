@@ -46,6 +46,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.scribe.builder.ServiceBuilder;
@@ -127,11 +128,21 @@ public class Oauth1Call extends HttpServlet {
 	                     // TODO Auto-generated catch block
 	                     e.printStackTrace();
 	                   }
+	                 String authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
+	                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+	                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 	                  String actok=ourl31+"?"+parameter_string+"&oauth_signature="+oauth_signature1;
 	            	// out.println(actok);
 	            	 HttpClient httpclient = new DefaultHttpClient();
-	                 	   HttpGet get1=new HttpGet(actok);
-	                 	   HttpResponse response1=httpclient.execute(get1);
+	                 HttpResponse response1=null;
+	            	 if(oreq1.equals("GET")){
+	                 	   HttpGet get1=new HttpGet(ourl31);
+	                 	    response1=httpclient.execute(get1);}
+	                    	else if(oreq1.equals("POST")){
+	                      HttpPost post = new HttpPost(url1);
+	                      post.setHeader("Authorization", authorization_header_string);
+	      				 response1 = httpclient.execute(post);
+	                    	}
 	                       		BufferedReader rd = new BufferedReader(
 	                                new InputStreamReader(response1.getEntity().getContent()));
 	          
