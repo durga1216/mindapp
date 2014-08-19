@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 public class RestLog {
 	 Connection con=null;
 	    @GET
-	    @Produces(MediaType.TEXT_PLAIN)
+	    @Produces(MediaType.TEXT_XML)
 	    @Path("/check/{a}/{b}")
 	    public Response addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
 	     String result11="";
@@ -29,7 +29,7 @@ public class RestLog {
 	    	  //con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 
          PreparedStatement st=null;
-         String id="<?xml version=\"1.0\"?>";
+         String id="<?xml version=\"1.0\"?><mpulpy>";
          st=con.prepareStatement("SELECT * from mtest where video_id='"+a+"' ");
          ResultSet rs = st.executeQuery();
          if(rs != null){
@@ -38,11 +38,12 @@ public class RestLog {
         	 String t=rs.getString("time");
         	 String d=rs.getString("m1");
         	 String dt=rs.getString("date");
-	          id=id+"<"+dt+"> <"+t+">"+d+"</"+t+"> </"+dt+">";
+	          id=id+"<root><time>"+t+"</time><reviews>"+d+"</reviews></root>";
 	          
 	          
               
          }}       
+         id=id+"</mpulpy>";
              	 result11= id;
 
 	    }//try  
