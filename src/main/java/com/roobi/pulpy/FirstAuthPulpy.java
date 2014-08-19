@@ -133,7 +133,7 @@ public class FirstAuthPulpy extends HttpServlet {
 	                 String oauth_nonce = uuid_string; 
 	                 String eurl = URLEncoder.encode(url1, "UTF-8");
 	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
-	                   String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
+	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
 	                  String parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 	                  // System.out.println("parameter_string=" + parameter_string);
 	                  String signature_base_string = oreq1+"&"+eurl+"&" + URLEncoder.encode(parameter_string, "UTF-8");
