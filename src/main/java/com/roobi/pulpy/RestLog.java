@@ -18,18 +18,19 @@ import java.sql.ResultSet;
 public class RestLog {
 	 Connection con=null;
 	    @GET
-	    @Produces(MediaType.TEXT_XML)
+	    @Produces(MediaType.TEXT_PLAIN)
 	    @Path("/check/{a}/{b}")
 	    public Response addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
 	     String result11="";
 	        try{
 	    	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-	    	   con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-	    	  // con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
+	    	  // con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+	    	  
+	    	  con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 
          PreparedStatement st=null;
          String id="<?xml version=\"1.0\"?>";
-         st=con.prepareStatement("SELECT * from mtest where video_id='"+a+"' && date='"+b+"'");
+         st=con.prepareStatement("SELECT * from mtest where video_id='"+a+"' ");
          ResultSet rs = st.executeQuery();
          if(rs != null){
         	 
