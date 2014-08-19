@@ -66,7 +66,7 @@ public class MobiClient extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
          PrintWriter out=response.getWriter();
 
-		//response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 		Connection con=null;
 		 HttpSession session=request.getSession(true);
 		  String appid=(String) session.getAttribute("xx"); 
@@ -578,7 +578,7 @@ public class MobiClient extends HttpServlet {
 	     	            str = serializer.write(json);
 	        	    	 
 	        	     } // else if
-	        	    out.println(str);
+	        	   // out.println(str);
 	        	    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));	
 	        	     
 	        	 }}
@@ -1230,7 +1230,7 @@ public class MobiClient extends HttpServlet {
 	                 String xmloutput=result.getWriter().toString();
 	                /* output.write(xmloutput);
 	                 output.close();*/
-	                 //out.println(xmloutput);
+	                 out.println(xmloutput);
 	              	
         }//while
         }// first config
