@@ -158,15 +158,16 @@ public class FirstAuthPulpy extends HttpServlet {
 	                 HttpResponse response1=null;
 	                    try {
 	                    	if(oreq1.equals("GET")){
-	                 	   HttpGet get1=new HttpGet(uurl);
-	                 	    response1=httpclient.execute(get1);}
-	                    	else if(oreq1.equals("POST")){
-	                      HttpPost post = new HttpPost(url1);
-	                      post.setHeader("Authorization", authorization_header_string);
-	      				 response1 = httpclient.execute(post);
-	                    	}
-	          
-	         		BufferedReader rd = new BufferedReader(
+	 	                 	   HttpGet get1=new HttpGet(uurl);
+	 	                 	    response1=httpclient.execute(get1);
+	 	                 	    out.println("ddddddd");}
+	 	                    	else{
+	 	                    		 out.println("dfdfdfdfdfdf");
+	 	                      HttpPost post = new HttpPost(url1);
+	 	                      post.setHeader("Authorization", authorization_header_string);
+	 	      				 response1 = httpclient.execute(post);
+	 	                    	}
+	                BufferedReader rd = new BufferedReader(
 	                                new InputStreamReader(response1.getEntity().getContent()));
 	          
 	         		StringBuffer result = new StringBuffer();
@@ -175,6 +176,7 @@ public class FirstAuthPulpy extends HttpServlet {
 	         			result.append(line);
 	         		}
 	         		String tok=result.toString();
+	         		System.out.println("dsdsdsdsssssdf"+tok);
 	         		 String[] tok1=tok.split("&");
 	         		oauth_token=tok1[1];
 	         		String sec1=tok1[2];

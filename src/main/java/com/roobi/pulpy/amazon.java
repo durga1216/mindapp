@@ -50,7 +50,7 @@ public class amazon{
     	        		Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
     	        		//Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
     	        		Statement st=cn.createStatement();
-    	        		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    	        		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	        		DateFormat dateFormat1 = new SimpleDateFormat("HH:mm:ss");
     	        		 Date date = new Date();
     	        	     String dt=dateFormat.format(date);
