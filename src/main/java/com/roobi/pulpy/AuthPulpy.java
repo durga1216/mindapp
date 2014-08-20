@@ -944,6 +944,7 @@ public class AuthPulpy extends HttpServlet {
 	         //---------------------oauth1-----------------------
 	         else if(authen1.equals("Oauth1")){
 	        	 String res="";
+	        	 out.println("in Oauth");
 	        	 String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
             	 String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
             	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
@@ -954,7 +955,7 @@ public class AuthPulpy extends HttpServlet {
             	 String access_secret1=(String ) session.getAttribute("access_secret1");
          	    String[] tok1=access_secret1.split("=");
          	    String sec1=tok1[1];
-	        	 if(rm1.equals ("GET")){
+	        	 
 	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
 	        		 
@@ -988,7 +989,7 @@ public class AuthPulpy extends HttpServlet {
 	        			eurl="null";
 	        		// out.println(eurl);
 	        		 //=========================
-	        		 
+	        		 if(rm1.equals ("GET")){
 	            	 //========initial=========
 	            	 String uuid_string = UUID.randomUUID().toString();
 	                 uuid_string = uuid_string.replaceAll("-", "");
@@ -1052,7 +1053,41 @@ public class AuthPulpy extends HttpServlet {
 	        	}
 	        	 }
 	        	 else if(rm1.equals ("POST")){
-	        		 eurl=null;
+	        		 out.println("in post");
+	        		 String exhead="";
+	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
+		        		 exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\","+pa3+"=\""+pva3+"\","+pa4+"=\""+pva4+"\","+pa5+"=\""+pva5+"\","+pa6+"=\""+pva6+"\","+pa7+"=\""+pva7+"\","+pa8+"=\""+pva8+"\","+pa9+"=\""+pva9+"\","+pa10+"=\""+pva10+"\"";}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
+		        		 exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\","+pa3+"=\""+pva3+"\","+pa4+"=\""+pva4+"\","+pa5+"=\""+pva5+"\","+pa6+"=\""+pva6+"\","+pa7+"=\""+pva7+"\","+pa8+"=\""+pva8+"\","+pa9+"=\""+pva9+"\"";}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
+		        		 exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\","+pa3+"=\""+pva3+"\","+pa4+"=\""+pva4+"\","+pa5+"=\""+pva5+"\","+pa6+"=\""+pva6+"\","+pa7+"=\""+pva7+"\","+pa8+"=\""+pva8+"\"";}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
+		        		 exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\","+pa3+"=\""+pva3+"\","+pa4+"=\""+pva4+"\","+pa5+"=\""+pva5+"\","+pa6+"=\""+pva6+"\","+pa7+"=\""+pva7+"\"";}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
+	        		 exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\","+pa3+"=\""+pva3+"\","+pa4+"=\""+pva4+"\","+pa5+"=\""+pva5+"\","+pa6+"=\""+pva6+"\"";}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
+		        		 exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\","+pa3+"=\""+pva3+"\","+pa4+"=\""+pva4+"\","+pa5+"=\""+pva5+"\"";}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
+		        		 exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\","+pa3+"=\""+pva3+"\","+pa4+"=\""+pva4+"\"";}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
+		        		 exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\","+pa3+"=\""+pva3+"\"";}
+	        		 
+	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
+		        		 exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\"";}
+	        		 
+	        		 else if(!"null".equals(pa1)){
+		        		 exhead=pa1+"=\""+pva1+"\"";}
+	        		 else if("null".equals(pa1))
+	        			exhead="null";
+	        		 
+	        		 out.println("inside"+exhead);
 	        		 String uuid_string = UUID.randomUUID().toString();
 	                 uuid_string = uuid_string.replaceAll("-", "");
 	                 String oauth_nonce = uuid_string; 
@@ -1081,11 +1116,17 @@ public class AuthPulpy extends HttpServlet {
 		                     // TODO Auto-generated catch block
 		                     out.println(e);
 		                   }
-	                    String authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
+	                    String authorization_header_string="";
+	                    if(exhead.equals("null")){
+	                     authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
 	                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
-	                            oauth_timestamp + "\",oauth_version=\"1.0\"";
-		                  String actok=endurl1+"?"+tst4+"&oauth_signature="+oauth_signature1;
-		                  //out.println(actok);
+	                            oauth_timestamp + "\",oauth_version=\"1.0\"";}
+	                    else{
+	                    	authorization_header_string = "OAuth "+exhead+",oauth_consumer_key=\"" + oauth_consumer_key + "\","
+		                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+		                            oauth_timestamp + "\",oauth_version=\"1.0\"";
+	                    }
+	                    out.println(authorization_header_string);
 	        		 HttpClient httpclient = new DefaultHttpClient();
 	        		 HttpResponse response1=null;
 	                 HttpPost post = new HttpPost(endurl1);
