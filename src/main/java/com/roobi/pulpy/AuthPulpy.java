@@ -944,6 +944,16 @@ public class AuthPulpy extends HttpServlet {
 	         //---------------------oauth1-----------------------
 	         else if(authen1.equals("Oauth1")){
 	        	 String res="";
+	        	 String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
+            	 String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
+            	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
+            	 String oreq1=rs.getString("oreq");
+            	 String oauth_token=(String ) session.getAttribute("access_token1");
+            	 String[] tok11=oauth_token.split("=");
+            	 String oauthtk=tok11[1];
+            	 String access_secret1=(String ) session.getAttribute("access_secret1");
+         	    String[] tok1=access_secret1.split("=");
+         	    String sec1=tok1[1];
 	        	 if(rm1.equals ("GET")){
 	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 		        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
@@ -978,22 +988,14 @@ public class AuthPulpy extends HttpServlet {
 	        			eurl="null";
 	        		// out.println(eurl);
 	        		 //=========================
-	        		 String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
-	            	 String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
-	            	 String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
-	            	 String oreq1=rs.getString("oreq");
-	            	 String oauth_token=(String ) session.getAttribute("access_token1");
-	            	 String access_secret1=(String ) session.getAttribute("access_secret1");
-	         	    String[] tok1=access_secret1.split("=");
-	         	    String sec1=tok1[1];
+	        		 
 	            	 //========initial=========
 	            	 String uuid_string = UUID.randomUUID().toString();
 	                 uuid_string = uuid_string.replaceAll("-", "");
 	                 String oauth_nonce = uuid_string; 
 	                 String enurl = URLEncoder.encode(endurl1, "UTF-8");
-	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
-	                   String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
-	                   String parameter_string ="";
+	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+	                 String parameter_string ="";
 	                   if(eurl.equals("null")){
 	                    parameter_string ="oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
 	                  }
@@ -1050,7 +1052,55 @@ public class AuthPulpy extends HttpServlet {
 	        	}
 	        	 }
 	        	 else if(rm1.equals ("POST")){
-	        		 
+	        		 eurl=null;
+	        		 String uuid_string = UUID.randomUUID().toString();
+	                 uuid_string = uuid_string.replaceAll("-", "");
+	                 String oauth_nonce = uuid_string; 
+	                 String enurl = URLEncoder.encode(endurl1, "UTF-8");
+	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+	                   String parameter_string ="";
+	                   if(eurl.equals("null")){
+	                    parameter_string ="oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+	                  }
+	                  else{
+		                   parameter_string = eurl+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+	                  }
+	                   String[] tst1=parameter_string.split("&");Arrays.sort(tst1);
+	          		int no=tst1.length;String tst3="";
+	          		for(int i=1;i<no;i++){
+	          			tst3=tst3+"&"+tst1[i];
+	          		}
+	          		String tst4=tst1[0]+tst3;
+	                  String signature_base_string = rm1+"&"+enurl+"&" + URLEncoder.encode(tst4, "UTF-8");
+	                 //  System.out.println("signature_base_string=" + signature_base_string);
+	                    String oauth_signature = "";String oauth_signature1 = "";
+	                    try {
+		                      oauth_signature = computeSignature(signature_base_string, secret+"&"+sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+		                       oauth_signature1 = URLEncoder.encode(oauth_signature, "UTF-8");
+		                  } catch (GeneralSecurityException e) {
+		                     // TODO Auto-generated catch block
+		                     out.println(e);
+		                   }
+	                    String authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
+	                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+	                            oauth_timestamp + "\",oauth_version=\"1.0\"";
+		                  String actok=endurl1+"?"+tst4+"&oauth_signature="+oauth_signature1;
+		                  //out.println(actok);
+	        		 HttpClient httpclient = new DefaultHttpClient();
+	        		 HttpResponse response1=null;
+	                 HttpPost post = new HttpPost(endurl1);
+                     post.setHeader("Authorization", authorization_header_string);
+     				 response1 = httpclient.execute(post);
+                  BufferedReader rd = new BufferedReader(
+                              new InputStreamReader(response1.getEntity().getContent()));
+        
+       		StringBuffer result = new StringBuffer();
+       		String line = "";
+       		while ((line = rd.readLine()) != null) {
+       			result.append(line);
+       		}
+       		strcon=result.toString();
+       		out.println(strcon);
 	 	        	if( resf1.equals("XML")){
 	 	        		session.setAttribute("xml1", res);
 	 	        		out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
