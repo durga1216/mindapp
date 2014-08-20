@@ -1123,7 +1123,7 @@ public class AuthPulpy extends HttpServlet {
 	                            oauth_timestamp + "\",oauth_version=\"1.0\"";}
 	                    else{
 	                    	authorization_header_string = "OAuth "+exhead+",oauth_consumer_key=\"" + oauth_consumer_key + "\","
-		                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
+		                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_access_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 		                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 	                    }
 	                    out.println(authorization_header_string);
