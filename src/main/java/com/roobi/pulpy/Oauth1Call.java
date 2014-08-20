@@ -188,7 +188,7 @@ public class Oauth1Call extends HttpServlet {
 	            	// out.println(actok);
 	            	 HttpClient httpclient = new DefaultHttpClient();
 	                 HttpResponse response1=null;
-	                 HttpPost post = new HttpPost(url1);
+	                 HttpPost post = new HttpPost(ourl31);
                      post.setHeader("Authorization", authorization_header_string);
      				 response1 = httpclient.execute(post);
                    	
