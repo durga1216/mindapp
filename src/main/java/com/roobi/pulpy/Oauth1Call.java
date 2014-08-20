@@ -92,10 +92,10 @@ public class Oauth1Call extends HttpServlet {
 		String id=(String) session.getAttribute("id");
 	    String appid=(String) session.getAttribute("appid");
 	    String secret11=(String ) session.getAttribute("secret1");
-	    out.println(secret11);
+	    //out.println(secret11);
 	    String[] tok1=secret11.split("=");
 	    String sec1=tok1[1];
-	    System.out.println(sec1);
+	    //System.out.println(sec1);
 	    //String oauth_signature1=(String) session.getAttribute("oauth_signature1");
 	   // String parameter_string=(String) session.getAttribute("parameter_string");
 	    try{
@@ -168,7 +168,7 @@ public class Oauth1Call extends HttpServlet {
 	                 String oauth_nonce = uuid_string; 
 	                 String eurl = URLEncoder.encode(ourl31, "UTF-8");
 	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
-	                   String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
+	                 String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
 	                  String parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_token="+oauth_token+"&oauth_verifier="+oauth_verifier+"&oauth_version=1.0";        
 	                  String signature_base_string = oreq1+"&"+eurl+"&" + URLEncoder.encode(parameter_string, "UTF-8");
 	                   System.out.println("signature_base_string=" + signature_base_string);
@@ -202,7 +202,7 @@ public class Oauth1Call extends HttpServlet {
         		}
         		String tok=result.toString();
         		 
-        		out.println(tok);
+        		//out.println(tok);
         		String[] acctok=tok.split("&");
         		
         		session.setAttribute("access_token1", acctok[1]);
