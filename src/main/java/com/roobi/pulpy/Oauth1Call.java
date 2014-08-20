@@ -202,7 +202,7 @@ public class Oauth1Call extends HttpServlet {
         		}
         		String tok=result.toString();
         		 
-        		//out.println(tok);
+        		out.println(tok);
         		String[] acctok=tok.split("&");
         		
         		session.setAttribute("access_token1", acctok[1]);
