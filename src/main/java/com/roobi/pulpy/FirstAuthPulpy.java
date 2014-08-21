@@ -138,7 +138,7 @@ public class FirstAuthPulpy extends HttpServlet {
 	                  String parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 	                  // System.out.println("parameter_string=" + parameter_string);
 	                  String signature_base_string = oreq1+"&"+eurl+"&" + URLEncoder.encode(parameter_string, "UTF-8");
-	                   System.out.println("signature_base_string=" + signature_base_string);
+	                   //System.out.println("signature_base_string=" + signature_base_string);
 	                    String oauth_signature = "";String oauth_signature1 = "";
 	                 try {
 	                      oauth_signature = computeSignature(signature_base_string, secret+"&");  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
@@ -172,7 +172,7 @@ public class FirstAuthPulpy extends HttpServlet {
 	         			result.append(line);
 	         		}
 	         		String tok=result.toString();
-	         		out.println("dsdsdsdsssssdf"+tok);
+	         		//out.println("dsdsdsdsssssdf"+tok);
 	         		 String[] tok1=tok.split("&");
 	         		oauth_token=tok1[1];
 	         		String sec1=tok1[2];
