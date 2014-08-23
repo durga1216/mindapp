@@ -73,6 +73,7 @@ public class OauthCallBackServlet extends HttpServlet {
 
 		try{
 			//	response.setContentType("application/json");
+			String url1=request.getParameter("url");
 			HttpSession session1=request.getSession(true);
 			String url=(String) session1.getAttribute("url");
 			String id=(String) session1.getAttribute("id");
@@ -185,6 +186,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='token.jsp'>Continue with App</a></center></h3></body>");
 			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with Oauth Simplify APP</a></center></h3></body>");
 			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreRaw'>Continue with Oauth Raw APP</a></center></h3></body>");
+			            pw.println("<br><br><h3><center><a style='color:#ffffff;' href='"+url1+"'>Continue</a></center></h3></body>");
 
 					   }
 			}
