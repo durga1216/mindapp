@@ -237,7 +237,7 @@ function load2(){
 <div id=na><a href="http://minddotss.com/"><img style="height:60px;width:200px;" src="images/log.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load2()'>Apps Builder</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>Viewapi?category=Search'>Search API's</a></div>
 <br><hr>
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br>
-<div id=na11><ul><li>MindPulpy is a platform to aggregate, manipulate, simpilify and mashup content from around the web api.</li>
+<div id=na11><ul><li>MindPulpy is a platform to aggregate, manipulate, simplify and mashup content from around the web api.</li>
 <li>Combine many apis into one</li><li>Get data from any web protocol/ Authentication, method and convert into a developer friendly urls and built apps for multiple devices using Apps builder</li></ul></div><br><div id=ful>
 <div id=imdv><img alt="logo" src="images/MindPulpy_Illustration.PNG"style="height:400px;width:500px;"></div>
 <div id="sec"><br>
