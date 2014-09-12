@@ -55,8 +55,6 @@ public class TimeGraph extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out=response.getWriter();
 		response.setHeader("Content-Type","text/html;charset=UTF-8");
-		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-		 Connection con1=null;
 		 out.println("<a style='color:#ffffff;margin-left:1250px;font-size:22px;' href='logsucess.jsp'>Back</a></div>");
         out.println("<style>h2{margin-right:150px;color:#ffffff;}option{font-size:22px;}select,th,td,input[type='text']{ padding:7px;text-align:left;text-weight:bold;width:250px;color:#FF9900;font-weight:bold;}input[type='submit']{color:#FFFFFF;background-color:#FF9900;border:solid 2px;border-radius:20px;padding:10px;width:120px;height:40px;font-family:verdana;font-size:17px;margin-left:50px;}</style>");
 		 out.println("<html><body bgcolor='#FF9900'><br><center><h2>ADD Video Id</h2><br><form action='TimeGraph' method='post'>"
@@ -80,10 +78,13 @@ public class TimeGraph extends HttpServlet {
 		//Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 		Statement st=cn.createStatement();
 		ResultSet rs=st.executeQuery("select * from mtest1");
+		Statement st1=cn.createStatement();
+		ResultSet rs1=st1.executeQuery("select * from mtest1");
 		int a=0;
-		while(rs.next()){
+		while(rs1.next()){
 			a++;
 	}
+		System.out.println(a);
 		String[] id1=new String[a];int j=0;
 		while(rs.next()){
 				id1[j]=rs.getString("ids");
@@ -115,6 +116,7 @@ public class TimeGraph extends HttpServlet {
     	   	     while((line=br.readLine())!=null){
     	 	       	 str+=line;
     	 	       	 }
+    	   	     System.out.println(str);
     	   	  JSONParser jsonParser = new JSONParser();
     	   	            JSONObject jsonObject = (JSONObject) jsonParser.parse(str);
     	   	         long value =  (Long) jsonObject.get("views_last_hour");

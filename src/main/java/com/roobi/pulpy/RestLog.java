@@ -30,7 +30,7 @@ public class RestLog {
 
          PreparedStatement st=null;
          String id="<?xml version=\"1.0\"?><mpulpy>";
-         st=con.prepareStatement("SELECT * from mtest where video_id='"+a+"',date='"+b+"' ");
+         st=con.prepareStatement("SELECT * from mtest where video_id='"+a+"' && date='"+b+"' ");
          ResultSet rs = st.executeQuery();
          if(rs != null){
         	 
