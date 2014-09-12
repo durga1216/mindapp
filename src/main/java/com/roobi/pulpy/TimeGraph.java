@@ -80,7 +80,7 @@ public class TimeGraph extends HttpServlet {
 		//Connection cn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
 		Statement st=cn.createStatement();
 		ResultSet rs=st.executeQuery("select * from mtest1");
-		String[] id1=new String[10];int j=0;
+		String[] id1={};int j=0;
 		while(rs.next()){
 				id1[j]=rs.getString("ids");
 				j++;
@@ -116,7 +116,7 @@ public class TimeGraph extends HttpServlet {
     	   	         long value =  (Long) jsonObject.get("views_last_hour");
     	   	     st.executeUpdate("insert into mtest (m1,date,time,video_id) values ('"+value+"','"+dt+"','"+tm+"','"+id+"')");
     	   	  //out.println("Startedddd");       
-    	   	     Thread.sleep(360 * 1000);
+    	   	     Thread.sleep(600 * 1000);
     	            }
     	        } catch(InterruptedException v) {
     	            out.println(v);
