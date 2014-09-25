@@ -102,7 +102,7 @@ public class AuthXmlPulpy extends HttpServlet {
         PreparedStatement st2=con.prepareStatement("SELECT * FROM authen1 t1 JOIN thirdconfig t2 ON t1.appid = t2.appid JOIN thrdxmlconfig t3 ON t1.appid=t3.appid  WHERE t1.appid=?");
 	    st2.setString(1, appid);
         ResultSet rs2 = st2.executeQuery();
-        PreparedStatement st3=con.prepareStatement("SELECT * From oauthtoken ORDER BY count DESC LIMIT 1");
+        PreparedStatement st3=con.prepareStatement("SELECT * From oauthtoken where id='"+appid+"' ORDER BY count DESC LIMIT 1");
         ResultSet rs3 = st3.executeQuery();
         while(rs3.next()){
         	oauthtok=rs3.getString("token");
