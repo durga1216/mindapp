@@ -103,7 +103,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			String responseBody=null;
 			String responseMsg=null;
 			String access_token=null;
-			
+			pw.println(rm1);
 	        String line = "";
 			HttpClient client=new DefaultHttpClient();
             pw.println("<body style='background-color:#ff9900;'>");
@@ -149,7 +149,7 @@ pw.println(responseBody);
 	     
 				     
 				 }
-			
+			 pw.println("zcvdsfgsergsedt");
 			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
 			             while ((line = br.readLine()) != null) {
 			            	 if(line.startsWith("{") || line.startsWith("[{")){
