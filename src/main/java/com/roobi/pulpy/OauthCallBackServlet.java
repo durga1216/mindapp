@@ -130,6 +130,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			  
 			    
 				 else if(rm1.equals("GET")){
+					 pw.println("inside get");
 					 HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
 				    	 List <NameValuePair> cod = new ArrayList <NameValuePair>();
 				    	 cod.add(new BasicNameValuePair("code",code));
@@ -143,7 +144,7 @@ public class OauthCallBackServlet extends HttpServlet {
 					    		    
 					    		while ((responseMsg = rd.readLine()) != null) {
                                 responseBody=responseMsg;				    		} 
-
+pw.println(responseBody);
 
 	     
 				     
@@ -153,8 +154,8 @@ public class OauthCallBackServlet extends HttpServlet {
 			             while ((line = br.readLine()) != null) {
 			            	 if(line.startsWith("{") || line.startsWith("[{")){
 			            		 JSONObject json = null;
-			            		 PrintWriter out=response.getWriter();
-			            		// out.println(responseBody);
+			            		 //PrintWriter out=response.getWriter();
+			            		 pw.println(responseBody);
 			     				 json = new JSONObject(responseBody);
 			     		         access_token = json.getString("access_token"); 
 			            	 }
