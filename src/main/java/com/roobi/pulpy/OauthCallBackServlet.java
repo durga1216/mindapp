@@ -90,11 +90,11 @@ public class OauthCallBackServlet extends HttpServlet {
 			String url1=request.getParameter("url");
 			HttpSession session1=request.getSession(true);
 			String url=(String) session1.getAttribute("url");
-			String id=(String) session1.getAttribute("id");
+			String id="ss"+(String) session1.getAttribute("id");
 			String appname="";String tokenurl="";String rm1="";String apikey="";
 			String apisecvalue="";
 			pw.println("before if");
-			if((id.equals("null"))||id.equals(null)){
+			if(id.equals("ssnull")){
 				pw.println("inside if");
 			PreparedStatement st3=con.prepareStatement("SELECT * From facebook ORDER BY count DESC LIMIT 1");
 	        ResultSet rs3 = st3.executeQuery();
