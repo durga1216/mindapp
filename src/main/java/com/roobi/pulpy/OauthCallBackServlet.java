@@ -195,6 +195,7 @@ pw.println(responseBody);
 					             st=con.prepareStatement("insert into oauthtoken(id,token) values ('"+id+"','"+access_token+"')");				 
 					             st.executeUpdate();
 							     st.close();
+							     response.getWriter().print(url);
 					   if(access_token.equals(""))
 				            {pw.println("<br><br><center><b><h2><font color='white'>Authentication Error with "+appname+"</font></center></h2></b>");}
 					   else{
