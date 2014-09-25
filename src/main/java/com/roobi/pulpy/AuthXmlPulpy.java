@@ -88,7 +88,7 @@ public class AuthXmlPulpy extends HttpServlet {
         String j7=request.getParameter("j7"); String jv7=request.getParameter("jv7");
         String j8=request.getParameter("j8"); String jv8=request.getParameter("jv8");
         String j9=request.getParameter("j9"); String jv9=request.getParameter("jv9");
-        String oauthtok="";
+        String access_token="";
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -105,7 +105,7 @@ public class AuthXmlPulpy extends HttpServlet {
         PreparedStatement st3=con.prepareStatement("SELECT * From oauthtoken ORDER BY count DESC LIMIT 1");
         ResultSet rs3 = st3.executeQuery();
         while(rs3.next()){
-        	oauthtok=rs3.getString("token");
+        	access_token=rs3.getString("token");
         }
         while(rs.next()){ // retrieve data from Database and join two tables namely(config&xmlconfig)
 
@@ -133,7 +133,6 @@ public class AuthXmlPulpy extends HttpServlet {
 	     String line=null;
 	     String sigckey=rs.getString("sigckey");
          String sigskey=rs.getString("sigskey");
-	     String access_token=rs.getString("extoken");
             String rm1=rs.getString("rm");
 
         	String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
@@ -865,7 +864,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		     		if("Authorization:Bearer".equals(treplace)){
 
 	     			HttpGet get=new HttpGet(endurl1);
-				       get.addHeader("Authorization", "Bearer "+oauthtok);
+				       get.addHeader("Authorization", "Bearer "+access_token);
 			     		HttpResponse response1 = client.execute(get);
 			     		BufferedReader rd = new BufferedReader(
 			     				new InputStreamReader(response1.getEntity().getContent()));
