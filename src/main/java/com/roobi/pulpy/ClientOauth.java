@@ -94,7 +94,8 @@ public class ClientOauth extends HttpServlet {
         		  clienturl=aurl1+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1;
         	 response.setContentType("text/plain");
         	 response.setCharacterEncoding("UTF-8");
-             response.getWriter().print(clienturl);
+             //response.getWriter().print("success");
+             response.sendRedirect(clienturl);
 
 	        }
 
