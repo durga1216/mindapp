@@ -10,6 +10,7 @@ import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+
 
 
 
@@ -79,27 +82,62 @@ public class OauthCallBackServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw=response.getWriter();
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+		
 		try{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			  Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 			//	response.setContentType("application/json");
 			String url1=request.getParameter("url");
 			HttpSession session1=request.getSession(true);
 			String url=(String) session1.getAttribute("url");
 			String id=(String) session1.getAttribute("id");
-			String appname=(String) session1.getAttribute("appname");
+			String appname="";String tokenurl="";String rm1="";String apikey="";
+			String apisecvalue="";
+			if(url.equals("null")){
+			PreparedStatement st3=con.prepareStatement("SELECT * From facebook ORDER BY count DESC LIMIT 1");
+	        ResultSet rs3 = st3.executeQuery();
+	        while(rs3.next()){
+	        	id=rs3.getString("id");
+	        	url=rs3.getString("url");
+	        }
+	        PreparedStatement st=con.prepareStatement("SELECT * From authen1 t1 where t1.appid=?");
+		    st.setString(1, id);
+	        ResultSet rs = st.executeQuery();
+	        while(rs.next()){ 
+		   	     String authen1=rs.getString("auth");
+		   	     appname=rs.getString("appname");
+		         String cname1=rs.getString("cname");
+	           	  apikey=rs.getString("ckey");
+	           	 String csecname1=rs.getString("csecname");
+	           	  apisecvalue=rs.getString("cseckey");
+	           	 String sname1=rs.getString("sname");
+	           	 String svalue1=rs.getString("svalue");
+	           	 String aurl1=rs.getString("aurl");
+	           	  tokenurl=rs.getString("tokenurl");
+	           	 String tlabel1=rs.getString("tlabel");
+	           	 String treplace1=rs.getString("treplace");
+	           	 String el1=rs.getString("el");
+	           	 String ev1=rs.getString("ev");
+	           	 String rf1=rs.getString("rf");
+	           	  rm1=rs.getString("rmethod");
+	        }
+	        }else{
+			 appname=(String) session1.getAttribute("appname");
 			String apilabel=(String) session1.getAttribute("cname");
-	 		String apikey=(String) session1.getAttribute("ckey");
+	 		 apikey=(String) session1.getAttribute("ckey");
 	 		String apiseclabel=(String) session1.getAttribute("csecname");
-	 		String apisecvalue=(String) session1.getAttribute("cseckey");
+	 		 apisecvalue=(String) session1.getAttribute("cseckey");
 	 		String scope_label=(String) session1.getAttribute("sname");
 	 		String scope_value=(String) session1.getAttribute("svalue");
 	 		String aurl=(String) session1.getAttribute("aurl");
-	 		String tokenurl=(String) session1.getAttribute("tokenurl");
+	 		 tokenurl=(String) session1.getAttribute("tokenurl");
 	 		String tlabel=(String) session1.getAttribute("tlabel");
 	 		String treplace=(String) session1.getAttribute("treplace");
 	 		String el=(String) session1.getAttribute("el");
 	 		String ev=(String) session1.getAttribute("ev");
-	 		String rm1=(String)session1.getAttribute("rm1");
+	 		 rm1=(String)session1.getAttribute("rm1");
 	 		String suma=(String)session1.getAttribute("sumatest");
+	        }
 			String code = request.getParameter(OAuthConstants.CODE);
 			String responseBody=null;
 			String responseMsg=null;
@@ -107,7 +145,6 @@ public class OauthCallBackServlet extends HttpServlet {
 			pw.println(rm1);
 			pw.println(apikey);
 			pw.println(tokenurl);
-			pw.println(suma);
 	        String line = "";
 			HttpClient client=new DefaultHttpClient();
             pw.println("<body style='background-color:#ff9900;'>");
@@ -189,13 +226,11 @@ pw.println(responseBody);
 				
 					   session1.setAttribute("access_token", access_token);
 					   session1.setAttribute("id", id);
-							  Class.forName("com.mysql.jdbc.Driver").newInstance();
-							  Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-					             PreparedStatement st=null;
-					             st=con.prepareStatement("insert into oauthtoken(id,token) values ('"+id+"','"+access_token+"')");				 
-					             st.executeUpdate();
-							     st.close();
-							     response.getWriter().print(url);
+							
+					             PreparedStatement st1=null;
+					             st1=con.prepareStatement("insert into oauthtoken(id,token) values ('"+id+"','"+access_token+"')");				 
+					             st1.executeUpdate();
+							     st1.close();
 					   if(access_token.equals(""))
 				            {pw.println("<br><br><center><b><h2><font color='white'>Authentication Error with "+appname+"</font></center></h2></b>");}
 					   else{

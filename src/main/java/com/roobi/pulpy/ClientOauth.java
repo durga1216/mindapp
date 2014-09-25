@@ -45,6 +45,10 @@ public class ClientOauth extends HttpServlet {
 		    PreparedStatement st=con.prepareStatement("SELECT * From authen1 t1 where t1.appid=?");
 		    st.setString(1, appid);
 	        ResultSet rs = st.executeQuery();
+	        PreparedStatement st2=null;
+            st2=con.prepareStatement("insert into facebook(id,url) values ('"+appid+"','"+url+"')");				 
+            st2.executeUpdate();
+		     st2.close();
 	        while(rs.next()){ 
 	         String appid1=rs.getString("appid");
 	         HttpSession session1=request.getSession(true);
@@ -94,7 +98,7 @@ public class ClientOauth extends HttpServlet {
         		  clienturl=aurl1+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1;
         	 response.setContentType("text/plain");
         	 response.setCharacterEncoding("UTF-8");
-             response.sendRedirect(clienturl);
+        	 response.getWriter().print(clienturl);
 
 	        }
 
