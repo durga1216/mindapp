@@ -7,8 +7,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -19,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+
 
 
 
@@ -61,6 +67,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.mindots.util.Utils;
+
 public class OauthCallBackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
@@ -70,7 +78,7 @@ public class OauthCallBackServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw=response.getWriter();
-
+		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		try{
 			//	response.setContentType("application/json");
 			String url1=request.getParameter("url");
@@ -176,6 +184,12 @@ public class OauthCallBackServlet extends HttpServlet {
 				
 					   session1.setAttribute("access_token", access_token);
 					   session1.setAttribute("id", id);
+							  Class.forName("com.mysql.jdbc.Driver").newInstance();
+							  Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+					             PreparedStatement st=null;
+					             st=con.prepareStatement("insert into oauthtoken(id,token) values ('"+id+"','"+access_token+"')");				 
+					             st.executeUpdate();
+							     st.close();
 					   if(access_token.equals(""))
 				            {pw.println("<br><br><center><b><h2><font color='white'>Authentication Error with "+appname+"</font></center></h2></b>");}
 					   else{
