@@ -15,6 +15,7 @@ $(document).ready(function() {
 		    type: 'POST',
 		    url: "https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy",
 		    data: {appid:appid,
+		    	url:"sfgsdfdfgdf",
 		    },
             dataType: "xml",
 		     success: function(data) {
