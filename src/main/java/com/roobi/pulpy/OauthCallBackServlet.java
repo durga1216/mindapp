@@ -99,6 +99,7 @@ public class OauthCallBackServlet extends HttpServlet {
 	 		String el=(String) session1.getAttribute("el");
 	 		String ev=(String) session1.getAttribute("ev");
 	 		String rm1=(String)session1.getAttribute("rm1");
+	 		String suma=(String)session1.getAttribute("sumatest");
 			String code = request.getParameter(OAuthConstants.CODE);
 			String responseBody=null;
 			String responseMsg=null;
@@ -106,6 +107,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			pw.println(rm1);
 			pw.println(apikey);
 			pw.println(tokenurl);
+			pw.println(suma);
 	        String line = "";
 			HttpClient client=new DefaultHttpClient();
             pw.println("<body style='background-color:#ff9900;'>");

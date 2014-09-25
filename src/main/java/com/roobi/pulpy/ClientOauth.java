@@ -82,6 +82,7 @@ public class ClientOauth extends HttpServlet {
     	    session1.setAttribute("ev", ev1);
     	    session1.setAttribute("rf1", rf1);
     	    session1.setAttribute("rm1", rmethod1);
+    	    session1.setAttribute("sumatest", "mind dotssss");
            	 String clienturl=null;
         	 if(sname1.equals("") && el1.equals(""))
         		  clienturl=aurl1+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1;
