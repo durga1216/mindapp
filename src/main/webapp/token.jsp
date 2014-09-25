@@ -20,9 +20,8 @@ $(document).ready(function() {
 		     success: function(data) {
 		    //   alert("Sucess"+appid);
                $(data).find("root").each(function () {
-                    a=$(this).find("a").text();
-                    b=$(this).find("b").text();
-           $("#result").append('a:'+a+ '<br>b:'+b+'<br><br>');  
+                    a=$(this).find("link").text();
+           $("#result").append('a:'+a+ '<br><br>');  
        
                                                           });
 		    }
