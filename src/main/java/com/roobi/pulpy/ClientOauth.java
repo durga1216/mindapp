@@ -47,8 +47,8 @@ public class ClientOauth extends HttpServlet {
 	        ResultSet rs = st.executeQuery();
 	        while(rs.next()){ 
 	         String appid1=rs.getString("appid");
-	         HttpSession session=request.getSession(true);
-             session.setAttribute("id", appid1);
+	         HttpSession session1=request.getSession(true);
+             session1.setAttribute("id", appid1);
              
 	   	     String authen1=rs.getString("auth");
 	   	     String appname=rs.getString("appname");
@@ -66,22 +66,22 @@ public class ClientOauth extends HttpServlet {
            	 String ev1=rs.getString("ev");
            	 String rf1=rs.getString("rf");
            	 String rmethod1=rs.getString("rmethod");
-           	session.setAttribute("url", url);
-           	session.setAttribute("appname", appname);
-           	session.setAttribute("cname", cname1);
-    	    session.setAttribute("ckey", ckey1);
-    	    session.setAttribute("csecname", csecname1);
-    	    session.setAttribute("cseckey", cseckey1);
-    	    session.setAttribute("sname", sname1);
-    	    session.setAttribute("svalue", svalue1);
-    	    session.setAttribute("aurl", aurl1);
-    	    session.setAttribute("tokenurl", tokenurl1);
-    	    session.setAttribute("tlabel", tlabel1);
-    	    session.setAttribute("treplace", treplace1);
-    	    session.setAttribute("el", el1);
-    	    session.setAttribute("ev", ev1);
-    	    session.setAttribute("rf1", rf1);
-    	    session.setAttribute("rm1", rmethod1);
+           	session1.setAttribute("url", url);
+           	session1.setAttribute("appname", appname);
+           	session1.setAttribute("cname", cname1);
+    	    session1.setAttribute("ckey", ckey1);
+    	    session1.setAttribute("csecname", csecname1);
+    	    session1.setAttribute("cseckey", cseckey1);
+    	    session1.setAttribute("sname", sname1);
+    	    session1.setAttribute("svalue", svalue1);
+    	    session1.setAttribute("aurl", aurl1);
+    	    session1.setAttribute("tokenurl", tokenurl1);
+    	    session1.setAttribute("tlabel", tlabel1);
+    	    session1.setAttribute("treplace", treplace1);
+    	    session1.setAttribute("el", el1);
+    	    session1.setAttribute("ev", ev1);
+    	    session1.setAttribute("rf1", rf1);
+    	    session1.setAttribute("rm1", rmethod1);
            	 String clienturl=null;
         	 if(sname1.equals("") && el1.equals(""))
         		  clienturl=aurl1+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1;

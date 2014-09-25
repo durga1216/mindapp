@@ -104,6 +104,8 @@ public class OauthCallBackServlet extends HttpServlet {
 			String responseMsg=null;
 			String access_token=null;
 			pw.println(rm1);
+			pw.println(apikey);
+			pw.println(tokenurl);
 	        String line = "";
 			HttpClient client=new DefaultHttpClient();
             pw.println("<body style='background-color:#ff9900;'>");
