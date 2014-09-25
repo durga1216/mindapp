@@ -34,6 +34,7 @@ public class ClientOauth extends HttpServlet {
 	    PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
 	    String url=request.getParameter("url");
+	    response.addHeader("Access-Control-Allow-Origin", "*");  	
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 
 
