@@ -225,19 +225,19 @@ public class MobiClient extends HttpServlet {
 		        	     Object content = conn.getContent();
 		        	     InputStream stream = (InputStream) content;
 		        	     BufferedReader br=new BufferedReader(new InputStreamReader(stream));
-		        	     while ((line = br.readLine()) != null)    { 		  
-		         	      JSON json = JSONSerializer.toJSON( line );  
-		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-		     	          xmlSerializer.setTypeHintsEnabled(false);
-		     	          xmlSerializer.setSkipWhitespace(true);
-		     	          xmlSerializer.setTrimSpaces(true);
-		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-		     	          xmlSerializer.removeNamespace(line);
-		     	          xmlSerializer.setForceTopLevelObject(false);
-		     		      jsonxmlout = xmlSerializer.write( json );
+		        	     String strcon=null;
+		        	     StringBuilder strb=new StringBuilder();
+		        	     while ((line = br.readLine()) != null)    { 
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	            str = serializer.write(json);
 
-		        	     }	      // end-while  	
-			               doc= builder.parse(new InputSource(new ByteArrayInputStream(jsonxmlout.getBytes("UTF-8"))));
+			               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 
 	        		 }// else-if json
 	                
@@ -478,19 +478,17 @@ public class MobiClient extends HttpServlet {
 				          doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 		        		 }
 		        		 else if(resf1.equals("JSON")){
-		        			 while ((line = br.readLine()) != null)    { 
-		 	        	    	
-		   	         		  JSON json = JSONSerializer.toJSON( line)  ;
-		   	     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-		   	     	          xmlSerializer.setTypeHintsEnabled(false);
-		   	     	          xmlSerializer.setSkipWhitespace(true);
-		   	     	          xmlSerializer.setTrimSpaces(true);
-		   	     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-		   	     	          xmlSerializer.removeNamespace(line);
-		   	     	          xmlSerializer.setRootName("root");
-		   	     	          xmlSerializer.setForceTopLevelObject(false);
-		   	     		      str = xmlSerializer.write( json );
-		        		 } //while
+		        			 String strcon=null;
+			        	     StringBuilder strb=new StringBuilder();
+			        	     while ((line = br.readLine()) != null)    { 
+		        	    	      strb.append(line);
+		   	    		     }//while
+		        	    	 strcon=strb.toString();
+		        	    	 XMLSerializer serializer = new XMLSerializer();
+		     	            JSON json = JSONSerializer.toJSON(strcon);
+		     	            serializer.setRootName("root");
+		     	            serializer.setTypeHintsEnabled(false);
+		     	            str = serializer.write(json);
 				               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 
 		        		 } //if
