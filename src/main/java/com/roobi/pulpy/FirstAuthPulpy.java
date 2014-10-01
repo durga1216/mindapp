@@ -262,9 +262,11 @@ public class FirstAuthPulpy extends HttpServlet {
 	            	 String el1=rs.getString("el");
 	            	 String ev1=rs.getString("ev");
 	            	 String rf1=rs.getString("rf");
+	            	 String url="http://minddotss.com";
 	            	 String rmethod1=rs.getString("rmethod");
 	            	    session.setAttribute("cname", cname1);
 	            	    session.setAttribute("ckey", ckey1);
+	            	    session.setAttribute("url", url);
 	            	    session.setAttribute("csecname", csecname1);
 	            	    session.setAttribute("cseckey", cseckey1);
 	            	    session.setAttribute("sname", sname1);
