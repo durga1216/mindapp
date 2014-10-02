@@ -86,7 +86,7 @@ public class AuthPulpy extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		 HttpSession session1=request.getSession(true);
-	     	String access_token=(String)session1.getAttribute("access_token");
+	     	String access_token=(String)session1.getAttribute("access_token111");
       String rf=request.getParameter("rf");String select2=request.getParameter("rm");
       String select=request.getParameter("select2");
       String select3=request.getParameter("select3");String burl=request.getParameter("method");String endurl=request.getParameter("endurl");
