@@ -1183,8 +1183,8 @@ public class AuthPulpy extends HttpServlet {
 		     		BufferedReader rd = new BufferedReader(
 		     				new InputStreamReader(response1.getEntity().getContent()));
 		     			while ((line = rd.readLine()) != null) {
-		     				GetResponse=line;
-		     				//out.println(GetResponse);
+		     				GetResponse=GetResponse+line;
+		     				out.println(GetResponse);
 		     			}
 	     	
 		     	}   // auth bearer treplace
@@ -1221,9 +1221,9 @@ public class AuthPulpy extends HttpServlet {
 					    		  (new InputStreamReader(response1.getEntity().getContent()));
 					    		    
 					    		while ((line = rd.readLine()) != null) {
-                                GetResponse=line;
+					    			GetResponse=GetResponse+line;
 					    		} // while
-					    			
+			     				out.println(GetResponse);
 					    		} // querystring
 		     	}   // Get
 
@@ -1300,6 +1300,7 @@ public class AuthPulpy extends HttpServlet {
  		     		}  // query string
 		     		   
 		     	}  // POST
+		     	out.println(GetResponse);
                  if(authen1.equals("Oauth2") && resf1.equals("JSON")){
                 	 strcon=GetResponse;
                   JSON json = JSONSerializer.toJSON( GetResponse );  
