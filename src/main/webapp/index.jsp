@@ -224,7 +224,7 @@ function load(){
 	
 }
 function load1(){
-	window.open("MindPulpy_FAQ.pdf", '_blank');
+	window.open("https://bridge-minddotss.rhcloud.com/index.jsp", '_blank');
 }
 function load2(){
 	window.open("https://mindtools-inputs.rhcloud.com/index.jsp", '_blank');

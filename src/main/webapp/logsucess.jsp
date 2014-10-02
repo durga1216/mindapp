@@ -162,6 +162,14 @@ function load(){
 	window.open("http://www.youtube.com/channel/UCc0XVG8gFmFMi1jh_hj0sQA", '_blank');
 	
 }
+function load4(){
+	window.open("https://bridge-minddotss.rhcloud.com/index.jsp", '_blank');
+	
+}
+function load5(){
+	window.open("https://bridge-minddotss.rhcloud.com/title.jsp", '_blank');
+	
+}
 function load1(){
 	window.open("<%=request.getContextPath()%>/Viewapi?category=Search", '_blank');
 	
@@ -189,9 +197,10 @@ function load1(){
 	</div>
 <div class='suc'><center><h3>Login Sucess!!</h3></center></div>
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>
-<center><div id='pa'><a href="javascript:popup('popUpDiv')" id="link">Create New Application Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%=request.getContextPath()%>/EditPulpy' >Edit Your Application Here</a></div></center><br><br><br>
-<center><div id='pa'><a href='prebuiltapi.jsp'> PreBuild APPs Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load()">YouTube Link For Help</a></div></center><br><br><br>
-<center><div id='pa'><a href='https://mindtools-inputs.rhcloud.com/login.jsp'>Apps Builder Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load1()">API Gallery</a><sup>500+ Api's</sup></div></center><br><br><br>
+<center><div id='pa'><a href="javascript:popup('popUpDiv')" id="link">Create New Application Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%=request.getContextPath()%>/EditPulpy' >Edit Your Application Here</a></div></center><br><br>
+<center><div id='pa' style="margin-left:50px;"><a href="javascript:load5()" >Built your Own Connectors</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load4()">Mind Pulpy Connectors</a><sup> Hot.! Try it.! </sup></div></center><br><br><br>
+<center><div id='pa'><a href='prebuiltapi.jsp'> PreBuild APPs Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load()">YouTube Link For Help</a></div></center><br><br>
+<center><div id='pa'><a href='https://mindtools-inputs.rhcloud.com/login.jsp'>Apps Builder Here</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:load1()">API Gallery</a><sup> 500+ Api's </sup></div></center><br><br><br>
 
 </body>
 
