@@ -122,6 +122,13 @@ font-size:15px;
 color:#ffffff;
 margin-left:200px;
 }
+sup { vertical-align: 2.5ex; 
+padding:2px;
+font-size:15px;
+background-color:blue;
+color:#ffffff;
+box-shadow:2px 2px 5px 1px #000;
+border-radius:5px;}
 img{
 height:50px;
 width:60px;
@@ -224,6 +231,9 @@ function load(){
 	
 }
 function load1(){
+	window.open("https://bridge-minddotss.rhcloud.com/title.jsp", '_blank');
+}
+function load3(){
 	window.open("https://bridge-minddotss.rhcloud.com/index.jsp", '_blank');
 }
 function load2(){
@@ -234,7 +244,7 @@ function load2(){
 </head>
 <body>
 <form action="LoginPulpy" name="myForm" method="post" onsubmit="return validateForm()">
-<div id=na><a href="http://minddotss.com/"><img style="height:60px;width:200px;" src="images/log.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>FAQ</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='API_promotion.jsp'>API Promotion</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load2()'>Apps Builder</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>Viewapi?category=Search'>Search API's</a></div>
+<div id=na><a href="http://minddotss.com/"><img style="height:60px;width:200px;" src="images/log.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>Build Connectors</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='javascript:load3()'>Popular Connectors</a><sup> Hot.! </sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'APIthon.jsp'>APIthon</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load2()'>Apps Builder</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>Viewapi?category=Search'>Search API's</a></div>
 <br><hr>
 <br><div class="head"><center>Mind Pulpy</center></h2></div><br>
 <div id=na11><ul><li>MindPulpy is a platform to aggregate, manipulate, simplify and mashup content from around the web api.</li>
