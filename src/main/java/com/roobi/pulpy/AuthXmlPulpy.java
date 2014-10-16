@@ -584,7 +584,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	        	 
 	        		 
 	        		 
-	        		 
+	        	 } 
 	        	 
 	         } // Main END of API Keys
        
@@ -698,7 +698,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	               doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 		          }//try
 		          catch(Exception e){  //out.println(e);
-		          }
+		          
 		          }
 		          }//get
 		          
