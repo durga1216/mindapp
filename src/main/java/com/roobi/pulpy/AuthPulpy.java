@@ -685,7 +685,6 @@ public class AuthPulpy extends HttpServlet {
         		 else if(!"null".equals(pa1)){
 	        		 eurl=pa1+"="+pva1;}
 	        	 
-	        	 eurl=eurl.replaceAll(" ", "%20"); 
 	        	 String str="";
 	        	 try{
 		          if(rm1.equals("GET")){ 
