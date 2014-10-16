@@ -868,11 +868,15 @@ public class AuthPulpy extends HttpServlet {
 			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\"}");
 			         			input.setContentType("application/json");
 			         			postRequest.setEntity(input);} // */
-	            			else if(j1!=null && j2!=null && j3!=null ){
+	            			else if(j1!=null && j2!=null && j3!=null && !j1.equals(null)){
 	            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
 		            		   input.setContentType("application/json");
 		            		   postRequest.setEntity(input); }
-		         		 
+	            			else if(!j1.equals(null) &&j2.equals(null)&& j3.equals(null)){
+	            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
+			            		   input.setContentType("application/json");
+			            		   postRequest.setEntity(input);
+	            			}
 		         		 else if(j1!=null && j2!=null){
 		         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\"}");
 		         			input.setContentType("application/json");
@@ -907,18 +911,17 @@ public class AuthPulpy extends HttpServlet {
 	    	                    	str+=line;
 	    	                    }} // while and xml
 	    	              else if(resf1.equals("JSON")){
-	    	            	  while((line=in.readLine())!=null){
-	    	            		  JSON json = JSONSerializer.toJSON( line );  
-	    		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-	    		     	          xmlSerializer.setTypeHintsEnabled(false);
-	    		     	          xmlSerializer.setSkipWhitespace(true);
-	    		     	          xmlSerializer.setTrimSpaces(true);
-	    		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-	    		     	          xmlSerializer.removeNamespace(line);
-	    		     	          xmlSerializer.setForceTopLevelObject(false);
-	    		     		      str = xmlSerializer.write( json );
-	    		     		      //out.println(xmlout);
-	    	            	  }}//while
+	    	            	  StringBuilder strb=new StringBuilder();
+	    	            	  while ((line = in.readLine()) != null)    { 
+		        	    	      strb.append(line);
+		   	    		     }//while
+		        	    	 strcon=strb.toString();
+		        	    	 XMLSerializer serializer = new XMLSerializer();
+		     	            JSON json = JSONSerializer.toJSON(strcon);
+		     	            serializer.setRootName("root");
+		     	            serializer.setTypeHintsEnabled(false);
+		     	            str = serializer.write(json);
+	    	            	  }//while
 	            			httpClient.getConnectionManager().shutdown();
 	    	            	  session.setAttribute("xml1", str);
 	    	            	  out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
