@@ -783,7 +783,7 @@ Connection con=null;
 	   	          
 	         } //post
 	              else if(rm1.equals("POST_JSON")){
-		            	 // out.println("inside");
+		            	  out.println("inside");
 		            		  DefaultHttpClient httpClient = new DefaultHttpClient();
 		            			HttpPost postRequest = new HttpPost(endurl1);
 		            			if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null && j8!=null ){
@@ -807,6 +807,7 @@ Connection con=null;
 				         			input.setContentType("application/json");
 				         			postRequest.setEntity(input);} // */
 		            			else if(j1!=null && j2!=null && j3!=null ){
+		            				out.println("inside 3");
 		            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
 			            		   input.setContentType("application/json");
 			            		   postRequest.setEntity(input); }
@@ -819,7 +820,7 @@ Connection con=null;
 			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\"}");
 			         			input.setContentType("application/json");
 			         			postRequest.setEntity(input);}
-			            	   
+			            	   out.println(j1+j2+j3);
 			            	   String encoding = new String(
 			          		   		 org.apache.commons.codec.binary.Base64.encodeBase64   
 			          		   		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
@@ -837,18 +838,20 @@ Connection con=null;
 		    	                    	str+=line;
 		    	                    }} // while and xml
 		    	              else if(resf1.equals("JSON")){
-		    	            	  while((line=in.readLine())!=null){
-		    	            		  JSON json = JSONSerializer.toJSON( line );  
-		    		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-		    		     	          xmlSerializer.setTypeHintsEnabled(false);
-		    		     	          xmlSerializer.setSkipWhitespace(true);
-		    		     	          xmlSerializer.setTrimSpaces(true);
-		    		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-		    		     	          xmlSerializer.removeNamespace(line);
-		    		     	          xmlSerializer.setForceTopLevelObject(false);
-		    		     		      str = xmlSerializer.write( json );
-		    		     		      //out.println(xmlout);
-		    	            	  }}//while
+		    	            	  String strcon=null;
+			 		        	     StringBuilder strb=new StringBuilder();
+			 		        	     while ((line = in.readLine()) != null)    { 
+			 	        	    	      strb.append(line);
+			 	   	    		     }//while
+			 	        	    	 strcon=strb.toString();
+			 	        	    	 out.println(strcon);
+			 	        	    	 XMLSerializer serializer = new XMLSerializer();
+			 	     	            JSON json = JSONSerializer.toJSON(strcon);
+			 	     	            serializer.setRootName("root");
+			 	     	            serializer.setTypeHintsEnabled(false);
+			 	     	            str = serializer.write(json);		    		     		      //out.println(xmlout);
+		    	            	  }//while
+		            			out.println(str);
 		            			httpClient.getConnectionManager().shutdown();
 		            			doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 	              }
