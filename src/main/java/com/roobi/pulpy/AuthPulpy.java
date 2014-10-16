@@ -150,7 +150,7 @@ public class AuthPulpy extends HttpServlet {
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             String sam=null;
              PreparedStatement st=null;
-			 st=con.prepareStatement("insert into config(id,appid,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,extoken) values ('"+id+"','"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"','"+access_token+"')");
+			 st=con.prepareStatement("insert into config(id,appid,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,extoken,j1,j2,j3,j4,j5,jv1,jv2,jv3,jv4,jv5) values ('"+id+"','"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"','"+access_token+"','"+j1+"','"+j2+"','"+j3+"','"+j4+"','"+j5+"','"+jv1+"','"+jv2+"','"+jv3+"','"+jv4+"','"+jv5+"')");
 			 st.executeUpdate();
 		     st.close();
 		  		//out.println("start2");
@@ -181,6 +181,11 @@ public class AuthPulpy extends HttpServlet {
              String h3=rs.getString("h3");String hv3=rs.getString("hv3");
              String h4=rs.getString("h4");String hv4=rs.getString("hv4");
              String h5=rs.getString("h5");String hv5=rs.getString("hv5");
+             String jj1=rs.getString("j1");String jjv1=rs.getString("jv1");
+             String jj2=rs.getString("j2");String jjv2=rs.getString("jv2");
+             String jj3=rs.getString("j3");String jjv3=rs.getString("jv3");
+             String jj4=rs.getString("j4");String jjv4=rs.getString("jv4");
+             String jj5=rs.getString("j5");String jjv5=rs.getString("jv5");
              String sigckey=rs.getString("sigckey");
              String sigskey=rs.getString("sigskey");
              String eurl=null;
@@ -848,53 +853,27 @@ public class AuthPulpy extends HttpServlet {
 	            	 // out.println("inside");
 	            		  DefaultHttpClient httpClient = new DefaultHttpClient();
 	            			HttpPost postRequest = new HttpPost(endurl1);
-	            			if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null && j8!=null ){
-			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\",\""+j7+"\":\""+jv7+"\",\""+j8+"\":\""+jv8+"\"}");
+	            			if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4) && !"null".equals(jj5)){
+			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\",\""+jj4+"\":\""+jjv4+"\",\""+jj5+"\":\""+jjv5+"\"}");
 			         			input.setContentType("application/json");
 			         			postRequest.setEntity(input);}
-	            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null ){
-			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\",\""+j7+"\":\""+jv7+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);}
-	            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null ){
-			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);}
-	            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null){
-			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);}
-	            			else if(j1!=null && j2!=null && j3!=null && j4!=null){
-			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\"}");
+	            			else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4)){
+			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\",\""+jj4+"\":\""+jjv4+"\"}");
 			         			input.setContentType("application/json");
 			         			postRequest.setEntity(input);} // */
-	            			else if(j1!=null && j2!=null && j3!=null && !j1.equals(null)){
-	            				out.println("dsfsd");
-	            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
-		            		   input.setContentType("application/json");
-		            		   postRequest.setEntity(input); }
-	            			else if(!j1.equals(null) &&j2.equals(null)&& j3.equals(null)){
-	            				out.println("dsfsd");
-	            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
-			            		   input.setContentType("application/json");
-			            		   postRequest.setEntity(input);
-	            			}
-		         		 else if(j1!=null && j2!=null){
-		         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\"}");
-		         			input.setContentType("application/json");
-		         			postRequest.setEntity(input);}
-		         		else if(j1!=null  && j11!=null && j12!=null){
-		         			StringEntity input = new StringEntity("{\""+j1+"\":{\""+j11+"\":\""+jv11+"\",\""+j12+"\":\""+jv12+"\"}}");
-		         			input.setContentType("application/json");
-		         			postRequest.setEntity(input);}
-		         		else if(j1!=null && j11!=null){
-		         			StringEntity input = new StringEntity("{\""+j1+"\":{\""+j1+"\":{\""+j11+"\":\""+jv11+"\"}}");
-		         			input.setContentType("application/json");
-		         			postRequest.setEntity(input);}
-		         		 else if(j1!=null){
-		         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\"}");
-		         			input.setContentType("application/json");
-		         			postRequest.setEntity(input);}
+	            			else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3)){
+			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);}
+	            			else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4) && !"null".equals(jj5)){
+			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);}
+		         		    else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4) && !"null".equals(jj5)){
+			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\"}");
+			         			input.setContentType("application/json");
+			         			postRequest.setEntity(input);}
+		         	
 		            	   
 		            	   String encoding = new String(
 		          		   		 org.apache.commons.codec.binary.Base64.encodeBase64   
