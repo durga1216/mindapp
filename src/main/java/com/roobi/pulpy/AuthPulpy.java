@@ -869,10 +869,12 @@ public class AuthPulpy extends HttpServlet {
 			         			input.setContentType("application/json");
 			         			postRequest.setEntity(input);} // */
 	            			else if(j1!=null && j2!=null && j3!=null && !j1.equals(null)){
+	            				out.println("dsfsd");
 	            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
 		            		   input.setContentType("application/json");
 		            		   postRequest.setEntity(input); }
 	            			else if(!j1.equals(null) &&j2.equals(null)&& j3.equals(null)){
+	            				out.println("dsfsd");
 	            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
 			            		   input.setContentType("application/json");
 			            		   postRequest.setEntity(input);
