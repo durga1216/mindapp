@@ -97,7 +97,7 @@ Connection con=null;
         String j7=request.getParameter("j7"); String jv7=request.getParameter("jv7");
         String j8=request.getParameter("j8"); String jv8=request.getParameter("jv8");
         String j9=request.getParameter("j9"); String jv9=request.getParameter("jv9");
-        //out.println("inside------");
+        out.println("inside------");
 		try{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
         con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -139,7 +139,7 @@ Connection con=null;
          String sigskey=rs.getString("sigskey");
 	     String access_token=rs.getString("extoken");
             String rm1=rs.getString("rm");
-//out.println(sigckey+"--"+sigskey+"---"+authen1);
+out.println(authen1+"--"+rm1+"---"+j1);
         	String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
              String mname=rs.getString("baseurl");
             String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
