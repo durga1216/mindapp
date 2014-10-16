@@ -69,6 +69,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		response.setHeader("Content-Type","text/xml; charset=UTF-8");
 	    response.addHeader("Access-Control-Allow-Origin", "*");  		
 	    Connection con=null;
+	    PrintWriter out=response.getWriter();
 		 HttpSession session=request.getSession(true);
 		 // String appid=(String) session.getAttribute("xx"); 
 			String appid=request.getParameter("appid");
@@ -571,7 +572,6 @@ public class AuthXmlPulpy extends HttpServlet {
 		   	     		      str = xmlSerializer.write( json );
 		        		 } //while
 				               //doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
-			                 PrintWriter out=response.getWriter();
 			                 out.println(str);
 
 		        		 } //if
@@ -782,7 +782,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	   	          
 	         } //post
 	              else if(rm1.equals("POST_JSON")){
-		            	 // out.println("inside");
+		            	  out.println("inside");
 		            		  DefaultHttpClient httpClient = new DefaultHttpClient();
 		            			HttpPost postRequest = new HttpPost(endurl1);
 		            			if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null && j8!=null ){
@@ -806,6 +806,7 @@ public class AuthXmlPulpy extends HttpServlet {
 				         			input.setContentType("application/json");
 				         			postRequest.setEntity(input);} // */
 		            			else if(j1!=null && j2!=null && j3!=null ){
+		            				out.println("inside 3");
 		            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
 			            		   input.setContentType("application/json");
 			            		   postRequest.setEntity(input); }
@@ -842,12 +843,14 @@ public class AuthXmlPulpy extends HttpServlet {
 		 	        	    	      strb.append(line);
 		 	   	    		     }//while
 		 	        	    	 strcon=strb.toString();
+		 	        	    	 out.println(strcon);
 		 	        	    	 XMLSerializer serializer = new XMLSerializer();
 		 	     	            JSON json = JSONSerializer.toJSON(strcon);
 		 	     	            serializer.setRootName("root");
 		 	     	            serializer.setTypeHintsEnabled(false);
 		 	     	            str = serializer.write(json);		    		     		      //out.println(xmlout);
 		    	            	  }//while
+		            			out.println(str);
 		            			httpClient.getConnectionManager().shutdown();
 		            			doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 	              }
@@ -1298,7 +1301,6 @@ public class AuthXmlPulpy extends HttpServlet {
 	                 String xmloutput=result.getWriter().toString();
 	                /* output.write(xmloutput);
 	                 output.close();*/
-	                 PrintWriter out=response.getWriter();
 	                 out.println(xmloutput);
 	              	
         }//while
