@@ -654,6 +654,7 @@ public class AuthPulpy extends HttpServlet {
 	        	 }}
 	         
 	         else if(authen1.equals("Basic Auth")){ //m15
+	        	 out.println("inside basic"+endurl1);
 	        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
         		 
@@ -850,7 +851,7 @@ public class AuthPulpy extends HttpServlet {
 	                	
 	              } //  else-if json
 	              else if(rm1.equals("POST_JSON")){
-	            	 // out.println("inside");
+	            	  out.println("inside");
 	            		  DefaultHttpClient httpClient = new DefaultHttpClient();
 	            			HttpPost postRequest = new HttpPost(endurl1);
 	            			if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4) && !"null".equals(jj5)){
@@ -862,6 +863,7 @@ public class AuthPulpy extends HttpServlet {
 			         			input.setContentType("application/json");
 			         			postRequest.setEntity(input);} // */
 	            			else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3)){
+	            				out.println("in 3");
 			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\"}");
 			         			input.setContentType("application/json");
 			         			postRequest.setEntity(input);}
