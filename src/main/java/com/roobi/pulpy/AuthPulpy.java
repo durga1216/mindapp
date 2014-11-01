@@ -742,23 +742,22 @@ public class AuthPulpy extends HttpServlet {
 		              }
 	              String line=null;
 	              InputStream content = (InputStream)connection.getInputStream();
+	              StringBuilder strb=new StringBuilder();
 	                 BufferedReader in   = new BufferedReader (new InputStreamReader (content));
 	              if(resf1.equals("XML")){
 	                    while((line=in.readLine())!=null){
 	                    	str+=line;
 	                    }} // while and xml
 	              else if(resf1.equals("JSON")){
-	            	  while((line=in.readLine())!=null){
-	            		  JSON json = JSONSerializer.toJSON( line .replaceAll("\\s+","")  );  
-		     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-		     	          xmlSerializer.setTypeHintsEnabled(false);
-		     	          xmlSerializer.setSkipWhitespace(true);
-		     	          xmlSerializer.setTrimSpaces(true);
-		     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-		     	          xmlSerializer.removeNamespace(line);
-		     	          xmlSerializer.setForceTopLevelObject(false);
-		     		      str = xmlSerializer.write( json );
-	            	  }//while}
+	            		  while ((line = in.readLine()) != null)    { 
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	            str = serializer.write(json);
 	              }//json
 	              session.setAttribute("xml1", str);
 	              out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
