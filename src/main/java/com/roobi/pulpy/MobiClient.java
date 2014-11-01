@@ -673,23 +673,22 @@ public class MobiClient extends HttpServlet {
 			              }
 		               line=null;
 		              InputStream content = (InputStream)connection.getInputStream();
+		              StringBuilder strb=new StringBuilder();String strcon="";
 		                 BufferedReader in   = new BufferedReader (new InputStreamReader (content));
 		              if(resf1.equals("XML")){
 		                    while((line=in.readLine())!=null){
 		                    	str+=line;
 		                    }} // while and xml
 		              else if(resf1.equals("JSON")){
-		            	  while((line=in.readLine())!=null){
-		            		  JSON json = JSONSerializer.toJSON( line .replaceAll("\\s+","")  );  
-			     	          XMLSerializer xmlSerializer = new XMLSerializer();  
-			     	          xmlSerializer.setTypeHintsEnabled(false);
-			     	          xmlSerializer.setSkipWhitespace(true);
-			     	          xmlSerializer.setTrimSpaces(true);
-			     	          xmlSerializer.setRemoveNamespacePrefixFromElements(true);
-			     	          xmlSerializer.removeNamespace(line);
-			     	          xmlSerializer.setForceTopLevelObject(false);
-			     		      str = xmlSerializer.write( json );
-		            	  }//while}
+		            	  while ((line = in.readLine()) != null)    { 
+	        	    	      strb.append(line);
+	   	    		     }//while
+	        	    	 strcon=strb.toString();
+	        	    	 XMLSerializer serializer = new XMLSerializer();
+	     	            JSON json = JSONSerializer.toJSON(strcon);
+	     	            serializer.setRootName("root");
+	     	            serializer.setTypeHintsEnabled(false);
+	     	            str = serializer.write(json);
 		              }//json
 		              doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));	
 			          }//get
