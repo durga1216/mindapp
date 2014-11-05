@@ -819,13 +819,27 @@ public class AuthXmlPulpy extends HttpServlet {
 			         			input.setContentType("application/json");
 			         			postRequest.setEntity(input);}
 			            	   
-			            	   String encoding = new String(
-			          		   		 org.apache.commons.codec.binary.Base64.encodeBase64   
-			          		   		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
-			          		   		  );
-			          		postRequest.setHeader("Authorization","Basic " + encoding);
-		            			
-		            	 
+		            			if(!"null".equals(b2) && !"null".equals(b4)){
+		            				String encoding = new String(
+		            						org.apache.commons.codec.binary.Base64.encodeBase64   
+			          		   		    	(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
+		            				postRequest.setHeader("Authorization","Basic " + encoding);
+		            			}
+		            			if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
+		            				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2); postRequest.setHeader(h3, hv3);postRequest.setHeader(h4, hv4);postRequest.setHeader(h5, hv5);  
+		            			}
+		            			else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
+		            				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2); postRequest.setHeader(h3, hv3);postRequest.setHeader(h4, hv4);  
+		            			}
+		            			else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+		            				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2); postRequest.setHeader(h3, hv3);  
+				              	}
+		            			else if(!"".equals(h1) && !"".equals(h2)){
+					            	postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2);  
+		            			}
+		            			else if(!"".equals(h1)){
+		            				postRequest.setHeader(h1, hv1);  
+				              	}
 		            			HttpResponse response1 = httpClient.execute(postRequest);
 		            	 
 		            			BufferedReader in = new BufferedReader(
