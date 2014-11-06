@@ -178,7 +178,14 @@
 	<artifactId>ju-dbutil-test-mysql</artifactId>
 	<version>4.1</version>
 </dependency>
-            
+      
+      <dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>javax.servlet-api</artifactId>
+  <version>3.1</version>
+  <scope>provided</scope>
+</dependency>
+      
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
