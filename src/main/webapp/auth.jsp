@@ -98,15 +98,7 @@ width:250px;
 height:30px;
 padding:10px;
 }
-#txt{
-margin-left:80px;
-font-size:20px;
-font-family:verdana;
-width:500px;
-height:200px;
-color:#FF9900;
-padding:10px;
-}
+
 input[type="submit"]{
 
 color:#FFFFFF;
@@ -121,7 +113,7 @@ border-color:#FFFFFF;
 border-radius:50px;
 padding:10px;
 }
-}
+
 .func{
 margin-left:300px;
 }
@@ -311,7 +303,6 @@ $(document).ready(function(){
 	}
 	    else if(this.value == 'POST_JSON'){
 	    	   $('#jrpc').show();
-	    	   $('.tarea').show();
 	    	   }
 	   else if(this.value == 'POST'){
 	   $('#jrpc').hide();
@@ -352,9 +343,7 @@ $(document).ready(function(){
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
 </select><br/><br/>
-<div class="tarea" style="display:none">
-<textarea id="txt" name="descr" placeholder="Description*" required></textarea><br><br>
-</div>
+
 
 <div class="resformat"><center>Response Format</center></div>
 <select name="select3" id="select3">
