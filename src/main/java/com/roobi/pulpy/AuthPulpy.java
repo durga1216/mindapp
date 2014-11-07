@@ -851,7 +851,7 @@ public class AuthPulpy extends HttpServlet {
 	                            
 	                	
 	              } //  else-if json
-	              else if(rm1.equals("POST_JSON")){
+	           /*   else if(rm1.equals("POST_JSON")){
 	            	 /* out.println("inside");
 	            		  DefaultHttpClient httpClient = new DefaultHttpClient();
 	            			HttpPost postRequest = new HttpPost(endurl1);
@@ -902,7 +902,7 @@ public class AuthPulpy extends HttpServlet {
 			              	
 	            			HttpResponse response1 = httpClient.execute(postRequest);
 	            			BufferedReader in = new BufferedReader(new InputStreamReader((response1.getEntity().getContent())));*/
-	            	  URL url1 = new URL (endurl1);
+	            	/*  URL url1 = new URL (endurl1);
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
 	            	  connection.setDoInput(true);   
 	            	  connection.setDoOutput(true);  
@@ -981,7 +981,7 @@ public class AuthPulpy extends HttpServlet {
 	            			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 	            					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	     		        	response.setHeader("Refresh", "1; URL=auth1.jsp");	
-		              }
+		              } */ //POST JSON
 	              
 	             }//try
 	              
