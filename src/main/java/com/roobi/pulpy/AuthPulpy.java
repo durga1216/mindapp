@@ -859,8 +859,7 @@ public class AuthPulpy extends HttpServlet {
 		          //POST JSON
 		          
 	              else if(rm1.equals("POST_JSON")){
-	            	  out.println("inside post json"+ jsontxt1);
-	            		 URL url1 = new URL (endurl1);
+	            	/*	 URL url1 = new URL (endurl1);
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
 	            	  connection.setDoInput(true);   
 	            	  connection.setDoOutput(true);  
@@ -932,11 +931,34 @@ public class AuthPulpy extends HttpServlet {
 	            				serializer.setTypeHintsEnabled(false);
 	            				str = serializer.write(json);
 	            			}//while
+	            			wr.close();
+	            			in.close();
 	            		//	httpClient.getConnectionManager().shutdown();
 	            			session.setAttribute("xml1", str);
 	            			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 	            					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	     		        	//response.setHeader("Refresh", "1; URL=auth1.jsp");*/	
+	            	  
+	            	  URL url = new URL(endurl1); 
+	                  HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
+	                  connection.setDoOutput(true);
+	                  connection.setDoInput(true);
+	                  connection.setInstanceFollowRedirects(false); 
+	                  connection.setRequestMethod("POST"); 
+	                  connection.setRequestProperty("X-Parse-Application-Id", "WkptOzN3xpMxnVHWOcBDIdxwI3QDm55HZsMRTZ0k");
+	                  connection.setRequestProperty("X-Parse-REST-API-Key", "nOpiLwUHH178cDgz2GMhyDFpX0bGpQbtepGW0HpF");
+	                  connection.setRequestProperty("Content-Type", "application/json");
+	                  DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+	                  wr.writeBytes(jsontxt1);
+	                  wr.flush();
+	                  String line1;
+	                  BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+	                  while ((line1 = reader.readLine()) != null) {
+	                     out.println(line1);
+	                  }
+	                  wr.close();
+	                  reader.close();  
 		              }///POST JSON
 	              
 	             }//try
