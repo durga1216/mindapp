@@ -11,7 +11,6 @@
 $(document).ready(function() {
 	$('#submit').click(function(){
 		var jsonstring=$("#jsonstring").val();
-		alert(jsonstring);
 		var appid="MPAPP_1260";
 	 $.ajax({
 		    type: 'POST',
@@ -21,7 +20,7 @@ $(document).ready(function() {
 		    },
             dataType: "xml",
 		     success: function(data) {
-		    //   alert("Sucess"+appid);
+		      alert("Sucess"+appid);
                $(data).find("root").each(function () {
                     a=$(this).find("id").text();
            $("#result").append('a:'+a+ '<br><br>');  

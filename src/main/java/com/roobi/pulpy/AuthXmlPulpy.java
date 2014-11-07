@@ -626,6 +626,9 @@ public class AuthXmlPulpy extends HttpServlet {
         		 else if(!"null".equals(pa1)){
 	        		 eurl=pa1+"="+p1;}
 	        	 
+        		 else if("".equals(pa1) && !"null".equals(p1))
+                     eurl=endurl1+"/"+p1;
+	        	 
         		 else if("null".equals(pa1))
         			eurl="";
 	        	 
