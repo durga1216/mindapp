@@ -73,7 +73,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		 // String appid=(String) session.getAttribute("xx"); 
 			String appid=request.getParameter("appid");
 		//String eurl11=request.getParameter("eurl");
-		String pid=request.getParameter("pid");
+		String pid=request.getParameter("pid");String jsonstring=request.getParameter("jsonstring");
 		String p1=request.getParameter("p1");String p2=request.getParameter("p2");
 		String p3=request.getParameter("p3");String p4=request.getParameter("p4");
 		String p5=request.getParameter("p5");String p6=request.getParameter("p6");
@@ -113,7 +113,7 @@ public class AuthXmlPulpy extends HttpServlet {
             String authen1=rs.getString("auth");String ba1=rs.getString("b1");String b2=rs.getString("b2");
             String ba3=rs.getString("b3");String b4=rs.getString("b4");String ak1=rs.getString("a1");
             String ak2=rs.getString("a2"); String cname=rs.getString("cname");
-       	 String ckey=rs.getString("ckey"); String rmethod=rs.getString("rmethod");
+       	 String ckey=rs.getString("ckey"); String rmethod=rs.getString("rmethod");String jsontxt1=rs.getString("jsontxt");
        	 String csecname=rs.getString("csecname");
        	 String cseckey=rs.getString("cseckey");
        	 String sname=rs.getString("sname");
@@ -782,89 +782,83 @@ public class AuthXmlPulpy extends HttpServlet {
 	   	          
 	         } //post
 	              else if(rm1.equals("POST_JSON")){
-		            	 // out.println("inside");
-		            		  DefaultHttpClient httpClient = new DefaultHttpClient();
-		            			HttpPost postRequest = new HttpPost(endurl1);
-		            			if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null && j8!=null ){
-				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\",\""+j7+"\":\""+jv7+"\",\""+j8+"\":\""+jv8+"\"}");
-				         			input.setContentType("application/json");
-				         			postRequest.setEntity(input);}
-		            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null && j7!=null ){
-				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\",\""+j7+"\":\""+jv7+"\"}");
-				         			input.setContentType("application/json");
-				         			postRequest.setEntity(input);}
-		            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null && j6!=null ){
-				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\",\""+j6+"\":\""+jv6+"\"}");
-				         			input.setContentType("application/json");
-				         			postRequest.setEntity(input);}
-		            			else if(j1!=null && j2!=null && j3!=null && j4!=null && j5!=null){
-				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\",\""+j5+"\":\""+jv5+"\"}");
-				         			input.setContentType("application/json");
-				         			postRequest.setEntity(input);}
-		            			else if(j1!=null && j2!=null && j3!=null && j4!=null){
-				         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\",\""+j4+"\":\""+jv4+"\"}");
-				         			input.setContentType("application/json");
-				         			postRequest.setEntity(input);} // */
-		            			else if(j1!=null && j2!=null && j3!=null ){
-		            				StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\",\""+j3+"\":\""+jv3+"\"}");
-			            		   input.setContentType("application/json");
-			            		   postRequest.setEntity(input); }
-			         		 
-			         		 else if(j1!=null && j2!=null){
-			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\",\""+j2+"\":\""+jv2+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);}
-			         		 else if(j1!=null){
-			         			StringEntity input = new StringEntity("{\""+j1+"\":\""+jv1+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);}
-			            	   
-		            			if(!"null".equals(b2) && !"null".equals(b4)){
-		            				String encoding = new String(
-		            						org.apache.commons.codec.binary.Base64.encodeBase64   
-			          		   		    	(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
-		            				postRequest.setHeader("Authorization","Basic " + encoding);
-		            			}
-		            			if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
-		            				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2); postRequest.setHeader(h3, hv3);postRequest.setHeader(h4, hv4);postRequest.setHeader(h5, hv5);  
-		            			}
-		            			else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
-		            				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2); postRequest.setHeader(h3, hv3);postRequest.setHeader(h4, hv4);  
-		            			}
-		            			else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
-		            				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2); postRequest.setHeader(h3, hv3);  
-				              	}
-		            			else if(!"".equals(h1) && !"".equals(h2)){
-					            	postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2);  
-		            			}
-		            			else if(!"".equals(h1)){
-		            				postRequest.setHeader(h1, hv1);  
-				              	}
-		            			HttpResponse response1 = httpClient.execute(postRequest);
-		            	 
-		            			BufferedReader in = new BufferedReader(
-		            	                        new InputStreamReader((response1.getEntity().getContent())));
-		            		 line="";
-		            			if(resf1.equals("XML")){
-		    	                    while((line=in.readLine())!=null){
-		    	                    	str+=line;
-		    	                    }} // while and xml
-		    	              else if(resf1.equals("JSON")){
-		    	            	  String strcon=null;
-		 		        	     StringBuilder strb=new StringBuilder();
-		 		        	     while ((line = in.readLine()) != null)    { 
-		 	        	    	      strb.append(line);
-		 	   	    		     }//while
-		 	        	    	 strcon=strb.toString();
-		 	        	    	 XMLSerializer serializer = new XMLSerializer();
-		 	     	            JSON json = JSONSerializer.toJSON(strcon);
-		 	     	            serializer.setRootName("root");
-		 	     	            serializer.setTypeHintsEnabled(false);
-		 	     	            str = serializer.write(json);		    		     		      //out.println(xmlout);
-		    	            	  }//while
-		            			httpClient.getConnectionManager().shutdown();
-		            			doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
-	              }
+	            	  
+	            	  URL url = new URL(endurl1); 
+	                  HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
+	                  connection.setDoOutput(true);
+	                  connection.setDoInput(true);
+	                  connection.setInstanceFollowRedirects(false); 
+	                  connection.setRequestMethod("POST"); 
+	                  String encoding=null;
+		              if(!"".equals(b2)&& "".equals(b4)){
+	            		 encoding = new String(
+	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
+	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+""))
+	                    		  );
+	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+
+	            	 }
+	            	 else if(!"".equals(b4) && "".equals(b2)){encoding = new String(
+           		 org.apache.commons.codec.binary.Base64.encodeBase64   
+        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4))
+        		    
+        		  );	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+}
+	            	 else if(!"".equals(b2) && !"".equals(b4)){
+	            		 encoding = new String(
+	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
+	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
+	                    		  );
+	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+
+	   	            	 } 
+	            	 
+	            	 else if("".equals(b2) && "".equals(b4)){encoding=null;}
+	            	 
+	              if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4) && !"null".equals(h5)){
+		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
+		              }
+		              else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4)){
+		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);  
+		              }
+		              else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
+			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
+			              }
+		              else if(!"null".equals(h1) && !"null".equals(h2)){
+			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
+			              }
+		              else if(!"null".equals(h1)){
+			            	connection.setRequestProperty(h1, hv1);  
+			              }
+	                  DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+	                  wr.writeBytes(jsonstring);
+	                  wr.flush();
+	                  String line1;
+		              BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+          			String line11="";
+          			if(resf1.equals("XML")){
+          				while((line11=in.readLine())!=null){
+          					str+=line11;
+  	                    }
+  					} // while and xml
+          			else if(resf1.equals("JSON")){
+          				StringBuilder strb=new StringBuilder();
+          				while ((line11 = in.readLine()) != null)    { 
+          					strb.append(line11);
+	   	    		     	}//while
+          				String strcon = strb.toString();
+          				XMLSerializer serializer = new XMLSerializer();
+          				JSON json = JSONSerializer.toJSON(strcon);
+          				serializer.setRootName("root");
+          				serializer.setTypeHintsEnabled(false);
+          				str = serializer.write(json);
+          			}//while
+	                 
+	                  wr.close();
+	                  in.close();
+		              doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+
+		            	              }//post json
 	         }// Basic Auth
 
        

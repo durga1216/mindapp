@@ -10,18 +10,20 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#submit').click(function(){
-		var appid=$("#appid").val();
+		var jsonstring=$("#jsonstring").val();
+		alert(jsonstring);
+		var appid="MPAPP_1260";
 	 $.ajax({
 		    type: 'POST',
 		    url: "https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy",
 		    data: {appid:appid,
-		    	url:"sfgsdfdfgdf",
+		    	   jsonstring:jsonstring,
 		    },
             dataType: "xml",
 		     success: function(data) {
 		    //   alert("Sucess"+appid);
                $(data).find("root").each(function () {
-                    a=$(this).find("link").text();
+                    a=$(this).find("id").text();
            $("#result").append('a:'+a+ '<br><br>');  
        
                                                           });
@@ -74,6 +76,7 @@ padding:10px;
 <body>
 <br><br><center><div class="head">Mobile App</div></center><br>
 <br><br><center><input type="text" name="appid" id="appid" value="" placeholder='APP_ID'/></center><br>
+<textarea id="jsonstring" placeholder="valid json"></textarea>
 <br><center><input type="submit" name="submit" id="submit" value="check"/></center>
 
 <br><br><center><div id='result'></div></center>
