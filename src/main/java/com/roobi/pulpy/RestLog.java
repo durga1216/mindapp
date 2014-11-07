@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 public class RestLog {
 	 Connection con=null;
     @GET
-    @Produces(MediaType.TEXT_XML)
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("/check/{a}/{b}")
     public Response addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
     	String result11="";
