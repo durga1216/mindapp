@@ -88,7 +88,7 @@ public class AuthPulpy extends HttpServlet {
 		 HttpSession session1=request.getSession(true);
 	     	String access_token=(String)session1.getAttribute("access_token111");
       String rf=request.getParameter("rf");String select2=request.getParameter("rm");
-      String select=request.getParameter("select2");
+      String select=request.getParameter("select2");String jsontxt=request.getParameter("txt");
       String select3=request.getParameter("select3");String burl=request.getParameter("method");String endurl=request.getParameter("endurl");
       String pv1=null;String pv2=null;String pv3=null;String pv4=null;
       String pv5=null;String pv6=null;String pv7=null;String pv8=null;
@@ -150,7 +150,7 @@ public class AuthPulpy extends HttpServlet {
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             String sam=null;
              PreparedStatement st=null;
-			 st=con.prepareStatement("insert into config(id,appid,resf,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,extoken,j1,j2,j3,j4,j5,jv1,jv2,jv3,jv4,jv5) values ('"+id+"','"+appid+"','"+select3+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"','"+access_token+"','"+j1+"','"+j2+"','"+j3+"','"+j4+"','"+j5+"','"+jv1+"','"+jv2+"','"+jv3+"','"+jv4+"','"+jv5+"')");
+			 st=con.prepareStatement("insert into config(id,appid,resf,jsontxt,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,extoken,j1,j2,j3,j4,j5,jv1,jv2,jv3,jv4,jv5) values ('"+id+"','"+appid+"','"+select3+"','"+jsontxt+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"','"+access_token+"','"+j1+"','"+j2+"','"+j3+"','"+j4+"','"+j5+"','"+jv1+"','"+jv2+"','"+jv3+"','"+jv4+"','"+jv5+"')");
 			 st.executeUpdate();
 		     st.close();
 		  		//out.println("start2");
@@ -164,7 +164,7 @@ public class AuthPulpy extends HttpServlet {
              String ak2=rs.getString("a2"); 
         	 String tlabel=rs.getString("tlabel");
         	 String treplace=rs.getString("treplace");
-             String rf1=rs.getString("rf");String rm1=rs.getString("rm");
+             String rf1=rs.getString("rf");String jsontxt1=rs.getString("jsontxt");String rm1=rs.getString("rm");
              String resf1=rs.getString("resf");String mname=rs.getString("baseurl");String endurl1=rs.getString("endurl");
              String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
              String pa2=rs.getString("p2");String pva2=rs.getString("pv2");
@@ -653,8 +653,9 @@ public class AuthPulpy extends HttpServlet {
 	        	     
 	        	 }}
 	         
+	         //BASIC AUTH
+	         
 	         else if(authen1.equals("Basic Auth")){ //m15
-	        	 out.println("inside basic"+endurl1);
 	        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
         		 
@@ -764,6 +765,8 @@ public class AuthPulpy extends HttpServlet {
 		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
      		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 		          }//get
+		          
+		          
 	              else if(rm1.equals("POST")){ 
 	            	  URL url1 = new URL (endurl1);
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
@@ -849,7 +852,7 @@ public class AuthPulpy extends HttpServlet {
 	                	
 	              } //  else-if json
 	              else if(rm1.equals("POST_JSON")){
-	            	  out.println("inside");
+	            	 /* out.println("inside");
 	            		  DefaultHttpClient httpClient = new DefaultHttpClient();
 	            			HttpPost postRequest = new HttpPost(endurl1);
 	            			if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4) && !"null".equals(jj5)){
@@ -859,7 +862,7 @@ public class AuthPulpy extends HttpServlet {
 	            			else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4)){
 			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\",\""+jj4+"\":\""+jjv4+"\"}");
 			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);} // */
+			         			postRequest.setEntity(input);} // 
 	            			else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3)){
 	            				out.println("in 3");
 			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\"}");
@@ -895,8 +898,66 @@ public class AuthPulpy extends HttpServlet {
 	            			else if(!"".equals(h1)){
 	            				postRequest.setHeader(h1, hv1);  
 			              	}
+			              	
+			              	
 	            			HttpResponse response1 = httpClient.execute(postRequest);
-	            			BufferedReader in = new BufferedReader(new InputStreamReader((response1.getEntity().getContent())));
+	            			BufferedReader in = new BufferedReader(new InputStreamReader((response1.getEntity().getContent())));*/
+	            	  URL url1 = new URL (endurl1);
+	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
+	            	  connection.setDoInput(true);   
+	            	  connection.setDoOutput(true);  
+	            	  connection.setUseCaches(false);  
+		              connection.setRequestMethod("POST");
+	            	  connection.connect();  
+	                  DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+		              wr.writeBytes(jsontxt1);
+		              wr.flush();
+		              wr.close();
+	              String encoding=null;
+	            	 if(!"null".equals(b2)&& "null".equals(b4)){
+	            		 encoding = new String(
+	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
+	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+""))
+	                    		  );
+	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+
+	            	 }
+	            	 else if(!"null".equals(b4) && "null".equals(b2)){encoding = new String(
+           		 org.apache.commons.codec.binary.Base64.encodeBase64   
+        		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4))
+        		    
+        		  );	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+}
+	            	 else if(!"null".equals(b2) && !"null".equals(b4)){
+	            		 encoding = new String(
+	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
+	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
+	                    		  );
+	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
+
+	   	            	 } 
+	            	 
+	            	 else if("null".equals(b2) && "null".equals(b4)){encoding=null;}
+	            	 out.println("inside...aaa");
+	            	 
+	              if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
+		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
+		              }
+		              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
+		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);  
+		              }
+		              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
+			              }
+		              else if(!"".equals(h1) && !"".equals(h2)){
+			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
+			              }
+		              else if(!"".equals(h1)){
+			            	connection.setRequestProperty(h1, hv1);  
+			              }
+	              InputStream content = (InputStream)connection.getInputStream();
+	              BufferedReader in   = new BufferedReader (new InputStreamReader (content));
+
 	            			String line="";
 	            			if(resf1.equals("XML")){
 	            				while((line=in.readLine())!=null){
@@ -915,7 +976,7 @@ public class AuthPulpy extends HttpServlet {
 	            				serializer.setTypeHintsEnabled(false);
 	            				str = serializer.write(json);
 	            			}//while
-	            			httpClient.getConnectionManager().shutdown();
+	            		//	httpClient.getConnectionManager().shutdown();
 	            			session.setAttribute("xml1", str);
 	            			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 	            					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");

@@ -360,7 +360,7 @@ $(document).ready(function(){
 </select><br/><br/>
 
 <div id="json" style="display:none">
-<textarea id="txt" name="descr" placeholder="Description*" required></textarea><br><br>
+<textarea id="txt" name="txt" placeholder="Enter Valid JSON String" required></textarea><br><br>
 </div>
 
 <div class="resformat"><center>Response Format</center></div>
