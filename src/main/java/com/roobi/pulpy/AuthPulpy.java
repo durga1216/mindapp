@@ -1000,6 +1000,7 @@ public class AuthPulpy extends HttpServlet {
           			else if(resf1.equals("JSON")){
           				StringBuilder strb=new StringBuilder();
           				while ((line = in.readLine()) != null)    { 
+          					out.println(line);
           					strb.append(line);
 	   	    		     	}//while
           				strcon=strb.toString();
@@ -1009,11 +1010,12 @@ public class AuthPulpy extends HttpServlet {
           				serializer.setRootName("root");
           				serializer.setTypeHintsEnabled(false);
           				str = serializer.write(json);
+          				out.println(str);
           			}//while
 	                 
 	                  wr.close();
 	                  in.close();
-	                  session.setAttribute("xml1", str);
+          			session.setAttribute("xml1", str);
           			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
           					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
    		        	response.setHeader("Refresh", "1; URL=auth1.jsp");
