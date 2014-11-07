@@ -17,46 +17,33 @@ import java.sql.ResultSet;
 @Path("/log")
 public class RestLog {
 	 Connection con=null;
-	    @GET
-	    @Produces(MediaType.TEXT_XML)
-	    @Path("/check/{a}/{b}")
-	    public Response addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
-	     String result11="";
-	        try{
-	    	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-	    	  con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
-	    	  
-	    	  //con=DriverManager.getConnection("jdbc:mysql://localhost/mpulpy","root","root");
-
-         PreparedStatement st=null;
-         String id="<?xml version=\"1.0\"?><mpulpy>";
-         st=con.prepareStatement("SELECT * from mtest where video_id='"+a+"' && date='"+b+"' ");
-         ResultSet rs = st.executeQuery();
-         if(rs != null){
-        	 
-         while(rs.next()){
-        	 String t=rs.getString("time");
-        	 String d=rs.getString("m1");
-        	 String dt=rs.getString("date");
-	          id=id+"<root><time>"+t+"</time><reviews>"+d+"</reviews></root>";
-	          
-	          
-              
-         }}       
-         id=id+"</mpulpy>";
-             	 result11= id;
-
+    @GET
+    @Produces(MediaType.TEXT_XML)
+    @Path("/check/{a}/{b}")
+    public Response addPlainText(@PathParam("a") String a, @PathParam("b") String b) {
+    	String result11="";
+    	try{
+    		Class.forName("com.mysql.jdbc.Driver").newInstance();
+    		con=DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy","adminPQ1iFfN","J5JhBL-XC9NG");
+    		PreparedStatement st=null;
+    		st=con.prepareStatement("SELECT * From login where email='"+a+"' && pwd='"+b+"'");
+    		ResultSet rs = st.executeQuery();
+    		String id="Invalid";
+    		if(rs != null){
+    			while(rs.next()){
+    				String usid=rs.getString("id");
+    				id=usid;   
+    			}
+			}       
+           	result11= id;
 	    }//try  
-         
-         catch(Exception e){
-        	 e.printStackTrace();
-         }
-	        return Response.ok(result11)
-				      .header("Access-Control-Allow-Origin", "*")
-				      .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
-				      .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
-	
+    	catch(Exception e){
+    		e.printStackTrace();
+     	}
+    	return Response.ok(result11)
+    			.header("Access-Control-Allow-Origin", "*")
+    			.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
+    			.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
 	}
-
 }
 
