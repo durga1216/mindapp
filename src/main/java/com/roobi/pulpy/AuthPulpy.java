@@ -809,19 +809,19 @@ public class AuthPulpy extends HttpServlet {
 	            	 else if("null".equals(b2) && "null".equals(b4)){encoding=null;}
 	            	 out.println("inside...aaa");
 	            	 
-	              if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
+	              if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4) && !"null".equals(h5)){
 		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
 		              }
-		              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
+		              else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4)){
 		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);  
 		              }
-		              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+		              else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
 			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
 			              }
-		              else if(!"".equals(h1) && !"".equals(h2)){
+		              else if(!"null".equals(h1) && !"null".equals(h2)){
 			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
 			              }
-		              else if(!"".equals(h1)){
+		              else if(!"null".equals(h1)){
 			            	connection.setRequestProperty(h1, hv1);  
 			              }
 	              InputStream content = (InputStream)connection.getInputStream();
@@ -1000,21 +1000,22 @@ public class AuthPulpy extends HttpServlet {
           			else if(resf1.equals("JSON")){
           				StringBuilder strb=new StringBuilder();
           				while ((line = in.readLine()) != null)    { 
-          					out.println(line);
           					strb.append(line);
 	   	    		     	}//while
           				strcon=strb.toString();
-          				out.println(strcon);
           				XMLSerializer serializer = new XMLSerializer();
           				JSON json = JSONSerializer.toJSON(strcon);
           				serializer.setRootName("root");
           				serializer.setTypeHintsEnabled(false);
           				str = serializer.write(json);
-          				out.println(str);
           			}//while
 	                 
 	                  wr.close();
 	                  in.close();
+	                  session.setAttribute("xml1", str);
+          			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+          					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
+   		        	response.setHeader("Refresh", "1; URL=auth1.jsp");
 		              }///POST JSON
 	              
 	             }//try

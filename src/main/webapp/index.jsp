@@ -234,7 +234,7 @@ function load1(){
 	window.open("https://bridge-minddotss.rhcloud.com/title.jsp", '_blank');
 }
 function load3(){
-	window.open("https://bridge-minddotss.rhcloud.com/index.jsp", '_blank');
+	window.open("https://bridge-minddotss.rhcloud.com/login.jsp", '_blank');
 }
 function load2(){
 	window.open("https://mindtools-inputs.rhcloud.com/index.jsp", '_blank');
