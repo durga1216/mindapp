@@ -871,8 +871,8 @@ public class AuthPulpy extends HttpServlet {
 		              wr.writeBytes(jsontxt1);
 		              wr.flush();
 		              wr.close();
-	              String encoding=null;
-	            	/* if(!"null".equals(b2)&& "null".equals(b4)){
+		              String encoding=null;
+		              if(!"null".equals(b2)&& "null".equals(b4)){
 	            		 encoding = new String(
 	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
 	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+""))
