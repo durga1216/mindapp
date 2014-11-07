@@ -1003,6 +1003,7 @@ public class AuthPulpy extends HttpServlet {
           					strb.append(line);
 	   	    		     	}//while
           				strcon=strb.toString();
+          				out.println(strcon);
           				XMLSerializer serializer = new XMLSerializer();
           				JSON json = JSONSerializer.toJSON(strcon);
           				serializer.setRootName("root");
