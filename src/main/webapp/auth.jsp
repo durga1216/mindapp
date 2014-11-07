@@ -214,6 +214,15 @@ font-size:20px;
 box-shadow:2px 2px 5px 1px black;
 border-radius:3px;
 }
+#txt{
+margin-left:80px;
+font-size:20px;
+font-family:verdana;
+width:500px;
+height:200px;
+color:#FF9900;
+padding:10px;
+}
 </style>
 <script type="text/javascript">
 function basauth(){
@@ -299,21 +308,27 @@ $(document).ready(function(){
 	$('#select2').on('change', function() {
 	    if (this.value == 'GET') {
 	    $('#jrpc').hide();
-	    
+ 	   $('#json').hide();
+
 	}
 	    else if(this.value == 'POST_JSON'){
 	    	   $('#jrpc').show();
+	    	   $('#json').show();
+
 	    	   }
 	   else if(this.value == 'POST'){
-	   $('#jrpc').hide();
+	   $('#jrpc').hide();	    	   $('#json').show();
+
 	   }
 	   
 	   else if(this.value == 'PUT'){
-	   $('#jrpc').hide();
+	   $('#jrpc').hide();	    	   $('#json').show();
+
 	   }
 	   
 	   else if(this.value == 'DELETE'){
-	   $('#jrpc').hide();
+	   $('#jrpc').hide();	    	   $('#json').show();
+
 	   }
 	});
 	});
@@ -344,6 +359,9 @@ $(document).ready(function(){
     <option value="DELETE">DELETE</option>
 </select><br/><br/>
 
+<div id="json" style="display:none">
+<textarea id="txt" name="descr" placeholder="Description*" required></textarea><br><br>
+</div>
 
 <div class="resformat"><center>Response Format</center></div>
 <select name="select3" id="select3">
