@@ -575,7 +575,9 @@ public class AuthPulpy extends HttpServlet {
 	        	 
 	         }  // API keys  
 	         
-            //Basic Auth
+            //Signed Auth 
+	         
+	         
 	         else if(authen1.equals("Signed Auth")){  //API Keys
         	     String str="";
                  Object obj;
@@ -655,7 +657,8 @@ public class AuthPulpy extends HttpServlet {
 	         
 	         //BASIC AUTH
 	         
-	         else if(authen1.equals("Basic Auth")){ //m15
+	         else if(authen1.equals("Basic Auth")){ 
+                    out.println("Inside Basic Auth");
 	        	 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	        		 eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
         		 
@@ -856,8 +859,8 @@ public class AuthPulpy extends HttpServlet {
 		          //POST JSON
 		          
 	              else if(rm1.equals("POST-JSON")){
-	            	 /* out.println("inside");
-	            		  DefaultHttpClient httpClient = new DefaultHttpClient();
+	            	  out.println("inside post json"+ jsontxt1);
+	            		 /* DefaultHttpClient httpClient = new DefaultHttpClient();
 	            			HttpPost postRequest = new HttpPost(endurl1);
 	            			if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4) && !"null".equals(jj5)){
 			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\",\""+jj4+"\":\""+jjv4+"\",\""+jj5+"\":\""+jjv5+"\"}");
@@ -974,6 +977,7 @@ public class AuthPulpy extends HttpServlet {
 	            					strb.append(line);
 		   	    		     	}//while
 	            				strcon=strb.toString();
+	            				out.println(strcon);
 	            				XMLSerializer serializer = new XMLSerializer();
 	            				JSON json = JSONSerializer.toJSON(strcon);
 	            				serializer.setRootName("root");
@@ -984,7 +988,7 @@ public class AuthPulpy extends HttpServlet {
 	            			session.setAttribute("xml1", str);
 	            			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 	            					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
-	     		        	response.setHeader("Refresh", "1; URL=auth1.jsp");	
+	     		        	//response.setHeader("Refresh", "1; URL=auth1.jsp");	
 		              } //POST JSON
 	              
 	             }//try
