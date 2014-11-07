@@ -311,7 +311,7 @@ $(document).ready(function(){
  	   $('#json').hide();
 
 	}
-	    else if(this.value == 'POST_JSON'){
+	    else if(this.value == 'POST-JSON'){
 	    	   $('#jrpc').show();
 	    	   $('#json').show();
 
