@@ -946,7 +946,7 @@ public class AuthPulpy extends HttpServlet {
 	                  connection.setInstanceFollowRedirects(false); 
 	                  connection.setRequestMethod("POST"); 
 	                  String encoding=null;
-		              if(!"null".equals(b2)&& "null".equals(b4)){
+		              if(!"".equals(b2)&& "".equals(b4)){
 	            		 encoding = new String(
 	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
 	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+""))
@@ -954,13 +954,13 @@ public class AuthPulpy extends HttpServlet {
 	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 
 	            	 }
-	            	 else if(!"null".equals(b4) && "null".equals(b2)){encoding = new String(
+	            	 else if(!"".equals(b4) && "".equals(b2)){encoding = new String(
            		 org.apache.commons.codec.binary.Base64.encodeBase64   
         		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+b4))
         		    
         		  );	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
 }
-	            	 else if(!"null".equals(b2) && !"null".equals(b4)){
+	            	 else if(!"".equals(b2) && !"".equals(b4)){
 	            		 encoding = new String(
 	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
 	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4))
@@ -969,34 +969,52 @@ public class AuthPulpy extends HttpServlet {
 
 	   	            	 } 
 	            	 
-	            	 else if("null".equals(b2) && "null".equals(b4)){encoding=null;}
+	            	 else if("".equals(b2) && "".equals(b4)){encoding=null;}
 	            	 
-	              if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
+	              if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4) && !"null".equals(h5)){
 		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);connection.setRequestProperty(h5, hv5);  
 		              }
-		              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
+		              else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3) && !"null".equals(h4)){
 		            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);connection.setRequestProperty(h4, hv4);  
 		              }
-		              else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
+		              else if(!"null".equals(h1) && !"null".equals(h2) && !"null".equals(h3)){
 			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2); connection.setRequestProperty(h3, hv3);  
 			              }
-		              else if(!"".equals(h1) && !"".equals(h2)){
+		              else if(!"null".equals(h1) && !"null".equals(h2)){
 			            	connection.setRequestProperty(h1, hv1);connection.setRequestProperty(h2, hv2);  
 			              }
-		              else if(!"".equals(h1)){
+		              else if(!"null".equals(h1)){
 			            	connection.setRequestProperty(h1, hv1);  
 			              }
 	                  DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
 	                  wr.writeBytes(jsontxt1);
 	                  wr.flush();
 	                  String line1;
-	                  BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-	                  while ((line1 = reader.readLine()) != null) {
-	                     out.println(line1);
-	                  }
+		              BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+          			String line="";
+          			if(resf1.equals("XML")){
+          				while((line=in.readLine())!=null){
+          					str+=line;
+  	                    }
+  					} // while and xml
+          			else if(resf1.equals("JSON")){
+          				StringBuilder strb=new StringBuilder();
+          				while ((line = in.readLine()) != null)    { 
+          					out.println(line);
+          					strb.append(line);
+	   	    		     	}//while
+          				strcon=strb.toString();
+          				out.println(strcon);
+          				XMLSerializer serializer = new XMLSerializer();
+          				JSON json = JSONSerializer.toJSON(strcon);
+          				serializer.setRootName("root");
+          				serializer.setTypeHintsEnabled(false);
+          				str = serializer.write(json);
+          				out.println(str);
+          			}//while
+	                 
 	                  wr.close();
-	                  reader.close();  
+	                  in.close();
 		              }///POST JSON
 	              
 	             }//try
