@@ -189,7 +189,7 @@ public class AuthPulpy extends HttpServlet {
              String sigckey=rs.getString("sigckey");
              String sigskey=rs.getString("sigskey");
              String eurl=null;
-	              
+	              out.println(jsontxt1);
 	         if(authen1.equals("No Auth")){
 	        	 Object obj;
 	        	 String str="";
