@@ -860,56 +860,7 @@ public class AuthPulpy extends HttpServlet {
 		          
 	              else if(rm1.equals("POST-JSON")){
 	            	  out.println("inside post json"+ jsontxt1);
-	            		 /* DefaultHttpClient httpClient = new DefaultHttpClient();
-	            			HttpPost postRequest = new HttpPost(endurl1);
-	            			if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4) && !"null".equals(jj5)){
-			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\",\""+jj4+"\":\""+jjv4+"\",\""+jj5+"\":\""+jjv5+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);}
-	            			else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4)){
-			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\",\""+jj4+"\":\""+jjv4+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);} // 
-	            			else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3)){
-	            				out.println("in 3");
-			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\",\""+jj3+"\":\""+jjv3+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);}
-	            			else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4) && !"null".equals(jj5)){
-			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\",\""+jj2+"\":\""+jjv2+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);}
-		         		    else if(!"null".equals(jj1) && !"null".equals(jj2) && !"null".equals(jj3) && !"null".equals(jj4) && !"null".equals(jj5)){
-			         			StringEntity input = new StringEntity("{\""+jj1+"\":\""+jjv1+"\"}");
-			         			input.setContentType("application/json");
-			         			postRequest.setEntity(input);}
-	            			
-	            			if(!"null".equals(b2) && !"null".equals(b4)){
-	            				String encoding = new String(
-	            						org.apache.commons.codec.binary.Base64.encodeBase64   
-		          		   		    	(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(b2+":"+b4)));
-	            				postRequest.setHeader("Authorization","Basic " + encoding);
-	            			}
-	            			if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4) && !"".equals(h5)){
-	            				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2); postRequest.setHeader(h3, hv3);postRequest.setHeader(h4, hv4);postRequest.setHeader(h5, hv5);  
-	            			}
-	            			else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3) && !"".equals(h4)){
-	            				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2); postRequest.setHeader(h3, hv3);postRequest.setHeader(h4, hv4);  
-	            			}
-	            			else if(!"".equals(h1) && !"".equals(h2) && !"".equals(h3)){
-	            				postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2); postRequest.setHeader(h3, hv3);  
-			              	}
-	            			else if(!"".equals(h1) && !"".equals(h2)){
-				            	postRequest.setHeader(h1, hv1);postRequest.setHeader(h2, hv2);  
-	            			}
-	            			else if(!"".equals(h1)){
-	            				postRequest.setHeader(h1, hv1);  
-			              	}
-			              	
-			              	
-	            			HttpResponse response1 = httpClient.execute(postRequest);
-	            			BufferedReader in = new BufferedReader(new InputStreamReader((response1.getEntity().getContent())));*/
-	            	  URL url1 = new URL (endurl1);
+	            		 URL url1 = new URL (endurl1);
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
 	            	  connection.setDoInput(true);   
 	            	  connection.setDoOutput(true);  
