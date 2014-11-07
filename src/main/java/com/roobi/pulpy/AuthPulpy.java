@@ -858,7 +858,7 @@ public class AuthPulpy extends HttpServlet {
 	              
 		          //POST JSON
 		          
-	              else if(rm1.equals("POST-JSON")){
+	       /*       else if(rm1.equals("POST-JSON")){
 	            	  out.println("inside post json"+ jsontxt1);
 	            		 URL url1 = new URL (endurl1);
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
@@ -940,7 +940,7 @@ public class AuthPulpy extends HttpServlet {
 	            			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 	            					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	     		        	//response.setHeader("Refresh", "1; URL=auth1.jsp");	
-		              } //POST JSON
+		              } *///POST JSON
 	              
 	             }//try
 	              
