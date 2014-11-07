@@ -317,17 +317,17 @@ $(document).ready(function(){
 
 	    	   }
 	   else if(this.value == 'POST'){
-	   $('#jrpc').hide();	    	   $('#json').show();
+	   $('#jrpc').hide();	    	   $('#json').hide();
 
 	   }
 	   
 	   else if(this.value == 'PUT'){
-	   $('#jrpc').hide();	    	   $('#json').show();
+	   $('#jrpc').hide();	    	   $('#json').hide();
 
 	   }
 	   
 	   else if(this.value == 'DELETE'){
-	   $('#jrpc').hide();	    	   $('#json').show();
+	   $('#jrpc').hide();	    	   $('#json').hide();
 
 	   }
 	});
