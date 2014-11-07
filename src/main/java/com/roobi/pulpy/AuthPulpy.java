@@ -858,7 +858,7 @@ public class AuthPulpy extends HttpServlet {
 	              
 		          //POST JSON
 		          
-	       /*       else if(rm1.equals("POST-JSON")){
+	       /*       else if(rm1.equals("POST_JSON")){
 	            	  out.println("inside post json"+ jsontxt1);
 	            		 URL url1 = new URL (endurl1);
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();

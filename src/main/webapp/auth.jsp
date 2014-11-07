@@ -311,23 +311,23 @@ $(document).ready(function(){
  	   $('#json').hide();
 
 	}
-	    else if(this.value == 'POST-JSON'){
+	    else if(this.value == 'POST_JSON'){
 	    	   $('#jrpc').show();
 	    	   $('#json').show();
 
 	    	   }
 	   else if(this.value == 'POST'){
-	   $('#jrpc').hide();	    	   $('#json').hide();
+	   $('#jrpc').hide();	    	   $('#json').show();
 
 	   }
 	   
 	   else if(this.value == 'PUT'){
-	   $('#jrpc').hide();	    	   $('#json').hide();
+	   $('#jrpc').hide();	    	   $('#json').show();
 
 	   }
 	   
 	   else if(this.value == 'DELETE'){
-	   $('#jrpc').hide();	    	   $('#json').hide();
+	   $('#jrpc').hide();	    	   $('#json').show();
 
 	   }
 	});
@@ -354,7 +354,7 @@ $(document).ready(function(){
 <select name="select2"  id="select2" onchange="change()">
     <option value="GET">GET</option>
     <option value="POST">POST</option>
-    <option value="POST-JSON">POST-JSON</option>
+    <option value="POST_JSON">POST-JSON</option>
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
 </select><br/><br/>
