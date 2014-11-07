@@ -864,13 +864,9 @@ public class AuthPulpy extends HttpServlet {
 	            	  HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
 	            	  connection.setDoInput(true);   
 	            	  connection.setDoOutput(true);  
-	            	  connection.setUseCaches(false);  
-		              connection.setRequestMethod("POST");
-	            	  connection.connect();  
-	                  DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
-		              wr.writeBytes(jsontxt1);
-		              wr.flush();
-		              wr.close();
+	                  connection.setInstanceFollowRedirects(false); 
+	                  connection.setRequestMethod("POST");
+	                
 		              String encoding=null;
 		              if(!"null".equals(b2)&& "null".equals(b4)){
 	            		 encoding = new String(
@@ -912,9 +908,11 @@ public class AuthPulpy extends HttpServlet {
 		              else if(!"".equals(h1)){
 			            	connection.setRequestProperty(h1, hv1);  
 			              }
-	              InputStream content = (InputStream)connection.getInputStream();
-	              BufferedReader in   = new BufferedReader (new InputStreamReader (content));
-
+	              DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+	              wr.writeBytes(jsontxt1);
+	              wr.flush();
+	             
+	              BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 	            			String line="";
 	            			if(resf1.equals("XML")){
 	            				while((line=in.readLine())!=null){
