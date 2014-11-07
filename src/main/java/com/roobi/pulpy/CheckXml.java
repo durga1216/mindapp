@@ -73,7 +73,7 @@ Connection con=null;
 
   	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-		response.setHeader("Content-Type","text/xml; charset=UTF-8");
+		//response.setHeader("Content-Type","text/xml; charset=UTF-8");
 	    response.addHeader("Access-Control-Allow-Origin", "*");
 	    PrintWriter out=response.getWriter();
 		String appid=request.getParameter("appid");
