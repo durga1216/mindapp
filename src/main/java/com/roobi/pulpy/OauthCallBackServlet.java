@@ -141,7 +141,7 @@ public class OauthCallBackServlet extends HttpServlet {
 	 		String suma=(String)session1.getAttribute("sumatest");
 	        }
 			String code = request.getParameter(OAuthConstants.CODE);
-			String responseBody=null;
+			StringBuilder responseBody=new StringBuilder();
 			String responseMsg=null;
 			String access_token=null;
 			pw.println(rm1);
@@ -150,7 +150,7 @@ public class OauthCallBackServlet extends HttpServlet {
 	        String line = "";
 			HttpClient client=new DefaultHttpClient();
             pw.println("<body style='background-color:#ff9900;'>");
-
+            String finalres="";
 
 			if(rm1.equals("POST")){
 
@@ -166,8 +166,9 @@ public class OauthCallBackServlet extends HttpServlet {
 		        HttpResponse response1 = client.execute(post);
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        while ((responseMsg = rd.readLine()) != null) {
-                 responseBody=responseMsg;		   }
-		        pw.println(responseBody);
+                 responseBody.append(responseMsg);		   }
+		        finalres=responseBody.toString();
+		        pw.println(finalres);
 				}
 				catch(Exception e){pw.println(e);}
 			}
@@ -186,25 +187,25 @@ public class OauthCallBackServlet extends HttpServlet {
 					    		  (new InputStreamReader(response1.getEntity().getContent()));
 					    		    
 					    		while ((responseMsg = rd.readLine()) != null) {
-                                responseBody=responseMsg;			
+                              //  responseBody.append(responseMsg);			
 	    		} 
 
 	     
 				     
 				 }
-			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
+			             BufferedReader br=new BufferedReader(new StringReader(finalres));
 			             while ((line = br.readLine()) != null) {
 			            	 pw.println(line);
 			            	 if(line.startsWith("{") || line.startsWith("[{") || line.endsWith("}")){
 			            		 JSONObject json = null;
-			            		 pw.println(responseBody);
+			            		 pw.println(finalres);
 			     				 json = new JSONObject(responseBody);
 			     		         access_token = json.getString("access_token"); 
 			            	 }
 			            	 else if(line.startsWith("<?") || line.endsWith("?>")){
 			            		    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 					   		    	DocumentBuilder builder = factory.newDocumentBuilder();
-					   		    	org.w3c.dom.Document document = builder.parse(new InputSource(new StringReader(responseBody)));  
+					   		    	org.w3c.dom.Document document = builder.parse(new InputSource(new StringReader(finalres)));  
 					   		    	NodeList nl = document.getElementsByTagName("access_token"); 
 					                Node n = nl.item(0);
 					   		    	access_token = n.getFirstChild().getNodeValue();
