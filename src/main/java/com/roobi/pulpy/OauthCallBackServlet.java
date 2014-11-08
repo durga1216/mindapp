@@ -195,7 +195,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
 			             while ((line = br.readLine()) != null) {
 			            	 pw.println(line);
-			            	 if(line.startsWith("{") || line.startsWith("[{") || line.startsWith(" {")){
+			            	 if(line.startsWith("{") || line.startsWith("[{") || line.endsWith("}")){
 			            		 JSONObject json = null;
 			            		 pw.println(responseBody);
 			     				 json = new JSONObject(responseBody);
