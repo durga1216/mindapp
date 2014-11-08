@@ -86,13 +86,16 @@ public class OauthCallBackServlet extends HttpServlet {
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
+			//	response.setContentType("application/json");
 			String url1=request.getParameter("url");
 			HttpSession session1=request.getSession(true);
 			String url="ss"+(String) session1.getAttribute("url");
 			String id=(String) session1.getAttribute("id");
 			String appname="";String tokenurl="";String rm1="";String apikey="";
 			String apisecvalue="";
+			pw.println("before if"+id);
 			if(url.equals("ssnull")){
+				pw.println("inside if");
 			PreparedStatement st3=con.prepareStatement("SELECT * From facebook ORDER BY count DESC LIMIT 1");
 	        ResultSet rs3 = st3.executeQuery();
 	        while(rs3.next()){
@@ -141,9 +144,12 @@ public class OauthCallBackServlet extends HttpServlet {
 			String responseBody=null;
 			String responseMsg=null;
 			String access_token=null;
-			
+			pw.println(rm1);
+			pw.println(apikey);
+			pw.println(tokenurl);
 	        String line = "";
 			HttpClient client=new DefaultHttpClient();
+            pw.println("<body style='background-color:#ff9900;'>");
 
 
 			if(rm1.equals("POST")){
@@ -160,8 +166,7 @@ public class OauthCallBackServlet extends HttpServlet {
 		        HttpResponse response1 = client.execute(post);
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        while ((responseMsg = rd.readLine()) != null) {
-                 responseBody=responseMsg;			         
-	   }
+                 responseBody=responseMsg;		   }
 		        pw.println(responseBody);
 				}
 				catch(Exception e){pw.println(e);}
@@ -169,6 +174,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			  
 			    
 				 else if(rm1.equals("GET")){
+					 pw.println("inside get");
 					 HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
 				    	 List <NameValuePair> cod = new ArrayList <NameValuePair>();
 				    	 cod.add(new BasicNameValuePair("code",code));
@@ -190,13 +196,13 @@ public class OauthCallBackServlet extends HttpServlet {
 			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
 			             while ((line = br.readLine()) != null) {
 			            	 pw.println(line);
-			            	 if(line.startsWith("{") || line.startsWith("[{")){
+			            	 if(line.startsWith("{") || line.startsWith("[{") || line.startsWith(" {")){
 			            		 JSONObject json = null;
-			            		 pw.println("inside json");
+			            		 pw.println(responseBody);
 			     				 json = new JSONObject(responseBody);
 			     		         access_token = json.getString("access_token"); 
 			            	 }
-			            	else if(line.startsWith("<?") || line.endsWith("?>")){
+			            	 else if(line.startsWith("<?") || line.endsWith("?>")){
 			            		    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 					   		    	DocumentBuilder builder = factory.newDocumentBuilder();
 					   		    	org.w3c.dom.Document document = builder.parse(new InputSource(new StringReader(responseBody)));  
