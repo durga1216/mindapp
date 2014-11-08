@@ -162,7 +162,7 @@ public class OauthCallBackServlet extends HttpServlet {
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        while ((responseMsg = rd.readLine()) != null) {
                  responseBody=responseMsg;		   }
-		        pw.println(responseBody);
+		          pw.println(responseBody);
 				}
 				catch(Exception e){pw.println(e);}
 			}
@@ -202,7 +202,7 @@ public class OauthCallBackServlet extends HttpServlet {
 					   		    	NodeList nl = document.getElementsByTagName("access_token"); 
 					                Node n = nl.item(0);
 					   		    	access_token = n.getFirstChild().getNodeValue();
-			            	 }
+			            	 }*/
 			            	 else{
 			            	 String[] pairs = line.split("&");
 			                 for (String pair : pairs) {
@@ -215,7 +215,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			                             access_token = kv[1];
 			                         }}
 			                         
-			                 } }*/
+			                 } }
 			                 }
 				
 				
