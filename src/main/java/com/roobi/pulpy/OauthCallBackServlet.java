@@ -189,7 +189,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
 			             while ((line = br.readLine()) != null) {
 			            	 pw.println(line);
-			            	 if(line.startsWith("{") || line.startsWith("[{") || line.startsWith(" {")){
+			            /*	 if(line.startsWith("{") || line.startsWith("[{")){
 			            		 JSONObject json = null;
 			            		 pw.println("inside json");
 			     				 json = new JSONObject(responseBody);
@@ -215,7 +215,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			                             access_token = kv[1];
 			                         }}
 			                         
-			                 } }
+			                 } }*/
 			                 }
 				
 				
