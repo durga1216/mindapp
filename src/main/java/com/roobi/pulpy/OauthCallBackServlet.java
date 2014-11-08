@@ -93,7 +93,6 @@ public class OauthCallBackServlet extends HttpServlet {
 			String id=(String) session1.getAttribute("id");
 			String appname="";String tokenurl="";String rm1="";String apikey="";
 			String apisecvalue="";
-			pw.println("before if"+id);
 			if(url.equals("ssnull")){
 			PreparedStatement st3=con.prepareStatement("SELECT * From facebook ORDER BY count DESC LIMIT 1");
 	        ResultSet rs3 = st3.executeQuery();
@@ -163,6 +162,7 @@ public class OauthCallBackServlet extends HttpServlet {
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        while ((responseMsg = rd.readLine()) != null) {
                  responseBody=responseMsg;		   }
+		        pw.println(responseBody);
 				}
 				catch(Exception e){pw.println(e);}
 			}
@@ -195,7 +195,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			     				 json = new JSONObject(responseBody);
 			     		         access_token = json.getString("access_token"); 
 			            	 }
-			            	 else if(line.startsWith("<?") || line.endsWith("?>")){
+			            	/* else if(line.startsWith("<?") || line.endsWith("?>")){
 			            		    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 					   		    	DocumentBuilder builder = factory.newDocumentBuilder();
 					   		    	org.w3c.dom.Document document = builder.parse(new InputSource(new StringReader(responseBody)));  
@@ -215,7 +215,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			                             access_token = kv[1];
 			                         }}
 			                         
-			                 } }
+			                 } }*/
 			                 }
 				
 				
