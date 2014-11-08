@@ -167,7 +167,7 @@ public class OauthCallBackServlet extends HttpServlet {
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        while ((responseMsg = rd.readLine()) != null) {
                  responseBody=responseMsg;		   }
-		      //  pw.println(responseBody);
+		        pw.println(responseBody);
 				}
 				catch(Exception e){pw.println(e);}
 			}
@@ -194,7 +194,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				 }
 			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
 			             while ((line = br.readLine()) != null) {
-			            	 //pw.println(line);
+			            	 pw.println(line);
 			            	 if(line.startsWith("{") || line.startsWith("[{") || line.startsWith(" {")){
 			            		 JSONObject json = null;
 			            		 pw.println(responseBody);
