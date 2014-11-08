@@ -168,7 +168,6 @@ public class OauthCallBackServlet extends HttpServlet {
 		        while ((responseMsg = rd.readLine()) != null) {
                  responseBody.append(responseMsg);		   }
 		        finalres=responseBody.toString();
-		        pw.println(finalres);
 				}
 				catch(Exception e){pw.println(e);}
 			}
@@ -187,7 +186,8 @@ public class OauthCallBackServlet extends HttpServlet {
 					    		  (new InputStreamReader(response1.getEntity().getContent()));
 					    		    
 					    		while ((responseMsg = rd.readLine()) != null) {
-                              //  responseBody.append(responseMsg);			
+                               responseBody.append(responseMsg);
+                               finalres=responseBody.toString();
 	    		} 
 
 	     
@@ -198,8 +198,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			            	 pw.println(line);
 			            	 if(line.startsWith("{") || line.startsWith("[{") || line.endsWith("}")){
 			            		 JSONObject json = null;
-			            		 pw.println(finalres);
-			     				 json = new JSONObject(responseBody);
+			     				 json = new JSONObject(finalres);
 			     		         access_token = json.getString("access_token"); 
 			            	 }
 			            	 else if(line.startsWith("<?") || line.endsWith("?>")){
