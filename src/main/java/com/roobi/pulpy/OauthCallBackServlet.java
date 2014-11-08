@@ -95,7 +95,6 @@ public class OauthCallBackServlet extends HttpServlet {
 			String apisecvalue="";
 			pw.println("before if"+id);
 			if(url.equals("ssnull")){
-				pw.println("inside if");
 			PreparedStatement st3=con.prepareStatement("SELECT * From facebook ORDER BY count DESC LIMIT 1");
 	        ResultSet rs3 = st3.executeQuery();
 	        while(rs3.next()){
