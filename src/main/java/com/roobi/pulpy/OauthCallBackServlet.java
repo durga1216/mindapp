@@ -174,7 +174,6 @@ public class OauthCallBackServlet extends HttpServlet {
 			  
 			    
 				 else if(rm1.equals("GET")){
-					 pw.println("inside get");
 					 HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
 				    	 List <NameValuePair> cod = new ArrayList <NameValuePair>();
 				    	 cod.add(new BasicNameValuePair("code",code));
