@@ -160,8 +160,9 @@ public class OauthCallBackServlet extends HttpServlet {
 		        HttpResponse response1 = client.execute(post);
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        while ((responseMsg = rd.readLine()) != null) {
-                 responseBody=responseMsg;			          pw.println(responseBody);
+                 responseBody=responseMsg;			         
 	   }
+		        pw.println(responseBody);
 				}
 				catch(Exception e){pw.println(e);}
 			}
