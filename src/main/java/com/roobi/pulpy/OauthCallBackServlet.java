@@ -191,18 +191,18 @@ public class OauthCallBackServlet extends HttpServlet {
 			             while ((line = br.readLine()) != null) {
 			            	 if(line.startsWith("{") || line.startsWith("[{") || line.startsWith(" {")){
 			            		 JSONObject json = null;
-			            		 pw.println(responseBody);
+			            		 pw.println("inside json");
 			     				 json = new JSONObject(responseBody);
 			     		         access_token = json.getString("access_token"); 
 			            	 }
-			            	/* else if(line.startsWith("<?") || line.endsWith("?>")){
+			            	else if(line.startsWith("<?") || line.endsWith("?>")){
 			            		    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 					   		    	DocumentBuilder builder = factory.newDocumentBuilder();
 					   		    	org.w3c.dom.Document document = builder.parse(new InputSource(new StringReader(responseBody)));  
 					   		    	NodeList nl = document.getElementsByTagName("access_token"); 
 					                Node n = nl.item(0);
 					   		    	access_token = n.getFirstChild().getNodeValue();
-			            	 }*/
+			            	 }
 			            	 else{
 			            	 String[] pairs = line.split("&");
 			                 for (String pair : pairs) {
