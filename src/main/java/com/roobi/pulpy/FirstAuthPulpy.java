@@ -279,13 +279,13 @@ public class FirstAuthPulpy extends HttpServlet {
 	            	    session.setAttribute("ev", ev1);
 	            	    session.setAttribute("rf1", rf1);
 	            	    session.setAttribute("rm1", rmethod1);
-	            	 if(sname1.equals("") && el1.equals(""))
+	            	 if(sname1.equals("") || sname1.equals("null") && el1.equals(""))
 	            		  response.sendRedirect(aurl+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1);
-	                 else if(!sname1.equals("")&& el1.equals(""))
+	                 else if(!sname1.equals("") || !sname1.equals("null")&& el1.equals(""))
 	            		  response.sendRedirect(aurl+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1);
-	                 else if(!sname1.equals("")&& !el1.equals(""))
+	                 else if(!sname1.equals("") || !sname1.equals("null")&& !el1.equals(""))
 	            		  response.sendRedirect(aurl+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+sname1+"="+svalue1+"&"+el1+"="+ev1);
-	                 else if(sname1.equals("")&& !el1.equals(""))
+	                 else if(sname1.equals("") || sname1.equals("null")&& !el1.equals(""))
 	            		  response.sendRedirect(aurl+"?redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet&response_type=code&client_id="+ckey1+"&"+el1+"="+ev1);
 	            	 
 
