@@ -144,12 +144,9 @@ public class OauthCallBackServlet extends HttpServlet {
 			String responseBody=null;
 			String responseMsg=null;
 			String access_token=null;
-			pw.println(rm1);
-			pw.println(apikey);
-			pw.println(tokenurl);
+			
 	        String line = "";
 			HttpClient client=new DefaultHttpClient();
-            pw.println("<body style='background-color:#ff9900;'>");
 
 
 			if(rm1.equals("POST")){
@@ -166,7 +163,7 @@ public class OauthCallBackServlet extends HttpServlet {
 		        HttpResponse response1 = client.execute(post);
 		        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 		        while ((responseMsg = rd.readLine()) != null) {
-                 responseBody=responseMsg;		    pw.println(responseBody);}
+                 responseBody=responseMsg;		   }
 				}
 				catch(Exception e){pw.println(e);}
 			}
@@ -186,18 +183,16 @@ public class OauthCallBackServlet extends HttpServlet {
 					    		  (new InputStreamReader(response1.getEntity().getContent()));
 					    		    
 					    		while ((responseMsg = rd.readLine()) != null) {
-                                responseBody=responseMsg;			pw.println(responseBody);
+                                responseBody=responseMsg;			
 	    		} 
 
 	     
 				     
 				 }
-			 pw.println("zcvdsfgsergsedt");
 			             BufferedReader br=new BufferedReader(new StringReader(responseBody));
 			             while ((line = br.readLine()) != null) {
-			            	 if(line.startsWith("{") || line.startsWith("[{")){
+			            	 if(line.startsWith("{") || line.startsWith("[{") || line.startsWith(" {")){
 			            		 JSONObject json = null;
-			            		 //PrintWriter out=response.getWriter();
 			            		 pw.println(responseBody);
 			     				 json = new JSONObject(responseBody);
 			     		         access_token = json.getString("access_token"); 
