@@ -80,7 +80,7 @@ Connection con=null;
 		//HttpSession session=request.getSession(true);
 		 // String appid=(String) session.getAttribute("xx"); 
 		String pid=request.getParameter("pid");String s1=request.getParameter("s1");String s2=request.getParameter("s2");
-		String s3=request.getParameter("s3");String s4=request.getParameter("s4");
+		String s3=request.getParameter("s3");String s4=request.getParameter("s4");String jsonstring=request.getParameter("jsonstring");
 		String s5=request.getParameter("s5");String s6=request.getParameter("s6");
 		String paid=request.getParameter("paid");String th1=request.getParameter("t1");String th2=request.getParameter("t2");
 		String th3=request.getParameter("t3");String th4=request.getParameter("t4");
