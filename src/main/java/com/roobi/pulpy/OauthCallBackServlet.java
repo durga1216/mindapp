@@ -86,7 +86,6 @@ public class OauthCallBackServlet extends HttpServlet {
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-			//	response.setContentType("application/json");
 			String url1=request.getParameter("url");
 			HttpSession session1=request.getSession(true);
 			String url="ss"+(String) session1.getAttribute("url");
