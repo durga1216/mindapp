@@ -188,7 +188,7 @@ public class AuthPulpy extends HttpServlet {
              String jj5=rs.getString("j5");String jjv5=rs.getString("jv5");
              String sigckey=rs.getString("sigckey");
              String sigskey=rs.getString("sigskey");
-             String eurl=null;
+             String eurl="";
 	              out.println(jsontxt1);
 	         if(authen1.equals("No Auth")){
 	        	 Object obj;
