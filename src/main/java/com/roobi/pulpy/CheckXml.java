@@ -876,6 +876,7 @@ Connection con=null;
       				serializer.setRootName("root");
       				serializer.setTypeHintsEnabled(false);
       				str = serializer.write(json);
+      				out.println(str);
       				doc=builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
   				}
 			    else if(resf1.equals("XML") && authen1.equals("Oauth2")){
