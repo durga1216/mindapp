@@ -6,14 +6,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.GeneralSecurityException;
+import java.security.MessageDigest;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.util.Map;
 import java.util.UUID;
+
+import sun.misc.BASE64Encoder;
 
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
@@ -27,6 +31,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -95,7 +100,7 @@ public class FirstAuthPulpy extends HttpServlet {
           session2.setAttribute("apikey",a2);
           session2.setAttribute("apiname",a1);
           session2.setAttribute("authtype",authen);
-          
+          String signature="";
 		  try{
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -116,7 +121,7 @@ public class FirstAuthPulpy extends HttpServlet {
 
 	   	      session.setAttribute("appid", appid1);
 
-	             if("Signed Auth".equals(authen1) || "No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
+	             if("No Auth".equals(authen1) || "Basic Auth".equals(authen1) || "API keys".equals(authen1)){
 	            	 
 
 	               // out.println("Your id:"+appid1);
@@ -125,6 +130,34 @@ public class FirstAuthPulpy extends HttpServlet {
 	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
     		     response.setHeader("Refresh", "1; URL=auth.jsp");
 	             }
+	             else if("Signed Auth".equals(authen1)){
+	            	 
+	            	 if("HMAC-SHA1".equals(sig)){
+	            	        SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
+	            	        Mac mac = Mac.getInstance("HMACSHA1");
+	            	        mac.init(signingKey);
+	            	        byte[] rawHmac = mac.doFinal(message.getBytes());
+	            	        String result = new BASE64Encoder().encode(rawHmac);
+	            	        signature = URLEncoder.encode(result, "UTF-8") ;
+	            	        session.setAttribute("signature", signature);
+	            	 }
+	            	 else if("HMAC-SHA256".equals(sig)){
+	            		  Mac mac = Mac.getInstance("HmacSHA256");
+	            	      mac.init(new SecretKeySpec(sigskey.getBytes(), "HmacSHA256"));
+	            	      signature = new String(Hex.encodeHex(mac.doFinal(message.getBytes())));
+	            	      session.setAttribute("signature", signature);
+	            	 }
+	            	 else if("MD5".equals(sig)){
+	            	      MessageDigest md = MessageDigest.getInstance("MD5");
+	            	      md.update(message.getBytes());
+	            	      signature = String.format("%032x", new BigInteger(1, md.digest()));
+	            	      session.setAttribute("signature", signature);
+	            	 }
+		             out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+			             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
+		    	     response.setHeader("Refresh", "1; URL=auth.jsp");
+	            	 
+	             }  //signed authentication
 	             else if("Oauth1".equals(authen1)){
 	            	 String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
 	            	 String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");

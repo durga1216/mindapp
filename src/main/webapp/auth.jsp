@@ -223,6 +223,12 @@ height:200px;
 color:#FF9900;
 padding:10px;
 }
+#sign{
+color:#FFFFFF;
+font-size:20px;
+font-family:verdana;
+margin-left:80px;
+}
 </style>
 <script type="text/javascript">
 function basauth(){
@@ -350,6 +356,12 @@ $(document).ready(function(){
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 
 <br>
+<%String signature=(String)session.getAttribute("signature");
+if(!signature.equals("")){%>
+<div id="sign">Signature for signed authentication : <%=signature%></div>
+<%}
+%>
+
 <div class="rmethod"><center>Request Method</center></div>
 <select name="select2"  id="select2" onchange="change()">
     <option value="GET">GET</option>
