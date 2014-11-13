@@ -365,22 +365,22 @@ $(document).ready(function(){
 <%@include file="con.jsp" %>
 
 <%	
-String signature=(String)session.getAttribute("signature");
+String appid=(String)session.getAttribute("appid");
+
 Class.forName("com.mysql.jdbc.Driver");
 PreparedStatement st=null;
-st=cn.prepareStatement("select * from signature");
+st=cn.prepareStatement("select * from authen1 where appid=?");
+st.setString(1, appid);
 ResultSet rs=st.executeQuery();
 String sig="";
 while(rs.next()){
-	sig=rs.getString("sig");
-}
-if(signature.equals(sig)){
- %>
+	sig=rs.getString("authen");}
+if("Signed Auth".equals(sig)){
+%>
+
  
 <div id="sign">Signature for signed authentication : <%=session.getAttribute("signature")%></div>
-
-<%} %>
-
+<%}%> 
 <div class="rmethod"><center>Request Method</center></div>
 <select name="select2"  id="select2" onchange="change()">
     <option value="GET">GET</option>
