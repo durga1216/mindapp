@@ -109,6 +109,14 @@ $(document).ready(function(){
 		$('#sign').show();}
  
 		});
+	 
+	 $('#timestamp').click(function () {
+		    $("#stamp").toggle(this.checked);
+		});
+	 
+	 $('#signonce').click(function () {
+		    $("#nonce").toggle(this.checked);
+		});
 });
 </script>
 
@@ -290,6 +298,33 @@ font-size:20px;
 box-shadow:2px 2px 5px 1px black;
 border-radius:3px;
 }
+
+#sign{
+margin-left:100px;
+color:#FFFFFF;
+font-size:20px;
+}
+#stamp{
+margin-left:90px;
+font-size:18px;
+color:#FFFFFF;
+}
+#nonce{
+margin-left:90px;
+font-size:18px;
+color:#FFFFFF;
+}
+
+#sigtext{
+margin-left:80px;
+font-size:18px;
+font-family:verdana;
+width:350px;
+height:100px;
+color:#FF9900;
+padding:10px;
+}
+
 </style>
 </head>
 <body>
@@ -361,10 +396,26 @@ border-radius:3px;
     <option value="DELETE">DELETE</option>
 </select><br/><br/>
 </div>
-<br><div id='sign' style="display:none;"><br>
+<br><div id='sign' style="display:none;">Select a Message Digest Algorithm<br><br>
+<select name="sig" id="sig">
+<option value="HMAC-SHA1">HMAC-SHA1</option>
+<option value="HMAC-SHA256">HMAC-SHA256</option>
+<option value="MD5">MD5</option>
+</select><br><br>
 <input type="text" name="sigckey" value="" placeholder="Signed_consumer_key">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="text" name="sigskey" value="" placeholder="Signed_secret_key"><br><br>
-<input type="text" name="Signmeth" value="HMAC-SHA1" placeholder="Signature_Method"><br><br>
+<%@page import="java.util.* "%>
+<%String timestamp=String.valueOf(System.currentTimeMillis()/1000); 
+String uuid_string = UUID.randomUUID().toString();
+uuid_string = uuid_string.replaceAll("-", "");
+String nonce = uuid_string; 
+%>
+<input type="checkbox" id="timestamp" name="timestamp">Need Unix Timestamp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" id="signonce" name="signonce">Need Nonce<br><br>
+<div id="stamp" style="display:none">Timestamp :<%=timestamp%></div><br>
+<div id="nonce" style="display:none">Nonce :<%=nonce%></div><br>
+
+<textarea id="sigtext" name="sigtext" placeholder="Enter the Message here"></textarea>
 </div>
 <br><br><div id="oauth2" style="display:none"><br>
 <center><div class='redirect'>Redirect URI=/OauthCallBackServlet</div></center><br><br>

@@ -73,8 +73,10 @@ public class FirstAuthPulpy extends HttpServlet {
           String osmeth=request.getParameter("osmeth");String oreq=request.getParameter("oreq");
           String ockey=request.getParameter("ockey");String oskey=request.getParameter("oskey");
           String ourl1=request.getParameter("ourl1");String ourl2=request.getParameter("ourl2");
-          String sigckey=request.getParameter("sigckey");String sigskey=request.getParameter("sigskey");
-          String sigmeth=request.getParameter("sigmeth");
+          String sig=request.getParameter("sig");String sigskey=request.getParameter("sigskey");
+	      String sigckey=request.getParameter("sigckey");
+	      String message=request.getParameter("sigtext");
+	      String sigmeth=request.getParameter("sigmeth");
           String ourl3=request.getParameter("ourl3");
 	      String b1=request.getParameter("b1");String b2=request.getParameter("b2");
 	      String b3=request.getParameter("b3");String b4=request.getParameter("b4");
@@ -98,7 +100,7 @@ public class FirstAuthPulpy extends HttpServlet {
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	             PreparedStatement st=null;
-	             st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,osmeth,oreq,ockey,oskey,ourl1,ourl2,ourl3,sigckey,sigskey,sigmeth,logo) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+osmeth+"','"+oreq+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+sigckey+"','"+sigskey+"','"+sigmeth+"',?)");				 
+	             st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,osmeth,oreq,ockey,oskey,ourl1,ourl2,ourl3,sigckey,sigskey,sigmeth,logo,sig,message) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+osmeth+"','"+oreq+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+sigckey+"','"+sigskey+"','"+sigmeth+"',?,'"+sig+"','"+message+"')");				 
 	             st.setBlob(1, inputStream);
 	             st.executeUpdate();
 			     st.close();
