@@ -373,14 +373,10 @@ st=cn.prepareStatement("select * from authen1 where appid=?");
 st.setString(1, appid);
 ResultSet rs=st.executeQuery();
 String sig="";
-while(rs.next()){
-	sig=rs.getString("authen");}
-if("Signed Auth".equals(sig)){
 %>
 
  
-<div id="sign">Signature for signed authentication : <%=session.getAttribute("signature")%></div>
-<%}%> 
+<div id="sign">Signature for signed authentication : <%=session.getAttribute("signature")%></div><br>
 <div class="rmethod"><center>Request Method</center></div>
 <select name="select2"  id="select2" onchange="change()">
     <option value="GET">GET</option>
