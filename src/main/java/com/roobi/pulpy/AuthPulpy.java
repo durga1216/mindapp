@@ -1160,9 +1160,9 @@ public class AuthPulpy extends HttpServlet {
 	         //=================oauth1 end====================
 	         else if(authen1.equals("Oauth2")){
 	 			HttpClient client=new DefaultHttpClient();
-                String Response=null;
+                String Response="";
 	        	
-		     	String GetResponse=null;
+		     	String GetResponse="";
 	     		 StringBuilder result=new StringBuilder();
 	     			String line = "";
 
@@ -1182,7 +1182,7 @@ public class AuthPulpy extends HttpServlet {
 	     	
 		     	}   // auth bearer treplace
 		     	else if("QueryString".equals(treplace)){
-		     		String param = null;
+		     		String param = "";
 		     	   List<NameValuePair> params = new LinkedList<NameValuePair>();
 
 		     		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6))
