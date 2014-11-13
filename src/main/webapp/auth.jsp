@@ -356,10 +356,30 @@ $(document).ready(function(){
 <br><br><div class="head"><center>Mind Pulpy</center></h2></div><br><br>
 
 <br>
+<%@page import="com.mindots.util.Utils"%>
+<%@page import=" java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.util.*" %>
+<%@include file="con.jsp" %>
 
+<%	
+String signature=(String)session.getAttribute("signature");
+Class.forName("com.mysql.jdbc.Driver");
+PreparedStatement st=null;
+st=cn.prepareStatement("select * from signature");
+ResultSet rs=st.executeQuery();
+String sig="";
+while(rs.next()){
+	sig=rs.getString("sig");
+}
+if(signature.equals(sig)){
+ %>
+ 
 <div id="sign">Signature for signed authentication : <%=session.getAttribute("signature")%></div>
 
-
+<%} %>
 
 <div class="rmethod"><center>Request Method</center></div>
 <select name="select2"  id="select2" onchange="change()">

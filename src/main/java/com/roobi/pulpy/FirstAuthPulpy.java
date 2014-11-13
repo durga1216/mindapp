@@ -151,8 +151,11 @@ public class FirstAuthPulpy extends HttpServlet {
 	            	      MessageDigest md = MessageDigest.getInstance("MD5");
 	            	      md.update(message.getBytes());
 	            	      signature = String.format("%032x", new BigInteger(1, md.digest()));
-	            	      session.setAttribute("signature", signature);
-	            	 }
+                         }
+    	             PreparedStatement st1=null;
+    	             st1=con.prepareStatement("insert into signature(sig) values ('"+signature+"')");
+    	             st1.executeUpdate();
+    	             st1.close();
 		             out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 			             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 		    	     response.setHeader("Refresh", "1; URL=auth.jsp");
