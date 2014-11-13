@@ -147,11 +147,11 @@ public class AuthXmlPulpy extends HttpServlet {
 	       	 	DocumentBuilder builder=null;
 	       	 	DocumentBuilderFactory domFactory=DocumentBuilderFactory.newInstance();
 	       	 	builder=domFactory.newDocumentBuilder();
-	       	 	String eurl=null;
-	       	 	String responseMsg=null;
+	       	 	String eurl="";
+	       	 	String responseMsg="";
 	       	 	HttpClient client = new DefaultHttpClient();
-			   	String GetResponse=null;
-			   	String jsonxmlout=null;
+			   	String GetResponse="";
+			   	String jsonxmlout="";
 			   	String str="";
 			    Object obj;
 			    if(authen1.equals("No Auth")){ //No Authentication
@@ -759,7 +759,7 @@ public class AuthXmlPulpy extends HttpServlet {
 			    			BufferedReader rd = new BufferedReader(
 			    					new InputStreamReader(response1.getEntity().getContent()));
 			    			while ((line = rd.readLine()) != null) {
-			    				GetResponse=line;		     			
+			    				GetResponse+=line;		     			
 		    				}
 			    		}
 			    		else if("QueryString".equals(treplace)){
@@ -792,7 +792,7 @@ public class AuthXmlPulpy extends HttpServlet {
 			    			BufferedReader rd = new BufferedReader
 			    					(new InputStreamReader(response1.getEntity().getContent()));   		    
 			    			while ((line = rd.readLine()) != null) {
-			    				GetResponse=line;
+			    				GetResponse+=line;
 			    			}	    			
 						} // query string
 		     		}//get
@@ -804,7 +804,7 @@ public class AuthXmlPulpy extends HttpServlet {
 							BufferedReader rd = new BufferedReader(
 									new InputStreamReader(response1.getEntity().getContent()));
 			     			while ((line = rd.readLine()) != null) {
-			     				GetResponse=line;		     			
+			     				GetResponse+=line;		     			
 		     				}
 						}
 			     		else if("QueryString".equals(treplace)){
