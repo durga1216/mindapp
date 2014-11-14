@@ -223,11 +223,25 @@ height:200px;
 color:#FF9900;
 padding:10px;
 }
+
 #sign{
 color:#FFFFFF;
 font-size:20px;
 font-family:verdana;
 margin-left:80px;
+}
+#sign1{
+color:#FFFFFF;
+font-size:20px;
+font-family:verdana;
+margin-left:80px;
+}
+#shead,#shead1{
+color:#FFFFFF;
+font-size:20px;
+font-family:verdana;
+margin-left:80px;
+
 }
 </style>
 <script type="text/javascript">
@@ -261,6 +275,23 @@ function removeParent(){
     contentID.removeChild(document.getElementById('strText'+intTextBox));
     intTextBox = intTextBox-1;
 }
+
+function addHead()
+{
+  intTextBox = intTextBox + 1;
+  var contentID = document.getElementById('content1');
+  var newTBDiv = document.createElement('div');
+  newTBDiv.setAttribute('id','strText'+intTextBox);
+  newTBDiv.innerHTML = "<input type='text' id='sh" + intTextBox + "'    name='sh" + intTextBox + "' placeholder='Header_Label'/>" + "<input type='text' id='shv"+ intTextBox + " ' name='shv"+intTextBox+"' placeholder='Header_Value'/>";
+  contentID.appendChild(newTBDiv);
+}
+
+function removeHead(){
+	var contentID = document.getElementById('content1');
+    contentID.removeChild(document.getElementById('strText'+intTextBox));
+    intTextBox = intTextBox-1;
+}
+
 function addParent1()
 {
   intTextBox = intTextBox + 1;
@@ -337,6 +368,19 @@ $(document).ready(function(){
 
 	   }
 	});
+	
+	$('#sign1').click(function(){
+		$('#sign').show();
+		$('#sign1').hide();
+	});
+	
+	 $('#http').click(function () {
+		    $("#suname").toggle(this.checked);
+		    $("#spwd").toggle(this.checked);
+            $("#shead").toggle(this.checked);
+            $("#shead1").toggle(this.checked);
+
+		});
 	});
  </script>
 </head>
@@ -375,8 +419,15 @@ ResultSet rs=st.executeQuery();
 String sig="";
 %>
 
+<div id="sign1">For Signed Auth Click here to start</div><br>
+<div id="sign" style="display:none">Signature for signed authentication : <%=session.getAttribute("signature")%><br><br>
+<input type="checkbox" name="http" id="http" value="basic">Send signature as Basic Auth/Http headers<br><br>
+<input type="text" name="suname" id="suname" placeholder="Username" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="password" name="spwd" id="spwd" placeholder="Password" style="display:none"><br>
+<a id='shead' href="javascript:addHead();" style="display:none">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id='shead1' href="javascript:removeHead();" style="display:none">Remove Header</a><br><br>
+<div id="content1"></div>
+</div><br>
  
-<div id="sign">Signature for signed authentication : <%=session.getAttribute("signature")%></div><br>
 <div class="rmethod"><center>Request Method</center></div>
 <select name="select2"  id="select2" onchange="change()">
     <option value="GET">GET</option>

@@ -87,6 +87,14 @@ public class AuthPulpy extends HttpServlet {
 		 Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		 HttpSession session1=request.getSession(true);
 	     	String access_token=(String)session1.getAttribute("access_token111");
+	     	
+	  String sigbas=request.getParameter("http");String sunam=request.getParameter("suname");
+	  String spw=request.getParameter("spwd");String s1=request.getParameter("sh1");
+	  String sv1=request.getParameter("shv1");String s2=request.getParameter("sh2");
+	  String sv2=request.getParameter("shv2");String s3=request.getParameter("sh3");
+	  String sv3=request.getParameter("shv3");String s4=request.getParameter("sh4");
+	  String sv4=request.getParameter("shv4");String s5=request.getParameter("sh5");
+	  String sv5=request.getParameter("shv5");
       String rf=request.getParameter("rf");String select2=request.getParameter("rm");
       String select=request.getParameter("select2");String jsontxt=request.getParameter("txt");
       String select3=request.getParameter("select3");String burl=request.getParameter("method");String endurl=request.getParameter("endurl");
@@ -150,7 +158,7 @@ public class AuthPulpy extends HttpServlet {
             con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
             String sam=null;
              PreparedStatement st=null;
-			 st=con.prepareStatement("insert into config(id,appid,resf,jsontxt,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,extoken,j1,j2,j3,j4,j5,jv1,jv2,jv3,jv4,jv5) values ('"+id+"','"+appid+"','"+select3+"','"+jsontxt+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"','"+access_token+"','"+j1+"','"+j2+"','"+j3+"','"+j4+"','"+j5+"','"+jv1+"','"+jv2+"','"+jv3+"','"+jv4+"','"+jv5+"')");
+			 st=con.prepareStatement("insert into config(id,appid,sigbasic,suname,spwd,sh1,shv1,sh2,shv2,sh3,shv3,sh4,shv4,sh5,shv5,resf,jsontxt,rm,baseurl,endurl,p1,pv1,p2,pv2,p3,pv3,p4,pv4,p5,pv5,p6,pv6,p7,pv7,p8,pv8,p9,pv9,p10,pv10,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,extoken,j1,j2,j3,j4,j5,jv1,jv2,jv3,jv4,jv5) values ('"+id+"','"+appid+"','"+sigbas+"','"+sunam+"','"+spw+"','"+s1+"','"+sv1+"','"+s2+"','"+sv2+"','"+s3+"','"+sv3+"','"+s4+"','"+sv4+"','"+s5+"','"+sv5+"','"+select3+"','"+jsontxt+"','"+select+"','"+burl+"','"+endurl+"','"+p1+"','"+pv1+"','"+p2+"','"+pv2+"','"+p3+"','"+pv3+"','"+p4+"','"+pv4+"','"+p5+"','"+pv5+"','"+p6+"','"+pv6+"','"+p7+"','"+pv7+"','"+p8+"','"+pv8+"','"+p9+"','"+pv9+"','"+p10+"','"+pv10+"','"+field1+"','"+field2+"','"+field3+"','"+field4+"','"+field5+"','"+field6+"','"+field7+"','"+field8+"','"+field9+"','"+field10+"','"+access_token+"','"+j1+"','"+j2+"','"+j3+"','"+j4+"','"+j5+"','"+jv1+"','"+jv2+"','"+jv3+"','"+jv4+"','"+jv5+"')");
 			 st.executeUpdate();
 		     st.close();
 		  		//out.println("start2");
@@ -164,6 +172,12 @@ public class AuthPulpy extends HttpServlet {
              String ak2=rs.getString("a2"); 
         	 String tlabel=rs.getString("tlabel");
         	 String treplace=rs.getString("treplace");
+        	 String sigbasic=rs.getString("sigbasic");String suname=rs.getString("suname");String spwd=rs.getString("spwd");
+        	 String sh1=rs.getString("sh1");String shv1=rs.getString("shv1");
+        	 String sh2=rs.getString("sh2");String shv2=rs.getString("shv2");
+        	 String sh3=rs.getString("sh3");String shv3=rs.getString("shv3");
+        	 String sh4=rs.getString("sh4");String shv4=rs.getString("shv4");
+        	 String sh5=rs.getString("sh5");String shv5=rs.getString("shv5");
              String rf1=rs.getString("rf");String jsontxt1=rs.getString("jsontxt");String rm1=rs.getString("rm");
              String resf1=rs.getString("resf");String mname=rs.getString("baseurl");String endurl1=rs.getString("endurl");
              String pa1=rs.getString("p1");String pva1=rs.getString("pv1");
@@ -579,6 +593,7 @@ public class AuthPulpy extends HttpServlet {
 	         
 	         
 	         else if(authen1.equals("Signed Auth")){  //API Keys
+	        	 out.println(sigbasic);
         	     String str="";
                  Object obj;
 	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
