@@ -409,6 +409,9 @@ padding:10px;
 String uuid_string = UUID.randomUUID().toString();
 uuid_string = uuid_string.replaceAll("-", "");
 String nonce = uuid_string; 
+HttpSession session1=request.getSession();
+session1.setAttribute("timestamp", timestamp);
+session1.setAttribute("nonce", nonce);
 %>
 <input type="checkbox" id="timestamp" name="timestamp">Need Unix Timestamp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" id="signonce" name="signonce">Need Nonce<br><br>

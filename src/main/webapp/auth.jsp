@@ -243,6 +243,16 @@ font-family:verdana;
 margin-left:80px;
 
 }
+#stamp{
+margin-left:90px;
+font-size:18px;
+color:#FFFFFF;
+}
+#nonce{
+margin-left:90px;
+font-size:18px;
+color:#FFFFFF;
+}
 </style>
 <script type="text/javascript">
 function basauth(){
@@ -417,13 +427,17 @@ st=cn.prepareStatement("select * from authen1 where appid=?");
 st.setString(1, appid);
 ResultSet rs=st.executeQuery();
 String sig="";
+HttpSession session1=request.getSession();
+
 %>
 
 <div id="sign1">For Signed Auth Click here to start</div><br>
+<div id="stamp">Timestamp : <%=session1.getAttribute("timestamp")%></div><br>
+<div id="nonce">Nonce :<%=session1.getAttribute("nonce") %><br><br>
 <div id="sign" style="display:none">Signature for signed authentication : <%=session.getAttribute("signature")%><br><br>
 <input type="checkbox" name="http" id="http" value="basic">Send signature as Basic Auth/Http headers<br><br>
 <input type="text" name="suname" id="suname" placeholder="Username" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="password" name="spwd" id="spwd" placeholder="Password" style="display:none"><br>
+<input type="password" name="spwd" id="spwd" placeholder="Password" style="display:none"><br><br>
 <a id='shead' href="javascript:addHead();" style="display:none">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id='shead1' href="javascript:removeHead();" style="display:none">Remove Header</a><br><br>
 <div id="content1"></div>
 </div><br>

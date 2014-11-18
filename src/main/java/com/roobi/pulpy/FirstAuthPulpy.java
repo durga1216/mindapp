@@ -132,6 +132,12 @@ public class FirstAuthPulpy extends HttpServlet {
 	             }
 	             else if("Signed Auth".equals(authen1)){
 	            	 
+	            	 HttpSession session1=request.getSession();
+	            	 String timestamp=(String)session1.getAttribute("timestamp");
+	            	 String nonce=(String)session1.getAttribute("nonce");
+	            	 session1.setAttribute("timestamp", timestamp);
+	            	 session1.setAttribute("nonce", nonce);
+	            	 
 	            	 if("HMAC-SHA1".equals(sig)){
 	            	        SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
 	            	        Mac mac = Mac.getInstance("HMACSHA1");
