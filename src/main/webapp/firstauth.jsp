@@ -324,6 +324,13 @@ height:100px;
 color:#FF9900;
 padding:10px;
 }
+#ba1{
+color:#FFFFFF;
+font-size:18px;
+font-family:verdana;
+margin-left:100px;
+
+}
 
 </style>
 </head>
@@ -416,9 +423,15 @@ session1.setAttribute("nonce", nonce);
 <input type="checkbox" id="timestamp" name="timestamp">Need Unix Timestamp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" id="signonce" name="signonce">Need Nonce<br><br>
 <div id="stamp" style="display:none">Timestamp :<%=timestamp%></div><br>
-<div id="nonce" style="display:none">Nonce :<%=nonce%></div><br>
+<div id="nonce" style="display:none">Nonce :<%=nonce%></div><br><br>
 
-<textarea id="sigtext" name="sigtext" placeholder="Enter the Message here"></textarea>
+
+<textarea id="sigtext" name="sigtext" placeholder="Enter the Message here"></textarea><br><br>
+<div id="ba1">Signature Format</div><br>
+<select name="sformat" id="sformat">
+<option value="URL-Encoded">URL-Encoded</option>
+<option value="HexaDecimal">HexaDecimal</option>
+</select><br><br>
 </div>
 <br><br><div id="oauth2" style="display:none"><br>
 <center><div class='redirect'>Redirect URI=/OauthCallBackServlet</div></center><br><br>

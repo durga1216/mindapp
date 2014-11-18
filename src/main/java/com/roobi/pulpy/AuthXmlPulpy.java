@@ -1,10 +1,14 @@
 package com.roobi.pulpy;
 import java.io.*;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +32,7 @@ import net.sf.json.JSON;
 import net.sf.json.JSONSerializer;
 import net.sf.json.xml.XMLSerializer;
 
+import org.apache.commons.codec.binary.Hex;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -43,8 +48,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import sun.misc.BASE64Encoder;
+
 import com.mindots.util.Utils;
 
+import java.security.MessageDigest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,6 +81,8 @@ public class AuthXmlPulpy extends HttpServlet {
 		String appid=request.getParameter("appid");
 		//String eurl11=request.getParameter("eurl");
 		String pid=request.getParameter("pid");String jsonstring=request.getParameter("jsonstring");
+		String message=request.getParameter("message");String timestamp=request.getParameter("timestamp");
+		String nonce=request.getParameter("nonce");
 		String p1=request.getParameter("p1");String p2=request.getParameter("p2");
 		String p3=request.getParameter("p3");String p4=request.getParameter("p4");
 		String p5=request.getParameter("p5");String p6=request.getParameter("p6");
@@ -110,7 +120,14 @@ public class AuthXmlPulpy extends HttpServlet {
 	       	 	String h4=rs.getString("h4");String hv4=rs.getString("hv4");
 	       	 	String h5=rs.getString("h5");String hv5=rs.getString("hv5");
 	       	 	String sigckey=rs.getString("sigckey");
-	       	 	String sigskey=rs.getString("sigskey");
+	       	 	String sigskey=rs.getString("sigskey");String sig=rs.getString("sig");
+	       	 	String sformat=rs.getString("sformat");
+	       	 	String sh1=rs.getString("sh1");String sh2=rs.getString("sh2");
+	       	 	String sh3=rs.getString("sh3");String sh4=rs.getString("sh4");
+	       	 	String sh5=rs.getString("sh5");String shv1=rs.getString("shv1");
+	       	 	String shv2=rs.getString("shv2");String shv3=rs.getString("shv3");
+	       	 	String shv4=rs.getString("shv4");String shv5=rs.getString("shv5");
+	       	 	
 	       	 	String rm1=rs.getString("rm");
 	       	 	String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
 	       	 	String mname=rs.getString("baseurl");
@@ -152,7 +169,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	       	 	HttpClient client = new DefaultHttpClient();
 			   	String GetResponse="";
 			   	String jsonxmlout="";
-			   	String str="";
+			   	String str="";String result="";String signature="";
 			    Object obj;
 			    if(authen1.equals("No Auth")){ //No Authentication
 			    	if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON") ){  //No Auth GET XML
@@ -272,57 +289,78 @@ public class AuthXmlPulpy extends HttpServlet {
 			    		} //XML RPC        	 
                	  	}
 		    	} // No auth and GET
-			    else if(authen1.equals("Signed Auth")){  //API Keys
-			    	//out.println("inside");
+			    else if(authen1.equals("Signed Auth")){  //Signed Authentication
+	            	 if("HMAC-SHA1".equals(sig)){
+	            	        SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
+	            	        Mac mac = Mac.getInstance("HMACSHA1");
+	            	        mac.init(signingKey);
+	            	        byte[] rawHmac = mac.doFinal(message.getBytes());
+	            	        if(sformat.equals("URL-Encoded")){
+	            	        result = new BASE64Encoder().encode(rawHmac);
+	            	        signature = URLEncoder.encode(result, "UTF-8") ;
+	            	        }
+	            	        else if(sformat.equals("HexaDecimal"))
+	            	        signature=new String(Hex.encodeHex(rawHmac));
+	            	 }
+	            	 else if("HMAC-SHA256".equals(sig)){
+	            		  Mac mac = Mac.getInstance("HmacSHA256");
+	            	      mac.init(new SecretKeySpec(sigskey.getBytes(), "HmacSHA256"));
+	            	      byte[] rawHmac=mac.doFinal(message.getBytes());
+	            	      if(sformat.equals("URL-Encoded")){
+	            	    	  result=new BASE64Encoder().encode(rawHmac);
+	            	    	  signature=URLEncoder.encode(result,"UTF-8");
+	            	      }
+	            	      else if(sformat.equals("HexaDecimal")) 
+	            	      signature = new String(Hex.encodeHex(mac.doFinal(message.getBytes())));
+	            	 }
+	            	 else if("MD5".equals(sig)){
+	            	      MessageDigest md = MessageDigest.getInstance("MD5");
+	            	      md.update(message.getBytes());
+	            	      signature = String.format("%032x", new BigInteger(1, md.digest()));
+                      }
+
 			    	if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
         		 
 			    		if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
-			    			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
+			    			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5+"&"+pa7+"="+p6+"&"+pa8+"="+p7+"&"+pa9+"="+p8+"&"+pa10+"="+p9;}
         		 
         		 		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
-        		 			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9;}
+        		 			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5+"&"+pa7+"="+p6+"&"+pa8+"="+p7+"&"+pa9+"="+p8;}
 		        		 
 	        		 	else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
-	        		 		eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8;}
+	        		 		eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5+"&"+pa7+"="+p6+"&"+pa8+"="+p7;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5+"&"+pa7+"="+p6;}
 		        		 
 	        		 	else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
-	        		 		eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6;}
+	        		 		eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1;}
 		        		 	
 		        		else if(!"null".equals(pa1)){
-		        			eurl=pa1+"="+p1;}        		
+		        			eurl=endurl1+"?"+pa1+"="+signature;}        		
 		        		 
 			    		eurl=eurl.replaceAll(" ", "%20"); 
-			    		SignedRequestsHelper helper;
-        		        try {
-        		        	helper = SignedRequestsHelper.getInstance(endurl1, sigckey, sigskey);
-        		        } catch (Exception e) {
-        		            e.printStackTrace();
-        		            return;
-        		        }
-        		        String sigurl= helper.sign(eurl);
+
         		        //out.println(sigurl);
         		        if(resf1.equals("XML")){
-        		        	doc=builder.parse(new URL(sigurl).openStream());
+        		        	doc=builder.parse(new URL(eurl).openStream());
         		        }
         		        else if(resf1.equals("JSON")){
         		        	line=null;String strcon=null;
         		        	StringBuilder strb=new StringBuilder();
-        		        	URL eurl1=new URL(sigurl);
+        		        	URL eurl1=new URL(eurl);
         		        	URLConnection uconn = eurl1.openConnection();
         		        	HttpURLConnection conn = (HttpURLConnection) uconn;
         		        	conn.connect();
@@ -481,7 +519,7 @@ public class AuthXmlPulpy extends HttpServlet {
 			    			HttpResponse response1 = client.execute(post);
 			    			BufferedReader br = new BufferedReader(
 			    					new InputStreamReader(response1.getEntity().getContent()));
-			        		StringBuffer result = new StringBuffer();
+			        		StringBuffer result1 = new StringBuffer();
 			        		if(resf1.equals("XML")){
 			        			while((line=br.readLine())!=null){
 			        				str+=line;
@@ -1167,14 +1205,14 @@ public class AuthXmlPulpy extends HttpServlet {
            		} 
 			    transformer1.setOutputProperty(OutputKeys.INDENT,"yes");
 			    transformer1.setOutputProperty(OutputKeys.METHOD,"xml");
-			    StreamResult result=new StreamResult(new StringWriter());
+			    StreamResult result1=new StreamResult(new StringWriter());
 			    DOMSource source=new DOMSource(outdoc);
 			    try {
-			    	transformer1.transform(source, result);  //transform mpulpy xml from document to xml string and make display in browser ->to send client(phonegap)
+			    	transformer1.transform(source, result1);  //transform mpulpy xml from document to xml string and make display in browser ->to send client(phonegap)
             	} catch (TransformerException e) {
             		e.printStackTrace();
             	}
-			    String xmloutput=result.getWriter().toString();
+			    String xmloutput=result1.getWriter().toString();
 			    PrintWriter out=response.getWriter();
 			    out.println(xmloutput); 	
 	        }//while

@@ -598,39 +598,38 @@ public class AuthPulpy extends HttpServlet {
 	        	 if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
 	        		 
 	        		 if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9;}
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8;}
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7;}
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
-	        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
+	        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3;}
 	        		 
 	        		 else if(!"null".equals(pa1) && !"null".equals(pa2)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1+"&"+pa2+"="+pva2;}
+		        		 eurl=endurl1+"?"+pa1+"="+pva1+"&"+pa2+"="+pva2;}
 	        		 
 	        		 else if(!"null".equals(pa1)){
-		        		 eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+pva1;}
+		        		 eurl=endurl1+"?"+pa1+"="+pva1;}
 	        		 else if("null".equals(pa1))
-	        			eurl=endurl1+"?"+ak1+"="+ak2;
+	        			eurl=endurl1;
 	        		 
-	        		 else if("null".equals(ak1) && "null".equals(ak2))
-	        			 eurl=endurl1;	        		
+                     		
 	        		
 	        		eurl=eurl.replaceAll(" ", "%20"); 
 	        		URL url1;
@@ -646,30 +645,6 @@ public class AuthPulpy extends HttpServlet {
 		              connection.setRequestMethod("GET");
 		              String encoding=null;
 	           
-	        	   if(!"null".equals(suname)&& "!null".equals(spwd)){
-	            		 encoding = new String(
-	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
-	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(suname+":"+""))
-	                    		  );
-	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-
-	            	 }
-	            	 else if(!"null".equals(suname) && "null".equals(spwd)){encoding = new String(
-         		 org.apache.commons.codec.binary.Base64.encodeBase64   
-      		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(""+":"+spwd))
-      		    
-      		  );	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-}
-	            	 else if(!"".equals(suname) && !"".equals(spwd)){
-	            		 encoding = new String(
-	                    		 org.apache.commons.codec.binary.Base64.encodeBase64   
-	                    		    (org.apache.commons.codec.binary.StringUtils.getBytesUtf8(suname+":"+spwd))
-	                    		  );
-	   	              connection.setRequestProperty  ("Authorization", "Basic " + encoding);
-
-	   	            	 } 
-	            	 
-	            	 else if("".equals(b2) && "".equals(b4)){encoding=null;}
 	            	 
 	              if(!"null".equals(sh1) && !"null".equals(sh2) && !"null".equals(sh3) && !"null".equals(sh4) && !"null".equals(sh5)){
 		            	connection.setRequestProperty(sh1, shv1);connection.setRequestProperty(sh2, shv2); connection.setRequestProperty(sh3, shv3);connection.setRequestProperty(sh4, shv4);connection.setRequestProperty(sh5, shv5);  

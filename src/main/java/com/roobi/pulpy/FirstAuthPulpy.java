@@ -91,6 +91,7 @@ public class FirstAuthPulpy extends HttpServlet {
 	      String h4=request.getParameter("h4"); String hv4=request.getParameter("hv4");
 	      String h5=request.getParameter("h5"); String hv5=request.getParameter("hv5");
 		  String a1=request.getParameter("a1");String a2=request.getParameter("a2");
+		  String sformat=request.getParameter("sformat");
 		  String cname=request.getParameter("cname"); String ckey=request.getParameter("ckey"); String csecname=request.getParameter("csecname");
 		  String cseckey=request.getParameter("cseckey");String sname=request.getParameter("sname"); String svalue=request.getParameter("svalue");
 		  String aurl=request.getParameter("aurl"); String tokenurl=request.getParameter("tokenurl"); String tlabel=request.getParameter("tlabel");
@@ -105,7 +106,7 @@ public class FirstAuthPulpy extends HttpServlet {
 			  Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	             PreparedStatement st=null;
-	             st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,osmeth,oreq,ockey,oskey,ourl1,ourl2,ourl3,sigckey,sigskey,sigmeth,logo,sig,message) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+osmeth+"','"+oreq+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+sigckey+"','"+sigskey+"','"+sigmeth+"',?,'"+sig+"','"+message+"')");				 
+	             st=con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,osmeth,oreq,ockey,oskey,ourl1,ourl2,ourl3,sigckey,sigskey,sigmeth,logo,sig,message,sformat) values ('"+id+"','"+appname+"','"+descr+"','"+authen+"','"+select1+"','"+select2+"','"+a1+"','"+a2+"','"+b1+"','"+b2+"','"+b3+"','"+b4+"','"+h1+"','"+hv1+"','"+h2+"','"+hv2+"','"+h3+"','"+hv3+"','"+h4+"','"+hv4+"','"+h5+"','"+hv5+"','"+cname+"','"+ckey+"','"+csecname+"','"+cseckey+"','"+sname+"','"+svalue+"','"+aurl+"','"+tokenurl+"','"+tlabel+"','"+treplace+"','"+el+"','"+ev+"','"+osmeth+"','"+oreq+"','"+ockey+"','"+oskey+"','"+ourl1+"','"+ourl2+"','"+ourl3+"','"+sigckey+"','"+sigskey+"','"+sigmeth+"',?,'"+sig+"','"+message+"','"+sformat+"')");				 
 	             st.setBlob(1, inputStream);
 	             st.executeUpdate();
 			     st.close();
@@ -137,19 +138,29 @@ public class FirstAuthPulpy extends HttpServlet {
 	            	 String nonce=(String)session1.getAttribute("nonce");
 	            	 session1.setAttribute("timestamp", timestamp);
 	            	 session1.setAttribute("nonce", nonce);
-	            	 
+	            	 String result="";
 	            	 if("HMAC-SHA1".equals(sig)){
 	            	        SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
 	            	        Mac mac = Mac.getInstance("HMACSHA1");
 	            	        mac.init(signingKey);
 	            	        byte[] rawHmac = mac.doFinal(message.getBytes());
-	            	        String result = new BASE64Encoder().encode(rawHmac);
+	            	        if(sformat.equals("URL-Encoded")){
+	            	        result = new BASE64Encoder().encode(rawHmac);
 	            	        signature = URLEncoder.encode(result, "UTF-8") ;
+	            	        }
+	            	        else if(sformat.equals("HexaDecimal"))
+	            	        signature=new String(Hex.encodeHex(rawHmac));
 	            	        session.setAttribute("signature", signature);
 	            	 }
 	            	 else if("HMAC-SHA256".equals(sig)){
 	            		  Mac mac = Mac.getInstance("HmacSHA256");
 	            	      mac.init(new SecretKeySpec(sigskey.getBytes(), "HmacSHA256"));
+	            	      byte[] rawHmac=mac.doFinal(message.getBytes());
+	            	      if(sformat.equals("URL-Encoded")){
+	            	    	  result=new BASE64Encoder().encode(rawHmac);
+	            	    	  signature=URLEncoder.encode(result,"UTF-8");
+	            	      }
+	            	      else if(sformat.equals("HexaDecimal")) 
 	            	      signature = new String(Hex.encodeHex(mac.doFinal(message.getBytes())));
 	            	      session.setAttribute("signature", signature);
 	            	 }
