@@ -695,7 +695,8 @@ public class AuthPulpy extends HttpServlet {
 	        	     while((line=br.readLine())!=null){
   	  	       	 str+=line;
   	  	       	 }
-	        	     }
+	        	     
+	        	           	     }
 	        	     else if(resf1.equals("JSON")){
 	        	    	 while ((line = br.readLine()) != null)    { 
 	        	    	      strb.append(line);
