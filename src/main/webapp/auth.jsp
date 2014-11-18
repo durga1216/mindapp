@@ -432,9 +432,9 @@ HttpSession session1=request.getSession();
 %>
 
 <div id="sign1">For Signed Auth Click here to start</div><br>
+<div id="sign" style="display:none">Signature for signed authentication : <%=session.getAttribute("signature")%>,**Pass this signature as first param or first header**<br><br>
 <div id="stamp">Timestamp : <%=session1.getAttribute("timestamp")%></div><br>
 <div id="nonce">Nonce :<%=session1.getAttribute("nonce") %><br><br>
-<div id="sign" style="display:none">Signature for signed authentication : <%=session.getAttribute("signature")%>,**Pass this signature as first param or first header**<br><br>
 <input type="checkbox" name="http" id="http" value="basic">Send signature as Http headers<br><br>
 <a id='shead' href="javascript:addHead();" style="display:none">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id='shead1' href="javascript:removeHead();" style="display:none">Remove Header</a><br><br>
 <div id="content1"></div>

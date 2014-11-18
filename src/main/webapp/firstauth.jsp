@@ -328,7 +328,7 @@ padding:10px;
 color:#FFFFFF;
 font-size:18px;
 font-family:verdana;
-margin-left:100px;
+margin-left:80px;
 
 }
 
