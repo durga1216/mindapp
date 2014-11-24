@@ -352,11 +352,6 @@ public class AuthPulpy extends HttpServlet {
 	        				urlParameters.add(new BasicNameValuePair(pa3, pva3));
 	        				urlParameters.add(new BasicNameValuePair(pa4, pva4));
 	        				urlParameters.add(new BasicNameValuePair(pa5, pva5));
-	        				urlParameters.add(new BasicNameValuePair(pa6, pva6));
-	        				urlParameters.add(new BasicNameValuePair(pa7, pva7));
-	        				urlParameters.add(new BasicNameValuePair(pa8, pva8));
-	        				urlParameters.add(new BasicNameValuePair(pa9, pva9));
-	        				urlParameters.add(new BasicNameValuePair(pa10, pva10));
 	        				post.setEntity(new UrlEncodedFormEntity(urlParameters));
 	        				HttpResponse response1 = client.execute(post);
 	        				BufferedReader br = new BufferedReader(
@@ -392,8 +387,39 @@ public class AuthPulpy extends HttpServlet {
 	 	             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
 	     		        response.setHeader("Refresh", "1; URL=auth1.jsp");	
 	               	} //  post
+               else if(rm1.equals("POST_JSON")){
+	       			HttpClient client=new DefaultHttpClient();
+	    			HttpPost post=new HttpPost(endurl1);
+	    			StringEntity str1=new StringEntity(jsontxt1);
+	    			post.setEntity(str1);
+	    			HttpResponse response1 = client.execute(post);
+	    			BufferedReader br = new BufferedReader(
+	    					new InputStreamReader(response1.getEntity().getContent()));
+	    			String line=null; strcon=null;
+	       	     	StringBuilder strb=new StringBuilder();
+	       	     	if(resf1.equals("XML")){
+	       	     		while((line=br.readLine())!=null){
+	       	     			str+=line;
+	       	     		}
+	       	     	}
+	       	     	else if(resf1.equals("JSON")){
+	       	     		while ((line = br.readLine()) != null)    { 
+	       	     			strb.append(line);
+	       	     		}//while
+	       	     		strcon=strb.toString();
+	       	     		XMLSerializer serializer = new XMLSerializer();
+	       	     		JSON json = JSONSerializer.toJSON(strcon);
+	       	     		serializer.setRootName("root");
+	       	     		serializer.setTypeHintsEnabled(false);
+	       	     		str = serializer.write(json);
+	       	     	} // else if*/
+	        	    session.setAttribute("xml1", str);
+	        	    out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
+		             		+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
+	 		        response.setHeader("Refresh", "1; URL=auth1.jsp");
+	           }
 	        	        	 
-	         }    // No Auth  
+         }    // No Auth  
 	               
 	         
 	         else if(authen1.equals("API keys")){  //API Keys

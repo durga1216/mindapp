@@ -286,8 +286,35 @@ public class AuthXmlPulpy extends HttpServlet {
 	        				XmlRpcSerializer.serialize( token, writer );
 	        				writer.flush();
 	        				//    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));    
-			    		} //XML RPC        	 
+			    		} //XML RPC     
+			    		
                	  	}
+			    	else if(rm1.equals("POST_JSON")){
+		    			HttpPost post=new HttpPost(endurl1);
+		    			StringEntity str1=new StringEntity(jsonstring);
+		    			post.setEntity(str1);
+		    			HttpResponse response1 = client.execute(post);
+		    			BufferedReader br = new BufferedReader(
+		    					new InputStreamReader(response1.getEntity().getContent()));
+		       	     	StringBuilder strb=new StringBuilder();
+		       	     	if(resf1.equals("XML")){
+		       	     		while((line=br.readLine())!=null){
+		       	     			str+=line;
+		       	     		}
+		       	     	}
+		       	     	else if(resf1.equals("JSON")){
+		       	     		while ((line = br.readLine()) != null)    { 
+		       	     			strb.append(line);
+		       	     		}//while
+		       	     		String strcon=strb.toString();
+		       	     		XMLSerializer serializer = new XMLSerializer();
+		       	     		JSON json = JSONSerializer.toJSON(strcon);
+		       	     		serializer.setRootName("root");
+		       	     		serializer.setTypeHintsEnabled(false);
+		       	     		str = serializer.write(json);
+		       	     	} // else if*/
+		       	     	doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+		           }
 		    	} // No auth and GET
 			    else if(authen1.equals("Signed Auth")){  //Signed Authentication
 	            	 if("HMAC-SHA1".equals(sig)){
