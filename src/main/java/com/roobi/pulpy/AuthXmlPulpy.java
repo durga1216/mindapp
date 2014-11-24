@@ -172,7 +172,7 @@ public class AuthXmlPulpy extends HttpServlet {
 			   	String str="";String result="";String signature="";
 			    Object obj;
 			    if(authen1.equals("No Auth")){ //No Authentication
-			    	if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON") ){  //No Auth GET XML
+			    	if(rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON") ){  //No Auth GET XML
 			    		if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 			    			eurl=endurl1+"?"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
 	        		 
@@ -234,7 +234,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		     	            str = serializer.write(json);
 		     	            doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 			    		}// else-if json
-			    		else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")){
+			    		else if( rm1.equals ("GET") && resf1.equals("XML-RPC")){
 			    			XmlRpcClient client1 = new XmlRpcClient( endurl1, false );
 			    			HashMap<String, String> mergeVars = new HashMap<String, String>();
 			    			if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -346,7 +346,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	            	      signature = String.format("%032x", new BigInteger(1, md.digest()));
                       }
 
-			    	if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
+			    	if( rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
         		 
 			    		if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 			    			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5+"&"+pa7+"="+p6+"&"+pa8+"="+p7+"&"+pa9+"="+p8+"&"+pa10+"="+p9;}
@@ -409,7 +409,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		    	}	        	 	         	         
 			    else if(authen1.equals("API keys")){  //API Keys
 	        	 
-			    	if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get       		 
+			    	if( rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get       		 
 
 			    		if(p1!=null && p2!=null && p3!=null && p4!=null && p5!=null && p6!=null && p7!=null && p8!=null && p9!=null && p10!=null){
 			    			eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
@@ -469,7 +469,7 @@ public class AuthXmlPulpy extends HttpServlet {
 		     	            str = serializer.write(json);
 		     	            doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 	        		 	}  //JSON
-	        		 	else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")){
+	        		 	else if(rm1.equals ("GET") && resf1.equals("XML-RPC")){
 	        		 		XmlRpcClient client1 = new XmlRpcClient( endurl1, false );
 		        			HashMap<String, String> mergeVars = new HashMap<String, String>();
 		        			if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -523,7 +523,7 @@ public class AuthXmlPulpy extends HttpServlet {
 						    //    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8")))); 
 		        	 	} //XML RPC        	 
 			    	} //get
-			    	else if(rf1.equals("REST") && rm1.equals ("POST")){
+			    	else if( rm1.equals ("POST")){
 			    		String USER_AGENT = "Mozilla/5.0";
 			    		String url=endurl1;
 			    		try{
