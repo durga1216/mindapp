@@ -73,7 +73,8 @@ Connection con=null;
 
   	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-	    response.addHeader("Access-Control-Allow-Origin", "*");  		
+	    response.addHeader("Access-Control-Allow-Origin", "*");  
+	    
 	    Connection con=null;
 		HttpSession session=request.getSession(true);
 	    PrintWriter out=response.getWriter();
@@ -81,6 +82,8 @@ Connection con=null;
 		String appid=request.getParameter("appid");
 		//String eurl11=request.getParameter("eurl");
 		String pid=request.getParameter("pid");String jsonstring=request.getParameter("jsonstring");
+		String message=request.getParameter("message");String timestamp=request.getParameter("timestamp");
+		String nonce=request.getParameter("nonce");
 		String p1=request.getParameter("p1");String p2=request.getParameter("p2");
 		String p3=request.getParameter("p3");String p4=request.getParameter("p4");
 		String p5=request.getParameter("p5");String p6=request.getParameter("p6");
@@ -118,7 +121,14 @@ Connection con=null;
 	       	 	String h4=rs.getString("h4");String hv4=rs.getString("hv4");
 	       	 	String h5=rs.getString("h5");String hv5=rs.getString("hv5");
 	       	 	String sigckey=rs.getString("sigckey");
-	       	 	String sigskey=rs.getString("sigskey");
+	       	 	String sigskey=rs.getString("sigskey");String sig=rs.getString("sig");
+	       	 	String sformat=rs.getString("sformat");
+	       	 	String sh1=rs.getString("sh1");String sh2=rs.getString("sh2");
+	       	 	String sh3=rs.getString("sh3");String sh4=rs.getString("sh4");
+	       	 	String sh5=rs.getString("sh5");String shv1=rs.getString("shv1");
+	       	 	String shv2=rs.getString("shv2");String shv3=rs.getString("shv3");
+	       	 	String shv4=rs.getString("shv4");String shv5=rs.getString("shv5");
+	       	 	
 	       	 	String rm1=rs.getString("rm");
 	       	 	String resf1=rs.getString("resf");String endurl1=rs.getString("endurl");
 	       	 	String mname=rs.getString("baseurl");
@@ -160,10 +170,12 @@ Connection con=null;
 	       	 	HttpClient client = new DefaultHttpClient();
 			   	String GetResponse="";
 			   	String jsonxmlout="";
-			   	String str="";
+			   	String str="";String signature="";
 			    Object obj;
 			    if(authen1.equals("No Auth")){ //No Authentication
-			    	if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON") ){  //No Auth GET XML
+			    	out.println("no auth");
+			    	if(rm1.equals ("GET")){
+			    		out.println("in get");//No Auth GET XML
 			    		if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 			    			eurl=endurl1+"?"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
 	        		 
@@ -225,7 +237,8 @@ Connection con=null;
 		     	            str = serializer.write(json);
 		     	            doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 			    		}// else-if json
-			    		else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")){
+			    		else if( rm1.equals ("GET") && resf1.equals("XML-RPC")){
+			    			out.println("in rpc");
 			    			XmlRpcClient client1 = new XmlRpcClient( endurl1, false );
 			    			HashMap<String, String> mergeVars = new HashMap<String, String>();
 			    			if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -277,9 +290,37 @@ Connection con=null;
 	        				XmlRpcSerializer.serialize( token, writer );
 	        				writer.flush();
 	        				//    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));    
-			    		} //XML RPC        	 
+			    		} //XML RPC     
+			    		
                	  	}
-		    	} // No auth and GET
+			    	else if(rm1.equals("POST_JSON")){
+		    			HttpPost post=new HttpPost(endurl1);
+		    			StringEntity str1=new StringEntity(jsonstring);
+		    			post.setEntity(str1);
+		    			HttpResponse response1 = client.execute(post);
+		    			BufferedReader br = new BufferedReader(
+		    					new InputStreamReader(response1.getEntity().getContent()));
+		       	     	StringBuilder strb=new StringBuilder();
+		       	     	if(resf1.equals("XML")){
+		       	     		while((line=br.readLine())!=null){
+		       	     			str+=line;
+		       	     		}
+		       	     	}
+		       	     	else if(resf1.equals("JSON")){
+		       	     		while ((line = br.readLine()) != null)    { 
+		       	     			strb.append(line);
+		       	     		}//while
+		       	     		String strcon=strb.toString();
+		       	     		XMLSerializer serializer = new XMLSerializer();
+		       	     		JSON json = JSONSerializer.toJSON(strcon);
+		       	     		serializer.setRootName("root");
+		       	     		serializer.setTypeHintsEnabled(false);
+		       	     		str = serializer.write(json);
+		       	     	} // else if*/
+		       	     	out.println(str);
+		       	     	doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+		           }
+		    	} // No auth and GET 
 			    else if(authen1.equals("Signed Auth")){  //API Keys
 			    	//out.println("inside");
 			    	if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
@@ -489,7 +530,6 @@ Connection con=null;
 			    			HttpResponse response1 = client.execute(post);
 			    			BufferedReader br = new BufferedReader(
 			    					new InputStreamReader(response1.getEntity().getContent()));
-			        		StringBuffer result = new StringBuffer();
 			        		if(resf1.equals("XML")){
 			        			while((line=br.readLine())!=null){
 			        				str+=line;
