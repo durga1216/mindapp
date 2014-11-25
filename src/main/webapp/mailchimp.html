@@ -8,9 +8,7 @@
 $(document).ready(function() {  
     var url=document.URL;
     var appid="MPAPP_1409";
-
     $('#submit').click(function(){
-        //alert(url + "<br>" +appid);
       $.ajax({
         type: "POST",
         url: "https://mindapp-pulpy.rhcloud.com/ClientOauth",
