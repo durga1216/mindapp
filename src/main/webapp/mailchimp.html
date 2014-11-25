@@ -26,7 +26,7 @@ $(document).ready(function() {
     });     
     $('#b1').click(function(){
     	$.ajax({
-        	type: "GET",
+        	type: "POST",
         	url: "https://mindapp-pulpy.rhcloud.com/MailChimp",
         	success: function result(data) {
             	$('#result').append('<table><tr>EMAIL IDS</tr>');
