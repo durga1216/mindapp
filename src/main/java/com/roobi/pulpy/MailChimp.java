@@ -75,7 +75,7 @@ public class MailChimp extends HttpServlet {
 			while ((line = rd.readLine()) != null) {
 				str+=line;		     			
 			}
-			//out.println(str);
+			out.println(str);
 			JSONObject obj=new JSONObject(str);
 			String domain=obj.getString("dc");
 			//get the id for the list
@@ -89,7 +89,7 @@ public class MailChimp extends HttpServlet {
 			while ((line1 = rd1.readLine()) != null) {
 				str1+=line1;		     			
 			}
-			//out.println(str1);
+			out.println(str1);
 			JSONObject obj1=new JSONObject(str1);
 			JSONArray arr=(JSONArray)obj1.getJSONArray("data");
 			JSONObject obj2=new JSONObject(arr.get(0).toString());
@@ -105,14 +105,14 @@ public class MailChimp extends HttpServlet {
 			while ((line2 = rd2.readLine()) != null) {
 				str2+=line2;		     			
 			}
-			//out.println(str2);
+			out.println(str2);
 			JSONObject obj3=new JSONObject(str);
 			JSONArray arr1=(JSONArray)obj3.getJSONArray("data");
 			for(int i=0;i<arr1.length();i++){
 				JSONObject obj4=new JSONObject(arr1.get(i).toString());
 				String email=obj4.getString("email");
 				xxml+="<root><email>"+email+"</email></root>";
-				//out.println(email);
+				out.println(email);
 			}
 			xxml+="</result>";
 			out.println(xxml);
