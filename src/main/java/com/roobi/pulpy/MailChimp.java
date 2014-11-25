@@ -66,7 +66,7 @@ public class MailChimp extends HttpServlet {
 	        	access_token=rs3.getString("token");
 	        }
 	        HttpClient client=new DefaultHttpClient();
-			String str=" ";String line="";
+			String str="";String line="";
 			HttpGet get=new HttpGet("https://login.mailchimp.com/oauth2/metadata");
 			get.addHeader("Authorization","OAuth "+access_token+"");
 			HttpResponse response1 = client.execute(get);
@@ -79,7 +79,7 @@ public class MailChimp extends HttpServlet {
 			JSONObject obj=new JSONObject(str);
 			String domain=obj.getString("dc");
 			//get the id for the list
-			String str1=" ";String line1="";
+			String str1="";String line1="";
 			HttpPost post=new HttpPost("https://"+domain+".api.mailchimp.com/2.0/lists/list.json");
 			StringEntity se1=new StringEntity("{\"apikey\": \""+access_token+"-"+domain+"\"}");//\"id\":\"619e890eb0\"   ,\"cid\":\"614a0b5a90\",\"struct\":{\"data\":\"message\"}
 			post.setEntity(se1);
@@ -91,13 +91,13 @@ public class MailChimp extends HttpServlet {
 			}
 			out.println(str1);
 			JSONObject obj1=new JSONObject(str1);
-			String data=(String)obj1.getString("data");
+			String data=obj1.getString("data");
 			out.println(data);
 			JSONArray arr=new JSONArray(data);
 			JSONObject obj2=new JSONObject(arr.get(0).toString());
 			String id1=obj2.getString("id");
 			//get the list of emails 
-			String str2=" ";String line2="";
+			String str2="";String line2="";
 			HttpPost post1=new HttpPost("https://"+domain+".api.mailchimp.com/2.0/lists/members.json");
 			StringEntity se2=new StringEntity("{\"apikey\": \""+access_token+"-"+domain+"\",\"id\":\""+id1+"\"}");//\"id\":\"619e890eb0\"   ,\"cid\":\"614a0b5a90\",\"struct\":{\"data\":\"message\"}
 			post1.setEntity(se2);
