@@ -91,9 +91,7 @@ public class MailChimp extends HttpServlet {
 			}
 			out.println(str1);
 			JSONObject obj1=new JSONObject(str1);
-			String data=obj1.getString("data");
-			out.println(data);
-			JSONArray arr=new JSONArray(data);
+			JSONArray arr=new JSONArray(obj1.getString("data"));
 			JSONObject obj2=new JSONObject(arr.get(0).toString());
 			String id1=obj2.getString("id");
 			//get the list of emails 
