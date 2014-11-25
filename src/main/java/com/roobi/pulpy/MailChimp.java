@@ -56,7 +56,7 @@ public class MailChimp extends HttpServlet {
 		// TODO Auto-generated method stub
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		PrintWriter out=response.getWriter();
-		String access_token="";
+		String access_token="";String xxml="<?xml version=\"1.0\" ?><result>";
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 	        Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -75,13 +75,13 @@ public class MailChimp extends HttpServlet {
 			while ((line = rd.readLine()) != null) {
 				str+=line;		     			
 			}
-			out.println(str);
+			//out.println(str);
 			JSONObject obj=new JSONObject(str);
 			String domain=obj.getString("dc");
 			//get the id for the list
 			String str1="";String line1="";
 			HttpPost post=new HttpPost("https://"+domain+".api.mailchimp.com/2.0/lists/list.json");
-			StringEntity se1=new StringEntity("{\"apikey\": \""+access_token+"-"+domain+"\"}");//\"id\":\"619e890eb0\"   ,\"cid\":\"614a0b5a90\",\"struct\":{\"data\":\"message\"}
+			StringEntity se1=new StringEntity("{\"apikey\": \""+access_token+"-"+domain+"\"}");
 			post.setEntity(se1);
 			HttpResponse response2 = client.execute(post);
 			BufferedReader rd1 = new BufferedReader(
@@ -89,7 +89,7 @@ public class MailChimp extends HttpServlet {
 			while ((line1 = rd1.readLine()) != null) {
 				str1+=line1;		     			
 			}
-			out.println(str1);
+			//out.println(str1);
 			JSONObject obj1=new JSONObject(str1);
 			JSONArray arr=(JSONArray)obj1.getJSONArray("data");
 			JSONObject obj2=new JSONObject(arr.get(0).toString());
@@ -97,7 +97,7 @@ public class MailChimp extends HttpServlet {
 			//get the list of emails 
 			String str2="";String line2="";
 			HttpPost post1=new HttpPost("https://"+domain+".api.mailchimp.com/2.0/lists/members.json");
-			StringEntity se2=new StringEntity("{\"apikey\": \""+access_token+"-"+domain+"\",\"id\":\""+id1+"\"}");//\"id\":\"619e890eb0\"   ,\"cid\":\"614a0b5a90\",\"struct\":{\"data\":\"message\"}
+			StringEntity se2=new StringEntity("{\"apikey\": \""+access_token+"-"+domain+"\",\"id\":\""+id1+"\"}");
 			post1.setEntity(se2);
 			HttpResponse response3 = client.execute(post1);
 			BufferedReader rd2 = new BufferedReader(
@@ -105,18 +105,20 @@ public class MailChimp extends HttpServlet {
 			while ((line2 = rd2.readLine()) != null) {
 				str2+=line2;		     			
 			}
-			out.println(str2);
+			//out.println(str2);
 			JSONObject obj3=new JSONObject(str);
-			String data1=obj3.getString("data");
-			JSONArray arr1=new JSONArray(data1);
+			JSONArray arr1=(JSONArray)obj3.getJSONArray("data");
 			for(int i=0;i<arr1.length();i++){
 				JSONObject obj4=new JSONObject(arr1.get(i).toString());
 				String email=obj4.getString("email");
-				out.println(email);
+				xxml+="<root><email>"+email+"</email></root>";
+				//out.println(email);
 			}
+			xxml+="</result>";
+			out.println(xxml);
 		}
 		catch(Exception e){
-			out.println(e);
+			//out.println(e);
 		}
 	}
 

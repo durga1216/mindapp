@@ -10,7 +10,7 @@ $(document).ready(function() {
     var appid="MPAPP_1409";
 
     $('#submit').click(function(){
-        alert(url + "<br>" +appid);
+        //alert(url + "<br>" +appid);
       $.ajax({
         type: "POST",
         url: "https://mindapp-pulpy.rhcloud.com/ClientOauth",
@@ -30,7 +30,7 @@ $(document).ready(function() {
     });     
     $('#b1').click(function(){
       $.ajax({
-        type: "POST",
+        type: "GET",
         url: "https://mindapp-pulpy.rhcloud.com/MailChimp",
         success: function result(data) {
             $('#result').append('<table><tr>EMAIL IDS</tr>');

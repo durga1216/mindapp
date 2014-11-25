@@ -67,7 +67,7 @@ public class ClientOauth extends HttpServlet {
 	   	     	String ev1=rs.getString("ev");
 	   	     	String rf1=rs.getString("rf");
 	   	     	String rmethod1=rs.getString("rmethod");
-	   	     	session1.setAttribute("url", url);
+	   	     	//session1.setAttribute("url", url);
 	           	session1.setAttribute("appname", appname);
 	           	session1.setAttribute("cname", cname1);
 	    	    session1.setAttribute("ckey", ckey1);
