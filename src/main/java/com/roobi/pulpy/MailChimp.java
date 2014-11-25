@@ -47,12 +47,12 @@ public class MailChimp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//	}
-//
-//	/**
-//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-//	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		PrintWriter out=response.getWriter();
@@ -112,7 +112,7 @@ public class MailChimp extends HttpServlet {
 				JSONObject obj4=new JSONObject(arr1.get(i).toString());
 				String email=obj4.getString("email");
 				xxml+="<root><email>"+email+"</email></root>";
-				out.println(email);
+				//out.println(email);
 			}
 			xxml+="</result>";
 			out.println(xxml);

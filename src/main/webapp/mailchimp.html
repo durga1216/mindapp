@@ -9,51 +9,41 @@ $(document).ready(function() {
     var url=document.URL;
     var appid="MPAPP_1409";
     $('#submit').click(function(){
-      $.ajax({
-        type: "POST",
-        url: "https://mindapp-pulpy.rhcloud.com/ClientOauth",
-        data: { appid:appid,
-                url:url,
-                },
-        success: function(result) {
-         alert("sucess");
-         window.location=result;
-           //$('#results').html(data);       
-           },
-        error: function (xhr, ajaxOptions, thrownError)
-        {
-         alert("errorstatus: " + xhr.status + " ajaxoptions: " + ajaxOptions + " throwError: " + thrownError);
-        }
-    });
+    	$.ajax({
+      		type: "POST",
+        	url: "https://mindapp-pulpy.rhcloud.com/ClientOauth",
+        	data: { 
+        		appid:appid,
+           		url:url,
+        	},
+        	success: function(result) {
+        	 window.location=result;
+           	},
+        	error: function (xhr, ajaxOptions, thrownError){
+         		alert("errorstatus: " + xhr.status + " ajaxoptions: " + ajaxOptions + " throwError: " + thrownError);
+        	}
+    	});
     });     
     $('#b1').click(function(){
-      $.ajax({
-        type: "GET",
-        url: "https://mindapp-pulpy.rhcloud.com/MailChimp",
-        success: function result(data) {
-            $('#result').append('<table><tr>EMAIL IDS</tr>');
-            $(data).find("root").each(function(){
-                a=$(this).find("email").text();
-                $('#result').append('<tr>a</tr>');
-                
-            });
-            $('#result').append('</table>');
-
-           },
-        error: function (xhr, ajaxOptions, thrownError)
-        {
-         alert("errorstatus: " + xhr.status + " ajaxoptions: " + ajaxOptions + " throwError: " + thrownError);
-        }
+    	$.ajax({
+        	type: "GET",
+        	url: "https://mindapp-pulpy.rhcloud.com/MailChimp",
+        	success: function result(data) {
+            	$('#result').append('<table><tr>EMAIL IDS</tr>');
+            	$(data).find("root").each(function(){
+                	a=$(this).find("email").text();
+                	$('#result').append('<tr>a</tr>');
+           		});
+            	$('#result').append('</table>');
+          	},
+    		error: function (xhr, ajaxOptions, thrownError){
+        		alert("errorstatus: " + xhr.status + " ajaxoptions: " + ajaxOptions + " throwError: " + thrownError);
+        	}
+    	});
     });
-    
-    
-    });
-    
 });
-
 </script>
 <style>
-
 body{
 background-color:#FF9900;
 }
