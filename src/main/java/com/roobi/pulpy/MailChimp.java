@@ -56,6 +56,7 @@ public class MailChimp extends HttpServlet {
 		// TODO Auto-generated method stub
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		PrintWriter out=response.getWriter();
+		response.addHeader("Access-Control-Allow-Origin", "*"); 
 		String access_token="";String xxml="<?xml version=\"1.0\" ?><result>";
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
