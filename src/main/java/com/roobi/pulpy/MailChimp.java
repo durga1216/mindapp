@@ -91,7 +91,8 @@ public class MailChimp extends HttpServlet {
 			}
 			out.println(str1);
 			JSONObject obj1=new JSONObject(str1);
-			String data=obj1.getString("data");
+			String data=(String)obj1.getString("data");
+			out.println(data);
 			JSONArray arr=new JSONArray(data);
 			JSONObject obj2=new JSONObject(arr.get(0).toString());
 			String id1=obj2.getString("id");
@@ -113,6 +114,7 @@ public class MailChimp extends HttpServlet {
 			for(int i=0;i<arr1.length();i++){
 				JSONObject obj4=new JSONObject(arr1.get(i).toString());
 				String email=obj4.getString("email");
+				out.println(email);
 			}
 		}
 		catch(Exception e){
