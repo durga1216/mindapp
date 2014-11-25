@@ -118,7 +118,7 @@ public class MailChimp extends HttpServlet {
 			out.println(xxml);
 		}
 		catch(Exception e){
-			//out.println(e);
+			out.println(e);
 		}
 	}
 
