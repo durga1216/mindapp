@@ -3,6 +3,7 @@ package com.roobi.pulpy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -54,6 +55,7 @@ public class MailChimp extends HttpServlet {
 //	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
+		PrintWriter out=response.getWriter();
 		String access_token="";
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -66,14 +68,14 @@ public class MailChimp extends HttpServlet {
 	        HttpClient client=new DefaultHttpClient();
 			String str=" ";String line="";
 			HttpGet get=new HttpGet("https://login.mailchimp.com/oauth2/metadata");
-			get.addHeader("Authorization","OAuth 3aa658f00ad38e7754bbc30c00cf75e7");
+			get.addHeader("Authorization","OAuth "+access_token+"");
 			HttpResponse response1 = client.execute(get);
 			BufferedReader rd = new BufferedReader(
 					new InputStreamReader(response1.getEntity().getContent()));
 			while ((line = rd.readLine()) != null) {
 				str+=line;		     			
 			}
-			System.out.println(str);
+			out.println(str);
 			JSONObject obj=new JSONObject(str);
 			String domain=obj.getString("dc");
 			//get the id for the list
@@ -87,7 +89,7 @@ public class MailChimp extends HttpServlet {
 			while ((line1 = rd1.readLine()) != null) {
 				str1+=line1;		     			
 			}
-			System.out.println(str1);
+			out.println(str1);
 			JSONObject obj1=new JSONObject(str1);
 			String data=obj1.getString("data");
 			JSONArray arr=new JSONArray(data);
@@ -104,7 +106,7 @@ public class MailChimp extends HttpServlet {
 			while ((line2 = rd2.readLine()) != null) {
 				str2+=line2;		     			
 			}
-			System.out.println(str2);
+			out.println(str2);
 			JSONObject obj3=new JSONObject(str);
 			String data1=obj3.getString("data");
 			JSONArray arr1=new JSONArray(data1);
@@ -114,7 +116,7 @@ public class MailChimp extends HttpServlet {
 			}
 		}
 		catch(Exception e){
-			
+			out.println(e);
 		}
 	}
 
