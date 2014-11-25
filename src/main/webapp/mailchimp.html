@@ -26,15 +26,18 @@ $(document).ready(function() {
     });     
     $('#b1').click(function(){
     	$.ajax({
-        	type: "POST",
+    		type: "POST",
         	url: "https://mindapp-pulpy.rhcloud.com/MailChimp",
         	success: function result(data) {
-            	$('#result').append('<table><tr>EMAIL IDS</tr>');
-            	$(data).find("root").each(function(){
-                	a=$(this).find("email").text();
-                	$('#result').append('<tr>a</tr>');
+            	var xx="<table><tr><th>EMAIL IDS</th</tr>";
+				var xmlDoc = new window.DOMParser().parseFromString(data,"text/xml");
+				console.log(xmlDoc);
+            	$(xmlDoc).find("root").each(function(){
+                	var a=$(this).find("email").text();
+                	xx+="<tr><td>"+a+"</td></tr>";
            		});
-            	$('#result').append('</table>');
+				xx+="</table>";
+            	$('#result').append(xx);
           	},
     		error: function (xhr, ajaxOptions, thrownError){
         		alert("errorstatus: " + xhr.status + " ajaxoptions: " + ajaxOptions + " throwError: " + thrownError);
