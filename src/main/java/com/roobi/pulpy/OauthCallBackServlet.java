@@ -61,10 +61,10 @@ public class OauthCallBackServlet extends HttpServlet {
 			String id=(String) session1.getAttribute("id");
 			String appname="";String tokenurl="";String rm1="";String apikey="";
 			String apisecvalue="";
-			pw.println("before if"+id);
+			//pw.println("before if"+id);
 			//TO check If it comes from configuration Or Javascript Call
 			if(url.equals("ssnull")){
-				pw.println("inside if");
+				//pw.println("inside if");
 				PreparedStatement st3=con.prepareStatement("SELECT * From facebook ORDER BY count DESC LIMIT 1");
 		        ResultSet rs3 = st3.executeQuery();
 		        while(rs3.next()){
@@ -179,11 +179,14 @@ public class OauthCallBackServlet extends HttpServlet {
 				response.setContentType("text/html;charset=utf-8");
 				response.setCharacterEncoding("UTF-8");
 				pw.println("<br><br><center><b><h2><font color='#ffffff;'>Sucessfully Authenticated with "+appname+"</font></center></h2></b>");
-				pw.println("<br><br><h3><center><a style='color:#ffffff;' href='auth.jsp'>Continue with Config</a></center></h3>");
-				//pw.println("<br><br><h3><center><a style='color:#ffffff;' href='token.jsp'>Continue with App</a></center></h3></body>");
-				pw.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with Prebuilt APP</a></center></h3></body>");
-				//pw.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreRaw'>Continue with Oauth Raw APP</a></center></h3></body>");
-				pw.println("<br><br><h3><center><a style='color:#ffffff;' href='"+url+"'>Continue with Connectors</a></center></h3></body>");
+				if(url.equals("sscall_from_firstauth")){
+					pw.println("<br><br><h3><center><a style='color:#ffffff;' href='auth.jsp'>Continue with Config</a></center></h3>");
+					//pw.println("<br><br><h3><center><a style='color:#ffffff;' href='token.jsp'>Continue with App</a></center></h3></body>");
+					pw.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with Prebuilt APP</a></center></h3></body>");
+					//pw.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreRaw'>Continue with Oauth Raw APP</a></center></h3></body>");
+				}else{
+					pw.println("<br><br><h3><center><a style='color:#ffffff;' href='"+url+"'>Continue with Connectors</a></center></h3></body>");
+				}
 			}
 		}
 		catch(Exception e){
