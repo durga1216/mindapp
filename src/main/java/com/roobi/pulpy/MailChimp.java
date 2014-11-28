@@ -93,27 +93,29 @@ public class MailChimp extends HttpServlet {
 			//out.println(str1);
 			JSONObject obj1=new JSONObject(str1);
 			JSONArray arr=(JSONArray)obj1.getJSONArray("data");
-			JSONObject obj2=new JSONObject(arr.get(0).toString());
-			String id1=obj2.getString("id");
-			//get the list of emails 
-			String str2="";String line2="";
-			HttpPost post1=new HttpPost("https://"+domain+".api.mailchimp.com/2.0/lists/members.json");
-			StringEntity se2=new StringEntity("{\"apikey\": \""+access_token+"-"+domain+"\",\"id\":\""+id1+"\"}");
-			post1.setEntity(se2);
-			HttpResponse response3 = client.execute(post1);
-			BufferedReader rd2 = new BufferedReader(
-					new InputStreamReader(response3.getEntity().getContent()));
-			while ((line2 = rd2.readLine()) != null) {
-				str2+=line2;		     			
-			}
-			//out.println(str2);
-			JSONObject obj3=new JSONObject(str2);
-			JSONArray arr1=(JSONArray)obj3.getJSONArray("data");
-			for(int i=0;i<arr1.length();i++){
-				JSONObject obj4=new JSONObject(arr1.get(i).toString());
-				String email=obj4.getString("email");
-				xxml+="<root><email>"+email+"</email></root>";
-				//out.println(email);
+			for(int k=0;k<arr.length();k++){
+				JSONObject obj2=new JSONObject(arr.get(k).toString());
+				String id1=obj2.getString("id");
+				//get the list of emails 
+				String str2="";String line2="";
+				HttpPost post1=new HttpPost("https://"+domain+".api.mailchimp.com/2.0/lists/members.json");
+				StringEntity se2=new StringEntity("{\"apikey\": \""+access_token+"-"+domain+"\",\"id\":\""+id1+"\"}");
+				post1.setEntity(se2);
+				HttpResponse response3 = client.execute(post1);
+				BufferedReader rd2 = new BufferedReader(
+						new InputStreamReader(response3.getEntity().getContent()));
+				while ((line2 = rd2.readLine()) != null) {
+					str2+=line2;		     			
+				}
+				//out.println(str2);
+				JSONObject obj3=new JSONObject(str2);
+				JSONArray arr1=(JSONArray)obj3.getJSONArray("data");
+				for(int i=0;i<arr1.length();i++){
+					JSONObject obj4=new JSONObject(arr1.get(i).toString());
+					String email=obj4.getString("email");
+					xxml+="<root><email>"+email+"</email></root>";
+					//out.println(email);
+				}
 			}
 			xxml+="</result>";
 			out.println(xxml);
