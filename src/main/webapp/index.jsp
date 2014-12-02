@@ -150,12 +150,15 @@ width:3000px;
 height:100px;
 }
 #mcdiv{
-width:1200px;
+width:1100px;
 height:100px;
 overflow:hidden;
 height:100px;
 float:left;
 
+}
+#imful{
+width:1200px;
 }
 #inm{
 width:80px;
@@ -286,7 +289,7 @@ function load2(){
 <li>MindPulpy is a platform to aggregate, manipulate, simplify and mashup content from around the web api.</li>
 <li>Get data from any web protocol/ Authentication, method and convert into a developer friendly urls and built apps for multiple devices using Apps builder</li>
 <li>Combine many apis into one and Build custom connectors for cloud platform</li></ul></div>
-<input onclick="scrollDiv('l', 200);" style="margin-left:50px;" type=button id=swp><div id="mcdiv"></div><input onclick="scrollDiv('r', 200);" type=button id=swp><br><br><br>
+<div id=imful style="margin-left:80px;"><input onclick="scrollDiv('l', 200);" type=button id=swp><div id="mcdiv"></div><input onclick="scrollDiv('r', 200);" type=button id=swp></div><br><br><br>
 <br><br><div id=ful><br><br>
 <div id=imdv><img alt="logo" src="images/MindPulpy_Illustration.PNG"style="height:400px;width:500px;"></div>
 <div id="sec"><br>
