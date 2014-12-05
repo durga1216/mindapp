@@ -29,162 +29,141 @@
     font-family:verdana;
     font-size:40px;}
 #swp{
-width:20px;
-height:100px;
-background-color:#fff;
-border-radius:2px;
-float:left;
-}    
+	width:20px;
+	height:70px;
+	color:#ff9900;
+	font-size:22px;
+	padding-top:40px;
+	text-decoration:none;
+	text-align:center;
+	background-color:#fff;
+	border-radius:2px;
+	float:left;}    
 input[type="text"]{
-color:#FF9900;
-font-size:20px;
-background-color:#FFFFFF;
-margin-left:80px;
-font-family:verdana;
-width:400px;
-height:25px;
-padding:8px;
-} 
-
+	color:#FF9900;
+	font-size:20px;
+	background-color:#FFFFFF;
+	margin-left:80px;
+	font-family:verdana;
+	width:400px;
+	height:25px;
+	padding:8px;} 
 input[type="password"]{
-color:#FF9900;
-font-size:20px;
-background-color:#FFFFFF;
-margin-left:80px;
-font-family:verdana;
-width:400px;
-height:25px;
-padding:8px;
-} 
-
- input[type="submit"]{
-
-color:#FFFFFF;
-font-size:15px;
-background-color:#FF9900;
-margin-left:150px;
-font-family:verdana;
-width:150px;
-height:50px;
-border:solid 2px;
-border-color:#FFFFFF;
-border-radius:20px;
-padding:10px;
-}
+	color:#FF9900;
+	font-size:20px;
+	background-color:#FFFFFF;
+	margin-left:80px;
+	font-family:verdana;
+	width:400px;
+	height:25px;
+	padding:8px;} 
+input[type="submit"]{
+	color:#FFFFFF;
+	font-size:15px;
+	background-color:#FF9900;
+	margin-left:150px;
+	font-family:verdana;
+	width:150px;
+	height:50px;
+	border:solid 2px;
+	border-color:#FFFFFF;
+	border-radius:20px;
+	padding:10px;}
 input[type="button"]{
-
-color:#FFFFFF;
-font-size:15px;
-background-color:#FF9900;
-font-family:verdana;
-width:150px;
-height:50px;
-border:solid 2px;
-border-color:#FFFFFF;
-border-radius:20px;
-padding:10px;
-}
-
-#indiv{color:#FFFFFF;
-}
+	color:#FFFFFF;
+	font-size:15px;
+	background-color:#FF9900;
+	font-family:verdana;
+	width:150px;
+	height:50px;
+	border:solid 2px;
+	border-color:#FFFFFF;
+	border-radius:20px;
+	padding:10px;}
+#indiv{
+	color:#FFFFFF;}
 #hed{
-color:#ffffff;
-margin-left:100px;
-font-size:50px;
-}
+	color:#ffffff;
+	margin-left:100px;
+	font-size:50px;}
 #na{
-margin-top:0;
-color:#FFFFFF;
-font-size:20px;
-font-family:verdana;
-text-align:right;}
+	margin-top:0;
+	color:#FFFFFF;
+	font-size:20px;
+	font-family:verdana;
+	text-align:right;}
 .space{
-height:20px;
-}
-.space1
-{height:30px;}
+	height:20px;}
+.space1{
+	height:30px;}
 label{
-font-family:verdana;
-color:#FFFFFF;
-}
+	font-family:verdana;
+	color:#FFFFFF;}
 a{
-    font-size:18px;
-    font-family:verdana;
-    color:#FFFFFF;
-    
-    }
-#indiv{color:#FFFFFF;
-}
+	font-size:18px;
+	font-family:verdana;
+	color:#FFFFFF;}
+#indiv{
+	color:#FFFFFF;}
 #na{
-margin-top:0;
-width:1300px;
-color:#FFFFFF;
-font-size:20px;
-font-family:verdana;
-text-align:right;}
-#na11{
-font-size:15px;
-color:#ffffff;
-margin-left:200px;
-}
-
-sup { vertical-align: 2.5ex; 
-padding:2px;
-font-size:15px;
-background-color:blue;
-color:#ffffff;
-box-shadow:2px 2px 5px 1px #000;
-border-radius:5px;}
+	margin-top:0;
+	width:1300px;
+	color:#FFFFFF;
+	font-size:20px;
+	font-family:verdana;
+	text-align:right;}
+	#na11{
+	font-size:15px;
+	color:#ffffff;
+	margin-left:200px;}
+sup { 
+	vertical-align: 2.5ex; 
+	padding:2px;
+	font-size:15px;
+	background-color:blue;
+	color:#ffffff;
+	box-shadow:2px 2px 5px 1px #000;
+	border-radius:5px;}
 img{
-height:50px;
-width:60px;
-}
+	height:50px;
+	width:60px;}
 #sec{
-width:49%;
-height:500px;
-background-color:#FF9900;
-float:left;
-}
+	width:49%;
+	height:500px;
+	background-color:#FF9900;
+	float:left;}
 #mcim{
-width:3000px;
-height:100px;
-}
+	width:3000px;
+	height:100px;}
 #mcdiv{
-width:1100px;
-height:100px;
-overflow:hidden;
-height:100px;
-float:left;
-
-}
+	width:1100px;
+	height:100px;
+	overflow:hidden;
+	height:100px;
+	float:left;}
 #imful{
-width:1200px;
-}
+	width:1200px;}
 #inm{
-width:80px;
-height:80px;
-border-radius:8px;
-box-shadow:1px 1px 2px 1px #000;
-}
+	width:80px;
+	height:80px;
+	border-radius:8px;
+	box-shadow:1px 1px 2px 1px #000;}
 #imdv{
-width:49%;
-height:500px;
-background-color:#FF9900;
-float: left;
-}
+	width:49%;
+	height:500px;
+	background-color:#FF9900;
+	float: left;}
 #ful{
- width:1200px;
- height:500px;
- background:#FF9900;
- margin-left:80px;
- border:0px solid #FFFFFF;
- float:left;
-}
+	width:1200px;
+	height:500px;
+	background:#FF9900;
+	margin-left:80px;
+	border:0px solid #FFFFFF;
+	float:left;}
 #err{
-color:#ffffff;
-font-size:20px;
-}
- </style>
+	color:#ffffff;
+	font-size:20px;}
+</style>
 <%@page import=" java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
@@ -207,13 +186,16 @@ $(document).ready(function(){
 		},
 	});
 });
+var px101=0;
 function scrollDiv(dir, px) {
     var scroller = document.getElementById('mcdiv');
     if (dir == 'l') {
-        scroller.scrollLeft -= px;
+    	if(px101>0)
+        $("#mcdiv").animate({scrollLeft:px101-=px},700);
     }
     else if (dir == 'r') {
-        scroller.scrollLeft += px;
+        //scroller.scrollLeft += px;
+        $("#mcdiv").animate({scrollLeft:px101+=px},700);
     }
 }
 function validateForm(){
@@ -248,7 +230,7 @@ function validateForm(){
  	} 
 }
 </script>
-<script>
+<!-- <script>
 $(document).ready(function(){
 	$('a').click(function() {
     	$('#s2').hide();
@@ -259,7 +241,7 @@ $(document).ready(function(){
         $('#login').slideUp();   
 	});      
 });
- </script>
+ </script> -->
  <script type="text/javascript">
 function add(){
 	window.location="login.jsp";
@@ -281,28 +263,38 @@ function load2(){
 </head>
 <body>
 <form action="LoginPulpy" name="myForm" method="post" onsubmit="return validateForm()">
-<div id=na><a href="http://minddotss.com/"><img style="height:60px;width:200px;" src="images/log.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>Build Connectors</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='javascript:load3()'>Popular Connectors</a><sup> Hot.! </sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load2()'>Apps Builder</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>Viewapi?category=Search'>Search API's</a></div>
-<br><hr><div class="head"><center>Mind Pulpy</center></div>
+<div id=na>
+	<a href="http://minddotss.com/"><img style="height:60px;width:200px;" src="images/log.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="indiv" href='comments.jsp'>Discussion Forum</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load1()'>Build Connectors</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='javascript:load3()'>Popular Connectors</a><sup> Hot.! </sup>&nbsp;&nbsp;&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'javascript:load2()'>Apps Builder</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href= 'addapi.jsp'>Add API's</a>&nbsp;&nbsp;&nbsp;<a id="indiv" href='<%=request.getContextPath()%>Viewapi?category=Search'>Search API's</a>
+</div><br><hr>
+<div class="head"><center>Mind Pulpy</center></div>
 <div id=na11>
-<ul><li>Get your reports from all your cloud / Social media applications in Google spreasheet.</li>
-<li>MindPulpy automates/ sync up the Data/ task between cloud applications.</li>
-<li>MindPulpy is a platform to aggregate, manipulate, simplify and mashup content from around the web api.</li>
-<li>Get data from any web protocol/ Authentication, method and convert into a developer friendly urls and built apps for multiple devices using Apps builder</li>
-<li>Combine many apis into one and Build custom connectors for cloud platform</li></ul></div>
-<div id=imful style="margin-left:80px;"><input onclick="scrollDiv('l', 200);" type=button id=swp><div id="mcdiv"></div><input onclick="scrollDiv('r', 200);" type=button id=swp></div><br><br><br>
-<br><br><div id=ful><br><br>
-<div id=imdv><img alt="logo" src="images/MindPulpy_Illustration.PNG"style="height:400px;width:500px;"></div>
-<div id="sec"><br>
-<center><div id=err>${alert}</div><br>
-<input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
-<input  type=text name="s5" id='s5' placeholder="Mobile Number"><br><br>
-<input  type=text name="s2" id='s2' placeholder="First Name"><br><br>
-<input  type=text name="s3" id='s3' placeholder="Last Name"><br><br>
-<input type=password name="s4" id='s4'  placeholder="Password"><br><br>
-<div style='color:#ffffff;margin-left:70px;font-size:15px;font-family:verdana;'><input type="checkbox" value="0" name="agree">I agree to the Minddots <a style='font-size:15px;'href="javascript:load()">Terms of service</a> and <a style='font-size:15px;'href="javascript:load()">Privacy Policy</a></div><br><br></center>
-<input type="submit" name="submit" id='sign' value="Sign Up">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" name="b2" value="Login" Onclick="add()"><br><br><br>
-</div></dir></div>
+	<ul><li>Get your reports from all your cloud / Social media applications in Google spreasheet.</li>	
+	<li>MindPulpy automates/ sync up the Data/ task between cloud applications.</li>
+	<li>MindPulpy is a platform to aggregate, manipulate, simplify and mashup content from around the web api.</li>
+	<li>Get data from any web protocol/ Authentication, method and convert into a developer friendly urls and built apps for multiple devices using Apps builder</li>
+	<li>Combine many apis into one and Build custom connectors for cloud platform</li></ul>
+</div>
+<div id=imful style="margin-left:80px;">
+	<a href="javascript:scrollDiv('l', 300)" id=swp>&lt;</a>
+	<div id="mcdiv"></div>
+	<a href="javascript:scrollDiv('r', 300)" id=swp>&gt;</a>
+</div>
+<div id=ful><br><br>
+	<div id=imdv>
+		<img alt="logo" src="images/MindPulpy_Illustration.PNG"style="height:400px;width:500px;">
+	</div>
+	<div id="sec"><br>
+		<center><div id=err>${alert}</div><br>
+		<input  type=text name="s1" id='s1' align="center" placeholder="Email"><br><br>
+		<input  type=text name="s5" id='s5' placeholder="Mobile Number"><br><br>
+		<input  type=text name="s2" id='s2' placeholder="First Name"><br><br>
+		<input  type=text name="s3" id='s3' placeholder="Last Name"><br><br>
+		<input type=password name="s4" id='s4'  placeholder="Password"><br><br>
+		<div style='color:#ffffff;margin-left:70px;font-size:15px;font-family:verdana;'><input type="checkbox" value="0" name="agree">I agree to the Minddots <a style='font-size:15px;'href="javascript:load()">Terms of service</a> and <a style='font-size:15px;'href="javascript:load()">Privacy Policy</a></div><br><br></center>
+		<input type="submit" name="submit" id='sign' value="Sign Up">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" name="b2" value="Login" Onclick="add()"><br><br><br>
+	</div>
+</div>
 </form>
 
 </body>
