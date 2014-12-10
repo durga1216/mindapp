@@ -272,7 +272,11 @@ function load2(){
 	<li>MindPulpy automates/ sync up the Data/ task between cloud applications.</li>
 	<li>MindPulpy is a platform to aggregate, manipulate, simplify and mashup content from around the web api.</li>
 	<li>Get data from any web protocol/ Authentication, method and convert into a developer friendly urls and built apps for multiple devices using Apps builder</li>
-	<li>Combine many apis into one and Build custom connectors for cloud platform</li></ul>
+	<li>Combine many apis into one and Build custom connectors for cloud platform</li>
+	<li>MindPulpy is currently in alpha stage, so there may be some disturbance in the service.</li>
+	<li>MindPulpy links to a lot of third party sites with their own terms of service which are distinct and different from our own.</li>
+	<li>To use MindPulpy, we need to store credentials for third-party services. We store credentials encrypted in our database. They are only used to access data you tell us to.</li>
+	</ul>
 </div>
 <div id=imful style="margin-left:80px;">
 	<a href="javascript:scrollDiv('l', 300)" id=swp>&lt;</a>
