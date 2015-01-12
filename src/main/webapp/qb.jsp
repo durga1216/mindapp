@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Mailchimp</title>
+<title>Quickbooks</title>
 <script src="js/jquery-latest.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {  
@@ -27,7 +27,7 @@ $(document).ready(function() {
     $('#b1').click(function(){
     	$.ajax({
     		type: "POST",
-        	url: "https://mindapp-pulpy.rhcloud.com/MailChimp",
+        	url: "https://mindapp-pulpy.rhcloud.com/Quickbook",
         	success: function result(data) {
             	var xx="<table><tr><th>EMAIL IDS</th</tr>";
 				var xmlDoc = new window.DOMParser().parseFromString(data,"text/xml");

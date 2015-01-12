@@ -75,7 +75,7 @@ public class Quickcall extends HttpServlet {
 			String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
 			long oauth_timestamp = System.currentTimeMillis()/1000;
 			String parameter_string="";
-			String call="https://mindapp-pulpy.rhcloud.com/Quickcall";
+			String call="https://mindapp-pulpy.rhcloud.com/Quickbook";
 			//For checking the callback is required or not
 			parameter_string = "oauth_callback="+URLEncoder.encode(call, "UTF-8")+"&oauth_consumer_key=" + ockey + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + osmeth + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 			String signature_base_string = oreq+"&"+eurl1+"&" + URLEncoder.encode(parameter_string, "UTF-8");
@@ -119,7 +119,7 @@ public class Quickcall extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	    	PreparedStatement st=con.prepareStatement("insert into oauth1sec (secret,url) values('"+sec1+"','"+url+"')");
-	    	st.executeQuery();
+	    	st.executeUpdate();
 		} 
 		catch(Exception cpe)  {   
 			

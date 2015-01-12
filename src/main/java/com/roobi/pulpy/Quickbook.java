@@ -61,8 +61,8 @@ public class Quickbook extends HttpServlet {
 		try{
 			String oauth_verifier=request.getParameter("oauth_verifier");
 			String oauth_token=request.getParameter("oauth_token");
-			String oauth_consumer_key="qyprd4RQHv304cMUnvIaJX4LFVbiW1";
-			String secret="x70f1kenzaQd467LZYfDStpXJ7MOMytwkxVs63AE";
+			String oauth_consumer_key="qyprdWyrr9gTlXvXn4r9NntGHANcKb";
+			String secret="Ei7sHIP05haZfWNLJQFxyL7PvVX5pjT0eyNx8HxH";
 			String oauth_signature_method="HMAC-SHA1";
 			String ourl31="https://oauth.intuit.com/oauth/v1/get_access_token";
 			String oreq1="GET";
@@ -85,7 +85,7 @@ public class Quickbook extends HttpServlet {
             String eurl = URLEncoder.encode(ourl31, "UTF-8");
             long oauth_timestamp = System.currentTimeMillis()/1000;
             String parameter_string="";
-            String call="https://mindapp-pulpy.rhcloud.com/Quickcall";
+            String call="https://mindapp-pulpy.rhcloud.com/Quickbook";
            	parameter_string = "oauth_callback="+URLEncoder.encode(call, "UTF-8")+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_token="+oauth_token+"&oauth_verifier="+oauth_verifier+"&oauth_version=1.0";        
             String signature_base_string = oreq1+"&"+eurl+"&" + URLEncoder.encode(parameter_string, "UTF-8");
             System.out.println("signature_base_string=" + signature_base_string);
@@ -144,8 +144,8 @@ public class Quickbook extends HttpServlet {
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		try{
 			String endurl1="";
-			String oauth_consumer_key="qyprd4RQHv304cMUnvIaJX4LFVbiW1";
-			String secret="x70f1kenzaQd467LZYfDStpXJ7MOMytwkxVs63AE";
+			String oauth_consumer_key="qyprdWyrr9gTlXvXn4r9NntGHANcKb";
+			String secret="Ei7sHIP05haZfWNLJQFxyL7PvVX5pjT0eyNx8HxH";
 			String oauth_signature_method="HMAC-SHA1";
 			String rmethod="GET";
 			String oauth_token="";
