@@ -61,6 +61,7 @@ public class Quickbook extends HttpServlet {
 		try{
 			String oauth_verifier=request.getParameter("oauth_verifier");
 			String oauth_token=request.getParameter("oauth_token");
+			String companyid=request.getParameter("realmId");
 			String oauth_consumer_key="qyprdWyrr9gTlXvXn4r9NntGHANcKb";
 			String secret="Ei7sHIP05haZfWNLJQFxyL7PvVX5pjT0eyNx8HxH";
 			String oauth_signature_method="HMAC-SHA1";
@@ -123,7 +124,7 @@ public class Quickbook extends HttpServlet {
     				 secrt=chk1[i];
     			 }
     		 }
-	  		 PreparedStatement st2=con.prepareStatement("insert into oauth1 (token,secret,resp) values ('"+tokn+"','"+secrt+"','"+tok+"')");
+	  		 PreparedStatement st2=con.prepareStatement("insert into oauth1 (token,secret,resp) values ('"+tokn+"','"+secrt+"','"+companyid+"')");
 		   	 st2.executeUpdate();
 		   	 st2.close();
 		   	 out.println("<body style='background-color:#ff9900;'>");
@@ -140,10 +141,10 @@ public class Quickbook extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	    response.addHeader("Access-Control-Allow-Origin", "*");  	
+	    response.addHeader("Access-Control-Allow-Origin", "*");  
+	    PrintWriter out=response.getWriter();
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		try{
-			String endurl1="";
 			String oauth_consumer_key="qyprdWyrr9gTlXvXn4r9NntGHANcKb";
 			String secret="Ei7sHIP05haZfWNLJQFxyL7PvVX5pjT0eyNx8HxH";
 			String oauth_signature_method="HMAC-SHA1";
@@ -151,6 +152,7 @@ public class Quickbook extends HttpServlet {
 			String oauth_token="";
 			String access_secret1="";
 			String eurl="null";
+			String companyid="";
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	    	PreparedStatement st4=con.prepareStatement("SELECT * From oauth1 ORDER BY no DESC LIMIT 1");
@@ -158,8 +160,10 @@ public class Quickbook extends HttpServlet {
    			while(rs4.next()){
    				oauth_token=rs4.getString("token");
    				access_secret1=rs4.getString("secret");
+   				companyid=rs4.getString("resp");
    			}
    			rs4.close();
+			String endurl1="https://quickbooks.api.intuit.com/v3/company/"+companyid+"/invoice/1";
    			String[] tok11=oauth_token.split("=");
    			String oauthtk=tok11[1];
    			String[] tok1=access_secret1.split("=");
@@ -202,6 +206,7 @@ public class Quickbook extends HttpServlet {
 				result.append(line);
 			}
 			str1=result.toString();
+			out.println(str1);
 		}catch(Exception e){
 			
 		}

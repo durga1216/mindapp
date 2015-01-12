@@ -29,15 +29,7 @@ $(document).ready(function() {
     		type: "POST",
         	url: "https://mindapp-pulpy.rhcloud.com/Quickbook",
         	success: function result(data) {
-            	var xx="<table><tr><th>EMAIL IDS</th</tr>";
-				var xmlDoc = new window.DOMParser().parseFromString(data,"text/xml");
-				console.log(xmlDoc);
-            	$(xmlDoc).find("root").each(function(){
-                	var a=$(this).find("email").text();
-                	xx+="<tr><td>"+a+"</td></tr>";
-           		});
-				xx+="</table>";
-            	$('#result').append(xx);
+            	$('#result').append(data);
           	},
     		error: function (xhr, ajaxOptions, thrownError){
         		alert("errorstatus: " + xhr.status + " ajaxoptions: " + ajaxOptions + " throwError: " + thrownError);
