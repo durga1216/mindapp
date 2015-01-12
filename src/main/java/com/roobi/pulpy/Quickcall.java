@@ -62,8 +62,8 @@ public class Quickcall extends HttpServlet {
 		String appid=request.getParameter("appid");
 		String url=request.getParameter("url");
 		String ourl1="https://oauth.intuit.com/oauth/v1/get_request_token";
-		String ockey="qyprdKhUWgZ9q4BWMl1fYgHOw98lbe";
-		String oskey="saQz09Mdp5hHACtT50InCETNbtderr3uGTVCESlg";
+		String ockey="qyprdWyrr9gTlXvXn4r9NntGHANcKb";
+		String oskey="Ei7sHIP05haZfWNLJQFxyL7PvVX5pjT0eyNx8HxH";
 		String oreq="GET";
 		String osmeth="HMAC-SHA1";
 		String ourl2="https://appcenter.intuit.com/Connect/Begin";
