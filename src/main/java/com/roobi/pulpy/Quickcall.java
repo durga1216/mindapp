@@ -58,11 +58,13 @@ public class Quickcall extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	    response.addHeader("Access-Control-Allow-Origin", "*");  	
 		String appid=request.getParameter("appid");
+		String url=request.getParameter("url");
 		String ourl1="https://oauth.intuit.com/oauth/v1/get_request_token";
 		String ockey="qyprd4RQHv304cMUnvIaJX4LFVbiW1";
 		String oskey="x70f1kenzaQd467LZYfDStpXJ7MOMytwkxVs63AE";
-		String oreq="POST";
+		String oreq="GET";
 		String osmeth="HMAC-SHA1";
 		String ourl2="https://appcenter.intuit.com/Connect/Begin";
 		//function
@@ -116,14 +118,16 @@ public class Quickcall extends HttpServlet {
     		}
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
-	    	PreparedStatement st=con.prepareStatement("insert into oauth1sec (secret) values('"+sec1+"')");
+	    	PreparedStatement st=con.prepareStatement("insert into oauth1sec (secret,url) values('"+sec1+"','"+url+"')");
 	    	st.executeQuery();
 		} 
 		catch(Exception cpe)  {   
 			
 		}
 		String author=ourl2+"?"+oauth_token+"&perms=write";
-		response.sendRedirect(author);
+		response.setContentType("text/plain");
+   	 	response.setCharacterEncoding("UTF-8");
+   	 	response.getWriter().print(author);
 	}
 	private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {	 
 	    SecretKey secretKey = null;

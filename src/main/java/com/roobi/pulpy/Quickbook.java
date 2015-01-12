@@ -3,6 +3,7 @@ package com.roobi.pulpy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.GeneralSecurityException;
@@ -53,6 +54,9 @@ public class Quickbook extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out=response.getWriter();
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		try{
 			String oauth_verifier=request.getParameter("oauth_verifier");
@@ -61,14 +65,16 @@ public class Quickbook extends HttpServlet {
 			String secret="x70f1kenzaQd467LZYfDStpXJ7MOMytwkxVs63AE";
 			String oauth_signature_method="HMAC-SHA1";
 			String ourl31="https://oauth.intuit.com/oauth/v1/get_access_token";
-			String oreq1="POST";
+			String oreq1="GET";
 			String sec1="";
+			String url="";
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 	    	PreparedStatement st=con.prepareStatement("SELECT * From oauth1sec ORDER BY no DESC LIMIT 1");
 	    	ResultSet rs = st.executeQuery();
 	    	while(rs.next()){
 	    		String secret11=rs.getString("secret");
+	    		url=rs.getString("url");
 	    		String[] tok1=secret11.split("=");
 	    		sec1=tok1[1];
 	    	}
@@ -117,9 +123,13 @@ public class Quickbook extends HttpServlet {
     				 secrt=chk1[i];
     			 }
     		 }
-	  		 PreparedStatement st2=con.prepareStatement("insert into oauth1 (token,secret) values ('"+tokn+"','"+secrt+"')");
+	  		 PreparedStatement st2=con.prepareStatement("insert into oauth1 (token,secret,resp) values ('"+tokn+"','"+secrt+"','"+tok+"')");
 		   	 st2.executeUpdate();
 		   	 st2.close();
+		   	 out.println("<body style='background-color:#ff9900;'>");
+		   	 out.println("<br><br><center><b><h2><font color='#ffffff;'>Sucessfully Authenticated with Mind Pulpy</font></center></h2></b>");
+		   	 out.println("<br><br><h3><center><a style='color:#ffffff;' href='"+url+"'>Continue with Connectors</a></center></h3></body>");
+
 		}
 		catch(Exception e){
 			
@@ -130,6 +140,7 @@ public class Quickbook extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	    response.addHeader("Access-Control-Allow-Origin", "*");  	
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		try{
 			String endurl1="";
