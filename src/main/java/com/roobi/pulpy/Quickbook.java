@@ -206,7 +206,7 @@ public class Quickbook extends HttpServlet {
 				result.append(line);
 			}
 			str1=result.toString();
-			out.println(actok);
+			out.println(str1);
 		}catch(Exception e){
 			
 		}
