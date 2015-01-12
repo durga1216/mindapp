@@ -163,7 +163,7 @@ public class Quickbook extends HttpServlet {
    				companyid=rs4.getString("resp");
    			}
    			rs4.close();
-			String endurl1="https://quickbooks.api.intuit.com/v3/company/"+companyid+"/query=select%20*%20from%20Invoice";
+			String endurl1="https://quickbooks.api.intuit.com/v3/company/"+companyid+"/invoice/1";
    			String[] tok11=oauth_token.split("=");
    			String oauthtk=tok11[1];
    			String[] tok1=access_secret1.split("=");
@@ -206,7 +206,7 @@ public class Quickbook extends HttpServlet {
 				result.append(line);
 			}
 			str1=result.toString();
-			out.println(str1);
+			out.println(actok);
 		}catch(Exception e){
 			
 		}
