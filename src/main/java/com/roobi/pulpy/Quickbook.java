@@ -141,7 +141,8 @@ public class Quickbook extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	    response.addHeader("Access-Control-Allow-Origin", "*");  
+	    response.addHeader("Access-Control-Allow-Origin", "*"); 
+	    String nn=request.getParameter("id");
 	    PrintWriter out=response.getWriter();
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		try{
@@ -163,7 +164,7 @@ public class Quickbook extends HttpServlet {
    				companyid=rs4.getString("resp");
    			}
    			rs4.close();
-			String endurl1="https://quickbooks.api.intuit.com/v3/company/"+companyid+"/invoice/1";
+			String endurl1="https://quickbooks.api.intuit.com/v3/company/"+companyid+"/invoice/"+nn;
    			String[] tok11=oauth_token.split("=");
    			String oauthtk=tok11[1];
    			String[] tok1=access_secret1.split("=");
