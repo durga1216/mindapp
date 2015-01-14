@@ -25,9 +25,13 @@ $(document).ready(function() {
     	});
     });     
     $('#b1').click(function(){
+    	var id="1";
     	$.ajax({
     		type: "POST",
         	url: "https://mindapp-pulpy.rhcloud.com/Quickbook",
+        	data: { 
+        		id:id,
+        	},
         	success: function result(data) {
             	$('#result').append(data);
           	},
