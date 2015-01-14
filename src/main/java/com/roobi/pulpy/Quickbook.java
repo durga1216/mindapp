@@ -128,8 +128,8 @@ public class Quickbook extends HttpServlet {
 		   	 st2.executeUpdate();
 		   	 st2.close();
 		   	 out.println("<body style='background-color:#ff9900;'>");
-		   	 out.println("<br><br><center><b><h2><font color='#ffffff;'>Sucessfully Authenticated with Mind Pulpy</font></center></h2></b>");
-		   	 out.println("<br><br><h3><center><a style='color:#ffffff;' href='"+url+"'>Continue with Connectors</a></center></h3></body>");
+		   	 out.println("<br><br><br><br><br><br><br><center><img src='images/qb.png' style='width:120px;height:120px'></center><br><br>");
+		   	 out.println("<br><br><h3><center><a style='color:#ffffff;' href='"+url+"'>Continue with Quickbooks Online</a></center></h3></body>");
 
 		}
 		catch(Exception e){
