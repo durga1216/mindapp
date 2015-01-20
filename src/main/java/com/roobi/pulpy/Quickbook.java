@@ -164,7 +164,7 @@ public class Quickbook extends HttpServlet {
    				companyid=rs4.getString("resp");
    			}
    			rs4.close();
-			String endurl1="https://quickbooks.api.intuit.com/v3/company/"+companyid+"/invoice/"+nn;
+			String endurl1="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/query";
    			String[] tok11=oauth_token.split("=");
    			String oauthtk=tok11[1];
    			String[] tok1=access_secret1.split("=");
@@ -177,7 +177,7 @@ public class Quickbook extends HttpServlet {
 			String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
 			String parameter_string ="";
 			if(eurl.equals("null")){
-				parameter_string ="oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+				parameter_string ="query=select%20%2A%20from%20invoice&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
 			}
 			else{
 				parameter_string = eurl+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
@@ -199,6 +199,7 @@ public class Quickbook extends HttpServlet {
 			String actok=endurl1+"?"+tst4+"&oauth_signature="+oauth_signature1;
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpGet get1=new HttpGet(actok);
+			get1.setHeader("Accept", "application/json");
 			HttpResponse response1=httpclient.execute(get1);
 			BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
 			StringBuffer result = new StringBuffer();
