@@ -56,7 +56,6 @@ public class Quickbook extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
-		PrintWriter out=response.getWriter();
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		try{
 			String oauth_verifier=request.getParameter("oauth_verifier");
@@ -127,10 +126,7 @@ public class Quickbook extends HttpServlet {
 	  		 PreparedStatement st2=con.prepareStatement("insert into oauth1 (token,secret,resp) values ('"+tokn+"','"+secrt+"','"+companyid+"')");
 		   	 st2.executeUpdate();
 		   	 st2.close();
-		   	 out.println("<body style='background-color:#ff9900;'>");
-		   	 out.println("<br><br><br><br><br><br><br><center><img src='images/qb.png' style='width:120px;height:120px'></center><br><br>");
-		   	 out.println("<br><br><h3><center><a style='color:#ffffff;' href='"+url+"'>Continue with Quickbooks Online</a></center></h3></body>");
-
+		   	 response.sendRedirect(url);
 		}
 		catch(Exception e){
 			
@@ -209,6 +205,9 @@ public class Quickbook extends HttpServlet {
 			}
 			str1=result.toString();
 			out.println(str1);
+			PreparedStatement st5=con.prepareStatement("DELETE From oauth1 ORDER BY no DESC LIMIT 1");
+			st5.executeUpdate();
+			con.close();
 		}catch(Exception e){
 			
 		}
