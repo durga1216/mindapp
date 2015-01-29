@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quickbooks</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/jquery-latest.js"></script>
 <script type="text/javascript">
 function toggle(div_id) {
 	var el = document.getElementById(div_id);
