@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quickbooks</title>
-<script src="js/jquery-latest.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 function toggle(div_id) {
 	var el = document.getElementById(div_id);
@@ -56,8 +56,6 @@ function popup(windowname) {
 	toggle('blanket');
 	toggle(windowname);		
 }
-</script>
-<script type="text/javascript">
 $(document).ready(function() {  
     var url=document.URL;
     var appid="MPAPP_1409";
@@ -78,7 +76,8 @@ $(document).ready(function() {
     	});
     });     
     $('#b1').click(function(){
-    	var id="1";
+    	var id="1", Arr=[];
+    	var docid,cdate,ddate,bal,tot,cust;
     	$.ajax({
     		type: "POST",
         	url: "https://mindapp-pulpy.rhcloud.com/Quickbook",
@@ -86,21 +85,9 @@ $(document).ready(function() {
         		id:id,
         	},
         	success: function result(data) {
-        		$('#result').append("<table border=1><tr><th></th><th>DocNo</th><th>Date</th><th>Balance</th><th>Total Amount</th><th>Due Date</th><th>Customer</th></tr></table>");
-        		var obj=data.QueryResponse.Invoice;
-        		var option="",option1="",client;
-                         $.each(obj, function(i, val){
-        			 
-        			var desc=val.Line;
-        var cname=val.CustomerRef;
-        			if(option!=undefined)
-                    	$('#result').append("<tr><td><input type='checkbox' name='checkbox' class='pickVal'></td><td>"+ val.DocNumber +"</td><td>"+ val.TxnDate +"</td><td>"+ val.Balance +"</td><td>"+ val.TotalAmt +"</td><td>"+ val.DueDate +"</td><td>"+ cname.name +"</td></tr>");
-        /*$.each(desc, function(i1,val1){
-
-        			option=val1.Description;
-        		console.log(option);
-        if(option!=undefined)
-        $('#result').append("<tr><td>"+ option +"</td></tr>");
+        		console.log(data);
+        		$('#result').append(data);
+        		popup('popUpDiv');
           	},
     		error: function (xhr, ajaxOptions, thrownError){
         		alert("errorstatus: " + xhr.status + " ajaxoptions: " + ajaxOptions + " throwError: " + thrownError);
@@ -156,10 +143,12 @@ input[type="button"],input[type="submit"] {
 #popUpDiv {
 	position: absolute;
 	background-color: #ff9900;
-	width: 400px;
-	height: 400px;
+	width: 500px;
+	height: 500px;
 	border: 3px solid #ff9900;
 	z-index: 9002;
+	overflow-y:auto;
+	overflow-x:auto;
 	border-radius: 10px;
 	box-shadow: 3px 3px 10px 2px #000;
 }
@@ -187,7 +176,7 @@ input[type="button"],input[type="submit"] {
 			onclick="popup('popUpDiv')">close<img
 			style='height: 20px; width: 20px' alt="close" src="images/close.png"></a><br>
 		<br>
-		<div style="margin-left: 100px; color: #fff;" id="result"></div>
+		<div style=" color: #fff;" id="result"></div>
 	</div>
 </body>
 </html>
