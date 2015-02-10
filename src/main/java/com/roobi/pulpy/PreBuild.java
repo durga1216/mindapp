@@ -40,6 +40,9 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.mindots.util.Utils;
 import com.mysql.jdbc.Connection;
+import com.xmlrpc.XmlRpcClient;
+import com.xmlrpc.XmlRpcException;
+import com.xmlrpc.XmlRpcFault;
 
 public class PreBuild extends HttpServlet {
 	private                                       static  final long serialVersionUID       = 1L;

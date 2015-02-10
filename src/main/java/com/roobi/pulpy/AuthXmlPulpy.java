@@ -51,6 +51,10 @@ import org.xml.sax.InputSource;
 import sun.misc.BASE64Encoder;
 
 import com.mindots.util.Utils;
+import com.xmlrpc.XmlRpcClient;
+import com.xmlrpc.XmlRpcException;
+import com.xmlrpc.XmlRpcFault;
+import com.xmlrpc.XmlRpcSerializer;
 
 import java.security.MessageDigest;
 import java.sql.*;

@@ -146,11 +146,19 @@ public class Oauth1Call extends HttpServlet {
 	         			result.append(line);
 	         		}
 	         		String tok=result.toString(); 
-	         		//out.println(tok);
-	         		String[] acctok=tok.split("&");
-	         		session.setAttribute("access_token1", acctok[1]);
-	         		session.setAttribute("access_secret1", acctok[2]);  
-	         		PreparedStatement st1=con.prepareStatement("insert into oauth1(token,secret) values ('"+acctok[1]+"','"+acctok[2]+"')");				 
+	         		String secrt="";String tokn="";
+	         		 String[] chk1=tok.split("&");
+	         		 for(int i=0;i<chk1.length;i++){
+	         			 String[] stest=chk1[i].split("=");
+	         			 if(stest[0].equals("oauth_token")){
+	         				tokn=chk1[i];
+	         			 }else if(stest[0].equals("oauth_token_secret")){
+	         				 secrt=chk1[i];
+	         			 }
+	         		 }
+	         		session.setAttribute("access_token1", tokn);
+	         		session.setAttribute("access_secret1", secrt);  
+	         		PreparedStatement st1=con.prepareStatement("insert into oauth1(token,secret) values ('"+tokn+"','"+secrt+"')");				 
 	    			st1.executeUpdate();
 	    			st1.close();
 	         		out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
@@ -193,11 +201,19 @@ public class Oauth1Call extends HttpServlet {
 	    				result.append(line);
 	    			}
 	    			String tok=result.toString();
-	    			//out.println(tok);
-	    			String[] acctok=tok.split("&");
-	    			session.setAttribute("access_token1", acctok[1]);
-	    			session.setAttribute("access_secret1", acctok[2]);
-	    			PreparedStatement st1=con.prepareStatement("insert into oauth1(token,secret) values ('"+acctok[1]+"','"+acctok[2]+"')");				 
+	    			String secrt="";String tokn="";
+	         		 String[] chk1=tok.split("&");
+	         		 for(int i=0;i<chk1.length;i++){
+	         			 String[] stest=chk1[i].split("=");
+	         			 if(stest[0].equals("oauth_token")){
+	         				tokn=chk1[i];
+	         			 }else if(stest[0].equals("oauth_token_secret")){
+	         				 secrt=chk1[i];
+	         			 }
+	         		 }
+	         		session.setAttribute("access_token1", tokn);
+	         		session.setAttribute("access_secret1", secrt);  
+	         		PreparedStatement st1=con.prepareStatement("insert into oauth1(token,secret) values ('"+tokn+"','"+secrt+"')");					 
 	    			st1.executeUpdate();
 	    			st1.close();
 					out.println("<h2><center><font color='green'>Processing...</font></center></h3>");

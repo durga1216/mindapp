@@ -1,7 +1,7 @@
 
 package com.roobi.pulpy;
 
-import com.roobi.pulpy.XmlRpcMessages;
+import com.xmlrpc.XmlRpcMessages;
 
 /**
  *  Provides encoding of raw bytes to base64-encoded characters, and
