@@ -93,9 +93,6 @@ public class Oauth1Call extends HttpServlet {
 	    //out.println(secret11);
 	    String[] tok1=secret11.split("=");
 	    String sec1=tok1[1];
-	    //System.out.println(sec1);
-	    //String oauth_signature1=(String) session.getAttribute("oauth_signature1");
-	    //String parameter_string=(String) session.getAttribute("parameter_string");
 	    try{
 	    	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    	con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
@@ -153,6 +150,9 @@ public class Oauth1Call extends HttpServlet {
 	         		String[] acctok=tok.split("&");
 	         		session.setAttribute("access_token1", acctok[1]);
 	         		session.setAttribute("access_secret1", acctok[2]);  
+	         		PreparedStatement st1=con.prepareStatement("insert into oauth1(token,secret) values ('"+acctok[1]+"','"+acctok[2]+"')");				 
+	    			st1.executeUpdate();
+	    			st1.close();
 	         		out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 	         		response.setHeader("Refresh", "1; URL=auth.jsp");   //*/
 	    		}         
@@ -165,7 +165,6 @@ public class Oauth1Call extends HttpServlet {
 	    			String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
 	    			String parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_token="+oauth_token+"&oauth_verifier="+oauth_verifier+"&oauth_version=1.0";        
 	    			String signature_base_string = oreq1+"&"+eurl+"&" + URLEncoder.encode(parameter_string, "UTF-8");
-	    			System.out.println("signature_base_string=" + signature_base_string);
 	    			String oauth_signature = "";String oauth_signature1 = "";
 	    			//=========signature===========
 	    			try {
@@ -198,6 +197,9 @@ public class Oauth1Call extends HttpServlet {
 	    			String[] acctok=tok.split("&");
 	    			session.setAttribute("access_token1", acctok[1]);
 	    			session.setAttribute("access_secret1", acctok[2]);
+	    			PreparedStatement st1=con.prepareStatement("insert into oauth1(token,secret) values ('"+acctok[1]+"','"+acctok[2]+"')");				 
+	    			st1.executeUpdate();
+	    			st1.close();
 					out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
 					response.setHeader("Refresh", "1; URL=auth.jsp");   //*/
 	    		}
