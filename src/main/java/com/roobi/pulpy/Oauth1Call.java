@@ -90,13 +90,10 @@ public class Oauth1Call extends HttpServlet {
 		String oauth_verifier = request.getParameter("oauth_verifier");
 		String oauth_token = request.getParameter("oauth_token");
 		HttpSession session = request.getSession(true);
-		String id = (String) session.getAttribute("id");
 		String appid = (String) session.getAttribute("appid");
 		String secret11 = (String) session.getAttribute("secret1");
 		String isapp = "ss" + (String) session.getAttribute("secret1");
 		String url = "null";
-		String[] tok1 = secret11.split("=");
-		String sec1 = tok1[1];
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			con = (Connection) DriverManager.getConnection(config.get("URL"),
@@ -111,6 +108,8 @@ public class Oauth1Call extends HttpServlet {
 					secret11 = rs2.getString("secret");
 				}
 			}
+			String[] tok1 = secret11.split("=");
+			String sec1 = tok1[1];
 			PreparedStatement st = null;
 			st = con.prepareStatement("SELECT * From authen1 where appid=?");
 			st.setString(1, appid);
