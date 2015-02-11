@@ -33,9 +33,7 @@ $(document).ready(function() {
         	},
         	success: function result(data) {
             	var xx="<table><tr><th>favourites_count</th><th>followers_count</th><th>friends_count</th></tr>";
-				var xmlDoc = new window.DOMParser().parseFromString(data,"text/xml");
-				console.log(xmlDoc);
-            	$(xmlDoc).find("root").each(function(){
+            	$(data).find("root").each(function(){
                 	var a=$(this).find("favourites_count").text();
                 	var b=$(this).find("followers_count").text();
                 	var c=$(this).find("friends_count").text();
