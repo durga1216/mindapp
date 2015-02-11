@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Mailchimp</title>
+<title>Twitter</title>
 <script src="js/jquery-latest.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {  
@@ -28,15 +28,20 @@ $(document).ready(function() {
     	$.ajax({
     		type: "POST",
         	url: "https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy",
+        	data: { 
+        		appid:appid,
+        	},
         	success: function result(data) {
-            	/* var xx="<table><tr><th>EMAIL IDS</th</tr>";
+            	var xx="<table><tr><th>favourites_count</th><th>followers_count</th><th>friends_count</th></tr>";
 				var xmlDoc = new window.DOMParser().parseFromString(data,"text/xml");
 				console.log(xmlDoc);
             	$(xmlDoc).find("root").each(function(){
-                	var a=$(this).find("email").text();
-                	xx+="<tr><td>"+a+"</td></tr>";
+                	var a=$(this).find("favourites_count").text();
+                	var b=$(this).find("followers_count").text();
+                	var c=$(this).find("friends_count").text();
+                	xx+="<tr><td>"+a+"</td><td>"+b+"</td><td>"+c+"</td></tr>";
            		});
-				xx+="</table>"; */
+				xx+="</table>";
             	$('#result').append(data);
           	},
     		error: function (xhr, ajaxOptions, thrownError){
@@ -48,7 +53,7 @@ $(document).ready(function() {
 </script>
 <style>
 body{
-background-color:#FF9900;
+background-color:#0099cc;
 }
 #head{
 font-family:verdana;
@@ -65,7 +70,7 @@ color:#FFFFFF;
 font-weight:bold;
 }
 input[type="button"],input[type="submit"]{
-color:#ff9900;
+color:#0099cc;
 font-size:20px;
 background-color:#fff;
 font-family:verdana;
