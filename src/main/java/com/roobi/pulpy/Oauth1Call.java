@@ -100,7 +100,7 @@ public class Oauth1Call extends HttpServlet {
 					config.get("USER"), config.get("PASS"));
 			if (isapp.equals("ssnull")) {
 				PreparedStatement st2 = con
-						.prepareStatement("SELECT * From oauth1app ORDER BY count DESC LIMIT 1");
+						.prepareStatement("SELECT * From oauth1app ORDER BY num DESC LIMIT 1");
 				ResultSet rs2 = st2.executeQuery();
 				while (rs2.next()) {
 					url = rs2.getString("url");

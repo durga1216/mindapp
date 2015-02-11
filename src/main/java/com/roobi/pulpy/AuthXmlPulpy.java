@@ -833,7 +833,7 @@ public class AuthXmlPulpy extends HttpServlet {
 	         		String oauth_token="";
 	         		String access_secret1="";
 	         		PreparedStatement st5 = con
-							.prepareStatement("SELECT * From oauth1app ORDER BY count DESC LIMIT 1");
+							.prepareStatement("SELECT * From oauth1 ORDER BY no DESC LIMIT 1");
 					ResultSet rs5 = st5.executeQuery();
 					while (rs5.next()) {
 						oauth_token = rs5.getString("token");
