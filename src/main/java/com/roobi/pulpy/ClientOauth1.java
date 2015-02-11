@@ -65,9 +65,9 @@ public class ClientOauth1 extends HttpServlet {
 		// TODO Auto-generated method stub
 		Map<String, String> config = Utils.getConfigFromFile(
 				getServletContext(), "config.properties");
-		response.addHeader("Access-Control-Allow-Origin", "*");  
 		String url=request.getParameter("url");
 		String appid=request.getParameter("appid");
+		response.addHeader("Access-Control-Allow-Origin", "*");  
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con = (Connection) DriverManager.getConnection(
@@ -235,7 +235,9 @@ public class ClientOauth1 extends HttpServlet {
 					// =======Authorization=======
 
 					String author = ourl21 + "?" + oauth_token + "&perms=write";
-					response.sendRedirect(author);
+					response.setContentType("text/plain");
+	           	 	response.setCharacterEncoding("UTF-8");
+	           	 	response.getWriter().print(author);
 				}
 			}
 			con.close();
