@@ -929,7 +929,6 @@ public class AuthPulpy extends HttpServlet {
              	//---------------------oauth1-----------------------
 	         	else if(authen1.equals("Oauth1")){
 	         		String res="";
-	         		out.println("in Oauth");
 	         		String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
 	         		String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
 	         		String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
