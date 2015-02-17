@@ -264,7 +264,7 @@ public class FirstAuthPulpy extends HttpServlet {
 		                   }
 		                 session.setAttribute("oauth_signature1", oauth_signature1);
 		                    session.setAttribute("parameter_string", parameter_string);
-		                    String authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
+		                    String authorization_header_string = "OAuth oauth_callback="+URLEncoder.encode(callback, "UTF-8")+",oauth_consumer_key=\"" + oauth_consumer_key + "\","
 		                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 		                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 		                   String uurl=url1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
