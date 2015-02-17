@@ -191,7 +191,7 @@ public class FirstAuthPulpy extends HttpServlet {
 	                 String eurl = URLEncoder.encode(url1, "UTF-8");
 	                 int millis = (int) System.currentTimeMillis() * -1;// any relatively random alphanumeric string will work here. I used UUID minus "-" signs
 	                   String oauth_timestamp = (new Long(millis/1000)).toString(); // get current time in milliseconds, then divide by 1000 to get seconds
-	                  String parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
+	                  String parameter_string = "oauth_callback="+URLEncoder.encode(callback, "UTF-8")+"oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&oauth_version=1.0";        
 	                  // System.out.println("parameter_string=" + parameter_string);
 	                  String signature_base_string = oreq1+"&"+eurl+"&" + URLEncoder.encode(parameter_string, "UTF-8");
 	                   //System.out.println("signature_base_string=" + signature_base_string);
@@ -264,7 +264,7 @@ public class FirstAuthPulpy extends HttpServlet {
 		                   }
 		                 session.setAttribute("oauth_signature1", oauth_signature1);
 		                    session.setAttribute("parameter_string", parameter_string);
-		                    String authorization_header_string = "OAuth oauth_callback="+URLEncoder.encode(callback, "UTF-8")+"oauth_consumer_key=\"" + oauth_consumer_key + "\","
+		                    String authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
 		                     		+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 		                            oauth_timestamp + "\",oauth_version=\"1.0\"";
 		                   String uurl=url1+"?"+parameter_string+"&oauth_signature="+URLEncoder.encode(oauth_signature, "UTF-8");
