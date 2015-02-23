@@ -228,18 +228,22 @@ public class FirstAuthPulpy extends HttpServlet {
 	         			result.append(line);
 	         		}
 	         		String tok=result.toString();
-	         		//out.println("dsdsdsdsssssdf"+tok);
-	         		 String[] tok1=tok.split("&");
-	         		oauth_token=tok1[1];
-	         		String sec1=tok1[2];
+	         		String sec1="";
+	         		String[] chk1=tok.split("&");
+	        		for(int i=0;i<chk1.length;i++){
+	        			String[] stest=chk1[i].split("=");
+	        			if(stest[0].equals("oauth_token")){
+	        				oauth_token=chk1[i];
+	        			}else if(stest[0].equals("oauth_token_secret")){
+	        				sec1=chk1[i];
+	        			}
+	        		}
 	         		session.setAttribute("secret1", sec1);
 	                        
 	                  } 
 	                     catch(ClientProtocolException cpe)  {  System.out.println(cpe.getMessage());  }
 	                    catch(IOException ioe) {   System.out.println(ioe.getMessage());  }
-	                    finally { httpclient.getConnectionManager().shutdown();  } 
- //=======Authorization=======
-	                    
+	                    finally { httpclient.getConnectionManager().shutdown();  } 	                    
 	                    String author=ourl21+"?"+oauth_token+"&perms=write";
 	                    response.sendRedirect(author);
 	            	 }
@@ -286,10 +290,16 @@ public class FirstAuthPulpy extends HttpServlet {
         			result.append(line);
         		}
         		String tok=result.toString();
-        		out.println("dsdsdsdsssssdf"+tok);
-        		 String[] tok1=tok.split("&");
-        		oauth_token=tok1[0];
-        		String sec1=tok1[1];
+        		 String sec1="";
+	         		String[] chk1=tok.split("&");
+	        		for(int i=0;i<chk1.length;i++){
+	        			String[] stest=chk1[i].split("=");
+	        			if(stest[0].equals("oauth_token")){
+	        				oauth_token=chk1[i];
+	        			}else if(stest[0].equals("oauth_token_secret")){
+	        				sec1=chk1[i];
+	        			}
+	        		}
         		session.setAttribute("secret1", sec1);
                        
                  } 
