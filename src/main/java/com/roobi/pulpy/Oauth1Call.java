@@ -198,7 +198,7 @@ public class Oauth1Call extends HttpServlet {
 					st1.executeUpdate();
 					st1.close();
 					out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-					if (url.equals(null))
+					if (url.equals("null"))
 						response.setHeader("Refresh", "1; URL=auth.jsp");
 					else
 						response.setHeader("Refresh", "1; URL=" + url);
@@ -281,7 +281,7 @@ public class Oauth1Call extends HttpServlet {
 					st1.executeUpdate();
 					st1.close();
 					out.println("<h2><center><font color='green'>Processing...</font></center></h3>");
-					if (url.equals(null))
+					if (url.equals("null"))
 						response.setHeader("Refresh", "1; URL=auth.jsp");
 					else
 						response.setHeader("Refresh", "1; URL=" + url);
