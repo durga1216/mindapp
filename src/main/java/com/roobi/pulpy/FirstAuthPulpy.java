@@ -298,7 +298,7 @@ public class FirstAuthPulpy extends HttpServlet {
 						String uuid_string = UUID.randomUUID().toString();
 						uuid_string = uuid_string.replaceAll("-", "");
 						String oauth_nonce = uuid_string;
-						String eurl1 = URLEncoder.encode(ourl1, "UTF-8");
+						String eurl1 = URLEncoder.encode(url1, "UTF-8");
 						long oauth_timestamp = System.currentTimeMillis() / 1000;
 						System.out.println(oauth_timestamp);
 						String parameter_string = "oauth_callback="
@@ -329,14 +329,12 @@ public class FirstAuthPulpy extends HttpServlet {
 						String uurl = url1 + "?" + parameter_string
 								+ "&oauth_signature="
 								+ URLEncoder.encode(oauth_signature, "UTF-8");
-						System.out.println(uurl);
 						String oauth_token = "";
 						HttpClient httpclient = new DefaultHttpClient();
 						HttpResponse response1 = null;
 						try {
 							HttpGet get1 = new HttpGet(uurl);
 							response1 = httpclient.execute(get1);
-
 							BufferedReader rd = new BufferedReader(
 									new InputStreamReader(response1.getEntity()
 											.getContent()));
@@ -357,6 +355,7 @@ public class FirstAuthPulpy extends HttpServlet {
 									sec1 = chk1[i];
 								}
 							}
+							session.setAttribute("samp", tok+"\n\n"+uurl+"\n\n");
 							session.setAttribute("secret1", sec1);
 						} catch (ClientProtocolException cpe) {
 							System.out.println(cpe.getMessage());
