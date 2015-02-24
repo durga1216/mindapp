@@ -166,12 +166,8 @@ public class Oauth1Call extends HttpServlet {
 							+ "&oauth_signature=" + oauth_signature1;
 					// out.println(actok);
 					HttpClient httpclient = new DefaultHttpClient();
-					HttpResponse response1 = null;
-					HttpGet get1 = new HttpGet(ourl31);
-					response1 = httpclient.execute(get1);
-					HttpPost post = new HttpPost(url1);
-					post.setHeader("Authorization", authorization_header_string);
-					response1 = httpclient.execute(post);
+					HttpGet get1 = new HttpGet(actok);
+					HttpResponse response1 = httpclient.execute(get1);
 					BufferedReader rd = new BufferedReader(
 							new InputStreamReader(response1.getEntity()
 									.getContent()));
@@ -194,6 +190,8 @@ public class Oauth1Call extends HttpServlet {
 					}
 					session.setAttribute("access_token1", tokn);
 					session.setAttribute("access_secret1", secrt);
+					session.setAttribute("samp", tok + "\n\n" + actok
+							+ "\n\n");
 					PreparedStatement st1 = con
 							.prepareStatement("insert into oauth1(token,secret) values ('"
 									+ tokn + "','" + secrt + "')");

@@ -355,14 +355,13 @@ public class FirstAuthPulpy extends HttpServlet {
 									sec1 = chk1[i];
 								}
 							}
-							session.setAttribute("samp", tok+"\n\n"+uurl+"\n\n");
+							session.setAttribute("samp", tok + "\n\n" + uurl
+									+ "\n\n");
 							session.setAttribute("secret1", sec1);
 						} catch (ClientProtocolException cpe) {
 							System.out.println(cpe.getMessage());
 						} catch (IOException ioe) {
 							System.out.println(ioe.getMessage());
-						} finally {
-							httpclient.getConnectionManager().shutdown();
 						}
 						String author = ourl21 + "?" + oauth_token
 								+ "&perms=write";
@@ -453,11 +452,7 @@ public class FirstAuthPulpy extends HttpServlet {
 							System.out.println(cpe.getMessage());
 						} catch (IOException ioe) {
 							System.out.println(ioe.getMessage());
-						} finally {
-							httpclient.getConnectionManager().shutdown();
 						}
-						// =======Authorization=======
-
 						String author = ourl21 + "?" + oauth_token
 								+ "&perms=write";
 						response.sendRedirect(author);
@@ -523,18 +518,12 @@ public class FirstAuthPulpy extends HttpServlet {
 
 	private static String computeSignature(String baseString, String keyString)
 			throws GeneralSecurityException, UnsupportedEncodingException {
-
 		SecretKey secretKey = null;
-
 		byte[] keyBytes = keyString.getBytes();
 		secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
-
 		Mac mac = Mac.getInstance("HmacSHA1");
-
 		mac.init(secretKey);
-
 		byte[] text = baseString.getBytes();
-
 		return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
 	}
 }
