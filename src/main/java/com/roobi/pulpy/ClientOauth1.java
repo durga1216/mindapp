@@ -145,7 +145,7 @@ public class ClientOauth1 extends HttpServlet {
 						PreparedStatement st2 = null;
 						st2 = con
 								.prepareStatement("insert into oauth1app(appid,url,secret) values ('"
-										+ tok
+										+ appid
 										+ "','"
 										+ url
 										+ "','"
@@ -163,7 +163,9 @@ public class ClientOauth1 extends HttpServlet {
 					}
 
 					String author = ourl21 + "?" + oauth_token + "&perms=write";
-					response.sendRedirect(author);
+					response.setContentType("text/plain");
+					response.setCharacterEncoding("UTF-8");
+					response.getWriter().print(author);
 				} else {
 					String uuid_string = UUID.randomUUID().toString();
 					uuid_string = uuid_string.replaceAll("-", "");
