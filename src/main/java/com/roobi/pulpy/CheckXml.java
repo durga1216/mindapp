@@ -829,7 +829,7 @@ Connection con=null;
 	         		String oauthtk=tok11[1];
 	         		String[] tok1=access_secret1.split("=");
 	         		String sec1=tok1[1];
-			        	 
+	         		out.println(oauth_token+"---"+access_secret1);
 	         		if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	         			eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
 	         		
@@ -905,6 +905,7 @@ Connection con=null;
 			       			result1.append(line);
 			       		}
 			       		String strcon=result1.toString();
+			       		out.println(strcon);
 			       		if( resf1.equals("XML")){
 			       			doc=builder.parse(new InputSource(new ByteArrayInputStream(strcon.getBytes("UTF-8"))));
 		        		}
@@ -1001,6 +1002,7 @@ Connection con=null;
 			       			result1.append(line);
 			       		}
 			       		String strcon=result1.toString();
+			       		out.println(strcon);
 	 	        		if( resf1.equals("XML")){
 	 	        			doc=builder.parse(new InputSource(new ByteArrayInputStream(strcon.getBytes("UTF-8"))));
 	 	        		}

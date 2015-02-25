@@ -827,7 +827,6 @@ public class AuthXmlPulpy extends HttpServlet {
 			    else if(authen1.equals("Oauth1")){
 			    	String res="";
 	         		String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
-	         		String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
 	         		String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
 	         		String oreq1=rs.getString("oreq");
 	         		String oauth_token="";
