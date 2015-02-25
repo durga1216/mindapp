@@ -65,17 +65,19 @@ public class ClientOauth1 extends HttpServlet {
 		// TODO Auto-generated method stub
 		Map<String, String> config = Utils.getConfigFromFile(
 				getServletContext(), "config.properties");
-		String url=request.getParameter("url");
-		String appid=request.getParameter("appid");
-		response.addHeader("Access-Control-Allow-Origin", "*");  
+		String url = request.getParameter("url");
+		String appid = request.getParameter("appid");
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con = (Connection) DriverManager.getConnection(
 					config.get("URL"), config.get("USER"), config.get("PASS"));
 			PreparedStatement st = con
-					.prepareStatement("SELECT * From authen1 where appid='"+appid+"'");
+					.prepareStatement("SELECT * From authen1 where appid='"
+							+ appid + "'");
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
+				String callback = "https://mindapp-pulpy.rhcloud.com/Oauth1Call";
 				String oauth_signature_method = rs.getString("osmeth");
 				String url1 = rs.getString("ourl1");
 				String ourl21 = rs.getString("ourl2");
@@ -91,9 +93,11 @@ public class ClientOauth1 extends HttpServlet {
 					int millis = (int) System.currentTimeMillis() * -1;
 					String oauth_timestamp = (new Long(millis / 1000))
 							.toString();
-					String parameter_string = "oauth_consumer_key="
-							+ oauth_consumer_key + "&oauth_nonce="
-							+ oauth_nonce + "&oauth_signature_method="
+					String parameter_string = "oauth_callback="
+							+ URLEncoder.encode(callback, "UTF-8")
+							+ "oauth_consumer_key=" + oauth_consumer_key
+							+ "&oauth_nonce=" + oauth_nonce
+							+ "&oauth_signature_method="
 							+ oauth_signature_method + "&oauth_timestamp="
 							+ oauth_timestamp + "&oauth_version=1.0";
 					String signature_base_string = oreq1 + "&" + eurl + "&"
@@ -109,16 +113,6 @@ public class ClientOauth1 extends HttpServlet {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					String authorization_header_string = "OAuth oauth_consumer_key=\""
-							+ oauth_consumer_key
-							+ "\","
-							+ "oauth_nonce=\""
-							+ oauth_nonce
-							+ "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\""
-							+ URLEncoder.encode(oauth_signature, "UTF-8")
-							+ "\",oauth_timestamp=\""
-							+ oauth_timestamp
-							+ "\",oauth_version=\"1.0\"";
 					String uurl = url1 + "?" + parameter_string
 							+ "&oauth_signature="
 							+ URLEncoder.encode(oauth_signature, "UTF-8");
@@ -140,13 +134,28 @@ public class ClientOauth1 extends HttpServlet {
 							result.append(line);
 						}
 						String tok = result.toString();
-						String[] tok1 = tok.split("&");
-						oauth_token = tok1[1];
-						String sec1 = tok1[2];
-						PreparedStatement st2=null;
-			            st2=con.prepareStatement("insert into oauth1app(appid,url,secret) values ('"+appid+"','"+url+"','"+sec1+"')");				 
-			            st2.executeUpdate();
-			            st2.close();
+						String sec1 = "";
+						String[] chk1 = tok.split("&");
+						for (int i = 0; i < chk1.length; i++) {
+							String[] stest = chk1[i].split("=");
+							if (stest[0].equals("oauth_token")) {
+								oauth_token = chk1[i];
+							} else if (stest[0]
+									.equals("oauth_token_secret")) {
+								sec1 = chk1[i];
+							}
+						}
+						PreparedStatement st2 = null;
+						st2 = con
+								.prepareStatement("insert into oauth1app(appid,url,secret) values ('"
+										+ appid
+										+ "','"
+										+ url
+										+ "','"
+										+ sec1
+										+ "')");
+						st2.executeUpdate();
+						st2.close();
 
 					} catch (ClientProtocolException cpe) {
 						System.out.println(cpe.getMessage());
@@ -217,13 +226,28 @@ public class ClientOauth1 extends HttpServlet {
 							result.append(line);
 						}
 						String tok = result.toString();
-						String[] tok1 = tok.split("&");
-						oauth_token = tok1[0];
-						String sec1 = tok1[1];
-						PreparedStatement st2=null;
-			            st2=con.prepareStatement("insert into oauth1app(appid,url,secret) values ('"+appid+"','"+url+"','"+sec1+"')");				 
-			            st2.executeUpdate();
-			            st2.close();
+						String sec1 = "";
+						String[] chk1 = tok.split("&");
+						for (int i = 0; i < chk1.length; i++) {
+							String[] stest = chk1[i].split("=");
+							if (stest[0].equals("oauth_token")) {
+								oauth_token = chk1[i];
+							} else if (stest[0]
+									.equals("oauth_token_secret")) {
+								sec1 = chk1[i];
+							}
+						}
+						PreparedStatement st2 = null;
+						st2 = con
+								.prepareStatement("insert into oauth1app(appid,url,secret) values ('"
+										+ appid
+										+ "','"
+										+ url
+										+ "','"
+										+ sec1
+										+ "')");
+						st2.executeUpdate();
+						st2.close();
 
 					} catch (ClientProtocolException cpe) {
 						System.out.println(cpe.getMessage());
@@ -236,8 +260,8 @@ public class ClientOauth1 extends HttpServlet {
 
 					String author = ourl21 + "?" + oauth_token + "&perms=write";
 					response.setContentType("text/plain");
-	           	 	response.setCharacterEncoding("UTF-8");
-	           	 	response.getWriter().print(author);
+					response.setCharacterEncoding("UTF-8");
+					response.getWriter().print(author);
 				}
 			}
 			con.close();
