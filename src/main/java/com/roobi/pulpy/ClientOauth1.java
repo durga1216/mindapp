@@ -82,7 +82,6 @@ public class ClientOauth1 extends HttpServlet {
 				String osmeth = rs.getString("osmeth");
 				String url1 = rs.getString("ourl1");
 				String ourl21 = rs.getString("ourl2");
-				String ourl31 = rs.getString("ourl3");
 				String oauth_consumer_key = rs.getString("ockey");
 				String secret = rs.getString("oskey");
 				String oreq1 = rs.getString("oreq");
@@ -91,9 +90,7 @@ public class ClientOauth1 extends HttpServlet {
 					uuid_string = uuid_string.replaceAll("-", "");
 					String oauth_nonce = uuid_string;
 					String eurl = URLEncoder.encode(url1, "UTF-8");
-					int millis = (int) System.currentTimeMillis() * -1;
-					String oauth_timestamp = (new Long(millis / 1000))
-							.toString();
+					long oauth_timestamp = System.currentTimeMillis() / 1000;
 					String parameter_string = "oauth_callback="
 							+ URLEncoder.encode(callback, "UTF-8")
 							+ "&oauth_consumer_key=" + oauth_consumer_key
@@ -104,12 +101,9 @@ public class ClientOauth1 extends HttpServlet {
 					String signature_base_string = oreq1 + "&" + eurl + "&"
 							+ URLEncoder.encode(parameter_string, "UTF-8");
 					String oauth_signature = "";
-					String oauth_signature1 = "";
 					try {
 						oauth_signature = computeSignature(
 								signature_base_string, secret + "&");
-						oauth_signature1 = URLEncoder.encode(oauth_signature,
-								"UTF-8");
 					} catch (GeneralSecurityException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -151,7 +145,7 @@ public class ClientOauth1 extends HttpServlet {
 						PreparedStatement st2 = null;
 						st2 = con
 								.prepareStatement("insert into oauth1app(appid,url,secret) values ('"
-										+ appid
+										+ tok
 										+ "','"
 										+ url
 										+ "','"
