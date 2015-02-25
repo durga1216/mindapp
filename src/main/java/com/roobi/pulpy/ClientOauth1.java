@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpResponse;
@@ -78,7 +79,7 @@ public class ClientOauth1 extends HttpServlet {
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				String callback = "https://mindapp-pulpy.rhcloud.com/Oauth1Call";
-				String oauth_signature_method = rs.getString("osmeth");
+				String osmeth = rs.getString("osmeth");
 				String url1 = rs.getString("ourl1");
 				String ourl21 = rs.getString("ourl2");
 				String ourl31 = rs.getString("ourl3");
@@ -95,11 +96,11 @@ public class ClientOauth1 extends HttpServlet {
 							.toString();
 					String parameter_string = "oauth_callback="
 							+ URLEncoder.encode(callback, "UTF-8")
-							+ "oauth_consumer_key=" + oauth_consumer_key
+							+ "&oauth_consumer_key=" + oauth_consumer_key
 							+ "&oauth_nonce=" + oauth_nonce
-							+ "&oauth_signature_method="
-							+ oauth_signature_method + "&oauth_timestamp="
-							+ oauth_timestamp + "&oauth_version=1.0";
+							+ "&oauth_signature_method=" + osmeth
+							+ "&oauth_timestamp=" + oauth_timestamp
+							+ "&oauth_version=1.0";
 					String signature_base_string = oreq1 + "&" + eurl + "&"
 							+ URLEncoder.encode(parameter_string, "UTF-8");
 					String oauth_signature = "";
@@ -140,11 +141,13 @@ public class ClientOauth1 extends HttpServlet {
 							String[] stest = chk1[i].split("=");
 							if (stest[0].equals("oauth_token")) {
 								oauth_token = chk1[i];
-							} else if (stest[0]
-									.equals("oauth_token_secret")) {
+							} else if (stest[0].equals("oauth_token_secret")) {
 								sec1 = chk1[i];
 							}
 						}
+						HttpSession session = request.getSession(true);
+						session.setAttribute("samp", tok + "\n\n" + uurl
+								+ "\n\n");
 						PreparedStatement st2 = null;
 						st2 = con
 								.prepareStatement("insert into oauth1app(appid,url,secret) values ('"
@@ -177,9 +180,9 @@ public class ClientOauth1 extends HttpServlet {
 							System.currentTimeMillis() / 1000)).toString();
 					String parameter_string = "oauth_consumer_key="
 							+ oauth_consumer_key + "&oauth_nonce="
-							+ oauth_nonce + "&oauth_signature_method="
-							+ oauth_signature_method + "&oauth_timestamp="
-							+ oauth_timestamp + "&oauth_version=1.0";
+							+ oauth_nonce + "&oauth_signature_method=" + osmeth
+							+ "&oauth_timestamp=" + oauth_timestamp
+							+ "&oauth_version=1.0";
 					String signature_base_string = oreq1 + "&" + eurl + "&"
 							+ URLEncoder.encode(parameter_string, "UTF-8");
 					String oauth_signature = "";
@@ -232,8 +235,7 @@ public class ClientOauth1 extends HttpServlet {
 							String[] stest = chk1[i].split("=");
 							if (stest[0].equals("oauth_token")) {
 								oauth_token = chk1[i];
-							} else if (stest[0]
-									.equals("oauth_token_secret")) {
+							} else if (stest[0].equals("oauth_token_secret")) {
 								sec1 = chk1[i];
 							}
 						}
