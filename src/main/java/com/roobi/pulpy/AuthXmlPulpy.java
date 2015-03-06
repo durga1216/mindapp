@@ -1026,6 +1026,9 @@ public class AuthXmlPulpy extends HttpServlet {
 	 	        			doc=builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 	 	        		}
 	         		}      	 
+	         		PreparedStatement trun = con
+							.prepareStatement("TRUNCATE TABLE oauth1");
+	         		trun.executeUpdate();
 			    }
 			    else if(authen1.equals("Oauth2")){  //OAUTH authentication
 			    	if(rm1.equals("GET")){ 
