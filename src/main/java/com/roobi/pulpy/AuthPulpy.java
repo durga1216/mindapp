@@ -1079,6 +1079,9 @@ public class AuthPulpy extends HttpServlet {
 	         			String enurl = URLEncoder.encode(endurl1, "UTF-8");
 	         			String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
 	         			String authorization_header_string="";
+	         			HttpClient httpclient = new DefaultHttpClient();
+	         			HttpResponse response1=null;
+	         			HttpPost post = new HttpPost(endurl1);
 						if (oauth_signature_method.equals("PLAINTEXT")) {
 							authorization_header_string = "OAuth oauth_version=\"1.0\",oauth_consumer_key=\""
 									+ oauth_consumer_key
@@ -1093,6 +1096,8 @@ public class AuthPulpy extends HttpServlet {
 									+ secret
 									+ "%2526"+sec1+"\",oauth_timestamp=\""
 									+ oauth_timestamp + "\"";
+							StringEntity stt = new StringEntity(jsontxt1);
+							post.setEntity(stt);
 						} else {
 	         			String parameter_string ="";
 	         			if(eurl.equals("null")){
@@ -1129,9 +1134,7 @@ public class AuthPulpy extends HttpServlet {
 	                    }
 						}
 	         			out.println(authorization_header_string);
-	         			HttpClient httpclient = new DefaultHttpClient();
-	         			HttpResponse response1=null;
-	         			HttpPost post = new HttpPost(endurl1);
+	         			
 	         			post.setHeader("Authorization", authorization_header_string);
 	         			response1 = httpclient.execute(post);
 	         			BufferedReader rd = new BufferedReader(
