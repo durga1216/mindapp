@@ -374,48 +374,73 @@ public class FirstAuthPulpy extends HttpServlet {
 						int millis = (int) System.currentTimeMillis() * -1;
 						String oauth_timestamp = (new Long(
 								System.currentTimeMillis() / 1000)).toString();
-						String parameter_string = "oauth_consumer_key="
-								+ oauth_consumer_key + "&oauth_nonce="
-								+ oauth_nonce + "&oauth_signature_method="
-								+ oauth_signature_method + "&oauth_timestamp="
-								+ oauth_timestamp + "&oauth_version=1.0";
-						// System.out.println("parameter_string=" +
-						// parameter_string);
-						String signature_base_string = oreq1 + "&" + eurl + "&"
-								+ URLEncoder.encode(parameter_string, "UTF-8");
-						System.out.println("signature_base_string="
-								+ signature_base_string);
-						String oauth_signature = "";
-						String oauth_signature1 = "";
-						try {
-							oauth_signature = computeSignature(
-									signature_base_string, secret + "&");
-							oauth_signature1 = URLEncoder.encode(
-									oauth_signature, "UTF-8");
-						} catch (GeneralSecurityException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						String authorization_header_string = "";
+						if (oauth_signature_method.equals("PLAINTEXT")) {
+							authorization_header_string = "OAuth oauth_version=\"1.0\",oauth_consumer_key=\""
+									+ ockey
+									+ "\","
+									+ "oauth_nonce=\""
+									+ oauth_nonce
+									+ "\",oauth_callback=\""
+									+ URLEncoder.encode(callback, "UTF-8")
+									+ "\",oauth_signature_method=\""
+									+ oauth_signature_method
+									+ "\",oauth_signature=\""
+									+ secret
+									+ "%2526\",oauth_timestamp=\""
+									+ oauth_timestamp + "\"";
+						} else {
+							String parameter_string = "oauth_consumer_key="
+									+ oauth_consumer_key + "&oauth_nonce="
+									+ oauth_nonce + "&oauth_signature_method="
+									+ oauth_signature_method
+									+ "&oauth_timestamp=" + oauth_timestamp
+									+ "&oauth_version=1.0";
+							// System.out.println("parameter_string=" +
+							// parameter_string);
+							String signature_base_string = oreq1
+									+ "&"
+									+ eurl
+									+ "&"
+									+ URLEncoder.encode(parameter_string,
+											"UTF-8");
+							System.out.println("signature_base_string="
+									+ signature_base_string);
+							String oauth_signature = "";
+							String oauth_signature1 = "";
+							try {
+								oauth_signature = computeSignature(
+										signature_base_string, secret + "&");
+								oauth_signature1 = URLEncoder.encode(
+										oauth_signature, "UTF-8");
+							} catch (GeneralSecurityException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							session.setAttribute("oauth_signature1",
+									oauth_signature1);
+							session.setAttribute("parameter_string",
+									parameter_string);
+							authorization_header_string = "OAuth oauth_callback="
+									+ URLEncoder.encode(callback, "UTF-8")
+									+ ",oauth_consumer_key=\""
+									+ oauth_consumer_key
+									+ "\","
+									+ "oauth_nonce=\""
+									+ oauth_nonce
+									+ "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\""
+									+ URLEncoder.encode(oauth_signature,
+											"UTF-8")
+									+ "\",oauth_timestamp=\""
+									+ oauth_timestamp
+									+ "\",oauth_version=\"1.0\"";
+							String uurl = url1
+									+ "?"
+									+ parameter_string
+									+ "&oauth_signature="
+									+ URLEncoder.encode(oauth_signature,
+											"UTF-8");
 						}
-						session.setAttribute("oauth_signature1",
-								oauth_signature1);
-						session.setAttribute("parameter_string",
-								parameter_string);
-						String authorization_header_string = "OAuth oauth_callback="
-								+ URLEncoder.encode(callback, "UTF-8")
-								+ ",oauth_consumer_key=\""
-								+ oauth_consumer_key
-								+ "\","
-								+ "oauth_nonce=\""
-								+ oauth_nonce
-								+ "\",oauth_signature_method=\"HMAC-SHA1\",oauth_signature=\""
-								+ URLEncoder.encode(oauth_signature, "UTF-8")
-								+ "\",oauth_timestamp=\""
-								+ oauth_timestamp
-								+ "\",oauth_version=\"1.0\"";
-						String uurl = url1 + "?" + parameter_string
-								+ "&oauth_signature="
-								+ URLEncoder.encode(oauth_signature, "UTF-8");
-						System.out.println(uurl);
 						String oauth_token = "";
 						HttpClient httpclient = new DefaultHttpClient();
 						HttpResponse response1 = null;

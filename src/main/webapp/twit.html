@@ -7,7 +7,7 @@
 <script type="text/javascript">
 $(document).ready(function() {  
     var url=document.URL;
-    var appid="MPAPP_1521";
+    var appid="MPAPP_1547";
     $('#submit').click(function(){
     	$.ajax({
       		type: "POST",
@@ -32,15 +32,7 @@ $(document).ready(function() {
         		appid:appid,
         	},
         	success: function result(data) {
-            	var xx="<table><tr><th>favourites_count</th><th>followers_count</th><th>friends_count</th></tr>";
-            	$(data).find("root").each(function(){
-                	var a=$(this).find("favourites_count").text();
-                	var b=$(this).find("followers_count").text();
-                	var c=$(this).find("friends_count").text();
-                	xx+="<tr><td>"+a+"</td><td>"+b+"</td><td>"+c+"</td></tr>";
-           		});
-				xx+="</table>";
-            	$('#result').append(data);
+            	console.log("rwtew"+data);
           	},
     		error: function (xhr, ajaxOptions, thrownError){
         		alert("errorstatus: " + xhr.status + " ajaxoptions: " + ajaxOptions + " throwError: " + thrownError);

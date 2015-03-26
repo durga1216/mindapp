@@ -11,11 +11,13 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.security.GeneralSecurityException;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -54,6 +56,7 @@ import net.sf.json.JSONSerializer;
 import net.sf.json.xml.XMLSerializer;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -68,6 +71,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import sun.misc.BASE64Encoder;
 
 import com.mindots.util.Utils;
 import com.xmlrpc.XmlRpcClient;
@@ -86,11 +91,9 @@ Connection con=null;
 
   	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-	    response.addHeader("Access-Control-Allow-Origin", "*");  
-	    
+	    response.addHeader("Access-Control-Allow-Origin", "*");  		
 	    Connection con=null;
 		HttpSession session=request.getSession(true);
-	    PrintWriter out=response.getWriter();
 		// String appid=(String) session.getAttribute("xx"); 
 		String appid=request.getParameter("appid");
 		//String eurl11=request.getParameter("eurl");
@@ -183,12 +186,10 @@ Connection con=null;
 	       	 	HttpClient client = new DefaultHttpClient();
 			   	String GetResponse="";
 			   	String jsonxmlout="";
-			   	String str="";String signature="";
+			   	String str="";String result="";String signature="";
 			    Object obj;
 			    if(authen1.equals("No Auth")){ //No Authentication
-			    	out.println("no auth");
-			    	if(rm1.equals ("GET")){
-			    		out.println("in get");//No Auth GET XML
+			    	if(rm1.equals ("GET")){  //No Auth GET XML
 			    		if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 			    			eurl=endurl1+"?"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
 	        		 
@@ -251,7 +252,6 @@ Connection con=null;
 		     	            doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 			    		}// else-if json
 			    		else if( rm1.equals ("GET") && resf1.equals("XML-RPC")){
-			    			out.println("in rpc");
 			    			XmlRpcClient client1 = new XmlRpcClient( endurl1, false );
 			    			HashMap<String, String> mergeVars = new HashMap<String, String>();
 			    			if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -330,61 +330,81 @@ Connection con=null;
 		       	     		serializer.setTypeHintsEnabled(false);
 		       	     		str = serializer.write(json);
 		       	     	} // else if*/
-		       	     	out.println(str);
 		       	     	doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 		           }
-		    	} // No auth and GET 
-			    else if(authen1.equals("Signed Auth")){  //API Keys
-			    	//out.println("inside");
-			    	if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
+		    	} // No auth and GET
+			    else if(authen1.equals("Signed Auth")){  //Signed Authentication
+	            	 if("HMAC-SHA1".equals(sig)){
+	            	        SecretKeySpec signingKey = new SecretKeySpec(sigskey.getBytes(), "HMACSHA1");
+	            	        Mac mac = Mac.getInstance("HMACSHA1");
+	            	        mac.init(signingKey);
+	            	        byte[] rawHmac = mac.doFinal(message.getBytes());
+	            	        if(sformat.equals("URL-Encoded")){
+	            	        result = new BASE64Encoder().encode(rawHmac);
+	            	        signature = URLEncoder.encode(result, "UTF-8") ;
+	            	        }
+	            	        else if(sformat.equals("HexaDecimal"))
+	            	        signature=new String(Hex.encodeHex(rawHmac));
+	            	 }
+	            	 else if("HMAC-SHA256".equals(sig)){
+	            		  Mac mac = Mac.getInstance("HmacSHA256");
+	            	      mac.init(new SecretKeySpec(sigskey.getBytes(), "HmacSHA256"));
+	            	      byte[] rawHmac=mac.doFinal(message.getBytes());
+	            	      if(sformat.equals("URL-Encoded")){
+	            	    	  result=new BASE64Encoder().encode(rawHmac);
+	            	    	  signature=URLEncoder.encode(result,"UTF-8");
+	            	      }
+	            	      else if(sformat.equals("HexaDecimal")) 
+	            	      signature = new String(Hex.encodeHex(mac.doFinal(message.getBytes())));
+	            	 }
+	            	 else if("MD5".equals(sig)){
+	            	      MessageDigest md = MessageDigest.getInstance("MD5");
+	            	      md.update(message.getBytes());
+	            	      signature = String.format("%032x", new BigInteger(1, md.digest()));
+                      }
+
+			    	if( rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get
         		 
 			    		if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
-			    			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
+			    			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5+"&"+pa7+"="+p6+"&"+pa8+"="+p7+"&"+pa9+"="+p8+"&"+pa10+"="+p9;}
         		 
         		 		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9)){
-        		 			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9;}
+        		 			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5+"&"+pa7+"="+p6+"&"+pa8+"="+p7+"&"+pa9+"="+p8;}
 		        		 
 	        		 	else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8)){
-	        		 		eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8;}
+	        		 		eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5+"&"+pa7+"="+p6+"&"+pa8+"="+p7;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5+"&"+pa7+"="+p6;}
 		        		 
 	        		 	else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6)){
-	        		 		eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6;}
+	        		 		eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4+"&"+pa6+"="+p5;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3+"&"+pa5+"="+p4;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2+"&"+pa4+"="+p3;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1+"&"+pa3+"="+p2;}
 		        		 
 		        		else if(!"null".equals(pa1) && !"null".equals(pa2)){
-		        			eurl=pa1+"="+p1+"&"+pa2+"="+p2;}
+		        			eurl=endurl1+"?"+pa1+"="+signature+"&"+pa2+"="+p1;}
 		        		 	
 		        		else if(!"null".equals(pa1)){
-		        			eurl=pa1+"="+p1;}        		
+		        			eurl=endurl1+"?"+pa1+"="+signature;}        		
 		        		 
 			    		eurl=eurl.replaceAll(" ", "%20"); 
-			    		SignedRequestsHelper helper;
-        		        try {
-        		        	helper = SignedRequestsHelper.getInstance(endurl1, sigckey, sigskey);
-        		        } catch (Exception e) {
-        		            e.printStackTrace();
-        		            return;
-        		        }
-        		        String sigurl= helper.sign(eurl);
+
         		        //out.println(sigurl);
         		        if(resf1.equals("XML")){
-        		        	doc=builder.parse(new URL(sigurl).openStream());
+        		        	doc=builder.parse(new URL(eurl).openStream());
         		        }
         		        else if(resf1.equals("JSON")){
         		        	line=null;String strcon=null;
         		        	StringBuilder strb=new StringBuilder();
-        		        	URL eurl1=new URL(sigurl);
+        		        	URL eurl1=new URL(eurl);
         		        	URLConnection uconn = eurl1.openConnection();
         		        	HttpURLConnection conn = (HttpURLConnection) uconn;
         		        	conn.connect();
@@ -406,7 +426,7 @@ Connection con=null;
 		    	}	        	 	         	         
 			    else if(authen1.equals("API keys")){  //API Keys
 	        	 
-			    	if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get       		 
+			    	if( rm1.equals ("GET") && resf1.equals("XML") || resf1.equals("JSON")){  //API XML get       		 
 
 			    		if(p1!=null && p2!=null && p3!=null && p4!=null && p5!=null && p6!=null && p7!=null && p8!=null && p9!=null && p10!=null){
 			    			eurl=endurl1+"?"+ak1+"="+ak2+"&"+pa1+"="+p1+"&"+pa2+"="+p2+"&"+pa3+"="+p3+"&"+pa4+"="+p4+"&"+pa5+"="+p5+"&"+pa6+"="+p6+"&"+pa7+"="+p7+"&"+pa8+"="+p8+"&"+pa9+"="+p9+"&"+pa10+"="+p10;}
@@ -466,7 +486,7 @@ Connection con=null;
 		     	            str = serializer.write(json);
 		     	            doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 	        		 	}  //JSON
-	        		 	else if(rf1.equals("REST") && rm1.equals ("GET") && resf1.equals("XML-RPC")){
+	        		 	else if(rm1.equals ("GET") && resf1.equals("XML-RPC")){
 	        		 		XmlRpcClient client1 = new XmlRpcClient( endurl1, false );
 		        			HashMap<String, String> mergeVars = new HashMap<String, String>();
 		        			if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
@@ -520,7 +540,7 @@ Connection con=null;
 						    //    doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8")))); 
 		        	 	} //XML RPC        	 
 			    	} //get
-			    	else if(rf1.equals("REST") && rm1.equals ("POST")){
+			    	else if( rm1.equals ("POST")){
 			    		String USER_AGENT = "Mozilla/5.0";
 			    		String url=endurl1;
 			    		try{
@@ -543,6 +563,7 @@ Connection con=null;
 			    			HttpResponse response1 = client.execute(post);
 			    			BufferedReader br = new BufferedReader(
 			    					new InputStreamReader(response1.getEntity().getContent()));
+			        		StringBuffer result1 = new StringBuffer();
 			        		if(resf1.equals("XML")){
 			        			while((line=br.readLine())!=null){
 			        				str+=line;
@@ -562,6 +583,7 @@ Connection con=null;
 		  	     	            serializer.setTypeHintsEnabled(false);
 		  	     	            str = serializer.write(json);
 		  	     	            //doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
+		  	     	            PrintWriter out=response.getWriter();
 		  	     	            out.println(str);
 			        		} //if
 			    		}//try
@@ -813,7 +835,6 @@ Connection con=null;
 			    else if(authen1.equals("Oauth1")){
 			    	String res="";
 	         		String oauth_signature_method=rs.getString("osmeth");String url1=rs.getString("ourl1");
-	         		String ourl21=rs.getString("ourl2");String ourl31=rs.getString("ourl3");
 	         		String oauth_consumer_key=rs.getString("ockey"); String secret=rs.getString("oskey");
 	         		String oreq1=rs.getString("oreq");
 	         		String oauth_token="";
@@ -829,7 +850,7 @@ Connection con=null;
 	         		String oauthtk=tok11[1];
 	         		String[] tok1=access_secret1.split("=");
 	         		String sec1=tok1[1];
-	         		out.println(oauth_token+"---"+access_secret1);
+			        	 
 	         		if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	         			eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
 	         		
@@ -905,7 +926,6 @@ Connection con=null;
 			       			result1.append(line);
 			       		}
 			       		String strcon=result1.toString();
-			       		out.println(strcon);
 			       		if( resf1.equals("XML")){
 			       			doc=builder.parse(new InputSource(new ByteArrayInputStream(strcon.getBytes("UTF-8"))));
 		        		}
@@ -958,6 +978,22 @@ Connection con=null;
 	         			String oauth_nonce = uuid_string; 
 	         			String enurl = URLEncoder.encode(endurl1, "UTF-8");
 	         			String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
+	         			String authorization_header_string="";
+						if (oauth_signature_method.equals("PLAINTEXT")) {
+							authorization_header_string = "OAuth oauth_version=\"1.0\",oauth_consumer_key=\""
+									+ oauth_consumer_key
+									+ "\","
+									+ "oauth_nonce=\""
+									+ oauth_nonce
+									+ "\",oauth_token=\""
+									+ oauthtk
+									+ "\",oauth_signature_method=\""
+									+ oauth_signature_method
+									+ "\",oauth_signature=\""
+									+ secret
+									+ "%2526"+sec1+"\",oauth_timestamp=\""
+									+ oauth_timestamp + "\"";
+						} else {
 	         			String parameter_string ="";
 	         			if(eurl.equals("null")){
 	         				parameter_string ="oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
@@ -980,7 +1016,7 @@ Connection con=null;
 	         			} catch (GeneralSecurityException e) {
 	         				// TODO Auto-generated catch block
 	         			}
-	         			String authorization_header_string="";
+	         			authorization_header_string="";
 	         			if(exhead.equals("null")){
 	         				authorization_header_string = "OAuth oauth_consumer_key=\"" + oauth_consumer_key + "\","
 	         						+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
@@ -990,6 +1026,7 @@ Connection con=null;
 	                    			+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_access_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 	                    			oauth_timestamp + "\",oauth_version=\"1.0\"";
 	                    }
+						}
 	         			HttpClient httpclient = new DefaultHttpClient();
 	         			HttpResponse response1=null;
 	         			HttpPost post = new HttpPost(endurl1);
@@ -1002,7 +1039,6 @@ Connection con=null;
 			       			result1.append(line);
 			       		}
 			       		String strcon=result1.toString();
-			       		out.println(strcon);
 	 	        		if( resf1.equals("XML")){
 	 	        			doc=builder.parse(new InputSource(new ByteArrayInputStream(strcon.getBytes("UTF-8"))));
 	 	        		}
@@ -1015,6 +1051,9 @@ Connection con=null;
 	 	        			doc=builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
 	 	        		}
 	         		}      	 
+	         		PreparedStatement trun = con
+							.prepareStatement("TRUNCATE TABLE oauth1");
+	         		trun.executeUpdate();
 			    }
 			    else if(authen1.equals("Oauth2")){  //OAUTH authentication
 			    	if(rm1.equals("GET")){ 
@@ -1027,7 +1066,6 @@ Connection con=null;
 			    			while ((line = rd.readLine()) != null) {
 			    				GetResponse+=line;		     			
 		    				}
-			    			out.println(access_token+"\n"+endurl1+"\n"+GetResponse);
 			    		}
 			    		else if("QueryString".equals(treplace)){
 			    			String param = null;
@@ -1061,7 +1099,6 @@ Connection con=null;
 			    			while ((line = rd.readLine()) != null) {
 			    				GetResponse+=line;
 			    			}	    			
-			    			out.println(access_token+"\n"+endurl1+"\n"+GetResponse);
 						} // query string
 		     		}//get
 			    	else if(rm1.equals("POST")){
@@ -1074,7 +1111,6 @@ Connection con=null;
 			     			while ((line = rd.readLine()) != null) {
 			     				GetResponse+=line;		     			
 		     				}
-			     			out.println(access_token+"\n"+endurl1+"\n"+GetResponse);
 						}
 			     		else if("QueryString".equals(treplace)){
 			     			List <NameValuePair> cod = new ArrayList <NameValuePair>();
@@ -1135,7 +1171,6 @@ Connection con=null;
       				serializer.setRootName("root");
       				serializer.setTypeHintsEnabled(false);
       				str = serializer.write(json);
-      				out.println(str);
       				doc=builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
   				}
 			    else if(resf1.equals("XML") && authen1.equals("Oauth2")){
@@ -1437,22 +1472,23 @@ Connection con=null;
            		} 
 			    transformer1.setOutputProperty(OutputKeys.INDENT,"yes");
 			    transformer1.setOutputProperty(OutputKeys.METHOD,"xml");
-			    StreamResult result=new StreamResult(new StringWriter());
+			    StreamResult result1=new StreamResult(new StringWriter());
 			    DOMSource source=new DOMSource(outdoc);
 			    try {
-			    	transformer1.transform(source, result);  //transform mpulpy xml from document to xml string and make display in browser ->to send client(phonegap)
+			    	transformer1.transform(source, result1);  //transform mpulpy xml from document to xml string and make display in browser ->to send client(phonegap)
             	} catch (TransformerException e) {
             		e.printStackTrace();
             	}
-			    String xmloutput=result.getWriter().toString();
+			    String xmloutput=result1.getWriter().toString();
+			    PrintWriter out=response.getWriter();
 			    out.println(xmloutput); 	
 	        }//while
 		}
 		catch(Exception e){
-			out.println(e);
+			
 		}
 	}
-  	private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
+	private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
 		SecretKey secretKey = null;
 		byte[] keyBytes = keyString.getBytes();
         secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
