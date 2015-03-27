@@ -93,6 +93,8 @@ Connection con=null;
   		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 	    response.addHeader("Access-Control-Allow-Origin", "*");  		
 	    Connection con=null;
+           PrintWriter out=response.getWriter();
+
 		HttpSession session=request.getSession(true);
 		// String appid=(String) session.getAttribute("xx"); 
 		String appid=request.getParameter("appid");
@@ -583,7 +585,6 @@ Connection con=null;
 		  	     	            serializer.setTypeHintsEnabled(false);
 		  	     	            str = serializer.write(json);
 		  	     	            //doc= builder.parse(new InputSource(new ByteArrayInputStream(str.getBytes("UTF-8"))));
-		  	     	            PrintWriter out=response.getWriter();
 		  	     	            out.println(str);
 			        		} //if
 			    		}//try
@@ -850,7 +851,7 @@ Connection con=null;
 	         		String oauthtk=tok11[1];
 	         		String[] tok1=access_secret1.split("=");
 	         		String sec1=tok1[1];
-			        	 
+	         		
 	         		if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	         			eurl=pa1+"="+pva1+"&"+pa2+"="+pva2+"&"+pa3+"="+pva3+"&"+pa4+"="+pva4+"&"+pa5+"="+pva5+"&"+pa6+"="+pva6+"&"+pa7+"="+pva7+"&"+pa8+"="+pva8+"&"+pa9+"="+pva9+"&"+pa10+"="+pva10;}
 	         		
@@ -886,6 +887,7 @@ Connection con=null;
 	         		// out.println(eurl);
 	         		//=========================
 	         		if(rm1.equals ("GET")){
+	         			out.println("inside pget"); 
 	         			//========initial=========
 	         			String uuid_string = UUID.randomUUID().toString();
 	         			uuid_string = uuid_string.replaceAll("-", "");
@@ -940,6 +942,7 @@ Connection con=null;
 	         		}
 	         		else if(rm1.equals ("POST")){
 	         			String exhead="";
+	         			out.println("inside post"); 
 	         			if(!"null".equals(pa1) && !"null".equals(pa2) && !"null".equals(pa3) && !"null".equals(pa4) && !"null".equals(pa5) && !"null".equals(pa6) && !"null".equals(pa7) && !"null".equals(pa8) && !"null".equals(pa9) && !"null".equals(pa10)){
 	         				exhead=pa1+"=\""+pva1+"\","+pa2+"=\""+pva2+"\","+pa3+"=\""+pva3+"\","+pa4+"=\""+pva4+"\","+pa5+"=\""+pva5+"\","+pa6+"=\""+pva6+"\","+pa7+"=\""+pva7+"\","+pa8+"=\""+pva8+"\","+pa9+"=\""+pva9+"\","+pa10+"=\""+pva10+"\"";}
 	        		 
@@ -1039,6 +1042,7 @@ Connection con=null;
 			       			result1.append(line);
 			       		}
 			       		String strcon=result1.toString();
+			       		out.println("inside post"+strcon); 
 	 	        		if( resf1.equals("XML")){
 	 	        			doc=builder.parse(new InputSource(new ByteArrayInputStream(strcon.getBytes("UTF-8"))));
 	 	        		}
@@ -1480,7 +1484,6 @@ Connection con=null;
             		e.printStackTrace();
             	}
 			    String xmloutput=result1.getWriter().toString();
-			    PrintWriter out=response.getWriter();
 			    out.println(xmloutput); 	
 	        }//while
 		}

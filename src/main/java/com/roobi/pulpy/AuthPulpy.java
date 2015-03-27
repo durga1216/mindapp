@@ -1132,9 +1132,7 @@ public class AuthPulpy extends HttpServlet {
 	                    			+ "oauth_nonce=\"" + oauth_nonce + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_access_token=\""+oauthtk+"\",oauth_signature=\"" + URLEncoder.encode(oauth_signature, "UTF-8") + "\",oauth_timestamp=\"" + 
 	                    			oauth_timestamp + "\",oauth_version=\"1.0\"";
 	                    }
-						}
-	         			out.println(authorization_header_string);
-	         			
+						}	         			
 	         			post.setHeader("Authorization", authorization_header_string);
 	         			response1 = httpclient.execute(post);
 	         			BufferedReader rd = new BufferedReader(
@@ -1145,23 +1143,22 @@ public class AuthPulpy extends HttpServlet {
 			       			result.append(line);
 			       		}
 			       		strcon=result.toString();
-			       		out.println(strcon);
 	 	        		if( resf1.equals("XML")){
-	 	        			session.setAttribute("xml1", res);
+	 	        			session.setAttribute("xml1", strcon);
 	 	        			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 	 	        					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
-	 	        			//   response.setHeader("Refresh", "1; URL=auth1.jsp");
+	 	        			   response.setHeader("Refresh", "1; URL=auth1.jsp");
 	 	        		}
 	 	        		else if( resf1.equals("JSON")){
 	 	        			XMLSerializer serializer = new XMLSerializer();
-	 	        			JSON json = JSONSerializer.toJSON(res);
+	 	        			JSON json = JSONSerializer.toJSON(strcon);
 	 	        			serializer.setRootName("root");
 	 	        			serializer.setTypeHintsEnabled(false);
 	 	        			String str = serializer.write(json);
 	 	        			session.setAttribute("xml1", str);
 	 	        			out.println("<html style='background-color:#ff9900;'><h2><center><font color='#000000;'>Processing...</font></center></h3><br><br><br><br>"
 	 	        					+ "<br><br><br><br><center><img style='height:100px;width:100px;' src='images/load.gif'></center><html>");
-	 	        			// response.setHeader("Refresh", "1; URL=auth1.jsp");
+	 	        			 response.setHeader("Refresh", "1; URL=auth1.jsp");
 	 	        		}
 	         		}      	 
 	         	}
