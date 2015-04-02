@@ -10,22 +10,29 @@
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);%>
+
+    <%
+        String respo = (String) request.getSession().getAttribute("xml1");
+        respo = respo.replaceAll("\"", "'");
+    %>
+    <script type="text/javascript" src="js/getkey.js"></script>
 <script type="text/javascript">
-var intTextBox=0;
-function addParam(){
-	intTextBox = intTextBox + 1;
-	  var contentID = document.getElementById('content');
-	  var newTBDiv = document.createElement('div');
-	      newTBDiv.setAttribute('id','strText'+intTextBox);
-	  newTBDiv.innerHTML = "<input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='Label(Give any name)'/>" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder='Tag_Value(Refer Eg)'/>";
-	  contentID.appendChild(newTBDiv);
-}
-function removeParam()
-{
-	var contentID = document.getElementById('content');
-    contentID.removeChild(document.getElementById('strText'+intTextBox));
-    intTextBox = intTextBox-1;
-	}
+    var respo2=<%=respo%>;
+//var intTextBox=0;
+//function addParam(){
+//	intTextBox = intTextBox + 1;
+//	  var contentID = document.getElementById('content');
+//	  var newTBDiv = document.createElement('div');
+//	      newTBDiv.setAttribute('id','strText'+intTextBox);
+//	  newTBDiv.innerHTML = "<input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='Label(Give any name)'/>" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder='Tag_Value(Refer Eg)'/>";
+//	  contentID.appendChild(newTBDiv);
+//}
+//function removeParam()
+//{
+//	var contentID = document.getElementById('content');
+//    contentID.removeChild(document.getElementById('strText'+intTextBox));
+//    intTextBox = intTextBox-1;
+//	}
 </script>
 <style>
 body{
@@ -51,8 +58,17 @@ font-family:verdana;
 width:250px;
 height:20px;
 padding:10px;
-} 
-
+}
+select{
+    color:#FF9900;
+    font-size:20px;
+    background-color:#FFFFFF;
+    margin-left:80px;
+    font-family:verdana;
+    width:250px;
+    height:20px;
+    padding:10px;
+}
 input[type="submit"]{
 color:#FFFFFF;
 font-size:20px;
