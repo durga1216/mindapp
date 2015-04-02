@@ -10,11 +10,11 @@
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);%>
-    <script src="js/getkey.js"></script>
+    <%--<script src="js/getkey.js"></script>--%>
 
     <%String u = (String) request.getSession().getAttribute("user");
-        String respo = (String) request.getSession().getAttribute("xml1");
-        respo = respo.replaceAll("\"", "'");
+//        String respo = (String) request.getSession().getAttribute("xml1");
+//        respo = respo.replaceAll("\"", "'");
         String q = (String) session.getAttribute("q");
         if (u != null ) {
             // System.out.println("user != null");
@@ -24,22 +24,22 @@
             response.sendRedirect("logout.jsp");
         }%>
 <script type="text/javascript">
-    var respo2=<%=respo%>;
-//var intTextBox=0;
-//function addParam(){
-//	intTextBox = intTextBox + 1;
-//	  var contentID = document.getElementById('content');
-//	  var newTBDiv = document.createElement('div');
-//	      newTBDiv.setAttribute('id','strText'+intTextBox);
-//	  newTBDiv.innerHTML = "<input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='Label(Give any name)'/>" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder='Tag_Value(Refer Eg)'/>";
-//	  contentID.appendChild(newTBDiv);
-//}
-//function removeParam()
-//{
-//	var contentID = document.getElementById('content');
-//    contentID.removeChild(document.getElementById('strText'+intTextBox));
-//    intTextBox = intTextBox-1;
-//	}
+  <%--  var respo2=<%=respo%>;--%>
+var intTextBox=0;
+function addParam(){
+	intTextBox = intTextBox + 1;
+	  var contentID = document.getElementById('content');
+	  var newTBDiv = document.createElement('div');
+	      newTBDiv.setAttribute('id','strText'+intTextBox);
+	  newTBDiv.innerHTML = "<input type='text' id='x" + intTextBox + "'    name='x" + intTextBox + "' placeholder='Label(Give any name)'/>" + "<input type='text' id='xv"+ intTextBox + " ' name='xv"+intTextBox+"' placeholder='Tag_Value(Refer Eg)'/>";
+	  contentID.appendChild(newTBDiv);
+}
+function removeParam()
+{
+	var contentID = document.getElementById('content');
+    contentID.removeChild(document.getElementById('strText'+intTextBox));
+    intTextBox = intTextBox-1;
+	}
 </script>
 <style>
 body{
