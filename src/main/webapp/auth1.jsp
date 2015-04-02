@@ -10,12 +10,19 @@
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);%>
+    <script src="js/getkey.js"></script>
 
-    <%
+    <%String u = (String) request.getSession().getAttribute("user");
         String respo = (String) request.getSession().getAttribute("xml1");
         respo = respo.replaceAll("\"", "'");
-    %>
-    <script type="text/javascript" src="js/getkey.js"></script>
+        String q = (String) session.getAttribute("q");
+        if (u != null ) {
+            // System.out.println("user != null");
+            // out.print("Welcome "+u);
+        }else{
+            // System.out.println("user == null");
+            response.sendRedirect("logout.jsp");
+        }%>
 <script type="text/javascript">
     var respo2=<%=respo%>;
 //var intTextBox=0;
@@ -136,16 +143,6 @@ text-decoration:none;
 
 </head>
 <body>
-<%String u = (String) request.getSession().getAttribute("user");
-String q = (String) session.getAttribute("q");
-    if (u != null ) {
-   // System.out.println("user != null");
-   // out.print("Welcome "+u);
-    }else{
-   // System.out.println("user == null");
-    response.sendRedirect("logout.jsp");
-    }%>
-    
 <div id=na><%=session.getAttribute("mail")%> &nbsp;|<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;&nbsp;<a id='indiv' href = 'mobile_client.jsp'> API Console </a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a id='indiv' href = 'logout.jsp'> Sign Out </a></div>
 <div class="head"><center>Mind Pulpy</center></h2></div><br>
 <form action="AuthPulpy1" method="post" onsubmit="return validateForm()">

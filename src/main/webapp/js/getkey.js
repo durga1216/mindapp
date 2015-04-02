@@ -1,7 +1,6 @@
 var num = 0;
 function addParam() {
     var respo2 = "<par><get>sdfsf</get><ggt>sfds</ggt></par>";
-    var exres = document.getElementById('xr');
     num = num + 1;
     var contentID = document.getElementById('content');
     var newTBDiv = document.createElement('div');
@@ -10,7 +9,8 @@ function addParam() {
     hm += "<input type='text' id='x" + num + "'    name='x" + num + "' placeholder='Label(Give any name)'/>"+"<select name=xv" + num + " id=xv" + num + ">";
     hm += "<option value=dummy>Choose Xml Node</option>";
     var xmlDoc = new window.DOMParser().parseFromString(respo2, "text/xml");
-    exres.value = xmlDoc.documentElement.nodeName;
+    var exres = document.getElementById('xr')
+    ///exres.value = xmlDoc.documentElement.nodeName;
     var y = xmlDoc.documentElement.childNodes;
     var i;
     var z;
