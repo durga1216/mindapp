@@ -36,8 +36,9 @@
             var contentID = document.getElementById('content');
             var newTBDiv = document.createElement('div');
             newTBDiv.setAttribute('id', 'strText' + num);
-            var root = "event";
-            //var root = $('#xrr').val();
+            //var root = "event";
+            //var root = $('#parnode').val();
+            var root=document.getElementById('parnode').value;
             console.log("fsdfasdf"+root);
             if(root==''){
                 alert("Please Enter the Parent node");
@@ -272,7 +273,7 @@
                 </tr>
             </table>
         </div>
-        <div id=eg1><input type="text" name="xr" id="xrr" value="" placeholder="Parent_Tag(Refer Eg)"><br>
+        <div id=eg1><input type="text" name="xr" id="parnode" value="" placeholder="Parent_Tag(Refer Eg)"><br>
             <br><br>
             <center><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
                 <a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a></center>
