@@ -31,7 +31,7 @@
     <script>
         var num = 0;
         function addParam() {
-            console.log("inside");
+            //console.log("inside");
             num = num + 1;
             var contentID = document.getElementById('content');
             var newTBDiv = document.createElement('div');
@@ -39,35 +39,36 @@
             //var root = "event";
             //var root = $('#parnode').val();
             var root=document.getElementById('parnode').value;
-            console.log("fsdfasdf"+root);
+            //console.log("fsdfasdf"+root);
             if(root==''){
                 alert("Please Enter the Parent node");
-            }
-            var data = "<%=respo%>";//'<xx><name><fn>susee</fn><ln>susi</ln></name></xx>';//$('#cmt').val();
-            var dvdata = "<input type='text' placeholder='Label(Give any name)' name='x" + num + "'><select name='xv" + num + "'><option value='dummy'>Select the node</option>";
-            $(data).find(root).first().find("*").each(function () {
-                var v = $(this).prop("tagName");
-                var parents = $(this).parents();
-                var p = [];
-                p.push(v);
-                var splice = 0;
-                $(parents).each(function (i) {
-                    if ($(this).prop("tagName") == root.toUpperCase())
-                        splice = i;
-                    p.push($(this).prop("tagName"));
+            }else {
+                var data = "<%=respo%>";//'<xx><name><fn>susee</fn><ln>susi</ln></name></xx>';//$('#cmt').val();
+                var dvdata = "<input type='text' placeholder='Label(Give any name)' name='x" + num + "'><select name='xv" + num + "'><option value='dummy'>Select the node</option>";
+                $(data).find(root).first().find("*").each(function () {
+                    var v = $(this).prop("tagName");
+                    var parents = $(this).parents();
+                    var p = [];
+                    p.push(v);
+                    var splice = 0;
+                    $(parents).each(function (i) {
+                        if ($(this).prop("tagName") == root.toUpperCase())
+                            splice = i;
+                        p.push($(this).prop("tagName"));
+                    });
+                    p.splice(splice + 1);
+                    p.reverse();
+                    if ($(this).children().first().prop("nodeType") != 1)
+                        log(p.join("/"));
                 });
-                p.splice(splice + 1);
-                p.reverse();
-                if ($(this).children().first().prop("nodeType") != 1)
-                    log(p.join("/"));
-            });
-            dvdata = dvdata + "</select><br><br>";
-            function log(v) {
-                dvdata = dvdata + "<option value='" + v + "'>" + v + "</option>";
-            }
+                dvdata = dvdata + "</select><br><br>";
+                function log(v) {
+                    dvdata = dvdata + "<option value='" + v + "'>" + v + "</option>";
+                }
 
-            newTBDiv.innerHTML = dvdata;
-            contentID.appendChild(newTBDiv);
+                newTBDiv.innerHTML = dvdata;
+                contentID.appendChild(newTBDiv);
+            }
         }
         function removeParam() {
             var contentID = document.getElementById('content');
