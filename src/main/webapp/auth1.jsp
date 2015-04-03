@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<script src="js/jquery-latest.js"></script>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Mind Pulpy</title>
-    <script src="js/jquery-latest.js"></script>
     <link rel="shortcut icon" href="favicon.ico"/>
     <%
         response.setHeader("Cache-Control", "no-cache");
@@ -31,16 +31,18 @@
     <script>
         var num = 0;
         function addParam() {
+            console.log("inside");
             num = num + 1;
             var contentID = document.getElementById('content');
             var newTBDiv = document.createElement('div');
             newTBDiv.setAttribute('id', 'strText' + num);
-            //var root = "event";
-            var root = $('#xrr').val();
+            var root = "event";
+            //var root = $('#xrr').val();
+            console.log("fsdfasdf"+root);
             if(root==''){
                 alert("Please Enter the Parent node");
             }
-            var data = '<%=respo%>';//'<xx><name><fn>susee</fn><ln>susi</ln></name></xx>';//$('#cmt').val();
+            var data = "<%=respo%>";//'<xx><name><fn>susee</fn><ln>susi</ln></name></xx>';//$('#cmt').val();
             var dvdata = "<input type='text' placeholder='Label(Give any name)' name='x" + num + "'><select name='xv" + num + "'><option value='dummy'>Select the node</option>";
             $(data).find(root).first().find("*").each(function () {
                 var v = $(this).prop("tagName");
