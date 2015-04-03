@@ -36,7 +36,10 @@
             var newTBDiv = document.createElement('div');
             newTBDiv.setAttribute('id', 'strText' + num);
             //var root = "event";
-            var root = $('#xr').val();
+            var root = $('#xrr').val();
+            if(root==''){
+                alert("Please Enter the Parent node");
+            }
             var data = '<%=respo%>';//'<xx><name><fn>susee</fn><ln>susi</ln></name></xx>';//$('#cmt').val();
             var dvdata = "<input type='text' placeholder='Label(Give any name)' name='x" + num + "'><select name='xv" + num + "'><option value='dummy'>Select the node</option>";
             $(data).find(root).first().find("*").each(function () {
@@ -267,7 +270,7 @@
                 </tr>
             </table>
         </div>
-        <div id=eg1><input type="text" name="xr" value="" placeholder="Parent_Tag(Refer Eg)"><br>
+        <div id=eg1><input type="text" name="xr" id="xrr" value="" placeholder="Parent_Tag(Refer Eg)"><br>
             <br><br>
             <center><a id='pa' href="javascript:addParam()">Add_XML_Tags</a>
                 <a id='pa' href="javascript:removeParam()">Remove_XML_Tags</a></center>
