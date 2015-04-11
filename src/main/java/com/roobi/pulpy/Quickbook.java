@@ -192,7 +192,7 @@ public class Quickbook extends HttpServlet {
 				if (eurl.equals("null")) {
 					parameter_string = "query=select%20%2A%20from%20account&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
 				} else {
-					parameter_string = eurl + "&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
+					parameter_string = "oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
 				}
 				String[] tst1 = parameter_string.split("&");
 				Arrays.sort(tst1);
@@ -226,6 +226,7 @@ public class Quickbook extends HttpServlet {
 				str1 = result.toString();
 				totalres+=str1+",";
 			}
+			totalres=method(totalres);
 			totalres+="}}";
 			out.println(totalres);
 			PreparedStatement st5=con.prepareStatement("DELETE From oauth1 ORDER BY no DESC LIMIT 1");
@@ -234,6 +235,12 @@ public class Quickbook extends HttpServlet {
 		}catch(Exception e){
 			
 		}
+	}
+	public String method(String str) {
+		if (str.length() > 0 && str.charAt(str.length()-1)=='x') {
+			str = str.substring(0, str.length()-1);
+		}
+		return str;
 	}
 	private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {	 
 	    SecretKey secretKey = null;
