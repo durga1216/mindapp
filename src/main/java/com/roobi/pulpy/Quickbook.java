@@ -226,7 +226,7 @@ public class Quickbook extends HttpServlet {
 				str1 = result.toString();
 				totalres+=str1+",";
 			}
-			totalres=method(totalres);
+			totalres=removeLastChar(totalres);
 			totalres+="}}";
 			out.println(totalres);
 			PreparedStatement st5=con.prepareStatement("DELETE From oauth1 ORDER BY no DESC LIMIT 1");
@@ -235,6 +235,9 @@ public class Quickbook extends HttpServlet {
 		}catch(Exception e){
 			
 		}
+	}
+	private static String removeLastChar(String str) {
+		return str.substring(0,str.length()-1);
 	}
 	public String method(String str) {
 		if (str.length() > 0 && str.charAt(str.length()-1)=='x') {
