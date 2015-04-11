@@ -9,13 +9,11 @@
         }
         $(document).ready(function () {
             var url = document.URL;
-            var appid = "MPAPP_1409";
             $('#submit').click(function () {
                 $.ajax({
                     type: "POST",
                     url: "https://mindapp-pulpy.rhcloud.com/Quickcall",
                     data: {
-                        appid: appid,
                         url: url
                     },
                     success: function (result) {
@@ -75,12 +73,13 @@
 <br>
 <br>
 <center>
-    <div id="head">Get Invoice from QuickBooks via MindPulpy</div>
+    <div id="head">Get Invoice from QuickBooks via MindPulpy<br><br>
+        1,Account 2,BalanceSheet 3,CashFlow 4,ProfitAndLoss 5,Company Info</div>
     <br> <br>
 
 
-    <a href="javascript:qcall()"><img src="qb.png" id="submit" width="120" height="120"></a><br><br>
-    <input type="button" name="b1" id="b1" value="Get Invoice"><br>
+    <a href="javascript:qcall()"><img src="images/qb.png" id="submit" width="120" height="120"></a><br><br>
+    <input type="button" name="b1" id="b1" value="Get data from 5 Method"><br>
     <br>
 
     <textarea id="result" rows="20" cols="100" name="result"></textarea></center>
