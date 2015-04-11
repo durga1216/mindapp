@@ -160,51 +160,74 @@ public class Quickbook extends HttpServlet {
    				companyid=rs4.getString("resp");
    			}
    			rs4.close();
+
 			String endurl1="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/query";
-   			String[] tok11=oauth_token.split("=");
+			String endurl2="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/reports/BalanceSheet";
+			String endurl3="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/reports/CashFlow";
+			String endurl4="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/reports/ProfitAndLoss";
+			String endurl5="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/companyinfo/"+companyid;
+
+			String[] qburl={endurl1,endurl2,endurl3,endurl4,endurl5};
+
+			String[] qbacc={"account_result","BalanceSheet_result","CashFlow_result","ProfitAndLoss_result","companyinfo_result"};
+
+			String[] tok11=oauth_token.split("=");
    			String oauthtk=tok11[1];
    			String[] tok1=access_secret1.split("=");
    			String sec1=tok1[1];
+			String totalres="{\"qb_total_result\":{";
 			//inputs
-   			String uuid_string = UUID.randomUUID().toString();
-			uuid_string = uuid_string.replaceAll("-", "");
-			String oauth_nonce = uuid_string; 
-			String enurl = URLEncoder.encode(endurl1, "UTF-8");
-			String oauth_timestamp = (new Long(System.currentTimeMillis()/1000)).toString();
-			String parameter_string ="";
-			if(eurl.equals("null")){
-				parameter_string ="query=select%20%2A%20from%20invoice&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
+			for(int k=0;k<5;k++) {
+				if(k!=0){
+					eurl="val";
+				}
+				String endul=qburl[k];
+				totalres+="\""+qbacc[k]+"\":";
+				String uuid_string = UUID.randomUUID().toString();
+				uuid_string = uuid_string.replaceAll("-", "");
+				String oauth_nonce = uuid_string;
+				String enurl = URLEncoder.encode(endul, "UTF-8");
+				String oauth_timestamp = (new Long(System.currentTimeMillis() / 1000)).toString();
+				String parameter_string = "";
+				if (eurl.equals("null")) {
+					parameter_string = "query=select%20%2A%20from%20account&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
+				} else {
+					parameter_string = eurl + "&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
+				}
+				String[] tst1 = parameter_string.split("&");
+				Arrays.sort(tst1);
+				int no = tst1.length;
+				String tst3 = "";
+				for (int i = 1; i < no; i++) {
+					tst3 = tst3 + "&" + tst1[i];
+				}
+				String tst4 = tst1[0] + tst3;
+				String signature_base_string = rmethod + "&" + enurl + "&" + URLEncoder.encode(tst4, "UTF-8");
+				String oauth_signature = "";
+				String oauth_signature1 = "";
+				try {
+					oauth_signature = computeSignature(signature_base_string, secret + "&" + sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+					oauth_signature1 = URLEncoder.encode(oauth_signature, "UTF-8");
+				} catch (GeneralSecurityException e) {
+					// TODO Auto-generated catch block
+				}
+				String actok = endul + "?" + tst4 + "&oauth_signature=" + oauth_signature1;
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpGet get1 = new HttpGet(actok);
+				get1.setHeader("Accept", "application/json");
+				HttpResponse response1 = httpclient.execute(get1);
+				BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
+				StringBuffer result = new StringBuffer();
+				String line = "";
+				String str1 = "";
+				while ((line = rd.readLine()) != null) {
+					result.append(line);
+				}
+				str1 = result.toString();
+				totalres+=str1+",";
 			}
-			else{
-				parameter_string = eurl+"&oauth_consumer_key=" + oauth_consumer_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp +"&"+oauth_token+"&oauth_version=1.0";        
-			}
-			String[] tst1=parameter_string.split("&");Arrays.sort(tst1);
-			int no=tst1.length;String tst3="";
-			for(int i=1;i<no;i++){
-				tst3=tst3+"&"+tst1[i];
-			}
-			String tst4=tst1[0]+tst3;
-			String signature_base_string = rmethod+"&"+enurl+"&" + URLEncoder.encode(tst4, "UTF-8");
-			String oauth_signature = "";String oauth_signature1 = "";
-			try {
-				oauth_signature = computeSignature(signature_base_string, secret+"&"+sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
-				oauth_signature1 = URLEncoder.encode(oauth_signature, "UTF-8");
-			} catch (GeneralSecurityException e) {
-				// TODO Auto-generated catch block
-			}
-			String actok=endurl1+"?"+tst4+"&oauth_signature="+oauth_signature1;
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpGet get1=new HttpGet(actok);
-			get1.setHeader("Accept", "application/json");
-			HttpResponse response1=httpclient.execute(get1);
-			BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
-			StringBuffer result = new StringBuffer();
-			String line = "";String str1="";
-			while ((line = rd.readLine()) != null) {
-				result.append(line);
-			}
-			str1=result.toString();
-			out.println(str1);
+			totalres+="}}";
+			out.println(totalres);
 			PreparedStatement st5=con.prepareStatement("DELETE From oauth1 ORDER BY no DESC LIMIT 1");
 			st5.executeUpdate();
 			con.close();
