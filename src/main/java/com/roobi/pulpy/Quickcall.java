@@ -59,7 +59,7 @@ public class Quickcall extends HttpServlet {
 		String oreq="GET";
 		String osmeth="HMAC-SHA1";
 		String ourl2="https://appcenter.intuit.com/Connect/Begin";
-		//function
+		//function for looping
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		String uuid_string = UUID.randomUUID().toString();
 			uuid_string = uuid_string.replaceAll("-", "");
