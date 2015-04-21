@@ -42,6 +42,26 @@
                     }
                 });
             });
+            $('#b2').click(function () {
+                var id = "1", Arr = [];
+                var docid, cdate, ddate, bal, tot, cust;
+                var indata=('#result').val();
+                $.ajax({
+                    type: "GET",
+                    url: "https://mindapp-pulpy.rhcloud.com/Insertsql",
+                    data: {
+                        data: indata
+                    },
+                    success: function result(data) {
+                        console.log(data);
+                        //$('#result').append(data);
+                        alert(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert("errorstatus: " + xhr.status + " ajaxoptions: " + ajaxOptions + " throwError: " + thrownError);
+                    }
+                });
+            });
         });
     </script>
     <style>
@@ -73,13 +93,13 @@
 <br>
 <br>
 <center>
-    <div id="head">Get Invoice from QuickBooks via MindPulpy<br><br>
+    <div id="head">Get data from QuickBooks via MindPulpy<br><br>
         1,Account 2,BalanceSheet 3,CashFlow 4,ProfitAndLoss 5,Company Info</div>
     <br> <br>
 
 
     <a href="javascript:qcall()"><img src="images/qb.png" id="submit" width="120" height="120"></a><br><br>
-    <input type="button" name="b1" id="b1" value="Get data from 5 Method"><br>
+    <input type="button" name="b1" id="b1" value="Get data from 5 Method">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="b2" id="b2" value="Insert Whole response in database"><br><br>
     <br>
 
     <textarea id="result" rows="20" cols="100" name="result"></textarea></center>
