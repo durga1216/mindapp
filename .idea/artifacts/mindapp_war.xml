@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mindapp:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="mindapp-1.0.war">
+      <element id="artifact" artifact-name="mindapp:war exploded" />
+    </root>
+  </artifact>
+</component>

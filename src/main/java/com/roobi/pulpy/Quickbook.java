@@ -61,8 +61,8 @@ public class Quickbook extends HttpServlet {
 			String oauth_verifier=request.getParameter("oauth_verifier");
 			String oauth_token=request.getParameter("oauth_token");
 			String companyid=request.getParameter("realmId");
-			String oauth_consumer_key="qyprdX6G2AFPGqXc0KZ3eeq3gxNBfY";
-			String secret="F99WcjcynTlh13CtdQJy9xU5mLg31DETm7EQNgZ6";
+			String oauth_consumer_key="qyprdytSWnJIkhPOzS4hwqf8AjVyiQ";
+			String secret="mcgDA8UxK7ugAxseS2ZDGvr5QEQQFdPwecacmKKy";
 			String oauth_signature_method="HMAC-SHA1";
 			String ourl31="https://oauth.intuit.com/oauth/v1/get_access_token";
 			String oreq1="GET";
@@ -142,8 +142,8 @@ public class Quickbook extends HttpServlet {
 	    PrintWriter out=response.getWriter();
 		Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
 		try{
-			String oauth_consumer_key="qyprdX6G2AFPGqXc0KZ3eeq3gxNBfY";
-			String secret="F99WcjcynTlh13CtdQJy9xU5mLg31DETm7EQNgZ6";
+			String oauth_consumer_key="qyprdytSWnJIkhPOzS4hwqf8AjVyiQ";
+			String secret="mcgDA8UxK7ugAxseS2ZDGvr5QEQQFdPwecacmKKy";
 			String oauth_signature_method="HMAC-SHA1";
 			String rmethod="GET";
 			String oauth_token="";
