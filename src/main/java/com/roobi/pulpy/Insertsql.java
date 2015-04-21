@@ -31,9 +31,12 @@ public class Insertsql extends HttpServlet {
         Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
         try{
             JSONObject object=new JSONObject(data);
-            JSONObject object1=new JSONObject(object.getString("qb_total_result"));
-            JSONObject object2=new JSONObject(object1.getString("companyinfo_result"));
-            JSONObject object3=new JSONObject(object2.getString("CompanyInfo"));
+            String data1=object.getString("qb_total_result");
+            JSONObject object1=new JSONObject(data1);
+            String data2=object1.getString("companyinfo_result");
+            JSONObject object2=new JSONObject(data2);
+            String data3=object2.getString("CompanyInfo");
+            JSONObject object3=new JSONObject(data3);
 
             JSONObject object4=new JSONObject(object3.getString("CompanyAddr"));
             JSONObject object5=new JSONObject(object3.getString("Email"));

@@ -45,7 +45,7 @@
             $('#b2').click(function () {
                 var id = "1", Arr = [];
                 var docid, cdate, ddate, bal, tot, cust;
-                var indata=('#result').val();
+                var indata=$('#result').val();
                 $.ajax({
                     type: "GET",
                     url: "https://mindapp-pulpy.rhcloud.com/Insertsql",
