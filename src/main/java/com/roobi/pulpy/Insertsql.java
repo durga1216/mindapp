@@ -33,17 +33,16 @@ public class Insertsql extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = (Connection) DriverManager.getConnection(config.get("URL"), config.get("USER"), config.get("PASS"));
             PreparedStatement st1=con.prepareStatement("INSERT INTO qb_company_info (SupportedLanguages,Country,CreateTime,domain,Email,PrimaryPhone,CompanyAddr,CompanyName,CompanyStartDate,FiscalYearStartMonth,) VALUES (?,?,?,?,?,?,?,?,?,?)");
-            st1.setString(0,"test");
             st1.setString(1,"test");
             st1.setString(2,"test");
             st1.setString(3,"test");
             st1.setString(4,"test");
-
             st1.setString(5,"test");
             st1.setString(6,"test");
             st1.setString(7,"test");
             st1.setString(8,"test");
             st1.setString(9,"test");
+            st1.setString(10,"test");
             st1.executeUpdate();
             out.println("inserted");
         }catch (Exception e){

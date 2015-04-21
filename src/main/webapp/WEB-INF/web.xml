@@ -35,6 +35,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>Insertsql</display-name>
+    <servlet-name>Insertsql</servlet-name>
+    <servlet-class>com.roobi.pulpy.Insertsql</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Insertsql</servlet-name>
+    <url-pattern>/Insertsql</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>LoginCheckPulpy</display-name>
     <servlet-name>LoginCheckPulpy</servlet-name>
     <servlet-class>com.roobi.pulpy.LoginCheckPulpy</servlet-class>
