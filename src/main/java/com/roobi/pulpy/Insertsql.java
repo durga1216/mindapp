@@ -41,6 +41,7 @@ public class Insertsql extends HttpServlet {
             JSONObject object5=new JSONObject(object3.getString("Email"));
             JSONObject object6=new JSONObject(object3.getString("PrimaryPhone"));
             JSONObject object7=new JSONObject(object3.getString("MetaData"));
+
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = (Connection) DriverManager.getConnection(config.get("URL"), config.get("USER"), config.get("PASS"));
             PreparedStatement st1=con.prepareStatement("INSERT INTO qb_company_info (SupportedLanguages,Country,CreateTime,domain,Email,PrimaryPhone,CompanyAddr,CompanyName,CompanyStartDate,FiscalYearStartMonth) VALUES (?,?,?,?,?,?,?,?,?,?)");
@@ -49,13 +50,14 @@ public class Insertsql extends HttpServlet {
             st1.setString(3,object7.getString("CreateTime"));
             st1.setString(4,object3.getString("domain"));
             st1.setString(5,object5.getString("Address"));
+
             st1.setString(6,object6.getString("FreeFormNumber"));
             st1.setString(7,object4.getString("Line1")+","+object4.getString("City"));
             st1.setString(8,object3.getString("CompanyName"));
             st1.setString(9,object3.getString("CompanyStartDate"));
             st1.setString(10,object3.getString("FiscalYearStartMonth"));
             st1.executeUpdate();
-            out.println("inserted");
+            out.println("inserted in database");
         }catch (Exception e){
             out.println("error"+e.getMessage());
         }
