@@ -1,8 +1,7 @@
 package com.roobi.pulpy;
 
 import com.mindots.util.Utils;
-import net.sf.json.JSON;
-import net.sf.json.JSONObject;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Map;
 
 /**
@@ -47,7 +45,7 @@ public class Insertsql extends HttpServlet {
             PreparedStatement st1=con.prepareStatement("INSERT INTO qb_company_info (SupportedLanguages,Country,CreateTime,domain,Email,PrimaryPhone,CompanyAddr,CompanyName,CompanyStartDate,FiscalYearStartMonth) VALUES (?,?,?,?,?,?,?,?,?,?)");
             st1.setString(1,object3.getString("SupportedLanguages"));
             st1.setString(2,object3.getString("Country"));
-            st1.setString(3,object7.getString("CreateTime"));
+            st1.setString(3, object7.getString("CreateTime"));
             st1.setString(4,object3.getString("domain"));
             st1.setString(5,object5.getString("Address"));
 
