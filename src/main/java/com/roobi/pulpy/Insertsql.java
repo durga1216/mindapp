@@ -31,17 +31,14 @@ public class Insertsql extends HttpServlet {
         Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
         try{
             JSONObject object=new JSONObject(data);
-            String data1=object.getString("qb_total_result");
-            JSONObject object1=new JSONObject(data1);
-            String data2=object1.getString("companyinfo_result");
-            JSONObject object2=new JSONObject(data2);
-            String data3=object2.getString("CompanyInfo");
-            JSONObject object3=new JSONObject(data3);
+            JSONObject object1=object.getJSONObject("qb_total_result");
+            JSONObject object2=object1.getJSONObject("companyinfo_result");
+            JSONObject object3=object2.getJSONObject("CompanyInfo");
 
-            JSONObject object4=new JSONObject(object3.getString("CompanyAddr"));
-            JSONObject object5=new JSONObject(object3.getString("Email"));
-            JSONObject object6=new JSONObject(object3.getString("PrimaryPhone"));
-            JSONObject object7=new JSONObject(object3.getString("MetaData"));
+            JSONObject object4=object3.getJSONObject("CompanyAddr");
+            JSONObject object5=object3.getJSONObject("Email");
+            JSONObject object6=object3.getJSONObject("PrimaryPhone");
+            JSONObject object7=object3.getJSONObject("MetaData");
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con = (Connection) DriverManager.getConnection(config.get("URL"), config.get("USER"), config.get("PASS"));
