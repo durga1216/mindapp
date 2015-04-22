@@ -22,10 +22,6 @@ import java.util.Map;
 @WebServlet(name = "Oauthmash")
 public class Oauthmash extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-Type","text/html;charset=UTF-8");
         PrintWriter out=response.getWriter();
         Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
@@ -63,5 +59,9 @@ public class Oauthmash extends HttpServlet {
             out.println("Some Error "+e.getMessage());
         }
         //System.out.println("output" + mastext.get(0));
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

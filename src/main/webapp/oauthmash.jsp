@@ -95,7 +95,7 @@
 <table><tr><td><div class="head2">Dynamically Add your Methods :</div></td>
 <td><a class="link1" href="javascript:addmethod()">Add Method</a></td>
   <td><a class="link1" href="javascript:removemethod()">Remove Method</a></td></tr></table><br>
-<form action="Oauthmash" method="get">
+<form action="Oauthmash" method="post">
 <div id="content"></div>
   <br><br><center><input type="submit" value="Continue"></center>
   </form>
