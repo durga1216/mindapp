@@ -192,8 +192,9 @@ function load1(){
 	<div id="popUpDiv" style="display:none;">
 	<a style='font-size:20px;color:#000;float:right;'href="" onclick="popup('popUpDiv')" >close<img style='height:20px;width:20px'alt="close" src="images/close.png"></a><br><br>
 	<br><br><div class=con><center>Choose Your Plan</center></div><br><br><br>
-	<center><div id=pa><a href="firstauth.jsp?q=single">Single Configuration</a></div></center><br><br><br><br><br>
-	<center><div id=pa><a href="firstauth.jsp?q=mashup">Multiple/Mashup Configuration</a></div></center>
+	<center><div id=pa><a href="firstauth.jsp?q=single">Single Configuration</a></div></center><br><br>
+		<center><div id=pa><a href="firstauth.jsp?q=mashup">Multiple/Mashup Configuration</a></div></center><br><br>
+		<center><div id=pa><a href="firstauth.jsp?q=oauthmashup">Multiple/Mashup Oauth Configuration</a></div></center>
 	</div>
 <div class='suc'><center><h3>Login Sucess!!</h3></center></div>
 <br><br><div class='con'><center>Get Started From Here</center></div><br><br>

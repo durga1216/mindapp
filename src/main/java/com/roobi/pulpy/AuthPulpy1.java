@@ -122,10 +122,6 @@ public class AuthPulpy1 extends HttpServlet {
          catch(Exception e){
         	 out.println(e);
          }
-
-
-		
-
 	}
 
 }

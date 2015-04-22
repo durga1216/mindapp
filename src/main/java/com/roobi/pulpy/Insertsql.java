@@ -21,10 +21,6 @@ import java.util.Map;
 @WebServlet(name = "Insertsql")
 public class Insertsql extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String data=request.getParameter("data");
         response.addHeader("Access-Control-Allow-Origin", "*");
         PrintWriter out=response.getWriter();
@@ -59,5 +55,9 @@ public class Insertsql extends HttpServlet {
         }catch (Exception e){
             out.println("error"+e.getMessage());
         }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

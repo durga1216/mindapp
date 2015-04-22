@@ -396,6 +396,10 @@ $(document).ready(function(){
 </head>
 <body>
  <%String u = (String) request.getSession().getAttribute("user");
+     String q = (String) request.getSession().getAttribute("q");
+     if(q.equals("oauthmashup")){
+        response.sendRedirect("oauthmash.jsp");
+     }
     if (u != null ) {
    // System.out.println("user != null");
     //out.print("Welcome "+u);
@@ -472,7 +476,8 @@ HttpSession session1=request.getSession();
 <br><div id=eg>Eg: http://ABC.com/search?api_key=xxx& </div><div id=hlt> &nbsp;param1 &nbsp;</div><div id=eg1>&nbsp;=bangalore</div>
 <div id=eg>Eg: http://ABC.com/search?api_key=xxx& param1=</div><div id=hlt>&nbsp; bangalore &nbsp;</div><br><br>
 <div id="content"></div><br><br>
-<input type="submit" name="first" value="Continue">
+<input type="submit" name="first" value="Continue">&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="submit" name="mash" value="Continue">
 </form>
 </body>
 </html>

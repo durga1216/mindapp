@@ -47,7 +47,7 @@
                 var docid, cdate, ddate, bal, tot, cust;
                 var indata=$('#result').val();
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "https://mindapp-pulpy.rhcloud.com/Insertsql",
                     data: {
                         data: indata
@@ -70,7 +70,7 @@
         }
 
         #head {
-            font-family: verdana;
+            font-family: vferdana;
             font-weight: bold;
             font-size: 23px;
             color: #FFFFFF;

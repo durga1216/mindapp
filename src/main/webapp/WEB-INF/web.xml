@@ -15,16 +15,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>RefPulpy</display-name>
-    <servlet-name>RefPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.RefPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RefPulpy</servlet-name>
-    <url-pattern>/RefPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ApiPulpy</display-name>
     <servlet-name>ApiPulpy</servlet-name>
     <servlet-class>com.roobi.pulpy.ApiPulpy</servlet-class>
@@ -32,6 +22,16 @@
   <servlet-mapping>
     <servlet-name>ApiPulpy</servlet-name>
     <url-pattern>/ApiPulpy</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Oauthmash</display-name>
+    <servlet-name>Oauthmash</servlet-name>
+    <servlet-class>com.roobi.pulpy.Oauthmash</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Oauthmash</servlet-name>
+    <url-pattern>/Oauthmash</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -55,136 +55,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>FirstPulpy</display-name>
-    <servlet-name>FirstPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.FirstPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FirstPulpy</servlet-name>
-    <url-pattern>/FirstPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>XmlgenPulpy</display-name>
-    <servlet-name>XmlgenPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.XmlgenPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>XmlgenPulpy</servlet-name>
-    <url-pattern>/XmlgenPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>DetailPulpy</display-name>
-    <servlet-name>DetailPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.DetailPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DetailPulpy</servlet-name>
-    <url-pattern>/DetailPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>DescPulpy</display-name>
-    <servlet-name>DescPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.DescPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DescPulpy</servlet-name>
-    <url-pattern>/DescPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>TicketPulpy</display-name>
-    <servlet-name>TicketPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.TicketPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TicketPulpy</servlet-name>
-    <url-pattern>/TicketPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>BookingPulpy</display-name>
-    <servlet-name>BookingPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.BookingPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BookingPulpy</servlet-name>
-    <url-pattern>/BookingPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>NewPulpy</display-name>
-    <servlet-name>NewPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.NewPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>NewPulpy</servlet-name>
-    <url-pattern>/NewPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>JsonToXmlPulpy</display-name>
-    <servlet-name>JsonToXmlPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.JsonToXmlPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JsonToXmlPulpy</servlet-name>
-    <url-pattern>/JsonToXmlPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>JsonToXml</display-name>
-    <servlet-name>JsonToXml</servlet-name>
-    <servlet-class>com.roobi.pulpy.JsonToXml</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JsonToXml</servlet-name>
-    <url-pattern>/JsonToXml</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>DescPulpy1</display-name>
-    <servlet-name>DescPulpy1</servlet-name>
-    <servlet-class>com.roobi.pulpy.DescPulpy1</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DescPulpy1</servlet-name>
-    <url-pattern>/DescPulpy1</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>TicketPulpy1</display-name>
-    <servlet-name>TicketPulpy1</servlet-name>
-    <servlet-class>com.roobi.pulpy.TicketPulpy1</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TicketPulpy1</servlet-name>
-    <url-pattern>/TicketPulpy1</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>XmlRequestPulpy</display-name>
-    <servlet-name>XmlRequestPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.XmlRequestPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>XmlRequestPulpy</servlet-name>
-    <url-pattern>/XmlRequestPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>XmlRequestConfig</display-name>
-    <servlet-name>XmlRequestConfig</servlet-name>
-    <servlet-class>com.roobi.pulpy.XmlRequestConfig</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>XmlRequestConfig</servlet-name>
-    <url-pattern>/XmlRequestConfig</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>SoapServlet</display-name>
     <servlet-name>SoapServlet</servlet-name>
     <servlet-class>com.roobi.pulpy.SoapServlet</servlet-class>
@@ -192,16 +62,6 @@
   <servlet-mapping>
     <servlet-name>SoapServlet</servlet-name>
     <url-pattern>/SoapServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>SamplePulpy</display-name>
-    <servlet-name>SamplePulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.SamplePulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SamplePulpy</servlet-name>
-    <url-pattern>/SamplePulpy</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -222,16 +82,6 @@
   <servlet-mapping>
     <servlet-name>AuthPulpy</servlet-name>
     <url-pattern>/AuthPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>XmlTagPulpy</display-name>
-    <servlet-name>XmlTagPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.XmlTagPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>XmlTagPulpy</servlet-name>
-    <url-pattern>/XmlTagPulpy</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -265,16 +115,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>OauthLoginServlet</display-name>
-    <servlet-name>OauthLoginServlet</servlet-name>
-    <servlet-class>com.roobi.pulpy.OauthLoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>OauthLoginServlet</servlet-name>
-    <url-pattern>/OauthLoginServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>OauthCallBackServlet</display-name>
     <servlet-name>OauthCallBackServlet</servlet-name>
     <servlet-class>com.roobi.pulpy.OauthCallBackServlet</servlet-class>
@@ -302,16 +142,6 @@
   <servlet-mapping>
     <servlet-name>CommonXmlPulpy</servlet-name>
     <url-pattern>/CommonXmlPulpy</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ThirdServlet</display-name>
-    <servlet-name>ThirdServlet</servlet-name>
-    <servlet-class>com.roobi.pulpy.ThirdServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ThirdServlet</servlet-name>
-    <url-pattern>/ThirdServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -375,16 +205,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>apis</display-name>
-    <servlet-name>apis</servlet-name>
-    <servlet-class>com.roobi.pulpy.apis</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>apis</servlet-name>
-    <url-pattern>/apis</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>MobiClient</display-name>
     <servlet-name>MobiClient</servlet-name>
     <servlet-class>com.roobi.pulpy.MobiClient</servlet-class>
@@ -415,16 +235,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ApiDoc</display-name>
-    <servlet-name>ApiDoc</servlet-name>
-    <servlet-class>com.roobi.pulpy.ApiDoc</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ApiDoc</servlet-name>
-    <url-pattern>/ApiDoc</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ClientOauth</display-name>
     <servlet-name>ClientOauth</servlet-name>
     <servlet-class>com.roobi.pulpy.ClientOauth</servlet-class>
@@ -432,16 +242,6 @@
   <servlet-mapping>
     <servlet-name>ClientOauth</servlet-name>
     <url-pattern>/ClientOauth</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AdminPulpy</display-name>
-    <servlet-name>AdminPulpy</servlet-name>
-    <servlet-class>com.roobi.pulpy.AdminPulpy</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminPulpy</servlet-name>
-    <url-pattern>/AdminPulpy</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
