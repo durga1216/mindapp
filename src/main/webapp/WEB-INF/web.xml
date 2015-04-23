@@ -95,6 +95,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>OauthmashupPulpy</display-name>
+    <servlet-name>OauthmashupPulpy</servlet-name>
+    <servlet-class>com.roobi.pulpy.OauthmashupPulpy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OauthmashupPulpy</servlet-name>
+    <url-pattern>/OauthmashupPulpy</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>SecondConfig</display-name>
     <servlet-name>SecondConfig</servlet-name>
     <servlet-class>com.roobi.pulpy.SecondConfig</servlet-class>

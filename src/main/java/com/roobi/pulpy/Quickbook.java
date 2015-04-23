@@ -160,13 +160,11 @@ public class Quickbook extends HttpServlet {
    				companyid=rs4.getString("resp");
    			}
    			rs4.close();
-
 			String endurl1="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/query";
 			String endurl2="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/reports/BalanceSheet";
 			String endurl3="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/reports/CashFlow";
 			String endurl4="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/reports/ProfitAndLoss";
 			String endurl5="https://qb.sbfinance.intuit.com/v3/company/"+companyid+"/companyinfo/"+companyid;
-
 			String[] qburl={endurl1,endurl2,endurl3,endurl4,endurl5};
 
 			String[] qbacc={"account_result","BalanceSheet_result","CashFlow_result","ProfitAndLoss_result","companyinfo_result"};
