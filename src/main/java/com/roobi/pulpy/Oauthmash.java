@@ -53,8 +53,9 @@ public class Oauthmash extends HttpServlet {
             }
             st.executeUpdate();
             con.close();
-            out.println("<center><br><br><h2> Configured Successful..!<br><br>Your APPID is "+appid+"..<br>" +
-                    "<br>Check this URL <a>https://mindapp-pulpy.rhcloud.com/OauthmashupPulpy</a></h2></center>");
+            response.sendRedirect("mashup_response.jsp");
+            //out.println("<center><br><br><h2> Configured Successful..!<br><br>Your APPID is "+appid+"..<br>" +
+              //      "<br>Check this URL <a>https://mindapp-pulpy.rhcloud.com/OauthmashupPulpy</a></h2></center>");
         }catch (Exception e){
             out.println("Some Error "+e.getMessage());
         }

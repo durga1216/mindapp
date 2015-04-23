@@ -184,6 +184,8 @@ public class OauthmashupPulpy extends HttpServlet {
                         str1 = result.toString();
                         //out.println(str1);
                         totalres += str1 + ",";
+                        PreparedStatement st5 = con.prepareStatement("DELETE From oauth1 ORDER BY no DESC LIMIT 1");
+                        st5.executeUpdate();
                     }
                     else if(auth.equals("Oauth2")){
                         HttpClient client=new DefaultHttpClient();
@@ -242,16 +244,16 @@ public class OauthmashupPulpy extends HttpServlet {
                             }
                         }
                         totalres += GetResponse + ",";
+                        PreparedStatement st6 = con.prepareStatement("DELETE From oauthtoken ORDER BY count DESC LIMIT 1");
+                        st6.executeUpdate();
                     }
                 }
 
                 totalres = removeLastChar(totalres);
                 totalres += "}}";
                 out.println(totalres);
-                PreparedStatement st5 = con.prepareStatement("DELETE From oauth1 ORDER BY no DESC LIMIT 1");
-                st5.executeUpdate();
-                PreparedStatement st6 = con.prepareStatement("DELETE From oauthtoken ORDER BY no DESC LIMIT 1");
-                st6.executeUpdate();
+
+
                 //con.close();
             }
         }catch(Exception e){

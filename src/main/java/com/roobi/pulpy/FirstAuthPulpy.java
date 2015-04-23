@@ -498,7 +498,7 @@ public class FirstAuthPulpy extends HttpServlet {
 					String el1 = rs.getString("el");
 					String ev1 = rs.getString("ev");
 					String rf1 = rs.getString("rf");
-					String url = "call_from_firstauth";
+					String url = "null";
 					String rmethod1 = rs.getString("rmethod");
 					session.setAttribute("cname", cname1);
 					session.setAttribute("ckey", ckey1);

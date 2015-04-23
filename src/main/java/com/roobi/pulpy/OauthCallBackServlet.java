@@ -179,7 +179,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				response.setContentType("text/html;charset=utf-8");
 				response.setCharacterEncoding("UTF-8");
 				pw.println("<br><br><center><b><h2><font color='#ffffff;'>Sucessfully Authenticated with "+appname+"</font></center></h2></b>");
-				if(url.equals("sscall_from_firstauth")){
+				if(url.equals("ssnull")){
 					pw.println("<br><br><h3><center><a style='color:#ffffff;' href='auth.jsp'>Continue with Config</a></center></h3>");
 					//pw.println("<br><br><h3><center><a style='color:#ffffff;' href='token.jsp'>Continue with App</a></center></h3></body>");
 					pw.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with Prebuilt APP</a></center></h3></body>");
