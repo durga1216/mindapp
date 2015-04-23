@@ -397,6 +397,7 @@ $(document).ready(function(){
 <body>
  <%String u = (String) request.getSession().getAttribute("user");
      String q = (String) request.getSession().getAttribute("q");
+     session.setAttribute("secret1","null");
      if(q.equals("oauthmashup")){
         response.sendRedirect("oauthmash.jsp");
      }

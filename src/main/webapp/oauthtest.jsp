@@ -31,9 +31,9 @@
         var docid, cdate, ddate, bal, tot, cust;
         $.ajax({
           type: "POST",
-          url: "https://mindapp-pulpy.rhcloud.com/OauthmashupPulpy",
+          url: "https://mindapp-pulpy.rhcloud.com/AuthXmlPulpy",
           data: {
-            id: id
+            appid: appid
           },
           success: function result(data) {
             console.log(data);

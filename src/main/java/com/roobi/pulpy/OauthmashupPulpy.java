@@ -109,7 +109,7 @@ public class OauthmashupPulpy extends HttpServlet {
                     access_secret1 = rs4.getString("secret");
                     companyid = rs4.getString("resp");
                 }
-                rs4.close();
+                //rs4.close();
                 //String[] qburl = {endurl1, endurl2, endurl3, endurl4, endurl5};
 
                 String[] tok11 = oauth_token.split("=");
