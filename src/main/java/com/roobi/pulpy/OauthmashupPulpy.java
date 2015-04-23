@@ -3,9 +3,13 @@ package com.roobi.pulpy;
 import com.mindots.util.Utils;
 import org.apache.commons.codec.binary.*;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
@@ -23,10 +27,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by susee on 22/4/15.
@@ -80,6 +81,10 @@ public class OauthmashupPulpy extends HttpServlet {
                 String oauth1_secret=rs.getString("oskey");
                 String oreq1=rs.getString("oreq");
 
+                //Oauth2
+                String tlabel=rs.getString("tlabel");
+                String treplace=rs.getString("treplace");
+
                 //mashup
                 ArrayList<String> masmeth=new ArrayList<String>();
                 ArrayList<String> masurl=new ArrayList<String>();
@@ -101,6 +106,7 @@ public class OauthmashupPulpy extends HttpServlet {
                 String oauth_token = "";
                 String access_secret1 = "";
                 String companyid = "";
+                String access_token="";
 
                 PreparedStatement st4 = con.prepareStatement("SELECT * From oauth1 ORDER BY no DESC LIMIT 1");
                 ResultSet rs4 = st4.executeQuery();
@@ -109,8 +115,12 @@ public class OauthmashupPulpy extends HttpServlet {
                     access_secret1 = rs4.getString("secret");
                     companyid = rs4.getString("resp");
                 }
-                //rs4.close();
-                //String[] qburl = {endurl1, endurl2, endurl3, endurl4, endurl5};
+
+                PreparedStatement st3=con.prepareStatement("SELECT * From oauthtoken ORDER BY count DESC LIMIT 1");
+                ResultSet rs3 = st3.executeQuery();
+                while(rs3.next()){
+                    access_token=rs3.getString("token");
+                }
 
                 String[] tok11 = oauth_token.split("=");
                 String oauthtk = tok11[1];
@@ -124,7 +134,7 @@ public class OauthmashupPulpy extends HttpServlet {
                     String rmethod = masmeth.get(k);
                     String endul = masurl.get(k);
                     totalres += "\"" + qbacc[k] + "\":";
-out.println(rmethod+endul+usrpar);
+                    //out.println(rmethod+endul+usrpar);
                     if(auth.equals("Oauth1")) {
                         String uuid_string = UUID.randomUUID().toString();
                         uuid_string = uuid_string.replaceAll("-", "");
@@ -133,7 +143,7 @@ out.println(rmethod+endul+usrpar);
                         String oauth_timestamp = (new Long(System.currentTimeMillis() / 1000)).toString();
 
                         String parameter_string = "";
-                        if (usrpar.equals("null")) {
+                        if (!usrpar.equals("null")) {
                             parameter_string = usrpar + "&oauth_consumer_key=" + oauth1_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
                         } else {
                             parameter_string = "oauth_consumer_key=" + oauth1_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
@@ -148,7 +158,7 @@ out.println(rmethod+endul+usrpar);
                         String tst4 = tst1[0] + tst3;
 
                         String signature_base_string = rmethod + "&" + enurl + "&" + URLEncoder.encode(tst4, "UTF-8");
-                        out.println(signature_base_string+access_secret1+sec1);
+                    //    out.println(signature_base_string+access_secret1+sec1);
                         String oauth_signature = "";
                         String oauth_signature1 = "";
                         try {
@@ -159,7 +169,7 @@ out.println(rmethod+endul+usrpar);
                         }
 
                         String actok = endul + "?" + tst4 + "&oauth_signature=" + oauth_signature1;
-                        out.println("dfas"+actok);
+                      //  out.println("dfas"+actok);
                         HttpClient httpclient = new DefaultHttpClient();
                         HttpGet get1 = new HttpGet(actok);
                         get1.setHeader("Accept", "application/json");
@@ -172,11 +182,66 @@ out.println(rmethod+endul+usrpar);
                             result.append(line);
                         }
                         str1 = result.toString();
-                        out.println(str1);
+                        //out.println(str1);
                         totalres += str1 + ",";
                     }
                     else if(auth.equals("Oauth2")){
+                        HttpClient client=new DefaultHttpClient();
+                        String line="";
+                        String GetResponse="";
+                        if(rmethod.equals("GET")){
+                            if("Authorization:Bearer".equals(treplace)){
+                                HttpGet get=new HttpGet(endul);
+                                get.addHeader("Authorization", "Bearer "+access_token);
+                                HttpResponse response1 = client.execute(get);
+                                BufferedReader rd = new BufferedReader(
+                                        new InputStreamReader(response1.getEntity().getContent()));
+                                while ((line = rd.readLine()) != null) {
+                                    GetResponse+=line;
+                                }
+                            }
+                            else if("QueryString".equals(treplace)){
+                                String param = "";
+                                if("null".equals(usrpar))
+                                    param=tlabel+"="+access_token;
+                                else
+                                    param=tlabel+"="+access_token+"&"+usrpar;
 
+                                String pointurl=endul+"?"+param;
+                                HttpGet get=new HttpGet(pointurl);
+                                HttpResponse response1=client.execute(get);
+                                BufferedReader rd = new BufferedReader
+                                        (new InputStreamReader(response1.getEntity().getContent()));
+                                while ((line = rd.readLine()) != null) {
+                                    GetResponse+=line;
+                                }
+                            } // query string
+                        }else if(rmethod.equals("POST")) {
+                            HttpPost post = new HttpPost(endul);
+                            if ("Authorization:Bearer".equals(treplace)) {
+                                post.addHeader("Authorization", "Bearer " + access_token);
+                                HttpResponse response1 = client.execute(post);
+                                BufferedReader rd = new BufferedReader(
+                                        new InputStreamReader(response1.getEntity().getContent()));
+                                while ((line = rd.readLine()) != null) {
+                                    GetResponse += line;
+                                }
+                            } else if ("QueryString".equals(treplace)) {
+                                List<NameValuePair> cod = new ArrayList<NameValuePair>();
+                                cod.add(new BasicNameValuePair(tlabel, access_token));
+                                if(!usrpar.equals("null")) {
+                                    String[] pa = usrpar.split("=");
+                                    cod.add(new BasicNameValuePair(pa[0], pa[1]));
+                                }
+                                post.setEntity(new UrlEncodedFormEntity(cod));
+                                HttpResponse response1 = client.execute(post);
+                                BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
+                                while ((line = rd.readLine()) != null) {
+                                    GetResponse += line;
+                                }
+                            }
+                        }
+                        totalres += GetResponse + ",";
                     }
                 }
 
@@ -185,6 +250,8 @@ out.println(rmethod+endul+usrpar);
                 out.println(totalres);
                 PreparedStatement st5 = con.prepareStatement("DELETE From oauth1 ORDER BY no DESC LIMIT 1");
                 st5.executeUpdate();
+                PreparedStatement st6 = con.prepareStatement("DELETE From oauthtoken ORDER BY no DESC LIMIT 1");
+                st6.executeUpdate();
                 //con.close();
             }
         }catch(Exception e){
