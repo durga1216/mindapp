@@ -101,6 +101,7 @@ public class OauthmashupPulpy extends HttpServlet {
                 String oauth_token = "";
                 String access_secret1 = "";
                 String companyid = "";
+
                 PreparedStatement st4 = con.prepareStatement("SELECT * From oauth1 ORDER BY no DESC LIMIT 1");
                 ResultSet rs4 = st4.executeQuery();
                 while (rs4.next()) {
@@ -119,55 +120,60 @@ public class OauthmashupPulpy extends HttpServlet {
                 //inputs
                 for (int k = 0; k < masmeth.size(); k++) {
 
-                    String eurl=para.get(k);
+                    String usrpar=para.get(k);
                     String rmethod = masmeth.get(k);
                     String endul = masurl.get(k);
                     totalres += "\"" + qbacc[k] + "\":";
 
-                    String uuid_string = UUID.randomUUID().toString();
-                    uuid_string = uuid_string.replaceAll("-", "");
-                    String oauth_nonce = uuid_string;
-                    String enurl = URLEncoder.encode(endul, "UTF-8");
-                    String oauth_timestamp = (new Long(System.currentTimeMillis() / 1000)).toString();
+                    if(auth.equals("Oauth1")) {
+                        String uuid_string = UUID.randomUUID().toString();
+                        uuid_string = uuid_string.replaceAll("-", "");
+                        String oauth_nonce = uuid_string;
+                        String enurl = URLEncoder.encode(endul, "UTF-8");
+                        String oauth_timestamp = (new Long(System.currentTimeMillis() / 1000)).toString();
 
-                    String parameter_string = "";
-                    if (eurl.equals("null")) {
-                        parameter_string = eurl+"&oauth_consumer_key=" + oauth1_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
-                    } else {
-                        parameter_string = "oauth_consumer_key=" + oauth1_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
-                    }
-                    String[] tst1 = parameter_string.split("&");
-                    Arrays.sort(tst1);
-                    int no = tst1.length;
-                    String tst3 = "";
-                    for (int i = 1; i < no; i++) {
-                        tst3 = tst3 + "&" + tst1[i];
-                    }
-                    String tst4 = tst1[0] + tst3;
-                    String signature_base_string = rmethod + "&" + enurl + "&" + URLEncoder.encode(tst4, "UTF-8");
-                    String oauth_signature = "";
-                    String oauth_signature1 = "";
-                    try {
-                        oauth_signature = computeSignature(signature_base_string, oauth1_secret + "&" + sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
-                        oauth_signature1 = URLEncoder.encode(oauth_signature, "UTF-8");
-                    } catch (GeneralSecurityException e) {
-                        // TODO Auto-generated catch block
-                    }
+                        String parameter_string = "";
+                        if (usrpar.equals("null")) {
+                            parameter_string = usrpar + "&oauth_consumer_key=" + oauth1_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
+                        } else {
+                            parameter_string = "oauth_consumer_key=" + oauth1_key + "&oauth_nonce=" + oauth_nonce + "&oauth_signature_method=" + oauth_signature_method + "&oauth_timestamp=" + oauth_timestamp + "&" + oauth_token + "&oauth_version=1.0";
+                        }
+                        String[] tst1 = parameter_string.split("&");
+                        Arrays.sort(tst1);
+                        int no = tst1.length;
+                        String tst3 = "";
+                        for (int i = 1; i < no; i++) {
+                            tst3 = tst3 + "&" + tst1[i];
+                        }
+                        String tst4 = tst1[0] + tst3;
+                        String signature_base_string = rmethod + "&" + enurl + "&" + URLEncoder.encode(tst4, "UTF-8");
+                        String oauth_signature = "";
+                        String oauth_signature1 = "";
+                        try {
+                            oauth_signature = computeSignature(signature_base_string, oauth1_secret + "&" + sec1);  // note the & at the end. Normally the user access_token would go here, but we don't know it yet for request_token
+                            oauth_signature1 = URLEncoder.encode(oauth_signature, "UTF-8");
+                        } catch (GeneralSecurityException e) {
+                            // TODO Auto-generated catch block
+                        }
 
-                    String actok = endul + "?" + tst4 + "&oauth_signature=" + oauth_signature1;
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpGet get1 = new HttpGet(actok);
-                    get1.setHeader("Accept", "application/json");
-                    HttpResponse response1 = httpclient.execute(get1);
-                    BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
-                    StringBuffer result = new StringBuffer();
-                    String line = "";
-                    String str1 = "";
-                    while ((line = rd.readLine()) != null) {
-                        result.append(line);
+                        String actok = endul + "?" + tst4 + "&oauth_signature=" + oauth_signature1;
+                        HttpClient httpclient = new DefaultHttpClient();
+                        HttpGet get1 = new HttpGet(actok);
+                        get1.setHeader("Accept", "application/json");
+                        HttpResponse response1 = httpclient.execute(get1);
+                        BufferedReader rd = new BufferedReader(new InputStreamReader(response1.getEntity().getContent()));
+                        StringBuffer result = new StringBuffer();
+                        String line = "";
+                        String str1 = "";
+                        while ((line = rd.readLine()) != null) {
+                            result.append(line);
+                        }
+                        str1 = result.toString();
+                        totalres += str1 + ",";
                     }
-                    str1 = result.toString();
-                    totalres += str1 + ",";
+                    else if(auth.equals("Oauth2")){
+
+                    }
                 }
 
                 totalres = removeLastChar(totalres);
@@ -178,7 +184,7 @@ public class OauthmashupPulpy extends HttpServlet {
                 con.close();
             }
         }catch(Exception e){
-
+                out.println("error message "+e.getMessage());
         }
     }
     private static String removeLastChar(String str) {
