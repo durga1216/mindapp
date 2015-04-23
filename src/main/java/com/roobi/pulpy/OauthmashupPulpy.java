@@ -124,7 +124,7 @@ public class OauthmashupPulpy extends HttpServlet {
                     String rmethod = masmeth.get(k);
                     String endul = masurl.get(k);
                     totalres += "\"" + qbacc[k] + "\":";
-
+out.println(rmethod+endul+usrpar);
                     if(auth.equals("Oauth1")) {
                         String uuid_string = UUID.randomUUID().toString();
                         uuid_string = uuid_string.replaceAll("-", "");
@@ -146,7 +146,9 @@ public class OauthmashupPulpy extends HttpServlet {
                             tst3 = tst3 + "&" + tst1[i];
                         }
                         String tst4 = tst1[0] + tst3;
+
                         String signature_base_string = rmethod + "&" + enurl + "&" + URLEncoder.encode(tst4, "UTF-8");
+                        out.println(signature_base_string+access_secret1+sec1);
                         String oauth_signature = "";
                         String oauth_signature1 = "";
                         try {
@@ -157,6 +159,7 @@ public class OauthmashupPulpy extends HttpServlet {
                         }
 
                         String actok = endul + "?" + tst4 + "&oauth_signature=" + oauth_signature1;
+                        out.println("dfas"+actok);
                         HttpClient httpclient = new DefaultHttpClient();
                         HttpGet get1 = new HttpGet(actok);
                         get1.setHeader("Accept", "application/json");
@@ -169,6 +172,7 @@ public class OauthmashupPulpy extends HttpServlet {
                             result.append(line);
                         }
                         str1 = result.toString();
+                        out.println(str1);
                         totalres += str1 + ",";
                     }
                     else if(auth.equals("Oauth2")){
@@ -181,7 +185,7 @@ public class OauthmashupPulpy extends HttpServlet {
                 out.println(totalres);
                 PreparedStatement st5 = con.prepareStatement("DELETE From oauth1 ORDER BY no DESC LIMIT 1");
                 st5.executeUpdate();
-                con.close();
+                //con.close();
             }
         }catch(Exception e){
                 out.println("error message "+e.getMessage());

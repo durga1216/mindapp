@@ -37,8 +37,12 @@ public class Insertsql extends HttpServlet {
             JSONObject object7=object3.getJSONObject("MetaData");
 
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection con = (Connection) DriverManager.getConnection(config.get("URL"), config.get("USER"), config.get("PASS"));
-            PreparedStatement st1=con.prepareStatement("INSERT INTO qb_company_info (SupportedLanguages,Country,CreateTime,domain,Email,PrimaryPhone,CompanyAddr,CompanyName,CompanyStartDate,FiscalYearStartMonth) VALUES (?,?,?,?,?,?,?,?,?,?)");
+           // Connection con = (Connection) DriverManager.getConnection(config.get("URL"), config.get("USER"), config.get("PASS"));
+            Connection con = DriverManager
+                    .getConnection(
+                            "jdbc:mysql://data.nextepbusinessbuilder.com:13306/accounting_api",
+                            "minddots", "4_ujuraG");
+            PreparedStatement st1=con.prepareStatement("INSERT INTO minddots_qb_company_info (SupportedLanguages,Country,CreateTime,domain,Email,PrimaryPhone,CompanyAddr,CompanyName,CompanyStartDate,FiscalYearStartMonth) VALUES (?,?,?,?,?,?,?,?,?,?)");
             st1.setString(1,object3.getString("SupportedLanguages"));
             st1.setString(2,object3.getString("Country"));
             st1.setString(3, object7.getString("CreateTime"));
