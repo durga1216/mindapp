@@ -119,6 +119,7 @@ public class FirstAuthPulpy extends HttpServlet {
 		String tokenurl = request.getParameter("tokenurl");
 		String tlabel = request.getParameter("tlabel");
 		String treplace = request.getParameter("treplace");
+		String redir=request.getParameter("redir");
 		String el = request.getParameter("el");
 		String ev = request.getParameter("ev");
 		HttpSession session2 = request.getSession(true);
@@ -132,7 +133,7 @@ public class FirstAuthPulpy extends HttpServlet {
 			con = (Connection) DriverManager.getConnection(config.get("URL"),
 					config.get("USER"), config.get("PASS"));
 			PreparedStatement st = null;
-			st = con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,osmeth,oreq,ockey,oskey,ourl1,ourl2,ourl3,sigckey,sigskey,sigmeth,logo,sig,message,sformat) values ('"
+			st = con.prepareStatement("insert into authen1(id,appname,descr,auth,rf,rmethod,a1,a2,b1,b2,b3,b4,h1,hv1,h2,hv2,h3,hv3,h4,hv4,h5,hv5,cname,ckey,csecname,cseckey,sname,svalue,aurl,tokenurl,tlabel,treplace,el,ev,osmeth,oreq,ockey,oskey,ourl1,ourl2,ourl3,sigckey,sigskey,sigmeth,logo,sig,message,sformat,redir) values ('"
 					+ id
 					+ "','"
 					+ appname
@@ -220,7 +221,7 @@ public class FirstAuthPulpy extends HttpServlet {
 					+ sigskey
 					+ "','"
 					+ sigmeth
-					+ "',?,'" + sig + "','" + message + "','" + sformat + "')");
+					+ "',?,'" + sig + "','" + message + "','" + sformat + "','" + redir + "')");
 			st.setBlob(1, inputStream);
 			st.executeUpdate();
 			st.close();

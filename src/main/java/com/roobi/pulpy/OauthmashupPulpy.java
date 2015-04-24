@@ -135,7 +135,26 @@ public class OauthmashupPulpy extends HttpServlet {
                     String endul = masurl.get(k);
                     totalres += "\"" + qbacc[k] + "\":";
                     //out.println(rmethod+endul+usrpar);
-                    if(auth.equals("Oauth1")) {
+                    if(auth.equals("API keys")){
+                        HttpClient client=new DefaultHttpClient();
+                        String line="";
+                        String GetResponse="";
+                        String param = "";
+                        if("null".equals(usrpar))
+                            param=ak1+"="+ak2;
+                        else
+                            param=ak1+"="+ak2+"&"+usrpar;
+                        String pointurl=endul+"?"+param;
+                        HttpGet get=new HttpGet(pointurl);
+                        HttpResponse response1=client.execute(get);
+                        BufferedReader rd = new BufferedReader
+                                (new InputStreamReader(response1.getEntity().getContent()));
+                        while ((line = rd.readLine()) != null) {
+                            GetResponse+=line;
+                        }
+                        totalres += GetResponse + ",";
+                    }
+                    else if(auth.equals("Oauth1")) {
                         String uuid_string = UUID.randomUUID().toString();
                         uuid_string = uuid_string.replaceAll("-", "");
                         String oauth_nonce = uuid_string;

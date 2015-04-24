@@ -380,13 +380,13 @@ margin-left:80px;
 <br><div id="content"></div><br>
 </div>
 
-
+<%--for apikey--%>
 <div id="apiid" style="display:none"><br>
 <br><div id=eg>Eg: http://ABC.com/search?</div><div id=hlt> &nbsp;api_key &nbsp;</div><div id=eg1>=xxxxxxxxx & params1=bangalore</div>
 <div id=eg>Eg: http://ABC.com/search?api_key=</div><div id=hlt>&nbsp; xxxxxxxxx &nbsp;</div><div id=eg1> & param1=bangalore</div><br><br>
 <input type="text" name="a1" value="" placeholder="APIkey_Label" >
 <input type="text" name="a2" value="" placeholder="API_Key" >
-
+	<%--for apikey--%>
 </div>
 <br><div id="oauth1" style="display:none"><br>
 <input type="text" name="ockey" value="" placeholder="oauth_consumer_key">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -401,7 +401,10 @@ margin-left:80px;
     <option value="POST">POST</option>
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
-</select><br/><br/>
+</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="redir" value="https://mindapp-pulpy.rhcloud.com/Oauth1Call" placeholder="Redirect Url">
+	<br/>
+	<a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
+	<br><div id="content"></div><br><br/>
 </div>
 <br><div id='sign' style="display:none;">Select a Message Digest Algorithm<br><br>
 <select name="sig" id="sig">
@@ -465,7 +468,10 @@ session1.setAttribute("nonce", nonce);
     <option value="XML-RPC">XML-RPC</option>
     <option value="SOAP">SOAP</option>
     
-</select></div><br/><br/>
+</select></div><br/><br>
+	<a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
+	<br><div id="content"></div><br>
+	<br/>
 <div class="rmethod" style="display:none"><center>Access Token Method</center></div>
 <select name="select2"  id="select2" onchange="change()" style="display:none">
     <option value="GET">GET</option>
