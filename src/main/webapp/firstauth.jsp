@@ -403,8 +403,6 @@ margin-left:80px;
     <option value="DELETE">DELETE</option>
 </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="redir" value="https://mindapp-pulpy.rhcloud.com/Oauth1Call" placeholder="Redirect Url">
 	<br/>
-	<a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
-	<br><div id="content"></div><br><br/>
 </div>
 <br><div id='sign' style="display:none;">Select a Message Digest Algorithm<br><br>
 <select name="sig" id="sig">
@@ -469,8 +467,6 @@ session1.setAttribute("nonce", nonce);
     <option value="SOAP">SOAP</option>
     
 </select></div><br/><br>
-	<a id='pa' href="javascript:addParent();">Add Header</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='pa' href="javascript:removeParent();">Remove Header</a></center><br><br>
-	<br><div id="content"></div><br>
 	<br/>
 <div class="rmethod" style="display:none"><center>Access Token Method</center></div>
 <select name="select2"  id="select2" onchange="change()" style="display:none">
