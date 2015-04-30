@@ -61,7 +61,7 @@ public class OauthCallBackServlet extends HttpServlet {
 			String id=(String) session1.getAttribute("id");
 			String appname="";String tokenurl="";String rm1="";String apikey="";
 			String apisecvalue="";
-			pw.println("before if"+id);
+			//pw.println("before if"+id);
 			//TO check If it comes from configuration Or Javascript Call
 			if(url.equals("ssnull")){
 				//pw.println("inside if");
@@ -122,7 +122,9 @@ public class OauthCallBackServlet extends HttpServlet {
 				}
 			}
 			else if(rm1.equals("GET")){
-				HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
+				String name=tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet";
+				//pw.println(name);
+				HttpGet get=new HttpGet(name);
 				HttpResponse response1 = client.execute(get);
 				BufferedReader rd = new BufferedReader
 						(new InputStreamReader(response1.getEntity().getContent()));
@@ -131,10 +133,10 @@ public class OauthCallBackServlet extends HttpServlet {
 					finalres=responseBody.toString();
 				}      
 			}
-			pw.println("data "+finalres);
+			//pw.println("data "+finalres);
 			BufferedReader br=new BufferedReader(new StringReader(finalres));
 			while ((line = br.readLine()) != null) {
-				pw.println(line);
+				//pw.println(line);
 				if(line.startsWith("{") || line.startsWith("[{") || line.endsWith("}")){
 					JSONObject json = null;
 					json = new JSONObject(finalres);
@@ -174,7 +176,7 @@ public class OauthCallBackServlet extends HttpServlet {
 				response.setContentType("text/html;charset=utf-8");
 				response.setCharacterEncoding("UTF-8");
 				pw.println("<br><br><center><b><h2><font color='#ffffff;'>Sucessfully Authenticated with "+appname+"</font></center></h2></b>");
-				if(url.equals("ssnull")){
+				if(url.equals("ssname")){
 					pw.println("<br><br><h3><center><a style='color:#ffffff;' href='auth.jsp'>Continue with Config</a></center></h3>");
 					//pw.println("<br><br><h3><center><a style='color:#ffffff;' href='token.jsp'>Continue with App</a></center></h3></body>");
 					pw.println("<br><br><h3><center><a style='color:#ffffff;' href='https://mindapp-pulpy.rhcloud.com/PreBuild'>Continue with Prebuilt APP</a></center></h3></body>");
