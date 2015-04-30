@@ -55,13 +55,13 @@ public class OauthCallBackServlet extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con = (Connection) DriverManager.getConnection(config.get("URL"),config.get("USER"),config.get("PASS"));
 			//	response.setContentType("application/json");
-			String url1=request.getParameter("url");
+			//String url1=request.getParameter("url");
 			HttpSession session1=request.getSession(true);
 			String url="ss"+(String) session1.getAttribute("url");
 			String id=(String) session1.getAttribute("id");
 			String appname="";String tokenurl="";String rm1="";String apikey="";
 			String apisecvalue="";
-			//pw.println("before if"+id);
+			pw.println("before if"+id);
 			//TO check If it comes from configuration Or Javascript Call
 			if(url.equals("ssnull")){
 				//pw.println("inside if");
@@ -123,12 +123,6 @@ public class OauthCallBackServlet extends HttpServlet {
 			}
 			else if(rm1.equals("GET")){
 				HttpGet get=new HttpGet(tokenurl+"?code="+code+"&grant_type=authorization_code&client_id="+apikey+"&client_secret="+apisecvalue+"&redirect_uri=https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet");
-				List <NameValuePair> cod = new ArrayList <NameValuePair>();
-				cod.add(new BasicNameValuePair("code",code));
-				cod.add(new BasicNameValuePair("grant_type","authorization_code"));
-				cod.add(new BasicNameValuePair("client_id",apikey));
-				cod.add(new BasicNameValuePair("client_secret",apisecvalue)); 
-				cod.add(new BasicNameValuePair("redirect_uri","https://mindapp-pulpy.rhcloud.com/OauthCallBackServlet")); 
 				HttpResponse response1 = client.execute(get);
 				BufferedReader rd = new BufferedReader
 						(new InputStreamReader(response1.getEntity().getContent()));
@@ -137,9 +131,10 @@ public class OauthCallBackServlet extends HttpServlet {
 					finalres=responseBody.toString();
 				}      
 			}
+			pw.println("data "+finalres);
 			BufferedReader br=new BufferedReader(new StringReader(finalres));
 			while ((line = br.readLine()) != null) {
-				//pw.println(line);
+				pw.println(line);
 				if(line.startsWith("{") || line.startsWith("[{") || line.endsWith("}")){
 					JSONObject json = null;
 					json = new JSONObject(finalres);
