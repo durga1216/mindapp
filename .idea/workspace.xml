@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a00d117-797b-442a-80d2-5073421707e8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/images/pix7.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/semantics3/api/testing.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/roobi/pulpy/FirstAuthPulpy.class" afterPath="$PROJECT_DIR$/target/classes/com/roobi/pulpy/FirstAuthPulpy.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/roobi/pulpy/OauthCallBackServlet.class" afterPath="$PROJECT_DIR$/target/classes/com/roobi/pulpy/OauthCallBackServlet.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java" afterPath="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java" afterPath="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/swagger.html" afterPath="$PROJECT_DIR$/src/main/webapp/swagger.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mindapp.iws" />
@@ -46,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestSwagger.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RestSwagger.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8135593">
-              <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="67" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,22 +57,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AuthXmlPulpy.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="swagger.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.11111111">
+              <caret line="91" column="20" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthXmlPulpy.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.460452">
+              <caret line="84" column="10" selection-start-line="84" selection-start-column="10" selection-end-line="84" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#15867#15883#0" expanded="true" />
-                <element signature="e#32832#32848#0" expanded="true" />
-                <element signature="e#38026#38041#0" expanded="true" />
-                <element signature="e#78656#78671#0" expanded="true" />
-                <marker date="1430836302769" expanded="true" signature="4377:4496" placeholder="SELECT * FRO..authen1..." />
-                <marker date="1430836302769" expanded="true" signature="4638:4766" placeholder="SELECT * FRO..authen1..." />
-                <marker date="1430836302769" expanded="true" signature="4911:5039" placeholder="SELECT * FRO..authen1..." />
-                <marker date="1430836302769" expanded="true" signature="5184:5236" placeholder="SELECT * Fro..oauthtoken..." />
-                <marker date="1430836302769" expanded="true" signature="58069:58114" placeholder="SELECT * Fro..oauth1..." />
+                <element signature="e#15869#15885#0" expanded="true" />
+                <element signature="e#32834#32850#0" expanded="true" />
+                <element signature="e#38028#38043#0" expanded="true" />
+                <element signature="e#78658#78673#0" expanded="true" />
+                <marker date="1430842834090" expanded="true" signature="4379:4498" placeholder="SELECT * FRO..authen1..." />
+                <marker date="1430842834090" expanded="true" signature="4640:4768" placeholder="SELECT * FRO..authen1..." />
+                <marker date="1430842834090" expanded="true" signature="4913:5041" placeholder="SELECT * FRO..authen1..." />
+                <marker date="1430842834090" expanded="true" signature="5186:5238" placeholder="SELECT * Fro..oauthtoken..." />
+                <marker date="1430842834090" expanded="true" signature="58071:58116" placeholder="SELECT * Fro..oauth1..." />
               </folding>
             </state>
           </provider>
@@ -124,8 +133,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/OauthCallBackServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/swagg.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/css/screen.css" />
-        <option value="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/swagger.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java" />
       </list>
     </option>
   </component>
@@ -1146,12 +1156,12 @@
       <workItem from="1430369202431" duration="2119000" />
       <workItem from="1430373645219" duration="155000" />
       <workItem from="1430828205014" duration="4505000" />
-      <workItem from="1430833608264" duration="3934000" />
+      <workItem from="1430833608264" duration="7501000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90714000" />
+    <option name="totallyTimeSpent" value="94281000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1242,25 +1252,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15867#15883#0" expanded="true" />
-            <element signature="e#32832#32848#0" expanded="true" />
-            <element signature="e#38026#38041#0" expanded="true" />
-            <element signature="e#78656#78671#0" expanded="true" />
-            <marker date="1430836302769" expanded="true" signature="4377:4496" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1430836302769" expanded="true" signature="4638:4766" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1430836302769" expanded="true" signature="4911:5039" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1430836302769" expanded="true" signature="5184:5236" placeholder="SELECT * Fro..oauthtoken..." />
-            <marker date="1430836302769" expanded="true" signature="58069:58114" placeholder="SELECT * Fro..oauth1..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/auth1.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1587,6 +1578,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="6.788026">
           <caret line="239" column="38" selection-start-line="239" selection-start-column="38" selection-end-line="239" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1607,31 +1599,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
+          <caret line="20" column="67" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#15867#15883#0" expanded="true" />
-            <element signature="e#32832#32848#0" expanded="true" />
-            <element signature="e#38026#38041#0" expanded="true" />
-            <element signature="e#78656#78671#0" expanded="true" />
-            <marker date="1430836302769" expanded="true" signature="4377:4496" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1430836302769" expanded="true" signature="4638:4766" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1430836302769" expanded="true" signature="4911:5039" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1430836302769" expanded="true" signature="5184:5236" placeholder="SELECT * Fro..oauthtoken..." />
-            <marker date="1430836302769" expanded="true" signature="58069:58114" placeholder="SELECT * Fro..oauth1..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8135593">
-          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+        <state vertical-scroll-proportion="-0.11111111">
+          <caret line="91" column="20" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.460452">
+          <caret line="84" column="10" selection-start-line="84" selection-start-column="10" selection-end-line="84" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#15869#15885#0" expanded="true" />
+            <element signature="e#32834#32850#0" expanded="true" />
+            <element signature="e#38028#38043#0" expanded="true" />
+            <element signature="e#78658#78673#0" expanded="true" />
+            <marker date="1430842834090" expanded="true" signature="4379:4498" placeholder="SELECT * FRO..authen1..." />
+            <marker date="1430842834090" expanded="true" signature="4640:4768" placeholder="SELECT * FRO..authen1..." />
+            <marker date="1430842834090" expanded="true" signature="4913:5041" placeholder="SELECT * FRO..authen1..." />
+            <marker date="1430842834090" expanded="true" signature="5186:5238" placeholder="SELECT * Fro..oauthtoken..." />
+            <marker date="1430842834090" expanded="true" signature="58071:58116" placeholder="SELECT * Fro..oauth1..." />
           </folding>
         </state>
       </provider>

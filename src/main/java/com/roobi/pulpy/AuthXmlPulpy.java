@@ -82,7 +82,7 @@ public class AuthXmlPulpy extends HttpServlet {
 //
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        Map<String, String> config = Utils.getConfigFromFile(getServletContext(), "config.properties");
-        response.setHeader("Content-Type","text/xml; charset=UTF-8");
+        //response.setHeader("Content-Type","text/xml; charset=UTF-8");
         response.addHeader("Access-Control-Allow-Origin", "*");
         Connection con=null;
         HttpSession session=request.getSession(true);

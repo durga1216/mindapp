@@ -19,9 +19,12 @@ public class RestSwagger {
         String result="{\n" +
                 "  \"swaggerVersion\": \"1.2\",\n" +
                 "  \"basePath\": \"http://mindapp-pulpy.rhcloud.com\",\n" +
-                "\"tags\":{\"name\":\"Mind pulpy\",\"description\":\"Get simplified data using appid\"},"+
+                "\"tags\":{\"name\":\"mind\",\"description\":\"Get simplified data using appid\"},"+
                 "  \"apis\": [\n" +
                 "    {\n" +
+                "       \"tags\":[  \n" +
+                "               \"mind\"\n" +
+                "            ]," +
                 "      \"path\": \"/AuthXmlPulpy\",\n" +
                 "      \"operations\": [\n" +
                 "        {\n" +
@@ -29,10 +32,21 @@ public class RestSwagger {
                 "          \"summary\": \"Get the simplified result using mindpulpy\",\n" +
                 "          \"type\": \"string\",\n" +
                 "          \"nickname\": \"mashup result\",\n" +
+                "          \"produces\":[  \n" +
+                "               \"application/xml\",\n" +
+                "               \"application/json\"\n" +
+                "            ]," +
                 "          \"parameters\": [\n" +
                 "            {\n" +
                 "              \"name\": \"appid\",\n" +
                 "              \"description\": \"Enter your unique appid.\",\n" +
+                "              \"required\": true,\n" +
+                "              \"type\": \"string\",\n" +
+                "              \"paramType\": \"query\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"name\": \"p1\",\n" +
+                "              \"description\": \"Enter your parameter1.\",\n" +
                 "              \"required\": true,\n" +
                 "              \"type\": \"string\",\n" +
                 "              \"paramType\": \"query\"\n" +
