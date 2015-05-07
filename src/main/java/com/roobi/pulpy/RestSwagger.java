@@ -105,7 +105,7 @@ public class RestSwagger {
                         "              \"required\": true,\n" +
                         "              \"type\": \"string\",\n" +
                         "              \"paramType\": \"query\"\n" +
-                        "            },\n";
+                        "            },";
 
                 if (rs1 != null) {
                     while (rs1.next()) {
@@ -113,7 +113,7 @@ public class RestSwagger {
                             String par = "" + rs1.getString("p" + n);
                             if (!par.equals("null")) {
                                 parm.add(par);
-                                output += "            {\n" +
+                                output += "    \n        {\n" +
                                         "              \"name\": \"p" + n + "\",\n" +
                                         "              \"description\": \"Enter " + par + ".\",\n" +
                                         "              \"required\": true,\n" +
@@ -125,7 +125,7 @@ public class RestSwagger {
                     }
                 }
                 output=removeLastChar(output);
-                output += "          ]\n" +
+                output += "\n          ]\n" +
                         "        },";
             }
             output=removeLastChar(output);
