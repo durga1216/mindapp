@@ -47,47 +47,15 @@
       <file leaf-file-name="RestSwagger.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6096257">
-              <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.47596154">
+              <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3957#3965#0" expanded="true" />
-                <element signature="e#6668#6669#0" expanded="true" />
-                <element signature="e#6725#6726#0" expanded="true" />
-                <marker date="1430998412170" expanded="true" signature="3807:3841" placeholder="SELECT * Fro..config..." />
-                <marker date="1430998412170" expanded="true" signature="3807:3855" placeholder="SELECT * Fro..config..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mobile_client.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/mobile_client.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.222221">
-              <caret line="244" column="41" selection-start-line="244" selection-start-column="41" selection-end-line="244" selection-end-column="41" />
-              <folding>
-                <marker date="1427906349030" expanded="true" signature="3983:4015" placeholder="SELECT * FRO..authen1..." />
-                <marker date="1427906349030" expanded="true" signature="4386:4420" placeholder="SELECT * FRO..config..." />
-                <marker date="1427906349030" expanded="true" signature="4524:4564" placeholder="SELECT * FRO..secondconfig..." />
-                <marker date="1427906349030" expanded="true" signature="4668:4707" placeholder="SELECT * FRO..thirdconfig..." />
-                <marker date="1427906349030" expanded="true" signature="4811:4851" placeholder="SELECT * FRO..fourthconfig..." />
-                <marker date="1427906349030" expanded="true" signature="4955:5043" placeholder="SELECT * FRO..secondconfig..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MobiClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/MobiClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="59" selection-start-line="69" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-              <folding>
-                <marker date="1427906348994" expanded="true" signature="3631:3750" placeholder="SELECT * FRO..authen1..." />
-                <marker date="1427906348994" expanded="true" signature="3877:4005" placeholder="SELECT * FRO..authen1..." />
-                <marker date="1427906348994" expanded="true" signature="4135:4263" placeholder="SELECT * FRO..authen1..." />
-                <marker date="1427906348994" expanded="true" signature="4393:4524" placeholder="SELECT * FRO..authen1..." />
+                <element signature="e#4075#4083#0" expanded="true" />
+                <element signature="e#6777#6778#0" expanded="true" />
+                <element signature="e#6834#6835#0" expanded="true" />
+                <marker date="1430999715322" expanded="true" signature="3925:3959" placeholder="SELECT * Fro..config..." />
+                <marker date="1430999715322" expanded="true" signature="3925:3973" placeholder="SELECT * Fro..config..." />
               </folding>
             </state>
           </provider>
@@ -96,8 +64,8 @@
       <file leaf-file-name="swagger.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.7777777">
-              <caret line="28" column="60" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
+            <state vertical-scroll-proportion="-5.111111">
+              <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -1138,12 +1106,12 @@
       <workItem from="1430833608264" duration="8017000" />
       <workItem from="1430917065102" duration="653000" />
       <workItem from="1430974581628" duration="1681000" />
-      <workItem from="1430977885968" duration="6069000" />
+      <workItem from="1430977885968" duration="7192000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103200000" />
+    <option name="totallyTimeSpent" value="104323000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1161,7 +1129,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.08796296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3117284" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24940239" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1573,10 +1541,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="59" selection-start-line="69" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
-            <marker date="1427906348994" expanded="true" signature="3631:3750" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1427906348994" expanded="true" signature="3877:4005" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1427906348994" expanded="true" signature="4135:4263" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1427906348994" expanded="true" signature="4393:4524" placeholder="SELECT * FRO..authen1..." />
+            <marker date="1427906348994" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..authen1..." />
+            <marker date="1427906348994" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..authen1..." />
+            <marker date="1427906348994" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..authen1..." />
+            <marker date="1427906348994" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..authen1..." />
           </folding>
         </state>
       </provider>
@@ -1586,12 +1554,12 @@
         <state vertical-scroll-proportion="-23.222221">
           <caret line="244" column="41" selection-start-line="244" selection-start-column="41" selection-end-line="244" selection-end-column="41" />
           <folding>
-            <marker date="1427906349030" expanded="true" signature="3983:4015" placeholder="SELECT * FRO..authen1..." />
-            <marker date="1427906349030" expanded="true" signature="4386:4420" placeholder="SELECT * FRO..config..." />
-            <marker date="1427906349030" expanded="true" signature="4524:4564" placeholder="SELECT * FRO..secondconfig..." />
-            <marker date="1427906349030" expanded="true" signature="4668:4707" placeholder="SELECT * FRO..thirdconfig..." />
-            <marker date="1427906349030" expanded="true" signature="4811:4851" placeholder="SELECT * FRO..fourthconfig..." />
-            <marker date="1427906349030" expanded="true" signature="4955:5043" placeholder="SELECT * FRO..secondconfig..." />
+            <marker date="1427906349030" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..authen1..." />
+            <marker date="1427906349030" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..config..." />
+            <marker date="1427906349030" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..secondconfig..." />
+            <marker date="1427906349030" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..thirdconfig..." />
+            <marker date="1427906349030" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..fourthconfig..." />
+            <marker date="1427906349030" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..secondconfig..." />
           </folding>
         </state>
       </provider>
@@ -1608,23 +1576,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7777777">
-          <caret line="28" column="60" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
+        <state vertical-scroll-proportion="-5.111111">
+          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6096257">
-          <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.47596154">
+          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3957#3965#0" expanded="true" />
-            <element signature="e#6668#6669#0" expanded="true" />
-            <element signature="e#6725#6726#0" expanded="true" />
-            <marker date="1430998412170" expanded="true" signature="3807:3841" placeholder="SELECT * Fro..config..." />
-            <marker date="1430998412170" expanded="true" signature="3807:3855" placeholder="SELECT * Fro..config..." />
+            <element signature="e#4075#4083#0" expanded="true" />
+            <element signature="e#6777#6778#0" expanded="true" />
+            <element signature="e#6834#6835#0" expanded="true" />
+            <marker date="1430999715322" expanded="true" signature="3925:3959" placeholder="SELECT * Fro..config..." />
+            <marker date="1430999715322" expanded="true" signature="3925:3973" placeholder="SELECT * Fro..config..." />
           </folding>
         </state>
       </provider>

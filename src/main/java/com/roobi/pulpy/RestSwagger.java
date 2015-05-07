@@ -29,7 +29,7 @@ public class RestSwagger {
                 "      \"version\":\"1.0.0\",\n" +
                 "      \"title\":\"Mindpulpy Console\"\n" +
                 "   }," +
-                "  \"basePath\": \"http://mindapp-pulpy.rhcloud.com\",\n" +
+                "  \"basePath\": \"https://mindapp-pulpy.rhcloud.com\",\n" +
                 "  \"apis\": [\n" +
                 "    {\n" +
                 "       \"tags\":[  \n" +
@@ -102,7 +102,7 @@ public class RestSwagger {
                     "            {\n" +
                     "              \"name\": \"appid\",\n" +
                     "              \"value\": \"" + usrid + "\",\n" +
-                    "              \"description\": \"Enter your unique appid.\",\n" +
+                    "              \"description\": \"Appid "+usrid+"\",\n" +
                     "              \"required\": true,\n" +
                     "              \"type\": \"string\",\n" +
                     "              \"paramType\": \"query\"\n" +
