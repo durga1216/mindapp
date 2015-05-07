@@ -119,15 +119,16 @@ public class RestSwagger {
                                         "              \"required\": true,\n" +
                                         "              \"type\": \"string\",\n" +
                                         "              \"paramType\": \"query\"\n" +
-                                        "            },\n";
+                                        "            },";
                             }
                         }
-
                     }
                 }
+                output=removeLastChar(output);
                 output += "          ]\n" +
-                        "        },\n";
+                        "        },";
             }
+            output=removeLastChar(output);
             output += "      ]\n" +
                     "    }\n" +
                     "  ],\n" +
@@ -141,5 +142,8 @@ public class RestSwagger {
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
                 .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
+    }
+    private static String removeLastChar(String str) {
+        return str.substring(0, str.length()-1);
     }
 }
