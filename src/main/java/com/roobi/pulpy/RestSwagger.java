@@ -20,11 +20,11 @@ import java.util.ArrayList;
 public class RestSwagger {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
+    @Path("/{usrid}")
     public Response getdata(@PathParam("usrid") String usrid) {
         String result = "{\n" +
                 "  \"swaggerVersion\": \"1.2\",\n" +
                 "  \"basePath\": \"http://mindapp-pulpy.rhcloud.com\",\n" +
-                "\"tags\":{\"name\":\"mind\",\"description\":\"Get simplified data using appid\"}," +
                 "  \"apis\": [\n" +
                 "    {\n" +
                 "       \"tags\":[  \n" +
@@ -66,12 +66,9 @@ public class RestSwagger {
         String output = "{\n" +
                 "  \"swaggerVersion\": \"1.2\",\n" +
                 "  \"basePath\": \"http://mindapp-pulpy.rhcloud.com\",\n" +
-                "\"tags\":{\"name\":\"mind\",\"description\":\"Get simplified data using appid\"}," +
                 "  \"apis\": [\n" +
                 "    {\n" +
-                "       \"tags\":[  \n" +
-                "               \"mind\"\n" +
-                "            ]," +
+                "\"tags\":{\"name\":\"mind\",\"description\":\"Get simplified data using appid\"},\n" +
                 "      \"path\": \"/AuthXmlPulpy\",\n" +
                 "      \"operations\": [\n";
         try {
@@ -129,7 +126,7 @@ public class RestSwagger {
                     }
                 }
                 output += "          ]\n" +
-                        "        }\n";
+                        "        },\n";
             }
             output += "      ]\n" +
                     "    }\n" +
