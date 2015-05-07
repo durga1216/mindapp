@@ -8,6 +8,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/images/pix7.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/semantics3/api/testing.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java" afterPath="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/swagger.html" afterPath="$PROJECT_DIR$/src/main/webapp/swagger.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mindapp.iws" />
@@ -46,18 +47,15 @@
       <file leaf-file-name="RestSwagger.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19475655">
-              <caret line="115" column="49" selection-start-line="115" selection-start-column="49" selection-end-line="115" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.6096257">
+              <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3902#3910#0" expanded="true" />
-                <element signature="e#6840#6841#0" expanded="true" />
-                <element signature="e#6895#6896#0" expanded="true" />
-                <marker date="1430996166074" expanded="true" signature="3256:3289" placeholder="SELECT appid..xmlconfig..." />
-                <marker date="1430996166074" expanded="true" signature="3256:3290" placeholder="SELECT * Fro..login..." />
-                <marker date="1430996166074" expanded="true" signature="3256:3294" placeholder="SELECT appid..xmlconfig..." />
-                <marker date="1430996166074" expanded="true" signature="3256:3308" placeholder="SELECT appid..xmlconfig..." />
-                <marker date="1430996166074" expanded="true" signature="3735:3792" placeholder="SELECT * Fro..config..." />
+                <element signature="e#3957#3965#0" expanded="true" />
+                <element signature="e#6668#6669#0" expanded="true" />
+                <element signature="e#6725#6726#0" expanded="true" />
+                <marker date="1430998412170" expanded="true" signature="3807:3841" placeholder="SELECT * Fro..config..." />
+                <marker date="1430998412170" expanded="true" signature="3807:3855" placeholder="SELECT * Fro..config..." />
               </folding>
             </state>
           </provider>
@@ -98,8 +96,8 @@
       <file leaf-file-name="swagger.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="91" column="20" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
+            <state vertical-scroll-proportion="-3.7777777">
+              <caret line="28" column="60" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -166,8 +164,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/OauthCallBackServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/swagg.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/css/screen.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/swagger.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/swagger.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java" />
       </list>
     </option>
@@ -1140,12 +1138,12 @@
       <workItem from="1430833608264" duration="8017000" />
       <workItem from="1430917065102" duration="653000" />
       <workItem from="1430974581628" duration="1681000" />
-      <workItem from="1430977885968" duration="4762000" />
+      <workItem from="1430977885968" duration="6069000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101893000" />
+    <option name="totallyTimeSpent" value="103200000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1163,7 +1161,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12962963" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.08796296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24940239" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1556,14 +1554,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="91" column="20" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/AuthXmlPulpy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1616,20 +1606,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/swagger.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.7777777">
+          <caret line="28" column="60" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/roobi/pulpy/RestSwagger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19475655">
-          <caret line="115" column="49" selection-start-line="115" selection-start-column="49" selection-end-line="115" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.6096257">
+          <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3902#3910#0" expanded="true" />
-            <element signature="e#6840#6841#0" expanded="true" />
-            <element signature="e#6895#6896#0" expanded="true" />
-            <marker date="1430996166074" expanded="true" signature="3256:3289" placeholder="SELECT appid..xmlconfig..." />
-            <marker date="1430996166074" expanded="true" signature="3256:3290" placeholder="SELECT * Fro..login..." />
-            <marker date="1430996166074" expanded="true" signature="3256:3294" placeholder="SELECT appid..xmlconfig..." />
-            <marker date="1430996166074" expanded="true" signature="3256:3308" placeholder="SELECT appid..xmlconfig..." />
-            <marker date="1430996166074" expanded="true" signature="3735:3792" placeholder="SELECT * Fro..config..." />
+            <element signature="e#3957#3965#0" expanded="true" />
+            <element signature="e#6668#6669#0" expanded="true" />
+            <element signature="e#6725#6726#0" expanded="true" />
+            <marker date="1430998412170" expanded="true" signature="3807:3841" placeholder="SELECT * Fro..config..." />
+            <marker date="1430998412170" expanded="true" signature="3807:3855" placeholder="SELECT * Fro..config..." />
           </folding>
         </state>
       </provider>
