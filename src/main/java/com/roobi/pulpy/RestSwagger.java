@@ -104,7 +104,7 @@ public class RestSwagger {
                 "}";
         String output = "{\n" +
                 "  \"swaggerVersion\": \"1.2\",\n" +
-                "  \"basePath\": \"https://mindapp-pulpy.rhcloud.com/rest\",\n" +
+                "  \"basePath\": \"https://mindapp-pulpy.rhcloud.com\",\n" +
                 "   \"info\":{  \n" +
                 "      \"description\":\"Get the Your Mind pulpy App response in swagger IO\",\n" +
                 "      \"version\":\"1.0.0\",\n" +
@@ -130,7 +130,7 @@ public class RestSwagger {
                 ArrayList<String> parm = new ArrayList<String>();
                 output +="    {\n" +
                         "\"tags\":{\"name\":\"mind\",\"description\":\"Get simplified data using appid\"},\n" +
-                        "      \"path\": \"/AuthXmlPulpy/"+arrapid.get(i)+"\",\n" +
+                        "      \"path\": \"/rest/AuthXmlPulpy/"+arrapid.get(i)+"\",\n" +
                         "      \"operations\": [\n"+
                         "        {\n" +
                         "          \"method\": \"GET\",\n" +
@@ -141,16 +141,7 @@ public class RestSwagger {
                         "               \"application/xml\",\n" +
                         "               \"application/json\"\n" +
                         "            ]," +
-                        "          \"parameters\": [\n" +
-                        "            {\n" +
-                        "              \"name\": \"appid\",\n" +
-                        "              \"value\": \"" + arrapid.get(i) + "\",\n" +
-                        "              \"description\": \"Enter your unique appid.\",\n" +
-                        "              \"required\": true,\n" +
-                        "              \"type\": \"string\",\n" +
-                        "              \"paramType\": \"query\"\n" +
-                        "            },";
-
+                        "          \"parameters\": [\n" ;
                 if (rs1 != null) {
                     while (rs1.next()) {
                         for (int n = 1; n < 11; n++) {

@@ -79,7 +79,7 @@ public class RestPulpy {
 
     @GET
 
-    @Produces(MediaType.TEXT_XML)
+    @Produces(MediaType.TEXT_PLAIN)
 
     @Path("/{appid}")
 
