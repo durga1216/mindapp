@@ -1205,7 +1205,7 @@
   color: white;
 }
 .swagger-section #header form#api_selector {
-  display: block;
+  display: none;
   clear: none;
   float: right;
 }

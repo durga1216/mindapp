@@ -1,3 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: susee
+  Date: 8/5/15
+  Time: 7:03 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,14 +27,23 @@
   <script src='swagger-ui.js' type='text/javascript'></script>
   <script src='lib/highlight.7.3.pack.js' type='text/javascript'></script>
   <script src='lib/marked.js' type='text/javascript'></script>
-
+  <%
+    String u = (String) request.getSession().getAttribute("user");
+    if (u != null) {
+      // System.out.println("user != null");
+      // out.print("Welcome "+u);
+    } else {
+      // System.out.println("user == null");
+      response.sendRedirect("logout.jsp");
+    }
+  %>
   <script type="text/javascript">
     $(function () {
       var url = window.location.search.match(/url=([^&]+)/);
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "https://mindapp-pulpy.rhcloud.com/rest/swagger/MP_0007";
+        url = "https://mindapp-pulpy.rhcloud.com/rest/swagger/<%=u%>";
       }
       window.swaggerUi = new SwaggerUi({
         url: url,
@@ -35,12 +52,12 @@
         onComplete: function(swaggerApi, swaggerUi){
           if(typeof initOAuth == "function") {
             /*
-            initOAuth({
-              clientId: "your-client-id",
-              realm: "your-realms",
-              appName: "your-app-name"
-            });
-            */
+             initOAuth({
+             clientId: "your-client-id",
+             realm: "your-realms",
+             appName: "your-app-name"
+             });
+             */
           }
 
           $('pre code').each(function(i, e) {
@@ -59,9 +76,9 @@
       function addApiKeyAuthorization(){
         var key = encodeURIComponent($('#input_apiKey')[0].value);
         if(key && key.trim() != "") {
-            var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
-            window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
-            log("added key " + key);
+          var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
+          window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
+          log("added key " + key);
         }
       }
 
@@ -69,10 +86,10 @@
 
       // if you have an apiKey you would like to pre-populate on the page for demonstration purposes...
       /*
-        var apiKey = "myApiKeyXXXX123456789";
-        $('#input_apiKey').val(apiKey);
-        addApiKeyAuthorization();
-      */
+       var apiKey = "myApiKeyXXXX123456789";
+       $('#input_apiKey').val(apiKey);
+       addApiKeyAuthorization();
+       */
 
       window.swaggerUi.load();
 
@@ -81,7 +98,7 @@
           console.log.apply(console, arguments);
         }
       }
-  });
+    });
   </script>
 </head>
 
@@ -101,3 +118,4 @@
 <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
 </body>
 </html>
+
