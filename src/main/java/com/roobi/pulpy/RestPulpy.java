@@ -12,7 +12,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.FormParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -83,7 +83,7 @@ public class RestPulpy {
 
     @Path("/{appid}")
 
-    public Response getResult(@PathParam("appid") String appid,@FormParam("message") String message,@FormParam("jsonstring") String jsonstring, @FormParam("p1") String p1, @FormParam("p2") String p2, @FormParam("p3") String p3, @FormParam("p4") String p4, @FormParam("p5") String p5, @FormParam("p6") String p6, @FormParam("p7") String p7, @FormParam("p8") String p8, @FormParam("p9") String p9, @FormParam("p10") String p10, @Context HttpServletRequest request, @Context HttpServletResponse response) {
+    public Response getResult(@PathParam("appid") String appid,@QueryParam("message") String message,@QueryParam("jsonstring") String jsonstring, @QueryParam("p1") String p1, @QueryParam("p2") String p2, @QueryParam("p3") String p3, @QueryParam("p4") String p4, @QueryParam("p5") String p5, @QueryParam("p6") String p6, @QueryParam("p7") String p7, @QueryParam("p8") String p8, @QueryParam("p9") String p9, @QueryParam("p10") String p10, @Context HttpServletRequest request, @Context HttpServletResponse response) {
         String out = null;
         try {
             Connection con = null;
