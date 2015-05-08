@@ -64,72 +64,118 @@ public class RestSwagger {
                 "          ]\n" +
                 "        }\n" +
                 "      ]\n" +
+                "    },\n" +
+                "    {\n" +
+                "       \"tags\":[  \n" +
+                "               \"mind\"\n" +
+                "            ]," +
+                "      \"path\": \"/AuthXmlPulpy/dfgsdfg\",\n" +
+                "      \"operations\": [\n" +
+                "        {\n" +
+                "          \"method\": \"GET\",\n" +
+                "          \"summary\": \"Get the simplified result using mindpulpy\",\n" +
+                "          \"type\": \"string\",\n" +
+                "          \"nickname\": \"mashup result\",\n" +
+                "          \"produces\":[  \n" +
+                "               \"application/xml\",\n" +
+                "               \"application/json\"\n" +
+                "            ]," +
+                "          \"parameters\": [\n" +
+                "            {\n" +
+                "              \"name\": \"appid\",\n" +
+                "              \"description\": \"Enter your unique appid.\",\n" +
+                "              \"required\": true,\n" +
+                "              \"type\": \"string\",\n" +
+                "              \"paramType\": \"query\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "              \"name\": \"p1\",\n" +
+                "              \"description\": \"Enter your parameter1.\",\n" +
+                "              \"required\": true,\n" +
+                "              \"type\": \"string\",\n" +
+                "              \"paramType\": \"query\"\n" +
+                "            }\n" +
+                "          ]\n" +
+                "        }\n" +
+                "      ]\n" +
                 "    }\n" +
                 "  ],\n" +
                 "  \"models\": {}\n" +
                 "}";
         String output = "{\n" +
                 "  \"swaggerVersion\": \"1.2\",\n" +
+                "  \"basePath\": \"https://mindapp-pulpy.rhcloud.com/rest\",\n" +
                 "   \"info\":{  \n" +
                 "      \"description\":\"Get the Your Mind pulpy App response in swagger IO\",\n" +
                 "      \"version\":\"1.0.0\",\n" +
                 "      \"title\":\"Mindpulpy Console\"\n" +
                 "   }," +
-                "  \"basePath\": \"http://mindapp-pulpy.rhcloud.com\",\n" +
-                "\"tags\":{\"name\":\"mind\",\"description\":\"Get simplified data using appid\"},\n" +
-                "\"name\":\"pet\",\n" +
-                "         \"description\":\"Everything about your Pets\"," +
-                "  \"apis\": [\n" +
-                "    {\n" +
-                "      \"path\": \"/AuthXmlPulpy\",\n" +
-                "      \"operations\": [\n";
+                "  \"apis\": [\n" ;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy", "adminPQ1iFfN", "J5JhBL-XC9NG");
-            PreparedStatement st1 = con.prepareStatement("SELECT * From config where appid='" + usrid + "'");
-            ResultSet rs1 = st1.executeQuery();
-            ArrayList<String> parm = new ArrayList<String>();
-            output += "        {\n" +
-                    "          \"method\": \"GET\",\n" +
-                    "          \"summary\": \"Mindpulpy simplified result for Appid " + usrid + "\",\n" +
-                    "          \"type\": \"string\",\n" +
-                    "          \"nickname\": \"Simplified result\",\n" +
-                    "          \"produces\":[  \n" +
-                    "               \"application/xml\",\n" +
-                    "               \"application/json\"\n" +
-                    "            ]," +
-                    "          \"parameters\": [\n" +
-                    "            {\n" +
-                    "              \"name\": \"appid\",\n" +
-                    "              \"value\": \"" + usrid + "\",\n" +
-                    "              \"description\": \"Appid "+usrid+"\",\n" +
-                    "              \"required\": true,\n" +
-                    "              \"type\": \"string\",\n" +
-                    "              \"paramType\": \"query\"\n" +
-                    "            },";
+            PreparedStatement st = con.prepareStatement("SELECT appid From xmlconfig where id='" + usrid + "'");
+            ResultSet rs = st.executeQuery();
+            ArrayList<String> arrapid = new ArrayList<String>();
+            if (rs != null) {
+                while (rs.next()) {
+                    String apid = rs.getString("appid");
+                    arrapid.add(apid);
+                }
+            }
 
-            if (rs1 != null) {
-                while (rs1.next()) {
-                    for (int n = 1; n < 11; n++) {
-                        String par = "" + rs1.getString("p" + n);
-                        if (!par.equals("null")) {
-                            parm.add(par);
-                            output += "            {\n" +
-                                    "              \"name\": \"p" + n + "\",\n" +
-                                    "              \"description\": \"Enter " + par + ".\",\n" +
-                                    "              \"required\": true,\n" +
-                                    "              \"type\": \"string\",\n" +
-                                    "              \"paramType\": \"query\"\n" +
-                                    "            },";
+            for (int i = 0; i < arrapid.size(); i++) {
+                PreparedStatement st1 = con.prepareStatement("SELECT * From config where appid='" + arrapid.get(i) + "'");
+                ResultSet rs1 = st1.executeQuery();
+                ArrayList<String> parm = new ArrayList<String>();
+                output +="    {\n" +
+                        "\"tags\":{\"name\":\"mind\",\"description\":\"Get simplified data using appid\"},\n" +
+                        "      \"path\": \"/AuthXmlPulpy/"+arrapid.get(i)+"\",\n" +
+                        "      \"operations\": [\n"+
+                        "        {\n" +
+                        "          \"method\": \"GET\",\n" +
+                        "          \"summary\": \"Mindpulpy simplified result for Appid " + arrapid.get(i) + "\",\n" +
+                        "          \"type\": \"string\",\n" +
+                        "          \"nickname\": \"Simplified result\",\n" +
+                        "          \"produces\":[  \n" +
+                        "               \"application/xml\",\n" +
+                        "               \"application/json\"\n" +
+                        "            ]," +
+                        "          \"parameters\": [\n" +
+                        "            {\n" +
+                        "              \"name\": \"appid\",\n" +
+                        "              \"value\": \"" + arrapid.get(i) + "\",\n" +
+                        "              \"description\": \"Enter your unique appid.\",\n" +
+                        "              \"required\": true,\n" +
+                        "              \"type\": \"string\",\n" +
+                        "              \"paramType\": \"query\"\n" +
+                        "            },";
+
+                if (rs1 != null) {
+                    while (rs1.next()) {
+                        for (int n = 1; n < 11; n++) {
+                            String par = "" + rs1.getString("p" + n);
+                            if (!par.equals("null")) {
+                                parm.add(par);
+                                output += "    \n        {\n" +
+                                        "              \"name\": \"p" + n + "\",\n" +
+                                        "              \"description\": \"Enter " + par + ".\",\n" +
+                                        "              \"required\": true,\n" +
+                                        "              \"type\": \"string\",\n" +
+                                        "              \"paramType\": \"query\"\n" +
+                                        "            },";
+                            }
                         }
                     }
                 }
+                output=removeLastChar(output);
+                output += "\n          ]\n" +
+                        "        }\n" +
+                        "      ]\n" +
+                        "    }," ;
             }
-            output = removeLastChar(output);
-            output += "\n          ]\n" +
-                    "        }";
-            output += "      ]\n" +
-                    "    }\n" +
+            output=removeLastChar(output);
+            output +=
                     "  ],\n" +
                     "  \"models\": {}\n" +
                     "}";
@@ -142,8 +188,7 @@ public class RestSwagger {
                 .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
                 .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
     }
-
     private static String removeLastChar(String str) {
-        return str.substring(0, str.length() - 1);
+        return str.substring(0, str.length()-1);
     }
 }

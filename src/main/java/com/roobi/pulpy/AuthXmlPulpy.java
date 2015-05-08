@@ -87,11 +87,13 @@ public class AuthXmlPulpy extends HttpServlet {
         Connection con=null;
         HttpSession session=request.getSession(true);
         // String appid=(String) session.getAttribute("xx");
+
         String appid=request.getParameter("appid");
         //String eurl11=request.getParameter("eurl");
         String pid=request.getParameter("pid");String jsonstring=request.getParameter("jsonstring");
         String message=request.getParameter("message");String timestamp=request.getParameter("timestamp");
         String nonce=request.getParameter("nonce");
+
         String p1=request.getParameter("p1");String p2=request.getParameter("p2");
         String p3=request.getParameter("p3");String p4=request.getParameter("p4");
         String p5=request.getParameter("p5");String p6=request.getParameter("p6");
@@ -104,12 +106,14 @@ public class AuthXmlPulpy extends HttpServlet {
             PreparedStatement st=con.prepareStatement("SELECT * FROM authen1 t1 JOIN config t2 ON t1.appid = t2.appid JOIN xmlconfig t3 ON t1.appid=t3.appid  WHERE t1.appid=?");
             st.setString(1, appid);
             ResultSet rs = st.executeQuery();
+
             PreparedStatement st1=con.prepareStatement("SELECT * FROM authen1 t1 JOIN secondconfig t2 ON t1.appid = t2.appid JOIN secxmlconfig t3 ON t1.appid=t3.appid  WHERE t1.appid=?");
             st1.setString(1, appid);
             ResultSet rs1 = st1.executeQuery();
             PreparedStatement st2=con.prepareStatement("SELECT * FROM authen1 t1 JOIN thirdconfig t2 ON t1.appid = t2.appid JOIN thrdxmlconfig t3 ON t1.appid=t3.appid  WHERE t1.appid=?");
             st2.setString(1, appid);
             ResultSet rs2 = st2.executeQuery();
+
             PreparedStatement st3=con.prepareStatement("SELECT * From oauthtoken ORDER BY count DESC LIMIT 1");
             ResultSet rs3 = st3.executeQuery();
             while(rs3.next()){
