@@ -137,10 +137,6 @@ public class RestSwagger {
                         "          \"summary\": \"Mindpulpy simplified result for Appid " + arrapid.get(i) + "\",\n" +
                         "          \"type\": \"string\",\n" +
                         "          \"nickname\": \"Simplified result\",\n" +
-                        "          \"produces\":[  \n" +
-                        "               \"application/xml\",\n" +
-                        "               \"application/json\"\n" +
-                        "            ]," +
                         "          \"parameters\": [\n" ;
                 if (rs1 != null) {
                     while (rs1.next()) {
