@@ -1467,7 +1467,7 @@ public class RestPulpy {
         return Response.ok(out)
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
-                .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
+                .header("Access-Control-Allow-Headers", "Content-Type, Accept, application/xml").build();
     }
     private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
         SecretKey secretKey = null;
