@@ -29,6 +29,7 @@
   <script src='lib/marked.js' type='text/javascript'></script>
   <%
     String u = (String) request.getSession().getAttribute("user");
+    String id = ""+(String) request.getSession().getAttribute("id");
     if (u != null) {
       // System.out.println("user != null");
       // out.print("Welcome "+u);
@@ -43,7 +44,7 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "https://mindapp-pulpy.rhcloud.com/rest/swagger/<%=u%>";
+        url = "https://mindapp-pulpy.rhcloud.com/rest/swagger/<%=id%>";
       }
       window.swaggerUi = new SwaggerUi({
         url: url,
@@ -100,17 +101,24 @@
       }
     });
   </script>
+  <style>
+    .mail{
+      color: #FFFFFF;
+      font-size: 18px;
+    }
+  </style>
 </head>
 
 <body class="swagger-section">
 <div id='header'>
   <div class="swagger-ui-wrap">
-    <a id="logo" href="http://minddotss.com">Mind Pulpy</a>
+    <a id="logo" href="logsucess.jsp">Mind Pulpy</a>
     <form id='api_selector'>
       <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
       <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
       <div class='input'><a id="explore" href="#">Explore</a></div>
     </form>
+    <div class="mail"><%=session.getAttribute("mail")%></div>
   </div>
 </div>
 
