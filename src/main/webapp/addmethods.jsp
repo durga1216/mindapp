@@ -39,6 +39,19 @@
             contentID.removeChild(document.getElementById('strhead' + headnum));
             headnum = headnum - 1;
         }
+        function myFunction() {
+            var x = document.getElementById("mySelect").value;
+            if(x=='noauth'){
+                document.getElementById('apikey').style.display = 'none';
+                document.getElementById('basic').style.display = 'none';
+            }else if(x=='apikey'){
+                document.getElementById('apikey').style.display = 'block';
+                document.getElementById('basic').style.display = 'none';
+            }else if(x=='basic'){
+                document.getElementById('apikey').style.display = 'none';
+                document.getElementById('basic').style.display = 'block';
+            }
+        }
     </script>
     <style>
         body {
@@ -55,7 +68,7 @@
             font-size: 16px;
         }
 
-        input[type="text"] {
+        input[type="text"] ,input[type="password"] {
             width: 500px;
             height: 30px;
             font-family: verdana;
@@ -189,11 +202,17 @@
             <td class="span2">
                 <div class="head2">Choose Your Authentication :</div>
             </td>
-            <td><select name="authen" class="sel1">
+            <td><select name="authen" class="sel1" id="mySelect" onchange="myFunction()">
                 <option value="noauth">No Authentication</option>
                 <option value="apikey">API key Authentication</option>
                 <option value="basic">Basic Authentication</option>
             </select></td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td><div style="display: none" id="apikey"><input style='width:300px;' type="text" name="aplabel" placeholder="Api label">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style='width:300px;' name="apkey" placeholder="Api Key"></div>
+                <div style="display: none" id="basic"><input style='width:300px;' type="text" name="basicuser" placeholder="username">&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" style='width:300px;' name="basicpass" placeholder="password"></div></td>
         </tr>
         <tr class="trspan1">
             <td class="span2">

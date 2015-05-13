@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a00d117-797b-442a-80d2-5073421707e8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/addmethods.jsp" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/images/pix7.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/semantics3/api/testing.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/roobi/pulpy/RestPulpy.class" afterPath="$PROJECT_DIR$/target/classes/com/roobi/pulpy/RestPulpy.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/firstauth.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/firstauth.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/addmethods.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/addmethods.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mindapp.iws" />
@@ -36,11 +34,11 @@
       <file leaf-file-name="addmethods.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/addmethods.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26903552">
-              <caret line="212" column="19" selection-start-line="212" selection-start-column="19" selection-end-line="212" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.103846155">
+              <caret line="204" column="87" selection-start-line="204" selection-start-column="87" selection-end-line="204" selection-end-column="87" />
               <folding>
-                <marker date="1431501823601" expanded="true" signature="620:672" placeholder="..." />
-                <marker date="1431501823601" expanded="true" signature="620:694" placeholder="..." />
+                <marker date="1431505655333" expanded="true" signature="620:672" placeholder="..." />
+                <marker date="1431505655333" expanded="true" signature="620:694" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -49,8 +47,8 @@
       <file leaf-file-name="firstauth.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/firstauth.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.409091">
-              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+            <state vertical-scroll-proportion="45.409092">
+              <caret line="102" column="12" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -69,7 +67,7 @@
       <file leaf-file-name="oauthmash.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/oauthmash.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-47.925926">
               <caret line="92" column="10" selection-start-line="92" selection-start-column="10" selection-end-line="92" selection-end-column="10" />
               <folding>
                 <marker date="1429686556457" expanded="true" signature="579:611" placeholder="..." />
@@ -225,6 +223,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mindapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intelmind" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1154,12 +1178,12 @@
       <workItem from="1431091404615" duration="1802000" />
       <workItem from="1431146447450" duration="3237000" />
       <workItem from="1431490955006" duration="1945000" />
-      <workItem from="1431496093255" duration="5553000" />
+      <workItem from="1431496093255" duration="7687000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124149000" />
+    <option name="totallyTimeSpent" value="126283000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1177,7 +1201,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18055555" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1095679" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24940239" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1588,7 +1612,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/oauthmash.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-47.925926">
           <caret line="92" column="10" selection-start-line="92" selection-start-column="10" selection-end-line="92" selection-end-column="10" />
           <folding>
             <marker date="1429686556457" expanded="true" signature="579:611" placeholder="..." />
@@ -1606,19 +1630,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/firstauth.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.409091">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        <state vertical-scroll-proportion="45.409092">
+          <caret line="102" column="12" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/addmethods.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26903552">
-          <caret line="212" column="19" selection-start-line="212" selection-start-column="19" selection-end-line="212" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.103846155">
+          <caret line="204" column="87" selection-start-line="204" selection-start-column="87" selection-end-line="204" selection-end-column="87" />
           <folding>
-            <marker date="1431501823601" expanded="true" signature="620:672" placeholder="..." />
-            <marker date="1431501823601" expanded="true" signature="620:694" placeholder="..." />
+            <marker date="1431505655333" expanded="true" signature="620:672" placeholder="..." />
+            <marker date="1431505655333" expanded="true" signature="620:694" placeholder="..." />
           </folding>
         </state>
       </provider>
