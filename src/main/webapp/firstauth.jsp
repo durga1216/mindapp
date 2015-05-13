@@ -13,20 +13,20 @@
     response.setDateHeader("Expires", 0);%>
 <script type="text/javascript">
 
-var intTextBox=0;
+var headnum=0;
 function addParent(){
-	  intTextBox = intTextBox + 1;
+	  headnum = headnum + 1;
 	  var contentID = document.getElementById('content');
 	  var newTBDiv = document.createElement('div');
-	  newTBDiv.setAttribute('id','strText'+intTextBox);
-	  newTBDiv.innerHTML = "<input type='text' id='h" + intTextBox + "'    name='h" + intTextBox + "' placeholder='Header_Label'/>" + "<input type='text' id='hv"+ intTextBox + " ' name='hv"+intTextBox+"' placeholder='Header_Value'/>";
+	  newTBDiv.setAttribute('id','strText'+headnum);
+	  newTBDiv.innerHTML = "<input type='text' id='h" + headnum + "'    name='h" + headnum + "' placeholder='Header_Label'/>" + "<input type='text' id='hv"+ headnum + " ' name='hv"+headnum+"' placeholder='Header_Value'/>";
 	  contentID.appendChild(newTBDiv);
 }
 function removeParent()
 {
 	var contentID = document.getElementById('content');
-    contentID.removeChild(document.getElementById('strText'+intTextBox));
-    intTextBox = intTextBox-1;
+    contentID.removeChild(document.getElementById('strText'+headnum));
+    headnum = headnum-1;
 	}
 	
 $(document).ready(function(){
