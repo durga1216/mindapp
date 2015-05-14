@@ -1,7 +1,7 @@
 package com.roobi.pulpy;
 
-import net.sf.json.JSONObject;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -24,7 +24,7 @@ public class RestConsole {
     @Path("/{id}")
     public Response addPlainText(@PathParam("id") String id) {
         String result11="no res";
-        String checkin="";
+        //String checkin="";
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con= DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy", "adminPQ1iFfN", "J5JhBL-XC9NG");
@@ -59,18 +59,18 @@ public class RestConsole {
                             object2.put("param_label", param[0]);
                             arr1.put(object2);
                         }
-                        checkin+=arr1.toString();
+                        //checkin+=arr1.toString();
                         object1.put("parameters",arr1);
                         array.put(object1);
                     }
-                    checkin+=array.toString();
+                    //checkin+=array.toString();
                     object.put("methods",array);
                     arr.put(object);
-                    checkin+=object.toString();
+                    //checkin+=object.toString();
                 }
                 obj.put("result",arr);
             }
-            result11= obj.toString()+"-----"+checkin;
+            result11= obj.toString();
             con.close();
         }//try
         catch(Exception e){

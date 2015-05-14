@@ -1,5 +1,6 @@
 package com.semantics3.api;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -8,8 +9,12 @@ import org.json.JSONObject;
 public class Test {
     public static void main(String args[]){
         String data="";
-
-        System.out.println("test");
+        JSONObject obj=new JSONObject();
+        JSONArray arr=new JSONArray();
+        obj.put("dfs","dfsd");
+        obj.put("sdsd","sdfsd");
+        arr.put(obj);arr.put(obj);
+        System.out.println("test"+arr.toString());
         System.out.println("sdf");
     }
 }
