@@ -138,6 +138,7 @@ public class RestSwagger {
                         "          \"type\": \"string\",\n" +
                         "          \"nickname\": \"Simplified result\",\n" +
                         "          \"produces\":[  \n" +
+                        "               \"text/html\",\n" +
                         "               \"application/xml\",\n" +
                         "               \"application/json\"\n" +
                         "            ]," +
