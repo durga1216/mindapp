@@ -41,13 +41,13 @@
         }
         function myFunction() {
             var x = document.getElementById("mySelect").value;
-            if(x=='noauth'){
+            if (x == 'noauth') {
                 document.getElementById('apikey').style.display = 'none';
                 document.getElementById('basic').style.display = 'none';
-            }else if(x=='apikey'){
+            } else if (x == 'apikey') {
                 document.getElementById('apikey').style.display = 'block';
                 document.getElementById('basic').style.display = 'none';
-            }else if(x=='basic'){
+            } else if (x == 'basic') {
                 document.getElementById('apikey').style.display = 'none';
                 document.getElementById('basic').style.display = 'block';
             }
@@ -68,7 +68,7 @@
             font-size: 16px;
         }
 
-        input[type="text"] ,input[type="password"] {
+        input[type="text"], input[type="password"] {
             width: 500px;
             height: 30px;
             font-family: verdana;
@@ -177,7 +177,7 @@
 
 <h2>Add Methods to Mindpulpy Console</h2><br>
 
-<form action="#" method="post">
+<form action="SaveConsole" method="get">
     <table>
         <tr>
             <td class="span2">
@@ -211,8 +211,14 @@
         <tr>
             <td>
             </td>
-            <td><div style="display: none" id="apikey"><input style='width:300px;' type="text" name="aplabel" placeholder="Api label">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style='width:300px;' name="apkey" placeholder="Api Key"></div>
-                <div style="display: none" id="basic"><input style='width:300px;' type="text" name="basicuser" placeholder="username">&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" style='width:300px;' name="basicpass" placeholder="password"></div></td>
+            <td>
+                <div style="display: none" id="apikey"><input style='width:300px;' type="text" name="apiLabel"
+                                                              placeholder="Api label">&nbsp;&nbsp;&nbsp;&nbsp;<input
+                        type="text" style='width:300px;' name="apiKey" placeholder="Api Key"></div>
+                <div style="display: none" id="basic"><input style='width:300px;' type="text" name="basicUser"
+                                                             placeholder="username">&nbsp;&nbsp;&nbsp;&nbsp;<input
+                        type="password" style='width:300px;' name="basicPass" placeholder="password"></div>
+            </td>
         </tr>
         <tr class="trspan1">
             <td class="span2">
