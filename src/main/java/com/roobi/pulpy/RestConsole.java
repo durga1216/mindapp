@@ -48,10 +48,10 @@ public class RestConsole {
                     JSONArray array=new JSONArray();
                     while (rs1.next()){
                         JSONObject object1=new JSONObject();
-                        object1.put("method_type",object1.getString("mashmeth"));
-                        object1.put("method_url",object1.getString("mashurl"));
+                        object1.put("method_type",rs1.getString("mashmeth"));
+                        object1.put("method_url",rs1.getString("mashurl"));
                         JSONObject object2=new JSONObject();
-                        String[] mastext=object1.getString("mastext").split("&");
+                        String[] mastext=rs1.getString("mastext").split("&");
                         for (int i=0;i<mastext.length;i++){
                             String[] param=mastext[i].split("=");
                             object2.put("param_label"+i,param[0]);

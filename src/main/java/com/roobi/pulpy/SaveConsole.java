@@ -65,11 +65,11 @@ public class SaveConsole extends HttpServlet {
                 String mashurl = "" + request.getParameter("masurl" + i);
                 if (!mashurl.equals("null")) {
                     PreparedStatement st2 = con.prepareStatement("insert into csmethod(conid,masmeth,masurl,mastext) values (?,?,?,?)");
-                    st.setString(1, conid);
-                    st.setString(2, "" + request.getParameter("masmeth" + i));
-                    st.setString(3, mashurl);
-                    st.setString(4, "" + request.getParameter("mastext" + i));
-                    st.executeUpdate();
+                    st2.setString(1, conid);
+                    st2.setString(2, "" + request.getParameter("masmeth" + i));
+                    st2.setString(3, mashurl);
+                    st2.setString(4, "" + request.getParameter("mastext" + i));
+                    st2.executeUpdate();
                 }
             }
 
