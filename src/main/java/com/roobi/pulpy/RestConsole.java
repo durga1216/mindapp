@@ -51,22 +51,24 @@ public class RestConsole {
                         JSONObject object1=new JSONObject();
                         object1.put("method_type",rs1.getString("masmeth"));
                         object1.put("method_url", rs1.getString("masurl"));
-                        JSONObject object2=new JSONObject();
                         String[] mastext=rs1.getString("mastext").split("&");
+                        JSONArray arr1=new JSONArray();
                         for (int i=0;i<mastext.length;i++){
                             String[] param=mastext[i].split("=");
-                            object2.put("param_label"+i,param[0]);
+                            JSONObject object2=new JSONObject();
+                            object2.put("param_label", param[0]);
+                            arr1.put(object2);
                         }
-                        checkin+=object2.toString();
-                        object1.put("parameters",object2.toString());
-                        array.put(object1.toString());
+                        checkin+=arr1.toString();
+                        object1.put("parameters",arr1);
+                        array.put(object1);
                     }
                     checkin+=array.toString();
-                    object.put("methods",array.toString());
-                    arr.put(object.toString());
+                    object.put("methods",array);
+                    arr.put(object);
                     checkin+=object.toString();
                 }
-                obj.put("result",arr.toString());
+                obj.put("result",arr);
             }
             result11= obj.toString()+"-----"+checkin;
             con.close();
