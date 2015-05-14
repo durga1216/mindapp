@@ -218,7 +218,7 @@
         response.sendRedirect("logout.jsp");
     }
 %>
-<div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;<a
+<div id=na><%=session.getAttribute("mail")%> &nbsp;|&nbsp;<a id="indiv" href='ApiDoc.jsp'>API Documentation</a>&nbsp;|&nbsp;<a id="indiv" href='addmethods.jsp'>Add Custom Console</a>&nbsp;|&nbsp;<a
         id='indiv' href='swagger.jsp'> SWAGGER Api Console</a><sup> new </sup>&nbsp;|&nbsp;<a id='indiv' href='mobile_client.jsp'>MindPulpy API
     Console</a>&nbsp;|&nbsp;<a id='indiv' href='<%=request.getContextPath()%>/ApiPulpy'>API Usage</a>&nbsp;|&nbsp;<a
         id='indiv' href='logout.jsp'> Sign Out </a></div>

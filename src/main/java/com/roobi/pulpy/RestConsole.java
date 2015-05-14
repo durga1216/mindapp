@@ -39,11 +39,16 @@ public class RestConsole {
                     object.put("app_name",""+rs.getString("appName"));
                     object.put("base_url",""+rs.getString("baseUrl"));
                     object.put("auth_type",""+rs.getString("authen"));
+                    JSONArray hdarr=new JSONArray();
                     for (int i = 1; i < 6; i++) {
                         String head=""+rs.getString("h"+i);
-                        if (!head.equals("null"))
-                            object.put("header"+i,head);
+                        if (!head.equals("null")){
+                            JSONObject hdobj=new JSONObject();
+                            hdobj.put("header_label",head);
+                            hdarr.put(hdobj);
+                        }
                     }
+                    object.put("headers",hdarr);
                     PreparedStatement st1=con.prepareStatement("SELECT * From csmethod where conid='" + rs.getInt("conid") + "'");
                     ResultSet rs1 = st1.executeQuery();
                     JSONArray array=new JSONArray();

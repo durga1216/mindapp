@@ -8,7 +8,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Oauth MashUP</title>
+    <title>Custom Console</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <%
+        String u = (String) request.getSession().getAttribute("user");
+        String id = ""+(String) request.getSession().getAttribute("id");
+        if (u != null) {
+            // System.out.println("user != null");
+            // out.print("Welcome "+u);
+        } else {
+            // System.out.println("user == null");
+            response.sendRedirect("logout.jsp");
+        }
+    %>
     <script>
         var intTextBox = 0;
         function addmethod() {

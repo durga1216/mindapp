@@ -74,8 +74,8 @@ public class SaveConsole extends HttpServlet {
             }
 
             con.close();
-            out.println("<center><br><br><h2> Configured Successful..!<br><br>Your APPID is " + conid + "..<br>" +
-                    "<br></center>");
+            out.println("<center><br><br><h2> Configured Successful..!<br>" +
+                    "<br>Check with<a src='https://mindapp-pulpy.rhcloud.com/rest/console/"+id+"'>https://mindapp-pulpy.rhcloud.com/rest/console/"+id+"</a></center>");
         } catch (Exception e) {
             out.println("Some Error " + e.getMessage());
         }
