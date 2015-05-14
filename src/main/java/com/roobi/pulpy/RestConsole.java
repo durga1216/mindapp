@@ -24,6 +24,7 @@ public class RestConsole {
     @Path("/{id}")
     public Response addPlainText(@PathParam("id") String id) {
         String result11="no res";
+        String checkin="";
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection con= DriverManager.getConnection("jdbc:mysql://127.6.250.130:3306/mpulpy", "adminPQ1iFfN", "J5JhBL-XC9NG");
@@ -48,23 +49,26 @@ public class RestConsole {
                     JSONArray array=new JSONArray();
                     while (rs1.next()){
                         JSONObject object1=new JSONObject();
-                        object1.put("method_type",rs1.getString("mashmeth"));
-                        object1.put("method_url",rs1.getString("mashurl"));
+                        object1.put("method_type",rs1.getString("masmeth"));
+                        object1.put("method_url", rs1.getString("masurl"));
                         JSONObject object2=new JSONObject();
                         String[] mastext=rs1.getString("mastext").split("&");
                         for (int i=0;i<mastext.length;i++){
                             String[] param=mastext[i].split("=");
                             object2.put("param_label"+i,param[0]);
                         }
-                        object1.put("parameters",object2);
-                        array.put(object1);
+                        checkin+=object2.toString();
+                        object1.put("parameters",object2.toString());
+                        array.put(object1.toString());
                     }
-                    object.put("methods",array);
-                    arr.put(object);
+                    checkin+=array.toString();
+                    object.put("methods",array.toString());
+                    arr.put(object.toString());
+                    checkin+=object.toString();
                 }
-                obj.put("result",arr);
+                obj.put("result",arr.toString());
             }
-            result11= obj.toString();
+            result11= obj.toString()+"-----"+checkin;
             con.close();
         }//try
         catch(Exception e){
