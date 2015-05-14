@@ -235,6 +235,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>SaveConsole</display-name>
+    <servlet-name>SaveConsole</servlet-name>
+    <servlet-class>com.roobi.pulpy.SaveConsole</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SaveConsole</servlet-name>
+    <url-pattern>/SaveConsole</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>FirstAuthPulpy</display-name>
     <servlet-name>FirstAuthPulpy</servlet-name>
     <servlet-class>com.roobi.pulpy.FirstAuthPulpy</servlet-class>
