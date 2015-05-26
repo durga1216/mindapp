@@ -194,7 +194,7 @@
 
         }
         function load4() {
-            window.open("https://bridge-minddotss.rhcloud.com/index.jsp", '_blank');
+            window.open("https://bridge-minddotss.rhcloud.com/login.jsp", '_blank');
 
         }
         function load5() {
