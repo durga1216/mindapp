@@ -31,6 +31,7 @@ public class RestConsole {
             PreparedStatement st=con.prepareStatement("SELECT * From csauthen where id='" + id + "'");
             ResultSet rs = st.executeQuery();
             String conid="";
+            String connn="";
             JSONObject obj=new JSONObject();
             JSONArray arr=new JSONArray();
             if(rs != null){
