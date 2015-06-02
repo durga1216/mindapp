@@ -65,7 +65,7 @@ public class RestConsole {
                             object2.put("param_label", param[0]);
                             arr1.put(object2);
                         }
-                        //checkin+=arr1.toString();
+                        //checkin+=arr1.toString();Checkin for the map
                         object1.put("parameters",arr1);
                         array.put(object1);
                     }
